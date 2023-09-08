@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminPageController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard-admin', function () {
-    return view('pages.admin.dashboard-admin');
+// Auth route
+Route::get('/logout', [AuthController::class, 'doLogout'])->name('do.logout');
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login.page');
+    Route::post('/login', [AuthController::class, 'doLogin'])->name('do.login');
 });
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
 
-Route::get('/dashboard-user', function () {
-    return view('pages.user.dashboard-user');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
+    Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
