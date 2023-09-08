@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard-admin', function () {
     return view('pages.admin.dashboard-admin');
 });
+Route::get('/dashboard-dosbim', function () {
+    return view('pages.dosen.dashboard-dosbim');
+});
 
 Route::get('/dashboard-user', function () {
     return view('pages.user.dashboard-user');
