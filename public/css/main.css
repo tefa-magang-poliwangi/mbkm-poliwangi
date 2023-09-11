@@ -12,3 +12,8 @@ body {
 .back-color {
     background-color: #dbe0ec;
 }
+
+.card-round {
+    border-radius: 100% !important;
+    background-color: #fff;
+}
