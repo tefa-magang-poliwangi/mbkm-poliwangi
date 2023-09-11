@@ -12,3 +12,103 @@ body {
 .back-color {
     background-color: #dbe0ec;
 }
+
+.btn-theme {
+    font-weight: 500 !important;
+    background-color: #4F709C !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #004978 !important;
+}
+
+.btn-theme:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #004978 !important;
+    border-radius: 8px !important;
+    border: 2px solid #004978 !important;
+}
+
+.btn-theme-inverse {
+    font-weight: 500 !important;
+    background-color: #e5ac50 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    /* border: 2px solid white !important; */
+}
+
+.btn-theme-two {
+    font-weight: 500 !important;
+    background-color: #e5ac50 !important;
+    color: white !important;
+    border-radius: 12px !important;
+    border: 2px solid #e5ac50 !important;
+}
+
+.btn-theme-two:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #e5ac50 !important;
+    border-radius: 12px !important;
+    border: 2px solid #e5ac50 !important;
+}
+
+.btn-theme-paste {
+    font-weight: 500 !important;
+    background-color: #e5ac50 !important;
+    color: white !important;
+    border: 2px solid #e5ac50 !important;
+}
+
+.btn-theme-paste:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #e5ac50 !important;
+    border: 2px solid #e5ac50 !important;
+}
+
+.btn-grey {
+    background-color: grey !important;
+    color: white !important;
+}
+
+.text-purple {
+    color: #614bc3 !important;
+}
+
+.text-salmon {
+    color: #ff6666 !important;
+}
+
+.text-night {
+    color: #3c486b !important;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+/* Ganti warna latar belakang navbar */
+.navbar-theme {
+    background-color: #213555; /* Warna latar belakang dengan tingkat transparansi */
+    transition: background-color 0.3s ease; /* Efek transisi perubahan warna */
+}
+
+/* Ganti warna latar belakang navbar saat di-scroll */
+.navbar-theme.scrolled {
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.6
+    ); /* Warna latar belakang saat di-scroll */
+}
+
+.navbar-text-hover {
+    color:white !important;
+    font-weight: medium !important;
+}
+
+.navbar-text-hover:hover {
+    color:#4F709C    !important;
+}

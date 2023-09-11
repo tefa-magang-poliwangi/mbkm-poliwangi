@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('pages.guest.home');
+});
+
 // Auth route
 Route::get('/logout', [AuthController::class, 'doLogout'])->name('do.logout');
 
