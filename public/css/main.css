@@ -39,18 +39,34 @@ body {
 
 .btn-theme-two {
     font-weight: 500 !important;
-    background-color: #e5ac50 !important;
+    background-color: #213555  !important;
     color: white !important;
     border-radius: 12px !important;
-    border: 2px solid #e5ac50 !important;
+    border: 2px solid #213555 !important;
 }
 
 .btn-theme-two:hover {
     font-weight: 500 !important;
-    background-color: white !important;
-    color: #e5ac50 !important;
+    background-color: #213555 !important;
+    color: white !important;
     border-radius: 12px !important;
-    border: 2px solid #e5ac50 !important;
+    border: 2px solid white !important;
+}
+
+.btn-theme-three {
+    font-weight: 500 !important;
+    background-color: white  !important;
+    color: #213555 !important;
+    border-radius: 12px !important;
+    border: 2px solid white !important;
+}
+
+.btn-theme-three:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #213555 !important;
+    border-radius: 12px !important;
+    border: 2px solid #213555 !important;
 }
 
 .btn-theme-paste {
@@ -88,6 +104,42 @@ body {
     text-align: justify !important;
 }
 
+.icon-footer {
+    font-size: 20px !important;
+}
+
+.footer-theme {
+    background-color: #202020 !important;
+}
+
+.text-footer {
+    color: #d5e2ea !important;
+}
+
+.bg-insta {
+    background-color: #f73466 !important;
+}
+
+.footer-text {
+    color: #d5e2ea !important;
+}
+
+.tag-menu {
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+.tag-menu:hover {
+    color: #e5ac50 !important;
+    font-weight: 600 !important;
+    /* text-decoration: underline !important; */
+}
+
+.footer-text {
+    font-size: 12px !important;
+}
+
+
 /* Ganti warna latar belakang navbar */
 .navbar-theme {
     background-color: #213555; /* Warna latar belakang dengan tingkat transparansi */
@@ -111,4 +163,11 @@ body {
 
 .navbar-text-hover:hover {
     color:#4F709C    !important;
+}
+
+.section-bg-one {
+    background-color: #4F709C !important;
+}
+.section-bg-two {
+    background-color: #213555 !important;
 }
