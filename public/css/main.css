@@ -121,3 +121,13 @@ body {
 .btn-theme {
     background-color: #213555 !important;
 }
+
+.container-fluid {
+    width: 100%;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.border-row {
+    border: 10px solid #004978 !important;
+}

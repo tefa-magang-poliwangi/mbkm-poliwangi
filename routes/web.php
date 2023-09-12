@@ -35,3 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
+
+Route::get('/form-aploud', function () {
+    return view('pages.form.form-aploud');
+});
