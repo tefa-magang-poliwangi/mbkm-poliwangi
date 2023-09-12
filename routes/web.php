@@ -35,3 +35,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
+
+//transkip nilai//
+Route::get('daftar-mahasiswa', function (){
+    return view('pages.dosen.transkripNilai-dosenWali.daftar-mahasiswa');
+});
+
+Route::get('konversi-nilai', function () {
+    return view('pages.dosen.transkripNilai-dosenWali.konversi-nilai');
+});
