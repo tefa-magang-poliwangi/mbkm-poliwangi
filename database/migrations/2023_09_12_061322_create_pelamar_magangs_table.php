@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pelamar_magangs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->enum('status_diterima', ['aktif', 'tidak aktif']);
-            $table->bigInteger('id_mahasiswa')->unsigned();
-            $table->bigInteger('id_lowongan')->unsigned();
+            $table->id();
+            $table->enum('status_diterima', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_lowongan')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
             $table->timestamps();
         });
     }

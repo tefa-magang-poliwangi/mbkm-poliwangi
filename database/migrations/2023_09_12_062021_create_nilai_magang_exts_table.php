@@ -14,12 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('nilai_magang_exts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('file', 255);
-            $table->string('semester', 255);
-            $table->bigInteger('id_mahasiswa')->unsigned();
-            $table->bigInteger('id_magang_ext')->unsigned();
-            $table->bigInteger('id_periode')->unsigned();
+            $table->id();
+            $table->string('file', 255)->nullable(false);
+            $table->string('semester', 20)->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_magang_ext')->nullable(false);
+            $table->unsignedBigInteger('id_periode')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_magang_ext')->references('id')->on('magang_exts')->onDelete('cascade');
+            $table->foreign('id_periode')->references('id')->on('periodes')->onDelete('cascade');
             $table->timestamps();
         });
     }

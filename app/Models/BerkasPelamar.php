@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class BerkasPelamar extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'file',
+        'id_mahasiswa',
+        'id_lowongan',
+        'id_berkas_lowongan',
+    ];
 }

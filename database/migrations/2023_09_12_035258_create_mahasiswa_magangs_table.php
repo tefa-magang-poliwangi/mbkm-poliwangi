@@ -14,13 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mahasiswa_magangs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('periode_aktif', 255);
-            $table->bigInteger('id_mahasiswa')->unsigned();
+            $table->id();
+            $table->string('periode_aktif', 255)->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
             $table->timestamps();
-
-            // Definisi foreign key untuk menghubungkan dengan tabel lain jika diperlukan
-            // $table->foreign('id_mahasiswa')->references('id')->on('mahasiswa');
         });
     }
 

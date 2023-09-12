@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nim', 12)->unique();
-            $table->string('password', 255);
-            $table->string('nama', 255);
-            $table->bigInteger('prodi')->unsigned();
-            $table->integer('angkatan');
-            $table->string('email', 255);
-            $table->string('no_telp', 15);
+            $table->id();
+            $table->string('nim', 12)->nullable(false)->unique();
+            $table->string('password', 255)->nullable(false);
+            $table->string('nama', 255)->nullable(false);
+            $table->string('prodi', 255)->nullable(false);
+            $table->tinyInteger('angkatan')->nullable(false);
+            $table->string('email', 255)->nullable(false);
+            $table->string('no_telp', 15)->nullable(false);
             $table->timestamps();
         });
     }

@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('dosens', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama', 255);
-            $table->string('password', 255);
-            $table->string('prodi', 255);
-            $table->string('no_telp', 255);
+            $table->id();
+            $table->string('nama', 255)->nullable(false);
+            $table->string('password', 255)->nullable(false);
+            $table->string('prodi', 255)->nullable(false);
+            $table->string('no_telp', 15)->nullable(false);
             $table->timestamps();
         });
     }
@@ -31,6 +31,5 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('dosens');
-
-  }
+    }
 };

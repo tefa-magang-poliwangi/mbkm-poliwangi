@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kurikulums', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama', 255);
-            $table->enum('status', ['aktif', 'tidak aktif']);
-            $table->bigInteger('id_prodi')->unsigned();
+            $table->id();
+            $table->string('nama', 255)->nullable(false);
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->unsignedBigInteger('id_prodi')->nullable(false);
+            $table->foreign('id_prodi')->references('id')->on('prodis')->onDelete('cascade');
             $table->timestamps();
         });
     }

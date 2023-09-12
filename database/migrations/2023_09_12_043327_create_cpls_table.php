@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('cpls', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('kode_cpl', 255);
-            $table->text('deskripsi');
-            $table->string('jenis_cpl', 255);
-            $table->bigInteger('id_kurikulum')->unsigned();
+            $table->id();
+            $table->string('kode_cpl', 255)->nullable(false);
+            $table->text('deskripsi')->nullable(false);
+            $table->string('jenis_cpl', 255)->nullable(false);
+            $table->unsignedBigInteger('id_kurikulum')->nullable(false);
+            $table->foreign('id_kurikulum')->references('id')->on('kurikulums')->onDelete('cascade');
             $table->timestamps();
-
         });
     }
 

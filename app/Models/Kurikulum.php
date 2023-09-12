@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kurikulum extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'nama',
+        'status',
+        'id_prodi',
+    ];
 }

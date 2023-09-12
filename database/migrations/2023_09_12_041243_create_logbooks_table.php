@@ -14,12 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('logbooks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('kegiatan', 255);
-            $table->string('bukti', 255);
-            $table->integer('nilai');
-            $table->bigInteger('id_program_magang')->unsigned();
-            $table->bigInteger('id_mahasiswa')->unsigned();
+            $table->id();
+            $table->string('kegiatan', 255)->nullable(false);
+            $table->string('bukti', 255)->nullable(false);
+            $table->unsignedBigInteger('id_program_magang')->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->foreign('id_program_magang')->references('id')->on('program_magangs')->onDelete('cascade');
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
             $table->timestamps();
         });
     }

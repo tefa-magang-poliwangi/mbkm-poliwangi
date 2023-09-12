@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Kaprodi extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'periode_mulai',
+        'periode_akhir',
+        'status',
+        'id_dosen',
+    ];
 }

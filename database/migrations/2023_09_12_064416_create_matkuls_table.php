@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('matkuls', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama', 255);
-            $table->string('kode_matakuliah', 15);
-            $table->integer('sks');
+            $table->id();
+            $table->string('nama', 255)->nullable(false);
+            $table->string('kode_matakuliah', 15)->nullable(false);
+            $table->tinyInteger('sks')->nullable(false);
             $table->timestamps();
         });
     }

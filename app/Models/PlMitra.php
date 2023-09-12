@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class PlMitra extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'nama',
+        'no_telp',
+        'email',
+        'username',
+        'password',
+        'id_mitra',
+    ];
 }

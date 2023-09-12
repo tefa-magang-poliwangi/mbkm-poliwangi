@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('berkas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama', 255);
-            $table->integer('ukuran_max');
+            $table->id();
+            $table->string('nama', 255)->nullable(false);
+            $table->integer('ukuran_max', 5)->nullable(false);
             $table->timestamps();
         });
     }

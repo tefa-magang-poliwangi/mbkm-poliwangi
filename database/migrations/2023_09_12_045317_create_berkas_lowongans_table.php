@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('berkas_lowongans', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('id_lowongan')->unsigned();
-            $table->bigInteger('id_berkas')->unsigned();
+            $table->id();
+            $table->unsignedBigInteger('id_lowongan')->nullable(false);
+            $table->unsignedBigInteger('id_berkas')->nullable(false);
+            $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
+            $table->foreign('id_berkas')->references('id')->on('berkas')->onDelete('cascade');
             $table->timestamps();
         });
     }

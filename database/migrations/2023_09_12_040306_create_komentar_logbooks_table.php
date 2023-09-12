@@ -14,11 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('komentar_logbooks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('komentar');
-            $table->date('tanggal');
-            $table->bigInteger('id_logbook')->unsigned();
-            $table->bigInteger('id_pl_mahasiswa')->unsigned();
+            $table->id();
+            $table->text('komentar')->nullable(false);
+            $table->date('tanggal')->nullable(false);
+            $table->tinyInteger('nilai')->nullable(false);
+            $table->unsignedBigInteger('id_logbook')->nullable(false);
+            $table->unsignedBigInteger('id_pl_mahasiswa')->nullable(false);
+            $table->foreign('id_logbook')->references('id')->on('logbooks')->onDelete('cascade');
+            $table->foreign('id_pl_mahasiswa')->references('id')->on('pendamping_lapang_mahasiswas')->onDelete('cascade');
             $table->timestamps();
         });
     }

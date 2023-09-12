@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('periodes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('semester', 4);
-            $table->string('tahun', 4);
+            $table->id();
+            $table->string('semester', 4)->nullable(false);
+            $table->string('tahun', 4)->nullable(false);
             $table->timestamps();
         });
     }

@@ -14,20 +14,22 @@ return new class extends Migration
     public function up()
     {
         Schema::create('mitras', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama', 255);
-            $table->text('alamat');
-            $table->string('kota', 255);
-            $table->string('provinsi', 255);
-            $table->text('website');
-            $table->string('narahubung', 255);
-            $table->string('email', 255);
-            $table->string('foto', 255);
-            $table->enum('status', ['aktif', 'tidak aktif']);
-            $table->string('username', 255);
-            $table->string('password', 255);
-            $table->bigInteger('id_sektor_industri')->unsigned();
-            $table->bigInteger('id_kategori')->unsigned();
+            $table->id();
+            $table->string('nama', 255)->nullable(false);
+            $table->text('alamat')->nullable(false);
+            $table->string('kota', 255)->nullable(false);
+            $table->string('provinsi', 255)->nullable(false);
+            $table->text('website')->nullable(true);
+            $table->string('narahubung', 255)->nullable(false);
+            $table->string('email', 255)->nullable(false);
+            $table->string('foto', 255)->nullable(false);
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->string('username', 255)->nullable(false);
+            $table->string('password', 255)->nullable(false);
+            $table->unsignedBigInteger('id_sektor_industri')->nullable(false);
+            $table->unsignedBigInteger('id_kategori')->nullable(false);
+            $table->foreign('id_sektor_industri')->references('id')->on('sektor_industris')->onDelete('cascade');
+            $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
             $table->timestamps();
         });
     }

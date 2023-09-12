@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class KomentarLogbook extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'komentar',
+        'tanggal',
+        'nilai',
+        'id_logbook',
+        'id_pl_mahasiswa',
+    ];
 }

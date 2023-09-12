@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kompetensi_programs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('id_program_magang')->unsigned();
-            $table->bigInteger('id_kompetensi_lowongan')->unsigned();
+            $table->id();
+            $table->unsignedBigInteger('id_program_magang')->nullable(false);
+            $table->unsignedBigInteger('id_kompetensi_lowongan')->nullable(false);
+            $table->foreign('id_program_magang')->references('id')->on('program_magangs')->onDelete('cascade');
+            $table->foreign('id_kompetensi_lowongan')->references('id')->on('kompetensi_lowongans')->onDelete('cascade');
             $table->timestamps();
         });
     }

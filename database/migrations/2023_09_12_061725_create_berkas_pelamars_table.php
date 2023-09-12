@@ -14,11 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('berkas_pelamars', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('file', 255);
-            $table->bigInteger('id_mahasiswa')->unsigned();
-            $table->bigInteger('id_lowongan')->unsigned();
-            $table->bigInteger('id_berkas_lowongan')->unsigned();
+            $table->id();
+            $table->string('file', 255)->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_lowongan')->nullable(false);
+            $table->unsignedBigInteger('id_berkas_lowongan')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
+            $table->foreign('id_berkas_lowongan')->references('id')->on('berkas_lowongans')->onDelete('cascade');
             $table->timestamps();
         });
     }

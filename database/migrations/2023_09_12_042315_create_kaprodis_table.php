@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kaprodis', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->date('periode_mulai');
-            $table->date('periode_akhir');
-            $table->enum('status', ['aktif', 'tidak aktif']);
-            $table->bigInteger('id_dosen')->unsigned();
+            $table->id();
+            $table->date('periode_mulai')->nullable(false);
+            $table->date('periode_akhir')->nullable(false);
+            $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->unsignedBigInteger('id_dosen')->nullable(false);
+            $table->foreign('id_dosen')->references('id')->on('dosens')->onDelete('cascade');
             $table->timestamps();
         });
     }

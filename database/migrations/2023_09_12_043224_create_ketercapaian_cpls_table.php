@@ -14,10 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ketercapaian_cpls', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('id_mahasiswa')->unsigned();
-            $table->bigInteger('id_program_magang')->unsigned();
-            $table->bigInteger('id_cpl')->unsigned();
+            $table->id();
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_program_magang')->nullable(false);
+            $table->unsignedBigInteger('id_cpl')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_program_magang')->references('id')->on('program_magangs')->onDelete('cascade');
+            $table->foreign('id_cpl')->references('id')->on('cpls')->onDelete('cascade');
             $table->timestamps();
         });
     }

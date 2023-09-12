@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('magang_exts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nama', 255);
+            $table->id();
+            $table->string('name', 255)->nullable(false);
             $table->timestamps();
         });
     }

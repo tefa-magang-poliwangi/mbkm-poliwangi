@@ -14,12 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('laporan_mingguans', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('keterangan');
-            $table->enum('validasi_pl', ['aktif', 'tidak aktif']);
-            $table->bigInteger('id_mahasiswa')->unsigned();
-            $table->bigInteger('id_program_magang')->unsigned();
-            $table->bigInteger('id_kompetensi_lowongan')->unsigned();
+            $table->id();
+            $table->text('keterangan')->nullable(false);
+            $table->enum('validasi_pl', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_program_magang')->nullable(false);
+            $table->unsignedBigInteger('id_kompetensi_lowongan')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_program_magang')->references('id')->on('program_magangs')->onDelete('cascade');
+            $table->foreign('id_kompetensi_lowongan')->references('id')->on('kompetensi_lowongans')->onDelete('cascade');
             $table->timestamps();
         });
     }

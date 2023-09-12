@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SektorLowongan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'id_sektor_industri',
+        'id_lowongan',
+    ];
 }

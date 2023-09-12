@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('nilai_magangs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('nilai_angka');
-            $table->string('nilai_huruf', 4);
-            $table->bigInteger('id_mahasiswa')->unsigned();
-            $table->bigInteger('id_kompetensi_program')->unsigned();
+            $table->id();
+            $table->tinyInteger('nilai_angka')->nullable(false);
+            $table->string('nilai_huruf', 4)->nullable(false);
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_kompetensi_program')->nullable(false);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
+            $table->foreign('id_kompetensi_program')->references('id')->on('kompetensi_programs')->onDelete('cascade');
             $table->timestamps();
         });
     }
