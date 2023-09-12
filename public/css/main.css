@@ -142,32 +142,41 @@ body {
 
 /* Ganti warna latar belakang navbar */
 .navbar-theme {
-    background-color: #213555; /* Warna latar belakang dengan tingkat transparansi */
-    transition: background-color 0.3s ease; /* Efek transisi perubahan warna */
+    background-color: #213555;
+    /* Warna latar belakang dengan tingkat transparansi */
+    transition: background-color 0.3s ease;
+    /* Efek transisi perubahan warna */
 }
 
 /* Ganti warna latar belakang navbar saat di-scroll */
 .navbar-theme.scrolled {
-    background-color: rgba(
-        255,
-        255,
-        255,
-        0.6
-    ); /* Warna latar belakang saat di-scroll */
+    background-color: rgba(255,
+            255,
+            255,
+            0.6);
+    /* Warna latar belakang saat di-scroll */
 }
 
 .navbar-text-hover {
-    color:white !important;
+    color: white !important;
     font-weight: medium !important;
 }
 
 .navbar-text-hover:hover {
-    color:#4F709C    !important;
+    color: #4F709C !important;
+}
+
+.row.d-flex.justify-content-center.margin-buttom {
+    margin-bottom: 20px;
 }
 
 .section-bg-one {
     background-color: #4F709C !important;
 }
 .section-bg-two {
+    background-color: #213555 !important;
+}
+
+.btn-theme {
     background-color: #213555 !important;
 }
