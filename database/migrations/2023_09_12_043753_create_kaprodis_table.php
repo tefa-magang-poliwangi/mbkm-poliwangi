@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('kaprodis', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false);
-            $table->string('email')->nullable(false)->unique();
-            $table->string('password')->nullable(false);
+            $table->date('periode_mulai')->nullable(false);
+            $table->date('periode_akhir')->nullable(false);
+            $table->enum('status', ['Aktif', 'Tidak Aktif']);
+            $table->unsignedBigInteger('id_dosen')->nullable(false);
+            $table->foreign('id_dosen')->references('id')->on('dosens')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('kaprodis');
     }
 };
