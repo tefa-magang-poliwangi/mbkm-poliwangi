@@ -5,317 +5,170 @@
 @endsection
 
 @section('content')
-    <section class="section">
+<section class="container-fluid section-bg-two py-5">
+    <div class="container py-2">
+        <div class="row py-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-1 mb-3 p-3" data-aos="fade-up"
+                data-aos-delay="300">
+                <h1 class="fw-bold text-white">MBKM POLIWANGI</h1>
+                <p class="fw-medium text-justify mt-4 text-white">
+                    Selamat Datang di Website MBKM Politeknik Negeri Banyuwangi.
 
-        <div class="row">
-            <div class="col-md-8">
+                    Website ini dirancang untuk mendukung Program MBKM dengan
+                    menyediakan lowongan magang di Perusahaan terbaik bagi Mahasiswa Poliwangi.
+                    Pilihlah tempat magang yang sesuai dengan matakuliah yang kamu ambil 
+                    dan bentuk masa depan yang sesuai dengan aspirasi kariermu. VOKASI BISA!!!
+                </p>
+                
+                <div class="mt-5">
+                    <a href="#" class="btn btn-theme-paste px-5 py-3">
+                        Cari Lowongan
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 order-1 order-md-2 d-flex" data-aos="zoom-in"
+                data-aos-delay="600">
+                <img src="{{ asset('images/homepage.png') }}" width="500" class="img-fluid p-5 mx-auto my-auto"
+                    alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid section-bg-one py-3">
+    <div class="container py-3">
+        <div class="row d-flex pt-5">
+            <div class="dropdown">
+                <h3 class="fw-bold mt-3 text-white">PERUSAHAAN UNGGULAN</h3>
+                <button class="btn btn-theme-two dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Kategori
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Teknologi</a></li>
+                  <li><a class="dropdown-item" href="#">Pertanian</a></li>
+                  <li><a class="dropdown-item" href="#">Perhotelan</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row py-5 d-flex justify-content-around">
+            <div class="col-sm-3">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Invoices</h4>
-                        <div class="card-header-action">
-                            <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
+                    <div class="card-body text-center"> 
+                        <div class="mx-auto"> 
+                            <img src="{{ asset('images/KM2.png') }}" class="image-fluid" alt="">
                         </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive table-invoice">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Invoice ID</th>
-                                    <th>Customer</th>
-                                    <th>Status</th>
-                                    <th>Due Date</th>
-                                    <th>Action</th>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">INV-87239</a></td>
-                                    <td class="font-weight-600">Kusnadi</td>
-                                    <td>
-                                        <div class="badge badge-warning">Unpaid</div>
-                                    </td>
-                                    <td>July 19, 2018</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">INV-48574</a></td>
-                                    <td class="font-weight-600">Hasan Basri</td>
-                                    <td>
-                                        <div class="badge badge-success">Paid</div>
-                                    </td>
-                                    <td>July 21, 2018</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">INV-76824</a></td>
-                                    <td class="font-weight-600">Muhamad Nuruzzaki</td>
-                                    <td>
-                                        <div class="badge badge-warning">Unpaid</div>
-                                    </td>
-                                    <td>July 22, 2018</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">INV-84990</a></td>
-                                    <td class="font-weight-600">Agung Ardiansyah</td>
-                                    <td>
-                                        <div class="badge badge-warning">Unpaid</div>
-                                    </td>
-                                    <td>July 22, 2018</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">INV-87320</a></td>
-                                    <td class="font-weight-600">Ardian Rahardiansyah</td>
-                                    <td>
-                                        <div class="badge badge-success">Paid</div>
-                                    </td>
-                                    <td>July 28, 2018</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">Detail</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                    <h5 class="card-title"><strong>PT. KAI</strong></h5>
+                    <p class="card-text">Riset kolaboratif bersama perusahaan ternama melalui magang disini.</p>
+                    <p class="card-text">Pendaftaran: Telah dibuka pada 11 September - selesai.</p>
+                    <a href="#" class="btn btn-theme-two">Selengkapnya</a>
+                  </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card card-hero">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="far fa-question-circle"></i>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body text-center"> 
+                        <div class="mx-auto"> 
+                            <img src="{{ asset('images/KM2.png') }}" class="image-fluid" alt="">
                         </div>
-                        <h4>14</h4>
-                        <div class="card-description">Customers need help</div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="tickets-list">
-                            <a href="#" class="ticket-item">
-                                <div class="ticket-title">
-                                    <h4>My order hasn't arrived yet</h4>
-                                </div>
-                                <div class="ticket-info">
-                                    <div>Laila Tazkiah</div>
-                                    <div class="bullet"></div>
-                                    <div class="text-primary">1 min ago</div>
-                                </div>
-                            </a>
-                            <a href="#" class="ticket-item">
-                                <div class="ticket-title">
-                                    <h4>Please cancel my order</h4>
-                                </div>
-                                <div class="ticket-info">
-                                    <div>Rizal Fakhri</div>
-                                    <div class="bullet"></div>
-                                    <div>2 hours ago</div>
-                                </div>
-                            </a>
-                            <a href="#" class="ticket-item">
-                                <div class="ticket-title">
-                                    <h4>Do you see my mother?</h4>
-                                </div>
-                                <div class="ticket-info">
-                                    <div>Syahdan Ubaidillah</div>
-                                    <div class="bullet"></div>
-                                    <div>6 hours ago</div>
-                                </div>
-                            </a>
-                            <a href="features-tickets.html" class="ticket-item ticket-more">
-                                View All <i class="fas fa-chevron-right"></i>
-                            </a>
+                        <h5 class="card-title"><strong>PT. KAI</strong></h5>
+                        <p class="card-text">Riset kolaboratif bersama perusahaan ternama melalui magang disini.</p>
+                        <p class="card-text">Pendaftaran: Telah dibuka pada 11 September - selesai.</p>
+                    <a href="#" class="btn btn-theme-two">Selengkapnya</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body text-center"> 
+                        <div class="mx-auto"> 
+                            <img src="{{ asset('images/KM2.png') }}" class="image-fluid" alt="">
                         </div>
-                    </div>
+                        <h5 class="card-title"><strong>PT. KAI</strong></h5>
+                        <p class="card-text">Riset kolaboratif bersama perusahaan ternama melalui magang disini.</p>
+                        <p class="card-text">Pendaftaran: Telah dibuka pada 11 September - selesai.</p>
+                    <a href="#" class="btn btn-theme-two">Selengkapnya</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body text-center"> 
+                        <div class="mx-auto"> 
+                            <img src="{{ asset('images/PT.KAI.jpg') }}" class="image-fluid" alt="">
+                        </div>
+                        <h5 class="card-title"><strong>PT. KAI</strong></h5>
+                        <p class="card-text">Riset kolaboratif bersama perusahaan ternama melalui magang disini.</p>
+                        <p class="card-text">Pendaftaran: Telah dibuka pada 11 September - selesai.</p>
+                    <a href="#" class="btn btn-theme-two">Selengkapnya</a>
+                  </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-stats">
-                        <div class="card-stats-title">Order Statistics -
-                            <div class="dropdown d-inline">
-                                <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#"
-                                    id="orders-month">August</a>
-                                <ul class="dropdown-menu dropdown-menu-sm">
-                                    <li class="dropdown-title">Select Month</li>
-                                    <li><a href="#" class="dropdown-item">January</a></li>
-                                    <li><a href="#" class="dropdown-item">February</a></li>
-                                    <li><a href="#" class="dropdown-item">March</a></li>
-                                    <li><a href="#" class="dropdown-item">April</a></li>
-                                    <li><a href="#" class="dropdown-item">May</a></li>
-                                    <li><a href="#" class="dropdown-item">June</a></li>
-                                    <li><a href="#" class="dropdown-item">July</a></li>
-                                    <li><a href="#" class="dropdown-item active">August</a></li>
-                                    <li><a href="#" class="dropdown-item">September</a></li>
-                                    <li><a href="#" class="dropdown-item">October</a></li>
-                                    <li><a href="#" class="dropdown-item">November</a></li>
-                                    <li><a href="#" class="dropdown-item">December</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-stats-items">
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">24</div>
-                                <div class="card-stats-item-label">Pending</div>
-                            </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">12</div>
-                                <div class="card-stats-item-label">Shipping</div>
-                            </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">23</div>
-                                <div class="card-stats-item-label">Completed</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-archive"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Orders</h4>
-                        </div>
-                        <div class="card-body">
-                            59
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="balance-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Balance</h4>
-                        </div>
-                        <div class="card-body">
-                            $187,13
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="sales-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Sales</h4>
-                        </div>
-                        <div class="card-body">
-                            4,732
-                        </div>
-                    </div>
-                </div>
+        <div class="row py-5">
+            <div class="col"> <center>
+                <a href="#" class="btn btn-theme-two"> Lihat Selengkapnya</a>
+            </center>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-stats">
-                        <div class="card-stats-title">Order Statistics -
-                            <div class="dropdown d-inline">
-                                <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#"
-                                    id="orders-month">August</a>
-                                <ul class="dropdown-menu dropdown-menu-sm">
-                                    <li class="dropdown-title">Select Month</li>
-                                    <li><a href="#" class="dropdown-item">January</a></li>
-                                    <li><a href="#" class="dropdown-item">February</a></li>
-                                    <li><a href="#" class="dropdown-item">March</a></li>
-                                    <li><a href="#" class="dropdown-item">April</a></li>
-                                    <li><a href="#" class="dropdown-item">May</a></li>
-                                    <li><a href="#" class="dropdown-item">June</a></li>
-                                    <li><a href="#" class="dropdown-item">July</a></li>
-                                    <li><a href="#" class="dropdown-item active">August</a></li>
-                                    <li><a href="#" class="dropdown-item">September</a></li>
-                                    <li><a href="#" class="dropdown-item">October</a></li>
-                                    <li><a href="#" class="dropdown-item">November</a></li>
-                                    <li><a href="#" class="dropdown-item">December</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-stats-items">
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">24</div>
-                                <div class="card-stats-item-label">Pending</div>
-                            </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">12</div>
-                                <div class="card-stats-item-label">Shipping</div>
-                            </div>
-                            <div class="card-stats-item">
-                                <div class="card-stats-item-count">23</div>
-                                <div class="card-stats-item-label">Completed</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-archive"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Total Orders</h4>
-                        </div>
-                        <div class="card-body">
-                            59
-                        </div>
+<section class="container-fluid section-bg-two py-5">
+    <div class="container py-2">
+        <div class="row py-2">
+            <div class="col-12 mb-3 p-3" data-aos="fade-up"data-aos-delay="300">
+                <h1 class="fw-bold text-white">APA SAJA SYARAT KEIKUTSERTAAN MAGANG INTERNAL DI POLIWANGI?</h1>
+                <p class="fw-medium text-justify mt-4 text-white">
+                    Berikut adalah persyaratan umum untuk mengikuti program diatas.
+                </p>
+                
+                <div class="card">
+                    <h5 class="card-header">Jenjang D3, S1 atau Vokasi</h5>
+                    <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Jurusan</th>
+                            <th>Semester</th>
+                            <th>Minimal IPK</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        <tr>
+                            <td><i class="text-danger"></i>Bisnis dan Informatika</td>
+                            <td>Semester 3, 5, dan 7</td>
+                            <td>3.00 dari skala 4.00</td>
+                        </tr>
+                        <tr>
+                            <td><i class="text-info"></i>Bisnis dan Pariwisata</td>
+                            <td>Semester 3 dan 5</td>
+                            <td>3.00 dari skala 4.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="balance-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Balance</h4>
-                        </div>
-                        <div class="card-body">
-                            $187,13
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card card-statistic-2">
-                    <div class="card-chart">
-                        <canvas id="sales-chart" height="80"></canvas>
-                    </div>
-                    <div class="card-icon shadow-primary bg-primary">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Sales</h4>
-                        </div>
-                        <div class="card-body">
-                            4,732
-                        </div>
+
+                
+                <p class="fw-medium text-justify mt-4 text-white">
+                    <strong>Catatan lain:</strong>
+                </p>
+                <p class="text-white mb-1">1. Mahasiswa hanya dapat mengikuti 1 kegiatan magang per periode.</p>
+                <p class="text-white mb-1">2. Harus berstatus Mahasiswa Aktif. Jika mahasiswa lulus sebelum kegiatan berakhir maka dianggap mengundurkan diri.</p>
+                <p class="text-white mb-1">3. Harus sesuai dengan jurusan yang sedang diambil untuk memudahkan proses konversi.</p>
+
+
+                <div class="row py-3">
+                    <div class="col"> <center>
+                        <a href="#" class="btn btn-theme-three"> Lihat Lowongan lainnya</a>
+                    </center>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection
