@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('berkas', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 255)->nullable(false);
-            $table->integer('ukuran_max', 5)->nullable(false);
+            $table->float('ukuran_max')->nullable(false)->unsigned();
             $table->timestamps();
         });
     }
