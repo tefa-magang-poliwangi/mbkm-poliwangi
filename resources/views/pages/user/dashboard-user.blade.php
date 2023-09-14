@@ -10,37 +10,6 @@
 
 @section('content')
 
-<section class="container-fluid section-bg-two py-5">
-    <div class="container py-2">
-        <div class="row py-2">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-1 mb-3 p-3" data-aos="fade-up"
-                data-aos-delay="300">
-                <h1 class="fw-bold text-white">MBKM POLIWANGI</h1>
-                <p class="fw-medium text-justify mt-4 text-white">
-                    Selamat Datang di Website MBKM Politeknik Negeri Banyuwangi.
-
-                    Website ini dirancang untuk mendukung Program MBKM dengan
-                    menyediakan lowongan magang di Perusahaan terbaik bagi Mahasiswa Poliwangi.
-                    Pilihlah tempat magang yang sesuai dengan matakuliah yang kamu ambil 
-                    dan bentuk masa depan yang sesuai dengan aspirasi kariermu. VOKASI BISA!!!
-                </p>
-                
-                <div class="mt-5">
-                    <a href="#" class="btn btn-theme-paste px-5 py-3">
-                        Cari Lowongan
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 order-1 order-md-2 d-flex" data-aos="zoom-in"
-                data-aos-delay="600">
-                <img src="{{ asset('images/homepage.png') }}" width="500" class="img-fluid p-5 mx-auto my-auto"
-                    alt="">
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="container-fluid section-bg-one py-3">
     <div class="container py-3">
         <div class="row d-flex pt-5">

@@ -4,15 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/logo-title-poliwangi.png') }}" />
 
     @yield('title')
 
-    {{-- Font awesome icon cdn --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
@@ -28,8 +22,8 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
     <!-- Template CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
 
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -55,7 +49,7 @@
             @include('layouts.partials.user.navbar-user')
 
             {{-- sidebar --}}
-            {{-- @include('') --}}
+            @include('layouts.partials.user.sidebar-user')
 
             <!-- Main Content -->
             <div class="main-content">
