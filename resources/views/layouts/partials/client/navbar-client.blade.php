@@ -22,7 +22,7 @@
                                 <a class="nav-link fw-regular navbar-text-hover" href="#">Beranda</a>
                             </li>
                             <li class="nav-item my-auto px-4">
-                                <a class="nav-link fw-regular navbar-text-hover" href="#">Program</a>
+                                <a class="nav-link fw-regular navbar-text-hover" href="#">Lowongan</a>
                             </li>
                             <li class="nav-item my-auto px-4">
                                 <a href="{{ route('login.page') }}" class="btn btn-theme px-3 py-2">

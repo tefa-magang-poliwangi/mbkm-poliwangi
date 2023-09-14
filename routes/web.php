@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TranskipNilai;
+use App\Http\Controllers\TranskpController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,21 +36,4 @@ Route::get('/dashboard-dosbim', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
-});
-
-//transkip nilai//
-Route::get('beranda-dwali', function (){
-    return view('pages.dosen.dosenWali.beranda');
-});
-
-Route::get('kelayakan', function () {
-    return view('pages.dosen.dosenWali.kelayakan');
-});
-
-Route::get('daftar-mahasiswa', function (){
-    return view('pages.dosen.transkripNilai-dosenWali.daftar-mahasiswa');
-});
-
-Route::get('konversi-nilai', function () {
-    return view('pages.dosen.transkripNilai-dosenWali.konversi-nilai');
 });

@@ -13,9 +13,17 @@ body {
     background-color: #dbe0ec;
 }
 
+.grey-color {
+    background-color: #cbccd1;
+}
+
+.card-rounded {
+    border-radius: 20px !important;
+}
+
 .btn-theme {
     font-weight: 500 !important;
-    background-color: #4F709C !important;
+    background-color: #4f709c !important;
     color: white !important;
     border-radius: 8px !important;
     border: 2px solid #004978 !important;
@@ -39,7 +47,7 @@ body {
 
 .btn-theme-two {
     font-weight: 500 !important;
-    background-color: #213555  !important;
+    background-color: #213555 !important;
     color: white !important;
     border-radius: 12px !important;
     border: 2px solid #213555 !important;
@@ -55,7 +63,7 @@ body {
 
 .btn-theme-three {
     font-weight: 500 !important;
-    background-color: white  !important;
+    background-color: white !important;
     color: #213555 !important;
     border-radius: 12px !important;
     border: 2px solid white !important;
@@ -72,7 +80,7 @@ body {
 .btn-theme-paste {
     font-weight: 500 !important;
     background-color: #e5ac50 !important;
-    color: white !important;
+    color: #213555 !important;
     border: 2px solid #e5ac50 !important;
 }
 
@@ -86,6 +94,10 @@ body {
 .btn-grey {
     background-color: grey !important;
     color: white !important;
+}
+
+.text-yellow {
+    color: #e5ac50 !important;
 }
 
 .text-purple {
@@ -109,7 +121,7 @@ body {
 }
 
 .footer-theme {
-    background-color: #202020 !important;
+    background-color: #213555 !important;
 }
 
 .text-footer {
@@ -139,7 +151,6 @@ body {
     font-size: 12px !important;
 }
 
-
 /* Ganti warna latar belakang navbar */
 .navbar-theme {
     background-color: #213555;
@@ -150,10 +161,7 @@ body {
 
 /* Ganti warna latar belakang navbar saat di-scroll */
 .navbar-theme.scrolled {
-    background-color: rgba(255,
-            255,
-            255,
-            0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     /* Warna latar belakang saat di-scroll */
 }
 
@@ -163,7 +171,7 @@ body {
 }
 
 .navbar-text-hover:hover {
-    color: #4F709C !important;
+    color: #4f709c !important;
 }
 
 .row.d-flex.justify-content-center.margin-buttom {
@@ -171,12 +179,33 @@ body {
 }
 
 .section-bg-one {
-    background-color: #4F709C !important;
+    background-color: #4f709c !important;
 }
+
 .section-bg-two {
     background-color: #213555 !important;
 }
 
 .btn-theme {
     background-color: #213555 !important;
+}
+
+.custom-profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.btn-danger {
+    width: 100px;
+    height: 40px;
+
+}
+
+.m-0 {
+    font-family: sans-serif;
+}
+
+.m-2 {
+    font-family: sans-serif;
 }

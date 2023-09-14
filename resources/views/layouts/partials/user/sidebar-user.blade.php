@@ -1,61 +1,57 @@
+
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <img src="{{ asset('images/logo/logo-title-poliwangi.png') }}" width="25" class="img-fluid mb-2"
+                        alt="">
+            <a href="index.html">Poliwangi</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <img src="{{ asset('images/logo/logo-title-poliwangi.png') }}" width="25" class="img-fluid mb-2"
+                        alt="">
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>DashBoard</span></a></li>
-            <li class="dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Auth</span></a>
+            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
+
+            <li class="menu-header">Lowongan Magang</li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
+                    <span>Mitra</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="index-0.html">Profile</a></li>
-                    <li class=active><a class="nav-link" href="index.html">Settings</a></li>
+                    <li><a class="nav-link" href="components-article.html">Daftar Mitra</a></li>
+                    <li><a class="nav-link" href="components-chat-box.html">Status Pendaftaran</a></li>
                 </ul>
             </li>
 
-
-            <li class="menu-header">Starter</li>
+            <li class="menu-header">Kegiatan MBKM</li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Layout</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
+                    <span>Kegiatanku</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                    <li><a class="nav-link" href="components-chat-box.html">Laporan Harian</a></li>
+                    <li><a class="nav-link" href="components-gallery.html">Laporan Mingguan</a></li>
+                    <li><a class="nav-link" href="components-gallery.html">Laporan Akhir</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
-                        Page</span></a></li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i>
-                    <span>Bootstrap</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
+                    <span>Transkrip Nilai</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
-                    <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
-                    <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
-                    <li><a class="nav-link" href="bootstrap-buttons.html">Buttons</a></li>
-                    <li><a class="nav-link" href="bootstrap-card.html">Card</a></li>
-                    <li><a class="nav-link" href="bootstrap-carousel.html">Carousel</a></li>
-                    <li><a class="nav-link" href="bootstrap-collapse.html">Collapse</a></li>
-                    <li><a class="nav-link" href="bootstrap-dropdown.html">Dropdown</a></li>
-                    <li><a class="nav-link" href="bootstrap-form.html">Form</a></li>
-                    <li><a class="nav-link" href="bootstrap-list-group.html">List Group</a></li>
-                    <li><a class="nav-link" href="bootstrap-media-object.html">Media Object</a></li>
-                    <li><a class="nav-link" href="bootstrap-modal.html">Modal</a></li>
-                    <li><a class="nav-link" href="bootstrap-nav.html">Nav</a></li>
-                    <li><a class="nav-link" href="bootstrap-navbar.html">Navbar</a></li>
-                    <li><a class="nav-link" href="bootstrap-pagination.html">Pagination</a></li>
-                    <li><a class="nav-link" href="bootstrap-popover.html">Popover</a></li>
-                    <li><a class="nav-link" href="bootstrap-progress.html">Progress</a></li>
-                    <li><a class="nav-link" href="bootstrap-table.html">Table</a></li>
-                    <li><a class="nav-link" href="bootstrap-tooltip.html">Tooltip</a></li>
-                    <li><a class="nav-link" href="bootstrap-typography.html">Typography</a></li>
+                    <li><a href="gmaps-advanced-route.html">Upload Transkrip Nilai</a></li>
+                    <li><a href="gmaps-draggable-marker.html">Daftar Transkrip Nilai</a></li>
                 </ul>
             </li>
-        </ul>
+            <li class="menu-header">Akun Anda</li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
+                    <span>Profile</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="gmaps-advanced-route.html">Profile</a></li>
+                    <li><a href="gmaps-draggable-marker.html">Lengkapi Dokument</a></li>
+                    <li><a href="gmaps-draggable-marker.html">Ganti Sandi</a></li>
+                    <li><a href="gmaps-draggable-marker.html">Keluar</a></li>
+                </ul>
+            </li>
     </aside>
 </div>
