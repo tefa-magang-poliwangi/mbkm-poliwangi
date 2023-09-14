@@ -45,3 +45,6 @@ Route::get('/dashboard-user/kegiatan', function () {
 Route::get('/dashboard-user/kegiatan-login', function () {
     return view('pages.kegiatan.kegiatan-user-login');
 });
+Route::get('/dashboard-user/laporan', function () {
+    return view('pages.laporan.laporan-user');
+});
