@@ -37,6 +37,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //transkip nilai//
+Route::get('beranda-dwali', function (){
+    return view('pages.dosen.dosenWali.beranda');
+});
+
+Route::get('kelayakan', function () {
+    return view('pages.dosen.dosenWali.kelayakan');
+});
+
 Route::get('daftar-mahasiswa', function (){
     return view('pages.dosen.transkripNilai-dosenWali.daftar-mahasiswa');
 });

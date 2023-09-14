@@ -47,8 +47,20 @@
                                         data-target="#tambahNilaiModal"><i
                                             class="fa-solid fa-file-pen text-dark"></i></button>
                                 </td>
-                            </tr>
+                            </tr>                            
                         </tbody>
+                        <tfoot>
+                            <tr class="text-center">
+                                <th colspan="2">
+                                    <button type="button" class="btn text-white" style="background-color: #063762; padding: 1% 50%;"
+                                    data-dismiss="modal">Preview</button>
+                                </th>
+                                <th colspan="2">
+                                    <button type="button" class="btn text-white" style="background-color: #063762; padding: 1% 30%"
+                                    data-dismiss="modal">Cetak</button>
+                                </th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -91,8 +103,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="modal-footer bg-whitesmoke border-top d-flex bg-danger">
-                            <div class="justify-content-start bg-info p-4">
+                        <div class="modal-footer bg-whitesmoke border-top d-flex">
+                            <div class="justify-content-start p-4">
                                 <button type="button" class="btn text-white" style="background-color: #19203F;"
                                 data-dismiss="modal">Tambah</button>
                             <button type="button" class="btn btn-danger">Batal</button>
