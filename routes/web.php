@@ -49,3 +49,6 @@ Route::get('/dashboard-user/kegiatan', function () {
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
+Route::get('/editpassword', function () {
+    return view('pages.password.password-user');
+});

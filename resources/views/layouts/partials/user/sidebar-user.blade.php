@@ -42,14 +42,12 @@
                     <li><a href="gmaps-draggable-marker.html">Daftar Transkrip Nilai</a></li>
                 </ul>
             </li>
-            <li class="menu-header">Akun Anda</li>
+            <li class="menu-header">Tentang Akun</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
-                    <span>Profile</span></a>
+                    <span>Akun Saya</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="gmaps-advanced-route.html">Profile</a></li>
-                    <li><a href="gmaps-draggable-marker.html">Lengkapi Dokument</a></li>
-                    <li><a href="gmaps-draggable-marker.html">Ganti Sandi</a></li>
+                    <li><a href="gmaps-draggable-marker.html">Password Baru</a></li>
                     <li><a href="gmaps-draggable-marker.html">Keluar</a></li>
                 </ul>
             </li>
