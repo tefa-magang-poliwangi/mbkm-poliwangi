@@ -2,9 +2,7 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TranskipNilai;
-use App\Http\Controllers\TranskpController;
-use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
