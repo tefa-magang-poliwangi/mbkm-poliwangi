@@ -12,41 +12,13 @@
                 <div class="col-sm-12">
                     <div class="page-title-box">
                         <h4 class="page-title">
-                            Uploud Transkip Nilai Mahasiswa
+                            Upload Transkrip Nilai Mahasiswa
                         </h4>
                     </div>
                 </div>
             </div>
 
             <div class="row pt-2 d-flex justify-content-arround">
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body py-4">
-                            <h4 class="header-title mt-1 mb-3">Transkip Nilai</h4>
-                            <div class="nav flex-column">
-                                <a class="nav-link active">
-                                    <i class="mr-3 text-warning d-inline-block">
-                                    </i>
-                                    <div class="d-inline-block align-self-center ">
-                                        <h5 class="m-0">
-                                            Tambah Transkip Nilai
-                                        </h5>
-                                    </div>
-                                </a>
-                                <a class="nav-link active">
-                                    <i class="mr-3 text-warning d-inline-block">
-                                    </i>
-                                    <div class="d-inline-block align-self-center">
-                                        <h5 class="m-2">
-                                            Daftar Transkip Nilai
-                                        </h5>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body py-4">

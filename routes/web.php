@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\form_aploud;
 use App\Http\Controllers\TranskipNilai;
+use App\Http\Controllers\TranskipNilaiController;
 use App\Http\Controllers\TranskpController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
@@ -38,12 +40,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
 
-Route::get('/form-uploud-transkip', function () {
-    return view('pages.form-uploud.form-uploud-transkip');
-});
 Route::get('/dashboard-user/kegiatan', function () {
     return view('pages.kegiatan.kegiatan-user');
 });
 Route::get('/dashboard-user/kegiatan-login', function () {
     return view('pages.kegiatan.kegiatan-user-login');
+});
+
+Route::get('/daftar-nilai', function () {
+    return view('pages.form-uploud.daftar-nilai');
+});
+
+Route::get('/form-uploud-transkip', function () {
+    return view('pages.form-uploud.form-uploud-transkip');
+});
+
+Route::get('/dashboard-mitra', function () {
+    return view('pages.mitra.dashboard-mitra');
 });

@@ -209,3 +209,31 @@ body {
 .m-2 {
     font-family: sans-serif;
 }
+
+.d-grid {
+    width: 100%;
+}
+
+.fa-search {
+    margin-right: 5px;
+    /* Atur jarak antara ikon dan teks sesuai kebutuhan Anda */
+    float: left;
+    font-size: large;
+
+}
+
+.fa-user {
+    margin-right: 5px;
+    /* Atur jarak antara ikon dan teks sesuai kebutuhan Anda */
+    float: left;
+    font-size: large;
+
+}
+
+.fa-book {
+    margin-right: 5px;
+    /* Atur jarak antara ikon dan teks sesuai kebutuhan Anda */
+    float: left;
+    font-size: large;
+
+}

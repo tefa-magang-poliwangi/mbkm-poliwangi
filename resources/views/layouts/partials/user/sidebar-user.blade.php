@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
-            
+
             <li class="menu-header">Lowongan Magang</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
@@ -34,7 +34,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
                     <span>Transkrip Nilai</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="gmaps-advanced-route.html">Upload Transkrip Nilai</a></li>
+                    <li><a href="gmaps-draggable-marker.html">Upload Transkrip Nilai</a></li>
                     <li><a href="gmaps-draggable-marker.html">Daftar Transkrip Nilai</a></li>
                 </ul>
             </li>
