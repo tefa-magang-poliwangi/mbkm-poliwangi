@@ -39,3 +39,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard-user/profile', function () {
     return view('pages.profile.profile-user');
 });
+Route::get('/dashboard-user/kegiatan', function () {
+    return view('pages.kegiatan.kegiatan-user');
+});
+Route::get('/dashboard-user/kegiatan-login', function () {
+    return view('pages.kegiatan.kegiatan-user-login');
+});
