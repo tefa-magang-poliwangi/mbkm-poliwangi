@@ -41,3 +41,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/form-uploud-transkip', function () {
     return view('pages.form-uploud.form-uploud-transkip');
 });
+Route::get('/dashboard-user/kegiatan', function () {
+    return view('pages.kegiatan.kegiatan-user');
+});
+Route::get('/dashboard-user/kegiatan-login', function () {
+    return view('pages.kegiatan.kegiatan-user-login');
+});

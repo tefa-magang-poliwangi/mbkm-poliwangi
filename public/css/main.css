@@ -13,9 +13,17 @@ body {
     background-color: #dbe0ec;
 }
 
+.grey-color {
+    background-color: #cbccd1;
+}
+
+.card-rounded {
+    border-radius: 20px !important;
+}
+
 .btn-theme {
     font-weight: 500 !important;
-    background-color: #4F709C !important;
+    background-color: #4f709c !important;
     color: white !important;
     border-radius: 8px !important;
     border: 2px solid #004978 !important;
@@ -143,7 +151,6 @@ body {
     font-size: 12px !important;
 }
 
-
 /* Ganti warna latar belakang navbar */
 .navbar-theme {
     background-color: #213555;
@@ -154,10 +161,7 @@ body {
 
 /* Ganti warna latar belakang navbar saat di-scroll */
 .navbar-theme.scrolled {
-    background-color: rgba(255,
-            255,
-            255,
-            0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     /* Warna latar belakang saat di-scroll */
 }
 
@@ -167,7 +171,7 @@ body {
 }
 
 .navbar-text-hover:hover {
-    color: #4F709C !important;
+    color: #4f709c !important;
 }
 
 .row.d-flex.justify-content-center.margin-buttom {
@@ -175,7 +179,7 @@ body {
 }
 
 .section-bg-one {
-    background-color: #4F709C !important;
+    background-color: #4f709c !important;
 }
 
 .section-bg-two {
@@ -186,48 +190,10 @@ body {
     background-color: #213555 !important;
 }
 
-.row-1 {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.row-2 {
-    display: block;
-    margin-top: 10px;
-}
-
-.h5 {
-    font-family: "Poppins", sans-serif;
-}
-
-.m-0 {
-    padding-bottom: 10px;
-}
-
-.card {
-    border: 2px solid #004978;
-}
-
-.header-title {
-    font-weight: bold;
-}
-
-.page-title {
-    font-weight: bold;
-}
-
-.drop-area {
-    width: 300px;
-    height: 200px;
-    border: 2px dashed #ccc;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.btn-primary {
-    width: 100px;
-    height: 40px;
+.custom-profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 .btn-danger {
