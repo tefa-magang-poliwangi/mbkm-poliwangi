@@ -9,7 +9,8 @@
         <div class="container mt-5">
             <div class="row d-flex justify-content-center margin-buttom">
                 <div class="col-lg-10 d-flex">
-                    <img src="{{ asset('assets/img/logo-support.png') }}" alt="logo" class="mx-auto my-auto" width="300">
+                    <img src="{{ asset('assets/images/logo-support.png') }}" alt="logo" class="mx-auto my-auto"
+                        width="300">
                 </div>
             </div>
             <div class="row">

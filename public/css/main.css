@@ -5,8 +5,78 @@ body {
     overflow-x: hidden;
 }
 
+.fw-light {
+    font-weight: 300 !important;
+}
+
+.fw-regular {
+    font-weight: 400 !important;
+}
+
+.fw-medium {
+    font-weight: 500 !important;
+}
+
+.fw-bold {
+    font-weight: 600 !important;
+}
+
 .card-hover:hover {
     box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
+}
+
+.btn-login {
+    font-weight: 600 !important;
+    background-color: #4f709c !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #4f709c !important;
+}
+
+.btn-login:hover {
+    font-weight: 600 !important;
+    background-color: #4f709c !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+
+.btn-detail {
+    font-weight: 400 !important;
+    background-color: #134a6e !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #134a6e !important;
+}
+
+.card-rounded {
+    border-radius: 15px !important;
+}
+
+.btn-detail:hover {
+    font-weight: 400 !important;
+    background-color: white !important;
+    color: #134a6e !important;
+    border-radius: 8px !important;
+    border: 2px solid #134a6e !important;
+}
+
+.btn-theme-warning {
+    font-weight: 500 !important;
+    background-color: #e5ac50 !important;
+    color: white !important;
+    border: 2px solid #e5ac50 !important;
+}
+
+.btn-theme-warning:hover {
+    font-weight: 500 !important;
+    background-color: #e5ac50 !important;
+    color: white !important;
+    border: 2px solid white !important;
+}
+
+.section-bg-primary {
+    background-color: #213555 !important;
 }
 
 .back-color {
@@ -46,18 +116,18 @@ body {
 }
 
 .btn-theme-two {
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     background-color: #213555 !important;
     color: white !important;
-    border-radius: 12px !important;
+    border-radius: 8px !important;
     border: 2px solid #213555 !important;
 }
 
 .btn-theme-two:hover {
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     background-color: #213555 !important;
     color: white !important;
-    border-radius: 12px !important;
+    border-radius: 8px !important;
     border: 2px solid white !important;
 }
 
@@ -75,20 +145,6 @@ body {
     color: #213555 !important;
     border-radius: 12px !important;
     border: 2px solid #213555 !important;
-}
-
-.btn-theme-paste {
-    font-weight: 500 !important;
-    background-color: #e5ac50 !important;
-    color: #213555 !important;
-    border: 2px solid #e5ac50 !important;
-}
-
-.btn-theme-paste:hover {
-    font-weight: 500 !important;
-    background-color: white !important;
-    color: #e5ac50 !important;
-    border: 2px solid #e5ac50 !important;
 }
 
 .btn-grey {
@@ -153,7 +209,7 @@ body {
 
 /* Ganti warna latar belakang navbar */
 .navbar-theme {
-    background-color: #213555;
+    background-color: #213555 !important;
     /* Warna latar belakang dengan tingkat transparansi */
     transition: background-color 0.3s ease;
     /* Efek transisi perubahan warna */
@@ -171,7 +227,8 @@ body {
 }
 
 .navbar-text-hover:hover {
-    color: #4f709c !important;
+    color: #e5d283 !important;
+    font-weight: medium !important;
 }
 
 .row.d-flex.justify-content-center.margin-buttom {
@@ -199,7 +256,6 @@ body {
 .btn-danger {
     width: 100px;
     height: 40px;
-
 }
 
 .m-0 {
@@ -208,4 +264,18 @@ body {
 
 .m-2 {
     font-family: sans-serif;
+}
+.hidden {
+    display: none;
+}
+
+/* Media query untuk layar dengan lebar maksimal 360px */
+@media (max-width: 360px) {
+    .brand-hidden {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
 }
