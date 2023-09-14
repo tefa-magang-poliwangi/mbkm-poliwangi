@@ -39,7 +39,7 @@ body {
 
 .btn-theme-two {
     font-weight: 500 !important;
-    background-color: #213555  !important;
+    background-color: #213555 !important;
     color: white !important;
     border-radius: 12px !important;
     border: 2px solid #213555 !important;
@@ -55,7 +55,7 @@ body {
 
 .btn-theme-three {
     font-weight: 500 !important;
-    background-color: white  !important;
+    background-color: white !important;
     color: #213555 !important;
     border-radius: 12px !important;
     border: 2px solid white !important;
@@ -177,16 +177,11 @@ body {
 .section-bg-one {
     background-color: #4F709C !important;
 }
+
 .section-bg-two {
     background-color: #213555 !important;
 }
 
 .btn-theme {
     background-color: #213555 !important;
-}
-
-.custom-profile-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
 }
