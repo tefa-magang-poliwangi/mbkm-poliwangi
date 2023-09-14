@@ -49,3 +49,13 @@ Route::get('/dashboard-user/kegiatan', function () {
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
+
+Route::get('/dashboard-user/mitra', function () {
+    return view('pages.mitra.mitra');
+});
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.rincian-kegiatan.rincian-kegiatan');
+});
+Route::get('/dashboard-user/form-mitra', function () {
+    return view('pages.form-mitra.form-mitra');
+});
