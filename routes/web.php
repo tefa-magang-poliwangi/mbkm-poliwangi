@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.guest.home');
-});
+// landing page route
+Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
 
 // Auth route
 Route::get('/logout', [AuthController::class, 'doLogout'])->name('do.logout');
