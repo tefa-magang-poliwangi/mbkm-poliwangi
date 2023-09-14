@@ -52,3 +52,13 @@ Route::get('/dashboard-dosbim', function () {
 Route::get('/editpassword', function () {
     return view('pages.password.password-user');
 });
+
+Route::get('/dashboard-user/mitra', function () {
+    return view('pages.mitra.mitra');
+});
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.rincian-kegiatan.rincian-kegiatan');
+});
+Route::get('/dashboard-user/form-mitra', function () {
+    return view('pages.form-mitra.form-mitra');
+});
