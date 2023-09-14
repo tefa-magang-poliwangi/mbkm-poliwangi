@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TranskipNilai;
+use App\Http\Controllers\TranskpController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,3 +37,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
+
+// Route::get('/formaploudtranskp', function () {
+//     return view('pages.form-aploud.formaploudtranskp');
+// });
+
+Route::get('/form-uploud-transkip', [TranskipNilai::class, 'form_uploud_transkip'])->name('transkip.mahasiswa.page');

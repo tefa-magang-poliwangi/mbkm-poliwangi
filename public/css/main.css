@@ -39,7 +39,7 @@ body {
 
 .btn-theme-two {
     font-weight: 500 !important;
-    background-color: #213555  !important;
+    background-color: #213555 !important;
     color: white !important;
     border-radius: 12px !important;
     border: 2px solid #213555 !important;
@@ -55,7 +55,7 @@ body {
 
 .btn-theme-three {
     font-weight: 500 !important;
-    background-color: white  !important;
+    background-color: white !important;
     color: #213555 !important;
     border-radius: 12px !important;
     border: 2px solid white !important;
@@ -173,10 +173,61 @@ body {
 .section-bg-one {
     background-color: #4F709C !important;
 }
+
 .section-bg-two {
     background-color: #213555 !important;
 }
 
 .btn-theme {
     background-color: #213555 !important;
+}
+
+.row-1 {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.row-2 {
+    display: block;
+    margin-top: 10px;
+}
+
+.h5 {
+    font-family: "Poppins", sans-serif;
+}
+
+.m-0 {
+    padding-bottom: 10px;
+}
+
+.card {
+    border: 2px solid #004978;
+}
+
+.header-title {
+    font-weight: bold;
+}
+
+.page-title {
+    font-weight: bold;
+}
+
+.drop-area {
+    width: 300px;
+    height: 200px;
+    border: 2px dashed #ccc;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    width: 100px;
+    height: 40px;
+}
+
+.btn-danger {
+    width: 100px;
+    height: 40px;
+
 }
