@@ -16,6 +16,7 @@ body {
 .grey-color {
     background-color: #cbccd1;
 }
+
 .card-rounded {
     border-radius: 20px !important;
 }
@@ -180,10 +181,31 @@ body {
 .section-bg-one {
     background-color: #4f709c !important;
 }
+
 .section-bg-two {
     background-color: #213555 !important;
 }
 
 .btn-theme {
     background-color: #213555 !important;
+}
+
+.custom-profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.btn-danger {
+    width: 100px;
+    height: 40px;
+
+}
+
+.m-0 {
+    font-family: sans-serif;
+}
+
+.m-2 {
+    font-family: sans-serif;
 }
