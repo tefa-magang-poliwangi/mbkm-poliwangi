@@ -2,9 +2,7 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\form_aploud;
 use App\Http\Controllers\TranskipNilai;
-use App\Http\Controllers\TranskipNilaiController;
 use App\Http\Controllers\TranskpController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
@@ -20,31 +18,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.guest.home');
-});
+// landing page route
+Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
 
 // Auth route
 Route::get('/logout', [AuthController::class, 'doLogout'])->name('do.logout');
-
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('login.page');
-    Route::post('/login', [AuthController::class, 'doLogin'])->name('do.login');
-});
-Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
-});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login.page');
+    Route::post('/login', [AuthController::class, 'doLogin'])->name('do.login');
+});
+
+// tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
+Route::get('/dashboard-user/profile', function () {
+    return view('pages.profile.profile-user');
+});
+
+Route::get('/form-uploud-transkip', function () {
+    return view('pages.form-uploud.form-uploud-transkip');
+});
 Route::get('/dashboard-user/kegiatan', function () {
     return view('pages.kegiatan.kegiatan-user');
 });
-Route::get('/dashboard-user/kegiatan-login', function () {
-    return view('pages.kegiatan.kegiatan-user-login');
+
+Route::get('/dashboard-dosbim', function () {
+    return view('pages.dosen.dashboard-dosbim');
+});
+Route::get('/editpassword', function () {
+    return view('pages.password.password-user');
+});
+
+Route::get('/dashboard-user/mitra', function () {
+    return view('pages.mitra.mitra');
+});
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.rincian-kegiatan.rincian-kegiatan');
+});
+Route::get('/dashboard-user/form-mitra', function () {
+    return view('pages.form-mitra.form-mitra');
 });
 
 Route::get('/daftar-nilai', function () {
