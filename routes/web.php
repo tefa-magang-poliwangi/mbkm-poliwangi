@@ -45,6 +45,15 @@ Route::get('/form-uploud-transkip', function () {
 Route::get('/dashboard-user/kegiatan', function () {
     return view('pages.kegiatan.kegiatan-user');
 });
+Route::get('/dashboard-user/kegiatan-login', function () {
+    return view('pages.kegiatan.kegiatan-user-login');
+});
+Route::get('/dashboard-user/kegiatan-lolos', function () {
+    return view('pages.kegiatan.kegiatan-lolos');
+});
+Route::get('/dashboard-user/kegiatan-tidak-lolos', function () {
+    return view('pages.kegiatan.kegiatan-tidak-lolos');
+});
 
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
@@ -60,7 +69,7 @@ Route::get('/dashboard-user/rincian-kegiatan', function () {
     return view('pages.rincian-kegiatan.rincian-kegiatan');
 });
 Route::get('/dashboard-user/form-mitra', function () {
-    return view('pages.form-mitra.form-mitra');
+    return view('pages.mitra.form-mitra');
 });
 
 Route::get('/daftar-nilai', function () {
