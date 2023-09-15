@@ -17,8 +17,9 @@
                     <div class="card-body">
                     <div class="chocolat-parent">
                       <a href="assets/img/example-image.jpg" class="chocolat-image" title="Just an example">
-                        <div data-crop-image="400">
+                        <div data-crop-image="400" id="btn-floating">
                           <img alt="image" src="{{ asset('images/contoh.png') }}" class="img-fluid">
+                          <button class="btn "><i class="fas fa-download"></i>&ensp;Rincian Kegiatan</button>
                         </div>
                       </a>
                     </div>
