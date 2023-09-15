@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +40,7 @@ Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
 });
 Route::get('/dashboard-user/profile/edit-password', function () {
-    return view('pages.user.profile.editpassword-user');
+    return view('pages.user.profile.edit-password-user');
 });
 Route::get('/form-uploud-transkip', function () {
     return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
@@ -51,8 +50,6 @@ Route::get('/daftar-nilai', function () {
 });
 
 //Halaman User Internal
-
-
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });

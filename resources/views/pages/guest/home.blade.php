@@ -52,10 +52,11 @@
                     <h4 class="fw-bold text-white mb-3">Kategori Perusahaan</h4>
                     <div class="form-group">
                         <select class="form-control select2">
-                            <option value="">Pilih Kategori</option>
-                            <option>Teknologi Informasi</option>
-                            <option>Perkantoran</option>
-                            <option>Pariwisata</option>
+                            <option value="">Pilih Nama Perusahaan</option>
+                            <option value="">Indomilk</option>
+                            <option>Biznet</option>
+                            <option>Pertamina</option>
+                            <option>Kampus Merdeka</option>
                         </select>
                     </div>
                 </div>
