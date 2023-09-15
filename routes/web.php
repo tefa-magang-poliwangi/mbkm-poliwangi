@@ -44,19 +44,14 @@ Route::get('/dashboard-user/profile/edit-password', function () {
     return view('pages.user.profile.editpassword-user');
 });
 Route::get('/form-uploud-transkip', function () {
-    return view('pages.form-uploud.form-uploud-transkip');
-});
-Route::get('/form-uploud-transkip', function () {
-    return view('pages.form-uploud.form-uploud-transkip');
+    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
 });
 Route::get('/daftar-nilai', function () {
-    return view('pages.form-uploud.daftar-nilai');
+    return view('pages.user.transkrip-nilai.daftarNilai-user');
 });
 
 //Halaman User Internal
-Route::get('/dashboard-user/kegiatan', function () {
-    return view('pages.kegiatan.kegiatan-user');
-});
+
 
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
@@ -77,6 +72,11 @@ Route::get('/dashboard-mitra', function () {
 
 Route::get('/mitra-lowongan', function () {
     return view('pages.mitra.mitra-lowongan');
+});
+
+//Kaprodi
+Route::get('/dashboard-user/kegiatan', function () {
+    return view('pages.kaprodi.rincian-kegiatan.rincianKegiatan-Kaprodi');
 });
 
 //Halaman Dosbim
