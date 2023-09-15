@@ -74,3 +74,7 @@ Route::get('/form-uploud-transkip', function () {
 Route::get('/dashboard-mitra', function () {
     return view('pages.mitra.dashboard-mitra');
 });
+
+Route::get('/mitra-lowongan', function () {
+    return view('pages.mitra.mitra-lowongan');
+});
