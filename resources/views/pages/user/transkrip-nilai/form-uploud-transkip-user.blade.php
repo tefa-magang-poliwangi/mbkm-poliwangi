@@ -1,27 +1,43 @@
 @extends('layouts.base-user')
 
+@section('title')
+    <title>Transkip Nilai Mahasiswa | MBKM Poliwangi</title>
+@endsection
+
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
 
 @section('content')
-    <section class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row row-1 pt-5">
-                <div class="col-sm-12">
-                    <div class="page-title-box">
-                        <h4 class="page-title">
-                            Upload Transkrip Nilai Mahasiswa
-                        </h4>
+    <section class="container-fluid py-3">
+        <div class="pt-4">
+            <h4 class="text-theme">Upload Transkip Nilai Mahasiswa</h4>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                <div class="card card-border card-rounded-sm card-hover">
+                    <div class="card-body pb-4  ">
+                        <h5 class="mb-3">Menu Transkip Nilai</h5>
+
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
+                                href="#form-transkip" role="tab">Formulir Upload Trankip</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                                href="#daftar-transkip" role="tab">Daftar Transkip Nilai</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row pt-2 d-flex justify-content-arround">
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-body py-4">
+            <div class="col-12 col-sm-12 col-md-8 col-8">
+                {{-- Form Upload Transkip --}}
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active card card-border card-rounded-sm card-hover" id="form-transkip"
+                        role="tabpanel" aria-labelledby="list-home-list">
+
+                        <div class="card-body">
                             <h4 class="header-title mt-0 mb-3">Transkip Nilai</h4>
 
                             <label class="form-label">
@@ -40,63 +56,60 @@
                                                 id="fileInput">
                                         </div>
                                     </a>
-
                                 </div>
-
-                                <script>
-                                    const dropArea = document.getElementById('drop-area');
-                                    const fileInput = document.getElementById('fileInput');
-
-                                    dropArea.addEventListener('dragover', (e) => {
-                                        e.preventDefault();
-                                        dropArea.classList.add('active');
-                                    });
-
-                                    dropArea.addEventListener('dragleave', () => {
-                                        dropArea.classList.remove('active');
-                                    });
-
-                                    dropArea.addEventListener('drop', (e) => {
-                                        e.preventDefault();
-                                        dropArea.classList.remove('active');
-                                        const files = e.dataTransfer.files;
-                                        handleFiles(files);
-                                    });
-
-                                    fileInput.addEventListener('change', () => {
-                                        const files = fileInput.files;
-                                        handleFiles(files);
-                                    });
-
-                                    function handleFiles(files) {
-                                        // Kirim file ke server dengan Ajax atau selesaikan logika Anda di sini
-                                    }
-                                </script>
 
                                 <div class="row">
                                     <div class="col">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-grey">Batalkan</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
 
+                    {{-- Daftar Transkip Nilai --}}
+                    <div class="tab-pane fade" id="daftar-transkip" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div class="card card-border card-rounded-sm card-hover">
+                            <div class="card-body">
+                                <p>Ini Daftar Transkip Nilai</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+@endsection
 
-    {{-- <div class="col-lg-9">
-                        <div class="card" style="width: 18rem;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                            </ul>
-                        </div>
-                    </div> --}}
+@section('script')
+    <script>
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('fileInput');
+
+        dropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropArea.classList.add('active');
+        });
+
+        dropArea.addEventListener('dragleave', () => {
+            dropArea.classList.remove('active');
+        });
+
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('active');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', () => {
+            const files = fileInput.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            // Kirim file ke server dengan Ajax atau selesaikan logika Anda di sini
+        }
+    </script>
 @endsection

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
 body {
     font-family: "Poppins", sans-serif !important;
     overflow-x: hidden;
@@ -22,6 +23,10 @@ body {
 
 .card-hover:hover {
     box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
+}
+
+.card-border {
+    border: 2px solid #004978 !important;
 }
 
 .btn-login {
@@ -50,6 +55,10 @@ body {
 
 .card-rounded {
     border-radius: 15px !important;
+}
+
+.card-rounded-sm {
+    border-radius: 5px !important;
 }
 
 .btn-detail:hover {
@@ -306,14 +315,6 @@ body {
     background-color: #213555 !important;
 }
 
-.custom-profile-image {
-    height: 20vh;
-    width: 20vh;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-}
-
 .btn-danger {
     width: 100px;
     height: 40px;
@@ -341,4 +342,23 @@ body {
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.bg-theme {
+    background-color: #213555 !important;
+}
+
+.sidebar-theme {
+    background-color: #174276 !important;
+    color: white !important;
+}
+
+@media (max-width: 360px) {
+    .brand-hidden {
+        display: none;
+    }
 }
