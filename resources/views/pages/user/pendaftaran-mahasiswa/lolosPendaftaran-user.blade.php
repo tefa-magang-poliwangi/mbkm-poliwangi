@@ -21,8 +21,8 @@
 
                     <center>
                         <div class="col-6 card-footer text-center grey-color p-3 card-content card-rounded ">
-                        <h2 class="text-color">Selamat Anda Lolos</h2>
-                        <p class="text-color">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
+                        <h2 class="text-color-black">Selamat Anda Lolos</h2>
+                        <p class="text-color-black">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
                         <button class="btn btn-theme-five">Ambil Program</button>
                         <button class="btn btn-theme-four">Tolak Program</button>
                     </div>

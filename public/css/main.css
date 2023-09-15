@@ -236,6 +236,10 @@ body {
     color: #d5e2ea !important;
 }
 
+.text-color-black {
+    color: #000000 !important;
+}
+
 .header-theme {
     background-color: #063762 !important;
     color: white !important;
@@ -321,4 +325,20 @@ body {
 
 .m-2 {
     font-family: sans-serif;
+}
+
+#btn-floating .btn {
+    position: absolute;
+    top: 90%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    /* padding: 12px 24px; */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
 }

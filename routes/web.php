@@ -52,11 +52,7 @@ Route::get('/daftar-nilai', function () {
 
 //Halaman User Internal
 
-
-Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
-});
-
+//halaman mitra
 Route::get('/dashboard-user/mitra', function () {
     return view('pages.mitra.mitra');
 });
@@ -72,6 +68,23 @@ Route::get('/dashboard-mitra', function () {
 
 Route::get('/mitra-lowongan', function () {
     return view('pages.mitra.mitra-lowongan');
+});
+
+// halaman user
+Route::get('/dashboard-user/lolos-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.lolosPendaftaran-user');
+});
+Route::get('/dashboard-user/pendaftaran-magang', function () {
+    return view('pages.user.pendaftaran-mahasiswa.pendaftaranMagang-user');
+});
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.user.pendaftaran-mahasiswa.rincianKegiatan-user');
+});
+Route::get('/dashboard-user/status-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.statusPendaftaran-user');
+});
+Route::get('/dashboard-user/tidak-lolos-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.tidaklolosPendaftaran-user');
 });
 
 //Kaprodi
