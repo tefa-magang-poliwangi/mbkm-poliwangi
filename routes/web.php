@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -48,7 +49,7 @@ Route::get('/dashboard-user/kegiatan', function () {
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
-Route::get('/editpassword', function () {
+Route::get('/dashboard-user/profile/edit-password', function () {
     return view('pages.password.password-user');
 });
 
@@ -72,12 +73,4 @@ Route::get('/form-uploud-transkip', function () {
 
 Route::get('/dashboard-mitra', function () {
     return view('pages.mitra.dashboard-mitra');
-});
-
-Route::get('/mitra-lowongan', function () {
-    return view('pages.mitra.mitra-lowongan');
-});
-
-Route::get('/dashboard-kaprodi', function () {
-    return view('pages.Kaprodi.dashboard-kaprodi');
 });

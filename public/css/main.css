@@ -91,6 +91,27 @@ body {
     border-radius: 20px !important;
 }
 
+.card-height {
+    height: 400px !important;
+}
+
+/* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
+.card-height .btn-detail {
+    position: absolute;
+    bottom: 40px; /* Sesuaikan jarak dari bawah yang Anda inginkan */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mengatur posisi card relatif agar tombol tidak tumpang tindih */
+.card-height {
+    position: relative;
+}
+
+.btn-rounded {
+    border-radius: 25px !important;
+}
+
 .btn-theme {
     font-weight: 500 !important;
     background-color: #4f709c !important;
@@ -152,6 +173,9 @@ body {
     color: white !important;
 }
 
+.text-theme {
+    color: #213555 !important;
+}
 .text-yellow {
     color: #e5ac50 !important;
 }
@@ -184,8 +208,9 @@ body {
     color: #d5e2ea !important;
 }
 
-.bg-insta {
-    background-color: #f73466 !important;
+.header-theme {
+    background-color: #063762 !important;
+    color: white !important;
 }
 
 .footer-text {
@@ -207,7 +232,6 @@ body {
     font-size: 12px !important;
 }
 
-
 /* Ganti warna latar belakang navbar */
 
 .navbar-theme {
@@ -216,7 +240,6 @@ body {
     transition: background-color 0.3s ease;
     /* Efek transisi perubahan warna */
 }
-
 
 /* Ganti warna latar belakang navbar saat di-scroll */
 
@@ -270,4 +293,14 @@ body {
 
 .m-2 {
     font-family: sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 360px) {
+    .brand-hidden {
+        display: none;
+    }
 }

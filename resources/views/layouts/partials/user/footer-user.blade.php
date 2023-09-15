@@ -12,10 +12,10 @@
                         alt="">
                     <img src="{{ asset('images/logo/logo-poliwangi.png') }}" width="120" class="img-fluid mb-4"
                         alt="">
-                    
+
                     <br>
                     <div class="footer-left">
-                        Copyright &copy; 2023 <div class="bullet"></div> All Rights Reserved.
+                        Copyright &copy; {{ now()->year }} <div class="bullet"></div> All Rights Reserved.
                     </div>
                 </div>
                 <div class="col-2 col-sm-6 col-md-6 col-lg-2">
