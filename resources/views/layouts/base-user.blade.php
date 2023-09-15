@@ -57,7 +57,6 @@
             </div>
 
             {{-- footer --}}
-            @include('layouts.partials.user.footer-user')
 
         </div>
     </div>

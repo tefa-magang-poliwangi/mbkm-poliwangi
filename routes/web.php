@@ -35,41 +35,57 @@ Route::middleware(['guest'])->group(function () {
 
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
 Route::get('/dashboard-user/profile', function () {
-    return view('pages.profile.profile-user');
+    return view('pages.user.profile.profile-user');
 });
-
+Route::get('/dashboard-user/profile/edit-password', function () {
+    return view('pages.user.profile.editpassword-user');
+});
 Route::get('/form-uploud-transkip', function () {
     return view('pages.form-uploud.form-uploud-transkip');
 });
+Route::get('/form-uploud-transkip', function () {
+    return view('pages.form-uploud.form-uploud-transkip');
+});
+Route::get('/daftar-nilai', function () {
+    return view('pages.form-uploud.daftar-nilai');
+});
+
+//Halaman User
 Route::get('/dashboard-user/kegiatan', function () {
     return view('pages.kegiatan.kegiatan-user');
 });
-
-Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
-});
-Route::get('/dashboard-user/profile/edit-password', function () {
-    return view('pages.password.password-user');
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.rincian-kegiatan.rincian-kegiatan');
 });
 
 Route::get('/dashboard-user/mitra', function () {
     return view('pages.mitra.mitra');
 });
-Route::get('/dashboard-user/rincian-kegiatan', function () {
-    return view('pages.rincian-kegiatan.rincian-kegiatan');
-});
+
 Route::get('/dashboard-user/form-mitra', function () {
     return view('pages.form-mitra.form-mitra');
 });
 
-Route::get('/daftar-nilai', function () {
-    return view('pages.form-uploud.daftar-nilai');
-});
-
-Route::get('/form-uploud-transkip', function () {
-    return view('pages.form-uploud.form-uploud-transkip');
-});
-
+//Halaman Mitra
 Route::get('/dashboard-mitra', function () {
     return view('pages.mitra.dashboard-mitra');
+});
+
+//Halaman Dosbim
+Route::get('/dashboard-dosbim', function () {
+    return view('pages.dosen.dashboard-dosbim');
+});
+
+//Halaman Doswal
+Route::get('/dashboard-doswal', function () {
+    return view('pages.dosen-wali.dashboard-doswal');
+});
+Route::get('/dashboard/kelayakan-doswal', function () {
+    return view('pages.dosen-wali.kelayakan-doswal');
+});
+Route::get('/dashboard/transkrip/daftarNilai', function () {
+    return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
+});
+Route::get('/dashboard/transkrip/konversiNilai', function () {
+    return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
