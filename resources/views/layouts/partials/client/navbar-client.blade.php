@@ -23,18 +23,48 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item mx-3">
+            <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
+                <li class="nav-item mx-3 my-auto">
                     <a class="nav-link navbar-text-hover fw-medium" href="{{ route('landing.page') }}#">Beranda</a>
                 </li>
-                <li class="nav-item mx-3">
+                <li class="nav-item mx-3 my-auto">
                     <a class="nav-link navbar-text-hover" href="#">Program</a>
                 </li>
-                <li class="nav-item mx-3">
-                    <a href="{{ route('login.page') }}" class="btn btn-login px-4 py-2">
-                        Login &ensp; <i class="fa-solid fa-right-to-bracket"></i>
-                    </a>
+                <li class="nav-item mx-3 my-auto">
+                    <a class="nav-link navbar-text-hover" href="#persyaratan">Persyaratan</a>
                 </li>
+                @guest
+                    <li class="nav-item mx-3 my-auto">
+                        <a href="{{ route('login.page') }}" class="btn btn-login px-4 py-2">
+                            Login &ensp; <i class="fa-solid fa-right-to-bracket"></i>
+                        </a>
+                    </li>
+                @endguest
+
+                @auth
+                    <li class="nav-item mx-3 my-auto">
+                        <div class="dropdown">
+                            <button class="btn bg-white btn-rounded" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <img src="{{ asset('assets/images/avatar/avatar-1.png') }}" class="img-fluid rounded-circle"
+                                    width="35" alt="">
+                                &ensp; <i class="fa-solid fa-bars text-theme"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item text-theme fw-medium" href="#">
+                                        <i class="fa-solid fa-user"></i>
+                                        &ensp; Akun
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-theme fw-medium" href="{{ route('do.logout') }}"> <i
+                                            class="fa-solid fa-door-closed"></i> &ensp; Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/logo-title-poliwangi.png') }}" />
 
     @yield('title')
 
@@ -14,9 +15,9 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-social/bootstrap-social.css') }}">
 
-    @yield('css')
-
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+    @yield('css')
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
