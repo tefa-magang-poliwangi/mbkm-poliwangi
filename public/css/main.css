@@ -90,6 +90,27 @@ body {
     border-radius: 20px !important;
 }
 
+.card-height {
+    height: 400px !important;
+}
+
+/* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
+.card-height .btn-detail {
+    position: absolute;
+    bottom: 40px; /* Sesuaikan jarak dari bawah yang Anda inginkan */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mengatur posisi card relatif agar tombol tidak tumpang tindih */
+.card-height {
+    position: relative;
+}
+
+.btn-rounded {
+    border-radius: 25px !important;
+}
+
 .btn-theme {
     font-weight: 500 !important;
     background-color: #4f709c !important;
@@ -124,7 +145,7 @@ body {
 
 .btn-theme-two:hover {
     font-weight: 400 !important;
-    background-color: #213555 !important;
+    background-color: #042e65 !important;
     color: white !important;
     border-radius: 8px !important;
     border: 2px solid white !important;
@@ -146,11 +167,43 @@ body {
     border: 2px solid #213555 !important;
 }
 
+.btn-theme-four {
+    font-weight: 400 !important;
+    background-color: #ff1e1e !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+.btn-theme-four:hover {
+    font-weight: 400 !important;
+    background-color: #de2121 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+.btn-theme-five {
+    font-weight: 400 !important;
+    background-color: #198754 !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+.btn-theme-five:hover {
+    font-weight: 400 !important;
+    background-color: #1aa664 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+
 .btn-grey {
     background-color: grey !important;
     color: white !important;
 }
 
+.text-theme {
+    color: #213555 !important;
+}
 .text-yellow {
     color: #e5ac50 !important;
 }
@@ -183,8 +236,9 @@ body {
     color: #d5e2ea !important;
 }
 
-.bg-insta {
-    background-color: #f73466 !important;
+.header-theme {
+    background-color: #063762 !important;
+    color: white !important;
 }
 
 .footer-text {
@@ -206,7 +260,6 @@ body {
     font-size: 12px !important;
 }
 
-
 /* Ganti warna latar belakang navbar */
 
 .navbar-theme {
@@ -215,7 +268,6 @@ body {
     transition: background-color 0.3s ease;
     /* Efek transisi perubahan warna */
 }
-
 
 /* Ganti warna latar belakang navbar saat di-scroll */
 

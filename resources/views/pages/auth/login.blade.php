@@ -1,7 +1,7 @@
 @extends('layouts.base-auth')
 
 @section('title')
-    <title>Login | MBKM Poliwangi</title>
+    <title>Login Mahasisa | MBKM Poliwangi</title>
 @endsection
 
 @section('content')
@@ -16,8 +16,8 @@
             <div class="row">
                 <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                     <div class="card card-primary card-hover rounded">
-                        <div class="card-header">
-                            <h4>Login</h4>
+                        <div class="card-header d-flex">
+                            <h4 class="mx-auto">Login</h4>
                         </div>
 
                         <div class="card-body">
@@ -51,12 +51,20 @@
                                         Login
                                     </button>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col d-flex">
+                                        <small class="mx-auto">
+                                            <a href="{{ route('landing.page') }}">Kembali ke halaman Landing Page</a>
+                                        </small>
+                                    </div>
+                                </div>
                             </form>
 
                         </div>
                     </div>
                     <div class="simple-footer">
-                        Copyright &copy; MBKM Poliwangi 2023
+                        Copyright &copy; MBKM Poliwangi {{ now()->year }}
                     </div>
                 </div>
             </div>

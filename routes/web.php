@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware(['guest'])->group(function () {
 });
 
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
+
+//Halaman user eksternal
 Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
 });
@@ -50,12 +53,13 @@ Route::get('/daftar-nilai', function () {
     return view('pages.form-uploud.daftar-nilai');
 });
 
-//Halaman User
+//Halaman User Internal
 Route::get('/dashboard-user/kegiatan', function () {
     return view('pages.kegiatan.kegiatan-user');
 });
-Route::get('/dashboard-user/rincian-kegiatan', function () {
-    return view('pages.rincian-kegiatan.rincian-kegiatan');
+
+Route::get('/dashboard-dosbim', function () {
+    return view('pages.dosen.dashboard-dosbim');
 });
 
 Route::get('/dashboard-user/mitra', function () {
@@ -63,12 +67,16 @@ Route::get('/dashboard-user/mitra', function () {
 });
 
 Route::get('/dashboard-user/form-mitra', function () {
-    return view('pages.form-mitra.form-mitra');
+    return view('pages.mitra.form-mitra');
 });
 
 //Halaman Mitra
 Route::get('/dashboard-mitra', function () {
     return view('pages.mitra.dashboard-mitra');
+});
+
+Route::get('/mitra-lowongan', function () {
+    return view('pages.mitra.mitra-lowongan');
 });
 
 //Halaman Dosbim
