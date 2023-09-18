@@ -42,8 +42,8 @@ Route::get('/dashboard-user/profile', function () {
 Route::get('/dashboard-user/profile/edit-password', function () {
     return view('pages.user.profile.edit-password-user');
 });
-Route::get('/form-upload-transkrip', function () {
-    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
+Route::get('/form-uploud-transkip', function () {
+    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
 });
 Route::get('/daftar-nilai', function () {
     return view('pages.user.transkrip-nilai.daftarNilai-user');
@@ -51,31 +51,7 @@ Route::get('/daftar-nilai', function () {
 
 //Halaman User Internal
 Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dosbim.dashboard-dosbim');
-});
-
-Route::get('/laporanharian', function () {
-    return view('pages.dosen.dosbim.laporanharian');
-});
-
-Route::get('/laporanmingguan', function () {
-    return view('pages.dosen.dosbim.laporanmingguan');
-});
-
-Route::get('/laporanakhir', function () {
-    return view('pages.dosen.dosbim.laporanakhir');
-});
-
-Route::get('/coba', function () {
-    return view('pages.dosen.dosbim.coba');
-});
-
-Route::get('/dashboard-dosenWali', function () {
-    return view('pages.dosen.dosenWali.beranda');
-});
-
-Route::get('/dashboard-kelayakan', function () {
-    return view('pages.dosen.dosenWali.kelayakan');
+    return view('pages.dosen.dashboard-dosbim');
 });
 
 
@@ -131,9 +107,12 @@ Route::get('/dashboard-doswal', function () {
 Route::get('/dashboard/kelayakan-doswal', function () {
     return view('pages.dosen-wali.kelayakan-doswal');
 });
-Route::get('/ ', function () {
+Route::get('/dashboard/transkrip/daftarNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
 });
 Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+});
+route::get('/dashboard/transkrip/konversiNilai', function(){
+return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });

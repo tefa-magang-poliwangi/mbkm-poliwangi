@@ -12,7 +12,7 @@
     <section class="container-fluid py-5">
         <div class="row py-2">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-3 card-rounded">
-                <img src="{{ asset('images/gambar_doswal2.jpg') }}" alt="Nama Gambar">
+                <img src="{{ asset('images/image3.png') }}" alt="Nama Gambar">
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-5" data-aos="fade-up"
                 data-aos-delay="300">
