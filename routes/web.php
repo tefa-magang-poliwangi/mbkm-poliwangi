@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,16 +40,20 @@ Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
 });
 Route::get('/dashboard-user/profile/edit-password', function () {
-    return view('pages.user.profile.editpassword-user');
+    return view('pages.user.profile.edit-password-user');
 });
-Route::get('/form-uploud-transkip', function () {
-    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
+Route::get('/form-upload-transkrip', function () {
+    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
 });
 Route::get('/daftar-nilai', function () {
     return view('pages.user.transkrip-nilai.daftarNilai-user');
 });
 
 //Halaman User Internal
+Route::get('/dashboard-dosbim', function () {
+    return view('pages.dosen.dashboard-dosbim');
+});
+
 
 //halaman mitra
 Route::get('/dashboard-user/mitra', function () {
@@ -70,6 +73,23 @@ Route::get('/mitra-lowongan', function () {
     return view('pages.mitra.mitra-lowongan');
 });
 
+// halaman user
+Route::get('/dashboard-user/lolos-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.lolosPendaftaran-user');
+});
+Route::get('/dashboard-user/pendaftaran-magang', function () {
+    return view('pages.user.pendaftaran-mahasiswa.pendaftaranMagang-user');
+});
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.user.pendaftaran-mahasiswa.rincianKegiatan-user');
+});
+Route::get('/dashboard-user/status-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.statusPendaftaran-user');
+});
+Route::get('/dashboard-user/tidak-lolos-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.tidaklolosPendaftaran-user');
+});
+
 //Kaprodi
 Route::get('/dashboard-user/kegiatan', function () {
     return view('pages.kaprodi.rincian-kegiatan.rincianKegiatan-Kaprodi');
@@ -87,7 +107,7 @@ Route::get('/dashboard-doswal', function () {
 Route::get('/dashboard/kelayakan-doswal', function () {
     return view('pages.dosen-wali.kelayakan-doswal');
 });
-Route::get('/dashboard/transkrip/daftarNilai', function () {
+Route::get('/ ', function () {
     return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
 });
 Route::get('/dashboard/transkrip/konversiNilai', function () {

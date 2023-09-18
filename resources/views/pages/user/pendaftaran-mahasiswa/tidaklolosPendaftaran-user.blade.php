@@ -21,8 +21,8 @@
 
                     <center>
                         <div class="col-6 card-footer text-center grey-color p-3 card-content card-rounded ">
-                        <h2 class="text-color">Maaf Anda Belum Lolos</h2>
-                        <p class="text-color">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
+                        <h2 class="text-color-black">Maaf Anda Belum Lolos</h2>
+                        <p class="text-color-black">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
                         <button class="btn btn-theme-two">Daftar Kegiatan</button>
                     </div>
                     </center>

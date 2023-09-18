@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
 body {
     font-family: "Poppins", sans-serif !important;
     overflow-x: hidden;
@@ -22,6 +23,10 @@ body {
 
 .card-hover:hover {
     box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
+}
+
+.card-border {
+    border: 2px solid #004978 !important;
 }
 
 .btn-login {
@@ -50,6 +55,10 @@ body {
 
 .card-rounded {
     border-radius: 15px !important;
+}
+
+.card-rounded-sm {
+    border-radius: 5px !important;
 }
 
 .btn-detail:hover {
@@ -97,7 +106,8 @@ body {
 /* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
 .card-height .btn-detail {
     position: absolute;
-    bottom: 40px; /* Sesuaikan jarak dari bawah yang Anda inginkan */
+    bottom: 40px;
+    /* Sesuaikan jarak dari bawah yang Anda inginkan */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -181,6 +191,7 @@ body {
     border-radius: 8px !important;
     border: 2px solid white !important;
 }
+
 .btn-theme-five {
     font-weight: 400 !important;
     background-color: #198754 !important;
@@ -204,6 +215,7 @@ body {
 .text-theme {
     color: #213555 !important;
 }
+
 .text-yellow {
     color: #e5ac50 !important;
 }
@@ -234,6 +246,10 @@ body {
 
 .text-footer {
     color: #d5e2ea !important;
+}
+
+.text-color-black {
+    color: #000000 !important;
 }
 
 .header-theme {
@@ -302,14 +318,6 @@ body {
     background-color: #213555 !important;
 }
 
-.custom-profile-image {
-    height: 20vh;
-    width: 20vh;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-}
-
 .btn-danger {
     width: 100px;
     height: 40px;
@@ -321,4 +329,43 @@ body {
 
 .m-2 {
     font-family: sans-serif;
+}
+
+#btn-floating .btn {
+    position: absolute;
+    top: 90%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    /* padding: 12px 24px; */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.bg-theme {
+    background-color: #213555 !important;
+}
+
+.sidebar-theme {
+    background-color: #174276 !important;
+    color: white !important;
+}
+
+@media (max-width: 360px) {
+    .brand-hidden {
+        display: none;
+    }
+}
+
+.text-white-header {
+    color: white;
 }
