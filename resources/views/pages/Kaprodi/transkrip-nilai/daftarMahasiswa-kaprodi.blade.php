@@ -1,6 +1,6 @@
 @extends('layouts.base-user')
 @section('title')
-    <title>Rincian Kegiatan| Kaprodi | Politeknik Negeri Banyuwangi</title>
+    <title>Transkip Nilai MBKM |Dosen Wali| Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -9,17 +9,16 @@
 @endsection
 
 @section('content')
-<section container-fluid py-3>
     <div class="container-fluid" style="padding-top: 10%">
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white border-0">
-                        <strong class="h4">Rincian Kegiatan (Aida Andinar Maulidiana)</strong>
+                        <strong class="h4">Daftar Mahasiswa (Transkrip Nilai)</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover table-borderless rounded" id="table-2"
+                            <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
@@ -29,7 +28,6 @@
                                         <th>Nama</th>
                                         <th>NIM</th>
                                         <th>Program Studi</th>
-                                        <th>Progress</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,49 +44,24 @@
                                             Teknologi Rekayasa Perangkat Lunak
                                         </td>
                                         <td>
-                                            Laporan Harian
-                                        </td>
-                                        <td>
                                             <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-eye font-16"></i></a>
+                                                    class="fa-solid fa-file-pen text-dark"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            1
+                                            2
                                         </td>
-                                        <td>Aida Andinar Maulidiana</td>
+                                        <td>Rini Maulida</td>
                                         <td>
-                                            362055401012
+                                            362055401084
                                         </td>
                                         <td>
                                             Teknologi Rekayasa Perangkat Lunak
                                         </td>
                                         <td>
-                                            Laporan Mingguan
-                                        </td>
-                                        <td>
                                             <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-eye font-16"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Aida Andinar Maulidiana</td>
-                                        <td>
-                                            362055401012
-                                        </td>
-                                        <td>
-                                            Teknologi Rekayasa Perangkat Lunak
-                                        </td>
-                                        <td>
-                                            Laporan Akhir
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-file-pen font-16"></i></a>
+                                                    class="fa-solid fa-file-pen text-dark"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -99,10 +72,6 @@
             </div>
         </div>
     </div>
-
-
-</section>
-   
 @endsection
 
 @section('script')

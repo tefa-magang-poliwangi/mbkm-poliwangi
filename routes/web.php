@@ -49,31 +49,7 @@ Route::get('/daftar-nilai', function () {
     return view('pages.user.transkrip-nilai.daftarNilai-user');
 });
 
-//Halaman User Internal
-Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
-});
-
-
-//halaman mitra
-Route::get('/dashboard-user/mitra', function () {
-    return view('pages.mitra.mitra');
-});
-
-Route::get('/dashboard-user/form-mitra', function () {
-    return view('pages.mitra.form-mitra');
-});
-
-//Halaman Mitra
-Route::get('/dashboard-mitra', function () {
-    return view('pages.mitra.dashboard-mitra');
-});
-
-Route::get('/mitra-lowongan', function () {
-    return view('pages.mitra.mitra-lowongan');
-});
-
-// halaman user
+// halaman admin user (mahasiswa) - internal
 Route::get('/dashboard-user/lolos-pendaftaran', function () {
     return view('pages.user.pendaftaran-mahasiswa.lolosPendaftaran-user');
 });
@@ -90,17 +66,48 @@ Route::get('/dashboard-user/tidak-lolos-pendaftaran', function () {
     return view('pages.user.pendaftaran-mahasiswa.tidaklolosPendaftaran-user');
 });
 
-//Kaprodi
-Route::get('/dashboard-user/kegiatan', function () {
-    return view('pages.kaprodi.rincian-kegiatan.rincianKegiatan-Kaprodi');
+//halaman mitra pada halaman mahasiswa - internal
+Route::get('/dashboard-user/mitra', function () {
+    return view('pages.mitra.mitra');
 });
 
-//Halaman Dosbim
+Route::get('/dashboard-user/form-mitra', function () {
+    return view('pages.mitra.form-mitra');
+});
+
+//Halaman admin Mitra
+Route::get('/dashboard-mitra', function () {
+    return view('pages.mitra.dashboard-mitra');
+});
+
+Route::get('/mitra-lowongan', function () {
+    return view('pages.mitra.mitra-lowongan');
+});
+
+//halaman admin Kaprodi
+
+Route::get('/dashboard-kaprodi', function () {
+    return view('pages.kaprodi.dashboard-kaprodi');
+});
+Route::get('/dashboard/rincian-kegiatan/daftar-mahasiswa', function () {
+    return view('pages.kaprodi.rincian-kegiatan.daftarMahasiswa-kaprodi');
+});
+Route::get('/dashboard/rincian-kegiatan/daftar-mahasiswa/rincian-kegiatan', function () {
+    return view('pages.kaprodi.rincian-kegiatan.rincianKegiatan-kaprodi');
+});
+Route::get('/dashboard/transkrip-nilai/daftar-mahasiswa', function () {
+    return view('pages.kaprodi.transkrip-nilai.daftarMahasiswa-kaprodi');
+});
+Route::get('/dashboard/transkrip-nilai/daftar-mahasiswa/transkrip-nilai', function () {
+    return view('pages.kaprodi.transkrip-nilai.transkripNilai-kaprodi');
+});
+
+//Halaman admin Dosen Pembimbing
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
 
-//Halaman Doswal
+//Halaman admin Dosen wali
 Route::get('/dashboard-doswal', function () {
     return view('pages.dosen-wali.dashboard-doswal');
 });

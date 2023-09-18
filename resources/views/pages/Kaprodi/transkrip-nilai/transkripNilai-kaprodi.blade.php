@@ -1,6 +1,6 @@
 @extends('layouts.base-user')
 @section('title')
-    <title>Rincian Kegiatan| Kaprodi | Politeknik Negeri Banyuwangi</title>
+    <title>Transkrip Nilai| Kaprodi | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white border-0">
-                        <strong class="h4">Rincian Kegiatan (Aida Andinar Maulidiana)</strong>
+                        <strong class="h4">Transkrip Nilai Mata Kuliah (Aida Andinar Maulidiana)</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -26,11 +26,12 @@
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama</th>
-                                        <th>NIM</th>
-                                        <th>Program Studi</th>
-                                        <th>Progress</th>
-                                        <th>Action</th>
+                                        <th>Kode</th>
+                                        <th>Mata Kuliah</th>
+                                        <th>HM</th>
+                                        <th>AM</th>
+                                        <th>K</th>
+                                        <th>M</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,57 +39,43 @@
                                         <td>
                                             1
                                         </td>
-                                        <td>Aida Andinar Maulidiana</td>
+                                        <td>RPL25042
                                         <td>
-                                            362055401012
+                                            Proyek Aplikasi Lanjut
                                         </td>
                                         <td>
-                                            Teknologi Rekayasa Perangkat Lunak
+                                            A
                                         </td>
                                         <td>
-                                            Laporan Harian
+                                            4
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-eye font-16"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Aida Andinar Maulidiana</td>
-                                        <td>
-                                            362055401012
+                                            2
                                         </td>
                                         <td>
-                                            Teknologi Rekayasa Perangkat Lunak
-                                        </td>
-                                        <td>
-                                            Laporan Mingguan
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-eye font-16"></i></a>
+                                            7
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             1
                                         </td>
-                                        <td>Aida Andinar Maulidiana</td>
-                                        <td>
-                                            362055401012
+                                        <td>RPL25042
                                         </td>
                                         <td>
-                                            Teknologi Rekayasa Perangkat Lunak
+                                            Pengujian Perangkat Lunak
                                         </td>
                                         <td>
-                                            Laporan Akhir
+                                            AB
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-file-pen font-16"></i></a>
+                                            3.5
+                                        </td>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            7
                                         </td>
                                     </tr>
                                 </tbody>
