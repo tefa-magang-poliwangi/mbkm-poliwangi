@@ -52,11 +52,7 @@ Route::get('/daftar-nilai', function () {
 
 //Halaman User Internal
 
-
-Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
-});
-
+//halaman mitra
 Route::get('/dashboard-user/mitra', function () {
     return view('pages.mitra.mitra');
 });
