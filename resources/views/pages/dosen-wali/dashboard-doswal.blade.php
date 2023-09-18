@@ -9,26 +9,38 @@
 @endsection
 
 @section('content')
-
-<section class="container-fluid py-5">
+    <section class="container-fluid py-5">
         <div class="row py-2">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-3">
-                <img src="{{ asset('images/KM5') }}" alt="Nama Gambar">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-3 card-rounded">
+                <img src="{{ asset('images/image3.png') }}" alt="Nama Gambar">
             </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-5" data-aos="fade-up" data-aos-delay="300"> 
-                <div class="p-3">
-                   <a href="#" class="btn btn-theme-two p-4">
-                        <i class="fa-solid fa-file-pen px-2 fa-2x"></i>
-                        Kelayanakan Pendaftaran MBKM
-                    </a>    
-                </div>               
-                <div class="p-3">
-                    <a href="#" class="btn btn-theme-two p-4 ">
-                        <i class="fa-solid fa-file-invoice px-2 fa-2x"></i>
-                        Konversi Nilai Mata Kuliah
-                    </a>    
-                </div>                                       
-            </div>            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-5" data-aos="fade-up"
+                data-aos-delay="300">
+                <div class="card p-3 btn-theme-two">
+                    <div class="card-body d-flex btn-theme-two">
+                        <div class="d-flex">
+                            <a href="#" class="mx-auto my-auto menu-tag-text">
+                                <i class="fa-solid fa-file-pen px-2 fa-2x"></i>
+                            </a>
+                            <h4 class="my-auto">
+                                Kelayanakan Pendaftaran MBKM
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-3 btn-theme-two">
+                    <div class="card-body d-flex btn-theme-two">
+                        <div class="d-flex">
+                            <a href="#" class="mx-auto my-auto menu-tag-text">
+                                <i class="fa-solid fa-file-invoice px-2 fa-2x"></i>
+                            </a>
+                            <h4 class="my-auto">
+                                Konversi Nilai Mata Kuliah
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 </section>
 @endsection
