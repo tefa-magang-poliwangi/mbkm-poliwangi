@@ -369,3 +369,12 @@ body {
 .text-white-header {
     color: white;
 }
+
+.card-body-admin {
+    background-color: #174276 !important;
+}
+
+.card-custom {
+    background-color: #213555 !important;
+    color: white;
+}
