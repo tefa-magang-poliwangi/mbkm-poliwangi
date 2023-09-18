@@ -1,6 +1,11 @@
-@extends('layouts.base-client')
+@extends('layouts.base-user')
 @section('title')
     <title>Beranda MBKM | Politeknik Negeri Banyuwangi</title>
+@endsection
+
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -24,9 +29,9 @@
                 <div class="table-responsive d-flex flex-column">
 
                     <div>
-                        <table class="table table-hover table-borderless text-uppercase" style="background-color: #EEEEEE;">
+                        <table class="table table-hover table-borderless text-white" style="background-color: #EEEEEE;">
                             <thead style="background-color: #063762; color: white;">
-                                <tr>
+                                <tr class="text-white-header">
                                     <th>
                                         No
                                     </th>
@@ -50,22 +55,19 @@
                                                 class="fa-solid fa-file-pen text-dark"></i></button>
                                     </td>
                                 </tr>
-                            </tbody>                           
+                            </tbody>
                         </table>
                     </div>
                     <div class="contaner-fluid">
                         <div class="row">
-                            <div class="col-md-">
-                                <button type="button" class="btn text-white"
-                                                                            style="background-color: #063762; padding: 1% 30%"
-                                                                            data-dismiss="modal">Cetak</button>
+                            <div class="col-6 text-right ">
+                                <button type="submit" class="btn btn-theme btn-block">Preview</button>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn text-white"
-                                                                            style="background-color: #063762; padding: 1% 30%"
-                                                                            data-dismiss="modal">Cetak</button>                                 
+                            <div class="col-6 text-left">
+                                <button type="submit" class="btn btn-theme btn-block">Cetak</button>
                             </div>
-                        </div>                    
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -126,4 +128,10 @@
 
 @section('script')
     <script src="{{ asset('assets/js/page/bootstrap-modal.js') }} "></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
 @endsection

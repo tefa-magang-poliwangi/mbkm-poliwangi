@@ -34,18 +34,22 @@ Route::middleware(['guest'])->group(function () {
 });
 
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
+
+//Halaman user eksternal
 Route::get('/dashboard-user/profile', function () {
-    return view('pages.profile.profile-user');
+    return view('pages.user.profile.profile-user');
+});
+Route::get('/dashboard-user/profile/edit-password', function () {
+    return view('pages.user.profile.edit-password-user');
+});
+Route::get('/form-upload-transkrip', function () {
+    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
+});
+Route::get('/daftar-nilai', function () {
+    return view('pages.user.transkrip-nilai.daftarNilai-user');
 });
 
-Route::get('/form-uploud-transkip', function () {
-    return view('pages.form-uploud.form-uploud-transkip');
-});
-
-Route::get('/dashboard-user/kegiatan', function () {
-    return view('pages.kegiatan.kegiatan-user');
-});
-
+//Halaman User Internal
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dosbim.dashboard-dosbim');
 });
@@ -72,4 +76,64 @@ Route::get('/dashboard-dosenWali', function () {
 
 Route::get('/dashboard-kelayakan', function () {
     return view('pages.dosen.dosenWali.kelayakan');
+});
+
+
+//halaman mitra
+Route::get('/dashboard-user/mitra', function () {
+    return view('pages.mitra.mitra');
+});
+
+Route::get('/dashboard-user/form-mitra', function () {
+    return view('pages.mitra.form-mitra');
+});
+
+//Halaman Mitra
+Route::get('/dashboard-mitra', function () {
+    return view('pages.mitra.dashboard-mitra');
+});
+
+Route::get('/mitra-lowongan', function () {
+    return view('pages.mitra.mitra-lowongan');
+});
+
+// halaman user
+Route::get('/dashboard-user/lolos-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.lolosPendaftaran-user');
+});
+Route::get('/dashboard-user/pendaftaran-magang', function () {
+    return view('pages.user.pendaftaran-mahasiswa.pendaftaranMagang-user');
+});
+Route::get('/dashboard-user/rincian-kegiatan', function () {
+    return view('pages.user.pendaftaran-mahasiswa.rincianKegiatan-user');
+});
+Route::get('/dashboard-user/status-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.statusPendaftaran-user');
+});
+Route::get('/dashboard-user/tidak-lolos-pendaftaran', function () {
+    return view('pages.user.pendaftaran-mahasiswa.tidaklolosPendaftaran-user');
+});
+
+//Kaprodi
+Route::get('/dashboard-user/kegiatan', function () {
+    return view('pages.kaprodi.rincian-kegiatan.rincianKegiatan-Kaprodi');
+});
+
+//Halaman Dosbim
+Route::get('/dashboard-dosbim', function () {
+    return view('pages.dosen.dashboard-dosbim');
+});
+
+//Halaman Doswal
+Route::get('/dashboard-doswal', function () {
+    return view('pages.dosen-wali.dashboard-doswal');
+});
+Route::get('/dashboard/kelayakan-doswal', function () {
+    return view('pages.dosen-wali.kelayakan-doswal');
+});
+Route::get('/ ', function () {
+    return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
+});
+Route::get('/dashboard/transkrip/konversiNilai', function () {
+    return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });

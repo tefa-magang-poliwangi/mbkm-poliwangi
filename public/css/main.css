@@ -25,6 +25,10 @@ body {
     box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
 }
 
+.card-border {
+    border: 2px solid #004978 !important;
+}
+
 .btn-login {
     font-weight: 600 !important;
     background-color: #4f709c !important;
@@ -51,6 +55,10 @@ body {
 
 .card-rounded {
     border-radius: 15px !important;
+}
+
+.card-rounded-sm {
+    border-radius: 5px !important;
 }
 
 .btn-detail:hover {
@@ -91,6 +99,28 @@ body {
     border-radius: 20px !important;
 }
 
+.card-height {
+    height: 400px !important;
+}
+
+/* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
+.card-height .btn-detail {
+    position: absolute;
+    bottom: 40px;
+    /* Sesuaikan jarak dari bawah yang Anda inginkan */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Mengatur posisi card relatif agar tombol tidak tumpang tindih */
+.card-height {
+    position: relative;
+}
+
+.btn-rounded {
+    border-radius: 25px !important;
+}
+
 .btn-theme {
     font-weight: 500 !important;
     background-color: #4f709c !important;
@@ -125,7 +155,7 @@ body {
 
 .btn-theme-two:hover {
     font-weight: 400 !important;
-    background-color: #213555 !important;
+    background-color: #042e65 !important;
     color: white !important;
     border-radius: 8px !important;
     border: 2px solid white !important;
@@ -147,9 +177,43 @@ body {
     border: 2px solid #213555 !important;
 }
 
+.btn-theme-four {
+    font-weight: 400 !important;
+    background-color: #ff1e1e !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+.btn-theme-four:hover {
+    font-weight: 400 !important;
+    background-color: #de2121 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+
+.btn-theme-five {
+    font-weight: 400 !important;
+    background-color: #198754 !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+.btn-theme-five:hover {
+    font-weight: 400 !important;
+    background-color: #1aa664 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+
 .btn-grey {
     background-color: grey !important;
     color: white !important;
+}
+
+.text-theme {
+    color: #213555 !important;
 }
 
 .text-yellow {
@@ -184,8 +248,13 @@ body {
     color: #d5e2ea !important;
 }
 
-.bg-insta {
-    background-color: #f73466 !important;
+.text-color-black {
+    color: #000000 !important;
+}
+
+.header-theme {
+    background-color: #063762 !important;
+    color: white !important;
 }
 
 .footer-text {
@@ -208,6 +277,7 @@ body {
 }
 
 /* Ganti warna latar belakang navbar */
+
 .navbar-theme {
     background-color: #213555 !important;
     /* Warna latar belakang dengan tingkat transparansi */
@@ -216,6 +286,7 @@ body {
 }
 
 /* Ganti warna latar belakang navbar saat di-scroll */
+
 .navbar-theme.scrolled {
     background-color: rgba(255, 255, 255, 0.6);
     /* Warna latar belakang saat di-scroll */
@@ -247,12 +318,6 @@ body {
     background-color: #213555 !important;
 }
 
-.custom-profile-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
 .btn-danger {
     width: 100px;
     height: 40px;
@@ -265,17 +330,42 @@ body {
 .m-2 {
     font-family: sans-serif;
 }
+
+#btn-floating .btn {
+    position: absolute;
+    top: 90%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    /* padding: 12px 24px; */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
 
-/* Media query untuk layar dengan lebar maksimal 360px */
+.bg-theme {
+    background-color: #213555 !important;
+}
+
+.sidebar-theme {
+    background-color: #174276 !important;
+    color: white !important;
+}
+
 @media (max-width: 360px) {
     .brand-hidden {
         display: none;
     }
+}
 
-    .hidden {
-        display: none;
-    }
+.text-white-header {
+    color: white;
 }
