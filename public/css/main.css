@@ -374,7 +374,8 @@ body {
 }
 
 .large-button {
-    background-color: #4caf50 !important; /* Hijau */
+    background-color: #4caf50 !important;
+    /* Hijau */
     border: none !important;
     color: rgb(9, 9, 9) !important;
     padding: 15px 32px !important;
@@ -384,6 +385,16 @@ body {
     margin: 5px 2px !important;
     cursor: pointer !important;
 }
+
 .text-white-header {
+    color: white;
+}
+
+.card-body-admin {
+    background-color: #174276 !important;
+}
+
+.card-custom {
+    background-color: #213555 !important;
     color: white;
 }
