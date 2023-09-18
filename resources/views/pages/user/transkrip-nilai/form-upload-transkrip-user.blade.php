@@ -12,20 +12,20 @@
 @section('content')
     <section class="container-fluid py-3">
         <div class="pt-4">
-            <h4 class="text-theme">Upload Transkip Nilai Mahasiswa</h4>
+            <h4 class="text-theme">Upload Transkrip Nilai Mahasiswa</h4>
         </div>
 
         <div class="row mt-5">
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="card card-border card-rounded-sm card-hover">
                     <div class="card-body pb-4  ">
-                        <h5 class="mb-3">Menu Transkip Nilai</h5>
+                        <h5 class="mb-3">Menu Transkrip Nilai</h5>
 
                         <div class="list-group" id="list-tab" role="tablist">
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                href="#form-transkip" role="tab">Formulir Upload Trankip</a>
+                                href="#form-transkip" role="tab">Formulir Upload Trankrip</a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                href="#daftar-transkip" role="tab">Daftar Transkip Nilai</a>
+                                href="#daftar-transkip" role="tab">Daftar Transkrip Nilai</a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         role="tabpanel" aria-labelledby="list-home-list">
 
                         <div class="card-body">
-                            <h4 class="header-title mt-0 mb-3">Transkip Nilai</h4>
+                            <h4 class="header-title mt-0 mb-3">Transkrip Nilai</h4>
 
                             <label class="form-label">
                                 File Transkip

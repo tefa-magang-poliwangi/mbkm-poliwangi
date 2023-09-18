@@ -106,7 +106,8 @@ body {
 /* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
 .card-height .btn-detail {
     position: absolute;
-    bottom: 40px; /* Sesuaikan jarak dari bawah yang Anda inginkan */
+    bottom: 40px;
+    /* Sesuaikan jarak dari bawah yang Anda inginkan */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -190,6 +191,7 @@ body {
     border-radius: 8px !important;
     border: 2px solid white !important;
 }
+
 .btn-theme-five {
     font-weight: 400 !important;
     background-color: #198754 !important;
@@ -213,6 +215,7 @@ body {
 .text-theme {
     color: #213555 !important;
 }
+
 .text-yellow {
     color: #e5ac50 !important;
 }
@@ -361,4 +364,8 @@ body {
     .brand-hidden {
         display: none;
     }
+}
+
+.text-white-header {
+    color: white;
 }

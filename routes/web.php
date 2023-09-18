@@ -42,8 +42,8 @@ Route::get('/dashboard-user/profile', function () {
 Route::get('/dashboard-user/profile/edit-password', function () {
     return view('pages.user.profile.edit-password-user');
 });
-Route::get('/form-uploud-transkip', function () {
-    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
+Route::get('/form-upload-transkrip', function () {
+    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
 });
 Route::get('/daftar-nilai', function () {
     return view('pages.user.transkrip-nilai.daftarNilai-user');
@@ -107,7 +107,7 @@ Route::get('/dashboard-doswal', function () {
 Route::get('/dashboard/kelayakan-doswal', function () {
     return view('pages.dosen-wali.kelayakan-doswal');
 });
-Route::get('/dashboard/transkrip/daftarNilai', function () {
+Route::get('/ ', function () {
     return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
 });
 Route::get('/dashboard/transkrip/konversiNilai', function () {
