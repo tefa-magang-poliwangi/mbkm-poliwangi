@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/logo-title-poliwangi.png') }}" />
+     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/logo-title-poliwangi.png') }}" />
 
     @yield('title')
 

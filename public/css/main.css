@@ -106,7 +106,8 @@ body {
 /* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
 .card-height .btn-detail {
     position: absolute;
-    bottom: 40px; /* Sesuaikan jarak dari bawah yang Anda inginkan */
+    bottom: 40px;
+    /* Sesuaikan jarak dari bawah yang Anda inginkan */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -190,6 +191,7 @@ body {
     border-radius: 8px !important;
     border: 2px solid white !important;
 }
+
 .btn-theme-five {
     font-weight: 400 !important;
     background-color: #198754 !important;
@@ -213,6 +215,7 @@ body {
 .text-theme {
     color: #213555 !important;
 }
+
 .text-yellow {
     color: #e5ac50 !important;
 }
@@ -357,8 +360,41 @@ body {
     color: white !important;
 }
 
+.menu-tag-text {
+    text-decoration: none !important;
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+}
+
 @media (max-width: 360px) {
     .brand-hidden {
         display: none;
     }
+}
+
+.large-button {
+    background-color: #4caf50 !important;
+    /* Hijau */
+    border: none !important;
+    color: rgb(9, 9, 9) !important;
+    padding: 15px 32px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    margin: 5px 2px !important;
+    cursor: pointer !important;
+}
+
+.text-white-header {
+    color: white;
+}
+
+.card-body-admin {
+    background-color: #174276 !important;
+}
+
+.card-custom {
+    background-color: #213555 !important;
+    color: white;
 }

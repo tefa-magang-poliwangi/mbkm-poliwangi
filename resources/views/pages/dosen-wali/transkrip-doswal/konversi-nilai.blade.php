@@ -29,9 +29,9 @@
                 <div class="table-responsive d-flex flex-column">
 
                     <div>
-                        <table class="table table-hover table-borderless text-uppercase" style="background-color: #EEEEEE;">
+                        <table class="table table-hover table-borderless text-white" style="background-color: #EEEEEE;">
                             <thead style="background-color: #063762; color: white;">
-                                <tr>
+                                <tr class="text-white-header">
                                     <th>
                                         No
                                     </th>
@@ -55,22 +55,19 @@
                                                 class="fa-solid fa-file-pen text-dark"></i></button>
                                     </td>
                                 </tr>
-                            </tbody>                           
+                            </tbody>
                         </table>
                     </div>
                     <div class="contaner-fluid">
                         <div class="row">
-                            <div class="col-md-">
-                                <button type="button" class="btn text-white"
-                                                                            style="background-color: #063762; padding: 1% 30%"
-                                                                            data-dismiss="modal">Cetak</button>
+                            <div class="col-6 text-right ">
+                                <button type="submit" class="btn btn-theme btn-block">Preview</button>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn text-white"
-                                                                            style="background-color: #063762; padding: 1% 30%"
-                                                                            data-dismiss="modal">Cetak</button>                                 
+                            <div class="col-6 text-left">
+                                <button type="submit" class="btn btn-theme btn-block">Cetak</button>
                             </div>
-                        </div>                    
+                        </div>
+
                     </div>
                 </div>
             </div>
