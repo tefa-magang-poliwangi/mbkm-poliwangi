@@ -47,5 +47,29 @@ Route::get('/dashboard-user/kegiatan', function () {
 });
 
 Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
+    return view('pages.dosen.dosbim.dashboard-dosbim');
+});
+
+Route::get('/laporanharian', function () {
+    return view('pages.dosen.dosbim.laporanharian');
+});
+
+Route::get('/laporanmingguan', function () {
+    return view('pages.dosen.dosbim.laporanmingguan');
+});
+
+Route::get('/laporanakhir', function () {
+    return view('pages.dosen.dosbim.laporanakhir');
+});
+
+Route::get('/coba', function () {
+    return view('pages.dosen.dosbim.coba');
+});
+
+Route::get('/dashboard-dosenWali', function () {
+    return view('pages.dosen.dosenWali.beranda');
+});
+
+Route::get('/dashboard-kelayakan', function () {
+    return view('pages.dosen.dosenWali.kelayakan');
 });
