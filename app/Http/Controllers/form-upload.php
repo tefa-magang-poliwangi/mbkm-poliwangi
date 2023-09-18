@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class form_aploud extends Controller
+class form_upload extends Controller
 {
     public function form_aploud()
     {
-        return view('pages.form.form-aploud');
+        return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
     }
 }

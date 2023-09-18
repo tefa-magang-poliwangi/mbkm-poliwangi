@@ -1,4 +1,8 @@
+<<<<<<< HEAD:resources/views/pages/dosen/dosenWali/kelayakan.blade.php
+@extends('layouts.base-admin')
+=======
 @extends('layouts.base-user')
+>>>>>>> a436ca7b4eeae1538eac90af7a395b518ba41bf1:resources/views/pages/dosen-wali/kelayakan-doswal.blade.php
 @section('title')
     <title>Transkip Nilai MBKM |Dosen Wali| Politeknik Negeri Banyuwangi</title>
 @endsection
@@ -21,63 +25,68 @@
                 </div>
             </div>
         </section>
-      <div class="row">
-        <div class="col-12">
-          <div class="card border-0">            
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover table-borderless rounded text-center" id="table-1" style="background-color: #EEEEEE; font-weight:bold;">
-                  <thead>                                 
-                    <tr>
-                      <th>
-                        No
-                      </th>
-                      <th>Nama</th>
-                      <th>NIM</th>
-                      <th>Program Studi</th>                      
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody style="background-color: #fff">                                 
-                    <tr>
-                      <td>
-                        1
-                      </td>
-                      <td>Aida Andinar Maulidiana</td>
-                      <td>
-                        362055401012
-                      </td>
-                      <td>
-                        Teknologi Rekayasa Perangkat Lunak
-                      </td>                      
-                      <td>
-                        <a href="#" class="btn btn-transparent"><i class="fa-solid fa-magnifying-glass text-dark"></i></a>
-                        <a href="#" class="btn btn-transparent"><i class="fa-solid fa-pen-to-square text-dark"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        2
-                      </td>
-                      <td>Rini Maulida</td>
-                      <td>
-                        362055401084
-                      </td>
-                      <td>
-                        Teknologi Rekayasa Perangkat Lunak
-                      </td>                      
-                      <td>
-                        <a href="#" class="btn btn-transparent"><i class="fa-solid fa-magnifying-glass text-dark"></i></a>
-                        <a href="#" class="btn btn-transparent"><i class="fa-solid fa-pen-to-square text-dark"></i></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-borderless rounded text-center" id="table-1"
+                                style="background-color: #EEEEEE; font-weight:bold;">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            No
+                                        </th>
+                                        <th>Nama</th>
+                                        <th>NIM</th>
+                                        <th>Program Studi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background-color: #fff">
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>Aida Andinar Maulidiana</td>
+                                        <td>
+                                            362055401012
+                                        </td>
+                                        <td>
+                                            Teknologi Rekayasa Perangkat Lunak
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-transparent"><i
+                                                    class="fa-solid fa-magnifying-glass text-dark"></i></a>
+                                            <a href="#" class="btn btn-transparent"><i
+                                                    class="fa-solid fa-pen-to-square text-dark"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>Rini Maulida</td>
+                                        <td>
+                                            362055401084
+                                        </td>
+                                        <td>
+                                            Teknologi Rekayasa Perangkat Lunak
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-transparent"><i
+                                                    class="fa-solid fa-magnifying-glass text-dark"></i></a>
+                                            <a href="#" class="btn btn-transparent"><i
+                                                    class="fa-solid fa-pen-to-square text-dark"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>      
     </div>
 @endsection
 
