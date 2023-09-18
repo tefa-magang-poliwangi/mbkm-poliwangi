@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::middleware(['guest'])->group(function () {
 
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
 
+// route backend testing (postman)
+Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
+Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
+
 //Halaman user eksternal
 Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
@@ -53,7 +58,6 @@ Route::get('/daftar-nilai', function () {
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
-
 
 //halaman mitra
 Route::get('/dashboard-user/mitra', function () {
