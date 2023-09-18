@@ -9,69 +9,40 @@
 @endsection
 
 @section('content')
-
-@section('content')
-    <div class="container-fluid py-2">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col">
-                    <div class="card-body">
-                        <h5 class="section-bg-two card-rounded text-white px-3 py 2"><p>Dashboard Dosen Wali</p></h5>
-                    </div>
-                </div>
+    <section class="container-fluid py-5">
+        <div class="row py-2">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-3 card-rounded">
+                <img src="{{ asset('images/image3.png') }}" alt="Nama Gambar">
             </div>
-            <div class="row py-5">
-                <div class="col-4">
-                    <div class="card-body">
-                        <img src="{{ asset('images/image 3.png') }}">
-                    </div>
-                </div>
-                <div class="col-8 py-5 px-2">
-                    <div class="d-grid gap-5">
-                        <div class="p-3">
-                            <a href="#" class="btn btn-theme-two p-4">
-                                 <i class="fa-solid fa-file-pen px-2 fa-2x"></i>
-                                 Kelayanakan Pendaftaran MBKM
-                             </a>    
-                         </div>               
-                         <div class="p-3">
-                             <a href="#" class="btn btn-theme-two p-4 ">
-                                 <i class="fa-solid fa-file-invoice px-2 fa-2x"></i>
-                                 Konversi Nilai Mata Kuliah
-                             </a>    
-                         </div>  
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-5" data-aos="fade-up"
+                data-aos-delay="300">
+                <div class="card p-3 btn-theme-two">
+                    <div class="card-body d-flex btn-theme-two">
+                        <div class="d-flex">
+                            <a href="#" class="mx-auto my-auto menu-tag-text">
+                                <i class="fa-solid fa-file-pen px-2 fa-2x"></i>
+                            </a>
+                            <h4 class="my-auto">
+                                Kelayanakan Pendaftaran MBKM
+                            </h4>
                         </div>
                     </div>
-                    
+                </div>
+                <div class="card p-3 btn-theme-two">
+                    <div class="card-body d-flex btn-theme-two">
+                        <div class="d-flex">
+                            <a href="#" class="mx-auto my-auto menu-tag-text">
+                                <i class="fa-solid fa-file-invoice px-2 fa-2x"></i>
+                            </a>
+                            <h4 class="my-auto">
+                                Konversi Nilai Mata Kuliah
+                            </h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-        
-    </div>
-@endsection
-
-
-{{-- <section class="container-fluid py-5">
-        <div class="row py-2">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-3">
-                <img src="{{ asset('images/KM5') }}" alt="Nama Gambar">
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-5 order-2 order-md-2 mb-3 p-5" data-aos="fade-up" data-aos-delay="300"> 
-                <div class="p-3">
-                   <a href="#" class="btn btn-theme-two p-4">
-                        <i class="fa-solid fa-file-pen px-2 fa-2x"></i>
-                        Kelayanakan Pendaftaran MBKM
-                    </a>    
-                </div>               
-                <div class="p-3">
-                    <a href="#" class="btn btn-theme-two p-4 ">
-                        <i class="fa-solid fa-file-invoice px-2 fa-2x"></i>
-                        Konversi Nilai Mata Kuliah
-                    </a>    
-                </div>                                       
-            </div>            
-        </div>
-</section> --}}
+</section>
 @endsection
 
 @section('script')

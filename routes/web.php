@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\UserPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::middleware(['guest'])->group(function () {
 
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
 
+// route backend testing (postman)
+Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
+Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
+
 //Halaman user eksternal
 Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
@@ -42,8 +47,8 @@ Route::get('/dashboard-user/profile', function () {
 Route::get('/dashboard-user/profile/edit-password', function () {
     return view('pages.user.profile.edit-password-user');
 });
-Route::get('/form-upload-transkrip', function () {
-    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
+Route::get('/form-uploud-transkip', function () {
+    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
 });
 Route::get('/daftar-nilai', function () {
     return view('pages.user.transkrip-nilai.daftarNilai-user');
@@ -114,8 +119,11 @@ Route::get('/dashboard-doswal', function () {
 Route::get('/dashboard/kelayakan-doswal', function () {
     return view('pages.dosen-wali.kelayakan-doswal');
 });
-Route::get('/ ', function () {
+Route::get('/dashboard/transkrip/daftarNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
+});
+Route::get('/dashboard/transkrip/konversiNilai', function () {
+    return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
 Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
