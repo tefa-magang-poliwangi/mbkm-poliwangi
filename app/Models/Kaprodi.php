@@ -16,4 +16,10 @@ class Kaprodi extends Model
         'status',
         'id_dosen',
     ];
+
+    // relasi
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
+    }
 }

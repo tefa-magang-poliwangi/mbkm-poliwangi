@@ -25,4 +25,25 @@ class Mitra extends Model
         'id_sektor_industri',
         'id_kategori',
     ];
+
+    // relasi
+    public function sektor_industri()
+    {
+        return $this->belongsTo(SektorIndustri::class, 'id_sektor_industri', 'id');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+    }
+
+    public function lowongan()
+    {
+        return $this->hasMany(Lowongan::class);
+    }
+
+    public function pl_mitra()
+    {
+        return $this->hasMany(PlMitra::class);
+    }
 }

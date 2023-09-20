@@ -14,4 +14,10 @@ class MahasiswaMagang extends Model
         'periode_aktif',
         'id_mahasiswa',
     ];
+
+    // relasi
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
 }

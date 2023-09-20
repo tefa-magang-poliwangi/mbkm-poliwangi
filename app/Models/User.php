@@ -37,4 +37,9 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
+    public function admin_prodi()
+    {
+        return $this->hasMany(AdminProdi::class);
+    }
 }

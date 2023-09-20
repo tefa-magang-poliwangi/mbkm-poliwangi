@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nilai_magang_exts', function (Blueprint $table) {
+        Schema::create('peserta_kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('file', 255)->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
-            $table->unsignedBigInteger('id_magang_ext')->nullable(false);
-            $table->unsignedBigInteger('id_periode')->nullable(false);
+            $table->unsignedBigInteger('id_kelas')->nullable(false);
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
-            $table->foreign('id_magang_ext')->references('id')->on('magang_exts')->onDelete('cascade');
-            $table->foreign('id_periode')->references('id')->on('periodes')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nilai_magang_exts');
+        Schema::dropIfExists('peserta_kelas');
     }
 };

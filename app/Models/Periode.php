@@ -14,4 +14,15 @@ class Periode extends Model
         'semester',
         'tahun',
     ];
+
+    // relasi
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class);
+    }
+
+    public function nilai_magang_ext()
+    {
+        return $this->hasMany(NilaiMagangExt::class);
+    }
 }

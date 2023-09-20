@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('matkul_kurikulums', function (Blueprint $table) {
             $table->id();
             $table->string('semester', 20);
-            $table->unsignedBigInteger('id_matkul')->nullable(false);
             $table->unsignedBigInteger('id_kurikulum')->nullable(false);
-            $table->foreign('id_matkul')->references('id')->on('matkuls')->onDelete('cascade');
+            $table->unsignedBigInteger('id_matkul')->nullable(false);
             $table->foreign('id_kurikulum')->references('id')->on('kurikulums')->onDelete('cascade');
+            $table->foreign('id_matkul')->references('id')->on('matkuls')->onDelete('cascade');
             $table->timestamps();
         });
     }
