@@ -113,6 +113,16 @@ Route::get('/dashboard/transkrip/daftarNilai', function () {
 Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
+
 route::get('/dashboard/transkrip/konversiNilai', function(){
 return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+});
+
+//Super Admin
+Route::get('/management-role', function(){
+    return view('pages.admin.management-role');
+});
+
+Route::get('/management-user', function(){
+    return view('pages.admin.management-user');
 });
