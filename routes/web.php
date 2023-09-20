@@ -40,18 +40,12 @@ Route::middleware(['guest'])->group(function () {
 Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
 Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
 
-//Halaman user eksternal
+//Halaman admin user (mahasiswa) - Eksternal
 Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
 });
-Route::get('/dashboard-user/profile/edit-password', function () {
-    return view('pages.user.profile.edit-password-user');
-});
 Route::get('/form-uploud-transkip', function () {
-    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
-});
-Route::get('/daftar-nilai', function () {
-    return view('pages.user.transkrip-nilai.daftarNilai-user');
+    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
 });
 
 // halaman admin user (mahasiswa) - internal
@@ -71,22 +65,18 @@ Route::get('/dashboard-user/tidak-lolos-pendaftaran', function () {
     return view('pages.user.pendaftaran-mahasiswa.tidaklolosPendaftaran-user');
 });
 
-//halaman mitra pada halaman mahasiswa - internal
-Route::get('/dashboard-user/mitra', function () {
-    return view('pages.mitra.mitra');
-});
-
-Route::get('/dashboard-user/form-mitra', function () {
-    return view('pages.mitra.form-mitra');
-});
-
 //Halaman admin Mitra
 Route::get('/dashboard-mitra', function () {
     return view('pages.mitra.dashboard-mitra');
 });
-
 Route::get('/mitra-lowongan', function () {
     return view('pages.mitra.mitra-lowongan');
+});
+Route::get('/form-mitra', function () {
+    return view('pages.mitra.form-mitra');
+});
+Route::get('/dashboard/daftar-pelamar', function () {
+    return view('pages.mitra.daftar-pelamar');
 });
 
 //halaman admin Kaprodi
@@ -109,14 +99,23 @@ Route::get('/dashboard/transkrip-nilai/daftar-mahasiswa/transkrip-nilai', functi
 
 //Halaman admin Dosen Pembimbing
 Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
+    return view('pages.dosbim.dashboard-dosbim');
+});
+Route::get('/dashboard/laporan-harian', function () {
+    return view('pages.dosbim.laporan-harian');
+});
+Route::get('/dashboard/laporan-mingguan', function () {
+    return view('pages.dosbim.laporan-mingguan');
+});
+Route::get('/dashboard/laporan-akhir', function () {
+    return view('pages.dosbim.laporan-akhir');
 });
 
 //Halaman admin Dosen wali
-Route::get('/dashboard-doswal', function () {
+Route::get('/dashboard-dosenwali', function () {
     return view('pages.dosen-wali.dashboard-doswal');
 });
-Route::get('/dashboard/kelayakan-doswal', function () {
+Route::get('/dashboard/kelayakan-dosenwali', function () {
     return view('pages.dosen-wali.kelayakan-doswal');
 });
 Route::get('/dashboard/transkrip/daftarNilai', function () {
@@ -127,4 +126,8 @@ Route::get('/dashboard/transkrip/konversiNilai', function () {
 });
 Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+});
+//test
+Route::get('/dashboard/management-permission', function () {
+    return view('pages.admin.management-permission');
 });
