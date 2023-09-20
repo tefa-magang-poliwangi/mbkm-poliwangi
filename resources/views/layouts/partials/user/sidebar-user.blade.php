@@ -10,22 +10,16 @@
                 alt="">
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-th-large"></i> <span>Dashboard</span></a></li>
+            <li class="menu-header">DASHBOARD</li>
+            <li><a class="nav-link" href="blank.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
 
-            <li class="menu-header">Lowongan Magang</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
-                    <span>Mitra</span></a>
-                <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="components-article.html">Daftar Mitra</a></li>
-                    <li><a class="nav-link" href="components-chat-box.html">Status Pendaftaran</a></li>
-                </ul>
-            </li>
+            <li class="menu-header">LOWONGAN MAGANG</li>
+            <li><a class="nav-link" href="blank.html"><i class="fas fa-user-friends"></i> <span>Program</span></a></li>
 
-            <li class="menu-header">Kegiatan MBKM</li>
+
+            <li class="menu-header">KEGIATANKU MBKM</li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-alt"></i>
                     <span>Kegiatanku</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="components-chat-box.html">Laporan Harian</a></li>
@@ -33,22 +27,9 @@
                     <li><a class="nav-link" href="components-gallery.html">Laporan Akhir</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
-                    <span>Transkrip Nilai</span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="gmaps-draggable-marker.html">Upload Transkrip Nilai</a></li>
-                    <li><a href="gmaps-draggable-marker.html">Daftar Transkrip Nilai</a></li>
-                </ul>
-            </li>
+            <li><a class="nav-link" href="blank.html"><i class="fas fa-credit-card"></i> <span>Transkrip Nilai</span></a></li>
+
             <li class="menu-header">Tentang Akun</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i>
-                    <span>Akun Saya</span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="gmaps-draggable-marker.html">Password Baru</a></li>
-                    <li><a href="gmaps-draggable-marker.html">Keluar</a></li>
-                </ul>
-            </li>
+            <li><a class="nav-link" href="blank.html"><i class="fas fa-user"></i> <span>Profile</span></a></li>
     </aside>
 </div>
