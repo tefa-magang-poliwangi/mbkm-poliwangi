@@ -398,22 +398,3 @@ body {
     background-color: #213555 !important;
     color: white;
 }
-
-.fa-solid.fa-address-card.text-purple::before {
-    font-size: 30px;
-    /* Ganti dengan ukuran yang Anda inginkan */
-}
-
-.fa-solid.fa-address-card.text-primary::before {
-    font-size: 30px;
-    /* Ganti dengan ukuran yang Anda inginkan */
-}
-
-.fa-solid.fa-address-card.text-warning::before {
-    font-size: 30px;
-    /* Ganti dengan ukuran yang Anda inginkan */
-}
-
-.bg-superadmin {
-    background-color: #DBE0EC;
-}

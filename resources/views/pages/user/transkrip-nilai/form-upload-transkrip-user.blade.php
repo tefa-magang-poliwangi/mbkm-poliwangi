@@ -26,6 +26,8 @@
                                 href="#form-transkip" role="tab">Formulir Upload Trankrip</a>
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
                                 href="#daftar-transkip" role="tab">Daftar Transkrip Nilai</a>
+                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+                                href="#hasil-transkip" role="tab">Hasil Transkrip Nilai</a>
                         </div>
                     </div>
                 </div>
@@ -57,9 +59,27 @@
                                         </div>
                                     </a>
                                 </div>
+                                <div class="form-group">
+                                    <label class="form-label">Magang Eksternal</label>
+                                    <select class="form-control">
+                                        <option value="" disabled selected>Pilih Perusahaan</option>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Magang Eksternal</label>
+                                    <select class="form-control">
+                                        <option value="" disabled selected>Periode</option>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                    </select>
+                                </div>
+
 
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col text-right">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                         <button type="submit" class="btn btn-grey">Batalkan</button>
                                     </div>
@@ -73,6 +93,57 @@
                         <div class="card card-border card-rounded-sm card-hover">
                             <div class="card-body">
                                 <p>Ini Daftar Transkip Nilai</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Hasil Transkip Nilai --}}
+                    <div class="tab-pane fade" id="hasil-transkip" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div class="card card-border card-rounded-sm card-hover">
+                            <div class="card-body">
+                                <h5 class="header-title mt-0 mb-3">Transkrip NIlai Mata kuliah (Aida Andinar Maulidiana)
+                                </h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-borderless rounded" id="table-2"
+                                        style="background-color: #EEEEEE;">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    No
+                                                </th>
+                                                <th>Kode</th>
+                                                <th>Mata Kuliah</th>
+                                                <th>HM</th>
+                                                <th>AM</th>
+                                                <th>K</th>
+                                                <th>M</th>
+                                            </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>RPL25042
+                                                <td>
+                                                    Proyek Aplikasi Lanjut
+                                                </td>
+                                                <td>
+                                                    A
+                                                </td>
+                                                <td>
+                                                    4
+                                                </td>
+                                                <td>
+                                                    2
+                                                </td>
+                                                <td>
+                                                    7
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
