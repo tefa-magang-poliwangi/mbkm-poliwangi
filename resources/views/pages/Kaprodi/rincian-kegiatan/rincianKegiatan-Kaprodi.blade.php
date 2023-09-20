@@ -12,10 +12,10 @@
     <section class="container-fluid py-3">
         <div class="container py-5">
 
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body py-2">
-                            <div class="card-header">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body py-2">
+                        <div class="card-header">
                             <h4>Rincian Kegiatan Mahasiswa MBKM Internal</h4>
                             <div class="card-header-form">
                                 <form>
@@ -27,55 +27,51 @@
                                     </div>
                                 </form>
                             </div>
-                            </div>
+                        </div>
 
+                        <div class="table-responsive">
                             <div class="table-responsive">
-                                                                    <div class="table-responsive">
-                                        <table class="table mb-0">
-                                            <thead class="thead-light">
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Name</th>
-                                                <th>NIM</th>
-                                                <th>Program Studi</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>362055401099</td>
-                                                <td>TRPL</td>
-                                                <td>
-                                                    <a href="#"
-                                                            class="mr-2" data-toggle="modal" data-animation="bounce"
-                                                            data-target="#"><i
-                                                            class="fas fa-eye font-16"></i></a>
+                                <table class="table mb-0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>NIM</th>
+                                            <th>Program Studi</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>362055401099</td>
+                                            <td>TRPL</td>
+                                            <td>
+                                                <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce"
+                                                    data-target="#"><i class="fas fa-eye font-16"></i></a>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>John</td>
-                                                <td>362055401098</td>
-                                                <td>TRPL</td>
-                                                <td>
-                                                    <a href="#"
-                                                            class="mr-2" data-toggle="modal" data-animation="bounce"
-                                                            data-target="#"><i
-                                                            class="fas fa-eye font-16"></i></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table><!--end /table-->
-                                    </div><!--end /tableresponsive-->
-                            </div>
-
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>John</td>
+                                            <td>362055401098</td>
+                                            <td>TRPL</td>
+                                            <td>
+                                                <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce"
+                                                    data-target="#"><i class="fas fa-eye font-16"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table><!--end /table-->
+                            </div><!--end /tableresponsive-->
                         </div>
 
                     </div>
+
                 </div>
+            </div>
 
         </div>
     </section>
