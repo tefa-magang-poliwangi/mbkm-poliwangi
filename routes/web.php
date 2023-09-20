@@ -48,7 +48,7 @@ Route::get('/dashboard-user/profile/edit-password', function () {
     return view('pages.user.profile.edit-password-user');
 });
 Route::get('/form-uploud-transkip', function () {
-    return view('pages.user.transkrip-nilai.form-uploud-transkip-user');
+    return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
 });
 Route::get('/daftar-nilai', function () {
     return view('pages.user.transkrip-nilai.daftarNilai-user');
