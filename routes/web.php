@@ -128,3 +128,7 @@ Route::get('/dashboard/transkrip/konversiNilai', function () {
 Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
+//test
+Route::get('/dashboard/management-permission', function () {
+    return view('pages.admin.management-permission');
+});
