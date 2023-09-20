@@ -125,6 +125,6 @@ Route::get('/dashboard/transkrip/daftarNilai', function () {
 Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
-Route::get('/dashboard/transkrip/konversiNilai', function () {
-    return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+route::get('/dashboard/transkrip/konversiNilai', function(){
+return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });

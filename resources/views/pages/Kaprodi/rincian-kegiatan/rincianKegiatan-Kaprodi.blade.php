@@ -9,6 +9,65 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD
+    <section class="container-fluid py-3">
+        <div class="container py-5">
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body py-2">
+                        <div class="card-header">
+                            <h4>Rincian Kegiatan Mahasiswa MBKM Internal</h4>
+                            <div class="card-header-form">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>NIM</th>
+                                            <th>Program Studi</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>362055401099</td>
+                                            <td>TRPL</td>
+                                            <td>
+                                                <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce"
+                                                    data-target="#"><i class="fas fa-eye font-16"></i></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>John</td>
+                                            <td>362055401098</td>
+                                            <td>TRPL</td>
+                                            <td>
+                                                <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce"
+                                                    data-target="#"><i class="fas fa-eye font-16"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table><!--end /table-->
+                            </div><!--end /tableresponsive-->
+=======
 <section container-fluid py-3>
     <div class="container-fluid" style="padding-top: 10%">
         <div class="row">
@@ -93,10 +152,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+>>>>>>> 13886d3063b3eae41daec4e9deeb2618d05d81aa
                         </div>
                     </div>
+
                 </div>
             </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 13886d3063b3eae41daec4e9deeb2618d05d81aa
         </div>
     </div>
 
