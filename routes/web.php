@@ -126,5 +126,14 @@ Route::get('/dashboard/transkrip/konversiNilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
 route::get('/dashboard/transkrip/konversiNilai', function(){
-return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+    return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+});
+
+//Super Admin
+route::get('/management-role', function(){
+    return view('pages.admin.management-role');
+});
+
+route::get('/management-user', function(){
+    return view('pages.admin.management-user');
 });
