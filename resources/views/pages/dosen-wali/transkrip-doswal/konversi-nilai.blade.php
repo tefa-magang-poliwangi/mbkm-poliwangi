@@ -1,6 +1,7 @@
 @extends('layouts.base-user')
+
 @section('title')
-    <title>Beranda MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Konversi Nilai | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -25,6 +26,7 @@
             <div class="col-sm-12 col-md-6">
                 <iframe src="{{ asset('doc/contoh.pdf') }}" width="100%" height="700px"></iframe>
             </div>
+
             <div class="col">
                 <div class="table-responsive d-flex flex-column">
 

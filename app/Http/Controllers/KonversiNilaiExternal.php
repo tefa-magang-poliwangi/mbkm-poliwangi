@@ -2,73 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MagangExt;
-use App\Models\Mahasiswa;
-use App\Models\NilaiMagangExt;
-use App\Models\Periode;
+use App\Models\NilaiKonversi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class UploadTranskripNilai extends Controller
+class KonversiNilaiExternal extends Controller
 {
 
-    public function get_mahasiswa($id_mahasiswa)
+    public function KonversiNilaiAngka($nilai_angka)
     {
-        try {
-            $mahasiwa = Mahasiswa::findOrFail($id_mahasiswa);
-            return $mahasiwa;
-        } catch (\Exception $e) {
-            // Tangani kesalahan dan kembalikan pesan kesalahan dalam format JSON
-            return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
+        // penentuan nilai huruf berdasarkan nilai angka
+        $nilai = $nilai_angka;
+
+        if ($nilai >= 90 && $nilai <= 100) {
+            $penilaian = 'A';
+        } elseif ($nilai >= 80 && $nilai < 90) {
+            $penilaian = 'AB';
+        } elseif ($nilai >= 70 && $nilai < 80) {
+            $penilaian = 'B';
+        } elseif ($nilai >= 60 && $nilai < 70) {
+            $penilaian = 'BC';
+        } elseif ($nilai >= 50 && $nilai < 60) {
+            $penilaian = 'C';
+        } elseif ($nilai >= 40 && $nilai < 50) {
+            $penilaian = 'D';
+        } elseif ($nilai >= 0 && $nilai < 40) {
+            $penilaian = 'E';
         }
+
+        return $penilaian;
     }
 
-    public function upload_transkrip_nilai_mahasiswa_external(Request $request, $id_mahasiswa, $id_magang_ext, $id_periode)
+    public function konversi_nilai_external(Request $request, $id_mahasiswa, $id_matkul, $id_nilai_magang_ext)
     {
         try {
-            $mahasiswa = Mahasiswa::findOrFail($id_mahasiswa);
-            $magang_ext = MagangExt::findOrFail($id_magang_ext);
-            $periode = Periode::findOrFail($id_periode);
-
             $validated = $request->validate([
-                'file' => ['required', 'mimes:pdf', 'max:1024'],
+                'nilai_angka' => ['required', 'numeric', 'between:0,100'],
+                'nilai_huruf' => ['nullable'],
             ]);
 
             // Nonaktifkan konstrain foreign key
             Schema::disableForeignKeyConstraints();
 
             // Melakukan truncate pada tabel nilai_magang_exts
-            DB::table('nilai_magang_exts')->truncate();
+            DB::table('nilai_konversis')->truncate();
 
             // Aktifkan kembali konstrain foreign key
             Schema::enableForeignKeyConstraints();
 
-            $saveData = [];
+            $penilaian = $this->KonversiNilaiAngka($validated['nilai_angka']);
 
-            // Mengecek apakah field untuk upload file sudah di-upload atau belum
-            if ($request->hasFile('file')) {
-                $uploadedFile = $request->file('file');
-                $saveData['file'] = $uploadedFile->store('public/transkip-nilai-external');
-            }
-
-            NilaiMagangExt::create([
-                'file' => isset($saveData['file']) ? $saveData['file'] : null,
-                'semester' => $periode->semester,
-                'id_mahasiswa' => $mahasiswa->id,
-                'id_magang_ext' => $magang_ext->id,
-                'id_periode' => $periode->id,
+            $nilai_konversi = NilaiKonversi::create([
+                'nilai_angka' => $validated['nilai_angka'],
+                'nilai_huruf' => $penilaian,
+                'id_mahasiswa' => $id_mahasiswa,
+                'id_matkul' => $id_matkul,
+                'id_nilai_magang_ext' => $id_nilai_magang_ext,
             ]);
 
             // Jika semuanya berhasil, kembalikan respons sukses
             $response = [
                 'status' => 'success',
-                'message' => 'File berhasil diunggah dan Sukses Menambahkan Data Nilai Magang External',
+                'message' => 'Berhasil Menambahkan Data Konversi Nilai Magang External',
                 'data' => [
                     'request' => $request->toArray(),
-                    'mahasiswa' => $mahasiswa->toArray(),
-                    'magang_ext' => $magang_ext->toArray(),
-                    'periode' => $periode->toArray(),
+                    'nilai_magang_ext' => $nilai_konversi->toArray(),
                 ],
             ];
 
@@ -78,7 +77,6 @@ class UploadTranskripNilai extends Controller
             return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
         }
     }
-
     /**
      * Display a listing of the resource.
      *

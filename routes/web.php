@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KonversiNilaiExternal;
+use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\UserPageController;
@@ -37,14 +39,17 @@ Route::middleware(['guest'])->group(function () {
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
 
 // route backend testing (postman)
-Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
 Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
+Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
+
+Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
+Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
 
 //Halaman admin user (mahasiswa) - Eksternal
 Route::get('/dashboard-user/profile', function () {
     return view('pages.user.profile.profile-user');
 });
-Route::get('/form-uploud-transkip', function () {
+Route::get('/form-upload-transkip', function () {
     return view('pages.user.transkrip-nilai.form-upload-transkrip-user');
 });
 
@@ -112,22 +117,20 @@ Route::get('/dashboard/laporan-akhir', function () {
 });
 
 //Halaman admin Dosen wali
-Route::get('/dashboard-dosenwali', function () {
+Route::get('/dashboard-dosen-wali', function () {
     return view('pages.dosen-wali.dashboard-doswal');
 });
-Route::get('/dashboard/kelayakan-dosenwali', function () {
+Route::get('/dashboard/kelayakan-dosen-wali', function () {
     return view('pages.dosen-wali.kelayakan-doswal');
 });
-Route::get('/dashboard/transkrip/daftarNilai', function () {
+Route::get('/dashboard/transkrip/daftar-nilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.daftar-mahasiswa');
 });
-Route::get('/dashboard/transkrip/konversiNilai', function () {
+Route::get('/dashboard/transkrip/konversi-nilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
 });
-Route::get('/dashboard/transkrip/konversiNilai', function () {
-    return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
-});
-//test
+
+// spatie
 Route::get('/dashboard/management-permission', function () {
     return view('pages.admin.management-permission');
 });
