@@ -13,4 +13,20 @@ class Prodi extends Model
         'id',
         'nama',
     ];
+
+    // relasi
+    public function kurikulum()
+    {
+        return $this->hasMany(Kurikulum::class);
+    }
+
+    public function admin_prodi()
+    {
+        return $this->hasMany(AdminProdi::class);
+    }
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class);
+    }
 }

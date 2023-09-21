@@ -14,7 +14,18 @@ class KomentarLogbook extends Model
         'komentar',
         'tanggal',
         'nilai',
+        'id_pendamping_lapang_mahasiswa',
         'id_logbook',
-        'id_pl_mahasiswa',
     ];
+
+    // relasi
+    public function pendamping_lapang_mahasiswa()
+    {
+        return $this->belongsTo(PendampingLapangMahasiswa::class, 'id_pendamping_lapang_mahasiswa', 'id');
+    }
+
+    public function logbook()
+    {
+        return $this->belongsTo(Logbook::class, 'id_logbook', 'id');
+    }
 }

@@ -14,4 +14,10 @@ class Berkas extends Model
         'nama',
         'ukuran_max',
     ];
+
+    // relasi
+    public function berkas_lowongan()
+    {
+        return $this->hasMany(BerkasLowongan::class);
+    }
 }

@@ -13,4 +13,15 @@ class SektorIndustri extends Model
         'id',
         'nama',
     ];
+
+    // relasi
+    public function mitra()
+    {
+        return $this->hasMany(Mitra::class);
+    }
+
+    public function sektor_lowongan()
+    {
+        return $this->hasMany(SektorLowongan::class);
+    }
 }

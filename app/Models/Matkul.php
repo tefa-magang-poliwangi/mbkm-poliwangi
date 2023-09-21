@@ -15,4 +15,15 @@ class Matkul extends Model
         'kode_matakuliah',
         'sks',
     ];
+
+    // relasi
+    public function matkul_kurikulum()
+    {
+        return $this->hasMany(MatkulKurikulum::class);
+    }
+
+    public function nilai_konversi()
+    {
+        return $this->hasMany(NilaiKonversi::class);
+    }
 }

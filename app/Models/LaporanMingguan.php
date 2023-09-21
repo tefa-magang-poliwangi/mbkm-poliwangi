@@ -17,4 +17,20 @@ class LaporanMingguan extends Model
         'id_program_magang',
         'id_kompetensi_lowongan',
     ];
+
+    // relasi
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public function program_magang()
+    {
+        return $this->belongsTo(ProgramMagang::class, 'id_program_magang', 'id');
+    }
+
+    public function kompetensi_lowongan()
+    {
+        return $this->belongsTo(KompetensiLowongan::class, 'id_kompetensi_lowongan', 'id');
+    }
 }

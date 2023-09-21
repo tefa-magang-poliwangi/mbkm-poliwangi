@@ -15,4 +15,15 @@ class PelamarMagang extends Model
         'id_mahasiswa',
         'id_lowongan',
     ];
+
+    // relasi
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+    }
 }

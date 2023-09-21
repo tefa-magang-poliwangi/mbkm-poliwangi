@@ -398,3 +398,7 @@ body {
     background-color: #213555 !important;
     color: white;
 }
+
+.bg-permission {
+    background-color: #eff2f9 !important;
+}

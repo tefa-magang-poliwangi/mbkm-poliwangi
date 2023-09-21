@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kurikulum extends Model
+class Kelas extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
-        'nama',
-        'status',
+        'abjad_kelas',
+        'tingkat_kelas',
         'id_prodi',
+        'id_periode',
     ];
 
     // relasi
@@ -22,13 +23,13 @@ class Kurikulum extends Model
         return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
 
-    public function cpl()
+    public function periode()
     {
-        return $this->hasMany(Cpl::class);
+        return $this->belongsTo(Periode::class, 'id_periode', 'id');
     }
 
-    public function matkul_kurikulum()
+    public function peserta_kelas()
     {
-        return $this->hasMany(MatkulKurikulum::class);
+        return $this->hasMany(PesertaKelas::class);
     }
 }

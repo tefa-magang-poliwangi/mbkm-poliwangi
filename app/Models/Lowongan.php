@@ -21,4 +21,50 @@ class Lowongan extends Model
         'status',
         'id_mitra',
     ];
+
+    // relasi
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_kurikulum', 'id');
+    }
+
+    public function program_magang()
+    {
+        return $this->hasMany(ProgramMagang::class);
+    }
+
+    public function sektor_lowongan()
+    {
+        return $this->hasMany(SektorLowongan::class);
+    }
+
+    public function pendamping_lapang_mahasiswa()
+    {
+        return $this->hasMany(PendampingLapangMahasiswa::class);
+    }
+
+    public function kompetensi_lowongan()
+    {
+        return $this->hasMany(KompetensiLowongan::class);
+    }
+
+    public function pelamar_magang()
+    {
+        return $this->hasMany(PelamarMagang::class);
+    }
+
+    public function berkas_pelamar()
+    {
+        return $this->hasMany(BerkasPelamar::class);
+    }
+
+    public function berkas_lowongan()
+    {
+        return $this->hasMany(BerkasLowongan::class);
+    }
+
+    public function nilai_konversi()
+    {
+        return $this->hasMany(NilaiKonversi::class);
+    }
 }

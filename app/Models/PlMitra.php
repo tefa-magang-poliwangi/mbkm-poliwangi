@@ -18,4 +18,20 @@ class PlMitra extends Model
         'password',
         'id_mitra',
     ];
+
+    // relasi
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'id_mitra', 'id');
+    }
+
+    public function pendamping_lapang_mahasiswa()
+    {
+        return $this->hasMany(PendampingLapangMahasiswa::class);
+    }
+
+    public function program_magang()
+    {
+        return $this->hasMany(ProgramMagang::class);
+    }
 }

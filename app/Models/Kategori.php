@@ -13,4 +13,10 @@ class Kategori extends Model
         'id',
         'nama',
     ];
+
+    // relasi
+    public function mitra()
+    {
+        return $this->hasMany(Mitra::class);
+    }
 }
