@@ -13,4 +13,10 @@ class MagangExt extends Model
         'id',
         'name',
     ];
+
+    // relasi
+    public function nilai_magang_ext()
+    {
+        return $this->hasMany(NilaiMagangExt::class);
+    }
 }

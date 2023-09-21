@@ -16,4 +16,20 @@ class Logbook extends Model
         'id_program_magang',
         'id_mahasiswa',
     ];
+
+    // relasi
+    public function program_magang()
+    {
+        return $this->belongsTo(ProgramMagang::class, 'id_program_magang', 'id');
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public function komentar_logbook()
+    {
+        return $this->hasMany(KomentarLogbook::class);
+    }
 }

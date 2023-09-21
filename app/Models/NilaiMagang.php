@@ -16,4 +16,15 @@ class NilaiMagang extends Model
         'id_mahasiswa',
         'id_kompetensi_program',
     ];
+
+    // relasi
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+    }
+
+    public function kompetensi_program()
+    {
+        return $this->belongsTo(KompetensiProgram::class, 'id_kompetensi_program', 'id');
+    }
 }

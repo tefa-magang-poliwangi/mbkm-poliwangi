@@ -14,4 +14,15 @@ class AdminProdi extends Model
         'id_user',
         'id_prodi',
     ];
+
+    // relasi
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+    }
 }

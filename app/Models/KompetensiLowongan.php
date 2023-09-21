@@ -14,4 +14,15 @@ class KompetensiLowongan extends Model
         'kompetensi',
         'id_lowongan',
     ];
+
+    // relasi
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+    }
+
+    public function kompetensi_program()
+    {
+        return $this->hasMany(KompetensiProgram::class);
+    }
 }

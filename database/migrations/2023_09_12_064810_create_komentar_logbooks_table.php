@@ -18,10 +18,10 @@ return new class extends Migration
             $table->text('komentar')->nullable(false);
             $table->date('tanggal')->nullable(false);
             $table->tinyInteger('nilai')->nullable(false);
+            $table->unsignedBigInteger('id_pendamping_lapang_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_logbook')->nullable(false);
-            $table->unsignedBigInteger('id_pl_mahasiswa')->nullable(false);
+            $table->foreign('id_pendamping_lapang_mahasiswa')->references('id')->on('pendamping_lapang_mahasiswas')->onDelete('cascade');
             $table->foreign('id_logbook')->references('id')->on('logbooks')->onDelete('cascade');
-            $table->foreign('id_pl_mahasiswa')->references('id')->on('pendamping_lapang_mahasiswas')->onDelete('cascade');
             $table->timestamps();
         });
     }

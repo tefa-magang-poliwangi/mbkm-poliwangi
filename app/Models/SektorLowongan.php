@@ -14,4 +14,15 @@ class SektorLowongan extends Model
         'id_sektor_industri',
         'id_lowongan',
     ];
+
+    // relasi
+    public function sektor_industri()
+    {
+        return $this->belongsTo(SektorIndustri::class, 'id_sektor_industri', 'id');
+    }
+
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+    }
 }

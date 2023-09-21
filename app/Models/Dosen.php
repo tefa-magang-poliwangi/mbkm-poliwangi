@@ -16,4 +16,15 @@ class Dosen extends Model
         'prodi',
         'no_telp',
     ];
+
+    // relasi
+    public function kaprodi()
+    {
+        return $this->hasMany(Kaprodi::class);
+    }
+
+    public function pendamping_lapang_mahasiswa()
+    {
+        return $this->hasMany(PendampingLapangMahasiswa::class);
+    }
 }

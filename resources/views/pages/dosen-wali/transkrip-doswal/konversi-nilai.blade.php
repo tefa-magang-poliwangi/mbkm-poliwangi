@@ -9,15 +9,15 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
+    <div class="container-fluid py-3">
         <section>
             <div class="col text-start d-flex text-uppercase">
                 <div class="px-2">
                     <i class="fa-solid fa-file-invoice fa-3x"></i>
                 </div>
                 <div>
-                    <h3>Konversi Nilai</h3>
-                    <h6>Rini Maulida</h6>
+                    <h4 class="text-theme">Konversi NIlai</h4>
+                    <h6 class="text-theme">Rini Maulida</h6>
                 </div>
             </div>
         </section>

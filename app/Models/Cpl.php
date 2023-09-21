@@ -10,10 +10,21 @@ class Cpl extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',   
+        'id',
         'kode_cpl',
         'deskripsi',
         'jenis_cpl',
         'id_kurikulum',
     ];
+
+    // relasi
+    public function kurikulum()
+    {
+        return $this->belongsTo(Kurikulum::class, 'id_kurikulum', 'id');
+    }
+
+    public function ketercapaian_cpl()
+    {
+        return $this->hasMany(KetercapaianCpl::class);
+    }
 }
