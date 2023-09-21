@@ -116,7 +116,7 @@ Route::get('/dashboard/laporan-akhir', function () {
     return view('pages.dosbim.laporan-akhir');
 });
 
-//Halaman admin Dosen wali
+// Halaman admin Dosen wali
 Route::get('/dashboard-dosen-wali', function () {
     return view('pages.dosen-wali.dashboard-doswal');
 });
@@ -128,6 +128,14 @@ Route::get('/dashboard/transkrip/daftar-nilai', function () {
 });
 Route::get('/dashboard/transkrip/konversi-nilai', function () {
     return view('pages.dosen-wali.transkrip-doswal.konversi-nilai');
+});
+
+// Super Admin
+route::get('/management-role', function () {
+    return view('pages.admin.management-role');
+});
+route::get('/management-user', function () {
+    return view('pages.admin.management-user');
 });
 
 // spatie
