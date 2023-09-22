@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('semester', 4)->nullable(false);
             $table->string('tahun', 4)->nullable(false);
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
             $table->timestamps();
         });
     }

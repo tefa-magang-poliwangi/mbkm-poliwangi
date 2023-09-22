@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('nilai_angka')->nullable(false);
             $table->string('nilai_huruf', 4)->nullable(false);
-            $table->enum('validasi_kaprodi', ['Setuju', 'Tidak Setuju'])->nullable(false);
+            $table->enum('validasi_kaprodi', ['Setuju', 'Tidak Setuju', 'Belum Disetujui'])->nullable(false)->default('Belum Disetujui');
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_matkul')->nullable(false);
-            $table->unsignedBigInteger('id_lowongan')->nullable(false);
-            $table->unsignedBigInteger('id_nilai_magang_ext')->nullable(false);
+            $table->unsignedBigInteger('id_lowongan')->nullable(true);
+            $table->unsignedBigInteger('id_nilai_magang_ext')->nullable(true);
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
             $table->foreign('id_matkul')->references('id')->on('matkuls')->onDelete('cascade');
             $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
