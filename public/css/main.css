@@ -29,6 +29,11 @@ body {
     border: 2px solid #004978 !important;
 }
 
+.card-login-option {
+    border-radius: 10px !important;
+    border: 2px solid #004978 !important;
+}
+
 .btn-login {
     font-weight: 600 !important;
     background-color: #4f709c !important;
@@ -43,6 +48,14 @@ body {
     color: white !important;
     border-radius: 8px !important;
     border: 2px solid white !important;
+}
+
+.btn-login-page {
+    font-weight: 600 !important;
+    background-color: #4f709c !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #4f709c !important;
 }
 
 .btn-detail {
@@ -134,7 +147,7 @@ body {
     background-color: white !important;
     color: #004978 !important;
     border-radius: 8px !important;
-    border: 2px solid #004978 !important;
+    border: 2px solid #00ccff !important;
 }
 
 .btn-theme-inverse {
@@ -214,6 +227,10 @@ body {
 
 .text-theme {
     color: #213555 !important;
+}
+
+.text-black {
+    color: black !important;
 }
 
 .text-yellow {
@@ -314,23 +331,6 @@ body {
     background-color: #213555 !important;
 }
 
-.btn-theme {
-    background-color: #213555 !important;
-}
-
-.btn-danger {
-    width: 100px;
-    height: 40px;
-}
-
-.m-0 {
-    font-family: sans-serif;
-}
-
-.m-2 {
-    font-family: sans-serif;
-}
-
 #btn-floating .btn {
     position: absolute;
     top: 90%;
@@ -405,4 +405,8 @@ body {
 
 .text-center {
     text-align: center;
+}
+
+.menu-none-decoration {
+    text-decoration: none !important;
 }

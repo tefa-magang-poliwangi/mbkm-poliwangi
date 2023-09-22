@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // optional login selain user
+        'mahasiswas' => [
+            'driver' => 'session',
+            'provider' => 'mahasiswas',
+        ],
     ],
 
     /*
@@ -63,6 +69,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        // optional login selain user
+        'mahasiswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mahasiswa::class,
         ],
 
         // 'users' => [

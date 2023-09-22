@@ -18,7 +18,7 @@ class MahasiswaSeeder extends Seeder
         Mahasiswa::create([
             'id' => 1,
             'nim' => '362055401019',
-            'password' => bcrypt('mahasiswa123'),
+            'password' => bcrypt('smuheroday'),
             'nama' => 'Taufik Hidayat',
             'prodi' => 'Teknik Informasi',
             'angkatan' => 20,

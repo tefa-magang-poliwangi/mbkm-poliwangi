@@ -19,21 +19,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // landing page route
 Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
 
-// Auth route
-Route::get('/logout', [AuthController::class, 'doLogout'])->name('do.logout');
+Route::middleware(['guest'])->group(function () {
+    // Auth Route
+    Route::get('/login-mahasiswa', [AuthController::class, 'login_mahasiswa'])->name('login.mahasiswa.page');
+    Route::post('/login-mahasiswa', [AuthController::class, 'do_login_mahasiswa'])->name('do.login.mahasiswa');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
+    Route::get('/login-dosen', [AuthController::class, 'login_dosen'])->name('login.dosen.page');
+    Route::post('/login-dosen', [AuthController::class, 'do_login_dosen'])->name('do.login.dosen');
+
+    Route::get('/login-mitra', [AuthController::class, 'login_mitra'])->name('login.mitra.page');
+    Route::post('/login-mitra', [AuthController::class, 'do_login_mitra'])->name('do.login.mitra');
+
+    Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
+});
+
+Route::middleware(['auth:mahasiswas'])->group(function () {
     Route::get('/dashboard-user', [UserPageController::class, 'dashboard_user'])->name('dashboard.user.page');
 });
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('login.page');
-    Route::post('/login', [AuthController::class, 'doLogin'])->name('do.login');
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/dashboard-admin', [AdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
 });
 
 // tes (yang buat halaman baru tambahkan dibawah, jangan diatas)
