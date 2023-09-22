@@ -402,3 +402,7 @@ body {
 .bg-permission {
     background-color: #eff2f9 !important;
 }
+
+.text-center {
+    text-align: center;
+}

@@ -63,11 +63,35 @@
 
                         </div>
                     </div>
-                    <div class="simple-footer">
-                        Copyright &copy; MBKM Poliwangi {{ now()->year }}
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-graduation-cap fa-lg"></i>
+                                <p>Mahasiswa</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fa-solid fa-chalkboard-user fa-lg"></i>
+                                <p>Dosen</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fa-regular fa-handshake fa-lg"></i>
+                                <p>Mitra</p>
+                            </div>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="simple-footer">
+                                Copyright &copy; MBKM Poliwangi {{ now()->year }}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </div>
     </section>
 @endsection
