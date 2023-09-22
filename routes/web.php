@@ -109,7 +109,7 @@ Route::get('/dashboard/transkrip-nilai/daftar-mahasiswa/transkrip-nilai', functi
 
 //Halaman admin Dosen Pembimbing
 Route::get('/dashboard-dosbim', function () {
-    return view('pages.dosen.dashboard-dosbim');
+    return view('pages.dosbim.dashboard-dosbim');
 });
 
 //Halaman admin Dosen wali
