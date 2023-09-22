@@ -101,6 +101,15 @@ Route::get('/dashboard/transkrip-nilai/daftar-mahasiswa/transkrip-nilai', functi
 Route::get('/dashboard-dosbim', function () {
     return view('pages.dosen.dashboard-dosbim');
 });
+Route::get('/dashboard/laporan-harian', function () {
+    return view('pages.dosbim.laporan-harian');
+});
+Route::get('/dashboard/laporan-mingguan', function () {
+    return view('pages.dosbim.laporan-mingguan');
+});
+Route::get('/dashboard/laporan-akhir', function () {
+    return view('pages.dosbim.laporan-akhir');
+});
 
 //Halaman admin Dosen wali
 Route::get('/dashboard-dosenwali', function () {
