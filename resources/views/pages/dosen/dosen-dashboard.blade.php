@@ -14,7 +14,7 @@
         <div class="row py-5">
             <div class="h3 text-white"
                 style="background-color: #213555; border-radius: 10px; padding:10px; align-items: center;">
-                Dashboard Dosen Pembimbing
+                Dashboard Dosen
             </div>
             <div class="col-md-6">
 

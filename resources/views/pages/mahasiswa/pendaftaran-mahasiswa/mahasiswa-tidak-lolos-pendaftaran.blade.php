@@ -1,4 +1,4 @@
-@extends('layouts.base-user')
+@extends('layouts.base-mahasiswa')
 @section('Kegiatan')
     <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection

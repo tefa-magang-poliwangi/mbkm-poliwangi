@@ -1,4 +1,4 @@
-@extends('layouts.base-user')
+@extends('layouts.base-mahasiswa')
 
 @section('title')
     <title>Profil User | MBKM Poliwangi</title>

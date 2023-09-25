@@ -1,7 +1,7 @@
 @extends('layouts.base-mahasiswa')
 
 @section('title')
-    <title>Transkip Nilai Mahasiswa | MBKM Poliwangi</title>
+    <title>Transkrip Nilai Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')

@@ -115,47 +115,36 @@ Route::get('/dashboard-mitra/daftar-pelamar', function () {
     return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
 });
 
+
+
+// DOSEN
+Route::get('/dashboard-dosen', function () {
+    return view('pages.dosen.dosen-dashboard');
+});
+
 // halaman admin Kaprodi
-Route::get('/dashboard-kaprodi', function () {
-    return view('pages.dosen.kaprodi.kaprodi-dashboard');
+Route::get('/dashboard-dosen/laporan-akhir', function () {
+    return view('pages.dosen.kaprodi-laporan-akhir');
 });
-Route::get('/dashboard-kaprodi/rincian-kegiatan/daftar-mahasiswa', function () {
-    return view('pages.dosen.kaprodi.transkrip-nilai-kaprodi.kaprodi-daftar-mahasiswa');
+Route::get('/dashboard-dosen/daftar-konversi', function () {
+    return view('pages.dosen.kaprodi-daftar-konversi');
 });
-Route::get('/dashboard-kaprodi/rincian-kegiatan/daftar-mahasiswa/rincian-kegiatan', function () {
-    return view('pages.dosen.kaprodi.rincian-kegiatan-kaprodi.kaprodi-rincian-kegiatan');
-});
-Route::get('/dashboard-kaprodi/transkrip-nilai/daftar-mahasiswa', function () {
-    return view('pages.dosen.kaprodi.transkrip-nilai-kaprodi.kaprodi-daftar-mahasiswa');
-});
-Route::get('/dashboard-kaprodi/transkrip-nilai/daftar-mahasiswa/transkrip-nilai', function () {
-    return view('pages.dosen.kaprodi.transkrip-nilai-kaprodi.kaprodi-transkrip-nilai');
+Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
+    return view('pages.dosen.kaprodi-konversi-nilai');
 });
 
 // Halaman admin Dosen Pembimbing
-Route::get('/dashboard-dosen-pembimbing', function () {
-    return view('pages.dosen.dosen-pembimbing.dosbim-dashboard');
+Route::get('/dashboard-dosen/laporan-harian', function () {
+    return view('pages.dosen.dosbim-laporan-harian');
 });
-Route::get('/dashboard-dosen-pembimbing/laporan-harian', function () {
-    return view('pages.dosen.dosen-pembimbing.laporan-dosen-pembimbing.dosbim-laporan-harian');
+Route::get('/dashboard-dosen/laporan-mingguan', function () {
+    return view('pages.dosen.dosbim-laporan-mingguan');
 });
-Route::get('/dashboard-dosen-pembimbing/laporan-mingguan', function () {
-    return view('pages.dosen.dosen-pembimbing.laporan-dosen-pembimbing.dosbim-laporan-mingguan');
-});
-Route::get('/dashboard-dosen-pembimbing/laporan-akhir', function () {
-    return view('pages.dosen.dosen-pembimbing.laporan-dosen-pembimbing.dosbim-laporan-akhir');
+Route::get('/dashboard-dosen/laporan-akhir', function () {
+    return view('pages.dosen.dosbim-laporan-akhir');
 });
 
 // Halaman admin Dosen wali
-Route::get('/dashboard-dosen-wali', function () {
-    return view('pages.dosen.dosen-wali.doswal-dashboard');
-});
-Route::get('/dashboard-dosen-wali/kelayakan-dosen-wali', function () {
-    return view('pages.dosen.dosen-wali.kelayakan-dosen-wali.doswal-kelayakan');
-});
-Route::get('/dashboard-dosen-wali/transkrip/daftar-nilai', function () {
-    return view('pages.dosen.dosen-wali.transkrip-dosen-wali.doswal-daftar-mahasiswa');
-});
-Route::get('/dashboard-dosen-wali/transkrip/konversi-nilai', function () {
-    return view('pages.dosen.dosen-wali.transkrip-dosen-wali.doswal-konversi-nilai');
+Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
+    return view('pages.dosen.doswal-kelayakan');
 });

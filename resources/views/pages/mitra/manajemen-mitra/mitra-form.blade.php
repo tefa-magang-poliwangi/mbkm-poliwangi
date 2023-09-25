@@ -1,4 +1,4 @@
-@extends('layouts.base-user')
+@extends('layouts.base-admin')
 @section('Form Mitra')
     <title>Form Mitra MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
