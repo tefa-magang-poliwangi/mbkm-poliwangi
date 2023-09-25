@@ -1,6 +1,6 @@
-@extends('layouts.base-user')
+@extends('layouts.base-admin')
 @section('title')
-    <title>Rincian Kegiatan| Kaprodi | Politeknik Negeri Banyuwangi</title>
+    <title>Acc Laporan Akhir| Kaprodi | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
     <section class="container-fluid py-3">
         <div class="container py-5">
 
@@ -67,7 +66,6 @@
                                     </tbody>
                                 </table><!--end /table-->
                             </div><!--end /tableresponsive-->
-=======
 <section container-fluid py-3>
     <div class="container-fluid" style="padding-top: 10%">
         <div class="row">
@@ -105,44 +103,6 @@
                                             Teknologi Rekayasa Perangkat Lunak
                                         </td>
                                         <td>
-                                            Laporan Harian
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-eye font-16"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Aida Andinar Maulidiana</td>
-                                        <td>
-                                            362055401012
-                                        </td>
-                                        <td>
-                                            Teknologi Rekayasa Perangkat Lunak
-                                        </td>
-                                        <td>
-                                            Laporan Mingguan
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fas fa-eye font-16"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Aida Andinar Maulidiana</td>
-                                        <td>
-                                            362055401012
-                                        </td>
-                                        <td>
-                                            Teknologi Rekayasa Perangkat Lunak
-                                        </td>
-                                        <td>
                                             Laporan Akhir
                                         </td>
                                         <td>
@@ -152,22 +112,18 @@
                                     </tr>
                                 </tbody>
                             </table>
->>>>>>> 13886d3063b3eae41daec4e9deeb2618d05d81aa
                         </div>
                     </div>
 
                 </div>
             </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> 13886d3063b3eae41daec4e9deeb2618d05d81aa
         </div>
     </div>
 
 
 </section>
-   
+
 @endsection
 
 @section('script')

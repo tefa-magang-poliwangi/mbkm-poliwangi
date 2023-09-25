@@ -1,6 +1,6 @@
-@extends('layouts.base-user')
+@extends('layouts.base-admin')
 @section('title')
-    <title>Transkrip Nilai| Kaprodi | Politeknik Negeri Banyuwangi</title>
+    <title>Konversi Nilai| Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -9,29 +9,26 @@
 @endsection
 
 @section('content')
-<section container-fluid py-3>
     <div class="container-fluid" style="padding-top: 10%">
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white border-0">
-                        <strong class="h4">Transkrip Nilai Mata Kuliah (Aida Andinar Maulidiana)</strong>
+                        <strong class="h4">Daftar Mahasiswa (Transkrip Nilai)</strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover table-borderless rounded" id="table-2"
+                            <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Kode</th>
-                                        <th>Mata Kuliah</th>
-                                        <th>HM</th>
-                                        <th>AM</th>
-                                        <th>K</th>
-                                        <th>M</th>
+                                        <th>Nama</th>
+                                        <th>NIM</th>
+                                        <th>Program Studi</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,43 +36,32 @@
                                         <td>
                                             1
                                         </td>
-                                        <td>RPL25042
+                                        <td>Aida Andinar Maulidiana</td>
                                         <td>
-                                            Proyek Aplikasi Lanjut
+                                            362055401012
                                         </td>
                                         <td>
-                                            A
+                                            Teknologi Rekayasa Perangkat Lunak
                                         </td>
                                         <td>
-                                            4
-                                        </td>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            7
+                                            <a href="#" class="btn btn-transparent"><i
+                                                    class="fa-solid fa-file-pen text-dark"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            1
-                                        </td>
-                                        <td>RPL25042
-                                        </td>
-                                        <td>
-                                            Pengujian Perangkat Lunak
-                                        </td>
-                                        <td>
-                                            AB
-                                        </td>
-                                        <td>
-                                            3.5
-                                        </td>
-                                        <td>
                                             2
                                         </td>
+                                        <td>Rini Maulida</td>
                                         <td>
-                                            7
+                                            362055401084
+                                        </td>
+                                        <td>
+                                            Teknologi Rekayasa Perangkat Lunak
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-transparent"><i
+                                                    class="fa-solid fa-file-pen text-dark"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -86,10 +72,6 @@
             </div>
         </div>
     </div>
-
-
-</section>
-   
 @endsection
 
 @section('script')
