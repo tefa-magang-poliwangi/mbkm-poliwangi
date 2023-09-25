@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MitraPageController extends Controller
+class MahasiswaPageController extends Controller
 {
-    // Halaman Mitra
-    public function dashboard_mitra()
+    // Halaman Mahasiswa
+    public function dashboard_mahasiswa()
     {
-        return view('pages.mitra.mitra-dashboard');
+        return view('pages.mahasiswa.mahasiswa-dashboard');
     }
 
     /**

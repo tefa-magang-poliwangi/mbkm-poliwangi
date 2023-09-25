@@ -12,7 +12,11 @@
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     <img alt="image" src="{{ asset('assets/images/avatar/avatar-1.png') }}"
                         class="rounded-circle mr-1">
-                    <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                    @if (Auth::guard('dosens')->user())
+                        <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::guard('dosens')->user()->nama }}</div>
+                    @elseif (Auth::guard('mitras')->user())
+                        <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::guard('mitras')->user()->nama }}</div>
+                    @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
@@ -20,8 +24,8 @@
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('do.logout') }}" class="dropdown-item has-icon text-danger">
-                        <i class="fa-solid fa-right-from-bracket my-auto"></i> <span class="my-auto">&ensp;
-                            Logout</span>
+                        <i class="fa-solid fa-right-from-bracket my-auto"></i>
+                        <span class="my-auto">&ensp;Logout</span>
                     </a>
                 </div>
             </li>

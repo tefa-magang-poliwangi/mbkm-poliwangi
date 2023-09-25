@@ -52,7 +52,7 @@
             <div class="navbar-bg"></div>
 
             {{-- navbar --}}
-            @include('layouts.partials.client.navbar-client')
+            @include('layouts.partials.guest.navbar-guest')
 
             {{-- sidebar --}}
             {{-- @include('') --}}
@@ -63,7 +63,7 @@
             </div>
 
             {{-- footer --}}
-            @include('layouts.partials.client.footer-client')
+            @include('layouts.partials.guest.footer-guest')
 
         </div>
     </div>

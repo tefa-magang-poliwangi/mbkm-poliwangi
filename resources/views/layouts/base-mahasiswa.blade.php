@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/logo-title-poliwangi.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo/logo-title-poliwangi.png') }}" />
 
     @yield('title')
 
@@ -36,10 +36,10 @@
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             {{-- navbar --}}
-            @include('layouts.partials.user.navbar-user')
+            @include('layouts.partials.mahasiswa.navbar-mahasiswa')
 
             {{-- sidebar --}}
-            @include('layouts.partials.user.sidebar-user')
+            @include('layouts.partials.mahasiswa.sidebar-mahasiswa')
 
             <!-- Main Content -->
             <div class="main-content">

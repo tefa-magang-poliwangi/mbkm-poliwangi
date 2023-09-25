@@ -1,4 +1,4 @@
-@extends('layouts.base-client')
+@extends('layouts.base-guest')
 
 @section('title')
     <title>Selamat Datang | MBKM Poliwangi</title>

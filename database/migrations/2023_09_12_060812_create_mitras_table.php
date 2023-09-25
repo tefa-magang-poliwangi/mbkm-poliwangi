@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('website')->nullable(true);
             $table->string('narahubung', 255)->nullable(false);
             $table->string('email', 255)->nullable(false);
-            $table->string('foto', 255)->nullable(false);
+            $table->string('foto', 255)->nullable(true);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
             $table->string('username', 255)->nullable(false);
             $table->string('password', 255)->nullable(false);

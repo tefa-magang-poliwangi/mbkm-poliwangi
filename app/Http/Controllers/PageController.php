@@ -8,6 +8,6 @@ class PageController extends Controller
 {
     public function landing_page()
     {
-        return view('pages.guest.home');
+        return view('pages.landing-page');
     }
 }

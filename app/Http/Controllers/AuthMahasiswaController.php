@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Auth;
+
+class AuthMahasiswaController extends Controller
+{
+    // backend login mahasiswa
+    public function login_mahasiswa()
+    {
+        if (auth()->user()) {
+            return redirect()->route('dashboard.admin.page');
+        } else if (Auth::guard('mahasiswas')->check()) {
+            return redirect()->route('dashboard.mahasiswa.page');
+        } else if (Auth::guard('dosens')->check()) {
+            return redirect()->route('dashboard.dosen.page');
+        } else if (Auth::guard('mitras')->check()) {
+            return redirect()->route('dashboard.mitra.page');
+        }
+
+        return view('pages.auth.login-mahasiswa');
+    }
+
+    public function do_login_mahasiswa(Request $request)
+    {
+        // Validasi
+        $credentials = $request->validate([
+            'nim' => ['required', 'string', 'between:12,12'],
+            'password' => ['required', Rules\Password::defaults()],
+        ]);
+
+        if (Auth::guard('mahasiswas')->attempt($credentials)) {
+            // Otentikasi pengguna
+            $request->session()->regenerate();
+            return redirect()->route('dashboard.mahasiswa.page');
+        }
+
+        // Menampilkan pesan error jika kredential yang dimasukkan salah
+        return back()->withErrors([
+            'nim' => 'Nim or password invalid.',
+        ])->onlyInput('nim');
+    }
+}

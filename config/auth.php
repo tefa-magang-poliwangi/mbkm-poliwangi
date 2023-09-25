@@ -46,6 +46,14 @@ return [
             'driver' => 'session',
             'provider' => 'mahasiswas',
         ],
+        'dosens' => [
+            'driver' => 'session',
+            'provider' => 'dosens',
+        ],
+        'mitras' => [
+            'driver' => 'session',
+            'provider' => 'mitras',
+        ],
     ],
 
     /*
@@ -75,6 +83,14 @@ return [
         'mahasiswas' => [
             'driver' => 'eloquent',
             'model' => App\Models\Mahasiswa::class,
+        ],
+        'dosens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dosen::class,
+        ],
+        'mitras' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mitra::class,
         ],
 
         // 'users' => [

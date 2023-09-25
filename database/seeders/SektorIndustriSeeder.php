@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\SektorIndustri;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class SektorIndustriSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'nama' => 'Super Admin',
-            'email' => 'adminsuper@gmail.com',
-            'username' => 'mesuperadmin',
-            'password' => bcrypt('admin123'),
+        SektorIndustri::create([
+            'id' => 1,
+            'nama' => 'Teknisi',
         ]);
     }
 }
