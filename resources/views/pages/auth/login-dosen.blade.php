@@ -1,4 +1,4 @@
-@extends('layouts.base-auth')
+@extends('layouts.base-admin')
 
 @section('title')
     <title>Sign In Dosen | MBKM Poliwangi</title>
