@@ -71,9 +71,8 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item text-theme fw-medium"
-                                        href="{{ route('dashboard.dosen.page') }}">
-                                        <i class="fa-solid fa-user"></i>
+                                    <a class="dropdown-item text-theme fw-medium" {{-- href="{{ route('dashboard.dosen.page') }}"> --}} <i
+                                        class="fa-solid fa-user"></i>
                                         &ensp; Akun
                                     </a>
                                 </li>

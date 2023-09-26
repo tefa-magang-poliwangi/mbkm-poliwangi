@@ -132,6 +132,7 @@ Route::get('/dashboard-dosen/daftar-konversi', function () {
 Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
     return view('pages.dosen.kaprodi-konversi-nilai');
 });
+// Route::get('/dashboard-dosen/')
 
 // Halaman admin Dosen Pembimbing
 Route::get('/dashboard-dosen/laporan-harian', function () {
