@@ -3,24 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Mahasiswa extends Authenticatable
+class Mahasiswa extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
         'nim',
-        'password',
         'nama',
         'prodi',
         'angkatan',
         'email',
         'no_telp',
+        'id_user',
     ];
 
     // relasi
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
     public function peserta_kelas()
     {
         return $this->hasMany(PesertaKelas::class);

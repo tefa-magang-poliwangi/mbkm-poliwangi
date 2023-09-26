@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('email', 255)->nullable(false);
             $table->string('foto', 255)->nullable(true);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
-            $table->string('username', 255)->nullable(false);
-            $table->string('password', 255)->nullable(false);
+            $table->unsignedBigInteger('id_user')->nullable(false);
             $table->unsignedBigInteger('id_sektor_industri')->nullable(false);
             $table->unsignedBigInteger('id_kategori')->nullable(false);
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_sektor_industri')->references('id')->on('sektor_industris')->onDelete('cascade');
             $table->foreign('id_kategori')->references('id')->on('kategoris')->onDelete('cascade');
             $table->timestamps();

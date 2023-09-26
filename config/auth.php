@@ -42,18 +42,18 @@ return [
         ],
 
         // optional login selain user
-        'mahasiswas' => [
-            'driver' => 'session',
-            'provider' => 'mahasiswas',
-        ],
-        'dosens' => [
-            'driver' => 'session',
-            'provider' => 'dosens',
-        ],
-        'mitras' => [
-            'driver' => 'session',
-            'provider' => 'mitras',
-        ],
+        // 'mahasiswas' => [
+        //     'driver' => 'session',
+        //     'provider' => 'mahasiswas',
+        // ],
+        // 'dosens' => [
+        //     'driver' => 'session',
+        //     'provider' => 'dosens',
+        // ],
+        // 'mitras' => [
+        //     'driver' => 'session',
+        //     'provider' => 'mitras',
+        // ],
     ],
 
     /*
@@ -80,18 +80,18 @@ return [
         ],
 
         // optional login selain user
-        'mahasiswas' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class,
-        ],
-        'dosens' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Dosen::class,
-        ],
-        'mitras' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Mitra::class,
-        ],
+        // 'mahasiswas' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Mahasiswa::class,
+        // ],
+        // 'dosens' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Dosen::class,
+        // ],
+        // 'mitras' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Mitra::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',

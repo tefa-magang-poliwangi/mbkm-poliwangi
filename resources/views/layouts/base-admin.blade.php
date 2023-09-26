@@ -55,10 +55,10 @@
             <div class="navbar-bg"></div>
 
             {{-- navbar --}}
-            @include('layouts.partials.admin.navbar-admin')
+            @include('layouts.partials.fixed-partials.base-navbar')
 
             {{-- sidebar --}}
-            @include('layouts.partials.admin.sidebar-admin')
+            @include('layouts.partials.fixed-partials.base-sidebar')
 
             <!-- Main Content -->
             <div class="main-content">

@@ -11,15 +11,15 @@ class AuthDosenController extends Controller
     // backend login dosen
     public function login_dosen()
     {
-        if (auth()->user()) {
-            return redirect()->route('dashboard.admin.page');
-        } else if (Auth::guard('mahasiswas')->check()) {
-            return redirect()->route('dashboard.mahasiswa.page');
-        } else if (Auth::guard('dosens')->check()) {
-            return redirect()->route('dashboard.dosen.page');
-        } else if (Auth::guard('mitras')->check()) {
-            return redirect()->route('dashboard.mitra.page');
-        }
+        // if (auth()->user()) {
+        //     return redirect()->route('dashboard.admin.page');
+        // } else if (Auth::guard('mahasiswas')->check()) {
+        //     return redirect()->route('dashboard.mahasiswa.page');
+        // } else if (Auth::guard('dosens')->check()) {
+        //     return redirect()->route('dashboard.dosen.page');
+        // } else if (Auth::guard('mitras')->check()) {
+        //     return redirect()->route('dashboard.mitra.page');
+        // }
 
         return view('pages.auth.login-dosen');
     }
@@ -32,10 +32,9 @@ class AuthDosenController extends Controller
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
-        if (Auth::guard('dosens')->attempt($credentials)) {
-            // Otentikasi pengguna
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard.dosen.page');
+            return redirect()->route('dashboard.admin.page');
         }
 
         // Menampilkan pesan error jika kredential yang dimasukkan salah

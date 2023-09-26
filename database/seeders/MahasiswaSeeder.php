@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Mahasiswa;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class MahasiswaSeeder extends Seeder
@@ -15,8 +14,8 @@ class MahasiswaSeeder extends Seeder
      */
     public function run()
     {
-        Mahasiswa::create([
-            'id' => 1,
+        $mahasiswa = Mahasiswa::create([
+            // 'id' => 1,
             'nim' => '362055401019',
             'password' => bcrypt('12345678'),
             'nama' => 'Taufik Hidayat',
@@ -25,5 +24,7 @@ class MahasiswaSeeder extends Seeder
             'email' => 'mahasiswa@gmail.com',
             'no_telp' => '081234567890',
         ]);
+
+        $mahasiswa->assignRole('mahasiswa');
     }
 }

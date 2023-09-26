@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
             $table->string('nim', 12)->nullable(false)->unique();
-            $table->string('password', 255)->nullable(false);
             $table->string('nama', 255)->nullable(false);
             $table->string('prodi', 255)->nullable(false);
             $table->tinyInteger('angkatan')->nullable(false);
             $table->string('email', 255)->nullable(false);
             $table->string('no_telp', 15)->nullable(false);
+            $table->unsignedBigInteger('id_user')->nullable(false);
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -24,127 +24,128 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// landing page route
-Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
-Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
 
-Route::middleware(['guest'])->group(function () {
-    // Auth Route
-    Route::get('/login-mahasiswa', [AuthMahasiswaController::class, 'login_mahasiswa'])->name('login.mahasiswa.page');
-    Route::post('/login-mahasiswa', [AuthMahasiswaController::class, 'do_login_mahasiswa'])->name('do.login.mahasiswa');
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    /**
+     * Home Routes
+     */
+    //  landing page route and logout
 
-    Route::get('/login-dosen', [AuthDosenController::class, 'login_dosen'])->name('login.dosen.page');
-    Route::post('/login-dosen', [AuthDosenController::class, 'do_login_dosen'])->name('do.login.dosen');
+    Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
 
-    Route::get('/login-mitra', [AuthMitraController::class, 'login_mitra'])->name('login.mitra.page');
-    Route::post('/login-mitra', [AuthMitraController::class, 'do_login_mitra'])->name('do.login.mitra');
-});
+    Route::group(['middleware' => ['guest']], function () {
+        // auth route
+        Route::get('/login-mahasiswa', [AuthMahasiswaController::class, 'login_mahasiswa'])->name('login.mahasiswa.page');
+        Route::post('/login-mahasiswa', [AuthMahasiswaController::class, 'do_login_mahasiswa'])->name('do.login.mahasiswa');
 
-// route super admin
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard-admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
-});
+        Route::get('/login-dosen', [AuthDosenController::class, 'login_dosen'])->name('login.dosen.page');
+        Route::post('/login-dosen', [AuthDosenController::class, 'do_login_dosen'])->name('do.login.dosen');
 
-// route mahasiswa
-Route::middleware(['auth:mahasiswas'])->group(function () {
-    Route::get('/dashboard-mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
-});
+        Route::get('/login-mitra', [AuthMitraController::class, 'login_mitra'])->name('login.mitra.page');
+        Route::post('/login-mitra', [AuthMitraController::class, 'do_login_mitra'])->name('do.login.mitra');
+    });
 
-// route dosen dll
-Route::middleware(['auth:dosens'])->group(function () {
-    Route::get('/dashboard-dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
-});
+    Route::group(['middleware' => ['auth', 'permission']], function () {
+        /**
+         * Super Admin
+         */
+        Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
 
-// route mitra dll
-Route::middleware(['auth:mitras'])->group(function () {
-    Route::get('/dashboard-mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
-});
+        Route::get('/dashboard-admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
 
-// Kumpulan Route Belum Fiks
-// route backend testing (postman)
-Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
-Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
+        // route dashboard all
+        Route::get('/dashboard-mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
+        Route::get('/dashboard-dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
+        Route::get('/dashboard-mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
-Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
-Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
+        // route backend testing (postman)
+        Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
+        Route::post('/upload-transkrip-nilai-mahasiswa-external/{id_mahasiswa}/{id_magang_ext}/{id_periode}/create', [UploadTranskripNilai::class, 'upload_transkrip_nilai_mahasiswa_external'])->name('upload_transkrip_nilai.mahasiswa.external');
 
-// halaman Super Admin
-route::get('dashboard-admin/manajemen-role', function () {
-    return view('pages.admin.manajemen-spatie-admin.admin-manajemen-role');
-});
-Route::get('/dashboard/manajemen-permission', function () {
-    return view('pages.admin.manajemen-spatie-admin.admin-manajemen-permission');
-});
-route::get('dashboard-admin/manajemen-user', function () {
-    return view('pages.admin.manajemen-spatie-admin.admin-manajemen-user');
-});
+        Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
+        Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
 
-// halaman mahasiswa - eksternal
-Route::get('/dashboard-mahasiswa/profil', function () {
-    return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
-});
-Route::get('/form-upload-transkip', function () {
-    return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
-});
+        // halaman mahasiswa - eksternal
+        Route::get('/dashboard-mahasiswa/profil', function () {
+            return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
+        });
+        Route::get('/form-upload-transkip', function () {
+            return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
+        });
 
-// halaman mahasiswa - internal
-Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-lolos-pendaftaran');
-});
-Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
-});
-Route::get('/dashboard-mahasiswa/rincian-kegiatan', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-rincian-kegiatan');
-});
-Route::get('/dashboard-mahasiswa/status-pendaftaran', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-status-pendaftaran');
-});
-Route::get('/dashboard-mahasiswa/tidak-lolos-pendaftaran', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
-});
+        // halaman mahasiswa - internal
+        Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
+            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-lolos-pendaftaran');
+        });
+        Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
+            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
+        });
+        Route::get('/dashboard-mahasiswa/rincian-kegiatan', function () {
+            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-rincian-kegiatan');
+        });
+        Route::get('/dashboard-mahasiswa/status-pendaftaran', function () {
+            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-status-pendaftaran');
+        });
+        Route::get('/dashboard-mahasiswa/tidak-lolos-pendaftaran', function () {
+            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
+        });
 
-// halaman admin Mitra
-Route::get('/dashboard-mitra/mitra-lowongan', function () {
-    return view('pages.mitra.manajemen-mitra.mitra-lowongan');
-});
-Route::get('/dashboard-mitra/form-mitra', function () {
-    return view('pages.mitra.manajemen-mitra.mitra-form');
-});
-Route::get('/dashboard-mitra/daftar-pelamar', function () {
-    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
-});
+        // halaman admin Mitra
+        Route::get('/dashboard-mitra/mitra-lowongan', function () {
+            return view('pages.mitra.manajemen-mitra.mitra-lowongan');
+        });
+        Route::get('/dashboard-mitra/form-mitra', function () {
+            return view('pages.mitra.manajemen-mitra.mitra-form');
+        });
+        Route::get('/dashboard-mitra/daftar-pelamar', function () {
+            return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
+        });
 
+        // DOSEN
+        Route::get('/dashboard-dosen', function () {
+            return view('pages.dosen.dosen-dashboard');
+        });
 
+        // halaman admin Kaprodi
+        Route::get('/dashboard-dosen/laporan-akhir', function () {
+            return view('pages.dosen.kaprodi-laporan-akhir');
+        });
+        Route::get('/dashboard-dosen/daftar-konversi', function () {
+            return view('pages.dosen.kaprodi-daftar-konversi');
+        });
+        Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
+            return view('pages.dosen.kaprodi-konversi-nilai');
+        });
 
-// DOSEN
-Route::get('/dashboard-dosen', function () {
-    return view('pages.dosen.dosen-dashboard');
-});
+        // Halaman admin Dosen Pembimbing
+        Route::get('/dashboard-dosen/laporan-harian', function () {
+            return view('pages.dosen.dosbim-laporan-harian');
+        });
+        Route::get('/dashboard-dosen/laporan-mingguan', function () {
+            return view('pages.dosen.dosbim-laporan-mingguan');
+        });
+        Route::get('/dashboard-dosen/laporan-akhir', function () {
+            return view('pages.dosen.dosbim-laporan-akhir');
+        });
 
-// halaman admin Kaprodi
-Route::get('/dashboard-dosen/laporan-akhir', function () {
-    return view('pages.dosen.kaprodi-laporan-akhir');
-});
-Route::get('/dashboard-dosen/daftar-konversi', function () {
-    return view('pages.dosen.kaprodi-daftar-konversi');
-});
-Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
-    return view('pages.dosen.kaprodi-konversi-nilai');
-});
+        // Halaman admin Dosen wali
+        Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
+            return view('pages.dosen.doswal-kelayakan');
+        });
 
-// Halaman admin Dosen Pembimbing
-Route::get('/dashboard-dosen/laporan-harian', function () {
-    return view('pages.dosen.dosbim-laporan-harian');
-});
-Route::get('/dashboard-dosen/laporan-mingguan', function () {
-    return view('pages.dosen.dosbim-laporan-mingguan');
-});
-Route::get('/dashboard-dosen/laporan-akhir', function () {
-    return view('pages.dosen.dosbim-laporan-akhir');
-});
-
-// Halaman admin Dosen wali
-Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
-    return view('pages.dosen.doswal-kelayakan');
+        /**
+         * User Routes
+         */
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', 'UsersController@index')->name('users.index');
+            Route::get('/create', 'UsersController@create')->name('users.create');
+            Route::post('/create', 'UsersController@store')->name('users.store');
+            Route::get('/{user}/show', 'UsersController@show')->name('users.show');
+            Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
+            Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
+            Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
+        });
+        Route::resource('roles', RolesController::class);
+        Route::resource('permissions', PermissionsController::class);
+    });
 });

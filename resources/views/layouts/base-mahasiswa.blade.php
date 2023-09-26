@@ -36,10 +36,10 @@
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             {{-- navbar --}}
-            @include('layouts.partials.mahasiswa.navbar-mahasiswa')
+            @include('layouts.partials.fixed-partials.base-navbar')
 
             {{-- sidebar --}}
-            @include('layouts.partials.mahasiswa.sidebar-mahasiswa')
+            @include('layouts.partials.fixed-partials.base-sidebar')
 
             <!-- Main Content -->
             <div class="main-content">

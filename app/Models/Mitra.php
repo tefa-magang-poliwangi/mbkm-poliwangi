@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Mitra extends Authenticatable
+class Mitra extends Model
 {
     use HasFactory;
 
@@ -20,13 +20,17 @@ class Mitra extends Authenticatable
         'email',
         'foto',
         'status',
-        'username',
-        'password',
+        'id_user',
         'id_sektor_industri',
         'id_kategori',
     ];
 
     // relasi
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
     public function sektor_industri()
     {
         return $this->belongsTo(SektorIndustri::class, 'id_sektor_industri', 'id');

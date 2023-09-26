@@ -11,15 +11,15 @@ class AuthMahasiswaController extends Controller
     // backend login mahasiswa
     public function login_mahasiswa()
     {
-        if (auth()->user()) {
-            return redirect()->route('dashboard.admin.page');
-        } else if (Auth::guard('mahasiswas')->check()) {
-            return redirect()->route('dashboard.mahasiswa.page');
-        } else if (Auth::guard('dosens')->check()) {
-            return redirect()->route('dashboard.dosen.page');
-        } else if (Auth::guard('mitras')->check()) {
-            return redirect()->route('dashboard.mitra.page');
-        }
+        // if (auth()->user()) {
+        //     return redirect()->route('dashboard.admin.page');
+        // } else if (Auth::guard('mahasiswas')->check()) {
+        //     return redirect()->route('dashboard.mahasiswa.page');
+        // } else if (Auth::guard('dosens')->check()) {
+        //     return redirect()->route('dashboard.dosen.page');
+        // } else if (Auth::guard('mitras')->check()) {
+        //     return redirect()->route('dashboard.mitra.page');
+        // }
 
         return view('pages.auth.login-mahasiswa');
     }
