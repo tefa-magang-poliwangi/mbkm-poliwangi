@@ -65,7 +65,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
         Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
 
-        // halaman mahasiswa - eksternal
+        // Halaman Mahasiswa - Eksternal
         Route::get('/dashboard-mahasiswa/profil', function () {
             return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
         });
@@ -73,7 +73,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
         });
 
-        // halaman mahasiswa - internal
+        // Halaman Mahasiswa - Internal
         Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
             return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-lolos-pendaftaran');
         });
@@ -90,7 +90,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
         });
 
-        // halaman admin Mitra
+        // Halaman Mitra
         Route::get('/dashboard-mitra/mitra-lowongan', function () {
             return view('pages.mitra.manajemen-mitra.mitra-lowongan');
         });
@@ -101,12 +101,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
         });
 
-        // DOSEN
-        Route::get('/dashboard-dosen', function () {
-            return view('pages.dosen.dosen-dashboard');
-        });
-
-        // halaman admin Kaprodi
+        // Halaman Kaprodi
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.kaprodi-laporan-akhir');
         });
@@ -117,7 +112,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
 
-        // Halaman admin Dosen Pembimbing
+        // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
             return view('pages.dosen.dosbim-laporan-harian');
         });
@@ -128,7 +123,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.dosen.dosbim-laporan-akhir');
         });
 
-        // Halaman admin Dosen wali
+        // Halaman Dosen wali
         Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
             return view('pages.dosen.doswal-kelayakan');
         });
