@@ -108,9 +108,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
+        // Route::get('/dashboard-dosen/data-kurikulum', function () {
+        //     return view('pages.prodi.data-kurikulum');
+        // });
 
         // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
@@ -144,4 +144,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
     });
+});
+
+Route::get('/dashboard-dosen/data-kurikulum', function () {
+    return view('pages.prodi.data-kurikulum');
+});
+
+Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+    return view('pages.prodi.form-data-kurikulum');
 });
