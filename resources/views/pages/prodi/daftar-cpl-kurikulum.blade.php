@@ -10,54 +10,55 @@
 
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
+        <div class="d-flex justify-content-between">
+            <strong class="h3">Data Kurikulum Mata Kuliah</strong>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0">
-                        <strong class="h4">Daftar Mahasiswa (Transkrip Nilai)</strong>
+                    <div class="card-header bg-white border-0 px-2">
+                        <div class="col-6">
+                            <div class="dropdown d-inline mr-2">
+                                <h6>Daftar CPL Kurikulum : TRPL 2023</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <div class="ml-auto">
+                                <button class="btn btn-theme-four">Kembali</button>
+                                <button class="btn btn-theme fa-plus">Tambah</button>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
-                                @php
-                                    $no = 1;
-                                @endphp
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
-                                        <th>Nama</th>
-                                        <th>NIM</th>
-                                        <th>Program Studi</th>
-                                        <th>Action</th>
+                                        <th>No</th>
+                                        <th>Kode CPL</th>
+                                        <th>Kategori</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                   @foreach ($nilai_magang_ext as $data)
-                                        <tr>
-                                            <td>
-                                                {{ $no }}
-                                            </td>
-                                            <td>{{ $data->mahasiswa->nama }}</td>
-                                            <td>
-                                                {{ $data->mahasiswa->nim }}
-                                            </td>
-                                            <td>
-                                                {{ $data->mahasiswa->prodi }}
-                                            </td>
-                                            <td>
-                                                <a href="{{route('daftar-mahasiswa.index', $data->id)}}"
-                                                    class="btn btn-transparent"><i
-                                                        class="fa-solid fa-file-pen text-dark"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                        @php
-                                            $no++;
-                                        @endphp
+                                    <tr>
+                                        <td>1</td>
+                                        <td>687</td>
+                                        <td>WAJIB</td>
+                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
+                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>688</td>
+                                        <td>WAJIB</td>
+                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
+                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.base-auth')
 
 @section('title')
-    <title>Sign In Mitra | MBKM Poliwangi</title>
+    <title>Sign In Akun | MBKM Poliwangi</title>
 @endsection
 
 @section('content')
@@ -20,10 +20,10 @@
                         <div class="card-body">
                             <div class="pb-3 pt-1">
                                 <h6 class=" text-theme">Hai, Selamat Datang</h6>
-                                <small class="text-muted">Login sebagai mitra</small>
+                                <small class="text-muted">Masuk dengan akun anda</small>
                             </div>
 
-                            <form action="{{ route('do.login.mitra') }}" method="POST" class="needs-validation">
+                            <form action="{{ route('do.login') }}" method="POST" class="needs-validation">
                                 @csrf
 
                                 <div class="form-group">
@@ -38,7 +38,7 @@
 
                                 <div class="form-group">
                                     <label for="password" class="control-label">Password</label>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group">
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
                                             tabindex="2" placeholder="Password akun">
@@ -52,6 +52,13 @@
                                     @error('password')
                                         <div id="password" class="form-text">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+                                <div class="d-flex mb-3">
+                                    <small class="ml-auto">
+                                        <span>Belum punya akun?</span>
+                                        <a href="{{ route('landing.page') }}">Register</a>
+                                    </small>
                                 </div>
 
                                 <div class="form-group">
@@ -69,30 +76,6 @@
                                 </div>
                             </form>
 
-                        </div>
-                    </div>
-
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-3 d-flex">
-                            <a href="{{ route('login.mahasiswa.page') }}" class="menu-none-decoration">
-                                <div class="card card-hover text-center p-3 mx-auto card-login-option">
-                                    <i class="fa-solid fa-chalkboard-user fa-lg text-theme" title="Mahasiswa"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3 d-flex">
-                            <a href="{{ route('login.dosen.page') }}" class="menu-none-decoration">
-                                <div class="card card-hover text-center p-3 mx-auto card-login-option">
-                                    <i class="fas fa-graduation-cap fa-lg text-theme" title="Dosen"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-3 d-flex">
-                            <a href="{{ route('login.mitra.page') }}" class="menu-none-decoration">
-                                <div class="card card-hover text-center p-3 mx-auto card-login-option bg-theme">
-                                    <i class="fa-regular fa-handshake fa-lg text-white  " title="Mitra"></i>
-                                </div>
-                            </a>
                         </div>
                     </div>
 

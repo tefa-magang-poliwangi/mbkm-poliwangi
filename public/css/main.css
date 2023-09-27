@@ -1,417 +1,413 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
-body {
-    font-family: "Poppins", sans-serif !important;
-    overflow-x: hidden;
-}
-
-.fw-light {
-    font-weight: 300 !important;
-}
-
-.fw-regular {
-    font-weight: 400 !important;
-}
-
-.fw-medium {
-    font-weight: 500 !important;
-}
-
-.fw-bold {
-    font-weight: 600 !important;
-}
-
-.card-hover:hover {
-    box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
-}
-
-.card-border {
-    border: 2px solid #004978 !important;
-}
-
-.card-login-option {
-    border-radius: 10px !important;
-    border: 2px solid #004978 !important;
-}
-
-.btn-login {
-    font-weight: 600 !important;
-    background-color: #4f709c !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid #4f709c !important;
-}
-
-.btn-login:hover {
-    font-weight: 600 !important;
-    background-color: #4f709c !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid white !important;
-}
-
-.btn-login-page {
-    font-weight: 600 !important;
-    background-color: #4f709c !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid #4f709c !important;
-}
-
-.btn-detail {
-    font-weight: 400 !important;
-    background-color: #134a6e !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid #134a6e !important;
-}
-
-.card-rounded {
-    border-radius: 15px !important;
-}
-
-.card-rounded-sm {
-    border-radius: 5px !important;
-}
-
-.btn-detail:hover {
-    font-weight: 400 !important;
-    background-color: white !important;
-    color: #134a6e !important;
-    border-radius: 8px !important;
-    border: 2px solid #134a6e !important;
-}
-
-.btn-theme-warning {
-    font-weight: 500 !important;
-    background-color: #e5ac50 !important;
-    color: white !important;
-    border: 2px solid #e5ac50 !important;
-}
-
-.btn-theme-warning:hover {
-    font-weight: 500 !important;
-    background-color: #e5ac50 !important;
-    color: white !important;
-    border: 2px solid white !important;
-}
-
-.section-bg-primary {
-    background-color: #213555 !important;
-}
-
-.back-color {
-    background-color: #dbe0ec;
-}
-
-.grey-color {
-    background-color: #cbccd1;
-}
-
-.card-rounded {
-    border-radius: 20px !important;
-}
-
-.card-height {
-    height: 400px !important;
-}
-
-
-/* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
-
-.card-height .btn-detail {
-    position: absolute;
-    bottom: 40px;
-    /* Sesuaikan jarak dari bawah yang Anda inginkan */
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-
-/* Mengatur posisi card relatif agar tombol tidak tumpang tindih */
-
-.card-height {
-    position: relative;
-}
-
-.btn-rounded {
-    border-radius: 25px !important;
-}
-
-.btn-theme {
-    font-weight: 500 !important;
-    background-color: #4f709c !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid #004978 !important;
-}
-
-.btn-theme:hover {
-    font-weight: 500 !important;
-    background-color: white !important;
-    color: #004978 !important;
-    border-radius: 8px !important;
-    border: 2px solid #00ccff !important;
-}
-
-.btn-theme-inverse {
-    font-weight: 500 !important;
-    background-color: #e5ac50 !important;
-    color: white !important;
-    border-radius: 8px !important;
-    /* border: 2px solid white !important; */
-}
-
-.btn-theme-two {
-    font-weight: 400 !important;
-    background-color: #213555 !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid #213555 !important;
-}
-
-.btn-theme-two:hover {
-    font-weight: 400 !important;
-    background-color: #042e65 !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid white !important;
-}
-
-.btn-theme-three {
-    font-weight: 500 !important;
-    background-color: white !important;
-    color: #213555 !important;
-    border-radius: 12px !important;
-    border: 2px solid white !important;
-}
-
-.btn-theme-three:hover {
-    font-weight: 500 !important;
-    background-color: white !important;
-    color: #213555 !important;
-    border-radius: 12px !important;
-    border: 2px solid #213555 !important;
-}
-
-.btn-theme-four {
-    font-weight: 400 !important;
-    background-color: #ff1e1e !important;
-    color: white !important;
-    border-radius: 8px !important;
-}
-
-.btn-theme-four:hover {
-    font-weight: 400 !important;
-    background-color: #de2121 !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid white !important;
-}
-
-.btn-theme-five {
-    font-weight: 400 !important;
-    background-color: #198754 !important;
-    color: white !important;
-    border-radius: 8px !important;
-}
-
-.btn-theme-five:hover {
-    font-weight: 400 !important;
-    background-color: #1aa664 !important;
-    color: white !important;
-    border-radius: 8px !important;
-    border: 2px solid white !important;
-}
-
-.btn-grey {
-    background-color: grey !important;
-    color: white !important;
-}
-
-.text-theme {
-    color: #213555 !important;
-}
-
-.text-black {
-    color: black !important;
-}
-
-.text-yellow {
-    color: #e5ac50 !important;
-}
-
-.text-purple {
-    color: #614bc3 !important;
-}
-
-.text-salmon {
-    color: #ff6666 !important;
-}
-
-.text-night {
-    color: #3c486b !important;
-}
-
-.text-justify {
-    text-align: justify !important;
-}
-
-.icon-footer {
-    font-size: 20px !important;
-}
-
-.footer-theme {
-    background-color: #213555 !important;
-}
-
-.text-footer {
-    color: #d5e2ea !important;
-}
-
-.text-color-black {
-    color: #000000 !important;
-}
-
-.header-theme {
-    background-color: #063762 !important;
-    color: white !important;
-}
-
-.footer-text {
-    color: #d5e2ea !important;
-}
-
-.tag-menu {
-    font-weight: 600 !important;
-    text-decoration: none !important;
-}
-
-.tag-menu:hover {
-    color: #e5ac50 !important;
-    font-weight: 600 !important;
-    /* text-decoration: underline !important; */
-}
-
-.footer-text {
-    font-size: 12px !important;
-}
-
-
-/* Ganti warna latar belakang navbar */
-
-.navbar-theme {
-    background-color: #213555 !important;
-    /* Warna latar belakang dengan tingkat transparansi */
-    transition: background-color 0.3s ease;
-    /* Efek transisi perubahan warna */
-}
-
-
-/* Ganti warna latar belakang navbar saat di-scroll */
-
-.navbar-theme.scrolled {
-    background-color: rgba(255, 255, 255, 0.6);
-    /* Warna latar belakang saat di-scroll */
-}
-
-.navbar-text-hover {
-    color: white !important;
-    font-weight: medium !important;
-}
-
-.navbar-text-hover:hover {
-    color: #e5d283 !important;
-    font-weight: medium !important;
-}
-
-.row.d-flex.justify-content-center.margin-buttom {
-    margin-bottom: 20px;
-}
-
-.section-bg-one {
-    background-color: #4f709c !important;
-}
-
-.section-bg-two {
-    background-color: #213555 !important;
-}
-
-#btn-floating .btn {
-    position: absolute;
-    top: 90%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #555;
-    color: white;
-    font-size: 16px;
-    /* padding: 12px 24px; */
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.hidden {
-    display: none;
-}
-
-.bg-theme {
-    background-color: #213555 !important;
-}
-
-.sidebar-theme {
-    background-color: #174276 !important;
-    color: white !important;
-}
-
-.menu-tag-text {
-    text-decoration: none !important;
-    color: #ffffff;
-    text-align: center;
-    font-size: 20px;
-}
-
-@media (max-width: 360px) {
-    .brand-hidden {
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+    body {
+        font-family: "Poppins", sans-serif !important;
+        overflow-x: hidden;
+    }
+    
+    .fw-light {
+        font-weight: 300 !important;
+    }
+    
+    .fw-regular {
+        font-weight: 400 !important;
+    }
+    
+    .fw-medium {
+        font-weight: 500 !important;
+    }
+    
+    .fw-bold {
+        font-weight: 600 !important;
+    }
+    
+    .card-hover:hover {
+        box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
+    }
+    
+    .card-border {
+        border: 2px solid #004978 !important;
+    }
+    
+    .card-login-option {
+        border-radius: 10px !important;
+        border: 2px solid #004978 !important;
+    }
+    
+    .btn-login {
+        font-weight: 600 !important;
+        background-color: #4f709c !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid #4f709c !important;
+    }
+    
+    .btn-login:hover {
+        font-weight: 600 !important;
+        background-color: #4f709c !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid white !important;
+    }
+    
+    .btn-login-page {
+        font-weight: 600 !important;
+        background-color: #4f709c !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid #4f709c !important;
+    }
+    
+    .btn-detail {
+        font-weight: 400 !important;
+        background-color: #134a6e !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid #134a6e !important;
+    }
+    
+    .card-rounded {
+        border-radius: 15px !important;
+    }
+    
+    .card-rounded-sm {
+        border-radius: 5px !important;
+    }
+    
+    .btn-detail:hover {
+        font-weight: 400 !important;
+        background-color: white !important;
+        color: #134a6e !important;
+        border-radius: 8px !important;
+        border: 2px solid #134a6e !important;
+    }
+    
+    .btn-theme-warning {
+        font-weight: 500 !important;
+        background-color: #e5ac50 !important;
+        color: white !important;
+        border: 2px solid #e5ac50 !important;
+    }
+    
+    .btn-theme-warning:hover {
+        font-weight: 500 !important;
+        background-color: #e5ac50 !important;
+        color: white !important;
+        border: 2px solid white !important;
+    }
+    
+    .section-bg-primary {
+        background-color: #213555 !important;
+    }
+    
+    .back-color {
+        background-color: #dbe0ec;
+    }
+    
+    .grey-color {
+        background-color: #cbccd1;
+    }
+    
+    .card-rounded {
+        border-radius: 20px !important;
+    }
+    
+    .card-height {
+        height: 400px !important;
+    }
+    /* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
+    
+    .card-height .btn-detail {
+        position: absolute;
+        bottom: 40px;
+        /* Sesuaikan jarak dari bawah yang Anda inginkan */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    /* Mengatur posisi card relatif agar tombol tidak tumpang tindih */
+    
+    .card-height {
+        position: relative;
+    }
+    
+    .btn-rounded {
+        border-radius: 25px !important;
+    }
+    
+    .btn-theme {
+        font-weight: 500 !important;
+        background-color: #4f709c !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid #004978 !important;
+    }
+    
+    .btn-theme:hover {
+        font-weight: 500 !important;
+        background-color: white !important;
+        color: #004978 !important;
+        border-radius: 8px !important;
+        border: 2px solid #00ccff !important;
+    }
+    
+    .btn-theme-inverse {
+        font-weight: 500 !important;
+        background-color: #e5ac50 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        /* border: 2px solid white !important; */
+    }
+    
+    .btn-theme-two {
+        font-weight: 400 !important;
+        background-color: #213555 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid #213555 !important;
+    }
+    
+    .btn-theme-two:hover {
+        font-weight: 400 !important;
+        background-color: #042e65 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid white !important;
+    }
+    
+    .btn-theme-three {
+        font-weight: 500 !important;
+        background-color: white !important;
+        color: #213555 !important;
+        border-radius: 12px !important;
+        border: 2px solid white !important;
+    }
+    
+    .btn-theme-three:hover {
+        font-weight: 500 !important;
+        background-color: white !important;
+        color: #213555 !important;
+        border-radius: 12px !important;
+        border: 2px solid #213555 !important;
+    }
+    
+    .btn-theme-four {
+        font-weight: 400 !important;
+        background-color: #ff1e1e !important;
+        color: white !important;
+        border-radius: 8px !important;
+    }
+    
+    .btn-theme-four:hover {
+        font-weight: 400 !important;
+        background-color: #de2121 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid white !important;
+    }
+    
+    .btn-theme-five {
+        font-weight: 400 !important;
+        background-color: #198754 !important;
+        color: white !important;
+        border-radius: 8px !important;
+    }
+    
+    .btn-theme-five:hover {
+        font-weight: 400 !important;
+        background-color: #1aa664 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        border: 2px solid white !important;
+    }
+    
+    .btn-grey {
+        background-color: grey !important;
+        color: white !important;
+    }
+    
+    .text-theme {
+        color: #213555 !important;
+    }
+    
+    .text-black {
+        color: black !important;
+    }
+    
+    .text-yellow {
+        color: #e5ac50 !important;
+    }
+    
+    .text-purple {
+        color: #614bc3 !important;
+    }
+    
+    .text-salmon {
+        color: #ff6666 !important;
+    }
+    
+    .text-night {
+        color: #3c486b !important;
+    }
+    
+    .text-justify {
+        text-align: justify !important;
+    }
+    
+    .icon-footer {
+        font-size: 20px !important;
+    }
+    
+    .footer-theme {
+        background-color: #213555 !important;
+    }
+    
+    .text-footer {
+        color: #d5e2ea !important;
+    }
+    
+    .text-color-black {
+        color: #000000 !important;
+    }
+    
+    .header-theme {
+        background-color: #063762 !important;
+        color: white !important;
+    }
+    
+    .footer-text {
+        color: #d5e2ea !important;
+    }
+    
+    .tag-menu {
+        font-weight: 600 !important;
+        text-decoration: none !important;
+    }
+    
+    .tag-menu:hover {
+        color: #e5ac50 !important;
+        font-weight: 600 !important;
+        /* text-decoration: underline !important; */
+    }
+    
+    .footer-text {
+        font-size: 12px !important;
+    }
+    /* Ganti warna latar belakang navbar */
+    
+    .navbar-theme {
+        background-color: #213555 !important;
+        /* Warna latar belakang dengan tingkat transparansi */
+        transition: background-color 0.3s ease;
+        /* Efek transisi perubahan warna */
+    }
+    /* Ganti warna latar belakang navbar saat di-scroll */
+    
+    .navbar-theme.scrolled {
+        background-color: rgba(255, 255, 255, 0.6);
+        /* Warna latar belakang saat di-scroll */
+    }
+    
+    .navbar-text-hover {
+        color: white !important;
+        font-weight: medium !important;
+    }
+    
+    .navbar-text-hover:hover {
+        color: #e5d283 !important;
+        font-weight: medium !important;
+    }
+    
+    .row.d-flex.justify-content-center.margin-buttom {
+        margin-bottom: 20px;
+    }
+    
+    .section-bg-one {
+        background-color: #4f709c !important;
+    }
+    
+    .section-bg-two {
+        background-color: #213555 !important;
+    }
+    
+    #btn-floating .btn {
+        position: absolute;
+        top: 90%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #555;
+        color: white;
+        font-size: 16px;
+        /* padding: 12px 24px; */
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+    }
+    
+    .hidden {
         display: none;
     }
-}
-
-.large-button {
-    background-color: #4caf50 !important;
-    /* Hijau */
-    border: none !important;
-    color: rgb(9, 9, 9) !important;
-    padding: 15px 32px !important;
-    text-align: center !important;
-    text-decoration: none !important;
-    display: inline-block !important;
-    margin: 5px 2px !important;
-    cursor: pointer !important;
-}
-
-.text-white-header {
-    color: white;
-}
-
-.card-body-admin {
-    background-color: #174276 !important;
-}
-
-.card-custom {
-    background-color: #213555 !important;
-    color: white;
-}
-
-.bg-permission {
-    background-color: #eff2f9 !important;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.menu-none-decoration {
-    text-decoration: none !important;
-}
+    
+    .bg-theme {
+        background-color: #213555 !important;
+    }
+    
+    .sidebar-theme {
+        background-color: #174276 !important;
+        color: white !important;
+    }
+    
+    .menu-tag-text {
+        text-decoration: none !important;
+        color: #ffffff;
+        text-align: center;
+        font-size: 20px;
+    }
+    
+    @media (max-width: 360px) {
+        .brand-hidden {
+            display: none;
+        }
+    }
+    
+    .large-button {
+        background-color: #4caf50 !important;
+        /* Hijau */
+        border: none !important;
+        color: rgb(9, 9, 9) !important;
+        padding: 15px 32px !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        display: inline-block !important;
+        margin: 5px 2px !important;
+        cursor: pointer !important;
+    }
+    
+    .text-white-header {
+        color: white;
+    }
+    
+    .card-body-admin {
+        background-color: #174276 !important;
+    }
+    
+    .card-custom {
+        background-color: #213555 !important;
+        color: white;
+    }
+    
+    .bg-permission {
+        background-color: #eff2f9 !important;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .menu-none-decoration {
+        text-decoration: none !important;
+    }
+    
+    .teks-merah {
+        color: red;
+    }

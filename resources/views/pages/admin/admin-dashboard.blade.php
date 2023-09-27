@@ -1,5 +1,8 @@
 @extends('layouts.base-admin')
 
+@section('title')
+    <title>Dashboard Admin | MBKM Poliwangi</title>
+@endsection
 
 @section('content')
     <section class="">
