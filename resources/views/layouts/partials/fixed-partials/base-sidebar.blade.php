@@ -87,8 +87,23 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
+                        <a class="nav-link" href="{{route('daftar.prodi.index')}}"><i class="fas fa-info-circle"></i>
+                            <span>Prodi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{route('daftar.matakuliah.index')}}"><i class="fas fa-info-circle"></i>
+                            <span>Matakuliah</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{route('daftar.kurikulum.index')}}"><i class="fas fa-info-circle"></i>
                             <span>Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{route('daftar.matkul.kurikulum.index')}}"><i class="fas fa-info-circle"></i>
+                            <span>Matkul Kurikulum</span>
                         </a>
                     </li>
                     <li>
@@ -247,7 +262,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="nav-link"
-                                    href="{{ route('/dashboard-mahasiswa/laporan-mahasiswa-harian') }}">Laporan Harian</a>
+                                    href="/dashboard-mahasiswa/laporan-mahasiswa-harian">Laporan Harian</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>

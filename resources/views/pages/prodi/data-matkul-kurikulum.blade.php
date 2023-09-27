@@ -11,67 +11,55 @@
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
         <div class="d-flex justify-content-between">
-            <strong class="h5 text-theme">Data Kurikulum Mata Kuliah</strong>
+            <strong class="h3">Data Kurikulum Mata Kuliah</strong>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card border-0 mb-0">
+                <div class="card border-0">
                     <div class="card-header bg-white border-0 px-2">
-                        <div class="col-4">
-                            <h4 class="fw-bold">Program Studi</h4>
-                            <div class="form-group">
-                                <select class="form-control select2">
-                                    <option value="">Semua Prodi</option>
-                                    <option>Teknologi Rekayasa Perangkat Lunak</option>
-                                    <option>Teknologi Rekayasa Komputer</option>
-                                    <option>Bisnis Digital</option>
-                                </select>
+                        <div class="col-6">
+                            <div class="dropdown d-inline mr-2">
+                                <h6>Daftar MK Kurikulum : TRPL 2023</h6>
                             </div>
                         </div>
-                        <div class="col-8 d-flex">
+                        <div class="col-6 d-flex">
                             <div class="ml-auto">
-                                <a href="{{route('daftar.kurikulum.create')}}" class="btn btn-theme fa-plus">Tambah</a>
+                                <button class="btn btn-theme-four">Kembali</button>
+                                <a href="{{route('daftar.matkul.kurikulum.create')}}" class="btn btn-theme fa-plus">Tambah</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card-body py-0 mb-0">
+                    <div class="card-body">
                         <div class="table-responsive">
                             @php
-                                $no = 1;
+                                $no= 1;
                             @endphp
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
-                                        <th>Nama Kurikulum</th>
-                                        <th>Prodi</th>
+                                        <th>No</th>
+                                        <th>Kode MK</th>
+                                        <th>Nama Mata Kuliah</th>
+                                        <th>Bobot MK</th>
+                                        <th>Semester</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($kurikulums as $item)
+                                    @foreach ($matkulkurikulum as $data)
                                     <tr>
-                                        <td>
-                                            {{$no}}
+                                        <td>{{$no}}</td>
+                                        <td>{{$data->matkul->kode_matakuliah}}</td>
+                                        <td>{{$data->matkul->nama}}</td>
+                                        <td>{{$data->matkul->sks}} SKS</td>
+                                        <td>{{$data->semester}}</td>
+                                        <td> <span class="badge bg-primary text-white">Wajib</span>
                                         </td>
-                                        <td>{{$item->nama}}</td>
-                                        <td>
-                                           {{$item->prodi->nama}}
-                                        </td>
-                                        <td>
-                                            {{$item->status}}
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary">
-                                                <i class="fa-solid fa-search"></i> CPL
-                                            </a>
-                                            <a href="#"> <i class="fa-solid fas fa-edit text-dark"></i></a>
-                                            <a href="#"> <i class="fa-solid fas fa-trash text-dark"></i></a>
+                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
+                                            <a href="{{route('daftar.matkul.kurikulum.delete', $data->id)}}"> <i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @php

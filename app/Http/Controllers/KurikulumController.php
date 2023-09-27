@@ -19,7 +19,7 @@ class KurikulumController extends Controller
             'kurikulums' => Kurikulum::all()
         ];
 
-        return view('pages.prodi.data-kurikulum1', $data);
+        return view('pages.prodi.kurikulum.data-kurikulum', $data);
     }
 
     /**
@@ -34,7 +34,7 @@ class KurikulumController extends Controller
             'prodi' => Prodi::all(),
             'action' => route('daftar.kurikulum.store')
         ];
-        return view('pages.prodi.form-data-kurikulum', $data);
+        return view('pages.prodi.kurikulum.form-data-kurikulum', $data);
     }
 
     /**
@@ -103,6 +103,9 @@ class KurikulumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kurikulum = Kurikulum::findOrFail($id);
+        $kurikulum->delete();
+
+        return redirect()->route('daftar.kurikulum.index');
     }
 }
