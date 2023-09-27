@@ -49,7 +49,7 @@
                                                 {{ $data->mahasiswa->prodi }}
                                             </td>
                                             <td>
-                                                <a href="{{route('daftar-mahasiswa.index', $data->id)}}"
+                                                <a href="{{route('daftar.mahasiswa.transkrip.index', $data->id)}}"
                                                     class="btn btn-transparent"><i
                                                         class="fa-solid fa-file-pen text-dark"></i></a>
                                             </td>

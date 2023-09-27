@@ -124,7 +124,7 @@ class UploadTranskripNilai extends Controller
     public function store(Request $request, $id_user)
     {
 
-        $mahasiswa = User::findOrFile($id_user)->mahasiswa;
+        $mahasiswa = User::findOrFail($id_user)->mahasiswa;
         $validated = $request->validate([
             'file' => ['required', 'mimes:pdf', 'max:1024'],
             'magang_eksternal'=> ['required'],
@@ -141,7 +141,7 @@ class UploadTranskripNilai extends Controller
 
         NilaiMagangExt::create([
             'file' => isset($saveData['file']) ? $saveData['file'] : null,
-            'id_mahasiswa' => $mahasiswa->id,
+            'id_mahasiswa' => $mahasiswa->first()->id,
             'id_magang_ext' => $validated['magang_eksternal'],
             'id_periode' => $validated['periode'],
         ]);

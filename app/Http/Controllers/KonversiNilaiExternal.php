@@ -149,9 +149,16 @@ class KonversiNilaiExternal extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_nilai_magang_ext)
     {
-        //
+        
+        $data = [
+            'matakuiah' => Matkul::all(),
+            'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
+            'nilai_magang_ext' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
+
+        ];
+        return view('pages.dosen.kaprodi-konversi-nilai', $data);
     }
 
     /**

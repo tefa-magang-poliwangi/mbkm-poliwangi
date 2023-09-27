@@ -23,6 +23,7 @@
             </div>
         </section>
         <div class="row">
+
             <div class="col-sm-12 col-md-6">
                 <iframe src="{{ asset('doc/contoh.pdf') }}" width="100%" height="700px"></iframe>
             </div>
