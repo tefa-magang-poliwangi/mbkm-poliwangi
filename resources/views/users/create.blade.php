@@ -15,32 +15,59 @@
                     </div>
 
                     <div class="container mt-4">
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('users.store') }}">
                             @csrf
+
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input value="{{ old('name') }}" type="text" class="form-control" id="name"
-                                    name="name" placeholder="Name" required>
-
-                                @if ($errors->has('name'))
-                                    <span class="text-danger text-left">{{ $errors->first('name') }}</span>
-                                @endif
+                                <input value="{{ old('name') }}" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                                    placeholder="Name">
+                                @error('name')
+                                    <div id="name" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input value="{{ old('email') }}" type="email" class="form-control" id="email"
-                                    name="email" placeholder="Email address" required>
-                                @if ($errors->has('email'))
-                                    <span class="text-danger text-left">{{ $errors->first('email') }}</span>
-                                @endif
+                                <input value="{{ old('email') }}" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+                                    placeholder="Email address">
+                                @error('email')
+                                    <div id="email" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input value="{{ old('username') }}" type="text" class="form-control" id="username"
-                                    name="username" placeholder="Username" required>
-                                @if ($errors->has('username'))
-                                    <span class="text-danger text-left">{{ $errors->first('username') }}</span>
-                                @endif
+                                <input value="{{ old('username') }}" type="text"
+                                    class="form-control @error('username') is-invalid @enderror" id="username"
+                                    name="username" placeholder="Username">
+                                @error('username')
+                                    <div id="username" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="password" name="password" placeholder="Password akun">
+                                @error('password')
+                                    <div id="password" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="password_confirmation">Password
+                                    Confirmation</label>
+                                <input type="password"
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    id="password_confirmation" name="password_confirmation" value=""
+                                    placeholder="Konfirmasi Password Baru">
+                                @error('password_confirmation')
+                                    <div id="password_confirmation" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary">Save user</button>
