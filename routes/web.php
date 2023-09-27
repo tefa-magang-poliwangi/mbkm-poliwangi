@@ -103,7 +103,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.mahasiswa.dosbim-laporan-akhir');
         });
 
-
         // Halaman Mitra
         Route::get('/dashboard-mitra/mitra-lowongan', function () {
             return view('pages.mitra.manajemen-mitra.mitra-lowongan');
@@ -125,10 +124,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
-        // Route::get('/dashboard-dosen/data-kurikulum', function () {
-        //     return view('pages.prodi.data-kurikulum');
-        // });
-
 
         // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
@@ -139,6 +134,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.dosbim-laporan-akhir');
+        });
+
+        Route::get('/dashboard-dosen/data-kurikulum', function () {
+            return view('pages.prodi.data-kurikulum');
+        });
+        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+            return view('pages.prodi.form-data-kurikulum');
         });
 
         // Halaman Dosen wali
@@ -163,7 +165,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('permissions', PermissionsController::class);
     });
 
-
     //Route data kurikulum
     Route::get('/data-kurikulum', function () {
         return view('pages.prodi.data-kurikulum1');
@@ -177,12 +178,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
         return view('pages.prodi.daftar-cpl-kurikulum');
     });
-});
-
-Route::get('/dashboard-dosen/data-kurikulum', function () {
-    return view('pages.prodi.data-kurikulum');
-});
-
-Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-    return view('pages.prodi.form-data-kurikulum');
 });
