@@ -12,20 +12,9 @@ class AuthController extends Controller
 {
     public function login()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-
-            if ($user->roles == 'admin') {
-                return redirect()->route('dashboard.admin.page');
-            } elseif ($user->roles == 'mahasiswa') {
-                return redirect()->route('dashboard.mahasiswa.page');
-            } elseif ($user->roles == 'dosen') {
-                return redirect()->route('dashboard.dosen.page');
-            }
-        }
-
         return view('pages.auth.login');
     }
+
 
     public function do_login(Request $request)
     {
@@ -48,11 +37,11 @@ class AuthController extends Controller
 
             $user = Auth::user(); // Mengambil data pengguna yang sudah login
 
-            if ($user->roles == 'admin') {
+            if ($user->hasRole('admin')) {
                 return redirect()->route('dashboard.admin.page');
-            } elseif ($user->roles == 'mahasiswa') {
+            } elseif ($user->hasRole('mahasiswa')) {
                 return redirect()->route('dashboard.mahasiswa.page');
-            } elseif ($user->roles == 'dosen') {
+            } elseif ($user->hasRole('dosen')) {
                 return redirect()->route('dashboard.dosen.page');
             }
         }

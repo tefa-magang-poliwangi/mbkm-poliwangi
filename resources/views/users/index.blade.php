@@ -31,9 +31,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+
                             @foreach ($users as $user)
                                 <tr>
-                                    <th scope="row">{{ $user->id }}</th>
+                                    <th scope="row">{{ $no }}</th>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->username }}</td>
@@ -52,6 +56,10 @@
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
+
+                                @php
+                                    $no++;
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>
