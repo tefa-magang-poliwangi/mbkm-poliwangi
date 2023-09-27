@@ -11,6 +11,7 @@ use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\RegisterMahasiswaController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +41,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
 
         // register akun
-        Route::get('/register-mahasiswa', function () {
-            return view('pages.auth.register-mahasiswa');
-        });
+        Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
+        Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
     });
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
@@ -101,6 +101,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mahasiswa/tidak-lolos-pendaftaran', function () {
             return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
         });
+        Route::get('/dashboard-mahasiswa/laporan-harian', function () {
+            return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian');
+        });
+        Route::get('/dashboard-mahasiswa/laporan-mingguan', function () {
+            return view('pages.mahasiswa.laporan-mahsiswa.laporan-mingguan');
+        });
+        Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
+            return view('pages.mahasiswa.dosbim-laporan-akhir');
+        });
 
         // Halaman Mitra
         Route::get('/dashboard-mitra/mitra-lowongan', function () {
@@ -123,10 +132,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
-        // Route::get('/dashboard-dosen/data-kurikulum', function () {
-        //     return view('pages.prodi.data-kurikulum');
-        // });
-
 
         // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
@@ -137,6 +142,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.dosbim-laporan-akhir');
+        });
+
+        Route::get('/dashboard-dosen/data-kurikulum', function () {
+            return view('pages.prodi.data-kurikulum');
+        });
+        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+            return view('pages.prodi.form-data-kurikulum');
         });
 
         // Halaman Dosen wali
@@ -161,7 +173,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('permissions', PermissionsController::class);
     });
 
-
     //Route data kurikulum
     // Route::get('/data-kurikulum', function () {
     //     return view('pages.prodi.data-kurikulum1');
@@ -175,12 +186,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
         return view('pages.prodi.daftar-cpl-kurikulum');
     });
-});
-
-Route::get('/dashboard-dosen/data-kurikulum', function () {
-    return view('pages.prodi.data-kurikulum');
-});
-
-Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-    return view('pages.prodi.form-data-kurikulum');
 });
