@@ -45,27 +45,6 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(User $user, StoreUserRequest $request)
-    {
-        //For demo purposes only. When creating user or inviting a user
-        // you should create a generated random password and email it to the user
-        $user->create(array_merge($request->validated(), [
-            'password' => '12345678'
-        ]));
-        $validated = $request->validate([
-            'name' => ['required', 'string', Rule::unique('users', 'name')],
-            'email' => ['required', 'string', 'email', Rule::unique('users', 'email')],
-            'username' =>  ['required', 'string', Rule::unique('users', 'username')],
-            'password' => ['required', 'confirmed', 'min:8'],
-            'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
-        ]);
-
-        $user = new User;
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->username = $validated['username'];
-        $user->password = hash::make($request->password);
-        $user->save();
 
     // public function store(User $user, StoreUserRequest $request)
     // {
