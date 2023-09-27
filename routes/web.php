@@ -144,3 +144,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('permissions', PermissionsController::class);
     });
 });
+
+//coba
+Route::get('/register-mahasiswa', function () {
+    return view('pages.auth.register-mahasiswa');
+});
+
+Route::get('/data-kurikulum', function () {
+    return view('pages.prodi.data-kurikulum');
+});
