@@ -87,6 +87,11 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
+                        <a class="nav-link" href="{{route('daftar.kurikulum.index')}}"><i class="fas fa-info-circle"></i>
+                            <span>Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="#"><i class="fas fa-info-circle"></i>
                             <span>Laporan Akhir</span>
                         </a>

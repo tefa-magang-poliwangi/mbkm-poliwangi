@@ -19,7 +19,7 @@
                     <form action="{{ route('daftar.kurikulum.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label class="form-label">Nama Kurikulum</label>
+                            <label for="create_nama" class="form-label">Nama Kurikulum</label>
                             <input id="create_nama" type="text"
                                 class="form-control @error('create_nama')
                                 is-invalid
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Pilih Prodi / Jurusan</label>
+                            <label for="create_prodi" class="form-label">Pilih Prodi / Jurusan</label>
                             <select
                                 class="form-control @error('create_prodi')
                                 is-invalid
@@ -50,12 +50,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Status</label>
+                            <label for="create_status" class="form-label">Status</label>
                             <select class="form-control @error('create_status') is-invalid @enderror"
                                 id="create_status" name="create_status">
                                 <option value="">Pilih Status</option>
-                                <option value="Wajib">Wajib</option>
-                                <option value="Tidak Wajib">Tidak Wajib</option>
+                                <option value="1">Wajib</option>
+                                <option value="2">Tidak Wajib</option>
                             </select>
                             @error('create_status')
                                 <div id="create_status" class="form-text pb-1">

@@ -45,11 +45,12 @@ class KurikulumController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = [
-            'create_nama' => ['required, string, max:255'],
+
+        $validated =$request->validate( [
+            'create_nama' => ['required'],
             'create_status' => ['required'],
             'create_prodi' => ['required']
-        ];
+        ]);
 
         Kurikulum::create([
             'nama' => $validated['create_nama'],

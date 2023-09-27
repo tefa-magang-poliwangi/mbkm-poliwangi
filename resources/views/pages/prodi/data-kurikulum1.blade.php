@@ -61,7 +61,7 @@
                                         </td>
                                         <td>{{$item->nama}}</td>
                                         <td>
-                                           {{$item->prodi}}
+                                           {{$item->prodi->nama}}
                                         </td>
                                         <td>
                                             {{$item->status}}
