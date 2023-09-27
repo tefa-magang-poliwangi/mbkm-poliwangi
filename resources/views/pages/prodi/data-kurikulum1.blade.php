@@ -11,61 +11,73 @@
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
         <div class="d-flex justify-content-between">
-            <strong class="h3">Data Kurikulum Mata Kuliah</strong>
+            <strong class="h5 text-theme">Data Kurikulum Mata Kuliah</strong>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card border-0">
+                <div class="card border-0 mb-0">
                     <div class="card-header bg-white border-0 px-2">
-                        <div class="col-6">
-                            <div class="dropdown d-inline mr-2">
-                                <h6>Daftar MK Kurikulum : TRPL 2023</h6>
+                        <div class="col-4">
+                            <h4 class="fw-bold">Program Studi</h4>
+                            <div class="form-group">
+                                <select class="form-control select2">
+                                    <option value="">Semua Prodi</option>
+                                    <option>Teknologi Rekayasa Perangkat Lunak</option>
+                                    <option>Teknologi Rekayasa Komputer</option>
+                                    <option>Bisnis Digital</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-6 d-flex">
+                        <div class="col-8 d-flex">
                             <div class="ml-auto">
-                                <button class="btn btn-theme-four">Kembali</button>
                                 <button class="btn btn-theme fa-plus">Tambah</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body py-0 mb-0">
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Kode MK</th>
-                                        <th>Nama Mata Kuliah</th>
-                                        <th>Bobot MK</th>
-                                        <th>Semester</th>
+                                        <th class="text-center">
+                                            No
+                                        </th>
+                                        <th>Nama Kurikulum</th>
+                                        <th>Tahun Ajaran</th>
+                                        <th>Jumlah SKS Kurikulum</th>
                                         <th>Status</th>
+                                        <th>Mata Kuliah</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>321</td>
-                                        <td>PBL</td>
-                                        <td>4 SKS</td>
-                                        <td>5</td>
-                                        <td>WAJIB</td>
-                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
-                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        <td>
+                                            1
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>322</td>
-                                        <td>SPK</td>
-                                        <td>4 SKS</td>
-                                        <td>5</td>
-                                        <td>WAJIB</td>
-                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
-                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        <td>TRPL 2022</td>
+                                        <td>
+                                            2020/2021 Gasal
+                                        </td>
+                                        <td>
+                                            127
+                                        </td>
+                                        <td>
+                                            <div class="badge badge-success">Active</div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-success">
+                                                <i class="fa-solid fa-search"></i> Mata Kuliah
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary">
+                                                <i class="fa-solid fa-search"></i> CPL
+                                            </a>
+                                            <a href="#"> <i class="fa-solid fas fa-edit text-dark"></i></a>
+                                            <a href="#"> <i class="fa-solid fas fa-trash text-dark"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

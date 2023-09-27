@@ -10,8 +10,8 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid py-5">
-        <section>
+    <div class="container-fluid py-3">
+        <section class="py-4">
             <div class="col text-start d-flex text-uppercase">
                 <div class="px-2">
                     <i class="fa-solid fa-file-invoice fa-3x"></i>
@@ -29,102 +29,110 @@
 
             <div class="col">
                 <div class="table-responsive d-flex flex-column">
+                    <form action="" method="post">
+                        @csrf
 
-                    <div>
-                        <table class="table table-hover table-borderless text-white" style="background-color: #EEEEEE;">
-                            <thead style="background-color: #063762; color: white;">
-                                <tr class="text-white-header">
-                                    <th>
-                                        No
-                                    </th>
-                                    <th>Kode</th>
-                                    <th>Mata kuliah</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                        <div>
+                            <table class="table table-hover table-borderless text-white" style="background-color: #EEEEEE;">
+                                @php
+                                    $no = 1;
+                                @endphp
+                                <thead style="background-color: #063762; color: white;">
+                                    <tr class="text-white-header">
+                                        <th>
+                                            No
+                                        </th>
+                                        <th>Kode Matakuliah</th>
+                                        <th>Matakuliah</th>
+                                        <th>Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($matakuiah as $data)
+                                        <tr>
+                                            <td>
+                                                {{ $no }}
+                                            </td>
+                                            <td>{{ $data->kode_matakuliah }}</td>
+                                            <td>
+                                                {{ $data->nama }}
+                                            </td>
+                                            <td>
+                                                <input type="text" class="hidden" name="id_mahasiswa" value="">
+                                                <input type="text" class="form-control" name="nilai_angka"
+                                                    id="{{ $data->kode_matakuliah }}">
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="contaner-fluid">
+                            <div class="row">
+                                <div class="col-6 text-right ">
+                                    <button type="submit" class="btn btn-theme btn-block">Save</button>
+                                </div>
+                                <div class="col-6 text-left">
+                                    <button type="submit" class="btn btn-theme btn-block">cancel</button>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- modal content --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="tambahNilaiModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content rounded-0" style="background-color: #e2e2e2;color: #19203F; font-weight: bold;">
+                    <div class="modal-header p-1 border-bottom border-dark">
+                        <h5 class="modal-title px-3" style="font-weight: bold">TAMBAH NILAI INDEX PRESTASI SEMESTER</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover table-borderless table-striped text-uppercase"
+                            style="background-color: #EEEEEE;">
                             <tbody>
                                 <tr>
-                                    <td>
-                                        1
+                                    <td class="form-group">
+                                        <label for="nilai">Nilai</label>
                                     </td>
-                                    <td>Rpl45347</td>
+                                </tr>
+                                <tr>
                                     <td>
-                                        Basis Data
+                                        <input type="Number" class="form-control border-0 bg-transparent" id="nilai">
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-group">
+                                        <label for="bobot">Bobot</label>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>
-                                        <button class="btn btn-transparent" data-toggle="modal"
-                                            data-target="#tambahNilaiModal"><i
-                                                class="fa-solid fa-file-pen text-dark"></i></button>
+                                        <input type="text" class="form-control border-0 bg-transparent" id="bobot">
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="contaner-fluid">
-                        <div class="row">
-                            <div class="col-6 text-right ">
-                                <button type="submit" class="btn btn-theme btn-block">Preview</button>
-                            </div>
-                            <div class="col-6 text-left">
-                                <button type="submit" class="btn btn-theme btn-block">Cetak</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            {{-- modal content --}}
-            <div class="modal fade" tabindex="-1" role="dialog" id="tambahNilaiModal">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content rounded-0"
-                        style="background-color: #e2e2e2;color: #19203F; font-weight: bold;">
-                        <div class="modal-header p-1 border-bottom border-dark">
-                            <h5 class="modal-title px-3" style="font-weight: bold">TAMBAH NILAI INDEX PRESTASI SEMESTER</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-hover table-borderless table-striped text-uppercase"
-                                style="background-color: #EEEEEE;">
-                                <tbody>
-                                    <tr>
-                                        <td class="form-group">
-                                            <label for="nilai">Nilai</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="Number" class="form-control border-0 bg-transparent"
-                                                id="nilai">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="form-group">
-                                            <label for="bobot">Bobot</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text" class="form-control border-0 bg-transparent"
-                                                id="bobot">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer bg-whitesmoke border-top d-flex">
-                            <div class="justify-content-start p-4">
-                                <button type="button" class="btn text-white" style="background-color: #19203F;"
-                                    data-dismiss="modal">Tambah</button>
-                                <button type="button" class="btn btn-danger">Batal</button>
-                            </div>
+                    <div class="modal-footer bg-whitesmoke border-top d-flex">
+                        <div class="justify-content-start p-4">
+                            <button type="button" class="btn text-white" style="background-color: #19203F;"
+                                data-dismiss="modal">Tambah</button>
+                            <button type="button" class="btn btn-danger">Batal</button>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- modal content end --}}
         </div>
+        {{-- modal content end --}}
+    </div>
     </div>
 @endsection
 
