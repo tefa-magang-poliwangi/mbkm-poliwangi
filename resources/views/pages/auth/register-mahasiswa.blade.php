@@ -1,174 +1,147 @@
 @extends('layouts.base-auth')
 
 @section('title')
-    <title>Sign In Mahasiswa | MBKM Poliwangi</title>
+    <title>Sign Up Akun Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
-<!DOCTYPE html>
-<html lang="en">
+@section('content')
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+                    <div class="login-brand">
+                        <img src="{{ asset('assets/images/logo-support.png') }}" alt="logo"
+                            class="img-fluid mx-auto my-auto px-3" width="300">
+                    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Register &mdash; Stisla</title>
-
-    <!-- General CSS Files -->
-    <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
-
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="assets/modules/jquery-selectric/selectric.css">
-
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
-</head>
-
-<body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div
-                        class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-                        <div class="login-brand">
-                            <img src="{{ asset('assets/images/logo-support.png') }}" alt="logo"
-                                class="img-fluid mx-auto my-auto px-3" width="300">
-                        </div>
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h4>Register</h4>
+                    <div class="card card-primary card-hover">
+                        <div class="card-body">
+                            <div class="pb-3 pt-1">
+                                <h6 class=" text-theme">Hai, Selamat Datang</h6>
+                                <small class="text-muted">Daftarkan akun <span class="text-primary fw-bold">Mahasiswa</span>
+                                    kamu</small>
                             </div>
 
-                            <div class="card-body">
-                                <form method="POST">
-                                    <div class="form-group">
-                                        <label for="email">Nim</label>
-                                        <input id="nim" type="nim" class="form-control" name="nim">
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
+                            <form method="POST" action="{{ route('do.register.mahasiswa') }}">
+                                @csrf
 
-                                    <div class="form-group">
-                                        <label for="email">Nama</label>
-                                        <input id="name" type="name" class="form-control" name="name">
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="nim">Nim</label>
+                                    <input id="nim" type="text"
+                                        class="form-control @error('nim') is-invalid @enderror" name="nim"
+                                        placeholder="Nomor induk mahasiswa" pattern="[0-9]*">
+                                    @error('nim')
+                                        <div id="nim" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email">
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input id="nama" type="text"
+                                        class="form-control @error('nama') is-invalid @enderror" name="nama"
+                                        placeholder="Nama lengkap">
+                                    @error('nama')
+                                        <div id="nama" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label class="form-label">Angkatan</label>
-                                        <select class="form-control">
-                                            <option value="" disabled selected>Pilih Angkatan</option>
-                                            <option>Option 1</option>
-                                            <option>Option 2</option>
-                                        </select>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        placeholder="Alamat email">
+                                    @error('email')
+                                        <div id="email" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label class="form-label">Prodi</label>
-                                        <select class="form-control">
-                                            <option value="" disabled selected>Pilih Prodi</option>
-                                            <option>Option 1</option>
-                                            <option>Option 2</option>
-                                        </select>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="angkatan">Angkatan</label>
+                                    <input id="angkatan" type="text"
+                                        class="form-control @error('angkatan') is-invalid @enderror" name="angkatan"
+                                        placeholder="Angkatan anda" pattern="[0-9]*">
+                                    @error('angkatan')
+                                        <div id="angkatan" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="email">No.HP</label>
-                                        <input id="phone" type="phone" class="form-control" name="phone">
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="id_prodi">Prodi</label>
+                                    <select class="form-control @error('id_prodi') is-invalid @enderror" id="id_prodi"
+                                        name="id_prodi">
+                                        <option value="">Pilih Prodi</option>
+                                        @foreach ($prodis as $data)
+                                            <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_prodi')
+                                        <div id="id_prodi" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <div class="form-group">
-                                                <label for="password" class="control-label">Password</label>
-                                                <div class="input-group mb-3">
-                                                    <input id="password" type="password"
-                                                        class="form-control @error('password') is-invalid @enderror"
-                                                        name="password" tabindex="2" placeholder="Password">
-                                                </div>
-                                                @error('password')
-                                                    <div id="password" class="form-text">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <div class="form-group">
-                                                <label for="password" class="control-label">Password
-                                                    Confirmation</label>
-                                                <div class="input-group mb-3">
-                                                    <input id="password" type="password"
-                                                        class="form-control @error('password') is-invalid @enderror"
-                                                        name="password-confirmation" tabindex="2"
-                                                        placeholder="Password Confirmation">
-                                                </div>
-                                                @error('password')
-                                                    <div id="password" class="form-text">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="no_telp">No. HP</label>
+                                    <input id="no_telp" type="text"
+                                        class="form-control @error('no_telp') is-invalid @enderror" name="no_telp"
+                                        pattern="[0-9]*" placeholder="Nomor telepon / nomor whatsapp">
+                                    @error('no_telp')
+                                        <div id="no_telp" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                            Register
-                                        </button>
+                                <div class="form-group mb-3">
+                                    <label for="password" class="control-label">Password</label>
+                                    <div class="input-group">
+                                        <input id="password" type="password"
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            placeholder="Password">
                                     </div>
-                                </form>
-                            </div>
+                                    @error('password')
+                                        <div id="password" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="password_confirmation" class="control-label">Password
+                                        Confirmation</label>
+                                    <div class="input-group">
+                                        <input id="password_confirmation" type="password"
+                                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation" placeholder="Konfirmasi password">
+                                    </div>
+                                    @error('password_confirmation')
+                                        <div id="password_confirmation" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="d-flex mb-4">
+                                    <small class="ml-auto">
+                                        <span>Sudah punya akun?</span>
+                                        <a href="{{ route('login.page') }}">Sign in</a>
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                        Sign up
+                                    </button>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col d-flex">
+                                        <small class="mx-auto">
+                                            <a href="{{ route('landing.page') }}">Kembali ke Landing Page</a>
+                                        </small>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
-                        </div>
+                    </div>
+                    <div class="simple-footer">
+                        Copyright &copy; MBKM Poliwangi {{ now()->year }}
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <!-- General JS Scripts -->
-    <script src="assets/modules/jquery.min.js"></script>
-    <script src="assets/modules/popper.js"></script>
-    <script src="assets/modules/tooltip.js"></script>
-    <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-    <script src="assets/modules/moment.min.js"></script>
-    <script src="assets/js/stisla.js"></script>
-
-    <!-- JS Libraies -->
-    <script src="assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
-    <script src="assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
-
-    <!-- Page Specific JS File -->
-    <script src="assets/js/page/auth-register.js"></script>
-
-    <!-- Template JS File -->
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/custom.js"></script>
-</body>
-
-</html>
+        </div>
+    </section>
+@endsection

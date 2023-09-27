@@ -10,6 +10,7 @@ use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\RegisterMahasiswaController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use Illuminate\Support\Facades\Route;
@@ -39,9 +40,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
 
         // register akun
-        Route::get('/register-mahasiswa', function () {
-            return view('pages.auth.register-mahasiswa');
-        });
+        Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
+        Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
     });
 
     Route::group(['middleware' => ['auth', 'permission']], function () {

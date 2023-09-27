@@ -13,12 +13,17 @@ class Dosen extends Model
     protected $fillable = [
         'id',
         'nama',
-        'prodi',
         'no_telp',
-        'id_user'
+        'id_prodi',
+        'id_user',
     ];
 
     // relasi
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id');
