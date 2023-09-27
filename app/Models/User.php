@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class);
+        return $this->hasMany(Mahasiswa::class, 'id_user');
     }
 
     public function dosen()
