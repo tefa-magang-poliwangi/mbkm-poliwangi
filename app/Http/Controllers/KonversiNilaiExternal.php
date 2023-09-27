@@ -139,6 +139,8 @@ class KonversiNilaiExternal extends Controller
             'id_nilai_magang_ext' => $nilai_magang_ext,
         ]);
 
+        return redirect()->route('daftar.mahasiswa.index');
+
     }
 
     /**
