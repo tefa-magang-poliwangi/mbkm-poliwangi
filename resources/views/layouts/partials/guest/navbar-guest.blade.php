@@ -64,7 +64,7 @@
 
                 @guest
                     <li class="nav-item mx-3 my-auto">
-                        <a href="{{ route('login.mahasiswa.page') }}" class="btn btn-login px-4 py-2">
+                        <a href="{{ route('login.page') }}" class="btn btn-login px-4 py-2">
                             Login &ensp; <i class="fa-solid fa-right-to-bracket"></i>
                         </a>
                     </li>

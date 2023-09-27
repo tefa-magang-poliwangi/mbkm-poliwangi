@@ -15,20 +15,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RoleSeeder::class,
+            // RoleSeeder::class,
             UserSeeder::class,
 
-            KategoriSeeder::class,
-            SektorIndustriSeeder::class,
+            // KategoriSeeder::class,
+            // SektorIndustriSeeder::class,
 
             // MahasiswaSeeder::class,
             // DosenSeeder::class,
             // MitraSeeder::class,
 
-            MagangExternalSeeder::class,
-            PeriodeSeeder::class,
+            // MagangExternalSeeder::class,
+            // PeriodeSeeder::class,
 
-            MatkulSeeder::class,
+            // MatkulSeeder::class,
         ]);
     }
 }

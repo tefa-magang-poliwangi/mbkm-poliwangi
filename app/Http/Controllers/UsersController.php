@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Mahasiswa;
+use Illuminate\Validation\Rules;
 
 class UsersController extends Controller
 {
@@ -19,9 +20,9 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::latest()->paginate(10);
-        $mahasiswas = Mahasiswa::select('nama', 'nim', 'email')->get();
+        // $mahasiswas = Mahasiswa::select('nama', 'nim', 'email')->get();
 
-        return view('users.index', compact('users', 'mahasiswas'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -47,7 +48,7 @@ class UsersController extends Controller
         //For demo purposes only. When creating user or inviting a user
         // you should create a generated random password and email it to the user
         $user->create(array_merge($request->validated(), [
-            'password' => 'test'
+            'password' => '1234578'
         ]));
 
         return redirect()->route('users.index')

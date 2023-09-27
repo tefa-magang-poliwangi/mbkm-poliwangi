@@ -30,27 +30,19 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
      * Home Routes
      */
     //  landing page route and logout
-
+    Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
     Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
 
     Route::group(['middleware' => ['guest']], function () {
         // auth route
-        Route::get('/login-mahasiswa', [AuthMahasiswaController::class, 'login_mahasiswa'])->name('login.mahasiswa.page');
-        Route::post('/login-mahasiswa', [AuthMahasiswaController::class, 'do_login_mahasiswa'])->name('do.login.mahasiswa');
-
-        Route::get('/login-dosen', [AuthDosenController::class, 'login_dosen'])->name('login.dosen.page');
-        Route::post('/login-dosen', [AuthDosenController::class, 'do_login_dosen'])->name('do.login.dosen');
-
-        Route::get('/login-mitra', [AuthMitraController::class, 'login_mitra'])->name('login.mitra.page');
-        Route::post('/login-mitra', [AuthMitraController::class, 'do_login_mitra'])->name('do.login.mitra');
+        Route::get('/login', [AuthController::class, 'login'])->name('login.page');
+        Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
     });
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
         /**
          * Super Admin
          */
-        Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
-
         Route::get('/dashboard-admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
 
         // route dashboard all
@@ -140,6 +132,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
             Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
         });
+        // Role
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
     });

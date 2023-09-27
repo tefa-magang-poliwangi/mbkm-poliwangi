@@ -28,11 +28,11 @@ class AuthMahasiswaController extends Controller
     {
         // Validasi
         $credentials = $request->validate([
-            'nim' => ['required', 'string', 'between:12,12'],
+            'username' => ['required'],
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
-        if (Auth::guard('mahasiswas')->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             // Otentikasi pengguna
             $request->session()->regenerate();
             return redirect()->route('dashboard.mahasiswa.page');
