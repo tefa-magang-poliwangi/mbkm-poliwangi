@@ -30,13 +30,16 @@
                         </div>
                         <div class="col-8 d-flex">
                             <div class="ml-auto">
-                                <button class="btn btn-theme fa-plus">Tambah</button>
+                                <a href="{{route('daftar.kurikulum.create')}}" class="btn btn-theme fa-plus">Tambah</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body py-0 mb-0">
                         <div class="table-responsive">
+                            @php
+                                $no = 1;
+                            @endphp
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
@@ -45,32 +48,23 @@
                                             No
                                         </th>
                                         <th>Nama Kurikulum</th>
-                                        <th>Tahun Ajaran</th>
-                                        <th>Jumlah SKS Kurikulum</th>
+                                        <th>Prodi</th>
                                         <th>Status</th>
-                                        <th>Mata Kuliah</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($kurikulums as $item)
                                     <tr>
                                         <td>
-                                            1
+                                            {{$no}}
                                         </td>
-                                        <td>TRPL 2022</td>
+                                        <td>{{$item->nama}}</td>
                                         <td>
-                                            2020/2021 Gasal
-                                        </td>
-                                        <td>
-                                            127
+                                           {{$item->prodi}}
                                         </td>
                                         <td>
-                                            <div class="badge badge-success">Active</div>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-success">
-                                                <i class="fa-solid fa-search"></i> Mata Kuliah
-                                            </a>
+                                            {{$item->status}}
                                         </td>
                                         <td>
                                             <a href="#" class="btn btn-primary">
@@ -80,6 +74,10 @@
                                             <a href="#"> <i class="fa-solid fas fa-trash text-dark"></i></a>
                                         </td>
                                     </tr>
+                                    @php
+                                        $no++;
+                                    @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

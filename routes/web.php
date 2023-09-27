@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthMitraController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
+use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
@@ -71,6 +72,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
         Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
+
+        Route::get('/daftar-kurikulum/index', [KurikulumController::class, 'index'])->name('daftar.kurikulum.index');
+        Route::get('/daftar-kurikulum/create', [KurikulumController::class, 'create'])->name('daftar.kurikulum.create');
+        Route::post('/daftar-kurikulum/store', [KurikulumController::class, 'store'])->name('daftar.kurikulum.store');
 
         // Halaman Mahasiswa - Eksternal
         Route::get('/dashboard-mahasiswa/profil', function () {
@@ -158,9 +163,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
 
     //Route data kurikulum
-    Route::get('/data-kurikulum', function () {
-        return view('pages.prodi.data-kurikulum1');
-    });
+    // Route::get('/data-kurikulum', function () {
+    //     return view('pages.prodi.data-kurikulum1');
+    // });
     Route::get('/dashboard-dosen/data-kurikulum', function () {
         return view('pages.prodi.data-kurikulum');
     });

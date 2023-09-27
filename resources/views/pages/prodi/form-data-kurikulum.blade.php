@@ -16,72 +16,52 @@
                     <h4>Tambah Data Kurikulum Kuliah</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form action="{{ route('daftar.kurikulum.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label class="form-label">Nama Kurikulum</label>
-                            <select class="form-control">
-                                <option value="" disabled selected>Pilih kurikulum</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                            </select>
+                            <input id="create_nama" type="text"
+                                class="form-control @error('create_nama')
+                                is-invalid
+                            @enderror"
+                                name="create_nama">
+                            @error('create_nama')
+                                <div id="create_nama" class="form-text text-danger">
+                                    {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Pilih Prodi / Jurusan</label>
-                            <select class="form-control">
-                                <option value="" disabled selected>Pilih prodi</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
+                            <select
+                                class="form-control @error('create_prodi')
+                                is-invalid
+                            @enderror"
+                                id="create_prodi" name="create_prodi">
+                                <option value="">Pilih prodi</option>
+                                @foreach ($prodi as $dataprodi)
+                                    <option value="{{ $dataprodi->id }}">{{ $dataprodi->nama }}</option>
+                                @endforeach
                             </select>
+                            @error('create_prodi')
+                                <div id="create_prodi" class="form-text text-danger">
+                                    {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label">Pilih Tahun Ajaran</label>
-                            <select class="form-control">
-                                <option value="" disabled selected>Pilih tahun</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
+                            <label class="form-label">Status</label>
+                            <select class="form-control @error('create_status') is-invalid @enderror"
+                                id="create_status" name="create_status">
+                                <option value="">Pilih Status</option>
+                                <option value="Wajib">Wajib</option>
+                                <option value="Tidak Wajib">Tidak Wajib</option>
                             </select>
+                            @error('create_status')
+                                <div id="create_status" class="form-text pb-1">
+                                    {{ $message }}</div>
+                            @enderror
                         </div>
-
-                        <div class="form-group">
-                            <label for="email">Jumlah SKS Total</label>
-                            <input id="number" type="number" class="form-control" name="number">
-                            <div class="invalid-feedback">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="email">Jumlah SKS Wajib</label>
-                                <input id="number" type="number" class="form-control" name="number">
-                                <div class="invalid-feedback">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-6">
-                                <label for="email">Jumlah SKS Pilihan</label>
-                                <input id="number" type="number" class="form-control" name="number">
-                                <div class="invalid-feedback">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Keterangan</label>
-                            <select class="form-control">
-                                <option value="" disabled selected>Keterangan</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Status</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-
-
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">

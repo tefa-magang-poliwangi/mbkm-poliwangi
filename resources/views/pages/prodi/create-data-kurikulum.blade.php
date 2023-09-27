@@ -37,7 +37,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
-                                <input type="text" class="form-control" placeholder="Status">
+                                <select class="form-control">
+                                    <option>Status</option>
+                                    <option>Aktif</option>
+                                    <option>Tidak Aktif</option>
+                                </select>
                             </div>
                             <div class="card-footer text-center">
                                 <button class="btn btn-primary mr-1" type="submit">Tambah Mata Kuliah</button>
