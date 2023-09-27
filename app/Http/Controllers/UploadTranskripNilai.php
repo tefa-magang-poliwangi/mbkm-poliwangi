@@ -86,7 +86,14 @@ class UploadTranskripNilai extends Controller
      */
     public function index()
     {
-        //
+        $data =[
+            'nilaimagangext' => NilaiMagangExt::all(),
+            'mahasiswa'=> Mahasiswa::all(),
+            'periode' => Periode::all(),
+            'magangext' => MagangExt::all()
+        ];
+
+        return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
     }
 
     /**
@@ -96,7 +103,14 @@ class UploadTranskripNilai extends Controller
      */
     public function create()
     {
-        //
+        $data =[
+            'nilaimagangext' => NilaiMagangExt::all(),
+            'mahasiswa'=> Mahasiswa::all(),
+            'periode' => Periode::all(),
+            'magangext' => MagangExt::all()
+        ];
+
+        return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
     }
 
     /**
@@ -105,9 +119,31 @@ class UploadTranskripNilai extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_mahasiswa)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($id_mahasiswa);
+        $validated = $request->validate([
+            'file' => ['required', 'mimes:pdf', 'max:1024'],
+            'magang_eksternal'=> ['required'],
+            'periode'=> ['required'],
+        ]);
+
+        $saveData = [];
+
+        // Mengecek apakah field untuk upload file sudah di-upload atau belum
+        if ($request->hasFile('file')) {
+            $uploadedFile = $request->file('file');
+            $saveData['file'] = $uploadedFile->store('public/transkip-nilai-external');
+        }
+
+        NilaiMagangExt::create([
+            'file' => isset($saveData['file']) ? $saveData['file'] : null,
+            'id_mahasiswa' => $mahasiswa->id,
+            'id_magang_ext' => $validated['magang_eksternal'],
+            'id_periode' => $validated['periode'],
+        ]);
+
+        return redirect()->route('upload-transkrip-mahasiswa.create');
     }
 
     /**
