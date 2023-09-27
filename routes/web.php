@@ -37,6 +37,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // auth route
         Route::get('/login', [AuthController::class, 'login'])->name('login.page');
         Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
+
+        // register akun
+        Route::get('/register-mahasiswa', function () {
+            return view('pages.auth.register-mahasiswa');
+        });
     });
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
@@ -102,6 +107,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
+        });
+        Route::get('/dashboard-dosen/data-kurikulum', function () {
+            return view('pages.prodi.data-kurikulum');
         });
 
         // Halaman Dosen Pembimbing

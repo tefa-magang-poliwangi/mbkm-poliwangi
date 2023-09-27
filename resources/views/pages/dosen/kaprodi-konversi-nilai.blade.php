@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid py-3">
+    <div class="container-fluid py-5">
         <section>
             <div class="col text-start d-flex text-uppercase">
                 <div class="px-2">
