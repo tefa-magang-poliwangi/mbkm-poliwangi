@@ -410,3 +410,7 @@ body {
 .menu-none-decoration {
     text-decoration: none !important;
 }
+
+.teks-merah {
+    color: red;
+}
