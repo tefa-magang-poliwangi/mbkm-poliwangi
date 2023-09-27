@@ -38,63 +38,124 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active card card-border card-rounded-sm card-hover" id="form-transkip"
                         role="tabpanel" aria-labelledby="list-home-list">
+                        <form
+                            action="{{ route('upload.transkrip.mahasiswa.store', Auth::user()->id) }}"
+                            method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <h4 class="header-title mt-0 mb-3">Transkrip Nilai</h4>
 
-                        <div class="card-body">
-                            <h4 class="header-title mt-0 mb-3">Transkrip Nilai</h4>
+                                <label class="form-label">
+                                    File Transkip
+                                    <span class="text-primary">
+                                        *(wajib, pdf only)
+                                    </span>
+                                </label>
 
-                            <label class="form-label">
-                                File Transkip
-                                <span class="text-primary">
-                                    *(wajib, pdf only)
-                                </span>
-                            </label>
+                                <div class="flex-column">
+                                    <div id="drop-area">
+                                        <a class="nav-link active">
+                                            <div class="input-group mb-3">
+                                                <input type="file"
+                                                    class="form-control  @error('file') is-invalid @enderror"
+                                                    placeholder="Choose file to upload" aria-label="Choose file to upload"
+                                                    aria-describedby="button-addon2" id="file" name="file">
+                                            </div>
+                                            @error('file')
+                                                <div id="file" class="form-text text-danger">
+                                                    {{ $message }}</div>
+                                            @enderror
+                                        </a>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Magang Eksternal</label>
+                                        <select
+                                            class="form-control @error('magang_eksternal')
+                                            is-invalid
+                                        @enderror"
+                                            id="magang_eksternal" name="magang_eksternal">
+                                            <option value="">Pilih Perusahaan</option>
+                                            @foreach ($magangext as $datamagang)
+                                                <option value="{{ $datamagang->id }}">{{ $datamagang->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('magang_eksternal')
+                                        <div id="magang_eksternal" class="form-text text-danger">
+                                            {{ $message }}</div>
+                                    @enderror
 
-                            <div class="nav flex-column">
-                                <div id="drop-area">
-                                    <a class="nav-link active">
-                                        <div class="input-group mb-3">
-                                            <input type="file" class="form-control" placeholder="Choose file to upload"
-                                                aria-label="Choose file to upload" aria-describedby="button-addon2"
-                                                id="fileInput">
+                                    <div class="form-group">
+                                        <label class="form-label">Periode</label>
+                                        <select
+                                            class="form-control @error('periode')
+                                            is-invalid
+                                        @enderror"
+                                            id="periode" name="periode">
+                                            <option value="">Periode</option>
+                                            @foreach ($periode as $dataperiode)
+                                                <option value="{{ $dataperiode->id }}">{{ $dataperiode->tahun }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('periode')
+                                        <div id="periode" class="form-text text-danger">
+                                            {{ $message }}</div>
+                                    @enderror
+
+                                    <div class="row">
+                                        <div class="col text-right">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Magang Eksternal</label>
-                                    <select class="form-control">
-                                        <option value="" disabled selected>Pilih Perusahaan</option>
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">Magang Eksternal</label>
-                                    <select class="form-control">
-                                        <option value="" disabled selected>Periode</option>
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col text-right">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="submit" class="btn btn-grey">Batalkan</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                     {{-- Daftar Transkip Nilai --}}
                     <div class="tab-pane fade" id="daftar-transkip" role="tabpanel" aria-labelledby="list-profile-list">
-                        <div class="card card-border card-rounded-sm card-hover">
-                            <div class="card-body">
-                                <p>Ini Daftar Transkip Nilai</p>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                @if ($nilaimagangext->isEmpty())
+                                    <span>Transkrip Nilai Belum Ditambahkan</span>
+                                @else
+                                    @foreach ($nilaimagangext as $data)
+                                        <div class="card card-border card-rounded-sm card-hover">
+                                            <div class="card-body">
+                                                <div class="file-box" title="pendaftaran">
+                                                    <div class="row">
+                                                        <div class="col-6 d-flex">
+                                                            <a href="{{ route('upload-transkrip-mahasiswa.delete', $data->id) }}"
+                                                                class="mr-auto my-auto">
+                                                                <i class="fa-regular fa-trash-can text-size text-danger"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-6 d-flex">
+                                                            <a href="{{ Storage::url($data->file) }}" target="_blank"
+                                                                class="ml-auto my-auto">
+                                                                <i class="fa-solid fa-download text-size text-success"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center py-3">
+                                                        <i class="far fa-file-pdf text-primary fs-transkrip"></i>
+                                                        <h6 class="text-truncate">
+                                                            Transkrip Nilai.pdf
+                                                        </h6>
+                                                        <small class="text-muted">-
+                                                            <br>
+                                                            10 MB
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
+
                     </div>
 
                     {{-- Hasil Transkip Nilai --}}

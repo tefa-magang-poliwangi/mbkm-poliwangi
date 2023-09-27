@@ -95,7 +95,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-exchange-alt"></i>
+                        <a class="nav-link" href="{{route('daftar.mahasiswa.index')}}"><i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>
                     </li>
@@ -170,7 +170,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-credit-card"></i>
+                        <a class="nav-link" href="{{route('upload-transkrip-mahasiswa.create')}}"><i class="fas fa-credit-card"></i>
                             <span>Transkrip Nilai</span>
                         </a>
                     </li>

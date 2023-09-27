@@ -20,6 +20,9 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
+                                @php
+                                    $no = 1;
+                                @endphp
                                 <thead>
                                     <tr>
                                         <th class="text-center">
@@ -31,39 +34,30 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>Aida Andinar Maulidiana</td>
-                                        <td>
-                                            362055401012
-                                        </td>
-                                        <td>
-                                            Teknologi Rekayasa Perangkat Lunak
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fa-solid fa-file-pen text-dark"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>Rini Maulida</td>
-                                        <td>
-                                            362055401084
-                                        </td>
-                                        <td>
-                                            Teknologi Rekayasa Perangkat Lunak
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-transparent"><i
-                                                    class="fa-solid fa-file-pen text-dark"></i></a>
-                                        </td>
-                                    </tr>
+                                   @foreach ($nilai_magang_ext as $data)
+                                        <tr>
+                                            <td>
+                                                {{ $no }}
+                                            </td>
+                                            <td>{{ $data->mahasiswa->nama }}</td>
+                                            <td>
+                                                {{ $data->mahasiswa->nim }}
+                                            </td>
+                                            <td>
+                                                {{ $data->mahasiswa->prodi }}
+                                            </td>
+                                            <td>
+                                                <a href="{{route('daftar-mahasiswa.index', $data->id)}}"
+                                                    class="btn btn-transparent"><i
+                                                        class="fa-solid fa-file-pen text-dark"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                        @php
+                                            $no++;
+                                        @endphp
                                 </tbody>
                             </table>
                         </div>
