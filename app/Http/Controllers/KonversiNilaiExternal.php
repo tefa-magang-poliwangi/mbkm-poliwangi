@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
+use App\Models\Matkul;
 use App\Models\NilaiKonversi;
+use App\Models\NilaiMagangExt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -84,7 +87,14 @@ class KonversiNilaiExternal extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'nilai_magang_ext' => NilaiMagangExt::all(),
+            'mahasiswa' => Mahasiswa::all(),
+            'matakuiah' => Matkul::all(),
+            'nilaikonversi' => NilaiKonversi::all()
+        ];
+
+        return view('pages.dosen.kaprodi-daftar-konversi', $data);
     }
 
     /**
@@ -94,7 +104,14 @@ class KonversiNilaiExternal extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'nilai_magang_ext' => NilaiMagangExt::where('id')->get(),
+            'mahasiswa' => Mahasiswa::all(),
+            'matakuiah' => Matkul::all(),
+            'nilaikonversi' => NilaiKonversi::all()
+        ];
+
+        return view('pages.dosen.kaprodi-konversi-nilai', $data);
     }
 
     /**
@@ -103,9 +120,25 @@ class KonversiNilaiExternal extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_nilai_magang_ext)
     {
-        //
+        $nilai_magang_ext = NilaiMagangExt::findOrFile($id_nilai_magang_ext);
+
+        $validated = $request->validate([
+            'nilai_angka' => ['required', 'numeric', 'between:0,100'],
+            'nilai_huruf' => ['nullable'],
+        ]);
+
+        $penilaian = $this->KonversiNilaiAngka($validated['nilai_angka']);
+
+        NilaiKonversi::create([
+            'nilai_angka' => $validated['nilai_angka'],
+            'nilai_huruf' => $penilaian,
+            'id_mahasiswa' => $request['id_mahasiswa'],
+            'id_matkul' => $request['id_matkul'],
+            'id_nilai_magang_ext' => $nilai_magang_ext,
+        ]);
+
     }
 
     /**
