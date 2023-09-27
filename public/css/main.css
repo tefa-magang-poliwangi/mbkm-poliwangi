@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
-
 body {
     font-family: "Poppins", sans-serif !important;
     overflow-x: hidden;
@@ -116,7 +115,9 @@ body {
     height: 400px !important;
 }
 
+
 /* Mengatur posisi tombol "Selengkapnya" di bagian bawah konten */
+
 .card-height .btn-detail {
     position: absolute;
     bottom: 40px;
@@ -125,7 +126,9 @@ body {
     transform: translateX(-50%);
 }
 
+
 /* Mengatur posisi card relatif agar tombol tidak tumpang tindih */
+
 .card-height {
     position: relative;
 }
@@ -293,6 +296,7 @@ body {
     font-size: 12px !important;
 }
 
+
 /* Ganti warna latar belakang navbar */
 
 .navbar-theme {
@@ -301,6 +305,7 @@ body {
     transition: background-color 0.3s ease;
     /* Efek transisi perubahan warna */
 }
+
 
 /* Ganti warna latar belakang navbar saat di-scroll */
 
