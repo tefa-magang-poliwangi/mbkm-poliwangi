@@ -86,6 +86,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mahasiswa/tidak-lolos-pendaftaran', function () {
             return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
         });
+        Route::get('/dashboard-mahasiswa/laporan-harian', function () {
+            return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian');
+        });
+        Route::get('/dashboard-mahasiswa/laporan-mingguan', function () {
+            return view('pages.mahasiswa.laporan-mahsiswa.laporan-mingguan');
+        });
+        Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
+            return view('pages.mahasiswa.dosbim-laporan-akhir');
+        });
+
 
         // Halaman Mitra
         Route::get('/dashboard-mitra/mitra-lowongan', function () {
