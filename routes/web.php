@@ -56,6 +56,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
         // route backend testing (postman)
+        // Route::get('/get-detail-mahasiswa/{id_mahasiswa}',
         Route::get('/upload-transkrip-mahasiswa/index', [UploadTranskripNilai::class, 'index'])->name('upload-transkrip-mahasiswa.index');
         Route::get('/upload-transkrip-mahasiswa/create', [UploadTranskripNilai::class, 'create'])->name('upload-transkrip-mahasiswa.create');
         Route::post('/upload-transkrip-mahasiswa/store/{id_user}', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.store');
@@ -117,9 +118,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
+        // Route::get('/dashboard-dosen/data-kurikulum', function () {
+        //     return view('pages.prodi.data-kurikulum');
+        // });
+
 
         // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
@@ -153,4 +155,27 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
     });
+
+
+    //Route data kurikulum
+    Route::get('/data-kurikulum', function () {
+        return view('pages.prodi.data-kurikulum1');
+    });
+    Route::get('/dashboard-dosen/data-kurikulum', function () {
+        return view('pages.prodi.data-kurikulum');
+    });
+    Route::get('/dashboard-dosen/create-data-kurikulum', function () {
+        return view('pages.prodi.create-data-kurikulum');
+    });
+    Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
+        return view('pages.prodi.daftar-cpl-kurikulum');
+    });
+});
+
+Route::get('/dashboard-dosen/data-kurikulum', function () {
+    return view('pages.prodi.data-kurikulum');
+});
+
+Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+    return view('pages.prodi.form-data-kurikulum');
 });

@@ -19,7 +19,7 @@
                     <div class="card-header bg-white border-0 px-2">
                         <div class="col-6">
                             <div class="dropdown d-inline mr-2">
-                                <h6>Daftar MK Kurikulum : TRPL 2023</h6>
+                                <h6>Daftar CPL Kurikulum : TRPL 2023</h6>
                             </div>
                         </div>
                         <div class="col-6 d-flex">
@@ -37,21 +37,15 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode MK</th>
-                                        <th>Nama Mata Kuliah</th>
-                                        <th>Bobot MK</th>
-                                        <th>Semester</th>
-                                        <th>Status</th>
+                                        <th>Kode CPL</th>
+                                        <th>Kategori</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>321</td>
-                                        <td>PBL</td>
-                                        <td>4 SKS</td>
-                                        <td>5</td>
+                                        <td>687</td>
                                         <td>WAJIB</td>
                                         <td><a href="#"> <i class="fas fa-edit"></i></a>
                                             <a href="#"> <i class="fas fa-trash"></i></a>
@@ -59,10 +53,7 @@
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>322</td>
-                                        <td>SPK</td>
-                                        <td>4 SKS</td>
-                                        <td>5</td>
+                                        <td>688</td>
                                         <td>WAJIB</td>
                                         <td><a href="#"> <i class="fas fa-edit"></i></a>
                                             <a href="#"> <i class="fas fa-trash"></i></a>
