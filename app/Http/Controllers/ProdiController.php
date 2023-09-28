@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kurikulum;
-use App\Models\Matkul;
-use App\Models\MatkulKurikulum;
+use App\Models\Prodi;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 
-class MatkulKurikulumController extends Controller
+class ProdiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,10 @@ class MatkulKurikulumController extends Controller
     public function index()
     {
         $data = [
-            'matkul' => Matkul::all(),
-            'kurikulum' => Kurikulum::all(),
-            'matkulkurikulum' => MatkulKurikulum::all(),
+            'prodi' => Prodi::all()
         ];
-        return view('pages.prodi.data-matkul-kurikulum', $data);
+
+        return view('pages.prodi.daftar-prodi', $data);
     }
 
     /**
@@ -31,12 +29,7 @@ class MatkulKurikulumController extends Controller
      */
     public function create()
     {
-        $data = [
-            'matkul' => Matkul::all(),
-            'kurikulum' => Kurikulum::all(),
-            'matkulkurikulum' => MatkulKurikulum::all(),
-        ];
-        return view('pages.prodi.create-data-kurikulum', $data);
+        //
     }
 
     /**
@@ -48,18 +41,14 @@ class MatkulKurikulumController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'create_semester' => ['required'],
-            'create_kurikulum' => ['required'],
-            'create_matkul' => ['required'],
+            'create_nama_prodi' => ['required', 'string']
         ]);
 
-        MatkulKurikulum::create([
-            'semester' => $validated['create_semester'],
-            'id_kurikulum' => $validated['create_kurikulum'],
-            'id_matkul' => $validated['create_matkul'],
-        ]);
+        $prodi = new Prodi;
+        $prodi->nama = $validated['create_nama_prodi'];
+        $prodi->save();
 
-        return redirect()->route('daftar.matkul.kurikulum.index');
+        return redirect()->route('daftar.prodi.index');
     }
 
     /**
@@ -104,9 +93,9 @@ class MatkulKurikulumController extends Controller
      */
     public function destroy($id)
     {
-        $matkul_kurikulum = MatkulKurikulum::findOrFail($id);
-        $matkul_kurikulum->delete();
+        $prodi = Prodi::findOrFail($id);
+        $prodi->delete();
 
-        return redirect()->route('daftar.matkul.kurikulum.index');
+        return redirect()->route('daftar.prodi.index');
     }
 }

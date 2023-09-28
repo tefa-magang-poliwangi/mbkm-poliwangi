@@ -87,8 +87,28 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
+                        <<<<<<< HEAD <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                                class="fas fa-info-circle"></i>
+                            =======
+                            <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
+                                <span>Prodi</span>
+                            </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
+                            <span>Matakuliah</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
+                            >>>>>>> ad01bf5fecc782eb8d8c0bd9587de3fd54bec849
                             <span>Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}"><i
+                                class="fas fa-info-circle"></i>
+                            <span>Matkul Kurikulum</span>
                         </a>
                     </li>
                     <li>
@@ -246,7 +266,7 @@
                             <span>Kegiatanku</span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="nav-link" href="">Laporan Harian</a>
+                                <a class="nav-link" href="/dashboard-mahasiswa/laporan-mahasiswa-harian">Laporan Harian</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>
