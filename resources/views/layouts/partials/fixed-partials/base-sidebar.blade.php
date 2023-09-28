@@ -87,7 +87,7 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
-                        <a class="nav-link" href="{{route('daftar.kurikulum.index')}}"><i class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
                             <span>Kurikulum</span>
                         </a>
                     </li>
@@ -97,7 +97,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('daftar.mahasiswa.index')}}"><i class="fas fa-exchange-alt"></i>
+                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>
                     </li>
@@ -246,8 +246,7 @@
                             <span>Kegiatanku</span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="nav-link"
-                                    href="{{ route('/dashboard-mahasiswa/laporan-mahasiswa-harian') }}">Laporan Harian</a>
+                                <a class="nav-link" href="">Laporan Harian</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>
@@ -258,7 +257,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('upload-transkrip-mahasiswa.create')}}"><i class="fas fa-credit-card"></i>
+                        <a class="nav-link" href="{{ route('upload-transkrip-mahasiswa.create') }}"><i
+                                class="fas fa-credit-card"></i>
                             <span>Transkrip Nilai</span>
                         </a>
                     </li>

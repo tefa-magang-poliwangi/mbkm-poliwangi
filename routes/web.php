@@ -43,7 +43,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // register akun
         Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
         Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
-    });
+
+
+
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
         /**
@@ -55,6 +57,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
         Route::get('/dashboard-dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
         Route::get('/dashboard-mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
+
+        //route data master
+        Route::get('/dashboard-admin/data-mahasiswa', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
+        Route::get('/dashboard-admin/data-dosen', [DosenPageController::class, 'index'])->name('data.dosen.index');
+
 
         // route backend testing (postman)
         // Route::get('/get-detail-mahasiswa/{id_mahasiswa}',
@@ -84,6 +91,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/form-upload-transkip', function () {
             return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
         });
+        
 
         // Halaman Mahasiswa - Internal
         Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class MahasiswaPageController extends Controller
@@ -19,7 +20,11 @@ class MahasiswaPageController extends Controller
      */
     public function index()
     {
-        //
+        $datas = [
+            'mahasiswas' => Mahasiswa::all()
+        ];
+
+        return view('pages.admin.data-mahasiswa', $datas);
     }
 
     /**

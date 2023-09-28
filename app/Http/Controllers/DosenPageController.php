@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 
 class DosenPageController extends Controller
@@ -19,7 +20,11 @@ class DosenPageController extends Controller
      */
     public function index()
     {
-        //
+        $datas = [
+            'dosens' => Dosen::all()
+        ];
+
+        return view('pages.admin.data-dosen', $datas);
     }
 
     /**
