@@ -48,7 +48,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // register akun
         Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
         Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
-
+    });
 
 
 
@@ -115,7 +115,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/form-upload-transkip', function () {
             return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
         });
-        
+
 
         // Halaman Mahasiswa - Internal
         Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
@@ -219,3 +219,4 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         return view('pages.prodi.daftar-cpl-kurikulum');
     });
 });
+

@@ -87,9 +87,18 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
-                        <<<<<<< HEAD <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
-                                class="fas fa-info-circle"></i>
-                            =======
+                        <a class="nav-link" href="{{route('data.mahasiswa.index')}}"><i class="fas fa-graduation-cap"></i>
+                            <span>Mahasiswa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{route('data.dosen.index')}}"><i class="fas fa-graduation-cap"></i>
+                            <span>Dosen</span>
+                        </a>
+                    </li>
+                    <li>
+                       {{-- <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                                class="fas fa-info-circle"></i> --}}
                             <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
                                 <span>Prodi</span>
                             </a>
@@ -101,7 +110,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
-                            >>>>>>> ad01bf5fecc782eb8d8c0bd9587de3fd54bec849
+
                             <span>Kurikulum</span>
                         </a>
                     </li>

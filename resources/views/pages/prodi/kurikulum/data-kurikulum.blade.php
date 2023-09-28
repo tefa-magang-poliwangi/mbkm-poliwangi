@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
 @section('title')
-    <title>Konversi Nilai| Politeknik Negeri Banyuwangi</title>
+    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">

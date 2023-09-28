@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-8 d-flex">
                             <div class="ml-auto">
-                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-theme fa-plus">Tambah</a>
+                                <a href="#" class="btn btn-theme fa-plus">Tambah</a>
                             </div>
                         </div>
                     </div>
@@ -49,6 +49,7 @@
                                         </th>
                                         <th>NIM</th>
                                         <th>Nama Mahasiswa</th>
+                                        <th>Prodi</th>
                                         <th>Angkatan</th>
                                         <th>Email</th>
                                         <th>No.Telp</th>
@@ -64,6 +65,9 @@
                                             <td>{{ $data->nim }}</td>
                                             <td>
                                                 {{ $data->nama }}
+                                            </td>
+                                            <td>
+                                                {{ $data->prodi->nama }}
                                             </td>
                                             <td>
                                                 {{ $data->angkatan }}

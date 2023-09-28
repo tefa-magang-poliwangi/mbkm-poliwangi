@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-8 d-flex">
                         <div class="ml-auto">
-                            <a href="{{ route('daftar.kurikulum.create') }}"
+                            <a href="#"
                                 class="btn btn-theme fa-plus">Tambah</a>
                         </div>
                     </div>
