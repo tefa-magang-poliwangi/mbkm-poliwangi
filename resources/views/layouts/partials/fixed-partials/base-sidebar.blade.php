@@ -121,11 +121,6 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-info-circle"></i>
-                            <span>Laporan Akhir</span>
-                        </a>
-                    </li>
-                    <li>
                         <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>
@@ -201,7 +196,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li @endrole @role('dosen') {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
@@ -264,7 +259,7 @@
                 @role('mahasiswa')
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user-friends"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i class="fas fa-user-friends"></i>
                             <span>Program</span>
                         </a>
                     </li>
@@ -294,7 +289,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li>
