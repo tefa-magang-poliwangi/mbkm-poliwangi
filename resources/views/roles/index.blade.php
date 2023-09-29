@@ -25,9 +25,13 @@
                             <th>Name</th>
                             <th class="text-center" width="3%" colspan="3">Action</th>
                         </tr>
+                        @php
+                            $no = 1;
+                        @endphp
+
                         @foreach ($roles as $key => $role)
                             <tr>
-                                <td class="text-center">{{ $role->id }}</td>
+                                <td class="text-center">{{ $no }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{ route('roles.show', $role->id) }}">Show</a>
@@ -41,6 +45,9 @@
                                     {!! Form::close() !!}
                                 </td>
                             </tr>
+                            @php
+                                $no++;
+                            @endphp
                         @endforeach
                     </table>
 

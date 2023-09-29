@@ -14,15 +14,19 @@ class PlMitra extends Model
         'nama',
         'no_telp',
         'email',
-        'username',
-        'password',
         'id_mitra',
+        'id_user',
     ];
 
     // relasi
     public function mitra()
     {
         return $this->belongsTo(Mitra::class, 'id_mitra', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     public function pendamping_lapang_mahasiswa()

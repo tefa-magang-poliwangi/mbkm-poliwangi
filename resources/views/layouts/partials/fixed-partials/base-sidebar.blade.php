@@ -84,18 +84,134 @@
                             <span>User</span>
                         </a>
                     </li>
-                @endrole
-
-                @role('dosen')
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
+                    <li>
+                        <a class="nav-link" href="{{route('data.mahasiswa.index')}}"><i class="fas fa-graduation-cap"></i>
+                            <span>Mahasiswa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{route('data.dosen.index')}}"><i class="fas fa-graduation-cap"></i>
+                            <span>Dosen</span>
+                        </a>
+                    </li>
+                    <li>
+                       {{-- <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                                class="fas fa-info-circle"></i> --}}
+                            <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
+                                <span>Prodi</span>
+                            </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
+                            <span>Matakuliah</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
+
+                            <span>Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}"><i
+                                class="fas fa-info-circle"></i>
+                            <span>Matkul Kurikulum</span>
+                        </a>
+                    </li>
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-info-circle"></i>
                             <span>Laporan Akhir</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('daftar.mahasiswa.index')}}"><i class="fas fa-exchange-alt"></i>
+                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
+                            <span>Konversi Nilai</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="blank.html"><i class="fas fa-graduation-cap"></i>
+                            <span>Validasi PL</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="blank.html"><i class="fas fa-graduation-cap"></i>
+                            <span>Kelayakan Mahasiswa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href=""><i class="fas fa-book"></i>
+                            <span>Laporan Harian</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-file-alt"></i>
+                            <span>Laporan Mingguan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-file-alt"></i>
+                            <span>Laporan Akhir</span>
+                        </a>
+                    </li>
+                    {{-- Mitra Sidebar Menu --}}
+                    <li class="menu-header">MITRA</li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-users"></i>
+                            <span>Form Mitra</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
+                            <span>Daftar Pelamar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-book"></i>
+                            <span>Log Book</span></a>
+                    </li>
+                    <li class="menu-header">LOWONGAN MAGANG</li>
+                    <li>
+                        <a class="nav-link" href="blank.html"><i class="fas fa-user-friends"></i>
+                            <span>Program</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">KEGIATANKU MBKM</li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-alt"></i>
+                            <span>Kegiatanku</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="nav-link" href="components-chat-box.html">Laporan Harian</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="components-gallery.html">Laporan Akhir</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="blank.html"><i class="fas fa-credit-card"></i>
+                            <span>Transkrip Nilai</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">Tentang Akun</li>
+                    <li>
+                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li @endrole @role('dosen') {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-info-circle"></i>
+                            <span>Laporan Akhir</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>
                     </li>
@@ -159,7 +275,7 @@
                             <span>Kegiatanku</span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="nav-link" href="components-chat-box.html">Laporan Harian</a>
+                                <a class="nav-link" href="/dashboard-mahasiswa/laporan-mahasiswa-harian">Laporan Harian</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>
@@ -170,7 +286,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('upload-transkrip-mahasiswa.create')}}"><i class="fas fa-credit-card"></i>
+                        <a class="nav-link" href="{{ route('upload-transkrip-mahasiswa.create') }}"><i
+                                class="fas fa-credit-card"></i>
                             <span>Transkrip Nilai</span>
                         </a>
                     </li>

@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Prodi;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 
-class DosenPageController extends Controller
+class ProdiController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +15,11 @@ class DosenPageController extends Controller
      */
     public function index()
     {
-        $datas = [
-            'dosens' => Dosen::all()
+        $data = [
+            'prodi' => Prodi::all()
         ];
 
-        return view('pages.admin.data-dosen', $datas);
+        return view('pages.prodi.daftar-prodi', $data);
     }
 
     /**
@@ -45,7 +40,15 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'create_nama_prodi' => ['required', 'string']
+        ]);
+
+        $prodi = new Prodi;
+        $prodi->nama = $validated['create_nama_prodi'];
+        $prodi->save();
+
+        return redirect()->route('daftar.prodi.index');
     }
 
     /**
@@ -90,6 +93,9 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prodi = Prodi::findOrFail($id);
+        $prodi->delete();
+
+        return redirect()->route('daftar.prodi.index');
     }
 }

@@ -6,7 +6,9 @@ use App\Models\MagangExt;
 use App\Models\Mahasiswa;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -119,9 +121,10 @@ class UploadTranskripNilai extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_mahasiswa)
+    public function store(Request $request, $id_user)
     {
-        $mahasiswa = Mahasiswa::findOrFail($id_mahasiswa);
+
+        $mahasiswa = User::findOrFail($id_user)->mahasiswa;
         $validated = $request->validate([
             'file' => ['required', 'mimes:pdf', 'max:1024'],
             'magang_eksternal'=> ['required'],
@@ -138,7 +141,7 @@ class UploadTranskripNilai extends Controller
 
         NilaiMagangExt::create([
             'file' => isset($saveData['file']) ? $saveData['file'] : null,
-            'id_mahasiswa' => $mahasiswa->id,
+            'id_mahasiswa' => $mahasiswa->first()->id,
             'id_magang_ext' => $validated['magang_eksternal'],
             'id_periode' => $validated['periode'],
         ]);

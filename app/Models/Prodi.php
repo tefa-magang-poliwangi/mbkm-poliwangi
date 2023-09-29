@@ -15,6 +15,16 @@ class Prodi extends Model
     ];
 
     // relasi
+    public function mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class);
+    }
+
+    public function dosen()
+    {
+        return $this->hasMany(Dosen::class);
+    }
+
     public function kurikulum()
     {
         return $this->hasMany(Kurikulum::class);

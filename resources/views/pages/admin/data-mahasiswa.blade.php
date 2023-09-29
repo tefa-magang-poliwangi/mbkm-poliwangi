@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
 @section('title')
-    <title>Konversi Nilai| Politeknik Negeri Banyuwangi</title>
+    <title>Daftar Mahasiswa| Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -10,54 +10,83 @@
 
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
+        <div class="d-flex justify-content-between">
+            <strong class="h5 text-theme">Data Mahasiswa Magang</strong>
+        </div>
         <div class="row">
             <div class="col-12">
-                <div class="card border-0">
-                    <div class="card-header bg-white border-0">
-                        <strong class="h4">Daftar Mahasiswa (Transkrip Nilai)</strong>
+                <div class="card border-0 mb-0">
+                    <div class="card-header bg-white border-0 px-2">
+                        <div class="col-4">
+                            <h4 class="fw-bold">Program Studi</h4>
+                            <div class="form-group">
+                                <select class="form-control select2">
+                                    <option value="">Semua Prodi</option>
+                                    <option>Teknologi Rekayasa Perangkat Lunak</option>
+                                    <option>Teknologi Rekayasa Komputer</option>
+                                    <option>Bisnis Digital</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-8 d-flex">
+                            <div class="ml-auto">
+                                <a href="#" class="btn btn-theme fa-plus">Tambah</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
+
+                    <div class="card-body py-0 mb-0">
                         <div class="table-responsive">
+                            @php
+                                $no = 1;
+                            @endphp
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
-                                @php
-                                    $no = 1;
-                                @endphp
                                 <thead>
                                     <tr>
                                         <th class="text-center">
                                             No
                                         </th>
-                                        <th>Nama</th>
                                         <th>NIM</th>
-                                        <th>Program Studi</th>
-                                        <th>Action</th>
+                                        <th>Nama Mahasiswa</th>
+                                        <th>Prodi</th>
+                                        <th>Angkatan</th>
+                                        <th>Email</th>
+                                        <th>No.Telp</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                    @foreach ($nilai_magang_ext as $data)
+                                    @foreach ($mahasiswas as $data)
                                         <tr>
                                             <td>
                                                 {{ $no }}
                                             </td>
-                                            <td>{{ $data->mahasiswa->nama }}</td>
+                                            <td>{{ $data->nim }}</td>
                                             <td>
-                                                {{ $data->mahasiswa->nim }}
+                                                {{ $data->nama }}
                                             </td>
                                             <td>
-                                                {{ $data->mahasiswa->prodi->nama }}
+                                                {{ $data->prodi->nama }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('daftar.mahasiswa.transkrip.index', $data->id) }}"
-                                                    class="btn btn-transparent"><i
-                                                        class="fa-solid fa-file-pen text-dark"></i></a>
+                                                {{ $data->angkatan }}
+                                            </td>
+                                            <td>
+                                                {{ $data->email }}
+                                            </td>
+                                            <td>
+                                                {{ $data->no_telp }}
+                                            </td>
+                                            <td>
+                                                <a href="#"> <i class="fa-solid fas fa-edit text-dark"></i></a>
+                                                <a href="#"> <i class="fa-solid fas fa-trash text-dark"></i></a>
                                             </td>
                                         </tr>
+                                        @php
+                                            $no++;
+                                        @endphp
                                     @endforeach
-                                    @php
-                                        $no++;
-                                    @endphp
                                 </tbody>
                             </table>
                         </div>

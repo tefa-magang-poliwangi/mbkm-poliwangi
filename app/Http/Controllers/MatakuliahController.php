@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Matkul;
 use Illuminate\Http\Request;
 
-class DosenPageController extends Controller
+class MatakuliahController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +14,10 @@ class DosenPageController extends Controller
      */
     public function index()
     {
-        $datas = [
-            'dosens' => Dosen::all()
+        $data =[
+            'matakuliah' => Matkul::all()
         ];
-
-        return view('pages.admin.data-dosen', $datas);
+        return view('pages.prodi.matkul.index', $data);
     }
 
     /**
@@ -34,7 +27,12 @@ class DosenPageController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'matakuliah' => Matkul::all()
+        ];
+
+        return view('pages.prodi.matkul.create', $data);
+
     }
 
     /**
@@ -45,7 +43,19 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'create_matkul' => ['required', 'string'],
+            'create_kode_matkul' => ['required', 'string'],
+            'create_sks' => ['required'],
+        ]);
+
+        Matkul::create([
+            'nama' => $validated['create_matkul'],
+            'kode_matakuliah' => $validated['create_kode_matkul'],
+            'sks' => $validated['create_sks'],
+        ]);
+
+        return redirect()->route('daftar.matakuliah.index');
     }
 
     /**
@@ -90,6 +100,9 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matkul = Matkul::findOrFail($id);
+        $matkul->delete();
+
+        return redirect()->route('daftar.matakuliah.index');
     }
 }

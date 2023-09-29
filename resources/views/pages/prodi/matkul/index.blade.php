@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
 @section('title')
-    <title>Konversi Nilai| Politeknik Negeri Banyuwangi</title>
+    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -11,7 +11,7 @@
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
         <div class="d-flex justify-content-between">
-            <strong class="h3">Data Kurikulum Mata Kuliah</strong>
+            <strong class="h3">Data Mata Kuliah</strong>
         </div>
         <div class="row">
             <div class="col-12">
@@ -19,55 +19,48 @@
                     <div class="card-header bg-white border-0 px-2">
                         <div class="col-6">
                             <div class="dropdown d-inline mr-2">
-                                <h6>Daftar MK Kurikulum : TRPL 2023</h6>
+                                <h6>Daftar Matakuliah : TRPL 2023</h6>
                             </div>
                         </div>
                         <div class="col-6 d-flex">
                             <div class="ml-auto">
                                 <button class="btn btn-theme-four">Kembali</button>
-                                <button class="btn btn-theme fa-plus">Tambah</button>
+                                <a href="{{route('daftar.matakuliah.create')}}" class="btn btn-theme fa-plus">Tambah</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
+                            @php
+                                $no= 1;
+                            @endphp
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode MK</th>
+                                        <th>Kode Mata Kuliah</th>
                                         <th>Nama Mata Kuliah</th>
                                         <th>Bobot MK</th>
-                                        <th>Semester</th>
-                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($matakuliah as $data)
                                     <tr>
-                                        <td>1</td>
-                                        <td>321</td>
-                                        <td>PBL</td>
-                                        <td>4 SKS</td>
-                                        <td>5</td>
-                                        <td>WAJIB</td>
+                                        <td>{{$no}}</td>
+                                        <td>{{$data->kode_matakuliah}}</td>
+                                        <td>{{$data->nama}}</td>
+                                        <td>{{$data->sks}} SKS</td>
                                         <td><a href="#"> <i class="fas fa-edit"></i></a>
-                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                            <a href="{{route('daftar.matakuliah.delete', $data->id)}}"> <i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>322</td>
-                                        <td>SPK</td>
-                                        <td>4 SKS</td>
-                                        <td>5</td>
-                                        <td>WAJIB</td>
-                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
-                                            <a href="#"> <i class="fas fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                                    @php
+                                        $no++;
+                                    @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

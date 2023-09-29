@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Kurikulum;
+use App\Models\Matkul;
+use App\Models\MatkulKurikulum;
 use Illuminate\Http\Request;
 
-class DosenPageController extends Controller
+class MatkulKurikulumController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +16,12 @@ class DosenPageController extends Controller
      */
     public function index()
     {
-        $datas = [
-            'dosens' => Dosen::all()
+        $data = [
+            'matkul' => Matkul::all(),
+            'kurikulum' => Kurikulum::all(),
+            'matkulkurikulum' => MatkulKurikulum::all(),
         ];
-
-        return view('pages.admin.data-dosen', $datas);
+        return view('pages.prodi.data-matkul-kurikulum', $data);
     }
 
     /**
@@ -34,7 +31,12 @@ class DosenPageController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'matkul' => Matkul::all(),
+            'kurikulum' => Kurikulum::all(),
+            'matkulkurikulum' => MatkulKurikulum::all(),
+        ];
+        return view('pages.prodi.create-data-kurikulum', $data);
     }
 
     /**
@@ -45,7 +47,19 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'create_semester' => ['required'],
+            'create_kurikulum' => ['required'],
+            'create_matkul' => ['required'],
+        ]);
+
+        MatkulKurikulum::create([
+            'semester' => $validated['create_semester'],
+            'id_kurikulum' => $validated['create_kurikulum'],
+            'id_matkul' => $validated['create_matkul'],
+        ]);
+
+        return redirect()->route('daftar.matkul.kurikulum.index');
     }
 
     /**
@@ -90,6 +104,9 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matkul_kurikulum = MatkulKurikulum::findOrFail($id);
+        $matkul_kurikulum->delete();
+
+        return redirect()->route('daftar.matkul.kurikulum.index');
     }
 }

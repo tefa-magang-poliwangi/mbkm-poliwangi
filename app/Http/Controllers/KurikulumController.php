@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Kurikulum;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
-class DosenPageController extends Controller
+class KurikulumController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +15,11 @@ class DosenPageController extends Controller
      */
     public function index()
     {
-        $datas = [
-            'dosens' => Dosen::all()
+        $data = [
+            'kurikulums' => Kurikulum::all()
         ];
 
-        return view('pages.admin.data-dosen', $datas);
+        return view('pages.prodi.kurikulum.data-kurikulum', $data);
     }
 
     /**
@@ -34,7 +29,12 @@ class DosenPageController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'kurikulum'=> Kurikulum::all(),
+            'prodi' => Prodi::all(),
+            'action' => route('daftar.kurikulum.store')
+        ];
+        return view('pages.prodi.kurikulum.form-data-kurikulum', $data);
     }
 
     /**
@@ -45,7 +45,20 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated =$request->validate( [
+            'create_nama' => ['required'],
+            'create_status' => ['required'],
+            'create_prodi' => ['required']
+        ]);
+
+        Kurikulum::create([
+            'nama' => $validated['create_nama'],
+            'status' => $validated['create_status'],
+            'id_prodi' => $validated['create_prodi'],
+        ]);
+
+        return redirect()->route('daftar.kurikulum.index');
     }
 
     /**
@@ -90,6 +103,9 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kurikulum = Kurikulum::findOrFail($id);
+        $kurikulum->delete();
+
+        return redirect()->route('daftar.kurikulum.index');
     }
 }

@@ -126,7 +126,7 @@
                                                 <div class="file-box" title="pendaftaran">
                                                     <div class="row">
                                                         <div class="col-6 d-flex">
-                                                            <a href="{{ route('upload-transkrip-mahasiswa.delete', $data->id) }}"
+                                                            <a href="#"
                                                                 class="mr-auto my-auto">
                                                                 <i class="fa-regular fa-trash-can text-size text-danger"></i>
                                                             </a>
