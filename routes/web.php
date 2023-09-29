@@ -170,6 +170,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
+        Route::get('/dashboard-dosen/data-kurikulum', function () {
+            return view('pages.prodi.data-kurikulum');
+        });
+        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+            return view('pages.prodi.form-data-kurikulum');
+        });
+        Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
+            return view('pages.prodi.daftar-cpl-kurikulum');
+        });
+        Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
+            return view('pages.prodi.form-daftar-cpl');
+        });
 
         // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
@@ -225,4 +237,3 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         return view('pages.prodi.daftar-cpl-kurikulum');
     });
 });
-

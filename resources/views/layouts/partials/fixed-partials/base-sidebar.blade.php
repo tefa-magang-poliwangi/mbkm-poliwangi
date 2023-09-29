@@ -206,7 +206,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li @endrole @role('dosen') {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
@@ -269,7 +269,7 @@
                 @role('mahasiswa')
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user-friends"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i class="fas fa-user-friends"></i>
                             <span>Program</span>
                         </a>
                     </li>
@@ -299,7 +299,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li>
