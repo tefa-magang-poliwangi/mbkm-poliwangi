@@ -87,21 +87,21 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
-                        <a class="nav-link" href="{{route('data.mahasiswa.index')}}"><i class="fas fa-graduation-cap"></i>
+                        <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('data.dosen.index')}}"><i class="fas fa-graduation-cap"></i>
+                        <a class="nav-link" href="{{ route('data.dosen.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Dosen</span>
                         </a>
                     </li>
                     <li>
-                       {{-- <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                        {{-- <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
                                 class="fas fa-info-circle"></i> --}}
-                            <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
-                                <span>Prodi</span>
-                            </a>
+                        <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
+                            <span>Prodi</span>
+                        </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
@@ -153,6 +153,12 @@
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-file-alt"></i>
                             <span>Laporan Akhir</span>
+                        </a>
+                    </li>
+                    {{-- Manajemen Kelas --}}
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Kelas</span>
                         </a>
                     </li>
                     {{-- Mitra Sidebar Menu --}}
