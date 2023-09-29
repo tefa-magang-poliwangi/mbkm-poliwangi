@@ -87,21 +87,21 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
-                        <a class="nav-link" href="{{route('data.mahasiswa.index')}}"><i class="fas fa-graduation-cap"></i>
+                        <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('data.dosen.index')}}"><i class="fas fa-graduation-cap"></i>
+                        <a class="nav-link" href="{{ route('data.dosen.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Dosen</span>
                         </a>
                     </li>
                     <li>
-                       {{-- <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                        {{-- <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
                                 class="fas fa-info-circle"></i> --}}
-                            <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
-                                <span>Prodi</span>
-                            </a>
+                        <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i class="fas fa-info-circle"></i>
+                            <span>Prodi</span>
+                        </a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
@@ -118,6 +118,11 @@
                         <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}"><i
                                 class="fas fa-info-circle"></i>
                             <span>Matkul Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-book"></i>
+                            <span>Data Magang External</span>
                         </a>
                     </li>
                     <li>
@@ -201,7 +206,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li @endrole @role('dosen') {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
@@ -264,7 +269,7 @@
                 @role('mahasiswa')
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user-friends"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i class="fas fa-user-friends"></i>
                             <span>Program</span>
                         </a>
                     </li>
@@ -294,7 +299,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="blank.html"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li>

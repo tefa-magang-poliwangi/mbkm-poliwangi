@@ -67,7 +67,7 @@
                                             {{$item->status}} </span>
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-primary">
+                                            <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
                                                 <i class="fa-solid fa-search"></i> CPL
                                             </a>
                                             <a href="#"> <i class="fa-solid fas fa-edit text-dark"></i></a>

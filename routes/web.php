@@ -8,6 +8,7 @@ use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MatkulKurikulumController;
@@ -107,6 +108,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-program-studi/index', [ProdiController::class, 'index'])->name('daftar.prodi.index');
         Route::post('/daftar-program-studi/store', [ProdiController::class, 'store'])->name('daftar.prodi.store');
         Route::get('/daftar-program-studi/delete/{id}', [ProdiController::class, 'destroy'])->name('daftar.prodi.delete');
+
+        //route daftar magang external
+        Route::get('/daftar-data-magangext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
+        Route::post('/daftar-data-magangext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
+        Route::get('/daftar-data-magangext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
 
         // Halaman Mahasiswa - Eksternal
         Route::get('/dashboard-mahasiswa/profil', function () {
