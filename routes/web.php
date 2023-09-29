@@ -117,11 +117,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/data-kurikulum', function () {
             return view('pages.prodi.data-kurikulum');
         });
-        Route::get('/dashboard-dosen/create-data-kurikulum', function () {
-            return view('pages.prodi.create-data-kurikulum');
+        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+            return view('pages.prodi.form-data-kurikulum');
         });
         Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
             return view('pages.prodi.daftar-cpl-kurikulum');
+        });
+        Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
+            return view('pages.prodi.form-daftar-cpl');
         });
 
         // Halaman Dosen Pembimbing
