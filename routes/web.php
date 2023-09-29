@@ -230,4 +230,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
         return view('pages.prodi.daftar-cpl-kurikulum');
     });
+
+
+
+    Route::get('/dashboard-dosen/daftar-konversi', function () {
+        return view('pages.dosen.doswal-daftarKonversi');
+    });
+    Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
+        return view('pages.dosen.doswal-viewHasilKonversi');
+    });
 });
