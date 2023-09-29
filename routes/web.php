@@ -176,6 +176,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
             return view('pages.prodi.form-daftar-cpl');
         });
+        Route::get('/dashboard-dosen/data-periode', function(){
+            return view('pages.prodi.Periode.index');
+        });
+        Route::get('/dashboard-dosen/daftar-program', function(){
+            return view('pages.dosen.kaprodi-daftar-program');
+        });
+        Route::get('/dashboard-dosen/daftar-mahasiswa', function(){
+            return view('pages.dosen.kaprodi-daftar-mahasiswa');
+        });
 
         // Halaman Dosen Pembimbing
         Route::get('/dashboard-dosen/laporan-harian', function () {
