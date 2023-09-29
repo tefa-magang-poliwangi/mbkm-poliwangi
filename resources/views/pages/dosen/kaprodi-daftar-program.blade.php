@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
 @section('title')
-    <title>Daftar CPL | Politeknik Negeri Banyuwangi</title>
+    <title>Daftar Program | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -9,20 +9,20 @@
 @endsection
 
 @section('content')
+
     <div class="container-fluid" style="padding-top: 5%">
         <div class="d-flex justify-content-between">
-            <strong class="h3">Daftar CPL Kurikulum</strong>
+            <strong class="h3">Daftar Program</strong>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white border-0 px-2">
                         <div class="col-6">
-                            <h6>Daftar CPL Kurikulum : TRPL 2023</h6>
+                            <h6>Daftar Program</h6>
                         </div>
                         <div class="col-6 d-flex">
                             <div class="ml-auto">
-                                <button class="btn btn-theme-four">Kembali</button>
                                 <button class="btn btn-theme">Tambah</button>
                             </div>
                         </div>
@@ -35,22 +35,24 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kode CPL</th>
-                                        <th>Deskripsi</th>
-                                        <th>Jenis CPL</th>
-                                        <th>Kurikulum</th>
+                                        <th>Program Magang</th>
+                                        <th>Program Study</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>687</td>
-                                        <td>Mahasiswa wajib mendapatkan nilai yang bagus</td>
-                                        <td>PBL</td>
-                                        <td>Merdeka</td>
-                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
-                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        <td>Backend Developer</td>
+                                        <td>TRPL</td>
+                                        <td><a href="#"> <i class="fas fa-search"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Frontend Developer</td>
+                                        <td>TRPL</td>
+                                        <td><a href="#"> <i class="fas fa-search"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -61,6 +63,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')
