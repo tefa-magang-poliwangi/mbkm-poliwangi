@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\Matkul;
+use App\Models\MatkulKurikulum;
 use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class KonversiNilaiExternal extends Controller
     {
         // penentuan nilai huruf berdasarkan nilai angka
         $nilai = $nilai_angka;
-
+        $penilaian = 'e';
         if ($nilai >= 90 && $nilai <= 100) {
             $penilaian = 'A';
         } elseif ($nilai >= 80 && $nilai < 90) {
@@ -37,44 +38,29 @@ class KonversiNilaiExternal extends Controller
         return $penilaian;
     }
 
-    public function konversi_nilai_external(Request $request, $id_mahasiswa, $id_matkul, $id_nilai_magang_ext)
+    public function konversi_nilai_external(Request $request, $id_mahasiswa, $id_nilai_magang_ext)
     {
+
+
+        $data = [];  
         try {
-            $validated = $request->validate([
-                'nilai_angka' => ['required', 'numeric', 'between:0,100'],
-                'nilai_huruf' => ['nullable'],
-            ]);
 
-            // Nonaktifkan konstrain foreign key
-            Schema::disableForeignKeyConstraints();
+            $matkuls = $request->all();
+            $array_key_matkuls = array_keys($matkuls);
+            //dd($array_key_matkuls);
+            foreach ($array_key_matkuls as $array_key) {
+                    if($array_key!='_token' && $matkuls[$array_key] != null)
+                    {
+                        $data['id_matkul'] = $array_key;
+                        $data['nilai_angka'] = $matkuls[$array_key];
+                        $data['nilai_huruf'] = $this->KonversiNilaiAngka($matkuls[$array_key]);
+                        $data['id_mahasiswa'] = $id_mahasiswa;
+                        $data['id_nilai_magang_ext'] = $id_nilai_magang_ext;                            
+                        NilaiKonversi::create($data);
+                    }
+            }
 
-            // Melakukan truncate pada tabel nilai_magang_exts
-            DB::table('nilai_konversis')->truncate();
-
-            // Aktifkan kembali konstrain foreign key
-            Schema::enableForeignKeyConstraints();
-
-            $penilaian = $this->KonversiNilaiAngka($validated['nilai_angka']);
-
-            $nilai_konversi = NilaiKonversi::create([
-                'nilai_angka' => $validated['nilai_angka'],
-                'nilai_huruf' => $penilaian,
-                'id_mahasiswa' => $id_mahasiswa,
-                'id_matkul' => $id_matkul,
-                'id_nilai_magang_ext' => $id_nilai_magang_ext,
-            ]);
-
-            // Jika semuanya berhasil, kembalikan respons sukses
-            $response = [
-                'status' => 'success',
-                'message' => 'Berhasil Menambahkan Data Konversi Nilai Magang External',
-                'data' => [
-                    'request' => $request->toArray(),
-                    'nilai_magang_ext' => $nilai_konversi->toArray(),
-                ],
-            ];
-
-            return response()->json($response);
+            return redirect()->route('daftar.mahasiswa.transkrip.index',$id_nilai_magang_ext);
         } catch (\Exception $e) {
             // Tangani kesalahan dan kembalikan pesan kesalahan dalam format JSON
             return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
@@ -151,11 +137,11 @@ class KonversiNilaiExternal extends Controller
      */
     public function show($id_nilai_magang_ext)
     {
-        
         $data = [
-            'matakuiah' => Matkul::all(),
+            'matakuliah' => MatkulKurikulum::all(),
             'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
             'nilai_magang_ext' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
+            'nilai_konversi' => NilaiKonversi::all(),
 
         ];
         return view('pages.dosen.kaprodi-konversi-nilai', $data);
