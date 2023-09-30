@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Kurikulum;
 use App\Models\Mahasiswa;
 use App\Models\Matkul;
 use App\Models\MatkulKurikulum;
 use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
+use App\Models\Periode;
+use App\Models\PesertaKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -73,13 +77,11 @@ class KonversiNilaiExternal extends Controller
      */
     public function index()
     {
+        $periode = Periode::where('status','Aktif')->first();
+        
         $data = [
-            'nilai_magang_ext' => NilaiMagangExt::all(),
-            'mahasiswa' => Mahasiswa::all(),
-            'matakuiah' => Matkul::all(),
-            'nilaikonversi' => NilaiKonversi::all()
+            'nilai_magang_ext' => NilaiMagangExt::where('id_periode',$periode->id)->get(),
         ];
-
         return view('pages.dosen.kaprodi-daftar-konversi', $data);
     }
 
@@ -137,11 +139,21 @@ class KonversiNilaiExternal extends Controller
      */
     public function show($id_nilai_magang_ext)
     {
+        $nilai_external = NilaiMagangExt::findOrFail($id_nilai_magang_ext);
+        $nilai_external->mahasiswa->id;
+        $periode = Periode::where('status','Aktif')->first();
+        $kurikulum = Kurikulum::where('id_prodi', $nilai_external->mahasiswa->id_prodi)
+                                ->where('status','Aktif')->first();
+        
+        $mahasiswa_aktif = PesertaKelas::where('id_mahasiswa',$nilai_external->mahasiswa->id)->orderBy('id')->first();
+        $semester = (2*$mahasiswa_aktif->kelas->tingkat_kelas)-($periode->semester%2);
+
         $data = [
-            'matakuliah' => MatkulKurikulum::all(),
+            
+            'matakuliah' => MatkulKurikulum::where('id_kurikulum',$kurikulum->id)->where('semester',$semester)->get(),
             'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
             'nilai_magang_ext' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
-            'nilai_konversi' => NilaiKonversi::all(),
+            'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext',$id_nilai_magang_ext)->get(),
 
         ];
         return view('pages.dosen.kaprodi-konversi-nilai', $data);
@@ -178,6 +190,10 @@ class KonversiNilaiExternal extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $nilai= NilaiKonversi::findOrFail($id);
+        $nilai->delete();
+
+        return redirect()->route('daftar.mahasiswa.transkrip.index',$nilai->id_nilai_magang_ext);
     }
 }

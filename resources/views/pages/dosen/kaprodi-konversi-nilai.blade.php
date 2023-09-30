@@ -25,7 +25,7 @@
         <div class="row mb-5">
 
             <div class="col-sm-12 col-md-6">
-                <iframe src="{{ asset('doc/contoh.pdf') }}" width="100%" height="700px"></iframe>
+                <iframe src="{{ Storage::url($nilai_magang_ext->file) }}" width="100%" height="700px"></iframe>
             </div>
 
             <div class="col">
@@ -105,8 +105,9 @@
                                     </th>
                                     <th class="text-theme">Kode</th>
                                     <th class="text-theme">Mata Kuliah</th>
-                                    <th class="text-theme">Nilai Angka</th>
-                                    <th class="text-theme">Nilai Huruf</th>
+                                    <th class="text-theme text-center">Nilai Angka</th>
+                                    <th class="text-theme text-center">Nilai Huruf</th>
+                                    <th class="text-theme text-center">Action</th>
                                 </tr>
                             <tbody>
                                 @foreach ($nilai_konversi as $data)
@@ -118,11 +119,15 @@
                                         <td>
                                             {{ $data->matkul->nama }}
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             {{ $data->nilai_angka }}
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             {{ $data->nilai_huruf }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
+                                                class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @php

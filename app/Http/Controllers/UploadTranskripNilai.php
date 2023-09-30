@@ -138,7 +138,7 @@ class UploadTranskripNilai extends Controller
             'id_periode' => $validated['periode'],
         ]);
 
-        return redirect()->route('upload-transkrip-mahasiswa.create');
+        return redirect()->route('upload-transkrip-mahasiswa.create', $id_user);
     }
 
     /**
