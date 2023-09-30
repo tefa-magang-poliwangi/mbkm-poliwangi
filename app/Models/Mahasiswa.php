@@ -33,7 +33,7 @@ class Mahasiswa extends Model
 
     public function peserta_kelas()
     {
-        return $this->hasMany(PesertaKelas::class);
+        return $this->hasMany(PesertaKelas::class, 'id_mahasiswa', 'id');
     }
 
     public function mahasiswa_magang()
