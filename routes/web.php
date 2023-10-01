@@ -17,6 +17,7 @@ use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\RegisterMahasiswaController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
@@ -51,6 +52,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // register akun
         Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
         Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
+        // register dosen
+        Route::get('/register-dosen', [RegisterDosenController::class, 'index'])->name('register.dosen.page');
+        Route::post('/register-dosen', [RegisterDosenController::class, 'store'])->name('do.register.dosen');
     });
 
 
