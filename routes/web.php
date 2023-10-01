@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthDosenController;
 use App\Http\Controllers\AuthMahasiswaController;
 use App\Http\Controllers\AuthMitraController;
 use App\Http\Controllers\DosenPageController;
+use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
@@ -190,6 +191,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
 
         // Halaman Kaprodi
+
+        Route::get('/dashboard-dosen/daftar-dosen-wali',[KaprodiController::class,'index']);
+
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.kaprodi-laporan-akhir');
         });
