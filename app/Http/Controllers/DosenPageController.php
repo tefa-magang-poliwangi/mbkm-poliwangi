@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use App\Models\Prodi;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DosenPageController extends Controller
 {
@@ -22,8 +24,7 @@ class DosenPageController extends Controller
     public function index()
     {
         $datas = [
-            'dosens' => Dosen::all(),
-            'prodi' => Prodi::all()
+            'dosens' => Dosen::all()
         ];
 
         return view('pages.admin.data-dosen', $datas);
