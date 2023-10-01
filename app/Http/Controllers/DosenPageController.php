@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class DosenPageController extends Controller
@@ -21,7 +22,8 @@ class DosenPageController extends Controller
     public function index()
     {
         $datas = [
-            'dosens' => Dosen::all()
+            'dosens' => Dosen::all(),
+            'prodi' => Prodi::all()
         ];
 
         return view('pages.admin.data-dosen', $datas);
