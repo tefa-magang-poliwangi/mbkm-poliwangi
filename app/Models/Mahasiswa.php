@@ -36,6 +36,11 @@ class Mahasiswa extends Model
         return $this->hasMany(PesertaKelas::class, 'id_mahasiswa', 'id');
     }
 
+    public function peserta_magang_ext()
+    {
+        return $this->hasMany(PesertaMagangExt::class, 'id_mahasiswa', 'id');
+    }
+
     public function mahasiswa_magang()
     {
         return $this->hasMany(MahasiswaMagang::class);

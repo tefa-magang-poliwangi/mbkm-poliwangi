@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
 @section('title')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Peserta Magang External | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -19,7 +19,7 @@
                     <div class="card-header bg-white border-0 px-2">
                         <div class="col-6">
                             <div class="dropdown d-inline mr-2">
-                                <h6>Daftar Data Magang External : TRPL 2023</h6>
+                                <h6>Daftar Data Magang External</h6>
                             </div>
                         </div>
                         <div class="col-6 d-flex">
@@ -27,7 +27,6 @@
                                 <button class="btn btn-theme-four">Kembali</button>
                                 <button class="btn btn-theme fa-plus" data-toggle="modal"
                                     data-target="#tambahdataMagangext">Tambah</button>
-
                             </div>
                         </div>
                     </div>
@@ -43,6 +42,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
+                                        <th>Lihat Peserta</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,10 +51,17 @@
                                         <tr>
                                             <td>{{ $no }}</td>
                                             <td>{{ $data->name }}</td>
+
+                                            <td class="text-center">
+                                                <a href="{{ route('peserta.magang_ext.index', $data->id) }}"
+                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></a>
+                                            </td>
+
                                             <td>
-                                                <a href="#"> <i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('data.magangext.delete', $data->id) }}"> <i
-                                                        class="fas fa-trash"></i></a>
+                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                                    data-target="#updateModal"><i class="fa-solid fa-pen"></i></button>
+                                                <a href="{{ route('data.magangext.delete', $data->id) }}"
+                                                    class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @php
@@ -81,15 +88,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('data.magangext.store')}}" method="POST">
+                    <form action="{{ route('data.magangext.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="create_name">Nama</label>
-                                    <input type="text"
-                                        class="form-control @error('create_name') is-invalid @enderror"
-                                        id="create_name" name="create_name" placeholder="Masukkan Data Tempat Magang External">
+                                    <input type="text" class="form-control @error('create_name') is-invalid @enderror"
+                                        id="create_name" name="create_name"
+                                        placeholder="Masukkan Data Tempat Magang External">
                                     @error('create_name')
                                         <div id="create_name" class="form-text pb-1">
                                             {{ $message }}</div>

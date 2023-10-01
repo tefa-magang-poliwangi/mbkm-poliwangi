@@ -16,6 +16,7 @@ use App\Http\Controllers\MatkulKurikulumController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PesertaKelasController;
+use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\RegisterMahasiswaController;
@@ -72,6 +73,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         //route data master
         Route::get('/dashboard-admin/data-mahasiswa', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
+        Route::post('/dashboard-admin/data-mahasiswa', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
         Route::get('/dashboard-admin/data-dosen', [DosenPageController::class, 'index'])->name('data.dosen.index');
 
         // route manajemen kelas dan peserta kelas
@@ -134,6 +136,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-data-magangext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
         Route::post('/daftar-data-magangext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
         Route::get('/daftar-data-magangext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
+
+        //route daftar peserta magang ext
+        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/peserta-magang_ext', [PesertaMagangExtController::class, 'index'])->name('peserta.magang_ext.index');
+        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'create'])->name('peserta.magang_ext.create');
+        Route::post('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'store'])->name('peserta.magang_ext.store');
+        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
 
         // Halaman Mahasiswa - Eksternal
         Route::get('/dashboard-mahasiswa/profil', function () {
