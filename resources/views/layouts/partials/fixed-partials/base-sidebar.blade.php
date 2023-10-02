@@ -20,6 +20,10 @@
                 @role('mitra')
                     <a href="{{ route('dashboard.mitra.page') }}">Poliwangi</a>
                 @endrole
+
+                @role('akademik')
+                    <a href="{{ route('dashboard.akademik.page') }}">Poliwangi</a>
+                @endrole
             @endauth
         </div>
 
@@ -59,6 +63,14 @@
                 @role('mitra')
                     <li>
                         <a class="nav-link" href="{{ route('dashboard.mitra.page') }}"><i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('akademik')
+                    <li>
+                        <a class="nav-link" href="{{ route('dashboard.akademik.page') }}"><i class="fas fa-home"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -274,6 +286,16 @@
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-book"></i>
                             <span>Log Book</span></a>
+                    </li>
+                @endrole
+
+                @role('akademik')
+                    {{-- Akademik Sidebar Menu --}}
+                    <li class="menu-header">SUPER ADMIN</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('akademik.daftar.prodi') }}"><i class="fas fa-info-circle"></i>
+                            <span>Daftar Nilai</span>
+                        </a>
                     </li>
                 @endrole
 
