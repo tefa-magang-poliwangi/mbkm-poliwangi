@@ -37,15 +37,6 @@ class UploadTranskripNilai extends Controller
                 'file' => ['required', 'mimes:pdf', 'max:1024'],
             ]);
 
-            // Nonaktifkan konstrain foreign key
-            Schema::disableForeignKeyConstraints();
-
-            // Melakukan truncate pada tabel nilai_magang_exts
-            DB::table('nilai_magang_exts')->truncate();
-
-            // Aktifkan kembali konstrain foreign key
-            Schema::enableForeignKeyConstraints();
-
             $saveData = [];
 
             // Mengecek apakah field untuk upload file sudah di-upload atau belum
@@ -103,11 +94,12 @@ class UploadTranskripNilai extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_mahasiswa)
     {
+        $mahasiswa=User::findOrFail($id_mahasiswa)->mahasiswa;
         $data =[
             'nilaimagangext' => NilaiMagangExt::all(),
-            'mahasiswa'=> Mahasiswa::all(),
+            'mahasiswa'=> Mahasiswa::findOrFail($mahasiswa->first()->id),
             'periode' => Periode::all(),
             'magangext' => MagangExt::all()
         ];
@@ -146,7 +138,7 @@ class UploadTranskripNilai extends Controller
             'id_periode' => $validated['periode'],
         ]);
 
-        return redirect()->route('upload-transkrip-mahasiswa.create');
+        return redirect()->route('upload-transkrip-mahasiswa.create', $id_user);
     }
 
     /**

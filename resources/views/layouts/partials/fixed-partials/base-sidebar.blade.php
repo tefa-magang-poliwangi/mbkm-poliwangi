@@ -160,6 +160,12 @@
                             <span>Laporan Akhir</span>
                         </a>
                     </li>
+                    {{-- Manajemen Kelas --}}
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Kelas</span>
+                        </a>
+                    </li>
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
@@ -291,7 +297,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('upload-transkrip-mahasiswa.create') }}"><i
+                        <a class="nav-link" href="{{ route('upload-transkrip-mahasiswa.create', Auth::user()->id) }}"><i
                                 class="fas fa-credit-card"></i>
                             <span>Transkrip Nilai</span>
                         </a>

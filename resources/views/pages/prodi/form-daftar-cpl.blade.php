@@ -1,6 +1,6 @@
 @extends('layouts.base-mahasiswa')
 @section('Kegiatan')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Form Daftar CPL | Politeknik Negeri Banyuwangi</title>
 @endsection
 
 @section('css')
@@ -15,29 +15,32 @@
                 <div class="col-12">
                     <div class="card card-rounded">
                         <div class="card-header d-flex">
-                            <h4>Tambah Mata Kuliah ke Dalam Kurikulum</h4>
+                            <h4>Tambah Data Daftar CPL</h4>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="form-group col-6">
-                                    <label>Kode CPL</label>
-                                    <input type="text" class="form-control" placeholder="Kode CPL">
-                                </div>
-                                <div class="form-group col-6">
-                                    <label>Kategori</label>
-                                    <select class="form-control">
-                                        <option>Kategori</option>
-                                        <option>KK</option>
-                                        <option>KAUM</option>
-                                        <option>P</option>
-                                        <option>S</option>
-                                    </select>
-                                </div>
 
+                            <div class="form-group">
+                                <label>Kode CPL</label>
+                                <input type="text" class="form-control" placeholder="Kode CPL">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Deskripsi</label>
+                                <textarea class="form-control" id="floatingTextarea"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Isi CPL</label>
-                                <textarea class="form-control" id="floatingTextarea"></textarea>
+                                <label>Jenis CPL</label>
+                                <input type="text" class="form-control" placeholder="Kode CPL">
+                            </div>
+                            <div class="form-group">
+                                <label>Kurikulum</label>
+                                <select class="form-control">
+                                    <option>Kurikulum</option>
+                                    <option>Kurikulum 1</option>
+                                    <option>Kurikulum 1</option>
+                                    <option>Kurikulum 1</option>
+                                    <option>Kurikulum 1</option>
+                                </select>
                             </div>
 
                             <div class="card-footer text-center">

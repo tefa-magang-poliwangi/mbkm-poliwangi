@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthDosenController;
 use App\Http\Controllers\AuthMahasiswaController;
 use App\Http\Controllers\AuthMitraController;
 use App\Http\Controllers\DosenPageController;
+use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KurikulumController;
@@ -14,7 +16,10 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MatkulKurikulumController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PesertaKelasController;
+use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\RegisterMahasiswaController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
@@ -49,6 +54,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // register akun
         Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
         Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
+        // register dosen
+        Route::get('/register-dosen', [RegisterDosenController::class, 'index'])->name('register.dosen.page');
+        Route::post('/register-dosen', [RegisterDosenController::class, 'store'])->name('do.register.dosen');
     });
 
 
@@ -66,13 +74,26 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         //route data master
         Route::get('/dashboard-admin/data-mahasiswa', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
+        Route::post('/dashboard-admin/data-mahasiswa', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
         Route::get('/dashboard-admin/data-dosen', [DosenPageController::class, 'index'])->name('data.dosen.index');
 
+        // route manajemen kelas dan peserta kelas
+        // route kelas
+        Route::get('/dashboard-admin/manajemen-kelas', [KelasController::class, 'index'])->name('manajemen.kelas.index');
+        Route::post('/dashboard-admin/manajemen-kelas/tambah-kelas', [KelasController::class, 'store'])->name('manajemen.kelas.store');
+        Route::put('/dashboard-admin/manajemen-kelas/{id_kelas}/edit-kelas', [KelasController::class, 'update'])->name('manajemen.kelas.update');
+        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/hapus-kelas', [KelasController::class, 'destroy'])->name('manajemen.kelas.destroy');
+
+        // route peserta kelas
+        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/peserta-kelas', [PesertaKelasController::class, 'index'])->name('peserta.kelas.index');
+        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/tambah-peserta-kelas', [PesertaKelasController::class, 'create'])->name('peserta.kelas.create');
+        Route::post('/dashboard-admin/manajemen-kelas/{id_kelas}/tambah-peserta-kelas', [PesertaKelasController::class, 'store'])->name('peserta.kelas.store');
+        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/{id_peserta_kelas}/hapus-peserta-kelas', [PesertaKelasController::class, 'destroy'])->name('peserta.kelas.destroy');
 
         // route backend testing (postman)
         // Route::get('/get-detail-mahasiswa/{id_mahasiswa}',
         Route::get('/upload-transkrip-mahasiswa/index', [UploadTranskripNilai::class, 'index'])->name('upload-transkrip-mahasiswa.index');
-        Route::get('/upload-transkrip-mahasiswa/create', [UploadTranskripNilai::class, 'create'])->name('upload-transkrip-mahasiswa.create');
+        Route::get('/upload-transkrip-mahasiswa/create/{id_mahasiswa}', [UploadTranskripNilai::class, 'create'])->name('upload-transkrip-mahasiswa.create');
         Route::post('/upload-transkrip-mahasiswa/store/{id_user}', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.store');
 
         Route::get('/get-detail-mahasiswa/{id_mahasiswa}', [UploadTranskripNilai::class, 'get_mahasiswa'])->name('get.mahasiswa');
@@ -83,7 +104,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-konversi-nilai/create', [KonversiNilaiExternal::class, 'create'])->name('daftar.mahasiswa.create');
         Route::get('/daftar-konversi-nilai/{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.mahasiswa.transkrip.index');
 
-        Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
+        Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
+        Route::get('/konversi-nilai/mahasiswa-external/{id}/delete', [KonversiNilaiExternal::class, 'destroy'])->name('konversi_nilai.mahasiswa.external.hapus');
+
+        
         Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
 
         //routekurikulum
@@ -113,6 +137,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-data-magangext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
         Route::post('/daftar-data-magangext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
         Route::get('/daftar-data-magangext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
+
+        //route daftar peserta magang ext
+        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/peserta-magang_ext', [PesertaMagangExtController::class, 'index'])->name('peserta.magang_ext.index');
+        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'create'])->name('peserta.magang_ext.create');
+        Route::post('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'store'])->name('peserta.magang_ext.store');
+        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
 
         // Halaman Mahasiswa - Eksternal
         Route::get('/dashboard-mahasiswa/profil', function () {
@@ -161,6 +191,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
 
         // Halaman Kaprodi
+
+        Route::get('/dashboard-dosen/daftar-dosen-wali',[KaprodiController::class,'index']);
+
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.kaprodi-laporan-akhir');
         });
@@ -181,6 +214,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
             return view('pages.prodi.form-daftar-cpl');
+        });
+        Route::get('/dashboard-dosen/data-periode', function () {
+            return view('pages.prodi.Periode.index');
+        });
+        Route::get('/dashboard-dosen/daftar-program', function () {
+            return view('pages.dosen.kaprodi-daftar-program');
+        });
+        Route::get('/dashboard-dosen/daftar-mahasiswa', function () {
+            return view('pages.dosen.kaprodi-daftar-mahasiswa');
         });
 
         // Halaman Dosen Pembimbing
@@ -204,6 +246,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Halaman Dosen wali
         Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
             return view('pages.dosen.doswal-kelayakan');
+        });
+
+        Route::get('/dashboard-dosen/daftar-konversi', function () {
+            return view('pages.dosen.doswal-daftarKonversi');
+        });
+        Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
+            return view('pages.dosen.doswal-viewHasilKonversi');
         });
 
         /**
