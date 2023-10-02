@@ -8,7 +8,7 @@
     <section class="">
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h2>Daftar Permission</h2>
                     <div class="lead">
                         Manajemen Permission.
@@ -21,11 +21,11 @@
                     </div>
 
                     <table class="table table-striped table-responsive mt-3">
-                        <thead>
+                        <thead class="bg-primary">
                             <tr>
-                                <th scope="col" width="15%">Name</th>
-                                <th scope="col">Guard</th>
-                                <th scope="col" colspan="3" width="1%"></th>
+                                <th scope="col" width="15%" class="text-white">Name</th>
+                                <th scope="col" class="text-white">Guard</th>
+                                <th scope="col" colspan="3" width="1%" class="text-white"></th>
                             </tr>
                         </thead>
                         <tbody>

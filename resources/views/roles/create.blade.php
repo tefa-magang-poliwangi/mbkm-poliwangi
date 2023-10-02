@@ -8,7 +8,7 @@
     <section class="">
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h1>Add new role</h1>
                     <div class="lead">
                         Tambah role baru dan memberikan permission.
@@ -29,7 +29,8 @@
 
                         <form method="POST" action="{{ route('roles.store') }}">
                             @csrf
-                            <div class="mb-3">
+
+                            <div class="mb-4">
                                 <label for="name" class="form-label">Name</label>
                                 <input value="{{ old('name') }}" type="text" class="form-control" id="name"
                                     name="name" placeholder="Name" required>
@@ -51,13 +52,13 @@
                                                 value="{{ $permission->name }}" class='permission'>
                                         </td>
                                         <td>{{ $permission->name }}</td>
-                                        <td>{{ $permission->guard_name }}</td>
+                                        <td class="text-center">{{ $permission->guard_name }}</td>
                                     </tr>
                                 @endforeach
                             </table>
 
-                            <button type="submit" class="btn btn-primary">Save Role</button>
-                            <a href="{{ route('users.index') }}" class="btn bg-white">Back</a>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <a href="{{ route('roles.index') }}" class="btn btn-danger">Kembali</a>
                         </form>
                     </div>
 
@@ -67,7 +68,7 @@
     </section>
 @endsection
 
-@section('scripts')
+@section('script')
     <script type="text/javascript">
         $(document).ready(function() {
             $('[name="all_permission"]').on('click', function() {
