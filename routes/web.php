@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AuthDosenController;
-use App\Http\Controllers\AuthMahasiswaController;
-use App\Http\Controllers\AuthMitraController;
+use App\Http\Controllers\DaftarNilaiMahasiswaController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KelasController;
@@ -23,8 +22,6 @@ use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\RegisterMahasiswaController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
-use App\Models\MatkulKurikulum;
-use App\Models\Prodi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,8 +55,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/register-dosen', [RegisterDosenController::class, 'index'])->name('register.dosen.page');
         Route::post('/register-dosen', [RegisterDosenController::class, 'store'])->name('do.register.dosen');
     });
-
-
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
         /**
@@ -157,7 +152,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
         });
 
-
         // Halaman Mahasiswa - Internal
         Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
             return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-lolos-pendaftaran');
@@ -198,6 +192,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Halaman Kaprodi
 
         Route::get('/dashboard-dosen/daftar-dosen-wali',[KaprodiController::class,'index']);
+        Route::post('/dashboard-dosen/daftar-dosen-wali',[KaprodiController::class,'store'])->name('dosen-wali-tambah');
+
+        Route::get('/dashboard-dosen/daftar-dosen-wali', [KaprodiController::class, 'index']);
 
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.kaprodi-laporan-akhir');
@@ -259,6 +256,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
             return view('pages.dosen.doswal-viewHasilKonversi');
         });
+
+        // Halaman Akademik
+        Route::get('/dashboard-akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
+        Route::get('/dashboard-akademik/daftar-prodi', [DaftarNilaiMahasiswaController::class, 'daftar_prodi'])->name('akademik.daftar.prodi');
+        Route::get('/dashboard-akademik/daftar-kelas/{id_prodi}', [DaftarNilaiMahasiswaController::class, 'daftar_kelas'])->name('akademik.daftar.kelas');
+        Route::get('/dashboard-akademik/daftar-mahasiswa/{id_kelas}', [DaftarNilaiMahasiswaController::class, 'daftar_mahasiswa'])->name('akademik.daftar.mahasiswa');
+        Route::get('/dashboard-akademik/daftar-nilai-mahasiswa/{id_mahasiswa}', [DaftarNilaiMahasiswaController::class, 'daftar_nilai_mahasiswa'])->name('akademik.daftar.nilai');
 
         /**
          * User Routes

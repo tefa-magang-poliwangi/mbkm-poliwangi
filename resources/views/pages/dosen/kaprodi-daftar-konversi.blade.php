@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white border-0">
-                        <strong class="h4">Daftar Mahasiswa (Transkrip Nilai)</strong>
+                        <strong class="h4">Daftar Mahasiswa Magang </strong>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

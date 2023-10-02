@@ -30,6 +30,11 @@ class Dosen extends Model
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
+    public function doswal()
+    {
+        return $this->hasOne(DosenWali::class, 'id', 'id');
+    }
+
     public function kaprodi()
     {
         return $this->hasMany(Kaprodi::class);
