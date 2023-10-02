@@ -81,16 +81,7 @@ class RegisterMahasiswaController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            $user = Auth::user(); // Mengambil data pengguna yang sudah login
-
-            if ($user->hasRole('admin')) {
-                return redirect()->route('dashboard.admin.page');
-            } elseif ($user->hasRole('mahasiswa')) {
-                return redirect()->route('dashboard.mahasiswa.page');
-            } elseif ($user->hasRole('dosen')) {
-                return redirect()->route('dashboard.dosen.page');
-            }
+            return redirect()->route('dashboard.mahasiswa.page');
         }
     }
 
