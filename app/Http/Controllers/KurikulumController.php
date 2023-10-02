@@ -13,10 +13,17 @@ class KurikulumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        if($request->prodi) {
+            $id_prodi = $request->prodi;
+        } else {
+            $id_prodi = 0;
+        }
         $data = [
-            'kurikulums' => Kurikulum::all()
+            'kurikulums' => Kurikulum::where('id_prodi', $id_prodi)->get(),
+            'prodi' => Prodi::all(),
         ];
 
         return view('pages.prodi.kurikulum.data-kurikulum', $data);
@@ -29,10 +36,12 @@ class KurikulumController extends Controller
      */
     public function create()
     {
+
+
         $data = [
-            'kurikulum'=> Kurikulum::all(),
+            'kurikulum' => Kurikulum::all(),
             'prodi' => Prodi::all(),
-            'action' => route('daftar.kurikulum.store')
+            'action' => route('daftar.kurikulum.store'),
         ];
         return view('pages.prodi.kurikulum.form-data-kurikulum', $data);
     }
@@ -45,11 +54,10 @@ class KurikulumController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validated =$request->validate( [
+        $validated = $request->validate([
             'create_nama' => ['required'],
             'create_status' => ['required'],
-            'create_prodi' => ['required']
+            'create_prodi' => ['required'],
         ]);
 
         Kurikulum::create([
@@ -92,7 +100,19 @@ class KurikulumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_nama' => ['required'],
+            'update_status' => ['required'],
+            'update_prodi' => ['required'],
+        ]);
+
+        Kurikulum::where('id', $id)->update([
+            'nama' => $validated['update_nama'],
+            'status' => $validated['update_status'],
+            'id_prodi' => $validated['update_prodi'],
+        ]);
+
+        return redirect()->route('daftar.kurikulum.index');
     }
 
     /**

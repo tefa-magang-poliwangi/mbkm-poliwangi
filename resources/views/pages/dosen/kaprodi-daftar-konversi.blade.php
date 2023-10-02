@@ -54,10 +54,10 @@
                                                         class="fa-solid fa-file-pen text-dark"></i></a>
                                             </td>
                                         </tr>
-                                    @endforeach
                                     @php
                                         $no++;
                                     @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

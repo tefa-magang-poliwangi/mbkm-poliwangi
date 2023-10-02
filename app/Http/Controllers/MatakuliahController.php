@@ -89,7 +89,19 @@ class MatakuliahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_matkul' => ['required', 'string'],
+            'update_kode_matkul' => ['required', 'string'],
+            'update_sks' => ['required'],
+        ]);
+
+        Matkul::where('id', $id)->update([
+            'nama' => $validated['update_matkul'],
+            'kode_matakuliah' => $validated['update_kode_matkul'],
+            'sks' => $validated['update_sks'],
+        ]);
+        return redirect()->route('daftar.matakuliah.index');
+
     }
 
     /**

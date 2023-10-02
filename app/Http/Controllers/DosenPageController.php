@@ -21,10 +21,18 @@ class DosenPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        if($request->prodi) {
+            $id_prodi = $request->prodi;
+        } else {
+            $id_prodi = 0;
+        }
+
         $datas = [
-            'dosens' => Dosen::all()
+            'dosens' => Dosen::where('id_prodi', $id_prodi)->get(),
+            'prodi' => Prodi::all()
         ];
 
         return view('pages.admin.data-dosen', $datas);
