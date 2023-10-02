@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Kurikulum;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Mahasiswa;
 use App\Models\Matkul;
+use App\Models\Dosen;
 use App\Models\MatkulKurikulum;
 use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
@@ -77,10 +79,11 @@ class KonversiNilaiExternal extends Controller
      */
     public function index()
     {
+        $prodi_id = Dosen::Where('id_user',Auth::user()->id)->first()->id_prodi;
         $periode = Periode::where('status','Aktif')->first();
-        
+        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa',array_values(Mahasiswa::select('id')->where('id_prodi',$prodi_id)->get()->toArray()))->get();
         $data = [
-            'nilai_magang_ext' => NilaiMagangExt::where('id_periode',$periode->id)->get(),
+            'nilai_magang_ext' => $nilai_magang_ext,
         ];
         return view('pages.dosen.kaprodi-daftar-konversi', $data);
     }

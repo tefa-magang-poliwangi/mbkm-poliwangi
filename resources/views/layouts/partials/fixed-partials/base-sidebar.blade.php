@@ -252,7 +252,13 @@
                         </a>
                     </li>
                 @endrole
-
+                @role('dosen-wali')
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
+                            <span>Konversi Nilai</span>
+                        </a>
+                    </li>
+                @endrole
                 @role('mitra')
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
@@ -275,7 +281,8 @@
                 @role('mahasiswa')
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i class="fas fa-user-friends"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i
+                                class="fas fa-user-friends"></i>
                             <span>Program</span>
                         </a>
                     </li>

@@ -193,6 +193,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Halaman Kaprodi
 
         Route::get('/dashboard-dosen/daftar-dosen-wali',[KaprodiController::class,'index']);
+        Route::post('/dashboard-dosen/daftar-dosen-wali',[KaprodiController::class,'store'])->name('dosen-wali-tambah');
+
 
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.kaprodi-laporan-akhir');

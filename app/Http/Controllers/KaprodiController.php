@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use App\Models\Prodi;
+use App\Models\DosenWali;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,19 @@ class KaprodiController extends Controller
         $datas =[
             'dosens' => Dosen::Where('id_prodi',$prodi_id)->get(),
             'prodi' => Prodi::Where('id',$prodi_id)->first(),
+            'dosenwali' => DosenWali::all(),
         ];
 
         return view('pages.dosen.daftar-dosen-wali',$datas);
+    }
+
+    public function store(Request $request){
+        $list_dosen = $request->listdosen;
+        foreach ($list_dosen as $data) {
+            DosenWali::create([
+                'id_dosen'=> $data
+            ]);
+        }
+        return back();
     }
 }
