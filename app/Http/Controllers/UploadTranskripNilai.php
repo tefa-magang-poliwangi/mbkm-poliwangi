@@ -10,7 +10,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class UploadTranskripNilai extends Controller
 {
@@ -94,8 +96,13 @@ class UploadTranskripNilai extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_mahasiswa)
+    public function create($id_mahasiswa, Request $request)
     {
+        if($request->nilaimagangext) {
+            $id = $request->nilaimagangext;
+        } else {
+            $id = 0;
+        }
         $mahasiswa=User::findOrFail($id_mahasiswa)->mahasiswa;
         $data =[
             'nilaimagangext' => NilaiMagangExt::all(),
@@ -183,6 +190,14 @@ class UploadTranskripNilai extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nilaimagangext = NilaiMagangExt::findOrFail($id);
+
+        if ($nilaimagangext->file != null) {
+            Storage::delete($nilaimagangext->file);
+        }
+
+        $nilaimagangext->delete();
+
+        return redirect()->route('upload-transkrip-mahasiswa.create', $id);
     }
 }

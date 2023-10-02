@@ -91,18 +91,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-kurikulum/index', [KurikulumController::class, 'index'])->name('daftar.kurikulum.index');
         Route::get('/daftar-kurikulum/create', [KurikulumController::class, 'create'])->name('daftar.kurikulum.create');
         Route::post('/daftar-kurikulum/store', [KurikulumController::class, 'store'])->name('daftar.kurikulum.store');
+        Route::put('/daftar-kurikulum/update/{id}', [KurikulumController::class, 'update'])->name('daftar.kurikulum.update');
         Route::get('/daftar-kurikulum/delete/{id}', [KurikulumController::class, 'destroy'])->name('daftar.kurikulum.delete');
 
         // (Route Matakuliah)
         Route::get('/daftar-matakuliah/index', [MatakuliahController::class, 'index'])->name('daftar.matakuliah.index');
         Route::get('/daftar-matakuliah/create', [MatakuliahController::class, 'create'])->name('daftar.matakuliah.create');
         Route::post('/daftar-matakuliah/store', [MatakuliahController::class, 'store'])->name('daftar.matakuliah.store');
+        Route::put('/daftar-matakuliah/update/{id}', [MatakuliahController::class, 'update'])->name('daftar.matakuliah.update');
         Route::get('/daftar-matakuliah/delete/{id}', [MatakuliahController::class, 'destroy'])->name('daftar.matakuliah.delete');
 
         // (Route Matkul Kurikulum)
         Route::get('/daftar-matkul-kurikulum/index', [MatkulKurikulumController::class, 'index'])->name('daftar.matkul.kurikulum.index');
         Route::get('/daftar-matkul-kurikulum/create', [MatkulKurikulumController::class, 'create'])->name('daftar.matkul.kurikulum.create');
         Route::post('/daftar-matkul-kurikulum/store', [MatkulKurikulumController::class, 'store'])->name('daftar.matkul.kurikulum.store');
+        Route::put('/daftar-matkul-kurikulum/update/{id}', [MatkulKurikulumController::class, 'update'])->name('daftar.matkul.kurikulum.update');
         Route::get('/daftar-matkul-kurikulum/delete/{id}', [MatkulKurikulumController::class, 'destroy'])->name('daftar.matkul.kurikulum.delete');
 
         // (Route Prodi)

@@ -12,7 +12,7 @@
     <section class="container-fluid py-3">
         <div class="container py-5">
             <div class="row d-flex justify-content-center">
-                <div class="col-6">
+                <div class="col-12">
                     <div class="card card-rounded">
                         <div class="card-header">
                             <h4>Form Mitra</h4>
