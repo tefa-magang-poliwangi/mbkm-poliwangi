@@ -13,6 +13,7 @@ class Dosen extends Model
     protected $fillable = [
         'id',
         'nama',
+        'email',
         'no_telp',
         'id_prodi',
         'id_user',
@@ -27,6 +28,11 @@ class Dosen extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function doswal()
+    {
+        return $this->hasOne(DosenWali::class, 'id', 'id');
     }
 
     public function kaprodi()

@@ -16,9 +16,9 @@
             </div>
 
             <div class="col-md-6 mx-auto">
-                <div class="card rounded">
-                    <img src="{{ asset('assets/images/Group 1737.jpg') }}">
+                <div class="card card-rounded">
                     <div class="card-body">
+                        <img src="{{ asset('assets/images/Group 1737.jpg') }}" class="img-fluid">
                     </div>
                 </div>
             </div>

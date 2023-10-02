@@ -2,16 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Mahasiswa;
+use App\Models\NilaiKonversi;
+use App\Models\Periode;
+use App\Models\PesertaKelas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
-class MahasiswaPageController extends Controller
+class DaftarNilaiMahasiswaController extends Controller
 {
-    // Halaman Mahasiswa
-    public function dashboard_mahasiswa()
+
+    public function daftar_prodi()
     {
-        return view('pages.mahasiswa.mahasiswa-dashboard');
+        $data = [
+            'prodis' => Prodi::all(),
+        ];
+
+        return view('pages.akademik.daftar-nilai-mahasiswa.daftar-prodi', $data);
+    }
+
+    public function daftar_kelas($id_prodi)
+    {
+        $data = [
+            'prodis' => Prodi::all(),
+            'periodes' => Periode::all(),
+            'kelas' => Kelas::where('id_prodi', $id_prodi)->get(),
+        ];
+
+        return view('pages.akademik.daftar-nilai-mahasiswa.daftar-kelas', $data);
+    }
+
+    public function daftar_mahasiswa($id_kelas)
+    {
+        $data = [
+            'id_kelas' => $id_kelas,
+            'peserta_kelas' => PesertaKelas::where('id_kelas', $id_kelas)->get(),
+        ];
+
+        return view('pages.akademik.daftar-nilai-mahasiswa.daftar-mahasiswa-perkelas', $data);
+    }
+
+    public function daftar_nilai_mahasiswa($id_mahasiswa)
+    {
+        $data = [
+            'nilai_transkrip' => NilaiKonversi::where('id_mahasiswa', $id_mahasiswa)->get(),
+        ];
+
+        return view('pages.akademik.daftar-nilai-mahasiswa.daftar-nilai-mahasiswa', $data);
     }
 
     /**
@@ -19,20 +57,9 @@ class MahasiswaPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
-        }
-
-        $datas = [
-            'mahasiswas' => Mahasiswa::Where('id_prodi', $id_prodi)->get(),
-            'prodi' => Prodi::all()
-        ];
-
-        return view('pages.admin.data-mahasiswa', $datas);
+        //
     }
 
     /**

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Matkul;
+use App\Models\Kelas;
+use App\Models\Periode;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
-class MatakuliahController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,13 @@ class MatakuliahController extends Controller
      */
     public function index()
     {
-        $data =[
-            'matakuliah' => Matkul::all()
+        $data = [
+            'kelas' => Kelas::all(),
+            'prodis' => Prodi::all(),
+            'periodes' => Periode::all(),
         ];
-        return view('pages.prodi.matkul.index', $data);
+
+        return view('pages.admin.manajemen-kelas.index', $data);
     }
 
     /**
@@ -27,12 +32,7 @@ class MatakuliahController extends Controller
      */
     public function create()
     {
-        $data = [
-            'matakuliah' => Matkul::all()
-        ];
-
-        return view('pages.prodi.matkul.create', $data);
-
+        //
     }
 
     /**
@@ -44,18 +44,20 @@ class MatakuliahController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'create_matkul' => ['required', 'string'],
-            'create_kode_matkul' => ['required', 'string'],
-            'create_sks' => ['required'],
+            'create_tingkat_kelas' => ['required'],
+            'create_abjad_kelas' => ['required'],
+            'create_id_prodi' => ['required'],
+            'create_id_periode' => ['required'],
         ]);
 
-        Matkul::create([
-            'nama' => $validated['create_matkul'],
-            'kode_matakuliah' => $validated['create_kode_matkul'],
-            'sks' => $validated['create_sks'],
+        Kelas::create([
+            'tingkat_kelas' => $validated['create_tingkat_kelas'],
+            'abjad_kelas' => $validated['create_abjad_kelas'],
+            'id_prodi' => $validated['create_id_prodi'],
+            'id_periode' => $validated['create_id_periode'],
         ]);
 
-        return redirect()->route('daftar.matakuliah.index');
+        return redirect()->route('manajemen.kelas.index');
     }
 
     /**
@@ -90,18 +92,20 @@ class MatakuliahController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'update_matkul' => ['required', 'string'],
-            'update_kode_matkul' => ['required', 'string'],
-            'update_sks' => ['required'],
+            'update_tingkat_kelas' => ['required'],
+            'update_abjad_kelas' => ['required'],
+            'update_id_prodi' => ['required'],
+            'update_id_periode' => ['required'],
         ]);
 
-        Matkul::where('id', $id)->update([
-            'nama' => $validated['update_matkul'],
-            'kode_matakuliah' => $validated['update_kode_matkul'],
-            'sks' => $validated['update_sks'],
+        Kelas::where('id', $id)->update([
+            'tingkat_kelas' => $validated['update_tingkat_kelas'],
+            'abjad_kelas' => $validated['update_abjad_kelas'],
+            'id_prodi' => $validated['update_id_prodi'],
+            'id_periode' => $validated['update_id_periode'],
         ]);
-        return redirect()->route('daftar.matakuliah.index');
 
+        return redirect()->route('manajemen.kelas.index');
     }
 
     /**
@@ -112,9 +116,9 @@ class MatakuliahController extends Controller
      */
     public function destroy($id)
     {
-        $matkul = Matkul::findOrFail($id);
-        $matkul->delete();
+        $kelas = Kelas::findOrFail($id);
+        $kelas->delete();
 
-        return redirect()->route('daftar.matakuliah.index');
+        return redirect()->route('manajemen.kelas.index');
     }
 }

@@ -12,25 +12,27 @@
 @section('content')
     <div class="container-fluid py-3">
         <section class="py-4">
-            <div class="col text-start d-flex text-uppercase">
+            <div class="col text-start d-flex text-uppercase pt-1">
                 <div class="px-2">
-                    <i class="fa-solid fa-file-invoice fa-3x"></i>
+                    <i class="fa-solid fa-file-invoice fa-2x"></i>
                 </div>
                 <div>
-                    <h4 class="text-theme">Konversi NIlai</h4>
-                    <h6 class="text-theme">Rini Maulida</h6>
+                    <h4 class="text-theme text-capitalize">Konversi Nilai Magang : {{ $nilai_magang_ext->mahasiswa->nama }}
+                    </h4>
                 </div>
             </div>
         </section>
-        <div class="row">
+        <div class="row mb-5">
 
             <div class="col-sm-12 col-md-6">
-                <iframe src="{{ asset('doc/contoh.pdf') }}" width="100%" height="700px"></iframe>
+                <iframe src="{{ Storage::url($nilai_magang_ext->file) }}" width="100%" height="700px"></iframe>
             </div>
 
             <div class="col">
                 <div class="table-responsive d-flex flex-column">
-                    <form action="" method="post">
+                    <form
+                        action="{{ route('konversi_nilai.mahasiswa.external', [$nilai_magang_ext->id_mahasiswa, $nilai_magang_ext->id]) }}"
+                        method="post">
                         @csrf
 
                         <div>
@@ -40,28 +42,26 @@
                                 @endphp
                                 <thead style="background-color: #063762; color: white;">
                                     <tr class="text-white-header">
-                                        <th>
+                                        <th class="text-white">
                                             No
                                         </th>
-                                        <th>Kode Matakuliah</th>
-                                        <th>Matakuliah</th>
-                                        <th>Nilai</th>
+                                        <th class="text-white">Kode Matakuliah</th>
+                                        <th class="text-white">Matakuliah</th>
+                                        <th class="text-white">Nilai</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($matakuiah as $data)
+                                    @foreach ($matakuliah as $data)
                                         <tr>
                                             <td>
                                                 {{ $no }}
                                             </td>
-                                            <td>{{ $data->kode_matakuliah }}</td>
+                                            <td>{{ $data->matkul->kode_matakuliah }}</td>
                                             <td>
-                                                {{ $data->nama }}
+                                                {{ $data->matkul->nama }}
                                             </td>
                                             <td>
-                                                <input type="text" class="hidden" name="id_mahasiswa" value="">
-                                                <input type="text" class="form-control" name="nilai_angka"
-                                                    id="{{ $data->kode_matakuliah }}">
+                                                <input type="text" class="form-control" name="{{ $data->matkul->id }}">
                                             </td>
                                         </tr>
                                         @php
@@ -78,61 +78,70 @@
                                     <button type="submit" class="btn btn-theme btn-block">Save</button>
                                 </div>
                                 <div class="col-6 text-left">
-                                    <button type="submit" class="btn btn-theme btn-block">cancel</button>
+                                    <button type="submit" class="btn btn-theme btn-block">Cancel</button>
                                 </div>
                             </div>
                     </form>
                 </div>
             </div>
         </div>
-        {{-- modal content --}}
-        <div class="modal fade" tabindex="-1" role="dialog" id="tambahNilaiModal">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content rounded-0" style="background-color: #e2e2e2;color: #19203F; font-weight: bold;">
-                    <div class="modal-header p-1 border-bottom border-dark">
-                        <h5 class="modal-title px-3" style="font-weight: bold">TAMBAH NILAI INDEX PRESTASI SEMESTER</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-hover table-borderless table-striped text-uppercase"
+
+        <div class="col mt-5">
+            {{-- Hasil Transkip Nilai --}}
+            <div class="card card-border card-rounded-sm card-hover">
+                <div class="card-body">
+                    <h5 class="header-title mt-0 mb-3 text-theme">Transkrip Nilai Hasil Konversi
+                    </h5>
+                    <div class="table-responsive">
+                        @php
+                            $no = 1;
+                        @endphp
+                        <table class="table table-hover table-borderless rounded" id="table-3"
                             style="background-color: #EEEEEE;">
+                            <thead>
+                                <tr>
+                                    <th class="text-theme">
+                                        No
+                                    </th>
+                                    <th class="text-theme">Kode</th>
+                                    <th class="text-theme">Mata Kuliah</th>
+                                    <th class="text-theme text-center">Nilai Angka</th>
+                                    <th class="text-theme text-center">Nilai Huruf</th>
+                                    <th class="text-theme text-center">Action</th>
+                                </tr>
                             <tbody>
-                                <tr>
-                                    <td class="form-group">
-                                        <label for="nilai">Nilai</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="Number" class="form-control border-0 bg-transparent" id="nilai">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="form-group">
-                                        <label for="bobot">Bobot</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" class="form-control border-0 bg-transparent" id="bobot">
-                                    </td>
-                                </tr>
+                                @foreach ($nilai_konversi as $data)
+                                    <tr>
+                                        <td>
+                                            {{ $no }}
+                                        </td>
+                                        <td>{{ $data->matkul->kode_matakuliah }}</td>
+                                        <td>
+                                            {{ $data->matkul->nama }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $data->nilai_angka }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $data->nilai_huruf }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
+                                                class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                    @endphp
+                                @endforeach
+
                             </tbody>
+                            </thead>
                         </table>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke border-top d-flex">
-                        <div class="justify-content-start p-4">
-                            <button type="button" class="btn text-white" style="background-color: #19203F;"
-                                data-dismiss="modal">Tambah</button>
-                            <button type="button" class="btn btn-danger">Batal</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- modal content end --}}
     </div>
     </div>
 @endsection

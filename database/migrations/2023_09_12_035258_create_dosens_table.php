@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('dosens', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 255)->nullable(false);
+            $table->string('email', 255)->nullable(false);
             $table->string('no_telp', 15)->nullable(false);
             $table->unsignedBigInteger('id_prodi')->nullable(false);
             $table->unsignedBigInteger('id_user')->nullable(false);

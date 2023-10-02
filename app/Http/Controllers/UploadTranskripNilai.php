@@ -10,7 +10,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class UploadTranskripNilai extends Controller
 {
@@ -36,15 +38,6 @@ class UploadTranskripNilai extends Controller
             $validated = $request->validate([
                 'file' => ['required', 'mimes:pdf', 'max:1024'],
             ]);
-
-            // Nonaktifkan konstrain foreign key
-            Schema::disableForeignKeyConstraints();
-
-            // Melakukan truncate pada tabel nilai_magang_exts
-            DB::table('nilai_magang_exts')->truncate();
-
-            // Aktifkan kembali konstrain foreign key
-            Schema::enableForeignKeyConstraints();
 
             $saveData = [];
 
@@ -103,11 +96,17 @@ class UploadTranskripNilai extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_mahasiswa, Request $request)
     {
+        if($request->nilaimagangext) {
+            $id = $request->nilaimagangext;
+        } else {
+            $id = 0;
+        }
+        $mahasiswa=User::findOrFail($id_mahasiswa)->mahasiswa;
         $data =[
             'nilaimagangext' => NilaiMagangExt::all(),
-            'mahasiswa'=> Mahasiswa::all(),
+            'mahasiswa'=> Mahasiswa::findOrFail($mahasiswa->first()->id),
             'periode' => Periode::all(),
             'magangext' => MagangExt::all()
         ];
@@ -146,7 +145,7 @@ class UploadTranskripNilai extends Controller
             'id_periode' => $validated['periode'],
         ]);
 
-        return redirect()->route('upload-transkrip-mahasiswa.create');
+        return redirect()->route('upload-transkrip-mahasiswa.create', $id_user);
     }
 
     /**
@@ -191,6 +190,14 @@ class UploadTranskripNilai extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nilaimagangext = NilaiMagangExt::findOrFail($id);
+
+        if ($nilaimagangext->file != null) {
+            Storage::delete($nilaimagangext->file);
+        }
+
+        $nilaimagangext->delete();
+
+        return redirect()->route('upload-transkrip-mahasiswa.create', $id);
     }
 }

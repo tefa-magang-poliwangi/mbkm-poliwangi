@@ -2,37 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
-use App\Models\Prodi;
 use Illuminate\Http\Request;
 
-class MahasiswaPageController extends Controller
+class AkademikPageController extends Controller
 {
-    // Halaman Mahasiswa
-    public function dashboard_mahasiswa()
-    {
-        return view('pages.mahasiswa.mahasiswa-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
-        }
-
-        $datas = [
-            'mahasiswas' => Mahasiswa::Where('id_prodi', $id_prodi)->get(),
-            'prodi' => Prodi::all()
-        ];
-
-        return view('pages.admin.data-mahasiswa', $datas);
+        return view('pages.akademik.akademik-dashboard');
     }
 
     /**

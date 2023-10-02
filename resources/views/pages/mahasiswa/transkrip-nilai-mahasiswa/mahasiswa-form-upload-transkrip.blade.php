@@ -38,9 +38,8 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active card card-border card-rounded-sm card-hover" id="form-transkip"
                         role="tabpanel" aria-labelledby="list-home-list">
-                        <form
-                            action="{{ route('upload.transkrip.mahasiswa.store', Auth::user()->id) }}"
-                            method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('upload.transkrip.mahasiswa.store', Auth::user()->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <h4 class="header-title mt-0 mb-3">Transkrip Nilai</h4>
@@ -114,21 +113,23 @@
                     </div>
 
                     {{-- Daftar Transkip Nilai --}}
-                    <div class="tab-pane fade" id="daftar-transkip" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div class="tab-pane fade pt-0" id="daftar-transkip" role="tabpanel"
+                        aria-labelledby="list-profile-list">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 @if ($nilaimagangext->isEmpty())
                                     <span>Transkrip Nilai Belum Ditambahkan</span>
                                 @else
                                     @foreach ($nilaimagangext as $data)
+                                    <div class="row">
                                         <div class="card card-border card-rounded-sm card-hover">
                                             <div class="card-body">
                                                 <div class="file-box" title="pendaftaran">
                                                     <div class="row">
                                                         <div class="col-6 d-flex">
-                                                            <a href="#"
-                                                                class="mr-auto my-auto">
-                                                                <i class="fa-regular fa-trash-can text-size text-danger"></i>
+                                                            <a href="#" class="mr-auto my-auto">
+                                                                <i
+                                                                    class="fa-regular fa-trash-can text-size text-danger"></i>
                                                             </a>
                                                         </div>
                                                         <div class="col-6 d-flex">
@@ -151,6 +152,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                     @endforeach
                                 @endif
                             </div>
@@ -159,10 +161,11 @@
                     </div>
 
                     {{-- Hasil Transkip Nilai --}}
-                    <div class="tab-pane fade" id="hasil-transkip" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div class="tab-pane fade pt-0" id="hasil-transkip" role="tabpanel"
+                        aria-labelledby="list-profile-list">
                         <div class="card card-border card-rounded-sm card-hover">
                             <div class="card-body">
-                                <h5 class="header-title mt-0 mb-3">Transkrip NIlai Mata kuliah (Aida Andinar Maulidiana)
+                                <h5 class="header-title mt-0 mb-3">Transkrip Nilai Mata Kuliah : {{ $mahasiswa->nama }}
                                 </h5>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-borderless rounded" id="table-2"

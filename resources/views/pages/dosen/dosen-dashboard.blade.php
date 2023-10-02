@@ -1,7 +1,8 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Dashboard Dosen | MBKM Poliwangi</title>
+    <title>
+        Dashboard Dosen | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -14,7 +15,18 @@
         <div class="col-md-12">
             <div class="card card-custom rounded ">
                 <div class="card-body">
-                    <h3 class="card-title">Dashboard Dosen</h3>
+                    <h3 class="card-title">Dashboard @auth
+                            @role('dosen')
+                                dosen
+                                @endrole @role('kaprodi')
+                                Kaprodi
+                                @endrole @role('wd-1')
+                                Wadir 1
+                                @endrole @role('dosen-wali')
+                                Dosen Wali
+                            @endrole
+                        @endauth
+                    </h3>
                 </div>
             </div>
         </div>
