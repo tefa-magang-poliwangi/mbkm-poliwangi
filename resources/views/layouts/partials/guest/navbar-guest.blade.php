@@ -84,6 +84,16 @@
                                     </li>
                                 @endrole
 
+                                @role('akademik')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.akademik.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
                                 <li>
                                     <a class="dropdown-item text-theme fw-medium" href="{{ route('do.logout') }}">
                                         <i class="fa-solid fa-door-closed"></i>

@@ -20,6 +20,10 @@
                 @role('mitra')
                     <a href="{{ route('dashboard.mitra.page') }}">Poliwangi</a>
                 @endrole
+
+                @role('akademik')
+                    <a href="{{ route('dashboard.akademik.page') }}">Poliwangi</a>
+                @endrole
             @endauth
         </div>
 
@@ -59,6 +63,14 @@
                 @role('mitra')
                     <li>
                         <a class="nav-link" href="{{ route('dashboard.mitra.page') }}"><i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('akademik')
+                    <li>
+                        <a class="nav-link" href="{{ route('dashboard.akademik.page') }}"><i class="fas fa-home"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -252,7 +264,13 @@
                         </a>
                     </li>
                 @endrole
-
+                @role('dosen-wali')
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
+                            <span>Konversi Nilai</span>
+                        </a>
+                    </li>
+                @endrole
                 @role('mitra')
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
@@ -271,11 +289,22 @@
                     </li>
                 @endrole
 
+                @role('akademik')
+                    {{-- Akademik Sidebar Menu --}}
+                    <li class="menu-header">SUPER ADMIN</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('akademik.daftar.prodi') }}"><i class="fas fa-info-circle"></i>
+                            <span>Daftar Nilai</span>
+                        </a>
+                    </li>
+                @endrole
+
                 {{-- Mahasiswa Sidebar Menu --}}
                 @role('mahasiswa')
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i class="fas fa-user-friends"></i>
+                        <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i
+                                class="fas fa-user-friends"></i>
                             <span>Program</span>
                         </a>
                     </li>
