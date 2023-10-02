@@ -104,6 +104,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
         });
 
+        Route::get('/dashboard-mitra/pendamping-lapang-mitra', function(){
+            return view('pages.mitra.pl-mitra');
+        });
+
         // Halaman Kaprodi
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.kaprodi-laporan-akhir');
@@ -134,6 +138,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/daftar-mahasiswa', function(){
             return view('pages.dosen.kaprodi-daftar-mahasiswa');
+        });
+        Route::get('/dashboard-dosen/Pendamping-lapang-mahasiswa', function(){
+            return view('pages.prodi.pl-mahasiswa');
         });
 
         // Halaman Dosen Pembimbing
