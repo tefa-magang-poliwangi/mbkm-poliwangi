@@ -37,7 +37,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user(); // Mengambil data pengguna yang sudah login
-            Alert::toast('Selamat datang ' . $user->name . ', Sign in berhasil', 'success');
+            Alert::toast('Selamat datang ' . $user->name, 'success');
 
             if ($user->hasRole('admin')) {
                 return redirect()->route('dashboard.admin.page');

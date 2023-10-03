@@ -54,12 +54,12 @@
                                     @enderror
                                 </div>
 
-                                <div class="d-flex mb-3">
+                                {{-- <div class="d-flex mb-3">
                                     <small class="ml-auto">
                                         <span>Belum punya akun?</span>
                                         <a href="{{ route('register.mahasiswa.page') }}">Sign up</a>
                                     </small>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">

@@ -1,157 +1,211 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Konversi Nilai | MBKM Poliwangi</title>
+    <title>Konversi Nilai MBKM | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
-    <div class="container-fluid py-3">
-        <section class="py-4">
-            <div class="col text-start d-flex text-uppercase pt-1">
-                <div class="px-2">
-                    <i class="fa-solid fa-file-invoice fa-2x"></i>
+    <section class="">
+        <div class="pt-5 pb-4">
+            <div class="row bg-white card-rounded-sm">
+                <div class="col-12 col-sm-2 col-md-2 col-lg-1 text-start d-flex text-uppercase d-lg-flex pt-2 pb-2 mt-1">
+                    <div class="px-3 mx-auto my-auto">
+                        <i class="fa-solid fa-file-invoice fa-2x text-theme fs-50"></i>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-theme text-capitalize">Konversi Nilai Magang : {{ $nilai_magang_ext->mahasiswa->nama }}
-                    </h4>
-                </div>
-            </div>
-        </section>
-        <div class="row mb-5">
-
-            <div class="col-sm-12 col-md-6">
-                <iframe src="{{ Storage::url($nilai_magang_ext->file) }}" width="100%" height="700px"></iframe>
-            </div>
-
-            <div class="col">
-                <div class="table-responsive d-flex flex-column">
-                    <form
-                        action="{{ route('konversi_nilai.mahasiswa.external', [$nilai_magang_ext->id_mahasiswa, $nilai_magang_ext->id]) }}"
-                        method="post">
-                        @csrf
-
-                        <div>
-                            <table class="table table-hover table-borderless text-white" style="background-color: #EEEEEE;">
-                                @php
-                                    $no = 1;
-                                @endphp
-                                <thead style="background-color: #063762; color: white;">
-                                    <tr class="text-white-header">
-                                        <th class="text-white">
-                                            No
-                                        </th>
-                                        <th class="text-white">Kode Matakuliah</th>
-                                        <th class="text-white">Matakuliah</th>
-                                        <th class="text-white">Nilai</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($matakuliah as $data)
-                                        <tr>
-                                            <td>
-                                                {{ $no }}
-                                            </td>
-                                            <td>{{ $data->matkul->kode_matakuliah }}</td>
-                                            <td>
-                                                {{ $data->matkul->nama }}
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" name="{{ $data->matkul->id }}">
-                                            </td>
-                                        </tr>
-                                        @php
-                                            $no++;
-                                        @endphp
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="contaner-fluid">
-                            <div class="row">
-                                <div class="col-6 text-right ">
-                                    <button type="submit" class="btn btn-theme btn-block">Save</button>
-                                </div>
-                                <div class="col-6 text-left">
-                                    <button type="submit" class="btn btn-theme btn-block">Cancel</button>
-                                </div>
-                            </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col mt-5">
-            {{-- Hasil Transkip Nilai --}}
-            <div class="card card-border card-rounded-sm card-hover">
-                <div class="card-body">
-                    <h5 class="header-title mt-0 mb-3 text-theme">Transkrip Nilai Hasil Konversi
-                    </h5>
-                    <div class="table-responsive">
-                        @php
-                            $no = 1;
-                        @endphp
-                        <table class="table table-hover table-borderless rounded" id="table-3"
-                            style="background-color: #EEEEEE;">
-                            <thead>
-                                <tr>
-                                    <th class="text-theme">
-                                        No
-                                    </th>
-                                    <th class="text-theme">Kode</th>
-                                    <th class="text-theme">Mata Kuliah</th>
-                                    <th class="text-theme text-center">Nilai Angka</th>
-                                    <th class="text-theme text-center">Nilai Huruf</th>
-                                    <th class="text-theme text-center">Action</th>
-                                </tr>
-                            <tbody>
-                                @foreach ($nilai_konversi as $data)
-                                    <tr>
-                                        <td>
-                                            {{ $no }}
-                                        </td>
-                                        <td>{{ $data->matkul->kode_matakuliah }}</td>
-                                        <td>
-                                            {{ $data->matkul->nama }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ $data->nilai_angka }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ $data->nilai_huruf }}
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
-                                                class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $no++;
-                                    @endphp
-                                @endforeach
-
-                            </tbody>
-                            </thead>
-                        </table>
+                <div class="col-12 col-sm-10 col-md-10 col-lg-10 d-flex pt-2 pb-2 mt-1">
+                    <div class="my-auto">
+                        <h4 class="text-theme text-capitalize">KONVERSI NILAI MBKM</h4>
+                        <h5 class="text-theme">{{ $nilai_magang_ext->mahasiswa->nama }}</h5>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5">
+                <iframe src="{{ Storage::url($nilai_magang_ext->file_transkrip) }}" width="100%" height="700px"></iframe>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-7">
+                <div class="card card-rounded-sm card-hover d-flex flex-column">
+                    <div class="card-body">
+                        <form
+                            action="{{ route('konversi_nilai.mahasiswa.external', [$nilai_magang_ext->id_mahasiswa, $nilai_magang_ext->id]) }}"
+                            method="post">
+                            @csrf
+
+                            <table class="table table-responsive table-hover table-borderless text-white bg-white">
+                                <thead class="bg-theme text-white">
+                                    <tr class="text-white-header">
+                                        <th class="text-white">
+                                            No
+                                        </th>
+                                        <th class="text-white text-center">Kode</th>
+                                        <th class="text-white text-center">Matakuliah</th>
+                                        <th class="text-white text-center">Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($matakuliah as $data)
+                                        <tr>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
+                                            <td>{{ $data->matkul->nama }}</td>
+                                            <td>
+                                                <input type="text" class="form-control" name="{{ $data->matkul->id }}"
+                                                    placeholder="Nilai angka" pattern="[0-9]*" required>
+                                            </td>
+                                        </tr>
+
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                <div class="col-6 text-right ">
+                                    <button type="submit" class="btn btn-primary btn-block">Konversi Sekarang</button>
+                                </div>
+                                <div class="col-6 text-left">
+                                    <button type="reset" class="btn btn-danger btn-block">Batal</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="card card-border card-rounded-sm">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover text-white bg-white table-bordered">
+                                <thead class="bg-theme text-white">
+                                    <tr class="text-white-header">
+                                        <th class="text-white">No</th>
+                                        <th class="text-white text-center">Rentang Nilai Angka</th>
+                                        <th class="text-white text-center">Nilai Huruf</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">90 - 100</td>
+                                        <td class="text-center">A</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td class="text-center">80 - 89</td>
+                                        <td class="text-center">AB</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">3</td>
+                                        <td class="text-center">70 - 79</td>
+                                        <td class="text-center">B</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">4</td>
+                                        <td class="text-center">60 - 69</td>
+                                        <td class="text-center">BC</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">5</td>
+                                        <td class="text-center">50 - 59</td>
+                                        <td class="text-center">C</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">6</td>
+                                        <td class="text-center">40 - 49</td>
+                                        <td class="text-center">D</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">7</td>
+                                        <td class="text-center">0 - 39</td>
+                                        <td class="text-center">E</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Hasil Transkip Nilai --}}
+        <div class="row">
+            <div class="col-12 mt-4">
+                {{-- Hasil Transkip Nilai --}}
+                <div class="card card-border card-rounded-sm card-hover">
+                    <div class="card-body">
+                        <h5 class="header-title text-theme mb-3">Transkrip Nilai Hasil Konversi</h5>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <th class="text-white text-center">No</th>
+                                        <th class="text-white text-center">Kode</th>
+                                        <th class="text-white text-center">Mata Kuliah</th>
+                                        <th class="text-white text-center">Nilai Angka</th>
+                                        <th class="text-white text-center">Nilai Huruf</th>
+                                        <th class="text-white text-center">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($nilai_konversi as $data)
+                                        <tr>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
+                                            <td>{{ $data->matkul->nama }}</td>
+                                            <td class="text-center">{{ $data->nilai_angka }}</td>
+                                            <td class="text-center">{{ $data->nilai_huruf }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
+                                                    class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }} "></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-    </script>
+    {{-- Datatable JS --}}
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
 @endsection

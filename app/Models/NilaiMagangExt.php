@@ -11,7 +11,8 @@ class NilaiMagangExt extends Model
 
     protected $fillable = [
         'id',
-        'file',
+        'file_transkrip',
+        'file_sertifikat',
         'id_mahasiswa',
         'id_magang_ext',
         'id_periode',
