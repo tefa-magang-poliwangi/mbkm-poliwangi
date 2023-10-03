@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MagangExternalController extends Controller
@@ -15,6 +16,7 @@ class MagangExternalController extends Controller
     public function index()
     {
         $data = [
+            'prodi' => Prodi::all(),
             'magangext' => MagangExt::all()
         ];
         return view('pages.prodi.data-magang.index', $data);
