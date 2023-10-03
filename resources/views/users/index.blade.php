@@ -8,7 +8,7 @@
     <section>
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h1>Users</h1>
                     <div class="lead">
                         Manajemen User.
@@ -20,14 +20,14 @@
                     </div>
 
                     <table class="table table-striped table-responsive">
-                        <thead>
+                        <thead class="bg-primary">
                             <tr>
-                                <th scope="col" width="1%">#</th>
-                                <th scope="col" width="15%">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col" width="10%">Username</th>
-                                <th scope="col" width="10%">Roles</th>
-                                <th scope="col" width="1%" colspan="3"></th>
+                                <th scope="col" width="1%" class="text-white">#</th>
+                                <th scope="col" width="15%" class="text-white">Name</th>
+                                <th scope="col" class="text-white">Email</th>
+                                <th scope="col" width="10%" class="text-white">Username</th>
+                                <th scope="col" width="10%" class="text-white">Roles</th>
+                                <th scope="col" width="1%" colspan="3" class="text-white"></th>
                             </tr>
                         </thead>
                         <tbody>

@@ -17,11 +17,13 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
-                        <i class="fa-solid fa-house my-auto"></i> <span class="my-auto">&ensp; Beranda</span>
-                    </a>
+                    @can('landing.page')
+                        <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
+                            <i class="fa-solid fa-house my-auto"></i> <span class="my-auto">&ensp; Beranda</span>
+                        </a>
+                    @endcan
 
-                    <div class="dropdown-divider"></div>
+                    {{-- <div class="dropdown-divider"></div> --}}
                     <a href="{{ route('do.logout') }}" class="dropdown-item has-icon text-danger">
                         <i class="fa-solid fa-right-from-bracket my-auto"></i>
                         <span class="my-auto">&ensp;Logout</span>

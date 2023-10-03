@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kurikulum;
 use App\Models\Matkul;
 use App\Models\MatkulKurikulum;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MatkulKurikulumController extends Controller
@@ -14,11 +15,18 @@ class MatkulKurikulumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        if($request->prodi) {
+            $id_prodi = $request->prodi;
+        } else {
+            $id_prodi = 0;
+        }
         $data = [
+            'prodi' => Prodi::all(),
             'matkul' => Matkul::all(),
-            'kurikulum' => Kurikulum::all(),
+            'kurikulum' => Kurikulum::where('id_prodi', $id_prodi),
             'matkulkurikulum' => MatkulKurikulum::all(),
         ];
         return view('pages.prodi.data-matkul-kurikulum', $data);
@@ -93,8 +101,21 @@ class MatkulKurikulumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_semester' => ['required'],
+            'update_kurikulum' => ['required'],
+            'update_matkul' => ['required'],
+        ]);
+
+        MatkulKurikulum::where('id', $id)->update([
+            'semester' => $validated['update_semester'],
+            'id_kurikulum' => $validated['update_kurikulum'],
+            'id_matkul' => $validated['update_matkul'],
+        ]);
+
+        return redirect()->route('daftar.matkul.kurikulum.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

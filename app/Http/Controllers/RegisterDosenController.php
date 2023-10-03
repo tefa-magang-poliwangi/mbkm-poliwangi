@@ -44,51 +44,42 @@ class RegisterDosenController extends Controller
      */
     public function store(Request $request)
     {
-                // validasi request mahasiswa
-                $validated = $request->validate([
-                    'nama' => 'required|string',
-                    'email' => 'required|email',
-                    'id_prodi' => 'required',
-                    'no_telp' => 'required|string|between:11,15',
-                    'password' => ['required', 'confirmed', 'min:8'],
-                    'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
-                ]);
-        
-                $user_dosen = User::create([
-                    'name' => $validated['nama'],
-                    'email' => $validated['email'],
-                    'username' => $validated['email'],
-                    'password' => bcrypt($validated['password']),
-                ]);
-        
-                $user_dosen->assignRole('dosen');
-        
-                Dosen::create([
-                    'nama' => $validated['nama'],
-                    'email' => $validated['email'],
-                    'no_telp' => $validated['no_telp'],
-                    'id_prodi' => $validated['id_prodi'],
-                    'id_user' => $user_dosen->id,
-                ]);
-        
-                $credentials = [
-                    'username' => $user_dosen->username, // Menggunakan nim yang diinputkan pengguna pada form
-                    'password' => $validated['password'], // Menggunakan kata sandi yang diinputkan pengguna pada form
-                ];
-        
-                if (Auth::attempt($credentials)) {
-                    $request->session()->regenerate();
-        
-                    $user = Auth::user(); // Mengambil data pengguna yang sudah login
-        
-                    if ($user->hasRole('admin')) {
-                        return redirect()->route('dashboard.admin.page');
-                    } elseif ($user->hasRole('mahasiswa')) {
-                        return redirect()->route('dashboard.mahasiswa.page');
-                    } elseif ($user->hasRole('dosen')) {
-                        return redirect()->route('dashboard.dosen.page');
-                    }
-                }
+        // validasi request mahasiswa
+        $validated = $request->validate([
+            'nama' => 'required|string',
+            'email' => 'required|email',
+            'id_prodi' => 'required',
+            'no_telp' => 'required|string|between:11,15',
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
+        ]);
+
+        $user_dosen = User::create([
+            'name' => $validated['nama'],
+            'email' => $validated['email'],
+            'username' => $validated['email'],
+            'password' => bcrypt($validated['password']),   
+        ]);
+
+        $user_dosen->assignRole('dosen');
+
+        Dosen::create([
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'no_telp' => $validated['no_telp'],
+            'id_prodi' => $validated['id_prodi'],
+            'id_user' => $user_dosen->id,
+        ]);
+
+        $credentials = [
+            'username' => $user_dosen->username, // Menggunakan nim yang diinputkan pengguna pada form
+            'password' => $validated['password'], // Menggunakan kata sandi yang diinputkan pengguna pada form
+        ];
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard.dosen.page');
+        }
     }
 
     /**
