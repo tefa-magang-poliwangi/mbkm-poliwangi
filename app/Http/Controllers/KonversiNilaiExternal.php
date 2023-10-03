@@ -77,7 +77,6 @@ class KonversiNilaiExternal extends Controller
     public function index()
     {
         $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
-        $periode = Periode::where('status', 'Aktif')->first();
         $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
 
         $data = [

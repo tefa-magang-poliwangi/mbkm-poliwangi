@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Konversi Nilai MBKM | MBKM Poliwangi</title>
+    <title>Konversi Nilai Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -46,39 +46,40 @@
                             method="post">
                             @csrf
 
-                            <table class="table table-responsive table-hover table-borderless text-white bg-white">
-                                <thead class="bg-theme text-white">
-                                    <tr class="text-white-header">
-                                        <th class="text-white">
-                                            No
-                                        </th>
-                                        <th class="text-white text-center">Kode</th>
-                                        <th class="text-white text-center">Matakuliah</th>
-                                        <th class="text-white text-center">Nilai</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-
-                                    @foreach ($matakuliah as $data)
-                                        <tr>
-                                            <td class="text-center">{{ $no }}</td>
-                                            <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
-                                            <td>{{ $data->matkul->nama }}</td>
-                                            <td>
-                                                <input type="text" class="form-control" name="{{ $data->matkul->id }}"
-                                                    placeholder="Nilai angka" pattern="[0-9]*" required>
-                                            </td>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered text-white bg-white">
+                                    <thead class="bg-theme text-white">
+                                        <tr class="text-white-header">
+                                            <th class="text-white text-center">No</th>
+                                            <th class="text-white text-center">Kode</th>
+                                            <th class="text-white text-center">Matakuliah</th>
+                                            <th class="text-white text-center">Nilai</th>
                                         </tr>
-
+                                    </thead>
+                                    <tbody>
                                         @php
-                                            $no++;
+                                            $no = 1;
                                         @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
+
+                                        @foreach ($matakuliah as $data)
+                                            <tr>
+                                                <td class="text-center">{{ $no }}</td>
+                                                <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
+                                                <td>{{ $data->matkul->nama }}</td>
+                                                <td>
+                                                    <input type="text" class="form-control"
+                                                        name="{{ $data->matkul->id }}" placeholder="Nilai angka"
+                                                        pattern="[0-9]*" required>
+                                                </td>
+                                            </tr>
+
+                                            @php
+                                                $no++;
+                                            @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <div class="row">
                                 <div class="col-6 text-right ">
@@ -95,11 +96,23 @@
 
                 <div class="card card-border card-rounded-sm">
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <span class="fw-bold">Petunjuk Rentang Pengisian Nilai : </span><br>
+
+                        {{-- <ol>
+                            <li>A (90 - 100)</li>
+                            <li>AB (80 - 89)</li>
+                            <li>B (70 - 79)</li>
+                            <li>BC (60 - 69)</li>
+                            <li>C (50 - 59)</li>
+                            <li>D (40 - 49)</li>
+                            <li>E (0 - 39)</li>
+                        </ol> --}}
+
+                        <div class="table-responsive mt-2">
                             <table class="table table-hover text-white bg-white table-bordered">
                                 <thead class="bg-theme text-white">
                                     <tr class="text-white-header">
-                                        <th class="text-white">No</th>
+                                        <th class="text-white text-center">No</th>
                                         <th class="text-white text-center">Rentang Nilai Angka</th>
                                         <th class="text-white text-center">Nilai Huruf</th>
                                     </tr>
@@ -157,7 +170,7 @@
                         <h5 class="header-title text-theme mb-3">Transkrip Nilai Hasil Konversi</h5>
 
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered text-white">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-white text-center">No</th>
