@@ -38,8 +38,8 @@
                                 <tbody>
                                     @foreach ($nilai_magang_ext as $data)
                                         <tr>
-                                            <td>
-                                                {{ $no }}
+                                            <td class="text-center">
+                                                {{ $no++ }}
                                             </td>
                                             <td>{{ $data->mahasiswa->nama }}</td>
                                             <td>
