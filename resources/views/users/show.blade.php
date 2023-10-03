@@ -8,10 +8,10 @@
     <section>
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h1>Show user</h1>
                     <div class="lead">
-
+                        Lihat Detail User.
                     </div>
 
                     <div class="container mt-4">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="mt-4">
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info">Edit</a>
-                    <a href="{{ route('users.index') }}" class="btn bg-white">Back</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-danger">Kembali</a>
                 </div>
             </div>
         </div>

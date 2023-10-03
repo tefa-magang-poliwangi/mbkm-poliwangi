@@ -161,7 +161,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
          */
         Route::get('/dashboard-mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
-
         /**
          * Unidentified Routes
          */
