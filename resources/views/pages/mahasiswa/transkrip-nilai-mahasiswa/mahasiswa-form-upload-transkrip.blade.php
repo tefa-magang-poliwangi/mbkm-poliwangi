@@ -121,6 +121,7 @@
                                     <span>Transkrip Nilai Belum Ditambahkan</span>
                                 @else
                                     @foreach ($nilaimagangext as $data)
+                                    <div class="row">
                                         <div class="card card-border card-rounded-sm card-hover">
                                             <div class="card-body">
                                                 <div class="file-box" title="pendaftaran">
@@ -151,6 +152,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                     @endforeach
                                 @endif
                             </div>

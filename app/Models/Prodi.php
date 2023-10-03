@@ -30,6 +30,11 @@ class Prodi extends Model
         return $this->hasMany(Kurikulum::class);
     }
 
+    public function matkul()
+    {
+        return $this->hasMany(Matkul::class);
+    }
+
     public function admin_prodi()
     {
         return $this->hasMany(AdminProdi::class);

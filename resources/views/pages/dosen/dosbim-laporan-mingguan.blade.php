@@ -12,7 +12,7 @@
                 </div>
 
                 <div>
-                    <h3 class="text-dark">Daftar Laporan Minguan Mahasiswa</h3>
+                    <h3 class="text-dark">Daftar Laporan Mingguan Mahasiswa</h3>
                 </div>
             </div>
 

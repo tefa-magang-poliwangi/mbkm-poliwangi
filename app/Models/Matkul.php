@@ -14,9 +14,15 @@ class Matkul extends Model
         'nama',
         'kode_matakuliah',
         'sks',
+        'id_prodi'
     ];
 
     // relasi
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+    }
+
     public function matkul_kurikulum()
     {
         return $this->hasMany(MatkulKurikulum::class);

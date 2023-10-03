@@ -58,7 +58,6 @@
                                     <small class="ml-auto">
                                         <span>Belum punya akun?</span>
                                         <a href="{{ route('register.mahasiswa.page') }}">Sign up</a>
-                                        <a href="{{ route('register.dosen.page') }}">Sign up Dosen</a>
                                     </small>
                                 </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
 @section('title')
-    <title>Konversi Nilai| Politeknik Negeri Banyuwangi</title>
+    <title>Pendamping Lapang Mitra | Politeknik Negeri Banyuwangi</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
@@ -9,55 +9,57 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
+    <div class="container-fluid" style="padding-top: 5%">
+        <div class="d-flex justify-content-between">
+            <strong class="h3">Pendamping Lapang Mitra</strong>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0">
-                        <strong class="h4">Daftar Mahasiswa Magang </strong>
+                    <div class="card-header bg-white border-0 px-2">
+                        <div class="col-6">
+                            <h6>Daftar Pendamping Lapang Mitra</h6>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <div class="ml-auto">
+                                <button class="btn btn-theme-four">Kembali</button>
+                                <button class="btn btn-theme">Tambah</button>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
-                                @php
-                                    $no = 1;
-                                @endphp
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
+                                        <th>No</th>
                                         <th>Nama</th>
-                                        <th>NIM</th>
-                                        <th>Program Studi</th>
-                                        <th>Action</th>
+                                        <th>No Telephone</th>
+                                        <th>E-Mail</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                    @foreach ($nilai_magang_ext as $data)
-                                        <tr>
-                                            <td class="text-center">
-                                                {{ $no++ }}
-                                            </td>
-                                            <td>{{ $data->mahasiswa->nama }}</td>
-                                            <td>
-                                                {{ $data->mahasiswa->nim }}
-                                            </td>
-                                            <td>
-                                                {{ $data->mahasiswa->prodi->nama }}
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('daftar.mahasiswa.transkrip.index', $data->id) }}"
-                                                    class="btn btn-transparent"><i
-                                                        class="fa-solid fa-file-pen text-dark"></i></a>
-                                            </td>
-                                        </tr>
-                                    @php
-                                        $no++;
-                                    @endphp
-                                    @endforeach
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Aida Andinar</td>
+                                        <td>083456727908</td>
+                                        <td>aida@gmail.com</td>
+                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
+                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Tiara Puspita</td>
+                                        <td>082765847596</td>
+                                        <td>tiara@gmail.com</td>
+                                        <td><a href="#"> <i class="fas fa-edit"></i></a>
+                                            <a href="#"> <i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

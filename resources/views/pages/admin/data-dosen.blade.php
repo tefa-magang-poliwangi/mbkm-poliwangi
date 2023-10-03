@@ -20,12 +20,14 @@
                         <div class="col-4">
                             <h4 class="fw-bold">Program Studi</h4>
                             <div class="form-group">
-                                <select class="form-control select2">
-                                    <option value="">Semua Prodi</option>
-                                    <option>Teknologi Rekayasa Perangkat Lunak</option>
-                                    <option>Teknologi Rekayasa Komputer</option>
-                                    <option>Bisnis Digital</option>
-                                </select>
+                                <form action="{{ route('data.dosen.index') }}" method="GET">
+                                    <select class="form-control select2" name="prodi" onchange="this.form.submit()">
+                                        <option value="">Semua Prodi</option>
+                                        @foreach ($prodi as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
                             </div>
                         </div>
                         <div class="col-8 d-flex">

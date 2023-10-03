@@ -13,15 +13,17 @@
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     <img alt="image" src="{{ asset('assets/images/avatar/avatar-1.png') }}"
                         class="rounded-circle mr-1">
-                    <div class="d-sm-none d-lg-inline-block">Hi, {{Auth::user()->name}}</div>
+                    <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
-                        <i class="fa-solid fa-house my-auto"></i> <span class="my-auto">&ensp; Beranda</span>
-                    </a>
+                    @can('landing.page')
+                        <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
+                            <i class="fa-solid fa-house my-auto"></i> <span class="my-auto">&ensp; Beranda</span>
+                        </a>
+                    @endcan
 
-                    <div class="dropdown-divider"></div>
+                    {{-- <div class="dropdown-divider"></div> --}}
                     <a href="{{ route('do.logout') }}" class="dropdown-item has-icon text-danger">
                         <i class="fa-solid fa-right-from-bracket my-auto"></i>
                         <span class="my-auto">&ensp;Logout</span>

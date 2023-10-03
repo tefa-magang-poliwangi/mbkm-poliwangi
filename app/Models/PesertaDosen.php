@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\PesertaKelas as ModelsPesertaKelas;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +12,7 @@ class PesertaKelas extends Model
     protected $fillable = [
         'id',
         'id_mahasiswa',
-        'id_dosen',
+        'id_dosen_walis',
     ];
 
     // relasi
@@ -24,6 +23,6 @@ class PesertaKelas extends Model
 
     public function peserta_dosen()
     {
-        return $this->belongsTo(PesertaDosen::class, 'id_dosen', 'id');
+        return $this->belongsTo(PesertaDosen::class, 'id_dosen_walis', 'id');
     }
 }

@@ -6,8 +6,8 @@ use DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RolesController extends Controller
 {
@@ -59,8 +59,9 @@ class RolesController extends Controller
         $role = Role::create(['name' => $request->get('name')]);
         $role->syncPermissions($request->get('permission'));
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+        Alert::success('Success', 'Role created successfully');
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -110,8 +111,9 @@ class RolesController extends Controller
 
         $role->syncPermissions($request->get('permission'));
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role updated successfully');
+        Alert::success('Success', 'Role updated successfully');
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -124,7 +126,8 @@ class RolesController extends Controller
     {
         $role->delete();
 
-        return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully');
+        Alert::success('Success', 'Role deleted successfully');
+
+        return redirect()->route('roles.index');
     }
 }

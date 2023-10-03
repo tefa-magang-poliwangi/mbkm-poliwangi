@@ -20,17 +20,19 @@
                         <div class="col-4">
                             <h4 class="fw-bold">Program Studi</h4>
                             <div class="form-group">
-                                <select class="form-control select2">
-                                    <option value="">Semua Prodi</option>
-                                    <option>Teknologi Rekayasa Perangkat Lunak</option>
-                                    <option>Teknologi Rekayasa Komputer</option>
-                                    <option>Bisnis Digital</option>
-                                </select>
+                                <form action="{{ route('daftar.kurikulum.index') }}" method="GET">
+                                    <select class="form-control select2" name="prodi" onchange="this.form.submit()">
+                                        <option value="">Semua Prodi</option>
+                                        @foreach ($prodi as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
                             </div>
                         </div>
                         <div class="col-8 d-flex">
                             <div class="ml-auto">
-                                <a href="{{route('daftar.kurikulum.create')}}" class="btn btn-theme fa-plus">Tambah</a>
+                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-theme fa-plus">Tambah</a>
                             </div>
                         </div>
                     </div>
@@ -55,28 +57,116 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($kurikulums as $item)
-                                    <tr>
-                                        <td>
-                                            {{$no}}
-                                        </td>
-                                        <td>{{$item->nama}}</td>
-                                        <td>
-                                           {{$item->prodi->nama}}
-                                        </td>
-                                        <td> <span class="badge bg-primary text-white">
-                                            {{$item->status}} </span>
-                                        </td>
-                                        <td>
-                                            <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
-                                                <i class="fa-solid fa-search"></i> CPL
-                                            </a>
-                                            <a href="#"> <i class="fa-solid fas fa-edit text-dark"></i></a>
-                                            <a href="{{route('daftar.kurikulum.delete', $item->id)}}"> <i class="fa-solid fas fa-trash text-dark"></i></a>
-                                        </td>
-                                    </tr>
-                                    @php
-                                        $no++;
-                                    @endphp
+                                        <tr>
+                                            <td>
+                                                {{ $no }}
+                                            </td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>
+                                                {{ $item->prodi->nama }}
+                                            </td>
+                                            <td> <span class="badge bg-primary text-white">
+                                                    {{ $item->status }} </span>
+                                            </td>
+                                            <td>
+                                                <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
+                                                    <i class="fa-solid fa-search"></i> CPL
+                                                </a>
+                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                                    data-target="#updateModal{{$item->id}}"><i class="fa-solid fa-pen"></i></button>
+                                                <a href="{{ route('daftar.kurikulum.delete', $item->id) }}"
+                                                    class="btn btn-danger ml-auto"> <i
+                                                        class="fa-solid fas fa-trash text-dark"></i></a>
+                                            </td>
+                                        </tr>
+
+                                        {{-- Modal Update --}}
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{$item->id}}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Edit Mata Kuliah</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('daftar.kurikulum.update', $item->id) }}"
+                                                        method="POST">
+                                                        @method('put')
+                                                        @csrf
+
+                                                        <div class="modal-body">
+
+                                                            <div class="form-group">
+                                                                <label for="update_nama" class="form-label">Nama
+                                                                    Kurikulum</label>
+                                                                <input id="update_nama" type="text"
+                                                                    class="form-control @error('update_nama')
+                                                                    is-invalid
+                                                                @enderror"
+                                                                    name="update_nama" value="{{ $item->nama }}">
+                                                                @error('update_nama')
+                                                                    <div id="update_nama" class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="update_prodi" class="form-label">Pilih Prodi /
+                                                                    Jurusan</label>
+                                                                <select
+                                                                    class="form-control @error('update_prodi')
+                                                                    is-invalid
+                                                                @enderror"
+                                                                    id="update_prodi" name="update_prodi">
+                                                                    <option value="">Pilih prodi</option>
+                                                                    @foreach ($prodi as $dataprodi)
+                                                                        <option value="{{ $dataprodi->id }}"
+                                                                            {{ $item->id_prodi == $dataprodi->id ? 'selected' : '' }}>
+                                                                            {{ $dataprodi->nama }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('update_prodi')
+                                                                    <div id="update_prodi" class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="update_status" class="form-label">Status</label>
+                                                                <select
+                                                                    class="form-control @error('update_status') is-invalid @enderror"
+                                                                    id="update_status" name="update_status">
+                                                                    <option value="">Pilih Status</option>
+                                                                    <option value="1"
+                                                                        {{ $item->status == 'Wajib' ? 'selected' : '' }}>
+                                                                        Wajib
+                                                                    </option>
+                                                                    <option value="2"
+                                                                        {{ $item->status == 'Tidak Wajib' ? 'selected' : '' }}>
+                                                                        Tidak Wajib
+                                                                    </option>
+                                                                </select>
+                                                                @error('update_status')
+                                                                    <div id="update_status" class="form-text pb-1">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer bg-whitesmoke br">
+                                                            <button type="button" class="btn btn-cancel"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-submit">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @php
+                                            $no++;
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>
@@ -89,18 +179,12 @@
 @endsection
 
 @section('script')
-    <!-- JS Libraies -->
-    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }} "></script>
-    {{-- <script src="{{ asset ('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js')}} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/jquery-ui/jquery-ui.min.js')}} "></script> --}}
-
-    <!-- Page Specific JS File -->
+    {{-- Datatable JS --}}
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-    </script>
+
+    {{-- Modal JS --}}
+    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
 @endsection
