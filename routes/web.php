@@ -10,6 +10,7 @@ use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PLMitraController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_matkul}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
         Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
 
+        Route::get('/dashboard-mitra/daftar-pl-mitra/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
+        Route::post('/dashboard-mitra/daftar-pl-mitra/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
+
         // Halaman Mahasiswa - Eksternal
         Route::get('/dashboard-mahasiswa/profil', function () {
             return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
@@ -102,10 +106,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-mitra/daftar-pelamar', function () {
             return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
-        });
-
-        Route::get('/dashboard-mitra/pendamping-lapang-mitra', function(){
-            return view('pages.mitra.pl-mitra');
         });
 
         // Halaman Kaprodi

@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
+    <div class="container-fluid" style="padding-top: 5%">
         <section>
             <div class="col text-start d-flex text-uppercase">
                 <div class="px-2">
