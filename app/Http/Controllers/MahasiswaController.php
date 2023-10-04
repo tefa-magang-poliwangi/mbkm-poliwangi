@@ -6,24 +6,31 @@ use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class RegisterMahasiswaController extends Controller
+
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = [
-            'prodis' => Prodi::all(),
+        if ($request->prodi) {
+            $id_prodi = $request->prodi;
+        } else {
+            $id_prodi = 0;
+        }
+
+        $datas = [
+            'mahasiswas' => Mahasiswa::Where('id_prodi', $id_prodi)->get(),
+            'prodi' => Prodi::all(),
         ];
 
-        return view('pages.auth.register-mahasiswa', $data);
+        return view('pages.admin.manajemen-mahasiswa.data-mahasiswa', $datas);
     }
 
     /**
@@ -33,7 +40,11 @@ class RegisterMahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'prodis' => Prodi::all(),
+        ];
+
+        return view('pages.admin.manajemen-mahasiswa.create-mahasiswa', $data);
     }
 
     /**
@@ -80,14 +91,15 @@ class RegisterMahasiswaController extends Controller
             'password' => $validated['password'], // Menggunakan kata sandi yang diinputkan pengguna pada form
         ];
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
 
-            $user = Auth::user(); // Mengambil data pengguna yang sudah login
-            Alert::toast('Selamat datang ' . $user->name, 'success');
+        //     $user = Auth::user(); // Mengambil data pengguna yang sudah login
+        //     Alert::toast('Selamat datang ' . $user->name, 'success');
 
-            return redirect()->route('dashboard.mahasiswa.page');
-        }
+        // }
+        Alert::success('Success', 'Berhasil Menambahkan Data Mahasiswa');
+        return redirect()->route('data.mahasiswa.index');
     }
 
     /**

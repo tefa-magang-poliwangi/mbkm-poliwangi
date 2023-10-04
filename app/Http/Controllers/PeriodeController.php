@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Dosen;
-use App\Models\Prodi;
-use App\Models\User;
+use App\Models\Periode;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class RegisterDosenController extends Controller
+class PeriodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +15,10 @@ class RegisterDosenController extends Controller
     public function index()
     {
         $data = [
-            'prodis' => Prodi::all(),
+            'periode' => Periode::all(),
         ];
 
-        return view('pages.auth.register-dosen', $data);
+        return view('pages.prodi.Periode.index', $data);
     }
 
     /**
@@ -45,7 +39,20 @@ class RegisterDosenController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $validated = $request->validate([
+            'create_semester' => ['required'],
+            'create_tahun' => ['required'],
+            'create_status' => ['required'],
+        ]);
 
+        Periode::create([
+            'semester' => $validated['create_semester'],
+            'tahun' => $validated['create_tahun'],
+            'status' => $validated['create_status'],
+        ]);
+
+        return redirect()->route('data.periode.index');
     }
 
     /**
@@ -79,7 +86,19 @@ class RegisterDosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_semester' => ['required'],
+            'update_tahun' => ['required'],
+            'update_status' => ['required'],
+        ]);
+
+        Periode::where('id', $id)->update([
+            'semester' => $validated['update_semester'],
+            'tahun' => $validated['update_tahun'],
+            'status' => $validated['update_status'],
+        ]);
+
+        return redirect()->route('data.periode.index');
     }
 
     /**
@@ -90,6 +109,9 @@ class RegisterDosenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $periode = Periode::findOrFail($id);
+        $periode->delete();
+
+        return redirect()->route('data.periode.index');
     }
 }

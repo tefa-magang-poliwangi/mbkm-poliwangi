@@ -8,9 +8,11 @@
     <section>
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h1>Update user</h1>
-                    <div class="lead"></div>
+                    <div class="lead">
+                        Ubah Data User.
+                    </div>
 
                     <div class="container mt-4">
                         <form method="post" action="{{ route('users.update', $user->id) }}">
@@ -57,8 +59,8 @@
                             </div>
 
                             <div class="mt-4">
-                                <button type="submit" class="btn btn-primary">Update user</button>
-                                <a href="{{ route('users.index') }}" class="btn bg-white">Back</a>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{ route('users.index') }}" class="btn btn-danger">Kembali</a>
                             </div>
                         </form>
                     </div>

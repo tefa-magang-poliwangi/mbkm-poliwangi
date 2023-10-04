@@ -178,6 +178,11 @@
                             <span>Manajemen Kelas</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Periode</span>
+                        </a>
+                    </li>
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
@@ -234,7 +239,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-exchange-alt"></i>
+                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>
                     </li>

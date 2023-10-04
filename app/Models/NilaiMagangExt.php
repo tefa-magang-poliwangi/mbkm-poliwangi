@@ -11,7 +11,8 @@ class NilaiMagangExt extends Model
 
     protected $fillable = [
         'id',
-        'file',
+        'file_transkrip',
+        'file_sertifikat',
         'id_mahasiswa',
         'id_magang_ext',
         'id_periode',
@@ -31,5 +32,10 @@ class NilaiMagangExt extends Model
     public function periode()
     {
         return $this->belongsTo(Periode::class, 'id_periode', 'id');
+    }
+
+    public function nilai_konversi()
+    {
+        return $this->hasMany(NilaiKonversi::class, 'id_nilai_magang_ext', 'id');
     }
 }

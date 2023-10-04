@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_dosen_wali')->nullable(false);
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
-            $table->foreign('id_dosen_wali')->references('id')->on('dosen_wali')->onDelete('cascade');
+            $table->foreign('id_dosen_wali')->references('id')->on('dosen_walis')->onDelete('cascade');
             $table->timestamps();
         });
     }

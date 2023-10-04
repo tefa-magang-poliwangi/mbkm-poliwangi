@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -36,6 +37,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user(); // Mengambil data pengguna yang sudah login
+            Alert::toast('Selamat datang ' . $user->name, 'success');
 
             if ($user->hasRole('admin')) {
                 return redirect()->route('dashboard.admin.page');
@@ -65,6 +67,8 @@ class AuthController extends Controller
         Session::flush();
 
         Auth::logout();
+
+        Alert::toast('Anda baru saja Sign out', 'info');
 
         return redirect()->route('landing.page');
     }

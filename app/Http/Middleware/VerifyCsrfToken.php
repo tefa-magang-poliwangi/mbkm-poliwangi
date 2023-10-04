@@ -16,6 +16,6 @@ class VerifyCsrfToken extends Middleware
         '/upload-transkrip-nilai-mahasiswa-external/1/1/1/create', // 1, 5, dan 10 ganti dengan data id yang dimiliki
 
         // konversi nilai magang external
-        '/konversi-nilai/mahasiswa-external/1/1/1/create'
+        '/konversi-nilai/mahasiswa-external/'
     ];
 }

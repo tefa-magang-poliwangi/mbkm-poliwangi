@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-8 d-flex">
                             <div class="ml-auto">
-                                <a href="#" class="btn btn-theme fa-plus">Tambah</a>
+                                <a href="{{route('data.dosen.create')}}" class="btn btn-theme fa-plus">Tambah</a>
                             </div>
                         </div>
                     </div>

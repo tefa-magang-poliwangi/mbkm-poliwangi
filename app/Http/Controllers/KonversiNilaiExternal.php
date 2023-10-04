@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
 use App\Models\Kurikulum;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mahasiswa;
@@ -14,56 +13,94 @@ use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KonversiNilaiExternal extends Controller
 {
 
     public function KonversiNilaiAngka($nilai_angka)
     {
-        // penentuan nilai huruf berdasarkan nilai angka
+        // Penentuan nilai huruf berdasarkan nilai angka
         $nilai = $nilai_angka;
-        $penilaian = 'e';
-        if ($nilai >= 90 && $nilai <= 100) {
+        $penilaian = 'E'; // Default penilaian jika tidak ada kriteria yang memenuhi
+
+        if ($nilai >= 81 && $nilai <= 100) {
             $penilaian = 'A';
-        } elseif ($nilai >= 80 && $nilai < 90) {
+        } elseif ($nilai >= 71 && $nilai < 81) {
             $penilaian = 'AB';
-        } elseif ($nilai >= 70 && $nilai < 80) {
+        } elseif ($nilai >= 66 && $nilai < 71) {
             $penilaian = 'B';
-        } elseif ($nilai >= 60 && $nilai < 70) {
+        } elseif ($nilai >= 61 && $nilai < 66) {
             $penilaian = 'BC';
-        } elseif ($nilai >= 50 && $nilai < 60) {
+        } elseif ($nilai >= 56 && $nilai < 61) {
             $penilaian = 'C';
-        } elseif ($nilai >= 40 && $nilai < 50) {
+        } elseif ($nilai >= 41 && $nilai < 56) {
             $penilaian = 'D';
-        } elseif ($nilai >= 0 && $nilai < 40) {
+        } elseif ($nilai >= 0 && $nilai < 41) {
             $penilaian = 'E';
         }
 
         return $penilaian;
     }
 
+    public function KonversiAngkaMutu($nilai_angka)
+    {
+        // Penentuan nilai huruf berdasarkan nilai angka
+        $nilai = $nilai_angka;
+        $angka_mutu = 0; // Default angka mutu jika tidak ada kriteria yang memenuhi
+
+        if ($nilai >= 81 && $nilai <= 100) {
+            $angka_mutu = 4;
+        } elseif ($nilai >= 71 && $nilai < 81) {
+            $angka_mutu = 3.5;
+        } elseif ($nilai >= 66 && $nilai < 71) {
+            $angka_mutu = 3;
+        } elseif ($nilai >= 61 && $nilai < 66) {
+            $angka_mutu = 2.5;
+        } elseif ($nilai >= 56 && $nilai < 61) {
+            $angka_mutu = 2;
+        } elseif ($nilai >= 41 && $nilai < 56) {
+            $angka_mutu = 1.5;
+        } elseif ($nilai >= 0 && $nilai < 41) {
+            $angka_mutu = 1;
+        }
+
+        return $angka_mutu;
+    }
+
     public function konversi_nilai_external(Request $request, $id_mahasiswa, $id_nilai_magang_ext)
     {
-
-
         $data = [];
-        try {
 
+        try {
             $matkuls = $request->all();
             $array_key_matkuls = array_keys($matkuls);
-            //dd($array_key_matkuls);
+
             foreach ($array_key_matkuls as $array_key) {
                 if ($array_key != '_token' && $matkuls[$array_key] != null) {
                     $data['id_matkul'] = $array_key;
                     $data['nilai_angka'] = $matkuls[$array_key];
                     $data['nilai_huruf'] = $this->KonversiNilaiAngka($matkuls[$array_key]);
+                    $data['angka_mutu'] = $this->KonversiAngkaMutu($matkuls[$array_key]);
+
+                    // dd($data['angka_mutu']);
+
+                    // Ambil objek matakuliah berdasarkan kunci (ID matakuliah)
+                    $matakuliah = Matkul::find($array_key);
+
+                    if ($matakuliah) {
+                        // Gunakan properti 'sks' dari objek matakuliah
+                        $data['kredit'] = $matakuliah->sks;
+                        $data['mutu'] = $data['angka_mutu'] * $data['kredit'];
+                    }
+
                     $data['id_mahasiswa'] = $id_mahasiswa;
                     $data['id_nilai_magang_ext'] = $id_nilai_magang_ext;
                     NilaiKonversi::create($data);
                 }
             }
+
+            Alert::success('Success', 'Nilai konversi berhasil ditambahkan');
 
             return redirect()->route('daftar.mahasiswa.transkrip.index', $id_nilai_magang_ext);
         } catch (\Exception $e) {
@@ -78,10 +115,9 @@ class KonversiNilaiExternal extends Controller
      */
     public function index()
     {
-        $prodi_id = Dosen::Where('id_user',Auth::user()->id)->first()->id_prodi;
-        $periode = Periode::where('status','Aktif')->first();
-        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa',array_values(Mahasiswa::select('id')->where('id_prodi',$prodi_id)->get()->toArray()))->get();
-        
+        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
+        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
+
         $data = [
             'nilai_magang_ext' => $nilai_magang_ext,
         ];
@@ -112,26 +148,9 @@ class KonversiNilaiExternal extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_nilai_magang_ext)
+    public function store(Request $request)
     {
-        $nilai_magang_ext = NilaiMagangExt::findOrFile($id_nilai_magang_ext);
-
-        $validated = $request->validate([
-            'nilai_angka' => ['required', 'numeric', 'between:0,100'],
-            'nilai_huruf' => ['nullable'],
-        ]);
-
-        $penilaian = $this->KonversiNilaiAngka($validated['nilai_angka']);
-
-        NilaiKonversi::create([
-            'nilai_angka' => $validated['nilai_angka'],
-            'nilai_huruf' => $penilaian,
-            'id_mahasiswa' => $request['id_mahasiswa'],
-            'id_matkul' => $request['id_matkul'],
-            'id_nilai_magang_ext' => $nilai_magang_ext,
-        ]);
-
-        return redirect()->route('daftar.mahasiswa.index');
+        //
     }
 
     /**
@@ -153,11 +172,10 @@ class KonversiNilaiExternal extends Controller
 
         $data = [
             'matakuliah' => MatkulKurikulum::where('id_kurikulum', $kurikulum->id)->where('semester', $semester)->get(),
-            'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
             'nilai_magang_ext' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
             'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
-
         ];
+
         return view('pages.dosen.kaprodi-konversi-nilai', $data);
     }
 
@@ -192,9 +210,10 @@ class KonversiNilaiExternal extends Controller
      */
     public function destroy($id)
     {
-
         $nilai = NilaiKonversi::findOrFail($id);
         $nilai->delete();
+
+        Alert::success('Success', 'Nilai konversi berhasil dihapus');
 
         return redirect()->route('daftar.mahasiswa.transkrip.index', $nilai->id_nilai_magang_ext);
     }

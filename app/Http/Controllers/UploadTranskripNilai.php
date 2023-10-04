@@ -4,76 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
 use App\Models\Mahasiswa;
+use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UploadTranskripNilai extends Controller
 {
-
-    public function get_mahasiswa($id_mahasiswa)
-    {
-        try {
-            $mahasiwa = Mahasiswa::findOrFail($id_mahasiswa);
-            return $mahasiwa;
-        } catch (\Exception $e) {
-            // Tangani kesalahan dan kembalikan pesan kesalahan dalam format JSON
-            return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
-        }
-    }
-
-    public function upload_transkrip_nilai_mahasiswa_external(Request $request, $id_mahasiswa, $id_magang_ext, $id_periode)
-    {
-        try {
-            $mahasiswa = Mahasiswa::findOrFail($id_mahasiswa);
-            $magang_ext = MagangExt::findOrFail($id_magang_ext);
-            $periode = Periode::findOrFail($id_periode);
-
-            $validated = $request->validate([
-                'file' => ['required', 'mimes:pdf', 'max:1024'],
-            ]);
-
-            $saveData = [];
-
-            // Mengecek apakah field untuk upload file sudah di-upload atau belum
-            if ($request->hasFile('file')) {
-                $uploadedFile = $request->file('file');
-                $saveData['file'] = $uploadedFile->store('public/transkip-nilai-external');
-            }
-
-            NilaiMagangExt::create([
-                'file' => isset($saveData['file']) ? $saveData['file'] : null,
-                'semester' => $periode->semester,
-                'id_mahasiswa' => $mahasiswa->id,
-                'id_magang_ext' => $magang_ext->id,
-                'id_periode' => $periode->id,
-            ]);
-
-            // Jika semuanya berhasil, kembalikan respons sukses
-            $response = [
-                'status' => 'success',
-                'message' => 'File berhasil diunggah dan Sukses Menambahkan Data Nilai Magang External',
-                'data' => [
-                    'request' => $request->toArray(),
-                    'mahasiswa' => $mahasiswa->toArray(),
-                    'magang_ext' => $magang_ext->toArray(),
-                    'periode' => $periode->toArray(),
-                ],
-            ];
-
-            return response()->json($response);
-        } catch (\Exception $e) {
-            // Tangani kesalahan dan kembalikan pesan kesalahan dalam format JSON
-            return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
-        }
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -81,9 +22,8 @@ class UploadTranskripNilai extends Controller
      */
     public function index()
     {
-        $data =[
-            'nilaimagangext' => NilaiMagangExt::all(),
-            'mahasiswa'=> Mahasiswa::all(),
+        $data = [
+            'mahasiswa' => Mahasiswa::all(),
             'periode' => Periode::all(),
             'magangext' => MagangExt::all()
         ];
@@ -96,19 +36,21 @@ class UploadTranskripNilai extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_mahasiswa, Request $request)
+    public function create($id_user)
     {
-        if($request->nilaimagangext) {
-            $id = $request->nilaimagangext;
-        } else {
-            $id = 0;
+        if (Auth::user()->id != $id_user) {
+            return redirect()->back();
         }
-        $mahasiswa=User::findOrFail($id_mahasiswa)->mahasiswa;
-        $data =[
-            'nilaimagangext' => NilaiMagangExt::all(),
-            'mahasiswa'=> Mahasiswa::findOrFail($mahasiswa->first()->id),
+
+        $user_mahasiswa = User::findOrFail($id_user)->mahasiswa;
+        $mahasiswa = Mahasiswa::findOrFail($user_mahasiswa->first()->id);
+
+        $data = [
+            'transkrip_mahasiswa' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->get(),
+            'mahasiswa' => $mahasiswa,
             'periode' => Periode::all(),
-            'magangext' => MagangExt::all()
+            'magangext' => MagangExt::all(),
+            'khs_per_transkrip' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->with('nilai_konversi')->get(),
         ];
 
         return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
@@ -122,28 +64,36 @@ class UploadTranskripNilai extends Controller
      */
     public function store(Request $request, $id_user)
     {
-
         $mahasiswa = User::findOrFail($id_user)->mahasiswa;
         $validated = $request->validate([
-            'file' => ['required', 'mimes:pdf', 'max:1024'],
-            'magang_eksternal'=> ['required'],
-            'periode'=> ['required'],
+            'file_transkrip' => ['required', 'mimes:pdf', 'max:1024'],
+            'file_sertifikat' => ['required', 'mimes:pdf', 'max:2048'],
+            'magang_eksternal' => ['required'],
+            'periode' => ['required'],
         ]);
 
         $saveData = [];
 
         // Mengecek apakah field untuk upload file sudah di-upload atau belum
-        if ($request->hasFile('file')) {
-            $uploadedFile = $request->file('file');
-            $saveData['file'] = $uploadedFile->store('public/transkip-nilai-external');
+        if ($request->hasFile('file_transkrip')) {
+            $uploadedFile = $request->file('file_transkrip');
+            $saveData['file_transkrip'] = $uploadedFile->store('public/mahasiswa/mbkm-external/transkip-nilai');
+        }
+
+        if ($request->hasFile('file_sertifikat')) {
+            $uploadedFile = $request->file('file_sertifikat');
+            $saveData['file_sertifikat'] = $uploadedFile->store('public/mahasiswa/mbkm-external/sertifikat');
         }
 
         NilaiMagangExt::create([
-            'file' => isset($saveData['file']) ? $saveData['file'] : null,
+            'file_transkrip' => isset($saveData['file_transkrip']) ? $saveData['file_transkrip'] : null,
+            'file_sertifikat' => isset($saveData['file_sertifikat']) ? $saveData['file_sertifikat'] : null,
             'id_mahasiswa' => $mahasiswa->first()->id,
             'id_magang_ext' => $validated['magang_eksternal'],
             'id_periode' => $validated['periode'],
         ]);
+
+        Alert::success('Success', 'Berkas transkrip berhasil di unggah');
 
         return redirect()->route('upload-transkrip-mahasiswa.create', $id_user);
     }
@@ -192,11 +142,17 @@ class UploadTranskripNilai extends Controller
     {
         $nilaimagangext = NilaiMagangExt::findOrFail($id);
 
-        if ($nilaimagangext->file != null) {
-            Storage::delete($nilaimagangext->file);
+        if ($nilaimagangext->file_transkrip != null) {
+            Storage::delete($nilaimagangext->file_transkrip);
+        }
+
+        if ($nilaimagangext->file_sertifikat != null) {
+            Storage::delete($nilaimagangext->file_sertifikat);
         }
 
         $nilaimagangext->delete();
+
+        Alert::success('Success', 'Berkas transkrip berhasil di hapus');
 
         return redirect()->route('upload-transkrip-mahasiswa.create', $id);
     }
