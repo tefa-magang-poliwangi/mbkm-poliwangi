@@ -47,7 +47,7 @@
                                     <label class="form-label" for="file_transkrip">
                                         File Transkip
                                         <span class="text-primary">
-                                            *(wajib, pdf only)
+                                            *(wajib, pdf, max: 1Mb)
                                         </span>
                                     </label>
 
@@ -69,7 +69,7 @@
                                     <label class="form-label" for="file_sertifikat">
                                         File Sertifikat
                                         <span class="text-primary">
-                                            *(wajib, pdf only)
+                                            *(wajib, pdf, max:2Mb)
                                         </span>
                                     </label>
 
@@ -83,6 +83,28 @@
                                             </div>
                                             @error('file_sertifikat')
                                                 <div id="file_sertifikat" class="form-text text-danger">
+                                                    {{ $message }}</div>
+                                            @enderror
+                                        </a>
+                                    </div>
+
+                                    <label class="form-label" for="file_laporan_akhir">
+                                        File Laporan Akhir
+                                        <span class="text-primary">
+                                            *(wajib, pdf, max:10Mb)
+                                        </span>
+                                    </label>
+
+                                    <div id="drop-area">
+                                        <a class="nav-link active">
+                                            <div class="input-group mb-3">
+                                                <input type="file"
+                                                    class="form-control  @error('file_laporan_akhir') is-invalid @enderror"
+                                                    aria-describedby="button-addon2" id="file_laporan_akhir"
+                                                    name="file_laporan_akhir">
+                                            </div>
+                                            @error('file_laporan_akhir')
+                                                <div id="file_laporan_akhir" class="form-text text-danger">
                                                     {{ $message }}</div>
                                             @enderror
                                         </a>
@@ -115,7 +137,8 @@
                                             id="periode" name="periode">
                                             <option value="">Periode</option>
                                             @foreach ($periode as $dataperiode)
-                                                <option value="{{ $dataperiode->id }}">{{ $dataperiode->tahun }}</option>
+                                                <option value="{{ $dataperiode->id }}">Semester {{ $dataperiode->semester }}
+                                                    - {{ $dataperiode->tahun }}</option>
                                             @endforeach
                                         </select>
                                         @error('periode')
@@ -143,7 +166,8 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                 @if ($transkrip_mahasiswa->isEmpty())
                                     <div class="card d-flex bg-primary">
-                                        <h6 class="mx-auto my-auto py-4 text-white"><i class="fa-solid fa-circle-info"></i>
+                                        <h6 class="mx-auto my-auto py-4 text-white"><i
+                                                class="fa-solid fa-circle-info"></i>
                                             &ensp; Silahkan tambahkan Transkrip
                                             terlebih
                                             dahulu
@@ -161,6 +185,8 @@
                                                             target="_blank" class="btn btn-download">Transkrip</a>
                                                         <a href="{{ Storage::url($data->file_sertifikat) }}"
                                                             target="_blank" class="btn btn-download">Serfifikat</a>
+                                                        <a href="{{ Storage::url($data->file_laporan_akhir) }}"
+                                                            target="_blank" class="btn btn-download">Laporan Akhir</a>
                                                         <a href="{{ route('upload.transkrip.mahasiswa.destroy', $data->id) }}"
                                                             class="btn btn-delete">
                                                             <i class="fa-solid fa-trash"></i>
@@ -190,7 +216,8 @@
                                     <h5 class="header-title mt-0 mb-3">Transkrip Nilai Mata Kuliah :
                                         {{ $mahasiswa->nama }}
                                     </h5>
-                                    <p>{{ $khs->magang_ext->name }}</p>
+                                    <p>{{ $khs->magang_ext->name }} (Semester {{ $data->periode->semester }} -
+                                        {{ $data->periode->tahun }})</p>
                                     <div class="table-responsive">
                                         <table class="table table-hover table-bordered text-white rounded bg-white"
                                             id="table-2">
@@ -213,12 +240,13 @@
                                                 @else
                                                     @foreach ($khs->nilai_konversi as $nilai)
                                                         <tr>
-                                                            <td>{{ $nilai->matkul->kode_matakuliah }}</td>
+                                                            <td class="text-center">{{ $nilai->matkul->kode_matakuliah }}
+                                                            </td>
                                                             <td>{{ $nilai->matkul->nama }}</td>
-                                                            <td>{{ $nilai->nilai_huruf }}</td>
-                                                            <td>{{ $nilai->angka_mutu }}</td>
-                                                            <td>{{ $nilai->kredit }}</td>
-                                                            <td>{{ $nilai->mutu }}</td>
+                                                            <td class="text-center">{{ $nilai->nilai_huruf }}</td>
+                                                            <td class="text-center">{{ $nilai->angka_mutu }}</td>
+                                                            <td class="text-center">{{ $nilai->kredit }}</td>
+                                                            <td class="text-center">{{ $nilai->mutu }}</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
