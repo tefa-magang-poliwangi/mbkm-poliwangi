@@ -461,6 +461,17 @@ body {
     color: red;
 }
 
+.form-container-pr {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group-pr {
+    display: flex;
+    gap: 10px;
+}
+
 .fs-50 {
     font-size: 50px !important;
 }

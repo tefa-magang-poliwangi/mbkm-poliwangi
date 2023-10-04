@@ -226,9 +226,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
 
         // Halaman Mitra
-        Route::get('/dashboard-mitra/mitra-lowongan', function () {
-            return view('pages.mitra.manajemen-mitra.mitra-lowongan');
-        });
+        // Route::get('/dashboard-mitra/mitra-lowongan', function () {
+        //     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
+        // });
         Route::get('/dashboard-mitra/form-mitra', function () {
             return view('pages.mitra.manajemen-mitra.mitra-form');
         });
@@ -315,3 +315,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 // Route::get('/data-kurikulum', function () {
 //     return view('pages.prodi.data-kurikulum1');
 // });
+
+Route::get('/dashboard-mitra/mitra-lowongan', function () {
+    return view('pages.mitra.manajemen-mitra.mitra-lowongan');
+});
