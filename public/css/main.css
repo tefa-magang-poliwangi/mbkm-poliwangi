@@ -428,3 +428,14 @@ body {
 .teks-merah {
     color: red;
 }
+
+.form-container-pr {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group-pr {
+    display: flex;
+    gap: 10px;
+}
