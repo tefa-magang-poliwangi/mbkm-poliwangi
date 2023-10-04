@@ -71,4 +71,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Mitra::class);
     }
+    public function plmitra()
+    {
+        return $this->hasMany(PlMitra::class);
+    }
 }
