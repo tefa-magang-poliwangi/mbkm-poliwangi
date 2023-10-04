@@ -3,6 +3,7 @@
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KelasController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MagangExternalController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MatkulKurikulumController;
@@ -53,12 +55,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
          * Route Register
          */
         // register akun mahasiswa (only development)
-        Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
-        Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
+        // Route::get('/register-mahasiswa', [RegisterMahasiswaController::class, 'index'])->name('register.mahasiswa.page');
+        // Route::post('/register-mahasiswa', [RegisterMahasiswaController::class, 'store'])->name('do.register.mahasiswa');
 
         // register akun dosen (only development)
-        Route::get('/register-dosen', [RegisterDosenController::class, 'index'])->name('register.dosen.page');
-        Route::post('/register-dosen', [RegisterDosenController::class, 'store'])->name('do.register.dosen');
+        // Route::get('/register-dosen', [RegisterDosenController::class, 'index'])->name('register.dosen.page');
+        // Route::post('/register-dosen', [RegisterDosenController::class, 'store'])->name('do.register.dosen');
 
         /**
          * Route Super Admin
@@ -66,9 +68,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
 
         // (Route Data Master)
-        Route::get('/dashboard-admin/data-dosen', [DosenPageController::class, 'index'])->name('data.dosen.index');
-        Route::get('/dashboard-admin/data-mahasiswa-external', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
-        Route::post('/dashboard-admin/data-mahasiswa-external', [MahasiswaPageController::class, 'index'])->name('data.mahasiswa.index');
+        Route::get('/dashboard-admin/data-dosen', [DosenController::class, 'index'])->name('data.dosen.index');
+        Route::get('/dashboard-admin/data-dosen/create', [DosenController::class, 'create'])->name('data.dosen.create');
+        Route::post('/dashboard-admin/data-dosen/store', [DosenController::class, 'store'])->name('data.dosen.store');
+
+        Route::get('/dashboard-admin/data-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
+        Route::get('/dashboard-admin/data-mahasiswa/create', [MahasiswaController::class, 'create'])->name('data.mahasiswa.create');
+        Route::post('/dashboard-admin/data-mahasiswa/store', [MahasiswaController::class, 'store'])->name('data.mahasiswa.store');
 
         // (Route Manajemen Kelas dan Peserta Kelas)
         // route kelas
