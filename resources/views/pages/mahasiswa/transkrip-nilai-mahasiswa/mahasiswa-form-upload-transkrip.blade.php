@@ -1,7 +1,7 @@
 @extends('layouts.base-mahasiswa')
 
 @section('title')
-    <title>Transkrip Nilai Mahasiswa | MBKM Poliwangi</title>
+    <title>Upload Transkrip Nilai Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -10,12 +10,10 @@
 @endsection
 
 @section('content')
-    <section class="container-fluid py-3">
-        <div class="pt-4">
-            <h4 class="text-theme">Upload Transkrip Nilai Mahasiswa</h4>
-        </div>
+    <section class="">
+        <div class="row py-5">
+            <h4 class="text-theme mb-4">Upload Transkrip Nilai Mahasiswa</h4>
 
-        <div class="row mt-5">
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="card card-border card-rounded-sm card-hover">
                     <div class="card-body pb-4  ">
@@ -34,38 +32,62 @@
             </div>
 
             <div class="col-12 col-sm-12 col-md-8 col-8">
-                {{-- Form Upload Transkip --}}
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active card card-border card-rounded-sm card-hover" id="form-transkip"
                         role="tabpanel" aria-labelledby="list-home-list">
+
+                        {{-- Form Upload Transkip --}}
                         <form action="{{ route('upload.transkrip.mahasiswa.store', Auth::user()->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+
                             <div class="card-body">
                                 <h4 class="header-title mt-0 mb-3">Transkrip Nilai</h4>
-
-                                <label class="form-label">
-                                    File Transkip
-                                    <span class="text-primary">
-                                        *(wajib, pdf only)
-                                    </span>
-                                </label>
-
                                 <div class="flex-column">
+                                    <label class="form-label" for="file_transkrip">
+                                        File Transkip
+                                        <span class="text-primary">
+                                            *(wajib, pdf only)
+                                        </span>
+                                    </label>
+
                                     <div id="drop-area">
                                         <a class="nav-link active">
                                             <div class="input-group mb-3">
                                                 <input type="file"
-                                                    class="form-control  @error('file') is-invalid @enderror"
-                                                    placeholder="Choose file to upload" aria-label="Choose file to upload"
-                                                    aria-describedby="button-addon2" id="file" name="file">
+                                                    class="form-control  @error('file_transkrip') is-invalid @enderror"
+                                                    aria-describedby="button-addon2" id="file_transkrip"
+                                                    name="file_transkrip">
                                             </div>
-                                            @error('file')
-                                                <div id="file" class="form-text text-danger">
+                                            @error('file_transkrip')
+                                                <div id="file_transkrip" class="form-text text-danger">
                                                     {{ $message }}</div>
                                             @enderror
                                         </a>
                                     </div>
+
+                                    <label class="form-label" for="file_sertifikat">
+                                        File Sertifikat
+                                        <span class="text-primary">
+                                            *(wajib, pdf only)
+                                        </span>
+                                    </label>
+
+                                    <div id="drop-area">
+                                        <a class="nav-link active">
+                                            <div class="input-group mb-3">
+                                                <input type="file"
+                                                    class="form-control  @error('file_sertifikat') is-invalid @enderror"
+                                                    aria-describedby="button-addon2" id="file_sertifikat"
+                                                    name="file_sertifikat">
+                                            </div>
+                                            @error('file_sertifikat')
+                                                <div id="file_sertifikat" class="form-text text-danger">
+                                                    {{ $message }}</div>
+                                            @enderror
+                                        </a>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="form-label">Magang Eksternal</label>
                                         <select
@@ -78,11 +100,11 @@
                                                 <option value="{{ $datamagang->id }}">{{ $datamagang->name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('magang_eksternal')
+                                            <div id="magang_eksternal" class="form-text text-danger">
+                                                {{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    @error('magang_eksternal')
-                                        <div id="magang_eksternal" class="form-text text-danger">
-                                            {{ $message }}</div>
-                                    @enderror
 
                                     <div class="form-group">
                                         <label class="form-label">Periode</label>
@@ -96,17 +118,19 @@
                                                 <option value="{{ $dataperiode->id }}">{{ $dataperiode->tahun }}</option>
                                             @endforeach
                                         </select>
+                                        @error('periode')
+                                            <div id="periode" class="form-text text-danger">
+                                                {{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    @error('periode')
-                                        <div id="periode" class="form-text text-danger">
-                                            {{ $message }}</div>
-                                    @enderror
 
-                                    <div class="row">
-                                        <div class="col text-right">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                    @if ($transkrip_mahasiswa->isEmpty())
+                                        <div class="row">
+                                            <div class="col text-right">
+                                                <button type="submit" class="btn btn-primary">Unggah</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </form>
@@ -116,43 +140,40 @@
                     <div class="tab-pane fade pt-0" id="daftar-transkip" role="tabpanel"
                         aria-labelledby="list-profile-list">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                @if ($nilaimagangext->isEmpty())
-                                    <span>Transkrip Nilai Belum Ditambahkan</span>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                @if ($transkrip_mahasiswa->isEmpty())
+                                    <div class="card d-flex bg-primary">
+                                        <h6 class="mx-auto my-auto py-4 text-white"><i class="fa-solid fa-circle-info"></i>
+                                            &ensp; Silahkan tambahkan Transkrip
+                                            terlebih
+                                            dahulu
+                                        </h6>
+                                    </div>
                                 @else
-                                    @foreach ($nilaimagangext as $data)
-                                    <div class="row">
+                                    @foreach ($transkrip_mahasiswa as $data)
                                         <div class="card card-border card-rounded-sm card-hover">
-                                            <div class="card-body">
-                                                <div class="file-box" title="pendaftaran">
-                                                    <div class="row">
-                                                        <div class="col-6 d-flex">
-                                                            <a href="#" class="mr-auto my-auto">
-                                                                <i
-                                                                    class="fa-regular fa-trash-can text-size text-danger"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-6 d-flex">
-                                                            <a href="{{ Storage::url($data->file) }}" target="_blank"
-                                                                class="ml-auto my-auto">
-                                                                <i class="fa-solid fa-download text-size text-success"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center py-3">
-                                                        <i class="far fa-file-pdf text-primary fs-transkrip"></i>
-                                                        <h6 class="text-truncate">
-                                                            Transkrip Nilai.pdf
-                                                        </h6>
-                                                        <small class="text-muted">-
-                                                            <br>
-                                                            10 MB
-                                                        </small>
+                                            <div class="card-header bg-primary text-white">
+                                                <h4 class="fw-bold">{{ $data->magang_ext->name }}</h4>
+
+                                                <div class="card-header-action">
+                                                    <div class="btn-group">
+                                                        <a href="{{ Storage::url($data->file_transkrip) }}"
+                                                            target="_blank" class="btn btn-download">Transkrip</a>
+                                                        <a href="{{ Storage::url($data->file_sertifikat) }}"
+                                                            target="_blank" class="btn btn-download">Serfifikat</a>
+                                                        <a href="{{ route('upload.transkrip.mahasiswa.destroy', $data->id) }}"
+                                                            class="btn btn-delete">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="card-body">
+                                                <span class="fw-medium">{{ $data->mahasiswa->nama }} (Semester
+                                                    {{ $data->periode->semester }} -
+                                                    {{ $data->periode->tahun }})</span>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 @endif
                             </div>

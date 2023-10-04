@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterMahasiswaController extends Controller
 {
@@ -81,6 +82,10 @@ class RegisterMahasiswaController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            $user = Auth::user(); // Mengambil data pengguna yang sudah login
+            Alert::toast('Selamat datang ' . $user->name, 'success');
+
             return redirect()->route('dashboard.mahasiswa.page');
         }
     }

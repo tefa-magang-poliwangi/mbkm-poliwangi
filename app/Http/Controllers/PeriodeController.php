@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MagangExt;
-use App\Models\Prodi;
+use App\Models\Periode;
 use Illuminate\Http\Request;
 
-class MagangExternalController extends Controller
+class PeriodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,10 @@ class MagangExternalController extends Controller
     public function index()
     {
         $data = [
-            'prodi' => Prodi::all(),
-            'magangext' => MagangExt::all()
+            'periode' => Periode::all(),
         ];
-        return view('pages.prodi.data-magang.index', $data);
+
+        return view('pages.prodi.Periode.index', $data);
     }
 
     /**
@@ -40,16 +39,20 @@ class MagangExternalController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request);
         $validated = $request->validate([
-            'create_name' => ['required', 'string']
+            'create_semester' => ['required'],
+            'create_tahun' => ['required'],
+            'create_status' => ['required'],
         ]);
 
-        $magangext = new MagangExt;
-        $magangext->name = $validated['create_name'];
-        $magangext->save();
+        Periode::create([
+            'semester' => $validated['create_semester'],
+            'tahun' => $validated['create_tahun'],
+            'status' => $validated['create_status'],
+        ]);
 
-        return redirect()->route('daftar.data.magangext.index');
+        return redirect()->route('data.periode.index');
     }
 
     /**
@@ -83,7 +86,19 @@ class MagangExternalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_semester' => ['required'],
+            'update_tahun' => ['required'],
+            'update_status' => ['required'],
+        ]);
+
+        Periode::where('id', $id)->update([
+            'semester' => $validated['update_semester'],
+            'tahun' => $validated['update_tahun'],
+            'status' => $validated['update_status'],
+        ]);
+
+        return redirect()->route('data.periode.index');
     }
 
     /**
@@ -94,9 +109,9 @@ class MagangExternalController extends Controller
      */
     public function destroy($id)
     {
-        $magangext = MagangExt::findOrFail($id);
-        $magangext->delete();
+        $periode = Periode::findOrFail($id);
+        $periode->delete();
 
-        return redirect()->route('daftar.data.magangext.index');
+        return redirect()->route('data.periode.index');
     }
 }

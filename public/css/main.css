@@ -66,6 +66,38 @@ body {
     border: 2px solid #134a6e !important;
 }
 
+.btn-download {
+    font-weight: 500 !important;
+    background-color: #3aa6b9 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #3aa6b9 !important;
+}
+
+.btn-download:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #004978 !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+
+.btn-delete {
+    font-weight: 500 !important;
+    background-color: #fc4f4f !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #fc4f4f !important;
+}
+
+.btn-delete:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #004978 !important;
+    border-radius: 8px !important;
+    border: 2px solid white !important;
+}
+
 .card-rounded {
     border-radius: 15px !important;
 }
@@ -438,4 +470,8 @@ body {
 .form-group-pr {
     display: flex;
     gap: 10px;
+}
+
+.fs-50 {
+    font-size: 50px !important;
 }

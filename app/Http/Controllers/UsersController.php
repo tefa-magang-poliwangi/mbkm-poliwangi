@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Mahasiswa;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {
@@ -22,7 +22,6 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        // $mahasiswas = Mahasiswa::select('nama', 'nim', 'email')->get();
 
         return view('users.index', compact('users'));
     }
@@ -46,18 +45,6 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function store(User $user, StoreUserRequest $request)
-    // {
-    //     //For demo purposes only. When creating user or inviting a user
-    //     // you should create a generated random password and email it to the user
-    //     $user->create(array_merge($request->validated(), [
-    //         'password' => '1234578',
-    //     ]));
-
-    //     return redirect()->route('users.index')
-    //         ->withSuccess(__('User created successfully.'));
-    // }
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -75,7 +62,9 @@ class UsersController extends Controller
         $user->password = hash::make($request->password);
         $user->save();
 
-        return redirect()->route('users.index')->withSuccess(__('User created successfully.'));
+        Alert::success('Success', 'User created successfully');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -122,8 +111,9 @@ class UsersController extends Controller
 
         $user->syncRoles($request->get('role'));
 
-        return redirect()->route('users.index')
-            ->withSuccess(__('User updated successfully.'));
+        Alert::success('Success', 'User updated successfully');
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -137,7 +127,8 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('users.index')
-            ->withSuccess(__('User deleted successfully.'));
+        Alert::success('Success', 'User deleted successfully');
+
+        return redirect()->route('users.index');
     }
 }

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('nilai_magang_exts', function (Blueprint $table) {
             $table->id();
-            $table->string('file', 255)->nullable(false);
+            $table->string('file_transkrip', 255)->nullable(false);
+            $table->string('file_sertifikat', 255)->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_magang_ext')->nullable(false);
             $table->unsignedBigInteger('id_periode')->nullable(false);

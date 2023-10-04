@@ -8,7 +8,7 @@
     <section>
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h1>Add new user</h1>
                     <div class="lead">
                         Tambah User Baru.
@@ -70,8 +70,8 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Save user</button>
-                            <a href="{{ route('users.index') }}" class="btn bg-white">Back</a>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-cancel">Kembali</a>
                         </form>
                     </div>
                 </div>

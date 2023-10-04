@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisterDosenController extends Controller
 {
@@ -58,7 +59,7 @@ class RegisterDosenController extends Controller
             'name' => $validated['nama'],
             'email' => $validated['email'],
             'username' => $validated['email'],
-            'password' => bcrypt($validated['password']),   
+            'password' => bcrypt($validated['password']),
         ]);
 
         $user_dosen->assignRole('dosen');
@@ -78,6 +79,10 @@ class RegisterDosenController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            $user = Auth::user(); // Mengambil data pengguna yang sudah login
+            Alert::toast('Selamat datang ' . $user->name, 'success');
+
             return redirect()->route('dashboard.dosen.page');
         }
     }
