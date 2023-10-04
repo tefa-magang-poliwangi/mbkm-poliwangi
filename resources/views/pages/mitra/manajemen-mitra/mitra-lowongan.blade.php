@@ -49,9 +49,20 @@
                                 <label>Status</label>
                                 <input type="text" class="form-control">
                             </div>
-                            <div class="card-footer text-right">
-                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                <button class="btn btn-secondary" type="reset">Cansel</button>
+
+                            <label for="persyaratan">Persyaratan</label>
+                            <div class="form-container-pr">
+                                <div class="form-group-pr">
+                                    <input type="text" id="persyaratan" class="form-control"
+                                        placeholder="Masukkan persyaratan">
+                                    <button class="btn btn-primary" type="submit">Tambahkan Persyaratan</button>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                    <button class="btn btn-danger" type="reset">Cancel</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,4 +70,21 @@
             </div>
         </div>
     </section>
-        @endsection
+@endsection
+
+@section('script')
+    <div id="dynamic-form-container-pr"></div>
+
+    <script>
+        // Fungsi untuk menambahkan form baru
+        function addNewForm() {
+            const formGroup = document.querySelector('.form-group-pr').cloneNode(true);
+            formGroup.querySelector('input').value = ''; // Kosongkan input
+            document.querySelector('#dynamic-form-container').appendChild(formGroup);
+        }
+
+        // Tambahkan event listener ke tombol "Tambahkan Persyaratan"
+        const addButton = document.querySelector('.add-button');
+        addButton.addEventListener('click', addNewForm);
+    </script>
+@endsection

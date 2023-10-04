@@ -13,6 +13,7 @@ class Periode extends Model
         'id',
         'semester',
         'tahun',
+        'status'
     ];
 
     // relasi
