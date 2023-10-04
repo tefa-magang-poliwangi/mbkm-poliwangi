@@ -77,56 +77,49 @@
         </div>
     </div>
 
-    {{-- modall create --}}
+    {{-- Modal create --}}
     <div class="modal fade" tabindex="-1" role="dialog" id="tambahdataMagangext">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content rounded-0" style="background-color: #e2e2e2;color: #19203F; font-weight: bold;">
-                <div class="modal-header p-1 border-bottom border-dark">
-                    <h5 class="modal-title px-3" style="font-weight: bold">TAMBAH Data Magang External</h5>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Data Magang External</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form action="{{ route('data.magangext.store') }}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="create_name">Nama</label>
-                                    <input type="text" class="form-control @error('create_name') is-invalid @enderror"
-                                        id="create_name" name="create_name"
-                                        placeholder="Masukkan Data Tempat Magang External">
-                                    @error('create_name')
-                                        <div id="create_name" class="form-text pb-1">
-                                            {{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+                <form action="{{ route('data.magangext.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="create_name">Nama</label>
+                            <input type="text" class="form-control @error('create_name') is-invalid @enderror"
+                                id="create_name" name="create_name"
+                                placeholder="Masukkan Data Tempat Magang External">
+                            @error('create_name')
+                                <div id="create_name" class="form-text pb-1">
+                                    {{ $message }}</div>
+                            @enderror
                         </div>
-
-                        <button type="submit" class="btn btn-sm btn-primary" id="sa-success">Tambah</button>
-                        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Batal</button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-cancel"
+                            data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-submit">Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('script')
-    <!-- JS Libraies -->
-    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }} "></script>
-    {{-- <script src="{{ asset ('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js')}} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/jquery-ui/jquery-ui.min.js')}} "></script> --}}
-
-    <!-- Page Specific JS File -->
+    {{-- Datatable JS --}}
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-    </script>
+
+    {{-- Modal JS --}}
+    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
 @endsection

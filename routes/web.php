@@ -15,6 +15,7 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MatkulKurikulumController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\ProdiController;
@@ -132,6 +133,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // route dosen wali
         // route dosen pembimbing
 
+        //route periode
+        Route::get('/dashboard-dosen/data-periode/index', [PeriodeController::class, 'index'])->name('data.periode.index');
+        Route::post('/dashboard-dosen/data-periode/store', [PeriodeController::class, 'store'])->name('data.periode.store');
+        Route::put('/dashboard-dosen/data-periode/update/{id}', [PeriodeController::class, 'update'])->name('data.periode.update');
+        Route::get('/dashboard-dosen/data-periode/delete/{id}', [PeriodeController::class, 'destroy'])->name('data.periode.delete');
+
         /**
          * Route Akademik
          */
@@ -245,9 +252,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
             return view('pages.prodi.form-daftar-cpl');
-        });
-        Route::get('/dashboard-dosen/data-periode', function () {
-            return view('pages.prodi.Periode.index');
         });
         Route::get('/dashboard-dosen/daftar-program', function () {
             return view('pages.dosen.kaprodi-daftar-program');

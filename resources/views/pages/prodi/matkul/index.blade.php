@@ -17,12 +17,20 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white border-0 px-2">
-                        <div class="col-6">
-                            <div class="dropdown d-inline mr-2">
-                                <h6>Daftar Matakuliah : TRPL 2023</h6>
+                        <div class="col-4">
+                            <h4 class="fw-bold">Program Studi</h4>
+                            <div class="form-group">
+                                <form action="{{ route('daftar.matakuliah.index') }}" method="GET">
+                                    <select class="form-control select2" name="prodi" onchange="this.form.submit()">
+                                        <option value="">Semua Prodi</option>
+                                        @foreach ($prodi as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </form>
                             </div>
                         </div>
-                        <div class="col-6 d-flex">
+                        <div class="col-8 d-flex">
                             <div class="ml-auto">
                                 <button class="btn btn-theme-four">Kembali</button>
                                 <a href="{{ route('daftar.matakuliah.create') }}" class="btn btn-theme fa-plus">Tambah</a>
@@ -35,7 +43,7 @@
                             @php
                                 $no = 1;
                             @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"
+                            <table class="table table-hover table-borderless rounded" id="table-1"  
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
@@ -43,6 +51,7 @@
                                         <th>Kode Mata Kuliah</th>
                                         <th>Nama Mata Kuliah</th>
                                         <th>Bobot MK</th>
+                                        <th>Prodi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,6 +62,7 @@
                                             <td>{{ $data->kode_matakuliah }}</td>
                                             <td>{{ $data->nama }}</td>
                                             <td>{{ $data->sks }} SKS</td>
+                                            <td>{{ $data->prodi->nama }}</td>
                                             <td > <button type="button" class="btn btn-info ml-auto"
                                                     data-toggle="modal" data-target="#updateModal{{$data->id}}"><i
                                                         class="fa-solid fa-pen"></i></button>
@@ -118,6 +128,27 @@
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label for="update_prodi" class="form-label">Pilih Prodi /
+                                                                    Jurusan</label>
+                                                                <select
+                                                                    class="form-control @error('update_prodi')
+                                                                    is-invalid
+                                                                @enderror"
+                                                                    id="update_prodi" name="update_prodi">
+                                                                    <option value="">Pilih prodi</option>
+                                                                    @foreach ($prodi as $dataprodi)
+                                                                        <option value="{{ $dataprodi->id }}"
+                                                                            {{ $data->id_prodi == $dataprodi->id ? 'selected' : '' }}>
+                                                                            {{ $dataprodi->nama }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('update_prodi')
+                                                                    <div id="update_prodi" class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
 
                                                         </div>
                                                         <div class="modal-footer bg-whitesmoke br">
