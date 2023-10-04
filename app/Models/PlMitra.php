@@ -19,6 +19,10 @@ class PlMitra extends Model
     ];
 
     // relasi
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
     public function mitra()
     {
         return $this->belongsTo(Mitra::class, 'id_mitra', 'id');
