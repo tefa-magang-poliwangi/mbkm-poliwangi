@@ -29,6 +29,10 @@
 </head>
 
 <body class="back-color">
+
+    {{-- alert --}}
+    @include('sweetalert::alert')
+
     <div id="app">
 
         @yield('content')

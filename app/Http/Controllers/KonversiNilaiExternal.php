@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
 use App\Models\Kurikulum;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mahasiswa;
@@ -14,8 +13,7 @@ use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KonversiNilaiExternal extends Controller
 {
@@ -46,14 +44,12 @@ class KonversiNilaiExternal extends Controller
 
     public function konversi_nilai_external(Request $request, $id_mahasiswa, $id_nilai_magang_ext)
     {
-
-
         $data = [];
         try {
 
             $matkuls = $request->all();
             $array_key_matkuls = array_keys($matkuls);
-            //dd($array_key_matkuls);
+
             foreach ($array_key_matkuls as $array_key) {
                 if ($array_key != '_token' && $matkuls[$array_key] != null) {
                     $data['id_matkul'] = $array_key;
@@ -64,6 +60,8 @@ class KonversiNilaiExternal extends Controller
                     NilaiKonversi::create($data);
                 }
             }
+
+            Alert::success('Success', 'Nilai konversi berhasil ditambahkan');
 
             return redirect()->route('daftar.mahasiswa.transkrip.index', $id_nilai_magang_ext);
         } catch (\Exception $e) {
@@ -78,10 +76,9 @@ class KonversiNilaiExternal extends Controller
      */
     public function index()
     {
-        $prodi_id = Dosen::Where('id_user',Auth::user()->id)->first()->id_prodi;
-        $periode = Periode::where('status','Aktif')->first();
-        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa',array_values(Mahasiswa::select('id')->where('id_prodi',$prodi_id)->get()->toArray()))->get();
-        
+        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
+        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
+
         $data = [
             'nilai_magang_ext' => $nilai_magang_ext,
         ];
@@ -192,9 +189,10 @@ class KonversiNilaiExternal extends Controller
      */
     public function destroy($id)
     {
-
         $nilai = NilaiKonversi::findOrFail($id);
         $nilai->delete();
+
+        Alert::success('Success', 'Nilai konversi berhasil dihapus');
 
         return redirect()->route('daftar.mahasiswa.transkrip.index', $nilai->id_nilai_magang_ext);
     }

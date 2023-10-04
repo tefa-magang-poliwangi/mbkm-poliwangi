@@ -8,7 +8,7 @@
     <section>
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
+                <div class="bg-white p-4 rounded">
                     <h2>Edit permission</h2>
                     <div class="lead">
                         Ubah Permission.
@@ -29,8 +29,8 @@
                                 @endif
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Save permission</button>
-                            <a href="{{ route('permissions.index') }}" class="btn bg-white">Back</a>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{ route('permissions.index') }}" class="btn btn-danger">Kembali</a>
                         </form>
                     </div>
                 </div>

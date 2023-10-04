@@ -4,14 +4,23 @@
     <title>Ubah Role | MBKM Poliwangi</title>
 @endsection
 
+@section('css')
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
+@endsection
+
 @section('content')
     <section class="">
         <div class="row py-5">
             <div class="col-md-12">
-                <div class="bg-light p-4 rounded">
-                    <h1>Update role</h1>
+                <div class="bg-white p-4 rounded">
+                    <h1>Update Role: {{ ucfirst($role->name) }}</h1>
+
                     <div class="lead">
-                        Edit role and manage permissions.
+                        Ubah role dan manajemen permissions.
                     </div>
 
                     <div class="container mt-4">
@@ -30,7 +39,8 @@
                         <form method="POST" action="{{ route('roles.update', $role->id) }}">
                             @method('patch')
                             @csrf
-                            <div class="mb-3">
+
+                            <div class="mb-4">
                                 <label for="name" class="form-label">Name</label>
                                 <input value="{{ $role->name }}" type="text" class="form-control" name="name"
                                     placeholder="Name" required>
@@ -58,8 +68,8 @@
                                 @endforeach
                             </table>
 
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                            <a href="{{ route('roles.index') }}" class="btn bg-white">Back</a>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="{{ route('roles.index') }}" class="btn btn-danger">Kembali</a>
                         </form>
                     </div>
 
@@ -69,7 +79,13 @@
     </section>
 @endsection
 
-@section('scripts')
+@section('script')
+    {{-- Datatable JS --}}
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('[name="all_permission"]').on('click', function() {

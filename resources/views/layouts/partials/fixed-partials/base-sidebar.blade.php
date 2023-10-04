@@ -239,7 +239,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-exchange-alt"></i>
+                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>
                     </li>

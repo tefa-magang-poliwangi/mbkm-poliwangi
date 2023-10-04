@@ -42,6 +42,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
+                                        <th>Kriteria Penilaian</th>
                                         <th>Lihat Peserta</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -52,7 +53,12 @@
                                             <td>{{ $no }}</td>
                                             <td>{{ $data->name }}</td>
 
-                                            <td class="text-center">
+                                            <td>
+                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                                    data-target="#kriteriaModal"><i class="fa-solid fa-eye"></i></button>
+                                            </td>
+
+                                            <td>
                                                 <a href="{{ route('peserta.magang_ext.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></a>
                                             </td>
@@ -64,6 +70,9 @@
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
+
+
+
                                         @php
                                             $no++;
                                         @endphp
@@ -77,7 +86,89 @@
         </div>
     </div>
 
-    {{-- Modal create --}}
+
+     {{-- Modal kriteria kurikulum --}}
+     <div class="modal fade" tabindex="-1" role="dialog" id="kriteriaModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Kriteria Penilaian</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="#" method="POST">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="update_nama" class="form-label">Nama
+                                        MBKM</label>
+                                    <input id="update_nama" type="text"
+                                        class="form-control @error('update_nama')
+                                        is-invalid
+                                    @enderror"
+                                        name="update_nama">
+                                    @error('update_nama')
+                                        <div id="update_nama" class="form-text text-danger">
+                                            {{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>Aspek Penilaian</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="d-flex">
+                                                <div class="form-check my-auto">
+                                                    <input class="form-check-input" type="checkbox"
+                                                         name="create_berkas[]">
+                                                    <label class="form-check-label">Perencanaan Kegiatan</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex">
+                                                <div class="form-check my-auto">
+                                                    <input class="form-check-input" type="checkbox"
+                                                         name="create_berkas[]">
+                                                    <label class="form-check-label">Pelaksanaan dan Hasil Kegiatan</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="d-flex">
+                                                <div class="form-check my-auto">
+                                                    <input class="form-check-input" type="checkbox"
+                                                         name="create_berkas[]">
+                                                    <label class="form-check-label">Pelaporan Kegiatan</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button" class="btn btn-cancel"
+                            data-dismiss="modal">Kembali</button>
+                        </div>
+                    </form>
+                </div>
+            </div> {{-- modall content --}}
+        </div> {{-- modall dialog --}}
+    </div> {{-- modal --}}
+
+    {{-- modall create --}}
     <div class="modal fade" tabindex="-1" role="dialog" id="tambahdataMagangext">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
