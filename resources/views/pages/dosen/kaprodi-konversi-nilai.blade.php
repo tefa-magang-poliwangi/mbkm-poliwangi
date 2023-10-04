@@ -66,13 +66,17 @@
                                                 <td class="text-center">{{ $no }}</td>
                                                 <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
                                                 <td>{{ $data->matkul->nama }}</td>
+                                                @php
+                                                    // Cari NilaiKonversi yang sesuai berdasarkan id_matkul
+                                                    $konversi = $nilai_konversi->where('id_matkul', $data->matkul->id)->first();
+                                                @endphp
                                                 <td>
                                                     <input type="text" class="form-control"
-                                                        name="{{ $data->matkul->id }}" placeholder="Nilai angka"
-                                                        pattern="[0-9]*" required>
+                                                        name="{{ $data->matkul->id }}"
+                                                        placeholder="{{ $konversi ? $konversi->nilai_angka : 'Nilai angka' }}"
+                                                        pattern="[0-9]*" {{ $konversi ? 'disabled' : 'required' }}>
                                                 </td>
                                             </tr>
-
                                             @php
                                                 $no++;
                                             @endphp
@@ -120,37 +124,37 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-center">1</td>
-                                        <td class="text-center">90 - 100</td>
+                                        <td class="text-center">81 - 100</td>
                                         <td class="text-center">A</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
-                                        <td class="text-center">80 - 89</td>
+                                        <td class="text-center">71 - 80</td>
                                         <td class="text-center">AB</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
-                                        <td class="text-center">70 - 79</td>
+                                        <td class="text-center">66 - 70</td>
                                         <td class="text-center">B</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">4</td>
-                                        <td class="text-center">60 - 69</td>
+                                        <td class="text-center">61 - 65</td>
                                         <td class="text-center">BC</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">5</td>
-                                        <td class="text-center">50 - 59</td>
+                                        <td class="text-center">56 - 60</td>
                                         <td class="text-center">C</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">6</td>
-                                        <td class="text-center">40 - 49</td>
+                                        <td class="text-center">41 - 55</td>
                                         <td class="text-center">D</td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">7</td>
-                                        <td class="text-center">0 - 39</td>
+                                        <td class="text-center">0 - 40</td>
                                         <td class="text-center">E</td>
                                     </tr>
                                 </tbody>
@@ -170,7 +174,7 @@
                         <h5 class="header-title text-theme mb-3">Transkrip Nilai Hasil Konversi</h5>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered text-white">
+                            <table class="table table-hover table-bordered text-white">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-white text-center">No</th>
@@ -178,6 +182,8 @@
                                         <th class="text-white text-center">Mata Kuliah</th>
                                         <th class="text-white text-center">Nilai Angka</th>
                                         <th class="text-white text-center">Nilai Huruf</th>
+                                        <th class="text-white text-center">Kredit</th>
+                                        <th class="text-white text-center">Mutu</th>
                                         <th class="text-white text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -187,23 +193,31 @@
                                         $no = 1;
                                     @endphp
 
-                                    @foreach ($nilai_konversi as $data)
+                                    @if ($nilai_konversi->isEmpty())
                                         <tr>
-                                            <td class="text-center">{{ $no }}</td>
-                                            <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
-                                            <td>{{ $data->matkul->nama }}</td>
-                                            <td class="text-center">{{ $data->nilai_angka }}</td>
-                                            <td class="text-center">{{ $data->nilai_huruf }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
-                                            </td>
+                                            <td colspan="8" class="text-center">Mohon Tambahkan Nilai Konversi</td>
                                         </tr>
-
-                                        @php
-                                            $no++;
-                                        @endphp
-                                    @endforeach
+                                    @else
+                                        @foreach ($nilai_konversi as $data)
+                                            <tr>
+                                                <td class="text-center">{{ $no }}</td>
+                                                <td class="text-center">{{ $data->matkul->kode_matakuliah }}</td>
+                                                <td>{{ $data->matkul->nama }}</td>
+                                                <td class="text-center">{{ $data->nilai_angka }}</td>
+                                                <td class="text-center">{{ $data->nilai_huruf }}</td>
+                                                <td class="text-center">{{ $data->kredit }}</td>
+                                                <td class="text-center">{{ $data->mutu }}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
+                                                        class="btn btn-danger ml-auto"><i
+                                                            class="fa-solid fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            @php
+                                                $no++;
+                                            @endphp
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

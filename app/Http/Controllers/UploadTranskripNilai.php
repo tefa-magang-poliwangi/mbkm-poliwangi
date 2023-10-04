@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
 use App\Models\Mahasiswa;
+use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\User;
@@ -22,7 +23,6 @@ class UploadTranskripNilai extends Controller
     public function index()
     {
         $data = [
-            'nilaimagangext' => NilaiMagangExt::all(),
             'mahasiswa' => Mahasiswa::all(),
             'periode' => Periode::all(),
             'magangext' => MagangExt::all()
@@ -49,7 +49,8 @@ class UploadTranskripNilai extends Controller
             'transkrip_mahasiswa' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->get(),
             'mahasiswa' => $mahasiswa,
             'periode' => Periode::all(),
-            'magangext' => MagangExt::all()
+            'magangext' => MagangExt::all(),
+            'khs_per_transkrip' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->with('nilai_konversi')->get(),
         ];
 
         return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);

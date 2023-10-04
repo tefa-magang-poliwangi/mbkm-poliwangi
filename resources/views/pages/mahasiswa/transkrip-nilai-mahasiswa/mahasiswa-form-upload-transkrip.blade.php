@@ -184,53 +184,51 @@
                     {{-- Hasil Transkip Nilai --}}
                     <div class="tab-pane fade pt-0" id="hasil-transkip" role="tabpanel"
                         aria-labelledby="list-profile-list">
-                        <div class="card card-border card-rounded-sm card-hover">
-                            <div class="card-body">
-                                <h5 class="header-title mt-0 mb-3">Transkrip Nilai Mata Kuliah : {{ $mahasiswa->nama }}
-                                </h5>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-borderless rounded" id="table-2"
-                                        style="background-color: #EEEEEE;">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">
-                                                    No
-                                                </th>
-                                                <th>Kode</th>
-                                                <th>Mata Kuliah</th>
-                                                <th>HM</th>
-                                                <th>AM</th>
-                                                <th>K</th>
-                                                <th>M</th>
-                                            </tr>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>RPL25042
-                                                <td>
-                                                    Proyek Aplikasi Lanjut
-                                                </td>
-                                                <td>
-                                                    A
-                                                </td>
-                                                <td>
-                                                    4
-                                                </td>
-                                                <td>
-                                                    2
-                                                </td>
-                                                <td>
-                                                    7
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        </thead>
-                                    </table>
+                        @foreach ($khs_per_transkrip as $khs)
+                            <div class="card card-border card-rounded-sm card-hover">
+                                <div class="card-body">
+                                    <h5 class="header-title mt-0 mb-3">Transkrip Nilai Mata Kuliah :
+                                        {{ $mahasiswa->nama }}
+                                    </h5>
+                                    <p>{{ $khs->magang_ext->name }}</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-bordered text-white rounded bg-white"
+                                            id="table-2">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <th class="text-white text-center">Kode</th>
+                                                    <th class="text-white text-center">Mata Kuliah</th>
+                                                    <th class="text-white text-center">HM</th>
+                                                    <th class="text-white text-center">AM</th>
+                                                    <th class="text-white text-center">K</th>
+                                                    <th class="text-white text-center">M</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if ($khs->nilai_konversi->isEmpty())
+                                                    <tr>
+                                                        <td colspan="6" class="text-center">Nilai Masih Belum
+                                                            Ditambahkan</td>
+                                                    </tr>
+                                                @else
+                                                    @foreach ($khs->nilai_konversi as $nilai)
+                                                        <tr>
+                                                            <td>{{ $nilai->matkul->kode_matakuliah }}</td>
+                                                            <td>{{ $nilai->matkul->nama }}</td>
+                                                            <td>{{ $nilai->nilai_huruf }}</td>
+                                                            <td>{{ $nilai->angka_mutu }}</td>
+                                                            <td>{{ $nilai->kredit }}</td>
+                                                            <td>{{ $nilai->mutu }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>

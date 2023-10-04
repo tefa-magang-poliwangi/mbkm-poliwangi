@@ -33,4 +33,9 @@ class NilaiMagangExt extends Model
     {
         return $this->belongsTo(Periode::class, 'id_periode', 'id');
     }
+
+    public function nilai_konversi()
+    {
+        return $this->hasMany(NilaiKonversi::class, 'id_nilai_magang_ext', 'id');
+    }
 }
