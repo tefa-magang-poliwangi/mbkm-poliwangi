@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
 use App\Models\Mahasiswa;
+use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\User;
@@ -22,7 +23,6 @@ class UploadTranskripNilai extends Controller
     public function index()
     {
         $data = [
-            'nilaimagangext' => NilaiMagangExt::all(),
             'mahasiswa' => Mahasiswa::all(),
             'periode' => Periode::all(),
             'magangext' => MagangExt::all()
@@ -49,7 +49,8 @@ class UploadTranskripNilai extends Controller
             'transkrip_mahasiswa' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->get(),
             'mahasiswa' => $mahasiswa,
             'periode' => Periode::all(),
-            'magangext' => MagangExt::all()
+            'magangext' => MagangExt::all(),
+            'khs_per_transkrip' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->with('nilai_konversi')->get(),
         ];
 
         return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
@@ -67,6 +68,7 @@ class UploadTranskripNilai extends Controller
         $validated = $request->validate([
             'file_transkrip' => ['required', 'mimes:pdf', 'max:1024'],
             'file_sertifikat' => ['required', 'mimes:pdf', 'max:2048'],
+            'file_laporan_akhir' => ['required', 'mimes:pdf', 'max:10240'],
             'magang_eksternal' => ['required'],
             'periode' => ['required'],
         ]);
@@ -84,9 +86,15 @@ class UploadTranskripNilai extends Controller
             $saveData['file_sertifikat'] = $uploadedFile->store('public/mahasiswa/mbkm-external/sertifikat');
         }
 
+        if ($request->hasFile('file_laporan_akhir')) {
+            $uploadedFile = $request->file('file_laporan_akhir');
+            $saveData['file_laporan_akhir'] = $uploadedFile->store('public/mahasiswa/mbkm-external/laporan-akhir');
+        }
+
         NilaiMagangExt::create([
             'file_transkrip' => isset($saveData['file_transkrip']) ? $saveData['file_transkrip'] : null,
             'file_sertifikat' => isset($saveData['file_sertifikat']) ? $saveData['file_sertifikat'] : null,
+            'file_laporan_akhir' => isset($saveData['file_laporan_akhir']) ? $saveData['file_laporan_akhir'] : null,
             'id_mahasiswa' => $mahasiswa->first()->id,
             'id_magang_ext' => $validated['magang_eksternal'],
             'id_periode' => $validated['periode'],

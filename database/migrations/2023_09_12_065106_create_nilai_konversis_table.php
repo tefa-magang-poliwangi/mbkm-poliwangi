@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('nilai_angka')->nullable(false);
             $table->string('nilai_huruf', 4)->nullable(false);
+            $table->decimal('angka_mutu', 5, 1)->nullable(false);
+            $table->tinyInteger('kredit')->nullable(false);
+            $table->tinyInteger('mutu')->nullable(false);
             $table->enum('validasi_kaprodi', ['Setuju', 'Tidak Setuju', 'Belum Disetujui'])->nullable(false)->default('Belum Disetujui');
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_matkul')->nullable(false);

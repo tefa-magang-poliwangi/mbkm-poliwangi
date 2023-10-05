@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Dosen;
+use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class RegisterDosenController extends Controller
+
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = [
-            'prodis' => Prodi::all(),
+        if ($request->prodi) {
+            $id_prodi = $request->prodi;
+        } else {
+            $id_prodi = 0;
+        }
+
+        $datas = [
+            'mahasiswas' => Mahasiswa::Where('id_prodi', $id_prodi)->get(),
+            'prodi' => Prodi::all(),
         ];
 
-        return view('pages.auth.register-dosen', $data);
+        return view('pages.admin.manajemen-mahasiswa.data-mahasiswa', $datas);
     }
 
     /**
@@ -34,7 +40,11 @@ class RegisterDosenController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'prodis' => Prodi::all(),
+        ];
+
+        return view('pages.admin.manajemen-mahasiswa.create-mahasiswa', $data);
     }
 
     /**
@@ -47,44 +57,38 @@ class RegisterDosenController extends Controller
     {
         // validasi request mahasiswa
         $validated = $request->validate([
+            'nim' => 'required|string',
             'nama' => 'required|string',
             'email' => 'required|email',
+            'angkatan' => 'required|string',
             'id_prodi' => 'required',
             'no_telp' => 'required|string|between:11,15',
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
         ]);
 
-        $user_dosen = User::create([
+        $user_mahasiswa = User::create([
             'name' => $validated['nama'],
             'email' => $validated['email'],
-            'username' => $validated['email'],
+            'username' => $validated['nim'],
             'password' => bcrypt($validated['password']),
         ]);
 
-        $user_dosen->assignRole('dosen');
+        $user_mahasiswa->assignRole('mahasiswa');
 
-        Dosen::create([
+        Mahasiswa::create([
+            'nim' => $validated['nim'],
             'nama' => $validated['nama'],
             'email' => $validated['email'],
+            'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
             'id_prodi' => $validated['id_prodi'],
-            'id_user' => $user_dosen->id,
+            'id_user' => $user_mahasiswa->id,
         ]);
 
-        $credentials = [
-            'username' => $user_dosen->username, // Menggunakan nim yang diinputkan pengguna pada form
-            'password' => $validated['password'], // Menggunakan kata sandi yang diinputkan pengguna pada form
-        ];
+        Alert::success('Success', 'Berhasil Menambahkan Data Mahasiswa');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            $user = Auth::user(); // Mengambil data pengguna yang sudah login
-            Alert::toast('Selamat datang ' . $user->name, 'success');
-
-            return redirect()->route('dashboard.dosen.page');
-        }
+        return redirect()->route('data.mahasiswa.index');
     }
 
     /**

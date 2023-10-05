@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Matkul;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MatakuliahController extends Controller
@@ -12,10 +13,17 @@ class MatakuliahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->prodi) {
+            $id_prodi = $request->prodi;
+        } else {
+            $id_prodi = 0;
+        }
+
         $data =[
-            'matakuliah' => Matkul::all()
+            'matakuliah' => Matkul::where('id_prodi', $id_prodi)->get(),
+            'prodi' => Prodi::all()
         ];
         return view('pages.prodi.matkul.index', $data);
     }
@@ -28,7 +36,8 @@ class MatakuliahController extends Controller
     public function create()
     {
         $data = [
-            'matakuliah' => Matkul::all()
+            'matakuliah' => Matkul::all(),
+            'prodi' => Prodi::all(),
         ];
 
         return view('pages.prodi.matkul.create', $data);
@@ -47,12 +56,14 @@ class MatakuliahController extends Controller
             'create_matkul' => ['required', 'string'],
             'create_kode_matkul' => ['required', 'string'],
             'create_sks' => ['required'],
+            'create_prodi' => ['required'],
         ]);
 
         Matkul::create([
             'nama' => $validated['create_matkul'],
             'kode_matakuliah' => $validated['create_kode_matkul'],
             'sks' => $validated['create_sks'],
+            'id_prodi' => $validated['create_prodi'],
         ]);
 
         return redirect()->route('daftar.matakuliah.index');
@@ -93,12 +104,14 @@ class MatakuliahController extends Controller
             'update_matkul' => ['required', 'string'],
             'update_kode_matkul' => ['required', 'string'],
             'update_sks' => ['required'],
+            'update_prodi' => ['required'],
         ]);
 
         Matkul::where('id', $id)->update([
             'nama' => $validated['update_matkul'],
             'kode_matakuliah' => $validated['update_kode_matkul'],
             'sks' => $validated['update_sks'],
+            'id_prodi' => $validated['update_prodi'],
         ]);
         return redirect()->route('daftar.matakuliah.index');
 

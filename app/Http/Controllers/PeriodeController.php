@@ -2,28 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
-use App\Models\Prodi;
-use App\Models\User;
+use App\Models\Periode;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DosenPageController extends Controller
+class PeriodeController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $data = [
+            'periode' => Periode::all(),
+        ];
 
+        return view('pages.prodi.Periode.index', $data);
     }
 
     /**
@@ -44,7 +39,20 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $validated = $request->validate([
+            'create_semester' => ['required'],
+            'create_tahun' => ['required'],
+            'create_status' => ['required'],
+        ]);
+
+        Periode::create([
+            'semester' => $validated['create_semester'],
+            'tahun' => $validated['create_tahun'],
+            'status' => $validated['create_status'],
+        ]);
+
+        return redirect()->route('data.periode.index');
     }
 
     /**
@@ -78,7 +86,19 @@ class DosenPageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_semester' => ['required'],
+            'update_tahun' => ['required'],
+            'update_status' => ['required'],
+        ]);
+
+        Periode::where('id', $id)->update([
+            'semester' => $validated['update_semester'],
+            'tahun' => $validated['update_tahun'],
+            'status' => $validated['update_status'],
+        ]);
+
+        return redirect()->route('data.periode.index');
     }
 
     /**
@@ -89,6 +109,9 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $periode = Periode::findOrFail($id);
+        $periode->delete();
+
+        return redirect()->route('data.periode.index');
     }
 }

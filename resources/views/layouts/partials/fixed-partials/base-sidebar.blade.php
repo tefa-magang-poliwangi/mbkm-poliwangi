@@ -178,6 +178,11 @@
                             <span>Manajemen Kelas</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Periode</span>
+                        </a>
+                    </li>
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>

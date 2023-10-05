@@ -57,6 +57,24 @@
 
 
                         <div class="form-group">
+                            <label for="create_prodi" class="form-label">Pilih Prodi / Jurusan</label>
+                            <select
+                                class="form-control @error('create_prodi')
+                                is-invalid
+                            @enderror"
+                                id="create_prodi" name="create_prodi">
+                                <option value="">Pilih prodi</option>
+                                @foreach ($prodi as $dataprodi)
+                                    <option value="{{ $dataprodi->id }}">{{ $dataprodi->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('create_prodi')
+                                <div id="create_prodi" class="form-text text-danger">
+                                    {{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block">
                                 Tambah Data
                             </button>
