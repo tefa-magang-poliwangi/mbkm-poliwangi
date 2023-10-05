@@ -9,8 +9,8 @@
         <div class="row py-5">
             <div class="col-md-12">
                 <div class="card card-custom rounded ">
-                    <div class="card-body">
-                        <h3 class="card-title">Dashboard Super Admin</h3>
+                    <div class="card-body d-flex">
+                        <h3 class="card-title my-auto">Dashboard Super Admin</h3>
                     </div>
                 </div>
             </div>
@@ -25,55 +25,49 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
-                <a href="{{ route('roles.index') }}">
-                    <div class="card hospital-info card-hover card-rounded">
+            <div class="col-4">
+                <a href="{{ route('roles.index') }}" class="tag-menu">
+                    <div class="card card-hover card-rounded">
                         <div class="card-body">
-                            <h5 class="header-title mt-0 mb-5">Management Role</h5>
-                            <div class="media">
-                                <div class="data-icon align-self-center">
-                                    <i class="fa-solid fa-users fa-2xl"></i>
-                                </div>
-                                <div class="media-body ml-3 mt-5 align-self-center text-right">
-                                    <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
-                                </div><!--end media body-->
+                            <h5 class="header-title text-theme mb-4">Manajemen Role</h5>
+                            <div class="align-self-center">
+                                <i class="fa-solid fa-users fa-2xl p-4 menu-card text-theme card-rounded-sm"></i>
                             </div>
+                            <div class="ml-3 align-self-center text-right mt-3">
+                                <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
+                            </div><!--end media body-->
                         </div><!--end card-body-->
                     </div><!--end card-->
                 </a>
             </div>
 
-            <div class="col-lg-4">
-                <a href="{{ route('permissions.index') }}">
-                    <div class="card hospital-info card-hover card-rounded">
+            <div class="col-4">
+                <a href="{{ route('permissions.index') }}" class="tag-menu">
+                    <div class="card card-hover card-rounded">
                         <div class="card-body">
-                            <h5 class="header-title mt-0 mb-5">Management Permission</h5>
-                            <div class="media">
-                                <div class="data-icon align-self-center">
-                                    <i class="fa-solid fa-address-card fa-2xl"></i>
-                                </div>
-                                <div class="media-body ml-3 mt-5 align-self-center text-right">
-                                    <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
-                                </div><!--end media body-->
+                            <h5 class="header-title text-theme mb-4">Manajemen Permission</h5>
+                            <div class="align-self-center">
+                                <i class="fa-solid fa-address-card fa-2xl p-4 menu-card text-theme card-rounded-sm"></i>
                             </div>
+                            <div class="ml-3 align-self-center text-right mt-3">
+                                <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
+                            </div><!--end media body-->
                         </div><!--end card-body-->
                     </div><!--end card-->
                 </a>
             </div>
 
-            <div class="col-lg-4">
-                <a href="{{ route('users.index') }}">
-                    <div class="card hospital-info card-hover card-rounded">
+            <div class="col-4">
+                <a href="{{ route('users.index') }}" class="tag-menu">
+                    <div class="card card-hover card-rounded">
                         <div class="card-body">
-                            <h5 class="header-title mt-0 mb-5">Management User</h5>
-                            <div class="media">
-                                <div class="data-icon align-self-center">
-                                    <i class="fa-solid fa-user-gear fa-2xl"></i>
-                                </div>
-                                <div class="media-body ml-3 mt-5 align-self-center text-right">
-                                    <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
-                                </div><!--end media body-->
+                            <h5 class="header-title text-theme mb-4">Manajemen User</h5>
+                            <div class="align-self-center">
+                                <i class="fa-solid fa-user-gear fa-2xl p-4 menu-card text-theme card-rounded-sm"></i>
                             </div>
+                            <div class="ml-3 align-self-center text-right mt-3">
+                                <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
+                            </div><!--end media body-->
                         </div><!--end card-body-->
                     </div><!--end card-->
                 </a>

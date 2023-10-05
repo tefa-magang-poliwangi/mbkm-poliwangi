@@ -86,19 +86,8 @@ class MahasiswaController extends Controller
             'id_user' => $user_mahasiswa->id,
         ]);
 
-        $credentials = [
-            'username' => $user_mahasiswa->username, // Menggunakan nim yang diinputkan pengguna pada form
-            'password' => $validated['password'], // Menggunakan kata sandi yang diinputkan pengguna pada form
-        ];
-
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     $user = Auth::user(); // Mengambil data pengguna yang sudah login
-        //     Alert::toast('Selamat datang ' . $user->name, 'success');
-
-        // }
         Alert::success('Success', 'Berhasil Menambahkan Data Mahasiswa');
+
         return redirect()->route('data.mahasiswa.index');
     }
 

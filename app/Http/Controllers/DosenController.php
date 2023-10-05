@@ -18,7 +18,7 @@ class DosenController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->prodi) {
+        if ($request->prodi) {
             $id_prodi = $request->prodi;
         } else {
             $id_prodi = 0;
@@ -54,8 +54,8 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-         // validasi request mahasiswa
-         $validated = $request->validate([
+        // validasi request mahasiswa
+        $validated = $request->validate([
             'nama' => 'required|string',
             'email' => 'required|email',
             'id_prodi' => 'required',
@@ -81,19 +81,8 @@ class DosenController extends Controller
             'id_user' => $user_dosen->id,
         ]);
 
-        $credentials = [
-            'username' => $user_dosen->username, // Menggunakan nim yang diinputkan pengguna pada form
-            'password' => $validated['password'], // Menggunakan kata sandi yang diinputkan pengguna pada form
-        ];
-
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     $user = Auth::user(); // Mengambil data pengguna yang sudah login
-        //     Alert::toast('Selamat datang ' . $user->name, 'success');
-
-        // }
         Alert::success('Success', 'Berhasil Menambahkan Data Dosen');
+
         return redirect()->route('data.dosen.index');
     }
 
