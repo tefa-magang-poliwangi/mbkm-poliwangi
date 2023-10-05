@@ -314,3 +314,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::get('/dashboard-mitra/mitra-lowongan', function () {
     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
 });
+
+Route::get('/dashboard-admin/manajemen-kriteria/index', function () {
+    return view('pages.admin.manajemen-kriteria.index');
+});
