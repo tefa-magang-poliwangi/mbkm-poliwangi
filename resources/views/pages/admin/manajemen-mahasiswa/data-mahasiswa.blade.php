@@ -30,7 +30,7 @@
                             </div>
                         </div>
 
-                        {{-- Filter Mahasiswa --}}
+                        {{-- Filter Prodi Mahasiswa --}}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-6 col-lg-4">
                                 <div class="form-group">
@@ -38,7 +38,9 @@
                                         <select class="form-control select2" name="prodi" onchange="this.form.submit()">
                                             <option value="">Semua Prodi</option>
                                             @foreach ($prodi as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </form>
@@ -58,7 +60,6 @@
                                                 <th class="text-center text-white">Prodi</th>
                                                 <th class="text-center text-white">Angkatan</th>
                                                 <th class="text-center text-white">Email</th>
-                                                <th class="text-center text-white">No.Telp</th>
                                                 <th class="text-center text-white">Ubah</th>
                                                 <th class="text-center text-white">Hapus</th>
                                             </tr>
@@ -76,7 +77,6 @@
                                                     <td>{{ $data->prodi->nama }}</td>
                                                     <td class="text-center">{{ $data->angkatan }}</td>
                                                     <td class="text-center">{{ $data->email }}</td>
-                                                    <td class="text-center">{{ $data->no_telp }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('data.mahasiswa.edit', $data->id) }}"
                                                             class="btn btn-primary ml-auto">

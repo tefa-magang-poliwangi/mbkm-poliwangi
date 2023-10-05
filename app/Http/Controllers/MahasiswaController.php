@@ -19,15 +19,16 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
+        $mahasiswas = Mahasiswa::query();
+
         if ($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
+            $mahasiswas->where('id_prodi', $request->prodi);
         }
 
         $datas = [
-            'mahasiswas' => Mahasiswa::Where('id_prodi', $id_prodi)->get(),
+            'mahasiswas' => $mahasiswas->get(),
             'prodi' => Prodi::all(),
+            'request' => $request,
         ];
 
         return view('pages.admin.manajemen-mahasiswa.data-mahasiswa', $datas);
