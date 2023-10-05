@@ -181,11 +181,11 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i class="fas fa-users"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
                             <span>Daftar Pelamar</span>
                         </a>
                     </li>
@@ -275,11 +275,11 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i class="fas fa-users"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
                             <span>Daftar Pelamar</span>
                         </a>
                     </li>

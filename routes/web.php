@@ -1,28 +1,30 @@
 <?php
 
-use App\Http\Controllers\AkademikPageController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DaftarNilaiMahasiswaController;
-use App\Http\Controllers\DosenPageController;
-use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\DosenPageController;
+use App\Http\Controllers\FormMitraController;
+use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\MitraPageController;
+use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
-use App\Http\Controllers\KurikulumController;
-use App\Http\Controllers\MagangExternalController;
-use App\Http\Controllers\MahasiswaPageController;
-use App\Http\Controllers\MatakuliahController;
-use App\Http\Controllers\MatkulKurikulumController;
-use App\Http\Controllers\MitraPageController;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\PesertaKelasController;
-use App\Http\Controllers\PesertaMagangExtController;
-use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\RegisterDosenController;
-use App\Http\Controllers\RegisterMahasiswaController;
+use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\SuperAdminPageController;
-use App\Http\Controllers\UploadTranskripNilai;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MatkulKurikulumController;
+use App\Http\Controllers\PesertaMagangExtController;
+use App\Http\Controllers\RegisterMahasiswaController;
+use App\Http\Controllers\MitraDaftarPelamarController;
+use App\Http\Controllers\DaftarNilaiMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +124,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'store'])->name('peserta.magang_ext.store');
         Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
 
+        // (Route mitra)
+        Route::get('/dashboard-admin/formulir-mitra', [FormMitraController::class, 'create'])->name('formulir.mitra.page');
+        Route::post('/dashboard-admin/formulir-mitra/store', [FormMitraController::class, 'store'])->name('formulir.mitra.store');
+
+
+        Route::get('/dashboard-admin/mitra-daftar-pelamar', [MitraDaftarPelamarController::class, 'index'])->name('daftar-pelamar.mitra.page');
+
         /**
          * Route Dosen
          */
@@ -216,12 +225,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mitra/mitra-lowongan', function () {
             return view('pages.mitra.manajemen-mitra.mitra-lowongan');
         });
-        Route::get('/dashboard-mitra/form-mitra', function () {
-            return view('pages.mitra.manajemen-mitra.mitra-form');
-        });
-        Route::get('/dashboard-mitra/daftar-pelamar', function () {
-            return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
-        });
+
 
         // Halaman Kaprodi
         Route::get('/dashboard-dosen/laporan-akhir', function () {
@@ -282,6 +286,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
             return view('pages.dosen.doswal-viewHasilKonversi');
         });
+
+        /**
+         *
+         */
+
+            Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+            Route::get('cities', 'DependentDropdownController@cities')->name('cities');
+            Route::get('districts', 'DependentDropdownController@districts')->name('districts');
+            Route::get('villages', 'DependentDropdownController@villages')->name('villages');
 
         /**
          * Super User Routes
