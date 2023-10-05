@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Periode;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PeriodeController extends Controller
 {
@@ -52,6 +53,8 @@ class PeriodeController extends Controller
             'status' => $validated['create_status'],
         ]);
 
+        Alert::success('Success', 'Data Periode Berhasil Ditambahkan');
+
         return redirect()->route('data.periode.index');
     }
 
@@ -98,6 +101,8 @@ class PeriodeController extends Controller
             'status' => $validated['update_status'],
         ]);
 
+        Alert::success('Success', 'Data Periode Berhasil Diupdate');
+
         return redirect()->route('data.periode.index');
     }
 
@@ -111,6 +116,8 @@ class PeriodeController extends Controller
     {
         $periode = Periode::findOrFail($id);
         $periode->delete();
+
+        Alert::success('Success', 'Data Periode Berhasil Dihapus');
 
         return redirect()->route('data.periode.index');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kurikulum;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KurikulumController extends Controller
 {
@@ -66,6 +67,7 @@ class KurikulumController extends Controller
             'id_prodi' => $validated['create_prodi'],
         ]);
 
+        Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan' );
         return redirect()->route('daftar.kurikulum.index');
     }
 
@@ -112,6 +114,8 @@ class KurikulumController extends Controller
             'id_prodi' => $validated['update_prodi'],
         ]);
 
+        Alert::success('Success', 'Data Kurikulum Berhasil Diupdate');
+
         return redirect()->route('daftar.kurikulum.index');
     }
 
@@ -125,6 +129,8 @@ class KurikulumController extends Controller
     {
         $kurikulum = Kurikulum::findOrFail($id);
         $kurikulum->delete();
+
+        Alert::success('Success', 'Data Kurikulum Berhasil Dihapus');
 
         return redirect()->route('daftar.kurikulum.index');
     }

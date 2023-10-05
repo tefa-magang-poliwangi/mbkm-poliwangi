@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Matkul;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MatakuliahController extends Controller
 {
@@ -66,6 +67,8 @@ class MatakuliahController extends Controller
             'id_prodi' => $validated['create_prodi'],
         ]);
 
+        Alert::success('Succsess', 'Data Matakuliah Berhasil Ditambahkan');
+
         return redirect()->route('daftar.matakuliah.index');
     }
 
@@ -113,6 +116,8 @@ class MatakuliahController extends Controller
             'sks' => $validated['update_sks'],
             'id_prodi' => $validated['update_prodi'],
         ]);
+
+        Alert::success('Success', 'Data Matakuliah Berhasil Diupdate');
         return redirect()->route('daftar.matakuliah.index');
 
     }
@@ -127,6 +132,9 @@ class MatakuliahController extends Controller
     {
         $matkul = Matkul::findOrFail($id);
         $matkul->delete();
+
+        Alert::success('Success', 'Data Matakuliah Berhasil Dihapus');
+
 
         return redirect()->route('daftar.matakuliah.index');
     }

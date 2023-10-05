@@ -7,6 +7,7 @@ use App\Models\Matkul;
 use App\Models\MatkulKurikulum;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MatkulKurikulumController extends Controller
 {
@@ -67,6 +68,8 @@ class MatkulKurikulumController extends Controller
             'id_matkul' => $validated['create_matkul'],
         ]);
 
+        Alert::success('Success', 'Data Matkul Kurikulum Berhasil Ditambahkan');
+
         return redirect()->route('daftar.matkul.kurikulum.index');
     }
 
@@ -113,6 +116,9 @@ class MatkulKurikulumController extends Controller
             'id_matkul' => $validated['update_matkul'],
         ]);
 
+        Alert::success('Success', 'Data Matkul Kurikulum Berhasil Diupdate');
+
+
         return redirect()->route('daftar.matkul.kurikulum.index');
     }
 
@@ -127,6 +133,9 @@ class MatkulKurikulumController extends Controller
     {
         $matkul_kurikulum = MatkulKurikulum::findOrFail($id);
         $matkul_kurikulum->delete();
+
+
+        Alert::success('Success', 'Data Matkul Kurikulum Berhasil Dihapus');
 
         return redirect()->route('daftar.matkul.kurikulum.index');
     }
