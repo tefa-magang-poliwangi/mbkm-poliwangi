@@ -55,13 +55,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
 
         // (Route Data Master)
-        Route::get('/dashboard-admin/data-dosen', [DosenController::class, 'index'])->name('data.dosen.index');
-        Route::get('/dashboard-admin/data-dosen/create', [DosenController::class, 'create'])->name('data.dosen.create');
-        Route::post('/dashboard-admin/data-dosen/store', [DosenController::class, 'store'])->name('data.dosen.store');
+        // Manajemen Dosen
+        Route::get('/dashboard-admin/manajemen-dosen', [DosenController::class, 'index'])->name('data.dosen.index');
+        Route::get('/dashboard-admin/manajemen-dosen/create', [DosenController::class, 'create'])->name('data.dosen.create');
+        Route::post('/dashboard-admin/manajemen-dosen/store', [DosenController::class, 'store'])->name('data.dosen.store');
+        Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('data.dosen.edit');
+        Route::put('/dashboard-admin/manajemen-dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('data.dosen.update');
+        Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('data.dosen.destroy');
 
-        Route::get('/dashboard-admin/data-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
-        Route::get('/dashboard-admin/data-mahasiswa/create', [MahasiswaController::class, 'create'])->name('data.mahasiswa.create');
-        Route::post('/dashboard-admin/data-mahasiswa/store', [MahasiswaController::class, 'store'])->name('data.mahasiswa.store');
+        // Manajemen Mahasiswa
+        Route::get('/dashboard-admin/manajemen-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
+        Route::get('/dashboard-admin/manajemen-mahasiswa/create', [MahasiswaController::class, 'create'])->name('data.mahasiswa.create');
+        Route::post('/dashboard-admin/manajemen-mahasiswa/store', [MahasiswaController::class, 'store'])->name('data.mahasiswa.store');
+        Route::get('/dashboard-admin/manajemen-mahasiswa/{id_mahasiswa}/edit', [MahasiswaController::class, 'edit'])->name('data.mahasiswa.edit');
+        Route::put('/dashboard-admin/manajemen-mahasiswa/{id_mahasiswa}/update', [MahasiswaController::class, 'update'])->name('data.mahasiswa.update');
+        Route::get('/dashboard-admin/manajemen-mahasiswa/{id_mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('data.mahasiswa.destroy');
 
         // (Route Manajemen Kelas dan Peserta Kelas)
         // route kelas
