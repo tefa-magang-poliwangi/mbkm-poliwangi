@@ -19,15 +19,16 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
+        $mahasiswas = Mahasiswa::query();
+
         if ($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
+            $mahasiswas->where('id_prodi', $request->prodi);
         }
 
         $datas = [
-            'mahasiswas' => Mahasiswa::Where('id_prodi', $id_prodi)->get(),
+            'mahasiswas' => $mahasiswas->get(),
             'prodi' => Prodi::all(),
+            'request' => $request,
         ];
 
         return view('pages.admin.manajemen-mahasiswa.data-mahasiswa', $datas);
@@ -110,7 +111,12 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'mahasiswa' => Mahasiswa::findOrFail($id),
+            'prodis' => Prodi::all(),
+        ];
+
+        return view('pages.admin.manajemen-mahasiswa.form-mahasiswa', $data);
     }
 
     /**
@@ -122,7 +128,42 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($id);
+
+        // validasi request mahasiswa
+        $validated = $request->validate([
+            'nim' => 'required|string',
+            'nama' => 'required|string',
+            'email' => 'required|email',
+            'angkatan' => 'required|string',
+            'id_prodi' => 'required',
+            'no_telp' => 'required|string|between:11,15',
+            'password' => ['nullable', 'confirmed', 'min:8'],
+            'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
+        ]);
+
+        $user = User::findOrFail($mahasiswa->id_user);
+
+        User::where('id', $user->id)->update([
+            'name' => $validated['nama'],
+            'email' => $validated['email'],
+            'username' => $validated['nim'],
+            'password' => bcrypt($validated['password']),
+        ]);
+
+        Mahasiswa::where('id', $mahasiswa->id)->update([
+            'nim' => $validated['nim'],
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'angkatan' => $validated['angkatan'],
+            'no_telp' => $validated['no_telp'],
+            'id_prodi' => $validated['id_prodi'],
+            'id_user' => $user->id,
+        ]);
+
+        Alert::success('Success', 'Berhasil Mengubah Data Mahasiswa');
+
+        return redirect()->route('data.mahasiswa.index');
     }
 
     /**
@@ -133,6 +174,13 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $user = User::findOrFail($mahasiswa->id_user);
+        $user->delete();
+        $mahasiswa->delete();
+
+        Alert::success('Success', 'Berhasil Menghapus Data Mahasiswa');
+
+        return redirect()->route('data.mahasiswa.index');
     }
 }

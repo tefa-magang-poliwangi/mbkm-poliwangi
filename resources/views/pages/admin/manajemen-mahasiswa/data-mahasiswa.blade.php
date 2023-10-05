@@ -23,13 +23,14 @@
                                 <h5 class="justify-start my-auto text-theme">Filter Prodi Mahasiswa</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('data.mahasiswa.create') }}" class="btn btn-primary ml-auto"
-                                    data-toggle="modal" data-target="#createModal"><i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Mahasiswa</a>
+                                <a href="{{ route('data.mahasiswa.create') }}" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah Mahasiswa
+                                </a>
                             </div>
                         </div>
 
-                        {{-- Filter Mahasiswa --}}
+                        {{-- Filter Prodi Mahasiswa --}}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-6 col-lg-4">
                                 <div class="form-group">
@@ -37,7 +38,9 @@
                                         <select class="form-control select2" name="prodi" onchange="this.form.submit()">
                                             <option value="">Semua Prodi</option>
                                             @foreach ($prodi as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </form>
@@ -49,18 +52,16 @@
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center">
-                                                    No
-                                                </th>
-                                                <th>NIM</th>
-                                                <th>Nama Mahasiswa</th>
-                                                <th>Prodi</th>
-                                                <th>Angkatan</th>
-                                                <th>Email</th>
-                                                <th>No.Telp</th>
-                                                <th>Aksi</th>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-center text-white">NIM</th>
+                                                <th class="text-center text-white">Nama</th>
+                                                <th class="text-center text-white">Prodi</th>
+                                                <th class="text-center text-white">Angkatan</th>
+                                                <th class="text-center text-white">Email</th>
+                                                <th class="text-center text-white">Ubah</th>
+                                                <th class="text-center text-white">Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -70,31 +71,23 @@
 
                                             @foreach ($mahasiswas as $data)
                                                 <tr>
-                                                    {{--  --}}
-                                                    <td>
-                                                        {{ $no }}
-                                                    </td>
-                                                    <td>{{ $data->nim }}</td>
-                                                    <td>
-                                                        {{ $data->nama }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $data->prodi->nama }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $data->angkatan }}
+                                                    <td class="text-center">{{ $no }}</td>
+                                                    <td class="text-center">{{ $data->nim }}</td>
+                                                    <td>{{ $data->nama }}</td>
+                                                    <td>{{ $data->prodi->nama }}</td>
+                                                    <td class="text-center">{{ $data->angkatan }}</td>
+                                                    <td class="text-center">{{ $data->email }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('data.mahasiswa.edit', $data->id) }}"
+                                                            class="btn btn-primary ml-auto">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </a>
                                                     </td>
                                                     <td>
-                                                        {{ $data->email }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $data->no_telp }}
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"> <i
-                                                                class="fa-solid fas fa-edit text-dark"></i></a>
-                                                        <a href="#"> <i
-                                                                class="fa-solid fas fa-trash text-dark"></i></a>
+                                                        <a href="{{ route('data.mahasiswa.destroy', $data->id) }}"
+                                                            class="btn btn-danger ml-auto">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                                 @php

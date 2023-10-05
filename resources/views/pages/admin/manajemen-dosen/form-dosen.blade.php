@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Dosen| MBKM Poliwangi</title>
+    <title>Update Dosen | MBKM Poliwangi</title>
 @endsection
 
 @section('content')
@@ -10,16 +10,17 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Tambah Data Dosen</h4>
+                        <h4>Edit Data Dosen</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('data.dosen.store') }}">
+                        <form method="POST" action="{{ route('data.dosen.update', $dosen->id) }}">
+                            @method('put')
                             @csrf
 
                             <div class="form-group">
                                 <label for="nama">Nama</label>
                                 <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror"
-                                    name="nama" placeholder="Nama lengkap">
+                                    name="nama" placeholder="Nama lengkap" value="{{ $dosen->nama }}">
                                 @error('nama')
                                     <div id="nama" class="form-text">{{ $message }}</div>
                                 @enderror
@@ -29,7 +30,7 @@
                                 <label for="email">Email</label>
                                 <input id="email" type="email"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
-                                    placeholder="Alamat email">
+                                    placeholder="Alamat email" value="{{ $dosen->email }}">
                                 @error('email')
                                     <div id="email" class="form-text">{{ $message }}</div>
                                 @enderror
@@ -41,7 +42,9 @@
                                     name="id_prodi">
                                     <option value="">Pilih Prodi</option>
                                     @foreach ($prodis as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}"
+                                            {{ $data->id == $dosen->id_prodi ? 'selected' : '' }}>{{ $data->nama }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('id_prodi')
@@ -53,7 +56,8 @@
                                 <label for="no_telp">No. HP</label>
                                 <input id="no_telp" type="text"
                                     class="form-control @error('no_telp') is-invalid @enderror" name="no_telp"
-                                    pattern="[0-9]*" placeholder="Nomor telepon / nomor whatsapp">
+                                    pattern="[0-9]*" placeholder="Nomor telepon / nomor whatsapp"
+                                    value="{{ $dosen->no_telp }}">
                                 @error('no_telp')
                                     <div id="no_telp" class="form-text">{{ $message }}</div>
                                 @enderror
@@ -86,7 +90,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                    Tambah Data Dosen
+                                    Simpan Data Dosen
                                 </button>
                             </div>
                         </form>
