@@ -9,6 +9,7 @@ use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
+use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaController;
@@ -116,6 +117,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'store'])->name('peserta.magang_ext.store');
         Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
 
+        Route::get('/dashboard-admin/manajemen-kriteria/index', [KriteriaPenilaianController::class, 'index'])->name('kriteria.penilaian.index');
+        Route::post('/dashboard-admin/manajemen-kriteria/store', [KriteriaPenilaianController::class, 'store'])->name('kriteria.penilaian.store');
+        Route::put('/dashboard-admin/manajemen-kriteria/update/{id}', [KriteriaPenilaianController::class, 'update'])->name('kriteria.penilaian.update');
+        Route::get('/dashboard-admin/manajemen-kriteria/delete/{id}', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
         /**
          * Route Dosen
          */
@@ -307,6 +312,6 @@ Route::get('/dashboard-mitra/mitra-lowongan', function () {
     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
 });
 
-Route::get('/dashboard-admin/manajemen-kriteria/index', function () {
-    return view('pages.admin.manajemen-kriteria.index');
-});
+// Route::get('/dashboard-admin/manajemen-kriteria/index', function () {
+//     return view('pages.admin.manajemen-kriteria.index');
+// });

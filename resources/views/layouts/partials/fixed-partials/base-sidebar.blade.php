@@ -183,6 +183,11 @@
                             <span>Manajemen Periode</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('kriteria.penilaian.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Kriteria</span>
+                        </a>
+                    </li>
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
