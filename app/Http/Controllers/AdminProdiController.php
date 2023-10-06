@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prodi;
-use Illuminate\Contracts\Validation\Rule;
+use App\Models\AdminProdi;
 use Illuminate\Http\Request;
+use App\Models\Prodi;
+use App\Models\User;
+use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProdiController extends Controller
+
+class AdminProdiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +19,16 @@ class ProdiController extends Controller
      */
     public function index()
     {
+
         $data = [
+            'users' => User::all(),
+            'admins' => AdminProdi::all(),
             'prodi' => Prodi::all()
         ];
 
-        return view('pages.prodi.daftar-prodi', $data);
+        return view('pages.admin.manajemen-admin-prodi.data-admin-prodi', $data);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +37,7 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -42,16 +49,19 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'create_nama_prodi' => ['required', 'string']
+
+            'create_user' => ['required'],
+            'create_prodi' => ['required'],
+
         ]);
 
-        $prodi = new Prodi;
-        $prodi->nama = $validated['create_nama_prodi'];
-        $prodi->save();
+        AdminProdi::create([
+            'id_user' => $validated['create_user'],
+            'id_prodi' => $validated['create_prodi']
+        ]);
 
-        Alert::success('Success', 'Data Prodi Berhasil Ditambahkan');
-
-        return redirect()->route('daftar.prodi.index');
+        Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
+        return redirect()->route('data.admin.index');
     }
 
     /**
@@ -96,11 +106,13 @@ class ProdiController extends Controller
      */
     public function destroy($id)
     {
-        $prodi = Prodi::findOrFail($id);
-        $prodi->delete();
 
-        Alert::success('Success', 'Data Matkul Kurikulum Berhasil Dihapus');
+        $adminprodi = AdminProdi::findOrFail($id);
+        $adminprodi->delete();
 
-        return redirect()->route('daftar.prodi.index');
+        Alert::success('Success', 'User Admin Prodi Berhasil Dihapus');
+
+        return redirect()->route('data.admin.index');
+
     }
 }

@@ -126,6 +126,9 @@ class PLMitraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plmitra = PlMitra::findOrFail($id);
+        $plmitra->delete();
+
+        return redirect()->route('data.periode.index');
     }
 }
