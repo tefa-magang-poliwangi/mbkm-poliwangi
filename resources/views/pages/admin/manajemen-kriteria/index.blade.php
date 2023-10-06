@@ -24,7 +24,9 @@
                                     <select class="form-control select2" name="magang_ext" onchange="this.form.submit()">
                                         <option value="">Semua Perusahaan</option>
                                         @foreach ($magangext as $item)
-                                            <option value="{{ $item->id}}">{{ $item->name }}</option>
+                                            <option value="{{ $item->id }}"
+                                                {{ $item->id == $request->magang_ext ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </form>

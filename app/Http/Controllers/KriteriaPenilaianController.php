@@ -16,14 +16,15 @@ class KriteriaPenilaianController extends Controller
      */
     public function index(Request $request)
     {
+        $kriteria = PenilaianMagangExt::query();
         if ($request->magang_ext) {
-            $id_magang_ext = $request->magang_ext;
-        } else {
-            $id_magang_ext = 0;
+            $kriteria->where('id_magang_ext', $request->magang_ext);
         }
+
         $data = [
             'magangext'=> MagangExt::all(),
-            'kriteria' => PenilaianMagangExt::Where('id_magang_ext', $id_magang_ext)->get(),
+            'kriteria' =>$kriteria->get(),
+            'request' => $request
         ];
 
         return view('pages.admin.manajemen-kriteria.index', $data);

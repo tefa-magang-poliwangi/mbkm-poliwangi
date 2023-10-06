@@ -17,14 +17,15 @@ class KurikulumController extends Controller
     public function index(Request $request)
     {
 
-        if($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
+        $kurikulum = Kurikulum::query();
+
+        if ($request->prodi) {
+            $kurikulum->where('id_prodi', $request->prodi);
         }
         $data = [
-            'kurikulums' => Kurikulum::where('id_prodi', $id_prodi)->get(),
+            'kurikulums' => $kurikulum->get(),
             'prodi' => Prodi::all(),
+            'request' => $request
         ];
 
         return view('pages.prodi.kurikulum.data-kurikulum', $data);

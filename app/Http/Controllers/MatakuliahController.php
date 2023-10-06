@@ -16,15 +16,16 @@ class MatakuliahController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
+        $matkul = Matkul::query();
+
+        if ($request->prodi) {
+            $matkul->where('id_prodi', $request->prodi);
         }
 
         $data =[
-            'matakuliah' => Matkul::where('id_prodi', $id_prodi)->get(),
-            'prodi' => Prodi::all()
+            'matakuliah' => $matkul->get(),
+            'prodi' => Prodi::all(),
+            'request' => $request
         ];
         return view('pages.prodi.matkul.index', $data);
     }
