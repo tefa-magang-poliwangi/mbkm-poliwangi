@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DaftarNilaiMahasiswaController;
-use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\DosenController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\UploadTranskripNilai;
@@ -20,10 +20,11 @@ use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\MagangExternalController;
+use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\MatkulKurikulumController;
 use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\RegisterMahasiswaController;
-use App\Http\Controllers\SuperAdminPageController;
+use App\Http\Controllers\DaftarNilaiMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
