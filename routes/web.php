@@ -118,8 +118,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
 
         // (Route mitra)
-        Route::get('/dashboard-admin/formulir-mitra', [FormMitraController::class, 'create'])->name('formulir.mitra.page');
+        Route::get('/dashboard-admin/formulir-mitra/index', [FormMitraController::class, 'index'])->name('formulir.mitra.index');
+        Route::get('/dashboard-admin/formulir-mitra/ceate', [FormMitraController::class, 'create'])->name('formulir.mitra.create');
         Route::post('/dashboard-admin/formulir-mitra/store', [FormMitraController::class, 'store'])->name('formulir.mitra.store');
+        Route::get('/dashboard-admin/formulir-mitra/edit/{id}', [FormMitraController::class, 'edit'])->name('formulir.mitra.edit');
+        Route::put('/dashboard-admin/formulir-mitra/update/{id}', [FormMitraController::class, 'update'])->name('formulir.mitra.update');
+        Route::get('/dashboard-admin/formulir-mitra/delete/{id}', [FormMitraController::class, 'destroy'])->name('formulir.mitra.delete');
 
 
         Route::get('/dashboard-admin/mitra-daftar-pelamar', [MitraDaftarPelamarController::class, 'index'])->name('daftar-pelamar.mitra.page');

@@ -186,7 +186,7 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.index') }}"><i class="fas fa-users"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
