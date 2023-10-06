@@ -65,8 +65,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/dashboard-admin/manajemen-dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('data.dosen.update');
         Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('data.dosen.destroy');
 
-        
-       
+
+
 
         // (Route Konversi Nilai Magang External)
         Route::get('/daftar-konversi-nilai/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.mahasiswa.index');
@@ -82,12 +82,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/daftar-program-studi/store', [ProdiController::class, 'store'])->name('daftar.prodi.store');
         Route::get('/daftar-program-studi/delete/{id}', [ProdiController::class, 'destroy'])->name('daftar.prodi.delete');
 
-        
+
         /**
          * Route Admin Prodi
          */
         Route::get('/dashboar-adminprodi', [AdminProdiPageController::class, 'dashboard_adminprodi'])->name('dashboard.admin.prodi.page');
-        
+
         // Manajemen Mahasiswa
         Route::get('/dashboard-admin/manajemen-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
         Route::get('/dashboard-admin/manajemen-mahasiswa/create', [MahasiswaController::class, 'create'])->name('data.mahasiswa.create');
@@ -120,8 +120,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
          // (Route Daftar Magang External)
          Route::get('/daftar-data-magangext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
          Route::post('/daftar-data-magangext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
+         Route::put('/daftar-data-magangext/update/{id}', [MagangExternalController::class, 'update'])->name('data.magangext.update');
          Route::get('/daftar-data-magangext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
-         
+
          // (Route Manajemen Kelas dan Peserta Kelas)
         // route kelas
         Route::get('/dashboard-admin/manajemen-kelas', [KelasController::class, 'index'])->name('manajemen.kelas.index');
@@ -134,7 +135,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/tambah-peserta-kelas', [PesertaKelasController::class, 'create'])->name('peserta.kelas.create');
         Route::post('/dashboard-admin/manajemen-kelas/{id_kelas}/tambah-peserta-kelas', [PesertaKelasController::class, 'store'])->name('peserta.kelas.store');
         Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/{id_peserta_kelas}/hapus-peserta-kelas', [PesertaKelasController::class, 'destroy'])->name('peserta.kelas.destroy');
-       
+
         //route periode
         Route::get('/dashboard-admin/data-periode/index', [PeriodeController::class, 'index'])->name('data.periode.index');
         Route::post('/dashboard-admin/data-periode/store', [PeriodeController::class, 'store'])->name('data.periode.store');
@@ -146,12 +147,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'create'])->name('peserta.magang_ext.create');
         Route::post('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'store'])->name('peserta.magang_ext.store');
         Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
+        Route::get('/dashboard-admin/manajemen-maganag_ext/{id_magang_ext}/kriteria-penilaian', [MagangExternalController::class], 'show')->name('kriteria.magang_ext.show');
 
-        Route::get('/dashboard-admin/manajemen-kriteria/index', [KriteriaPenilaianController::class, 'index'])->name('kriteria.penilaian.index');
-        Route::post('/dashboard-admin/manajemen-kriteria/store', [KriteriaPenilaianController::class, 'store'])->name('kriteria.penilaian.store');
+        Route::get('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/kriteria-penilaian', [KriteriaPenilaianController::class, 'index'])->name('kriteria.penilaian.index');
+        Route::post('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/tambah-kriteria-penilaian', [KriteriaPenilaianController::class, 'store'])->name('kriteria.penilaian.store');
         Route::put('/dashboard-admin/manajemen-kriteria/update/{id}', [KriteriaPenilaianController::class, 'update'])->name('kriteria.penilaian.update');
-        Route::get('/dashboard-admin/manajemen-kriteria/delete/{id}', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
-        
+        Route::get('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/{id}/hapus-kriteria-penilaian', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
+
 
         /**
          * Route Dosen
@@ -166,7 +168,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // route dosen wali
         // route dosen pembimbing
 
-        
+
         /**
          * Route Akademik
          */
@@ -187,7 +189,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dashboard-mahasiswa/upload-transkrip-mahasiswa/store/{id_user}', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.store');
         Route::get('/dashboard-mahasiswa/upload-transkrip-mahasiswa/delete/{id_nilai_magang_ext}', [UploadTranskripNilai::class, 'destroy'])->name('upload.transkrip.mahasiswa.destroy');
 
-       
+
 
         /**
          * Route Mitra

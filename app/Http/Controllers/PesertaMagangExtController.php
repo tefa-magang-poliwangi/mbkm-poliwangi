@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use App\Models\PesertaMagangExt;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PesertaMagangExtController extends Controller
 {
@@ -19,8 +20,9 @@ class PesertaMagangExtController extends Controller
     {
         $data = [
             'id_magang_ext' => $id_magang_ext,
-            'peserta_magang_ext' => PesertaMagangExt::all(),
+            'peserta_magang_ext' => PesertaMagangExt::where('id_magang_ext', $id_magang_ext)->get(),
             'kelas' => Kelas::all(),
+            'magang_ext' => MagangExt::findOrFail($id_magang_ext),
         ];
 
         return view('pages.admin.manajemen-peserta-magang-ext.index', $data);
@@ -70,6 +72,8 @@ class PesertaMagangExtController extends Controller
             }
         }
 
+        Alert::success('Success', 'Peserta Magang Berhasil Ditambahkan');
+
         return redirect()->route('peserta.magang_ext.index', $id_magang_ext);
     }
 
@@ -117,6 +121,8 @@ class PesertaMagangExtController extends Controller
     {
         $peserta_magang_ext = PesertaMagangExt::findOrFail($id);
         $peserta_magang_ext->delete();
+
+        Alert::success('Success', 'Peserta Magang Berhasil Dihapus');
 
         return redirect()->route('peserta.magang_ext.index', $id_magang_ext);
     }

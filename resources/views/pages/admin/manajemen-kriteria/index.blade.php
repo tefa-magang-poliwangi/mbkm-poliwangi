@@ -18,19 +18,8 @@
                 <div class="card border-0">
                     <div class="card-header bg-white border-0 px-2">
                         <div class="col-6">
-                            <h6>Kriteria Penilaian</h6>
-                            <div class="form-group">
-                                <form action="{{ route('kriteria.penilaian.index') }}" method="GET">
-                                    <select class="form-control select2" name="magang_ext" onchange="this.form.submit()">
-                                        <option value="">Semua Perusahaan</option>
-                                        @foreach ($magangext as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ $item->id == $request->magang_ext ? 'selected' : '' }}>
-                                                {{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </form>
-                            </div>
+                            <h5 class="justify-start">Kriteria Penilaian {{ $magang_ext->name }}</h5>
+
                         </div>
                         <div class="col-6 d-flex">
                             <div class="ml-auto">
@@ -51,24 +40,23 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Perusahaan</th>
                                         <th>Kriteria Penilaian</th>
-                                        <th>Aksi</th>
+                                        <th>Edit</th>
+                                        <th>Hapus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($kriteria as $data)
                                         <tr>
                                             <td>{{ $no }}</td>
-                                            <td>{{ $data->magang_ext->name }}</td>
                                             <td>{{ $data->penilaian }}</td>
                                             <td> <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $data->id }}"><i
                                                         class="fa-solid fa-pen"></i></button>
-                                                <a href="{{ route('kriteria.penilaian.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"> <i
-                                                        class="fa-solid fas fa-trash text-dark"></i></a>
                                             </td>
+                                            <td> <a href="{{ route('kriteria.penilaian.delete', [$id_magang_ext, $data->id]) }}"
+                                                    class="btn btn-danger ml-auto"> <i
+                                                        class="fa-solid fas fa-trash"></i></a></td>
                                         </tr>
 
                                         {{-- Modal Update --}}
@@ -89,26 +77,6 @@
                                                         @csrf
 
                                                         <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="update_perusahaan" class="form-label">Pilih
-                                                                    Perusahaan</label>
-                                                                <select
-                                                                    class="form-control @error('update_perusahaan')
-                                                                is-invalid
-                                                            @enderror"
-                                                                    id="update_perusahaan" name="update_perusahaan">
-                                                                    <option value="">Perusahaan</option>
-                                                                    @foreach ($magangext as $dataMagangext)
-                                                                        <option value="{{ $dataMagangext->id }}"
-                                                                            {{ $data->id_magang_ext == $dataMagangext->id ? 'selected' : '' }}>
-                                                                            {{ $dataMagangext->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('update_perusahaan')
-                                                                    <div id="update_perusahaan" class="form-text text-danger">
-                                                                        {{ $message }}</div>
-                                                                @enderror
-                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="update_kriteria" class="form-label">Kriteria
                                                                     Penilaian</label>
@@ -156,26 +124,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('kriteria.penilaian.store') }}" method="POST">
+                <form action="{{ route('kriteria.penilaian.store', $id_magang_ext) }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="create_perusahaan" class="form-label">Pilih Perusahaan</label>
-                            <select
-                                class="form-control @error('create_perusahaan')
-                                is-invalid
-                            @enderror"
-                                id="create_perusahaan" name="create_perusahaan">
-                                <option value="">Perusahaan</option>
-                                @foreach ($magangext as $dataMagangext)
-                                    <option value="{{ $dataMagangext->id }}">{{ $dataMagangext->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('create_perusahaan')
-                                <div id="create_perusahaan" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
                         <div class="form-group">
                             <label for="create_kriteria" class="form-label">Kriteria Penilaian</label>
                             <input id="create_kriteria" type="text"

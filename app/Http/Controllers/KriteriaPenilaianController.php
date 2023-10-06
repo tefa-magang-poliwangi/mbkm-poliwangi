@@ -14,17 +14,12 @@ class KriteriaPenilaianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($id_magang_ext)
     {
-        $kriteria = PenilaianMagangExt::query();
-        if ($request->magang_ext) {
-            $kriteria->where('id_magang_ext', $request->magang_ext);
-        }
-
         $data = [
-            'magangext'=> MagangExt::all(),
-            'kriteria' =>$kriteria->get(),
-            'request' => $request
+            'id_magang_ext' => $id_magang_ext,
+            'kriteria' => PenilaianMagangExt::where('id_magang_ext', $id_magang_ext)->get(),
+            'magang_ext' => MagangExt::findOrFail($id_magang_ext),
         ];
 
         return view('pages.admin.manajemen-kriteria.index', $data);
@@ -46,20 +41,20 @@ class KriteriaPenilaianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_magang_ext)
     {
         $validated = $request->validate([
-            'create_perusahaan' => ['required'],
+
             'create_kriteria' => ['required']
         ]);
 
         PenilaianMagangExt::create([
-            'id_magang_ext' => $validated['create_perusahaan'],
+            'id_magang_ext' => $id_magang_ext,
             'penilaian' => $validated['create_kriteria'],
         ]);
 
         Alert::success('Success', 'Kriteria Penilaian Berhasil Ditambahkan');
-        return redirect()->route('kriteria.penilaian.index');
+        return redirect()->route('kriteria.penilaian.index' ,$id_magang_ext);
     }
 
     /**
@@ -94,7 +89,6 @@ class KriteriaPenilaianController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'update_perusahaan' => ['required'],
             'update_kriteria' => ['required']
         ]);
 
@@ -113,14 +107,14 @@ class KriteriaPenilaianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_magang_ext, $id)
     {
         $kriteria = PenilaianMagangExt::findOrFail($id);
         $kriteria->delete();
 
 
-        Alert::success('Success', 'Kriteria Penilaia Berhasil Dihapus');
+        Alert::success('Success', 'Kriteria Penilaian Berhasil Dihapus');
 
-        return redirect()->route('kriteria.penilaian.index');
+        return redirect()->route('kriteria.penilaian.index', $id_magang_ext);
     }
 }

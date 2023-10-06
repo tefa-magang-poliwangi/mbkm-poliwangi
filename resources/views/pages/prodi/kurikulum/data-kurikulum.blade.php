@@ -79,7 +79,7 @@
                                                         class="fa-solid fa-pen"></i></button>
                                                 <a href="{{ route('daftar.kurikulum.delete', $item->id) }}"
                                                     class="btn btn-danger ml-auto"> <i
-                                                        class="fa-solid fas fa-trash text-dark"></i></a>
+                                                        class="fa-solid fas fa-trash"></i></a>
                                             </td>
                                         </tr>
 
