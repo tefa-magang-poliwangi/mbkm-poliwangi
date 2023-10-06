@@ -2,24 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Periode;
+use App\Models\MagangExt;
+use App\Models\PenilaianMagangExt;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PeriodeController extends Controller
+class KriteriaPenilaianController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $kriteria = PenilaianMagangExt::query();
+        if ($request->magang_ext) {
+            $kriteria->where('id_magang_ext', $request->magang_ext);
+        }
+
         $data = [
-            'periode' => Periode::all(),
+            'magangext'=> MagangExt::all(),
+            'kriteria' =>$kriteria->get(),
+            'request' => $request
         ];
 
-        return view('pages.prodi.Periode.index', $data);
+        return view('pages.admin.manajemen-kriteria.index', $data);
     }
 
     /**
@@ -40,22 +48,18 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
-            'create_semester' => ['required'],
-            'create_tahun' => ['required'],
-            'create_status' => ['required'],
+            'create_perusahaan' => ['required'],
+            'create_kriteria' => ['required']
         ]);
 
-        Periode::create([
-            'semester' => $validated['create_semester'],
-            'tahun' => $validated['create_tahun'],
-            'status' => $validated['create_status'],
+        PenilaianMagangExt::create([
+            'id_magang_ext' => $validated['create_perusahaan'],
+            'penilaian' => $validated['create_kriteria'],
         ]);
 
-        Alert::success('Success', 'Data Periode Berhasil Ditambahkan');
-
-        return redirect()->route('data.periode.index');
+        Alert::success('Success', 'Kriteria Penilaian Berhasil Ditambahkan');
+        return redirect()->route('kriteria.penilaian.index');
     }
 
     /**
@@ -90,20 +94,17 @@ class PeriodeController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'update_semester' => ['required'],
-            'update_tahun' => ['required'],
-            'update_status' => ['required'],
+            'update_perusahaan' => ['required'],
+            'update_kriteria' => ['required']
         ]);
 
-        Periode::where('id', $id)->update([
-            'semester' => $validated['update_semester'],
-            'tahun' => $validated['update_tahun'],
-            'status' => $validated['update_status'],
+        PenilaianMagangExt::where('id', $id)->update([
+            'id_magang_ext' => $validated['update_perusahaan'],
+            'penilaian' => $validated['update_kriteria'],
         ]);
 
-        Alert::success('Success', 'Data Periode Berhasil Diupdate');
-
-        return redirect()->route('data.periode.index');
+        Alert::success('Success', 'Kriteria Penilaian Berhasil DiUpdate');
+        return redirect()->route('kriteria.penilaian.index');
     }
 
     /**
@@ -114,11 +115,12 @@ class PeriodeController extends Controller
      */
     public function destroy($id)
     {
-        $periode = Periode::findOrFail($id);
-        $periode->delete();
+        $kriteria = PenilaianMagangExt::findOrFail($id);
+        $kriteria->delete();
 
-        Alert::success('Success', 'Data Periode Berhasil Dihapus');
 
-        return redirect()->route('data.periode.index');
+        Alert::success('Success', 'Kriteria Penilaia Berhasil Dihapus');
+
+        return redirect()->route('kriteria.penilaian.index');
     }
 }

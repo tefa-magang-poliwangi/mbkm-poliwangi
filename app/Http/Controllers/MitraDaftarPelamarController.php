@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Dosen;
-use App\Models\Prodi;
-use App\Models\User;
+use App\Models\Mitra;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class RegisterDosenController extends Controller
+class MitraDaftarPelamarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +15,10 @@ class RegisterDosenController extends Controller
     public function index()
     {
         $data = [
-            'prodis' => Prodi::all(),
+            'mitradaftarpelamar' => Mitra::all()
         ];
 
-        return view('pages.auth.register-dosen', $data);
+        return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
     }
 
     /**
@@ -45,7 +39,7 @@ class RegisterDosenController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
