@@ -11,7 +11,7 @@
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
         <div class="d-flex justify-content-between">
-            <strong class="h5 text-theme">Data Kurikulum Mata Kuliah</strong>
+            <strong class="h5 text-theme">Data Kurikulum</strong>
         </div>
         <div class="row">
             <div class="col-12">
@@ -24,7 +24,9 @@
                                     <select class="form-control select2" name="prodi" onchange="this.form.submit()">
                                         <option value="">Semua Prodi</option>
                                         @foreach ($prodi as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                            <option value="{{ $item->id }}"
+                                                {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </form>
@@ -73,7 +75,8 @@
                                                     <i class="fa-solid fa-search"></i> CPL
                                                 </a>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                    data-target="#updateModal{{$item->id}}"><i class="fa-solid fa-pen"></i></button>
+                                                    data-target="#updateModal{{ $item->id }}"><i
+                                                        class="fa-solid fa-pen"></i></button>
                                                 <a href="{{ route('daftar.kurikulum.delete', $item->id) }}"
                                                     class="btn btn-danger ml-auto"> <i
                                                         class="fa-solid fas fa-trash text-dark"></i></a>
@@ -81,7 +84,8 @@
                                         </tr>
 
                                         {{-- Modal Update --}}
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{$item->id}}">
+                                        <div class="modal fade" tabindex="-1" role="dialog"
+                                            id="updateModal{{ $item->id }}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

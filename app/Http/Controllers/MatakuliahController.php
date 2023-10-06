@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Matkul;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MatakuliahController extends Controller
 {
@@ -15,15 +16,16 @@ class MatakuliahController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
+        $matkul = Matkul::query();
+
+        if ($request->prodi) {
+            $matkul->where('id_prodi', $request->prodi);
         }
 
         $data =[
-            'matakuliah' => Matkul::where('id_prodi', $id_prodi)->get(),
-            'prodi' => Prodi::all()
+            'matakuliah' => $matkul->get(),
+            'prodi' => Prodi::all(),
+            'request' => $request
         ];
         return view('pages.prodi.matkul.index', $data);
     }
@@ -65,6 +67,8 @@ class MatakuliahController extends Controller
             'sks' => $validated['create_sks'],
             'id_prodi' => $validated['create_prodi'],
         ]);
+
+        Alert::success('Succsess', 'Data Matakuliah Berhasil Ditambahkan');
 
         return redirect()->route('daftar.matakuliah.index');
     }
@@ -113,6 +117,8 @@ class MatakuliahController extends Controller
             'sks' => $validated['update_sks'],
             'id_prodi' => $validated['update_prodi'],
         ]);
+
+        Alert::success('Success', 'Data Matakuliah Berhasil Diupdate');
         return redirect()->route('daftar.matakuliah.index');
 
     }
@@ -127,6 +133,9 @@ class MatakuliahController extends Controller
     {
         $matkul = Matkul::findOrFail($id);
         $matkul->delete();
+
+        Alert::success('Success', 'Data Matakuliah Berhasil Dihapus');
+
 
         return redirect()->route('daftar.matakuliah.index');
     }

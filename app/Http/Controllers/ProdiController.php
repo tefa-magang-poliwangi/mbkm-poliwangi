@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prodi;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdiController extends Controller
 {
@@ -47,6 +48,9 @@ class ProdiController extends Controller
         $prodi = new Prodi;
         $prodi->nama = $validated['create_nama_prodi'];
         $prodi->save();
+
+        Alert::success('Success', 'Data Prodi Berhasil Ditambahkan');
+
 
         return redirect()->route('daftar.prodi.index');
     }
@@ -95,6 +99,8 @@ class ProdiController extends Controller
     {
         $prodi = Prodi::findOrFail($id);
         $prodi->delete();
+
+        Alert::success('Success', 'Data Matkul Kurikulum Berhasil Dihapus');
 
         return redirect()->route('daftar.prodi.index');
     }

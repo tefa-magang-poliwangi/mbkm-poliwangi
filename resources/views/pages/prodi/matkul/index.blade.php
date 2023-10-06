@@ -24,7 +24,9 @@
                                     <select class="form-control select2" name="prodi" onchange="this.form.submit()">
                                         <option value="">Semua Prodi</option>
                                         @foreach ($prodi as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                            <option value="{{ $item->id }}"
+                                                {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </form>
@@ -43,7 +45,7 @@
                             @php
                                 $no = 1;
                             @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"  
+                            <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
                                 <thead>
                                     <tr>
@@ -63,16 +65,17 @@
                                             <td>{{ $data->nama }}</td>
                                             <td>{{ $data->sks }} SKS</td>
                                             <td>{{ $data->prodi->nama }}</td>
-                                            <td > <button type="button" class="btn btn-info ml-auto"
-                                                    data-toggle="modal" data-target="#updateModal{{$data->id}}"><i
+                                            <td> <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                                    data-target="#updateModal{{ $data->id }}"><i
                                                         class="fa-solid fa-pen"></i></button>
-                                                <a href="{{ route('daftar.matakuliah.delete', $data->id) }}" class="btn btn-danger ml-auto"> <i
-                                                        class="fas fa-trash"></i></a>
+                                                <a href="{{ route('daftar.matakuliah.delete', $data->id) }}"
+                                                    class="btn btn-danger ml-auto"> <i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
 
                                         {{-- Modal Update --}}
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{$data->id}}">
+                                        <div class="modal fade" tabindex="-1" role="dialog"
+                                            id="updateModal{{ $data->id }}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -96,7 +99,7 @@
                                                                     class="form-control @error('update_matkul')
                                                                 is-invalid
                                                             @enderror"
-                                                                    name="update_matkul" value="{{$data->nama}}" >
+                                                                    name="update_matkul" value="{{ $data->nama }}">
                                                                 @error('update_matkul')
                                                                     <div id="update_matkul" class="form-text text-danger">
                                                                         {{ $message }}</div>
@@ -109,7 +112,8 @@
                                                                     class="form-control @error('update_kode_matkul')
                                                                 is-invalid
                                                             @enderror"
-                                                                    name="update_kode_matkul" value="{{$data->kode_matakuliah}}">
+                                                                    name="update_kode_matkul"
+                                                                    value="{{ $data->kode_matakuliah }}">
                                                                 @error('update_kode_matkul')
                                                                     <div id="update_kode_matkul" class="form-text text-danger">
                                                                         {{ $message }}</div>
@@ -122,7 +126,7 @@
                                                                     class="form-control @error('update_sks')
                                                                 is-invalid
                                                             @enderror"
-                                                                    name="update_sks" value="{{$data->sks}}">
+                                                                    name="update_sks" value="{{ $data->sks }}">
                                                                 @error('update_sks')
                                                                     <div id="update_sks" class="form-text text-danger">
                                                                         {{ $message }}</div>
@@ -185,5 +189,4 @@
 
     {{-- Modal JS --}}
     <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
-
 @endsection

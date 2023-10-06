@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
     <title>Daftar Dosen | Politeknik Negeri Banyuwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -22,6 +24,7 @@
                     <div class="card-body py-0 mb-0">
                         <form action="{{ route('dosen-wali-tambah') }}" method="POST">
                             @csrf
+
                             <div class="table-responsive">
                                 @php
                                     $no = 1;
