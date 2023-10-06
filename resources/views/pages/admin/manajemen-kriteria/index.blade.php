@@ -49,8 +49,8 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-12">
+                            <div class="row mt-5 bg-info">
+                                <div class="col-lg-12">
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="table-1">
                                             <thead class="bg-primary">

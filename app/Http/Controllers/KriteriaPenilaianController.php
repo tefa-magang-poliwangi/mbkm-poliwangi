@@ -2,13 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPenilaianMagangExt;
 use App\Models\MagangExt;
+use App\Models\Mahasiswa;
 use App\Models\PenilaianMagangExt;
+use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KriteriaPenilaianController extends Controller
 {
+
+    public function index_nilai_mahasiswa_mhs_ext($id_magang_ext)
+    {
+        $data = [
+            'kriteria_magang_ext' => PenilaianMagangExt::where('id_magang_ext', $id_magang_ext)->get(),
+        ];
+
+        return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-input-nilai', $data);
+    }
+
+    public function input_nilai_mahasiswa_mhs_ext(Request $request, $id_user)
+    {
+        $user = User::findOrFail($id_user);
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->first(); // Menggunakan first() untuk mendapatkan satu objek
+
+        // Mendapatkan data nilai dari request
+        $nilaiInput = $request->input('nilai');
+
+        // Melakukan loop untuk menyimpan setiap nilai
+        foreach ($nilaiInput as $kriteriaId => $nilai) {
+            DetailPenilaianMagangExt::create([
+                'nilai' => $nilai,
+                'id_penilaian_magang_ext' => $kriteriaId,
+                'id_mahasiswa' => $mahasiswa->id,
+            ]);
+        }
+
+        Alert::success('Success', 'Input Nilai Berhasil di Simpan');
+
+        return redirect()->route('upload-transkrip-mahasiswa.create', $id_user);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +58,8 @@ class KriteriaPenilaianController extends Controller
         }
 
         $data = [
-            'magangext'=> MagangExt::all(),
-            'kriteria' =>$kriteria->get(),
+            'magangext' => MagangExt::all(),
+            'kriteria' => $kriteria->get(),
             'request' => $request
         ];
 

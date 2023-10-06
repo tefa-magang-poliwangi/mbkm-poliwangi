@@ -51,7 +51,6 @@ class ProdiController extends Controller
 
         Alert::success('Success', 'Data Prodi Berhasil Ditambahkan');
 
-
         return redirect()->route('daftar.prodi.index');
     }
 
