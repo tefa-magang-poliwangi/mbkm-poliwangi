@@ -111,7 +111,16 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
+<<<<<<< HEAD
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-solid fa-user-tie"></i>
+=======
+                        <a class="nav-link" href="{{ route('data.admin.index') }}"><i class="fas fa-graduation-cap"></i>
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
+>>>>>>> c58ef3dfa585e2155dd34f968a5aed0e17327e1e
                             <span>Mahasiswa</span>
                         </a>
                     </li>
@@ -205,16 +214,33 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
+<<<<<<< HEAD
                         <a class="nav-link" href="#"><i class="fas fas fa-users"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
                         <a class="nav-link" href="#"><i class="fas fas fa-user"></i>
+=======
+                        <a class="nav-link" href="{{ route('formulir.mitra.index') }}"><i class="fas fa-users"></i>
+                            <span>Form Mitra</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
+>>>>>>> c58ef3dfa585e2155dd34f968a5aed0e17327e1e
                             <span>Daftar Pelamar</span>
                         </a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a class="nav-link" href="#"><i class="fas fa-solid fa-book-open"></i>
+=======
+                        <a class="nav-link" href="{{route('data.plmitra.index')}}"><i class="fas fa-user"></i>
+                            <span>PL Mitra</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-book"></i>
+>>>>>>> c58ef3dfa585e2155dd34f968a5aed0e17327e1e
                             <span>Log Book</span></a>
                     </li>
                     <li class="menu-header">LOWONGAN MAGANG</li>
@@ -341,11 +367,11 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i class="fas fa-users"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
                             <span>Daftar Pelamar</span>
                         </a>
                     </li>

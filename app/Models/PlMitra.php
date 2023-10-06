@@ -28,11 +28,6 @@ class PlMitra extends Model
         return $this->belongsTo(Mitra::class, 'id_mitra', 'id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user', 'id');
-    }
-
     public function pendamping_lapang_mahasiswa()
     {
         return $this->hasMany(PendampingLapangMahasiswa::class);
