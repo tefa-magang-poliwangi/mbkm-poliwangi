@@ -9,6 +9,10 @@
                     <a href="{{ route('dashboard.admin.page') }}">Poliwangi</a>
                 @endrole
 
+                @role('admin-prodi')
+                    <a href="{{ route('dashboard.admin.prodi.page') }}">Poliwangi</a>
+                @endrole
+
                 @role('dosen')
                     <a href="{{ route('dashboard.dosen.page') }}">Poliwangi</a>
                 @endrole
@@ -39,6 +43,14 @@
                 @role('admin')
                     <li>
                         <a class="nav-link" href="{{ route('dashboard.admin.page') }}"><i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('admin-prodi')
+                    <li>
+                        <a class="nav-link" href="{{ route('dashboard.admin.prodi.page') }}"><i class="fas fa-home"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -274,6 +286,49 @@
                         </a>
                     </li>
                 @endrole
+
+                @role('admin-prodi')
+                <li class="menu-header">ADMIN PRODI</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
+                            <span>Mahasiswa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
+                            <span>Matakuliah</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
+
+                            <span>Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}"><i
+                                class="fas fa-info-circle"></i>
+                            <span>Matkul Kurikulum</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-book"></i>
+                            <span>Data Magang External</span>
+                        </a>
+                    </li>
+                    {{-- Manajemen Kelas --}}
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Kelas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i class="fas fa-file-alt"></i>
+                            <span>Manajemen Periode</span>
+                        </a>
+                    </li>
+                @endrole
+
                 @role('dosen-wali')
                     <li>
                         <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i class="fas fa-exchange-alt"></i>
