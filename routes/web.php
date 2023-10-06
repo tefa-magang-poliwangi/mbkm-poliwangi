@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
+use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
@@ -23,6 +24,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\PesertaMagangExtController;
+use App\Http\Controllers\PLMitraController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
@@ -157,6 +159,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/{id}/hapus-kriteria-penilaian', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
 
 
+        //route mitra
+        Route::get('/dashboard-admin/formulir-mitra/index', [FormMitraController::class, 'index'])->name('formulir.mitra.index');
+        Route::get('/dashboard-admin/formulir-mitra/ceate', [FormMitraController::class, 'create'])->name('formulir.mitra.create');
+        Route::post('/dashboard-admin/formulir-mitra/store', [FormMitraController::class, 'store'])->name('formulir.mitra.store');
+        Route::get('/dashboard-admin/formulir-mitra/edit/{id}', [FormMitraController::class, 'edit'])->name('formulir.mitra.edit');
+        Route::put('/dashboard-admin/formulir-mitra/update/{id}', [FormMitraController::class, 'update'])->name('formulir.mitra.update');
+        Route::get('/dashboard-admin/formulir-mitra/delete/{id}', [FormMitraController::class, 'destroy'])->name('formulir.mitra.delete');
+
+        Route::get('/dashboard-admin/mitra-daftar-pelamar', [MitraDaftarPelamarController::class, 'index'])->name('daftar-pelamar.mitra.page');
+
+        Route::get('/dashboard-mitra/daftar-pendamping/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
+        Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
         /**
          * Route Dosen
          */

@@ -73,7 +73,7 @@
                                             <td>
                                                <a href="{{ route('data.admin.delete', $data->id) }}"
                                                     class="btn btn-danger ml-auto"> <i
-                                                        class="fa-solid fas fa-trash text-dark"></i></a>
+                                                        class="fa-solid fas fa-trash "></i></a>
                                             </td>
                                         </tr>
                                         @php
