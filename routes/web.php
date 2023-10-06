@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\PesertaMagangExtController;
+use App\Http\Controllers\PLMitraController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\RegisterDosenController;
 use App\Http\Controllers\RegisterMahasiswaController;
@@ -75,6 +77,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/data-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
         Route::get('/dashboard-admin/data-mahasiswa/create', [MahasiswaController::class, 'create'])->name('data.mahasiswa.create');
         Route::post('/dashboard-admin/data-mahasiswa/store', [MahasiswaController::class, 'store'])->name('data.mahasiswa.store');
+
+        Route::get('/dashboard-admin/data-admin', [AdminProdiController::class, 'index'])->name('data.admin.index');
+        Route::get('/dashboard-admin/data-admin/create', [AdminProdiController::class, 'create'])->name('data.admin.create');
+        Route::post('/dashboard-admin/data-admin/store', [AdminProdiController::class, 'store'])->name('data.admin.store');
+        Route::get('/dashboard-admin/data-admin/delete/{id}', [AdminProdiController::class, 'destroy'])->name('data.admin.delete');
 
         // (Route Manajemen Kelas dan Peserta Kelas)
         // route kelas
@@ -177,6 +184,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
          * Route Mitra
          */
         Route::get('/dashboard-mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
+        Route::get('/dashboard-mitra/daftar-pendamping/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
+        Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
 
         /**
          * Unidentified Routes

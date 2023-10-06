@@ -99,6 +99,11 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
+                        <a class="nav-link" href="{{ route('data.admin.index') }}"><i class="fas fa-graduation-cap"></i>
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
@@ -192,6 +197,11 @@
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-user"></i>
                             <span>Daftar Pelamar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{route('data.plmitra.index')}}"><i class="fas fa-user"></i>
+                            <span>PL Mitra</span>
                         </a>
                     </li>
                     <li>

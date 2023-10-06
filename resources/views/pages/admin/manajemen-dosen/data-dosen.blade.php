@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
+    <div class="container-fluid" style="padding-top: 5%">
         <div class="d-flex justify-content-between">
             <strong class="h5 text-theme">Data Dosen</strong>
         </div>
