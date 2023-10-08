@@ -62,6 +62,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('data.dosen.edit');
         Route::put('/dashboard-admin/manajemen-dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('data.dosen.update');
         Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('data.dosen.destroy');
+        Route::post('/dashboard-admin/manajemen-dosen/import', [DosenController::class, 'import'])->name('data.dosen.import');
 
         // Manajemen Mahasiswa
         Route::get('/dashboard-admin/manajemen-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
