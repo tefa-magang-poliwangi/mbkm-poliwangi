@@ -300,35 +300,38 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-solid fa-book"></i>
                             <span>Matakuliah</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                                class="fas fa-solid fa-book-journal-whills"></i>
 
                             <span>Kurikulum</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}"><i
-                                class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}">
+                            <i class="fas fa-solid fa-book-bookmark"></i>
                             <span>Matkul Kurikulum</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-book"></i>
+                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-building"></i>
                             <span>Data Magang External</span>
                         </a>
                     </li>
                     {{-- Manajemen Kelas --}}
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}"><i class="fas fa-file-alt"></i>
+                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
+                            <i class="fas fa-solid fa-layer-group"></i>
                             <span>Manajemen Kelas</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i class="fas fa-file-alt"></i>
+                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i
+                                class="fas fa-solid fa-calendar-day"></i>
                             <span>Manajemen Periode</span>
                         </a>
                     </li>

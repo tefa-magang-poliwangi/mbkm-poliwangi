@@ -13,25 +13,6 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 5%">
-        <div class="d-flex justify-content-between">
-            <strong class="h5 text-theme">Data Mahasiswa Magang</strong>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card border-0 mb-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-4">
-                            <h4 class="fw-bold">Program Studi</h4>
-                            <div class="form-group">
-                                <form action="{{ route('data.mahasiswa.index') }}" method="GET">
-                                    <select class="form-control select2" name="prodi" onchange="this.form.submit()">
-                                        <option value="">Semua Prodi</option>
-                                        @foreach ($prodi as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                </form>
     <section>
         <div class="row py-5">
             <div class="col-md-12">

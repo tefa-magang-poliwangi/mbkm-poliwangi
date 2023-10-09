@@ -33,17 +33,17 @@
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">Tingkat</th>
-                                                <th class="text-center">Pararel</th>
-                                                <th class="text-center">Prodi</th>
-                                                <th class="text-center">Semester</th>
-                                                <th class="text-center">Tahun</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Lihat</th>
-                                                <th class="text-center">Aksi</th>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-center text-white">Tingkat</th>
+                                                <th class="text-center text-white">Pararel</th>
+                                                <th class="text-center text-white">Prodi</th>
+                                                <th class="text-center text-white">Semester</th>
+                                                <th class="text-center text-white">Tahun</th>
+                                                <th class="text-center text-white">Status</th>
+                                                <th class="text-center text-white">Lihat</th>
+                                                <th class="text-center text-white">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
