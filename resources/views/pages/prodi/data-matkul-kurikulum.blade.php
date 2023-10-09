@@ -19,10 +19,10 @@
                                 <h5 class="justify-start my-auto text-theme">Data Kurikulum Mata Kuliah</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <div class="ml-auto">
-                                    <a href="{{ route('daftar.matkul.kurikulum.create') }}"
-                                        class="btn btn-theme fa-plus">Tambah</a>
-                                </div>
+                                <a href="{{ route('daftar.matkul.kurikulum.create') }}" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah
+                                </a>
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@
                                                             class="btn btn-danger ml-auto"> <i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>
-        
+
                                                 {{-- Modal Update --}}
                                                 <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{$data->id}}">
                                                     <div class="modal-dialog" role="document">
@@ -94,9 +94,9 @@
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
-        
+
                                                                 <div class="modal-body">
-        
+
                                                                     <div class="form-group">
                                                                         <label for="update_semester"
                                                                             class="form-label">Semester</label>
@@ -163,7 +163,7 @@
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
-        
+
                                                                 </div>
                                                                 <div class="modal-footer bg-whitesmoke br">
                                                                     <button type="button" class="btn btn-cancel"
@@ -174,7 +174,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-        
+
                                                 @php
                                                     $no++;
                                                 @endphp
@@ -183,8 +183,8 @@
                                     </table>
                                 </div>
                             </div>
-    
-                        </div>  
+
+                        </div>
                     </div>
                 </div>
             </div>

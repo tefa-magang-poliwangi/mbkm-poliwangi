@@ -19,7 +19,7 @@
                                 <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('data.dosen.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah
                                 </a>
@@ -191,9 +191,9 @@
         </div>
 
     </section>
-    
-        
-    
+
+
+
 @endsection
 
 @section('script')
