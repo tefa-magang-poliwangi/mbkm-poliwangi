@@ -41,12 +41,12 @@
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="table-1">
                                             <thead>
-                                                <tr>
-                                                    <th class="text-center">#</th>
-                                                    <th class="text-center">Nim</th>
-                                                    <th class="text-center">Nama</th>
-                                                    <th class="text-center">Angkatan</th>
-                                                    <th class="text-center">Nama Prodi</th>
+                                                <tr class="bg-primary">
+                                                    <th class="text-center text-white">#</th>
+                                                    <th class="text-center text-white">Nim</th>
+                                                    <th class="text-center text-white">Nama</th>
+                                                    <th class="text-center text-white">Angkatan</th>
+                                                    <th class="text-center text-white">Nama Prodi</th>
                                                 </tr>
                                             </thead>
 

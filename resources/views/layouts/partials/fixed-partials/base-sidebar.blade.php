@@ -41,7 +41,8 @@
             @auth
                 @role('admin')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.admin.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.admin.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -49,7 +50,8 @@
 
                 @role('admin-prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.admin.prodi.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.admin.prodi.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -57,7 +59,8 @@
 
                 @role('dosen')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.dosen.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.dosen.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -65,7 +68,8 @@
 
                 @role('mahasiswa')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.mahasiswa.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.mahasiswa.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -73,7 +77,8 @@
 
                 @role('mitra')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.mitra.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.mitra.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -81,7 +86,8 @@
 
                 @role('akademik')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.akademik.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.akademik.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -111,7 +117,7 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
-                        <a class="nav-link" href="{{ route('data.admin.index') }}"><i class="fas fa-graduation-cap"></i>
+                        <a class="nav-link" href="{{ route('data.admin.index') }}"><i class="fas fa-solid fa-headset"></i>
                             <span>Admin</span>
                         </a>
                     </li>
@@ -204,16 +210,19 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="{{ route('formulir.mitra.index') }}"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.index') }}"><i
+                                class="fas fa-solid fa-envelopes-bulk"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i
+                                class="fas fa-solid fa-list-check"></i>
                             <span>Daftar Pelamar</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('data.plmitra.index')}}"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('data.plmitra.index') }}"><i
+                                class="fas fa-solid fa-handshake-simple"></i>
                             <span>PL Mitra</span>
                         </a>
                     </li>
@@ -223,7 +232,7 @@
                     </li>
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fas fa-user-friends"></i>
+                        <a class="nav-link" href="#"><i class="fas fa-solid fa-bars-progress"></i>
                             <span>Program</span>
                         </a>
                     </li>
@@ -293,7 +302,7 @@
                 @endrole
 
                 @role('admin-prodi')
-                <li class="menu-header">ADMIN PRODI</li>
+                    <li class="menu-header">ADMIN PRODI</li>
                     <li>
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
@@ -345,7 +354,8 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i
+                                class="fas fa-solid fa-envelopes-bulk"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
@@ -374,7 +384,7 @@
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
                         <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i
-                                class="fas fa-user-friends"></i>
+                                class="fas fa-solid fa-bars-progress"></i>
                             <span>Program</span>
                         </a>
                     </li>

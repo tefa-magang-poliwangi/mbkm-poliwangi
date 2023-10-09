@@ -157,6 +157,10 @@ class UploadTranskripNilai extends Controller
             Storage::delete($nilaimagangext->file_sertifikat);
         }
 
+        if ($nilaimagangext->file_laporan_akhir != null) {
+            Storage::delete($nilaimagangext->file_laporan_akhir);
+        }
+
         $nilaimagangext->delete();
 
         Alert::success('Success', 'Berkas transkrip berhasil di hapus');
