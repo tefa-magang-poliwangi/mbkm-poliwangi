@@ -9,34 +9,41 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
-        <div class="d-flex justify-content-between">
-            <strong class="h5 text-theme">Data Kurikulum</strong>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card border-0 mb-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-4">
-                            <h4 class="fw-bold">Program Studi</h4>
-                            <div class="form-group">
-                                <form action="{{ route('daftar.kurikulum.index') }}" method="GET">
-                                    <select class="form-control select2" name="prodi" onchange="this.form.submit()">
-                                        <option value="">Semua Prodi</option>
-                                        @foreach ($prodi as $item)
-                                            <option value="{{ $item->id }}"
-                                                {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </form>
+    <section>
+        <div class="row py-5">
+            <div class="col-md-12">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah
+                                </a>
                             </div>
                         </div>
-                        <div class="col-8 d-flex">
-                            <div class="ml-auto">
-                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-theme fa-plus">Tambah</a>
+
+                        {{-- Filter Prodi Dosen --}}
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-6 col-lg-4">
+                                <div class="form-group">
+                                    <form action="{{ route('data.dosen.index') }}" method="GET">
+                                        <select class="form-control select2" name="prodi" onchange="this.form.submit()">
+                                            <option value="">Semua Prodi</option>
+                                            @foreach ($prodi as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="card-body py-0 mb-0">
@@ -44,18 +51,15 @@
                             @php
                                 $no = 1;
                             @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"
-                                style="background-color: #EEEEEE;">
-                                <thead>
+                            <table class="table table-striped" id="table-1">
+                                <thead class="bg-primary">
                                     <tr>
-                                        <th class="text-center">
-                                            No
-                                        </th>
-                                        <th>Nama Kurikulum</th>
-                                        <th>Prodi</th>
-                                        <th>Status</th>
-                                        <th>MataKuliah</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center text-white" class="text-center text-white">No</th>
+                                        <th class="text-center text-white">Nama Kurikulum</th>
+                                        <th class="text-center text-white">Prodi</th>
+                                        <th class="text-center text-white">Status</th>
+                                        <th class="text-center text-white">MataKuliah</th>
+                                        <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -185,7 +189,11 @@
                 </div>
             </div>
         </div>
-    </div>
+
+    </section>
+
+
+
 @endsection
 
 @section('script')

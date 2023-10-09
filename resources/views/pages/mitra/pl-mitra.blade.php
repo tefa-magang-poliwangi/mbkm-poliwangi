@@ -9,64 +9,65 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 5%">
-        <div class="d-flex justify-content-between">
-            <strong class="h3">Pendamping Lapang Mitra</strong>
-        </div>
-        <div class="row">
-            <div class="col-12">
+    <section>
+        <div class="row py-5">
+            <div class="col-md-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-6">
-                            <h6>Daftar Pendamping Lapang Mitra</h6>
-                        </div>
-                        <div class="col-6 d-flex">
-                            <div class="ml-auto">
-                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
-                                        class="fa-solid fa-plus"></i> &ensp; Tambah </button>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Daftar Pendamping Lapang Mitra</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah
+                                </button>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-borderless rounded" id="table-1"
-                                style="background-color: #EEEEEE;">
-                                @php
-                                    $no = 1;
-                                @endphp
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>No Telephone</th>
-                                        <th>E-Mail</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($plmitra as $data)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->no_telp }}</td>
-                                            <td>{{ $data->email }}</td>
-                                            <td><a href="#"> <i class="fas fa-edit"></i></a>
-                                                <a href="#"> <i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped"  id="table-1">
                                         @php
-                                            $no++;
+                                            $no = 1;
                                         @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th class="text-center text-white" class="text-center text-white">No</th>
+                                                <th class="text-center text-white">Nama</th>
+                                                <th class="text-center text-white">No Telephone</th>
+                                                <th class="text-center text-white">E-Mail</th>
+                                                <th class="text-center text-white">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($plmitra as $data)
+                                                <tr>
+                                                    <td>{{ $no }}</td>
+                                                    <td>{{ $data->nama }}</td>
+                                                    <td>{{ $data->no_telp }}</td>
+                                                    <td>{{ $data->email }}</td>
+                                                    <td><a href="#"> <i class="fas fa-edit"></i></a>
+                                                        <a href="#"> <i class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                @php
+                                                    $no++;
+                                                @endphp
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    </section>
 
     {{-- Modal Tambah Periode --}}
     <div class="modal fade" tabindex="-1" role="dialog" id="createModal">

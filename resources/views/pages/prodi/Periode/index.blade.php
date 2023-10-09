@@ -10,22 +10,18 @@
 
 @section('content')
     <div class="container-fluid" style="padding-top: 5%">
-        <div class="d-flex justify-content-between">
-            <strong class="h3">Data Periode</strong>
-        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-6">
-                            <h6>Data Periode</h6>
-                        </div>
-                        <div class="col-6 d-flex">
-                            <div class="ml-auto">
-                                <button type="button" class="btn btn-cancel" data-dismiss="modal">Kembali</button>
+                   <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
+                                <h5 class="justify-start my-auto">Data Periode</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
                                         class="fa-solid fa-plus"></i> &ensp; Tambah
-                                    Periode</button>
+                                    Data Periode</button>
                             </div>
                         </div>
                     </div>
@@ -37,25 +33,25 @@
                             @endphp
                             <table class="table table-hover table-borderless rounded" id="table-1"
                                 style="background-color: #EEEEEE;">
-                                <thead>
+                                <thead class="bg-primary">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Semester</th>
-                                        <th>Tahun</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center text-white">No</th>
+                                        <th class="text-center text-white">Semester</th>
+                                        <th class="text-center text-white">Tahun</th>
+                                        <th class="text-center text-white">Status</th>
+                                        <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($periode as $data)
                                         <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ $data->semester }}</td>
-                                            <td>{{ $data->tahun }}</td>
-                                            <td> <span class="badge bg-primary text-white">
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->semester }}</td>
+                                            <td class="text-center">{{ $data->tahun }}</td>
+                                            <td class="text-center"> <span class="badge bg-primary text-white">
                                                     {{ $data->status }} </span>
                                             </td>
-                                            <td> <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                            <td class="text-center"> <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $data->id }}"><i
                                                         class="fa-solid fa-pen"></i></button>
                                                 <a href="{{ route('data.periode.delete', $data->id) }}"

@@ -6,8 +6,9 @@ use App\Models\AdminProdi;
 use Illuminate\Http\Request;
 use App\Models\Prodi;
 use App\Models\User;
-use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
+
+
 
 
 class AdminProdiController extends Controller
@@ -59,6 +60,7 @@ class AdminProdiController extends Controller
             'id_user' => $validated['create_user'],
             'id_prodi' => $validated['create_prodi']
         ]);
+
 
         Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
         return redirect()->route('data.admin.index');

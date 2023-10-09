@@ -9,24 +9,19 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
-        <div class="d-flex justify-content-between">
-            <strong class="h3">Data Magang External</strong>
-        </div>
+    <div class="container-fluid" style="padding-top: 5%">
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-6">
-                            <div class="dropdown d-inline mr-2">
-                                <h6>Daftar Data Magang External</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
+                                <h5 class="justify-start my-auto">Data Magang External</h5>
                             </div>
-                        </div>
-                        <div class="col-6 d-flex">
-                            <div class="ml-auto">
-                                <button class="btn btn-theme-four">Kembali</button>
-                                <button class="btn btn-theme fa-plus" data-toggle="modal"
-                                    data-target="#tambahdataMagangext">Tambah</button>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
+                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#tambahdataMagangext"><i
+                                        class="fa-solid fa-plus"></i> &ensp; Tambah
+                                    Data Magang</button>
                             </div>
                         </div>
                     </div>
@@ -36,36 +31,36 @@
                             @php
                                 $no = 1;
                             @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"
-                                style="background-color: #EEEEEE;">
-                                <thead>
+                            <table class="table table-hover table-borderless rounded" id="table-1">
+                                <thead class="bg-primary">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Kriteria Penilaian</th>
-                                        <th>Lihat Peserta</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center text-white">No</th>
+                                        <th class="text-center text-white">Nama</th>
+                                        <th class="text-center text-white">Kriteria Penilaian</th>
+                                        <th class="text-center text-white">Lihat Peserta</th>
+                                        <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($magangext as $data)
                                         <tr>
-                                            <td>{{ $no }}</td>
+                                            <td class="text-center">{{ $no }}</td>
                                             <td>{{ $data->name }}</td>
 
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('kriteria.penilaian.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
 
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('peserta.magang_ext.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></a>
                                             </td>
 
-                                            <td>
+                                            <td class="text-center">
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                    data-target="#updateMagangext{{$data->id}}"><i class="fa-solid fa-pen"></i></button>
+                                                    data-target="#updateMagangext{{ $data->id }}"><i
+                                                        class="fa-solid fa-pen"></i></button>
                                                 <a href="{{ route('data.magangext.delete', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
@@ -73,7 +68,8 @@
 
 
                                         {{-- modall update --}}
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="updateMagangext{{$data->id}}">
+                                        <div class="modal fade" tabindex="-1" role="dialog"
+                                            id="updateMagangext{{ $data->id }}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -83,7 +79,8 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('data.magangext.update', $data->id) }}" method="POST">
+                                                    <form action="{{ route('data.magangext.update', $data->id) }}"
+                                                        method="POST">
                                                         @method('put')
                                                         @csrf
                                                         <div class="modal-body">
@@ -91,7 +88,8 @@
                                                                 <label for="update_name">Nama</label>
                                                                 <input type="text"
                                                                     class="form-control @error('update_name') is-invalid @enderror"
-                                                                    id="update_name" name="update_name" value="{{$data->name}}"
+                                                                    id="update_name" name="update_name"
+                                                                    value="{{ $data->name }}"
                                                                     placeholder="Masukkan Data Tempat Magang External">
                                                                 @error('update_name')
                                                                     <div id="update_name" class="form-text pb-1">
