@@ -44,7 +44,6 @@ class KriteriaPenilaianController extends Controller
     public function store(Request $request, $id_magang_ext)
     {
         $validated = $request->validate([
-
             'create_kriteria' => ['required']
         ]);
 
