@@ -33,15 +33,15 @@
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">Nim</th>
-                                                <th class="text-center">Nama</th>
-                                                <th class="text-center">Semester</th>
-                                                <th class="text-center">Angkatan</th>
-                                                <th class="text-center">Nama Prodi</th>
-                                                <th class="text-center">Aksi</th>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-center text-white">Nim</th>
+                                                <th class="text-center text-white">Nama</th>
+                                                <th class="text-center text-white">Semester</th>
+                                                <th class="text-center text-white">Angkatan</th>
+                                                <th class="text-center text-white">Nama Prodi</th>
+                                                <th class="text-center text-white">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

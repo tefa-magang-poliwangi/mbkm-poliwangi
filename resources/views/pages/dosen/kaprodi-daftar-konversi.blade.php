@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white mt-2">
-                        <h3 class="text-theme">Daftar Mahasiswa Magang </h3>
+                        <h3 class="text-theme">Daftar Transkrip Nilai</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -49,7 +49,7 @@
 
                                             <td class="text-center">
                                                 @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)
-                                                    <a href="{{ route('daftar.mahasiswa.transkrip.index', $data->id) }}"
+                                                    <a href="{{ route('daftar.mahasiswa.transkrip.index', [$data->id_mahasiswa, $data->id_magang_ext, $data->id]) }}"
                                                         class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"
                                                             title="Siap Dikonversi"></i></a>
                                                 @else

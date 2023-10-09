@@ -180,13 +180,16 @@
                                                 <h4 class="fw-bold">{{ $data->magang_ext->name }}</h4>
 
                                                 <div class="card-header-action">
-                                                    <div class="btn-group">
+                                                    <div class="table-responsive btn-group">
                                                         <a href="{{ Storage::url($data->file_transkrip) }}"
-                                                            target="_blank" class="btn btn-download">Transkrip</a>
+                                                            target="_blank"
+                                                            class="btn btn-download d-md-inline">Transkrip</a>
                                                         <a href="{{ Storage::url($data->file_sertifikat) }}"
-                                                            target="_blank" class="btn btn-download">Serfifikat</a>
+                                                            target="_blank"
+                                                            class="btn btn-download d-md-inline">Serfifikat</a>
                                                         <a href="{{ Storage::url($data->file_laporan_akhir) }}"
-                                                            target="_blank" class="btn btn-download">Laporan Akhir</a>
+                                                            target="_blank" class="btn btn-download d-md-inline">Laporan
+                                                            Akhir</a>
                                                         <a href="{{ route('upload.transkrip.mahasiswa.destroy', $data->id) }}"
                                                             class="btn btn-delete">
                                                             <i class="fa-solid fa-trash"></i>
@@ -204,7 +207,7 @@
                                                         </span>
                                                     </div>
                                                     <div class="col d-flex">
-                                                        <a href="{{ route('index.nilai.magang_ext', $data->magang_ext->id) }}"
+                                                        <a href="{{ route('nilai_kriteria.magang_ext.page', $data->magang_ext->id) }}"
                                                             class="btn btn-primary ml-auto my-auto">
                                                             <i class="fa-solid fa-magnifying-glass"></i>
                                                         </a>
