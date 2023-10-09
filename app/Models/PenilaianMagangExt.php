@@ -25,4 +25,16 @@ class PenilaianMagangExt extends Model
     {
         return $this->hasMany(DetailPenilaianMagangExt::class);
     }
+
+    // Fungsi pengecekan apakah ID ada di tabel DetailPenilaianMagangExt
+    public function isDetailPenilaianMagangExt($id_penilaian_magang_ext, $id_mahasiswa)
+    {
+        // Mencari data DetailPenilaianMagangExt berdasarkan id_penilaian_magang_ext dan id_mahasiswa
+        $detailPenilaianMagangExt = DetailPenilaianMagangExt::where('id_penilaian_magang_ext', $id_penilaian_magang_ext)
+            ->where('id_mahasiswa', $id_mahasiswa)
+            ->first();
+
+        // Jika data ditemukan, kembalikan objek DetailPenilaianMagangExt, jika tidak, kembalikan false
+        return $detailPenilaianMagangExt ?? false;
+    }
 }
