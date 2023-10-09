@@ -53,15 +53,9 @@ class KriteriaPenilaianController extends Controller
     public function index($id_magang_ext)
     {
         $data = [
-<<<<<<< HEAD
             'id_magang_ext' => $id_magang_ext,
             'kriteria' => PenilaianMagangExt::where('id_magang_ext', $id_magang_ext)->get(),
             'magang_ext' => MagangExt::findOrFail($id_magang_ext),
-=======
-            'magangext' => MagangExt::all(),
-            'kriteria' => $kriteria->get(),
-            'request' => $request
->>>>>>> 9ae5f2b49019a891ed9d1707298ae62bcddd5326
         ];
 
         return view('pages.admin.manajemen-kriteria.index', $data);
@@ -86,7 +80,6 @@ class KriteriaPenilaianController extends Controller
     public function store(Request $request, $id_magang_ext)
     {
         $validated = $request->validate([
-
             'create_kriteria' => ['required']
         ]);
 

@@ -54,6 +54,7 @@
                                         <th>Nama Kurikulum</th>
                                         <th>Prodi</th>
                                         <th>Status</th>
+                                        <th>MataKuliah</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -69,6 +70,11 @@
                                             </td>
                                             <td> <span class="badge bg-primary text-white">
                                                     {{ $item->status }} </span>
+                                            </td>
+                                            <td>
+                                                <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
+                                                    <i class="fa-solid fa-plus"></i> Matkul
+                                                </a>
                                             </td>
                                             <td>
                                                 <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
