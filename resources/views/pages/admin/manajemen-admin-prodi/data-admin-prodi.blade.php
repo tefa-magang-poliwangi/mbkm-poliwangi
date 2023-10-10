@@ -99,7 +99,7 @@
                                     @enderror"
                                 id="create_user" name="create_user">
                                 <option value="">User</option>
-                                @foreach ($users as $datauser)
+                                @foreach ($user_option as $datauser)
                                     <option value="{{ $datauser->id }}">{{ $datauser->name }}</option>
                                 @endforeach
                             </select>

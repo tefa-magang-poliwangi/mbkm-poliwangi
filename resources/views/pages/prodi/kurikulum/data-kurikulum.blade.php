@@ -25,25 +25,6 @@
                                 </a>
                             </div>
                         </div>
-
-                        {{-- Filter Prodi Dosen --}}
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-6 col-lg-4">
-                                <div class="form-group">
-                                    <form action="{{ route('data.dosen.index') }}" method="GET">
-                                        <select class="form-control select2" name="prodi" onchange="this.form.submit()">
-                                            <option value="">Semua Prodi</option>
-                                            @foreach ($prodi as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="card-body py-0 mb-0">
@@ -122,27 +103,6 @@
                                                                     name="update_nama" value="{{ $item->nama }}">
                                                                 @error('update_nama')
                                                                     <div id="update_nama" class="form-text text-danger">
-                                                                        {{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="update_prodi" class="form-label">Pilih Prodi /
-                                                                    Jurusan</label>
-                                                                <select
-                                                                    class="form-control @error('update_prodi')
-                                                                    is-invalid
-                                                                @enderror"
-                                                                    id="update_prodi" name="update_prodi">
-                                                                    <option value="">Pilih prodi</option>
-                                                                    @foreach ($prodi as $dataprodi)
-                                                                        <option value="{{ $dataprodi->id }}"
-                                                                            {{ $item->id_prodi == $dataprodi->id ? 'selected' : '' }}>
-                                                                            {{ $dataprodi->nama }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('update_prodi')
-                                                                    <div id="update_prodi" class="form-text text-danger">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
