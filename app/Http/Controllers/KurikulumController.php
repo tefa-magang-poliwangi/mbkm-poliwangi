@@ -16,7 +16,6 @@ class KurikulumController extends Controller
      */
     public function index(Request $request)
     {
-
         $kurikulum = Kurikulum::query();
 
         if ($request->prodi) {
@@ -66,7 +65,7 @@ class KurikulumController extends Controller
             'id_prodi' => $validated['create_prodi'],
         ]);
 
-        Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan' );
+        Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan');
         return redirect()->route('daftar.kurikulum.index');
     }
 

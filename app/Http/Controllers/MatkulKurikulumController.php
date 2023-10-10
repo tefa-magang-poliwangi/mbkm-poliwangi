@@ -19,7 +19,7 @@ class MatkulKurikulumController extends Controller
     public function index(Request $request)
     {
 
-        if($request->prodi) {
+        if ($request->prodi) {
             $id_prodi = $request->prodi;
         } else {
             $id_prodi = 0;
@@ -28,6 +28,7 @@ class MatkulKurikulumController extends Controller
             'prodi' => Prodi::all(),
             'matkul' => Matkul::all(),
             'kurikulum' => Kurikulum::where('id_prodi', $id_prodi),
+            'kurikulum_all' => Kurikulum::all(),
             'matkulkurikulum' => MatkulKurikulum::all(),
         ];
         return view('pages.prodi.data-matkul-kurikulum', $data);

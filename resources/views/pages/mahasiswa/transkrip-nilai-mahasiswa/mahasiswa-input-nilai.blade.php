@@ -17,7 +17,7 @@
 
 @section('content')
     <section class="">
-        <div class="pt-5 pb-4">
+        <div class="pb-4">
             <div class="row bg-white card-rounded-sm">
                 <div class="col-12 col-sm-2 col-md-2 col-lg-1 text-start d-flex text-uppercase d-lg-flex pt-2 pb-2 mt-1">
                     <div class="px-3 mx-auto my-auto">
@@ -34,7 +34,26 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="accordion">
+                            <div class="accordion">
+                                <div class="accordion-header card-border" role="button" data-toggle="collapse"
+                                    data-target="#panel-body-1" aria-expanded="true">
+                                    <h4>File Transkrip</h4>
+                                </div>
+                                <div class="accordion-body collapse show" id="panel-body-1" data-parent="#accordion">
+                                    <iframe src="{{ Storage::url($transkrip_mhs->file_transkrip) }}" width="100%"
+                                        height="700px"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="card card-rounded-sm card-hover d-flex flex-column">
                     <div class="card-body">
 

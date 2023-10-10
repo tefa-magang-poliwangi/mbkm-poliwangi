@@ -38,6 +38,7 @@ class UploadTranskripNilai extends Controller
 
         $user_mahasiswa = User::findOrFail($id_user)->mahasiswa;
         $mahasiswa = Mahasiswa::findOrFail($user_mahasiswa->first()->id);
+        $periode_aktif = Periode::where('status', 'Aktif')->first();
 
         $data = [
             'transkrip_mahasiswa' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->get(),
@@ -45,7 +46,10 @@ class UploadTranskripNilai extends Controller
             'periode' => Periode::all(),
             'magangext' => MagangExt::all(),
             'khs_per_transkrip' => NilaiMagangExt::where('id_mahasiswa', $mahasiswa->id)->with('nilai_konversi')->get(),
+            'data_nilai_magang_ext' => NilaiMagangExt::where('id_periode', $periode_aktif->id)->where('id_mahasiswa', $mahasiswa->id)->first()
         ];
+
+        // dd($data['data_nilai_magang_ext']);
 
         return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
     }

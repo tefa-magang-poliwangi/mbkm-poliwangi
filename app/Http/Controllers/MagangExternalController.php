@@ -23,6 +23,7 @@ class MagangExternalController extends Controller
             'magang_ext' => MagangExt::all(),
             'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
+
         return view('pages.prodi.data-magang.index', $data);
     }
 
