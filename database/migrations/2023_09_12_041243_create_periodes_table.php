@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('periodes', function (Blueprint $table) {
             $table->id();
-            $table->string('semester', 4)->nullable(false);
-            $table->string('tahun', 4)->nullable(false);
+            $table->tinyInteger('semester')->nullable(false);
+            $table->year('tahun')->nullable(false);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
             $table->timestamps();
         });

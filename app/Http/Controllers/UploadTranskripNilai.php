@@ -22,13 +22,7 @@ class UploadTranskripNilai extends Controller
      */
     public function index()
     {
-        $data = [
-            'mahasiswa' => Mahasiswa::all(),
-            'periode' => Periode::all(),
-            'magangext' => MagangExt::all()
-        ];
-
-        return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
+        //
     }
 
     /**

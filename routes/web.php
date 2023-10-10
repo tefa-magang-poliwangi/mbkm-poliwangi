@@ -20,7 +20,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MatkulKurikulumController;
-use App\Http\Controllers\MitraPageController;
+use App\Http\Controllers\MitraDaftarPelamarController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PesertaKelasController;
@@ -145,7 +145,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/data-periode/index', [PeriodeController::class, 'index'])->name('data.periode.index');
         Route::post('/dashboard-admin/data-periode/store', [PeriodeController::class, 'store'])->name('data.periode.store');
         Route::put('/dashboard-admin/data-periode/update/{id}', [PeriodeController::class, 'update'])->name('data.periode.update');
-        Route::get('/dashboard-admin/data-periode/delete/{id}', [PeriodeController::class, 'destroy'])->name('data.periode.delete');
 
         // (Route Daftar Peserta Magang External)
         Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/peserta-magang_ext', [PesertaMagangExtController::class, 'index'])->name('peserta.magang_ext.index');
@@ -171,6 +170,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/dashboard-mitra/daftar-pendamping/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
         Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
+
+        // Route API Laravolt Indonesia
+        Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+        Route::get('cities', 'DependentDropdownController@cities')->name('cities');
+        Route::get('districts', 'DependentDropdownController@districts')->name('districts');
+        Route::get('villages', 'DependentDropdownController@villages')->name('villages');
+
         /**
          * Route Dosen
          */
@@ -199,7 +205,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
 
         // (Route Upload Transkrip External)
-        // Route::get('/dashboard-mahasiswa/upload-transkrip-mahasiswa/index', [UploadTranskripNilai::class, 'index'])->name('upload-transkrip-mahasiswa.index');
         Route::get('/dashboard-mahasiswa/upload-transkrip-mahasiswa/create/{id_user}', [UploadTranskripNilai::class, 'create'])->name('upload-transkrip-mahasiswa.create');
         Route::post('/dashboard-mahasiswa/upload-transkrip-mahasiswa/store/{id_user}', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.store');
         Route::get('/dashboard-mahasiswa/upload-transkrip-mahasiswa/delete/{id_nilai_magang_ext}', [UploadTranskripNilai::class, 'destroy'])->name('upload.transkrip.mahasiswa.destroy');
@@ -208,119 +213,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mahasiswa/input-kriteria-penilaian/{id_magang_ext}', [InputKriteriaMahasiswaController::class, 'index'])->name('nilai_kriteria.magang_ext.page');
         Route::post('/dashboard-mahasiswa/input-kriteria-penilaian/store', [InputKriteriaMahasiswaController::class, 'store'])->name('nilai_kriteria.magang_ext.store');
         Route::get('/dashboard-mahasiswa/hapus-nilai/{id_detail_penilaian_magang_ext}', [InputKriteriaMahasiswaController::class, 'destroy'])->name('nilai_kriteria.magang_ext.destroy');
-
-
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/create-data-kurikulum', function () {
-            return view('pages.prodi.create-data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
-            return view('pages.prodi.daftar-cpl-kurikulum');
-        });
-
-        // Halaman Mahasiswa - Eksternal
-        Route::get('/dashboard-mahasiswa/profil', function () {
-            return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
-        });
-        Route::get('/form-upload-transkip', function () {
-            return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip');
-        });
-
-        // Halaman Mahasiswa - Internal
-        Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
-            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-lolos-pendaftaran');
-        });
-        Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
-            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
-        });
-        Route::get('/dashboard-mahasiswa/rincian-kegiatan', function () {
-            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-rincian-kegiatan');
-        });
-        Route::get('/dashboard-mahasiswa/status-pendaftaran', function () {
-            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-status-pendaftaran');
-        });
-        Route::get('/dashboard-mahasiswa/tidak-lolos-pendaftaran', function () {
-            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
-        });
-        Route::get('/dashboard-mahasiswa/laporan-harian', function () {
-            return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian');
-        });
-        Route::get('/dashboard-mahasiswa/laporan-mingguan', function () {
-            return view('pages.mahasiswa.laporan-mahsiswa.laporan-mingguan');
-        });
-        Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
-            return view('pages.mahasiswa.dosbim-laporan-akhir');
-        });
-
-        // Halaman Mitra
-        // Route::get('/dashboard-mitra/mitra-lowongan', function () {
-        //     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
-        // });
-        Route::get('/dashboard-mitra/form-mitra', function () {
-            return view('pages.mitra.manajemen-mitra.mitra-form');
-        });
-        Route::get('/dashboard-mitra/daftar-pelamar', function () {
-            return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
-        });
-
-        // Halaman Kaprodi
-        Route::get('/dashboard-dosen/laporan-akhir', function () {
-            return view('pages.dosen.kaprodi-laporan-akhir');
-        });
-        Route::get('/dashboard-dosen/daftar-konversi', function () {
-            return view('pages.dosen.kaprodi-daftar-konversi');
-        });
-        Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
-            return view('pages.dosen.kaprodi-konversi-nilai');
-        });
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-            return view('pages.prodi.form-data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
-            return view('pages.prodi.daftar-cpl-kurikulum');
-        });
-        Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
-            return view('pages.prodi.form-daftar-cpl');
-        });
-        Route::get('/dashboard-dosen/daftar-program', function () {
-            return view('pages.dosen.kaprodi-daftar-program');
-        });
-        Route::get('/dashboard-dosen/daftar-mahasiswa', function () {
-            return view('pages.dosen.kaprodi-daftar-mahasiswa');
-        });
-
-        // Halaman Dosen Pembimbing
-        Route::get('/dashboard-dosen/laporan-harian', function () {
-            return view('pages.dosen.dosbim-laporan-harian');
-        });
-        Route::get('/dashboard-dosen/laporan-mingguan', function () {
-            return view('pages.dosen.dosbim-laporan-mingguan');
-        });
-        Route::get('/dashboard-dosen/laporan-akhir', function () {
-            return view('pages.dosen.dosbim-laporan-akhir');
-        });
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-            return view('pages.prodi.form-data-kurikulum');
-        });
-
-        // Halaman Dosen wali
-        Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
-            return view('pages.dosen.doswal-kelayakan');
-        });
-        Route::get('/dashboard-dosen/daftar-konversi', function () {
-            return view('pages.dosen.doswal-daftarKonversi');
-        });
-        Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
-            return view('pages.dosen.doswal-viewHasilKonversi');
-        });
 
         /**
          * Super User Routes
@@ -340,18 +232,96 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     });
 });
 
-//Route data kurikulum
-// Route::get('/data-kurikulum', function () {
-//     return view('pages.prodi.data-kurikulum1');
-// });
-
+// # Halaman yang tidak digunakan
+// Halaman Admin
+Route::get('/dashboard-admin-prodi', function () {
+    return view('pages.admin.adminProdi-dashboard');
+});
 Route::get('/dashboard-mitra/mitra-lowongan', function () {
     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
 });
-Route::get('/dashboard-adminprodi', function () {
-    return view('pages.admin.adminProdi-dashboard');
+Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
+    return view('pages.prodi.daftar-cpl-kurikulum');
 });
 
-// Route::get('/dashboard-admin/manajemen-kriteria/index', function () {
-//     return view('pages.admin.manajemen-kriteria.index');
-// });
+// # Halaman Mahasiswa - Eksternal
+Route::get('/dashboard-mahasiswa/profil', function () {
+    return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
+});
+
+// # Halaman Mahasiswa - Internal (Kurang laporan harian, laporan mingguan)
+Route::get('/dashboard-mahasiswa/rincian-kegiatan', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-rincian-kegiatan');
+});
+Route::get('/dashboard-mahasiswa/lolos-pendaftaran', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-lolos-pendaftaran');
+});
+Route::get('/dashboard-mahasiswa/tidak-lolos-pendaftaran', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-tidak-lolos-pendaftaran');
+});
+Route::get('/dashboard-mahasiswa/status-pendaftaran', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-status-pendaftaran');
+});
+Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
+    return view('pages.dosen.dosbim-laporan-akhir');
+});
+// # Halaman Mahasiswa Internal - tidak ada isi
+Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
+});
+
+// # Halaman Mitra - Lowongan
+Route::get('/dashboard-mitra/daftar-pelamar', function () {
+    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
+});
+
+// Halaman Kaprodi
+Route::get('/dashboard-dosen/laporan-akhir', function () {
+    return view('pages.dosen.kaprodi-laporan-akhir');
+});
+Route::get('/dashboard-dosen/daftar-konversi', function () {
+    return view('pages.dosen.kaprodi-daftar-konversi');
+});
+Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
+    return view('pages.dosen.kaprodi-konversi-nilai');
+});
+Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+    return view('pages.prodi.form-data-kurikulum');
+});
+Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
+    return view('pages.prodi.daftar-cpl-kurikulum');
+});
+Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
+    return view('pages.prodi.form-daftar-cpl');
+});
+Route::get('/dashboard-dosen/daftar-program', function () {
+    return view('pages.dosen.kaprodi-daftar-program');
+});
+Route::get('/dashboard-dosen/daftar-mahasiswa', function () {
+    return view('pages.dosen.kaprodi-daftar-mahasiswa');
+});
+
+// Halaman Dosen Pembimbing
+Route::get('/dashboard-dosen/laporan-harian', function () {
+    return view('pages.dosen.dosbim-laporan-harian');
+});
+Route::get('/dashboard-dosen/laporan-mingguan', function () {
+    return view('pages.dosen.dosbim-laporan-mingguan');
+});
+Route::get('/dashboard-dosen/laporan-akhir', function () {
+    return view('pages.dosen.dosbim-laporan-akhir');
+});
+Route::get('/dashboard-dosen/form-data-kurikulum', function () {
+    return view('pages.prodi.form-data-kurikulum');
+});
+
+// Halaman Dosen wali
+Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
+    return view('pages.dosen.doswal-kelayakan');
+});
+Route::get('/dashboard-dosen/daftar-konversi', function () {
+    return view('pages.dosen.doswal-daftarKonversi');
+});
+Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
+    return view('pages.dosen.doswal-viewHasilKonversi');
+});

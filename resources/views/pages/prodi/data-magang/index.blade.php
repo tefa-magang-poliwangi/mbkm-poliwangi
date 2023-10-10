@@ -66,7 +66,7 @@
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateMagangext{{ $data->id }}"><i
-                                                        class="fa-solid fa-pen"></i></button>
+                                                        class="fa-solid fa-pen text-white"></i></button>
                                                 <a href="{{ route('data.magangext.delete', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
@@ -113,8 +113,7 @@
                                                                     @foreach ($periodes as $item)
                                                                         <option value="{{ $item->id }}"
                                                                             {{ $item->id == $data->id_periode ? 'selected' : '' }}>
-                                                                            Semester -
-                                                                            {{ $item->semester }}
+                                                                            {{ $item->semester % 2 ? 'Semester Genap' : 'Semester Ganjil' }}
                                                                             ({{ $item->tahun }})
                                                                         </option>
                                                                     @endforeach
@@ -177,9 +176,10 @@
                             <select class="form-control @error('create_id_periode') is-invalid @enderror"
                                 id="create_id_periode" name="create_id_periode">
                                 <option value="">Pilih Periode</option>
-                                @foreach ($periodes as $data)
-                                    <option value="{{ $data->id }}">Semester - {{ $data->semester }}
-                                        ({{ $data->tahun }})
+                                @foreach ($periodes as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->semester % 2 ? 'Semester Genap' : 'Semester Ganjil' }}
+                                        ({{ $item->tahun }})
                                     </option>
                                 @endforeach
                             </select>

@@ -14,9 +14,9 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
-                                                <div class="row">
+                        <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Filter Prodi Mahasiswa</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen Mitra</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <a href="{{ route('formulir.mitra.create') }}" class="btn btn-primary ml-auto">
