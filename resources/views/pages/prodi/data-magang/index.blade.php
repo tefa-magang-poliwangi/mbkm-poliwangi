@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Manajemen Peserta Magang External | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Magang External | MBKM Poliwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,8 +21,8 @@
                                 <h5 class="justify-start my-auto">Data Magang External</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#tambahdataMagangext"><i
-                                        class="fa-solid fa-plus"></i> &ensp; Tambah
+                                <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                    data-target="#tambahdataMagangext"><i class="fa-solid fa-plus"></i> &ensp; Tambah
                                     Data Magang</button>
                             </div>
                         </div>
@@ -36,16 +38,20 @@
                                     <tr>
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
+                                        <th class="text-center text-white">Periode</th>
                                         <th class="text-center text-white">Kriteria Penilaian</th>
                                         <th class="text-center text-white">Lihat Peserta</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($magangext as $data)
+                                    @foreach ($magang_ext as $data)
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
                                             <td>{{ $data->name }}</td>
+                                            <td class="text-center">Semester {{ $data->periode->semester }}
+                                                ({{ $data->periode->tahun }})
+                                            </td>
 
                                             <td class="text-center">
                                                 <a href="{{ route('kriteria.penilaian.index', $data->id) }}"
@@ -66,7 +72,6 @@
                                             </td>
                                         </tr>
 
-
                                         {{-- modall update --}}
                                         <div class="modal fade" tabindex="-1" role="dialog"
                                             id="updateMagangext{{ $data->id }}">
@@ -83,6 +88,7 @@
                                                         method="POST">
                                                         @method('put')
                                                         @csrf
+
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <label for="update_name">Nama</label>
@@ -96,7 +102,30 @@
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
+
+                                                            <div class="form-group">
+                                                                <label class="form-label"
+                                                                    for="update_id_periode">Periode</label>
+                                                                <select
+                                                                    class="form-control @error('update_id_periode') is-invalid @enderror"
+                                                                    id="update_id_periode" name="update_id_periode">
+                                                                    <option value="">Pilih Periode</option>
+                                                                    @foreach ($periodes as $item)
+                                                                        <option value="{{ $item->id }}"
+                                                                            {{ $item->id == $data->id_periode ? 'selected' : '' }}>
+                                                                            Semester -
+                                                                            {{ $item->semester }}
+                                                                            ({{ $item->tahun }})
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('update_id_periode')
+                                                                    <div id="update_id_periode" class="form-text">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
                                                         </div>
+
                                                         <div class="modal-footer bg-whitesmoke br">
                                                             <button type="button" class="btn btn-cancel"
                                                                 data-dismiss="modal">Batal</button>
@@ -131,6 +160,7 @@
                 </div>
                 <form action="{{ route('data.magangext.store') }}" method="POST">
                     @csrf
+
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="create_name">Nama</label>
@@ -141,7 +171,24 @@
                                     {{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="create_id_periode">Periode</label>
+                            <select class="form-control @error('create_id_periode') is-invalid @enderror"
+                                id="create_id_periode" name="create_id_periode">
+                                <option value="">Pilih Periode</option>
+                                @foreach ($periodes as $data)
+                                    <option value="{{ $data->id }}">Semester - {{ $data->semester }}
+                                        ({{ $data->tahun }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('create_id_periode')
+                                <div id="create_id_periode" class="form-text">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
+
                     <div class="modal-footer bg-whitesmoke br">
                         <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-submit">Simpan</button>

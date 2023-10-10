@@ -26,4 +26,9 @@ class Periode extends Model
     {
         return $this->hasMany(NilaiMagangExt::class);
     }
+
+    public function magang_ext()
+    {
+        return $this->hasMany(MagangExt::class);
+    }
 }

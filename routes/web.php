@@ -123,10 +123,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-matkul-kurikulum/delete/{id}', [MatkulKurikulumController::class, 'destroy'])->name('daftar.matkul.kurikulum.delete');
 
         // (Route Daftar Magang External)
-        Route::get('/daftar-data-magangext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
-        Route::post('/daftar-data-magangext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
-        Route::put('/daftar-data-magangext/update/{id}', [MagangExternalController::class, 'update'])->name('data.magangext.update');
-        Route::get('/daftar-data-magangext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
+        Route::get('/daftar-data-magang-ext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
+        Route::post('/daftar-data-magang-ext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
+        Route::put('/daftar-data-magang-ext/update/{id}', [MagangExternalController::class, 'update'])->name('data.magangext.update');
+        Route::get('/daftar-data-magang-ext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
 
         // (Route Manajemen Kelas dan Peserta Kelas)
         // route kelas

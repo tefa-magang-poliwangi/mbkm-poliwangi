@@ -19,7 +19,7 @@ class PeriodeController extends Controller
             'periode' => Periode::all(),
         ];
 
-        return view('pages.prodi.Periode.index', $data);
+        return view('pages.prodi.periode.index', $data);
     }
 
     /**
