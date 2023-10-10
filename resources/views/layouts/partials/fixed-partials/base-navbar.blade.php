@@ -1,9 +1,14 @@
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg main-navbar bg-theme">
         <form class="form-inline mr-auto">
-            <ul class="navbar-nav mr-3">
-                <li>
-                    <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+            <ul class="navbar-nav mr-3 mx px-3">
+                <li class="d-flex">
+                    <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg mx-auto my-auto"><i
+                            class="fas fa-bars"></i></a>
+                </li>
+                <li class="d-flex">
+                    <span class="mx-auto my-auto text-white fw-bold"> {{ $periode_aktif->tahun }} -
+                        {{ $semester }}</span>
                 </li>
             </ul>
         </form>

@@ -38,8 +38,6 @@ class KurikulumController extends Controller
      */
     public function create()
     {
-
-
         $data = [
             'kurikulum' => Kurikulum::all(),
             'prodi' => Prodi::all(),

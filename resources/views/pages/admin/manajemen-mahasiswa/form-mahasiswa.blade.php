@@ -49,9 +49,9 @@
 
                             <div class="form-group">
                                 <label for="angkatan">Angkatan</label>
-                                <input id="angkatan" type="text"
+                                <input id="angkatan" type="number"
                                     class="form-control @error('angkatan') is-invalid @enderror" name="angkatan"
-                                    placeholder="Angkatan anda" pattern="[0-9]*" value="{{ $mahasiswa->angkatan }}">
+                                    placeholder="Angkatan mahasiswa" pattern="[0-9]*" value="{{ $mahasiswa->angkatan }}">
                                 @error('angkatan')
                                     <div id="angkatan" class="form-text">{{ $message }}</div>
                                 @enderror

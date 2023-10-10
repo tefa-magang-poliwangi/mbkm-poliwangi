@@ -1,6 +1,7 @@
 @extends('layouts.base-mahasiswa')
+
 @section('Kegiatan')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Kegiatan MBKM | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -51,8 +52,8 @@
 
                         <div class="form-group">
                             <label for="create_status" class="form-label">Status</label>
-                            <select class="form-control @error('create_status') is-invalid @enderror"
-                                id="create_status" name="create_status">
+                            <select class="form-control @error('create_status') is-invalid @enderror" id="create_status"
+                                name="create_status">
                                 <option value="">Pilih Status</option>
                                 <option value="1">Wajib</option>
                                 <option value="2">Tidak Wajib</option>

@@ -33,11 +33,10 @@
                             @php
                                 $no = 1;
                             @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"
-                                style="background-color: #EEEEEE;">
+                            <table class="table table-hover table-borderless rounded bg-white" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th class="text-center text-white">No</th>
+                                        <th width="10%" class="text-center text-white">No</th>
                                         <th class="text-center text-white">Semester</th>
                                         <th class="text-center text-white">Tahun</th>
                                         <th class="text-center text-white">Status</th>
@@ -48,17 +47,31 @@
                                     @foreach ($periode as $data)
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
-                                            <td class="text-center">{{ $data->semester }}</td>
-                                            <td class="text-center">{{ $data->tahun }}</td>
-                                            <td class="text-center"> <span class="badge bg-primary text-white">
-                                                    {{ $data->status }} </span>
+                                            <td class="text-center">
+                                                @if ($data->semester % 2 == 0)
+                                                    Genap - {{ $data->semester }}
+                                                @else
+                                                    Ganjil - {{ $data->semester }}
+                                                @endif
                                             </td>
-                                            <td class="text-center"> <button type="button" class="btn btn-info ml-auto"
-                                                    data-toggle="modal" data-target="#updateModal{{ $data->id }}"><i
-                                                        class="fa-solid fa-pen"></i></button>
-                                                <a href="{{ route('data.periode.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"> <i
-                                                        class="fa-solid fas fa-trash"></i></a>
+                                            <td class="text-center">{{ $data->tahun }}</td>
+                                            <td class="text-center">
+                                                @if ($data->status == 'Aktif')
+                                                    <span class="badge bg-primary text-white">
+                                                        {{ $data->status }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-danger text-white">
+                                                        {{ $data->status }}
+                                                    </span>
+                                                @endif
+                                            </td>
+
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                                    data-target="#updateModal{{ $data->id }}"><i
+                                                        class="fa-solid fa-pen"></i>
+                                                </button>
                                             </td>
                                         </tr>
 
@@ -83,28 +96,38 @@
                                                             <div class="form-group">
                                                                 <label for="update_semester"
                                                                     class="form-label">Semester</label>
-                                                                <input id="update_semester" type="number"
-                                                                    class="form-control @error('update_semester')
-                                                                    is-invalid
-                                                                     @enderror"
-                                                                    name="update_semester" value="{{ $data->semester }}">
+                                                                <select
+                                                                    class="form-control @error('update_semester') is-invalid @enderror"
+                                                                    id="update_semester" name="update_semester">
+                                                                    <option value="">Pilih Semester</option>
+                                                                    <option value="1"
+                                                                        {{ $data->semester == 1 ? 'selected' : '' }}>1 -
+                                                                        Ganjil</option>
+                                                                    <option value="2"
+                                                                        {{ $data->semester == 2 ? 'selected' : '' }}>2 -
+                                                                        Genap</option>
+                                                                </select>
                                                                 @error('update_semester')
-                                                                    <div id="update_semester" class="form-text text-danger">
+                                                                    <div id="update_semester"
+                                                                        class="form-text pb-1 text-danger">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
+
                                                             <div class="form-group">
                                                                 <label for="update_tahun" class="form-label">Tahun</label>
-                                                                <input id="update_tahun" type="text"
+                                                                <input id="update_tahun" type="number"
                                                                     class="form-control @error('update_tahun')
                                                                     is-invalid
                                                                 @enderror"
-                                                                    name="update_tahun" value="{{ $data->tahun }}">
+                                                                    name="update_tahun" value="{{ $data->tahun }}"
+                                                                    placeholder="Tahun ajaran">
                                                                 @error('update_tahun')
                                                                     <div id="update_tahun" class="form-text text-danger">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
+
                                                             <div class="form-group">
                                                                 <label for="update_status" class="form-label">Status</label>
                                                                 <select
@@ -162,28 +185,29 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="create_semester" class="form-label">Semester</label>
-                                <input id="create_semester" type="number"
-                                    class="form-control @error('create_semester')
-                                is-invalid
-                            @enderror"
-                                    name="create_semester">
+                                <select class="form-control @error('create_semester') is-invalid @enderror"
+                                    id="create_semester" name="create_semester">
+                                    <option value="">Pilih Semester</option>
+                                    <option value="1">1 - Ganjil</option>
+                                    <option value="2">2 - Genap</option>
+                                </select>
                                 @error('create_semester')
-                                    <div id="create_semester" class="form-text text-danger">
+                                    <div id="create_semester" class="form-text pb-1 text-danger">
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="create_tahun" class="form-label">Tahun</label>
-                                <input id="create_tahun" type="text"
-                                    class="form-control @error('create_tahun')
-                                is-invalid
-                            @enderror"
-                                    name="create_tahun">
+                                <input id="create_tahun" type="number"
+                                    class="form-control @error('create_tahun') is-invalid @enderror" name="create_tahun"
+                                    placeholder="Tahun ajaran">
                                 @error('create_tahun')
                                     <div id="create_tahun" class="form-text text-danger">
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="create_status" class="form-label">Status</label>
                                 <select class="form-control @error('create_status') is-invalid @enderror"
@@ -198,6 +222,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-submit">Submit</button>
