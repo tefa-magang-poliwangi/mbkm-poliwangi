@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminProdi;
 use App\Models\Kurikulum;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KurikulumController extends Controller
@@ -16,13 +18,13 @@ class KurikulumController extends Controller
      */
     public function index(Request $request)
     {
-        $kurikulum = Kurikulum::query();
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
-        if ($request->prodi) {
-            $kurikulum->where('id_prodi', $request->prodi);
-        }
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $kurikulum = Kurikulum::where('id_prodi', $prodi_id)->get();
+
         $data = [
-            'kurikulums' => $kurikulum->get(),
+            'kurikulums' => $kurikulum,
             'prodi' => Prodi::all(),
             'request' => $request
         ];
@@ -53,16 +55,16 @@ class KurikulumController extends Controller
      */
     public function store(Request $request)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
         $validated = $request->validate([
             'create_nama' => ['required'],
             'create_status' => ['required'],
-            'create_prodi' => ['required'],
         ]);
 
         Kurikulum::create([
             'nama' => $validated['create_nama'],
             'status' => $validated['create_status'],
-            'id_prodi' => $validated['create_prodi'],
+            'id_prodi' => $prodi_id,
         ]);
 
         Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan');
@@ -100,16 +102,18 @@ class KurikulumController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
         $validated = $request->validate([
             'update_nama' => ['required'],
             'update_status' => ['required'],
-            'update_prodi' => ['required'],
+
         ]);
 
         Kurikulum::where('id', $id)->update([
             'nama' => $validated['update_nama'],
             'status' => $validated['update_status'],
-            'id_prodi' => $validated['update_prodi'],
+            'id_prodi' => $prodi_id,
         ]);
 
         Alert::success('Success', 'Data Kurikulum Berhasil Diupdate');

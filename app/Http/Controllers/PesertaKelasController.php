@@ -17,7 +17,6 @@ class PesertaKelasController extends Controller
      */
     public function index($id_kelas)
     {
-
         $data = [
             'id_kelas' => $id_kelas,
             'peserta_kelas' => PesertaKelas::where('id_kelas', $id_kelas)->get(),

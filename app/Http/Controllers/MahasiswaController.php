@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminProdi;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 class MahasiswaController extends Controller
 {
@@ -19,14 +20,14 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-        $mahasiswas = Mahasiswa::query();
 
-        if ($request->prodi) {
-            $mahasiswas->where('id_prodi', $request->prodi);
-        }
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $mahasiswa = Mahasiswa::where('id_prodi', $prodi_id)->get();
 
         $datas = [
-            'mahasiswas' => $mahasiswas->get(),
+            'mahasiswas' => $mahasiswa,
             'prodi' => Prodi::all(),
             'request' => $request,
         ];
@@ -56,13 +57,14 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
         // validasi request mahasiswa
         $validated = $request->validate([
             'nim' => 'required|string',
             'nama' => 'required|string',
             'email' => 'required|email',
             'angkatan' => 'required',
-            'id_prodi' => 'required',
             'no_telp' => 'required|string|between:11,15',
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
@@ -83,7 +85,7 @@ class MahasiswaController extends Controller
             'email' => $validated['email'],
             'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
-            'id_prodi' => $validated['id_prodi'],
+            'id_prodi' => $prodi_id,
             'id_user' => $user_mahasiswa->id,
         ]);
 
@@ -128,6 +130,7 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
         $mahasiswa = Mahasiswa::findOrFail($id);
 
         // validasi request mahasiswa
@@ -136,7 +139,6 @@ class MahasiswaController extends Controller
             'nama' => 'required|string',
             'email' => 'required|email',
             'angkatan' => 'required',
-            'id_prodi' => 'required',
             'no_telp' => 'required|string|between:11,15',
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
@@ -157,7 +159,7 @@ class MahasiswaController extends Controller
             'email' => $validated['email'],
             'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
-            'id_prodi' => $validated['id_prodi'],
+            'id_prodi' => $prodi_id,
             'id_user' => $user->id,
         ]);
 

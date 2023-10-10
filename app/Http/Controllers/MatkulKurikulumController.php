@@ -20,7 +20,7 @@ class MatkulKurikulumController extends Controller
     {
 
         if ($request->prodi) {
-            $id_prodi = $request->prodi;
+        $id_prodi = $request->prodi;
         } else {
             $id_prodi = 0;
         }

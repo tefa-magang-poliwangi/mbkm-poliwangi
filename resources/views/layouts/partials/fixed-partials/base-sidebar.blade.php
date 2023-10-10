@@ -121,11 +121,11 @@
                             <span>Admin</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('data.dosen.index') }}"><i
                                 class="fas fa-solid fa-user-graduate"></i>
@@ -138,18 +138,18 @@
                             <span>Prodi</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-solid fa-book"></i>
                             <span>Matakuliah</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
                                 class="fas fa-solid fa-book-journal-whills"></i>
 
                             <span>Kurikulum</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}">
                             <i class="fas fa-solid fa-book-bookmark"></i>
@@ -195,12 +195,12 @@
                         </a>
                     </li>
                     {{-- Manajemen Kelas --}}
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
                             <i class="fas fa-solid fa-layer-group"></i>
                             <span>Manajemen Kelas</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('data.periode.index') }}"><i
                                 class="fas fa-solid fa-calendar-day"></i>
@@ -326,16 +326,16 @@
                             <span>Matkul Kurikulum</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-building"></i>
-                            <span>Data Magang External</span>
-                        </a>
-                    </li>
                     {{-- Manajemen Kelas --}}
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
                             <i class="fas fa-solid fa-layer-group"></i>
                             <span>Manajemen Kelas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-building"></i>
+                            <span>Data Magang External</span>
                         </a>
                     </li>
                     <li>
