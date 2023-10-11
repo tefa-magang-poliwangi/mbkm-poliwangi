@@ -12,7 +12,9 @@ use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KonversiNilaiExternal extends Controller
@@ -102,7 +104,7 @@ class KonversiNilaiExternal extends Controller
 
             Alert::success('Success', 'Nilai konversi berhasil ditambahkan');
 
-            return redirect()->route('daftar.mahasiswa.transkrip.index', $id_nilai_magang_ext);
+            return redirect()->back();
         } catch (\Exception $e) {
             // Tangani kesalahan dan kembalikan pesan kesalahan dalam format JSON
             return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
@@ -159,7 +161,7 @@ class KonversiNilaiExternal extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_nilai_magang_ext)
+    public function show($id_mahasiswa, $id_magang_ext, $id_nilai_magang_ext)
     {
         $nilai_external = NilaiMagangExt::findOrFail($id_nilai_magang_ext);
         $nilai_external->mahasiswa->id;
@@ -170,10 +172,19 @@ class KonversiNilaiExternal extends Controller
         $mahasiswa_aktif = PesertaKelas::where('id_mahasiswa', $nilai_external->mahasiswa->id)->orderBy('id')->first();
         $semester = (2 * $mahasiswa_aktif->kelas->tingkat_kelas) - ($periode->semester % 2);
 
+        $data_nilai = DB::table('detail_penilaian_magang_exts as dpm')
+            ->join('penilaian_magang_exts as pme', 'dpm.id_penilaian_magang_ext', '=', 'pme.id')
+            ->join('magang_exts as mge', 'pme.id_magang_ext', '=', 'mge.id')
+            ->where('pme.id_magang_ext', '=', $id_magang_ext)
+            ->where('dpm.id_mahasiswa', '=', $id_mahasiswa)
+            ->select('dpm.nilai', 'dpm.id', 'pme.penilaian', 'pme.id_magang_ext', 'mge.name')->orderBy('pme.penilaian', 'asc')
+            ->get();
+
         $data = [
             'matakuliah' => MatkulKurikulum::where('id_kurikulum', $kurikulum->id)->where('semester', $semester)->get(),
             'nilai_magang_ext' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
             'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
+            'nilai_kriteria_mhs' => $data_nilai,
         ];
 
         return view('pages.dosen.kaprodi-konversi-nilai', $data);
@@ -215,6 +226,6 @@ class KonversiNilaiExternal extends Controller
 
         Alert::success('Success', 'Nilai konversi berhasil dihapus');
 
-        return redirect()->route('daftar.mahasiswa.transkrip.index', $nilai->id_nilai_magang_ext);
+        return redirect()->back();
     }
 }

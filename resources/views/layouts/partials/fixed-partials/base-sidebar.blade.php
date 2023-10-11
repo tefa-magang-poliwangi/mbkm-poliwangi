@@ -41,7 +41,8 @@
             @auth
                 @role('admin')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.admin.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.admin.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -49,7 +50,8 @@
 
                 @role('admin-prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.admin.prodi.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.admin.prodi.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -57,7 +59,8 @@
 
                 @role('dosen')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.dosen.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.dosen.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -65,7 +68,8 @@
 
                 @role('mahasiswa')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.mahasiswa.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.mahasiswa.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -73,7 +77,8 @@
 
                 @role('mitra')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.mitra.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.mitra.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -81,7 +86,8 @@
 
                 @role('akademik')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.akademik.page') }}"><i class="fas fa-home"></i>
+                        <a class="nav-link" href="{{ route('dashboard.akademik.page') }}"><i
+                                class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
@@ -111,15 +117,15 @@
                     {{-- Dosen Sidebar Menu --}}
                     <li class="menu-header">DOSEN</li>
                     <li>
-                        <a class="nav-link" href="{{ route('data.admin.index') }}"><i class="fas fa-graduation-cap"></i>
+                        <a class="nav-link" href="{{ route('data.admin.index') }}"><i class="fas fa-solid fa-headset"></i>
                             <span>Admin</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('data.dosen.index') }}"><i
                                 class="fas fa-solid fa-user-graduate"></i>
@@ -132,18 +138,18 @@
                             <span>Prodi</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-solid fa-book"></i>
                             <span>Matakuliah</span>
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
                                 class="fas fa-solid fa-book-journal-whills"></i>
 
                             <span>Kurikulum</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}">
                             <i class="fas fa-solid fa-book-bookmark"></i>
@@ -189,12 +195,12 @@
                         </a>
                     </li>
                     {{-- Manajemen Kelas --}}
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
                             <i class="fas fa-solid fa-layer-group"></i>
                             <span>Manajemen Kelas</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('data.periode.index') }}"><i
                                 class="fas fa-solid fa-calendar-day"></i>
@@ -204,16 +210,19 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="{{ route('formulir.mitra.index') }}"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.index') }}"><i
+                                class="fas fa-solid fa-envelopes-bulk"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i
+                                class="fas fa-solid fa-list-check"></i>
                             <span>Daftar Pelamar</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('data.plmitra.index')}}"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('data.plmitra.index') }}"><i
+                                class="fas fa-solid fa-handshake-simple"></i>
                             <span>PL Mitra</span>
                         </a>
                     </li>
@@ -223,7 +232,7 @@
                     </li>
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="#"><i class="fas fas fa-user-friends"></i>
+                        <a class="nav-link" href="#"><i class="fas fa-solid fa-bars-progress"></i>
                             <span>Program</span>
                         </a>
                     </li>
@@ -293,42 +302,45 @@
                 @endrole
 
                 @role('admin-prodi')
-                <li class="menu-header">ADMIN PRODI</li>
+                    <li class="menu-header">ADMIN PRODI</li>
                     <li>
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-solid fa-book"></i>
                             <span>Matakuliah</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
+                                class="fas fa-solid fa-book-journal-whills"></i>
 
                             <span>Kurikulum</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}"><i
-                                class="fas fa-info-circle"></i>
+                        <a class="nav-link" href="{{ route('daftar.matkul.kurikulum.index') }}">
+                            <i class="fas fa-solid fa-book-bookmark"></i>
                             <span>Matkul Kurikulum</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-book"></i>
-                            <span>Data Magang External</span>
                         </a>
                     </li>
                     {{-- Manajemen Kelas --}}
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}"><i class="fas fa-file-alt"></i>
+                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
+                            <i class="fas fa-solid fa-layer-group"></i>
                             <span>Manajemen Kelas</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i class="fas fa-file-alt"></i>
+                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-building"></i>
+                            <span>Data Magang External</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i
+                                class="fas fa-solid fa-calendar-day"></i>
                             <span>Manajemen Periode</span>
                         </a>
                     </li>
@@ -345,7 +357,8 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i class="fas fa-users"></i>
+                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}"><i
+                                class="fas fa-solid fa-envelopes-bulk"></i>
                             <span>Form Mitra</span></a>
                     </li>
                     <li>
@@ -374,7 +387,7 @@
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
                         <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i
-                                class="fas fa-user-friends"></i>
+                                class="fas fa-solid fa-bars-progress"></i>
                             <span>Program</span>
                         </a>
                     </li>

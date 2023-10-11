@@ -10,20 +10,19 @@
 
 @section('content')
     <div class="container-fluid" style="padding-top: 10%">
-        <div class="d-flex justify-content-between">
-            <strong class="h3">Data Mitra</strong>
-        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-4">
-                            <h4 class="fw-bold">Program Studi</h4>
-                        </div>
-                        <div class="col-8 d-flex">
-                            <div class="ml-auto">
-                                {{-- <button class="btn btn-theme-four">Kembali</button> --}}
-                                <a href="{{ route('formulir.mitra.create') }}" class="btn btn-theme fa-plus">Tambah</a>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Manajemen Mitra</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('formulir.mitra.create') }}" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah Mitra
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -33,23 +32,22 @@
                             @php
                                 $no = 1;
                             @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"
-                                style="background-color: #EEEEEE;">
-                                <thead>
+                            <table class="table table-hover table-borderless rounded" id="table-1">
+                                <thead class="bg-primary">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama Perusahaan</th>
-                                        <th>Sektor Industri</th>
-                                        <th>Kategori</th>
-                                        <th>Kota</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th class="text-center text-white">No</th>
+                                        <th class="text-center text-white">Nama Perusahaan</th>
+                                        <th class="text-center text-white">Sektor Industri</th>
+                                        <th class="text-center text-white">Kategori</th>
+                                        <th class="text-center text-white">Kota</th>
+                                        <th class="text-center text-white">Status</th>
+                                        <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($formmitra as $data)
                                         <tr>
-                                            <td>{{ $no }}</td>
+                                            <td class="text-center text-white">{{ $no }}</td>
                                             <td>{{ $data->nama }}</td>
                                             <td>{{ $data->sektor_industri->nama }}</td>
                                             <td>{{ $data->kategori->nama }}</td>

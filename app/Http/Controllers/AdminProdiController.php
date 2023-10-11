@@ -6,7 +6,6 @@ use App\Models\AdminProdi;
 use Illuminate\Http\Request;
 use App\Models\Prodi;
 use App\Models\User;
-use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -19,8 +18,12 @@ class AdminProdiController extends Controller
      */
     public function index()
     {
+        $usersWithAdminProdiRoles = User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin-prodi');
+        })->get();
 
         $data = [
+            'user_option' => $usersWithAdminProdiRoles,
             'users' => User::all(),
             'admins' => AdminProdi::all(),
             'prodi' => Prodi::all()
@@ -49,7 +52,6 @@ class AdminProdiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-
             'create_user' => ['required'],
             'create_prodi' => ['required'],
 
@@ -59,6 +61,7 @@ class AdminProdiController extends Controller
             'id_user' => $validated['create_user'],
             'id_prodi' => $validated['create_prodi']
         ]);
+
 
         Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
         return redirect()->route('data.admin.index');

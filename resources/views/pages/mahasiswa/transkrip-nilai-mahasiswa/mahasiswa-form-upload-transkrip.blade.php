@@ -21,11 +21,16 @@
 
                         <div class="list-group" id="list-tab" role="tablist">
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                href="#form-transkip" role="tab">Formulir Upload Trankrip</a>
+                                href="#form-transkip" role="tab">1. Formulir Upload Trankrip</a>
+                            @if (!$data_nilai_magang_ext == null)
+                                @foreach ($khs_per_transkrip as $data)
+                                    <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                        href="{{ route('nilai_kriteria.magang_ext.page', [$data->magang_ext->id, $data_nilai_magang_ext->id]) }}"
+                                        role="tab">2. Insert Nilai Magang</a>
+                                @endforeach
+                            @endif
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                href="#daftar-transkip" role="tab">Daftar Transkrip Nilai</a>
-                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                href="#hasil-transkip" role="tab">Hasil Transkrip Nilai</a>
+                                href="#hasil-transkip" role="tab">3. Hasil Transkrip Nilai</a>
                         </div>
                     </div>
                 </div>
@@ -178,21 +183,6 @@
                                         <div class="card card-border card-rounded-sm card-hover">
                                             <div class="card-header bg-primary text-white">
                                                 <h4 class="fw-bold">{{ $data->magang_ext->name }}</h4>
-
-                                                <div class="card-header-action">
-                                                    <div class="btn-group">
-                                                        <a href="{{ Storage::url($data->file_transkrip) }}"
-                                                            target="_blank" class="btn btn-download">Transkrip</a>
-                                                        <a href="{{ Storage::url($data->file_sertifikat) }}"
-                                                            target="_blank" class="btn btn-download">Serfifikat</a>
-                                                        <a href="{{ Storage::url($data->file_laporan_akhir) }}"
-                                                            target="_blank" class="btn btn-download">Laporan Akhir</a>
-                                                        <a href="{{ route('upload.transkrip.mahasiswa.destroy', $data->id) }}"
-                                                            class="btn btn-delete">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -203,12 +193,30 @@
                                                             {{ $data->periode->tahun }})
                                                         </span>
                                                     </div>
-                                                    <div class="col d-flex">
-                                                        <a href="{{ route('index.nilai.magang_ext', $data->magang_ext->id) }}"
-                                                            class="btn btn-primary ml-auto my-auto">
-                                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                                        </a>
+                                                    <div class="col">
+                                                        <div class="btn-group">
+                                                            <a href="{{ Storage::url($data->file_transkrip) }}"
+                                                                target="_blank"
+                                                                class="btn btn-download d-md-inline">Transkrip</a>
+                                                            <a href="{{ Storage::url($data->file_sertifikat) }}"
+                                                                target="_blank"
+                                                                class="btn btn-download d-md-inline">Serfifikat</a>
+                                                            <a href="{{ Storage::url($data->file_laporan_akhir) }}"
+                                                                target="_blank"
+                                                                class="btn btn-download d-md-inline">Laporan
+                                                                Akhir</a>
+                                                            <a href="{{ route('upload.transkrip.mahasiswa.destroy', $data->id) }}"
+                                                                class="btn btn-delete">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
+                                                    {{-- <div class="col-3 d-flex">
+                                                        <a href="{{ route('nilai_kriteria.magang_ext.page', $data->magang_ext->id) }}"
+                                                            class="btn btn-primary ml-auto my-auto">
+                                                            Masukkan Nilai
+                                                        </a>
+                                                    </div> --}}
                                                 </div>
 
                                             </div>
@@ -217,7 +225,6 @@
                                 @endif
                             </div>
                         </div>
-
                     </div>
 
                     {{-- Hasil Transkip Nilai --}}

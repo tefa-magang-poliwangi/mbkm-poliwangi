@@ -33,17 +33,17 @@
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">Tingkat</th>
-                                                <th class="text-center">Pararel</th>
-                                                <th class="text-center">Prodi</th>
-                                                <th class="text-center">Semester</th>
-                                                <th class="text-center">Tahun</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Lihat</th>
-                                                <th class="text-center">Aksi</th>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-center text-white">Tingkat</th>
+                                                <th class="text-center text-white">Pararel</th>
+                                                <th class="text-center text-white">Prodi</th>
+                                                <th class="text-center text-white">Semester</th>
+                                                <th class="text-center text-white">Tahun</th>
+                                                <th class="text-center text-white">Status</th>
+                                                <th class="text-center text-white">Lihat</th>
+                                                <th class="text-center text-white">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -164,25 +164,6 @@
 
                                                                     <div class="form-group">
                                                                         <label class="form-label"
-                                                                            for="update_id_prodi">Prodi</label>
-                                                                        <select
-                                                                            class="form-control @error('update_id_prodi') is-invalid @enderror"
-                                                                            id="update_id_prodi" name="update_id_prodi">
-                                                                            <option value="">Pilih Prodi</option>
-                                                                            @foreach ($prodis as $item)
-                                                                                <option value="{{ $item->id }}"
-                                                                                    {{ $data->id_prodi == $item->id ? 'selected' : '' }}>
-                                                                                    {{ $item->nama }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        @error('update_id_prodi')
-                                                                            <div id="update_id_prodi" class="form-text">
-                                                                                {{ $message }}</div>
-                                                                        @enderror
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label class="form-label"
                                                                             for="update_id_periode">Periode</label>
                                                                         <select
                                                                             class="form-control @error('update_id_periode') is-invalid @enderror"
@@ -274,20 +255,6 @@
                                                 </select>
                                                 @error('create_abjad_kelas')
                                                     <div id="create_abjad_kelas" class="form-text">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="form-label" for="create_id_prodi">Prodi</label>
-                                                <select class="form-control @error('create_id_prodi') is-invalid @enderror"
-                                                    id="create_id_prodi" name="create_id_prodi">
-                                                    <option value="">Pilih Prodi</option>
-                                                    @foreach ($prodis as $data)
-                                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('create_id_prodi')
-                                                    <div id="create_id_prodi" class="form-text">{{ $message }}</div>
                                                 @enderror
                                             </div>
 
