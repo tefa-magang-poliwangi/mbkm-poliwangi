@@ -10,11 +10,13 @@ use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaPageController;
@@ -29,6 +31,8 @@ use App\Http\Controllers\PLMitraController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
+use App\Http\Controllers\MitraDaftarPelamarController;
+use App\Http\Controllers\SektorIndustriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -101,6 +105,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dashboard-admin/data-admin/store', [AdminProdiController::class, 'store'])->name('data.admin.store');
         Route::get('/dashboard-admin/data-admin/delete/{id}', [AdminProdiController::class, 'destroy'])->name('data.admin.delete');
 
+        // Manajemen Kategori
+        Route::get('/dashboard-admin/kategori', [KategoriController::class, 'index'])->name('data.kategori.index');
+        Route::get('/dashboard-admin/kategori/create', [KategoriController::class, 'create'])->name('data.kategori.create');
+        Route::post('/dashboard-admin/kategori/store', [KategoriController::class, 'store'])->name('data.kategori.store');
+        Route::get('/dashboard-admin/kategori/delete{id}', [KategoriController::class, 'destroy'])->name('data.kategori.delete');
+        Route::put('/dashboard-admin/kategori/{id_kategori}/update', [KategoriController::class, 'update'])->name('data.kategori.update');
+
+        // Manajemen Sektor Industri
+        Route::get('/dashboard-admin/sektor-industri', [SektorIndustriController::class, 'index'])->name('data.sektor_industri.index');
+        Route::get('/dashboard-admin/sektor-industri/create', [SektorIndustriController::class, 'create'])->name('data.sektor_industri.create');
+        Route::post('/dashboard-admin/sektor-industri/store', [SektorIndustriController::class, 'store'])->name('data.sektor_industri.store');
+        Route::get('/dashboard-admin/sektor-industri/delete{id}', [SektorIndustriController::class, 'destroy'])->name('data.sektor_industri.delete');
+        Route::put('/dashboard-admin/sektor-industri/{id_sektor_industri}', [SektorIndustriController::class, 'update'])->name('data.sektor_industri.update');
+
+
         // (Route Kurikulum)
         Route::get('/daftar-kurikulum/index', [KurikulumController::class, 'index'])->name('daftar.kurikulum.index');
         Route::get('/daftar-kurikulum/create', [KurikulumController::class, 'create'])->name('daftar.kurikulum.create');
@@ -168,6 +187,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/formulir-mitra/delete/{id}', [FormMitraController::class, 'destroy'])->name('formulir.mitra.delete');
 
         Route::get('/dashboard-admin/mitra-daftar-pelamar', [MitraDaftarPelamarController::class, 'index'])->name('daftar-pelamar.mitra.page');
+        // Route::get('/dashboard-admin/data-admin/create', [MitraDaftarPelamarController::class, 'create'])->name('daftar-pelamar.mitra.create');
+        Route::post('/dashboard-admin/mitra-daftar/store', [MitraDaftarPelamarController::class, 'store'])->name('daftar-pelamar.mitra.store');
+        // Route::get('/dashboard-admin/data-admin/delete/{id}', [MitraDaftarPelamarController::class, 'destroy'])->name('daftar-pelamar.mitra.delete');
+
 
         Route::get('/dashboard-mitra/daftar-pendamping/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
         Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
@@ -255,9 +278,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
 
         // Halaman Mitra
-        // Route::get('/dashboard-mitra/mitra-lowongan', function () {
-        //     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
-        // });
+        Route::get('/dashboard-mitra/mitra-lowongan/index', [LowonganController::class, 'index'])->name('lowongan.mitra.index');
         Route::get('/dashboard-mitra/form-mitra', function () {
             return view('pages.mitra.manajemen-mitra.mitra-form');
         });
@@ -345,9 +366,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 //     return view('pages.prodi.data-kurikulum1');
 // });
 
-Route::get('/dashboard-mitra/mitra-lowongan', function () {
-    return view('pages.mitra.manajemen-mitra.mitra-lowongan');
-});
 Route::get('/dashboard-adminprodi', function () {
     return view('pages.admin.adminProdi-dashboard');
 });
@@ -355,3 +373,8 @@ Route::get('/dashboard-adminprodi', function () {
 // Route::get('/dashboard-admin/manajemen-kriteria/index', function () {
 //     return view('pages.admin.manajemen-kriteria.index');
 // });
+
+Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+Route::get('cities', 'DependentDropdownController@cities')->name('cities');
+Route::get('districts', 'DependentDropdownController@districts')->name('districts');
+Route::get('villages', 'DependentDropdownController@villages')->name('villages');

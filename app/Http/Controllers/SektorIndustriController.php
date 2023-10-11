@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lowongan;
-use App\Models\Mahasiswa;
-use App\Models\Mitra;
+use App\Models\SektorIndustri;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class MitraDaftarPelamarController extends Controller
+class SektorIndustriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +15,10 @@ class MitraDaftarPelamarController extends Controller
      */
     public function index()
     {
-        $data = [
-            'mitradaftarpelamar' => Mitra::all(),
-            'mahasiswa' => Mahasiswa::all(),
-            'Lowongan' => Lowongan::all(),
+         $data = [
+            'sektorindustri' => SektorIndustri::all(),
         ];
-
-        return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
+        return view ('pages.admin.manajemen-sektor-industri.sektor-industri', $data);
     }
 
     /**
@@ -45,17 +40,16 @@ class MitraDaftarPelamarController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'create_mahasiswa' => ['required'],
-            'create_lowongan' => ['required'],
+            'create_nama' => ['required'],
         ]);
 
-         MitraDaftarPelamarController::create([
-            'id_mahasiswa' => $validated['create_mahasiswa'],
-            'id_lowongan' => $validated['create_lowongan']
+        SektorIndustri::create([
+            'nama' => $validated['create_nama'],
         ]);
 
-        Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
-        return redirect()->route('daftar-pelamar.mitra.page');
+        Alert::success('Success', 'Data Sektor Industri Berhasil Ditambahkan');
+
+        return redirect()->route('data.sektor_industri.index');
     }
 
     /**
@@ -89,7 +83,17 @@ class MitraDaftarPelamarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_nama' => ['required'],
+        ]);
+
+        SektorIndustri::where('id', $id)->update([
+            'nama' => $validated['update_nama'],
+        ]);
+
+        Alert::success('Success', 'Data Sektor Industri Berhasil Diupdate');
+
+        return redirect()->route('data.sektor_industri.index');
     }
 
     /**
@@ -100,6 +104,11 @@ class MitraDaftarPelamarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sektorindustri = SektorIndustri::findOrFail($id);
+        $sektorindustri->delete();
+
+        Alert::success('Success', 'Data Sektor Industri Berhasil Dihapus');
+
+        return redirect()->route('data.sektor_industri.index');
     }
 }

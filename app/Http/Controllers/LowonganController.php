@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
-use App\Models\Mahasiswa;
-use App\Models\Mitra;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class MitraDaftarPelamarController extends Controller
+class LowonganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,8 @@ class MitraDaftarPelamarController extends Controller
      */
     public function index()
     {
-        $data = [
-            'mitradaftarpelamar' => Mitra::all(),
-            'mahasiswa' => Mahasiswa::all(),
-            'Lowongan' => Lowongan::all(),
+         $data = [
+            'lowongan' => Lowongan::all(),
         ];
 
         return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
@@ -44,18 +39,7 @@ class MitraDaftarPelamarController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'create_mahasiswa' => ['required'],
-            'create_lowongan' => ['required'],
-        ]);
-
-         MitraDaftarPelamarController::create([
-            'id_mahasiswa' => $validated['create_mahasiswa'],
-            'id_lowongan' => $validated['create_lowongan']
-        ]);
-
-        Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
-        return redirect()->route('daftar-pelamar.mitra.page');
+        //
     }
 
     /**
