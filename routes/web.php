@@ -68,6 +68,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('data.dosen.edit');
         Route::put('/dashboard-admin/manajemen-dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('data.dosen.update');
         Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('data.dosen.destroy');
+        Route::post('/dashboard-admin/manajemen-dosen/import', [DosenController::class, 'import'])->name('data.dosen.import');
 
         // (Route Konversi Nilai Magang External)
         Route::get('/daftar-konversi-nilai/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.mahasiswa.index');

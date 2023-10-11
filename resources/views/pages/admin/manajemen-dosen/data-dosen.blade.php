@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row py-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -23,13 +23,42 @@
                                 <h5 class="justify-start my-auto text-theme">Filter Prodi Dosen</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('data.dosen.create') }}" class="btn btn-primary ml-auto">
+                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#uploadModal"><i
+                                        class="fa-solid fa-plus"></i> &ensp; Import</button>
+                                <a href="{{ route('data.dosen.create') }}" class="btn btn-primary ml-2">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Dosen
                                 </a>
+
                             </div>
                         </div>
-
+                        <!-- Modal -->
+                        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog"
+                            aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="uploadModalLabel">Unggah File Excel</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form untuk Unggah File Excel -->
+                                        <form action="{{ route('data.dosen.import') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="excelFile">Pilih File Excel</label>
+                                                <input type="file" class="form-control-file" id="excelFile"
+                                                    name="excelFile">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Unggah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {{-- Filter Prodi Dosen --}}
                         <div class="row">
                             <div class="col-12 col-sm-12 col-6 col-lg-4">
@@ -39,7 +68,8 @@
                                             <option value="">Semua Prodi</option>
                                             @foreach ($prodi as $item)
                                                 <option value="{{ $item->id }}"
-                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
+                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>
+                                                    {{ $item->nama }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -47,7 +77,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
