@@ -90,4 +90,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(LaporanMingguan::class);
     }
+
+    public function detail_penilaian_magang_ext()
+    {
+        return $this->hasMany(DetailPenilaianMagangExt::class);
+    }
 }

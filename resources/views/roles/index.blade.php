@@ -18,12 +18,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <h1>Roles</h1>
-                            <div class="lead">
-                                Manajemen Role.
-                                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right">Add
-                                    role</a>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Manajemen Role</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm ml-auto">Add
+                                    Role</a>
                             </div>
                         </div>
 

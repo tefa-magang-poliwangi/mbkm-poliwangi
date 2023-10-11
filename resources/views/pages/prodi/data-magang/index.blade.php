@@ -54,8 +54,8 @@
                                             <td>{{ $data->name }}</td>
 
                                             <td>
-                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                    data-target="#kriteriaModal"><i class="fa-solid fa-eye"></i></button>
+                                                <a href="{{ route('kriteria.penilaian.index', $data->id) }}"
+                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
 
                                             <td>
@@ -65,14 +65,49 @@
 
                                             <td>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                    data-target="#updateModal"><i class="fa-solid fa-pen"></i></button>
+                                                    data-target="#updateMagangext{{$data->id}}"><i class="fa-solid fa-pen"></i></button>
                                                 <a href="{{ route('data.magangext.delete', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
 
 
-
+                                        {{-- modall update --}}
+                                        <div class="modal fade" tabindex="-1" role="dialog" id="updateMagangext{{$data->id}}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Tambah Data Magang External</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('data.magangext.update', $data->id) }}" method="POST">
+                                                        @method('put')
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="update_name">Nama</label>
+                                                                <input type="text"
+                                                                    class="form-control @error('update_name') is-invalid @enderror"
+                                                                    id="update_name" name="update_name" value="{{$data->name}}"
+                                                                    placeholder="Masukkan Data Tempat Magang External">
+                                                                @error('update_name')
+                                                                    <div id="update_name" class="form-text pb-1">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer bg-whitesmoke br">
+                                                            <button type="button" class="btn btn-cancel"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-submit">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @php
                                             $no++;
                                         @endphp
@@ -85,88 +120,6 @@
             </div>
         </div>
     </div>
-
-
-     {{-- Modal kriteria kurikulum --}}
-     <div class="modal fade" tabindex="-1" role="dialog" id="kriteriaModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Kriteria Penilaian</h5>
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <form action="#" method="POST">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="update_nama" class="form-label">Nama
-                                        MBKM</label>
-                                    <input id="update_nama" type="text"
-                                        class="form-control @error('update_nama')
-                                        is-invalid
-                                    @enderror"
-                                        name="update_nama">
-                                    @error('update_nama')
-                                        <div id="update_nama" class="form-text text-danger">
-                                            {{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="text-nowrap">
-                                            <th>Aspek Penilaian</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="d-flex">
-                                                <div class="form-check my-auto">
-                                                    <input class="form-check-input" type="checkbox"
-                                                         name="create_berkas[]">
-                                                    <label class="form-check-label">Perencanaan Kegiatan</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex">
-                                                <div class="form-check my-auto">
-                                                    <input class="form-check-input" type="checkbox"
-                                                         name="create_berkas[]">
-                                                    <label class="form-check-label">Pelaksanaan dan Hasil Kegiatan</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex">
-                                                <div class="form-check my-auto">
-                                                    <input class="form-check-input" type="checkbox"
-                                                         name="create_berkas[]">
-                                                    <label class="form-check-label">Pelaporan Kegiatan</label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer bg-whitesmoke br">
-                            <button type="button" class="btn btn-cancel"
-                            data-dismiss="modal">Kembali</button>
-                        </div>
-                    </form>
-                </div>
-            </div> {{-- modall content --}}
-        </div> {{-- modall dialog --}}
-    </div> {{-- modal --}}
 
     {{-- modall create --}}
     <div class="modal fade" tabindex="-1" role="dialog" id="tambahdataMagangext">
@@ -184,8 +137,7 @@
                         <div class="form-group">
                             <label for="create_name">Nama</label>
                             <input type="text" class="form-control @error('create_name') is-invalid @enderror"
-                                id="create_name" name="create_name"
-                                placeholder="Masukkan Data Tempat Magang External">
+                                id="create_name" name="create_name" placeholder="Masukkan Data Tempat Magang External">
                             @error('create_name')
                                 <div id="create_name" class="form-text pb-1">
                                     {{ $message }}</div>
@@ -193,15 +145,13 @@
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-cancel"
-                            data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-submit">Simpan</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('script')

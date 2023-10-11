@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Prodi MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Prodi | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -11,102 +11,100 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
-        <div class="d-flex justify-content-between">
-            <strong class="h3">Data Program Studi</strong>
-        </div>
-        <div class="row">
-            <div class="col-12">
+    <section>
+        <div class="row py-5">
+            <div class="col-md-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white border-0 px-2">
-                        <div class="col-6">
-                            <div class="dropdown d-inline mr-2">
-                                <h6>Daftar Program Studi : TRPL 2023</h6>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h1>Prodi</h1>
+                            <div class="lead d-flex">
+                                Manajemen Prodi.
+                                <button class="btn btn-primary fa-plus ml-auto" data-toggle="modal"
+                                    data-target="#tambahProdiModal">Tambah Prodi</button>
                             </div>
                         </div>
-                        <div class="col-6 d-flex">
-                            <div class="ml-auto">
-                                <button class="btn btn-theme-four">Kembali</button>
-                                <button class="btn btn-theme fa-plus" data-toggle="modal"
-                                    data-target="#tambahProdiModal">Tambah</button>
 
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="table-1">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-white">Program Studi</th>
+                                                <th class="text-center text-white">Edit</th>
+                                                <th class="text-center text-white">Hapus</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 1;
+                                            @endphp
+
+                                            @foreach ($prodi as $data)
+                                                <tr>
+                                                    <td class="text-center">{{ $no }}</td>
+                                                    <td>{{ $data->nama }}</td>
+                                                    <td class="text-center"> - </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('daftar.prodi.delete', $data->id) }}"
+                                                            class="btn btn-danger ml-auto">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @php
+                                                    $no++;
+                                                @endphp
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="card-body  py-0 mb-0">
-                        <div class="table-responsive">
-                            @php
-                                $no = 1;
-                            @endphp
-                            <table class="table table-hover table-borderless rounded" id="table-1"
-                                style="background-color: #EEEEEE;">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Program Studi</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($prodi as $data)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>
-                                                <a href="{{ route('daftar.prodi.delete', $data->id) }}"> <i
-                                                        class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                        @php
-                                            $no++;
-                                        @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
-    {{-- modall create --}}
+        {{-- modall create --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="tambahProdiModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Prodi baru</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('daftar.prodi.store') }}" method="POST">
+                        @csrf
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="tambahProdiModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Prodi baru</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('daftar.prodi.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
+                        <div class="modal-body">
 
-                        <div class="form-group">
-                            <label for="create_nama_prodi">Nama Prodi</label>
-                            <input type="text"
-                                class="form-control @error('create_nama_prodi') is-invalid @enderror"
-                                id="create_nama_prodi" name="create_nama_prodi" placeholder="Masukkan Nama Prodi">
-                            @error('create_nama_prodi')
-                                <div id="create_nama_prodi" class="form-text pb-1">
-                                    {{ $message }}</div>
-                            @enderror
+                            <div class="form-group">
+                                <label for="create_nama_prodi">Nama Prodi</label>
+                                <input type="text" class="form-control @error('create_nama_prodi') is-invalid @enderror"
+                                    id="create_nama_prodi" name="create_nama_prodi" placeholder="Masukkan Nama Prodi">
+                                @error('create_nama_prodi')
+                                    <div id="create_nama_prodi" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-cancel"
-                            data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
 @endsection
 
 

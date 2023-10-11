@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kurikulum;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KurikulumController extends Controller
 {
@@ -16,14 +17,15 @@ class KurikulumController extends Controller
     public function index(Request $request)
     {
 
-        if($request->prodi) {
-            $id_prodi = $request->prodi;
-        } else {
-            $id_prodi = 0;
+        $kurikulum = Kurikulum::query();
+
+        if ($request->prodi) {
+            $kurikulum->where('id_prodi', $request->prodi);
         }
         $data = [
-            'kurikulums' => Kurikulum::where('id_prodi', $id_prodi)->get(),
+            'kurikulums' => $kurikulum->get(),
             'prodi' => Prodi::all(),
+            'request' => $request
         ];
 
         return view('pages.prodi.kurikulum.data-kurikulum', $data);
@@ -66,6 +68,7 @@ class KurikulumController extends Controller
             'id_prodi' => $validated['create_prodi'],
         ]);
 
+        Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan' );
         return redirect()->route('daftar.kurikulum.index');
     }
 
@@ -112,6 +115,8 @@ class KurikulumController extends Controller
             'id_prodi' => $validated['update_prodi'],
         ]);
 
+        Alert::success('Success', 'Data Kurikulum Berhasil Diupdate');
+
         return redirect()->route('daftar.kurikulum.index');
     }
 
@@ -125,6 +130,8 @@ class KurikulumController extends Controller
     {
         $kurikulum = Kurikulum::findOrFail($id);
         $kurikulum->delete();
+
+        Alert::success('Success', 'Data Kurikulum Berhasil Dihapus');
 
         return redirect()->route('daftar.kurikulum.index');
     }

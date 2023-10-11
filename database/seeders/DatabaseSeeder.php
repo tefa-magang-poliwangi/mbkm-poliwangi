@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\KategoriSeeder;
+use Database\Seeders\SektorIndustriSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +22,8 @@ class DatabaseSeeder extends Seeder
             MagangExternalSeeder::class,
             PeriodeSeeder::class,
             MatkulSeeder::class,
+            KategoriSeeder::class,
+            SektorIndustriSeeder::class,
         ]);
     }
 }

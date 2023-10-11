@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Mahasiswa;
 use App\Models\PesertaKelas;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PesertaKelasController extends Controller
 {
@@ -70,6 +71,8 @@ class PesertaKelasController extends Controller
             }
         }
 
+        Alert::success('Success', 'Peserta Kelas Berhasil Ditambahkan');
+
         return redirect()->route('peserta.kelas.index', $id_kelas);
     }
 
@@ -117,6 +120,8 @@ class PesertaKelasController extends Controller
     {
         $peserta_kelas = PesertaKelas::findOrFail($id);
         $peserta_kelas->delete();
+
+        Alert::success('Success', 'Peserta Kelas Berhasil Dihapus');
 
         return redirect()->route('peserta.kelas.index', $id_kelas);
     }

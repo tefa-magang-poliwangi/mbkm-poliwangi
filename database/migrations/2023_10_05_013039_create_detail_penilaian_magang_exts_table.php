@@ -18,6 +18,8 @@ return new class extends Migration
             $table->tinyInteger('nilai')->nullable(false);
             $table->unsignedBigInteger('id_penilaian_magang_ext')->nullable(true);
             $table->foreign('id_penilaian_magang_ext')->references('id')->on('penilaian_magang_exts')->onDelete('cascade');
+            $table->unsignedBigInteger('id_mahasiswa')->nullable(true);
+            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
             $table->timestamps();
         });
     }

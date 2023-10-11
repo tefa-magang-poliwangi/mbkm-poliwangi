@@ -195,9 +195,22 @@
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <span class="fw-medium">{{ $data->mahasiswa->nama }} (Semester
-                                                    {{ $data->periode->semester }} -
-                                                    {{ $data->periode->tahun }})</span>
+                                                <div class="row">
+                                                    <div class="col d-flex">
+                                                        <span class="fw-medium my-auto">{{ $data->mahasiswa->nama }}
+                                                            (Semester
+                                                            {{ $data->periode->semester }} -
+                                                            {{ $data->periode->tahun }})
+                                                        </span>
+                                                    </div>
+                                                    <div class="col d-flex">
+                                                        <a href="{{ route('index.nilai.magang_ext', $data->magang_ext->id) }}"
+                                                            class="btn btn-primary ml-auto my-auto">
+                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     @endforeach
@@ -210,53 +223,61 @@
                     {{-- Hasil Transkip Nilai --}}
                     <div class="tab-pane fade pt-0" id="hasil-transkip" role="tabpanel"
                         aria-labelledby="list-profile-list">
-                        @foreach ($khs_per_transkrip as $khs)
-                            <div class="card card-border card-rounded-sm card-hover">
-                                <div class="card-body">
-                                    <h5 class="header-title mt-0 mb-3">Transkrip Nilai Mata Kuliah :
-                                        {{ $mahasiswa->nama }}
-                                    </h5>
-                                    <p>{{ $khs->magang_ext->name }} (Semester {{ $data->periode->semester }} -
-                                        {{ $data->periode->tahun }})</p>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-bordered text-white rounded bg-white"
-                                            id="table-2">
-                                            <thead class="bg-primary">
-                                                <tr>
-                                                    <th class="text-white text-center">Kode</th>
-                                                    <th class="text-white text-center">Mata Kuliah</th>
-                                                    <th class="text-white text-center">HM</th>
-                                                    <th class="text-white text-center">AM</th>
-                                                    <th class="text-white text-center">K</th>
-                                                    <th class="text-white text-center">M</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if ($khs->nilai_konversi->isEmpty())
+                        @if ($khs_per_transkrip->isEmpty())
+                            <div class="card d-flex bg-primary">
+                                <h6 class="mx-auto my-auto py-4 text-white"><i class="fa-solid fa-circle-info"></i>
+                                    &ensp; Silahkan tambahkan Transkrip terlebih dahulu
+                                </h6>
+                            </div>
+                        @else
+                            @foreach ($khs_per_transkrip as $khs)
+                                <div class="card card-border card-rounded-sm card-hover">
+                                    <div class="card-body">
+                                        <h5 class="header-title mt-0 mb-3">Transkrip Nilai Mata Kuliah :
+                                            {{ $mahasiswa->nama }}
+                                        </h5>
+                                        <p>{{ $khs->magang_ext->name }} (Semester {{ $data->periode->semester }} -
+                                            {{ $data->periode->tahun }})</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-bordered text-white rounded bg-white"
+                                                id="table-2">
+                                                <thead class="bg-primary">
                                                     <tr>
-                                                        <td colspan="6" class="text-center">Nilai Masih Belum
-                                                            Ditambahkan</td>
+                                                        <th class="text-white text-center">Kode</th>
+                                                        <th class="text-white text-center">Mata Kuliah</th>
+                                                        <th class="text-white text-center">HM</th>
+                                                        <th class="text-white text-center">AM</th>
+                                                        <th class="text-white text-center">K</th>
+                                                        <th class="text-white text-center">M</th>
                                                     </tr>
-                                                @else
-                                                    @foreach ($khs->nilai_konversi as $nilai)
+                                                </thead>
+                                                <tbody>
+                                                    @if ($khs->nilai_konversi->isEmpty())
                                                         <tr>
-                                                            <td class="text-center">{{ $nilai->matkul->kode_matakuliah }}
-                                                            </td>
-                                                            <td>{{ $nilai->matkul->nama }}</td>
-                                                            <td class="text-center">{{ $nilai->nilai_huruf }}</td>
-                                                            <td class="text-center">{{ $nilai->angka_mutu }}</td>
-                                                            <td class="text-center">{{ $nilai->kredit }}</td>
-                                                            <td class="text-center">{{ $nilai->mutu }}</td>
+                                                            <td colspan="6" class="text-center">Nilai Masih Belum
+                                                                Ditambahkan</td>
                                                         </tr>
-                                                    @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
+                                                    @else
+                                                        @foreach ($khs->nilai_konversi as $nilai)
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    {{ $nilai->matkul->kode_matakuliah }}
+                                                                </td>
+                                                                <td>{{ $nilai->matkul->nama }}</td>
+                                                                <td class="text-center">{{ $nilai->nilai_huruf }}</td>
+                                                                <td class="text-center">{{ $nilai->angka_mutu }}</td>
+                                                                <td class="text-center">{{ $nilai->kredit }}</td>
+                                                                <td class="text-center">{{ $nilai->mutu }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

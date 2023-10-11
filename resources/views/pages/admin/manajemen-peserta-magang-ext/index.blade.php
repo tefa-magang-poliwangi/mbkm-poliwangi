@@ -20,12 +20,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start">Manajemen Peserta Magang External</h5>
+                                <h5 class="justify-start">Manajemen Peserta {{$magang_ext->name}}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
                                 <a href="{{ route('peserta.magang_ext.create', $id_magang_ext) }}"
                                     class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp; Tambah Peserta Magang External
+                                    <i class="fa-solid fa-plus"></i> &ensp; Tambah Peserta
                                 </a>
                             </div>
                         </div>

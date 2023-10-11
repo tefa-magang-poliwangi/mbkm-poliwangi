@@ -18,11 +18,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <h1>Users</h1>
-                            <div class="lead">
-                                Manajemen User.
-                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right">Add new
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Manajemen User</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm ml-auto">Add new
                                     user</a>
                             </div>
                         </div>

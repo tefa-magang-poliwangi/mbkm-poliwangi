@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prodi;
-use Illuminate\Contracts\Validation\Rule;
+use App\Models\Mitra;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class ProdiController extends Controller
+class MitraDaftarPelamarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,10 @@ class ProdiController extends Controller
     public function index()
     {
         $data = [
-            'prodi' => Prodi::all()
+            'mitradaftarpelamar' => Mitra::all()
         ];
 
-        return view('pages.prodi.daftar-prodi', $data);
+        return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
     }
 
     /**
@@ -41,17 +39,7 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'create_nama_prodi' => ['required', 'string']
-        ]);
-
-        $prodi = new Prodi;
-        $prodi->nama = $validated['create_nama_prodi'];
-        $prodi->save();
-
-        Alert::success('Success', 'Data Prodi Berhasil Ditambahkan');
-
-        return redirect()->route('daftar.prodi.index');
+        //
     }
 
     /**
@@ -96,11 +84,6 @@ class ProdiController extends Controller
      */
     public function destroy($id)
     {
-        $prodi = Prodi::findOrFail($id);
-        $prodi->delete();
-
-        Alert::success('Success', 'Data Matkul Kurikulum Berhasil Dihapus');
-
-        return redirect()->route('daftar.prodi.index');
+        //
     }
 }
