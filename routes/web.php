@@ -352,6 +352,6 @@ Route::get('/dashboard-adminprodi', function () {
     return view('pages.admin.adminProdi-dashboard');
 });
 
-// Route::get('/dashboard-admin/manajemen-kriteria/index', function () {
-//     return view('pages.admin.manajemen-kriteria.index');
-// });
+Route::get('/daftar-program-mhs', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program');
+});
