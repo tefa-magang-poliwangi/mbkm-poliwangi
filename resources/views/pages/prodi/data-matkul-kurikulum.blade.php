@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Data Kurikulum | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Matkul Kurikulum | MBKM Poliwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -10,19 +12,19 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Data Kurikulum Mata Kuliah</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen Matkul Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <div class="ml-auto">
-                                    <a href="{{ route('daftar.matkul.kurikulum.create') }}"
-                                        class="btn btn-theme fa-plus">Tambah</a>
-                                </div>
+                                <a href="{{ route('daftar.matkul.kurikulum.create') }}" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah Matkul Kurikulum
+                                </a>
                             </div>
                         </div>
 
@@ -64,23 +66,31 @@
                                         <tbody>
                                             @foreach ($matkulkurikulum as $data)
                                                 <tr>
-                                                    <td>{{ $no }}</td>
+                                                    <td class="text-center">{{ $no }}</td>
                                                     <td>{{ $data->matkul->kode_matakuliah }}</td>
                                                     <td>{{ $data->matkul->nama }}</td>
-                                                    <td>{{ $data->kurikulum->nama }}</td>
-                                                    <td>{{ $data->matkul->sks }} SKS</td>
-                                                    <td>{{ $data->semester }}</td>
-                                                    <td> <span class="badge bg-primary text-white">Wajib</span>
+                                                    <td class="text-center">{{ $data->kurikulum->nama }}</td>
+                                                    <td class="text-center">{{ $data->matkul->sks }} SKS</td>
+                                                    <td class="text-center">{{ $data->semester }}</td>
+                                                    <td class="text-center">
+                                                        <span class="badge bg-primary text-white">Wajib</span>
                                                     </td>
-                                                    <td> <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                            data-target="#updateModal{{$data->id}}"><i class="fa-solid fa-pen"></i></button>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-info ml-auto"
+                                                            data-toggle="modal"
+                                                            data-target="#updateModal{{ $data->id }}">
+                                                            <i class="fa-solid fa-pen text-white"></i>
+                                                        </button>
                                                         <a href="{{ route('daftar.matkul.kurikulum.delete', $data->id) }}"
-                                                            class="btn btn-danger ml-auto"> <i class="fas fa-trash"></i></a>
+                                                            class="btn btn-danger ml-auto">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
-        
+
                                                 {{-- Modal Update --}}
-                                                <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{$data->id}}">
+                                                <div class="modal fade" tabindex="-1" role="dialog"
+                                                    id="updateModal{{ $data->id }}">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -90,22 +100,20 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ route('daftar.matkul.kurikulum.update', $data->id) }}"
+                                                            <form
+                                                                action="{{ route('daftar.matkul.kurikulum.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
-        
+
                                                                 <div class="modal-body">
-        
                                                                     <div class="form-group">
                                                                         <label for="update_semester"
                                                                             class="form-label">Semester</label>
                                                                         <select
-                                                                            class="form-control @error('update_semester')
-                                                                        is-invalid
-                                                                    @enderror"
+                                                                            class="form-control @error('update_semester') is-invalid @enderror"
                                                                             id="update_semester" name="update_semester">
-                                                                            <option>Semester</option>
+                                                                            <option value="">Pilih Semester</option>
                                                                             <option value="5"
                                                                                 {{ $data->semester == '5' ? 'selected' : '' }}>
                                                                                 5
@@ -120,61 +128,65 @@
                                                                             </option>
                                                                         </select>
                                                                         @error('update_semester')
-                                                                            <div id="update_semester" class="form-text text-danger">
+                                                                            <div id="update_semester"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
+
                                                                     <div class="form-group">
-                                                                        <label for="update_kurikulum" class="form-label">Pilih
-                                                                            Kurikulum</label>
+                                                                        <label for="update_kurikulum"
+                                                                            class="form-label">Kurikulum</label>
                                                                         <select
-                                                                            class="form-control @error('update_kurikulum')
-                                                                        is-invalid
-                                                                    @enderror"
+                                                                            class="form-control @error('update_kurikulum') is-invalid @enderror"
                                                                             id="update_kurikulum" name="update_kurikulum">
-                                                                            <option value="">Kurikulum</option>
-                                                                            @foreach ($kurikulum as $dataKurikulum)
-                                                                                <option value="{{ $dataKurikulum->id }}"
-                                                                                    {{ $data->id_kurikulum == $dataKurikulum->id ? 'selected' : '' }}>
-                                                                                    {{ $dataKurikulum->nama }}</option>
+                                                                            <option value="">Pilih Kurikulum</option>
+                                                                            @foreach ($kurikulum_all as $item)
+                                                                                <option value="{{ $item->id }}"
+                                                                                    {{ $data->id_kurikulum == $item->id ? 'selected' : '' }}>
+                                                                                    {{ $item->nama }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         @error('update_kurikulum')
-                                                                            <div id="update_kurikulum" class="form-text text-danger">
+                                                                            <div id="update_kurikulum"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
+
                                                                     <div class="form-group">
-                                                                        <label for="update_matkul" class="form-label">Pilih Mata
+                                                                        <label for="update_matkul" class="form-label">Mata
                                                                             Kuliah</label>
                                                                         <select
-                                                                            class="form-control @error('update_matkul')
-                                                                        is-invalid
-                                                                    @enderror"
+                                                                            class="form-control @error('update_matkul') is-invalid @enderror"
                                                                             id="update_matkul" name="update_matkul">
-                                                                            <option value="">Mata Kuliah</option>
+                                                                            <option value="">Pilih Mata Kuliah
+                                                                            </option>
                                                                             @foreach ($matkul as $dataMatkul)
-                                                                                <option value="{{ $dataMatkul->id }}" {{ $data->id_matkul == $dataMatkul->id ? 'selected' : '' }}>
+                                                                                <option value="{{ $dataMatkul->id }}"
+                                                                                    {{ $data->id_matkul == $dataMatkul->id ? 'selected' : '' }}>
                                                                                     {{ $dataMatkul->nama }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         @error('update_matkul')
-                                                                            <div id="update_matkul" class="form-text text-danger">
+                                                                            <div id="update_matkul"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
-        
                                                                 </div>
+
                                                                 <div class="modal-footer bg-whitesmoke br">
                                                                     <button type="button" class="btn btn-cancel"
                                                                         data-dismiss="modal">Batal</button>
-                                                                    <button type="submit" class="btn btn-submit">Simpan</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-submit">Simpan</button>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
-        
+
                                                 @php
                                                     $no++;
                                                 @endphp
@@ -183,8 +195,8 @@
                                     </table>
                                 </div>
                             </div>
-    
-                        </div>  
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -201,19 +213,4 @@
 
     {{-- Modal JS --}}
     <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
-
-    <!-- JS Libraies -->
-    {{-- <script src="{{ asset('assets/modules/datatables/datatables.min.js') }} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js')}} "></script> --}}
-    {{-- <script src="{{ asset ('assets/modules/jquery-ui/jquery-ui.min.js')}} "></script> --}}
-
-    <!-- Page Specific JS File -->
-    {{-- <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-    </script> --}}
 @endsection

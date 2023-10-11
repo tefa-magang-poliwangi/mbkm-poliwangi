@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
 use App\Models\PenilaianMagangExt;
+use App\Models\Periode;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,9 +20,11 @@ class MagangExternalController extends Controller
     {
         $data = [
             'prodi' => Prodi::all(),
-            'magangext' => MagangExt::all(),
+            'magang_ext' => MagangExt::all(),
+            'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
-        return view('pages.prodi.data-magang.index', $data);
+
+        return view('pages.prodi.data-magang-external.index', $data);
     }
 
     /**
@@ -44,13 +47,15 @@ class MagangExternalController extends Controller
     {
         $validated = $request->validate([
             'create_name' => ['required', 'string'],
+            'create_id_periode' => ['required'],
         ]);
 
         $magangext = new MagangExt();
         $magangext->name = $validated['create_name'];
+        $magangext->id_periode = $validated['create_id_periode'];
         $magangext->save();
 
-        Alert::success('Success', 'Data Magang Berhasil Ditambahkan');
+        Alert::success('Success', 'Data Magang External Berhasil Ditambahkan');
 
         return redirect()->route('daftar.data.magangext.index');
     }
@@ -61,15 +66,9 @@ class MagangExternalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_magang_ext)
+    public function show($id)
     {
-        $data = [
-            'id_magang_ext' => $id_magang_ext,
-            'kriteria' => PenilaianMagangExt::all(),
-            'magangext' => MagangExt::all(),
-        ];
-
-        return view('pages.prodi.data-magang.index', $data);
+        //
     }
 
     /**
@@ -94,13 +93,15 @@ class MagangExternalController extends Controller
     {
         $validated = $request->validate([
             'update_name' => ['required', 'string'],
+            'update_id_periode' => ['required', 'string'],
         ]);
 
         MagangExt::where('id', $id)->update([
             'name' => $validated['update_name'],
+            'id_periode' => $validated['update_id_periode'],
         ]);
 
-        Alert::success('Success', 'Data Magang Berhasil DiUpdate');
+        Alert::success('Success', 'Data Magang External Berhasil Diubah');
 
         return redirect()->route('daftar.data.magangext.index');
     }
@@ -116,7 +117,7 @@ class MagangExternalController extends Controller
         $magangext = MagangExt::findOrFail($id);
         $magangext->delete();
 
-        Alert::success('Success', 'Data Magang Berhasil Dihapus');
+        Alert::success('Success', 'Data Magang External Berhasil Dihapus');
 
         return redirect()->route('daftar.data.magangext.index');
     }

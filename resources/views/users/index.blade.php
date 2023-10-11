@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -23,8 +23,10 @@
                                 <h5 class="justify-start my-auto text-theme">Manajemen User</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm ml-auto">Add new
-                                    user</a>
+                                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Add new user
+                                </a>
                             </div>
                         </div>
 
@@ -32,7 +34,7 @@
                             <table class="table table-striped" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th scope="col" width="1%" class="text-white">#</th>
+                                        <th scope="col" width="1%" class="text-white">No</th>
                                         <th scope="col" width="20%" class="text-white">Nama Permission</th>
                                         <th scope="col" width="20%" class="text-white">Email</th>
                                         <th scope="col" width="10%" class="text-white text-center">Username</th>

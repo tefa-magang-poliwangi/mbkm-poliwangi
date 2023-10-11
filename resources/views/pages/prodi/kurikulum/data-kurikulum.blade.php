@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Kurikulum | MBKM Poliwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -10,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -19,31 +21,12 @@
                                 <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('data.dosen.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah
+                                    Tambah Kurikulum
                                 </a>
                             </div>
                         </div>
-
-                        {{-- Filter Prodi Dosen --}}
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-6 col-lg-4">
-                                <div class="form-group">
-                                    <form action="{{ route('data.dosen.index') }}" method="GET">
-                                        <select class="form-control select2" name="prodi" onchange="this.form.submit()">
-                                            <option value="">Semua Prodi</option>
-                                            @foreach ($prodi as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>{{ $item->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="card-body py-0 mb-0">
@@ -127,27 +110,6 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label for="update_prodi" class="form-label">Pilih Prodi /
-                                                                    Jurusan</label>
-                                                                <select
-                                                                    class="form-control @error('update_prodi')
-                                                                    is-invalid
-                                                                @enderror"
-                                                                    id="update_prodi" name="update_prodi">
-                                                                    <option value="">Pilih prodi</option>
-                                                                    @foreach ($prodi as $dataprodi)
-                                                                        <option value="{{ $dataprodi->id }}"
-                                                                            {{ $item->id_prodi == $dataprodi->id ? 'selected' : '' }}>
-                                                                            {{ $dataprodi->nama }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('update_prodi')
-                                                                    <div id="update_prodi" class="form-text text-danger">
-                                                                        {{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-
-                                                            <div class="form-group">
                                                                 <label for="update_status" class="form-label">Status</label>
                                                                 <select
                                                                     class="form-control @error('update_status') is-invalid @enderror"
@@ -191,9 +153,6 @@
         </div>
 
     </section>
-    
-        
-    
 @endsection
 
 @section('script')

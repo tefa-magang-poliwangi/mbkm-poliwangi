@@ -16,10 +16,10 @@ class PeriodeController extends Controller
     public function index()
     {
         $data = [
-            'periode' => Periode::all(),
+            'periode' => Periode::orderBy('status', 'asc')->get(),
         ];
 
-        return view('pages.prodi.Periode.index', $data);
+        return view('pages.prodi.periode.index', $data);
     }
 
     /**
@@ -40,12 +40,14 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $request->validate([
             'create_semester' => ['required'],
             'create_tahun' => ['required'],
             'create_status' => ['required'],
         ]);
+
+        // Nonaktifkan semua periode yang sebelumnya aktif
+        Periode::where('status', 'Aktif')->update(['status' => 'Tidak Aktif']);
 
         Periode::create([
             'semester' => $validated['create_semester'],
@@ -89,11 +91,21 @@ class PeriodeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $periode = Periode::findOrFail($id);
+
         $validated = $request->validate([
             'update_semester' => ['required'],
             'update_tahun' => ['required'],
             'update_status' => ['required'],
         ]);
+
+        if ($periode->status = 'Aktif' && $request->update_status == "Tidak Aktif") {
+            Alert::error('Oops', 'Mohon Ubah Periode yang Tidak Aktif');
+            return redirect()->back();
+        } elseif ($periode->status = 'Tidak Aktif' && $request->update_status == "Aktif") {
+            // Nonaktifkan semua periode yang sebelumnya aktif
+            Periode::where('status', 'Aktif')->update(['status' => 'Tidak Aktif']);
+        }
 
         Periode::where('id', $id)->update([
             'semester' => $validated['update_semester'],
@@ -114,11 +126,17 @@ class PeriodeController extends Controller
      */
     public function destroy($id)
     {
-        $periode = Periode::findOrFail($id);
-        $periode->delete();
+        // $periode = Periode::findOrFail($id);
 
-        Alert::success('Success', 'Data Periode Berhasil Dihapus');
+        // if ($periode->status == 'Aktif') {
+        //     Alert::error('Oops', 'Data Periode Masih Aktif');
+        //     return redirect()->back();
+        // }
 
-        return redirect()->route('data.periode.index');
+        // $periode->delete();
+
+        // Alert::success('Success', 'Data Periode Berhasil Dihapus');
+
+        // return redirect()->route('data.periode.index');
     }
 }

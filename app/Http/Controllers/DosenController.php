@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\DosenImport;
 use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class DosenController extends Controller
 {
@@ -93,6 +96,25 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new DosenImport, $file);
+
+        return redirect()->back()->with('success', 'Data berhasil diimpor.');
+        // $spreadsheet = IOFactory::load('public/storage/file.xlsx');
+
+        // // Menulis file Excel XLS
+        // IOFactory::createWriter($spreadsheet, 'Xls')->save('public/storage/file.xls');
+        // Excel::import(new DosenImport, $request->excel);
+        // return back();
+    }
+
     public function show($id)
     {
         //

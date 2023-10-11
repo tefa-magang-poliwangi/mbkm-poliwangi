@@ -121,11 +121,11 @@
                             <span>Admin</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
                             <span>Mahasiswa</span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('data.dosen.index') }}"><i
                                 class="fas fa-solid fa-user-graduate"></i>
@@ -136,18 +136,6 @@
                         <a class="nav-link" href="{{ route('daftar.prodi.index') }}"><i
                                 class="fas fa-solid fa-school-flag"></i>
                             <span>Prodi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-solid fa-book"></i>
-                            <span>Matakuliah</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('daftar.kurikulum.index') }}"><i
-                                class="fas fa-solid fa-book-journal-whills"></i>
-
-                            <span>Kurikulum</span>
                         </a>
                     </li>
                     <li>
@@ -163,9 +151,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.mahasiswa.index') }}"><i
-                                class="fas fa-solid fa-right-left"></i>
-                            <span>Konversi Nilai</span>
+                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i
+                                class="fas fa-solid fa-calendar-day"></i>
+                            <span>Manajemen Periode</span>
                         </a>
                     </li>
                     <li>
@@ -179,7 +167,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="#">
                             <i class="fas fa-regular fa-file-lines"></i>
                             <span>Laporan Harian</span>
                         </a>
@@ -192,19 +180,6 @@
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-solid fa-file-circle-check"></i>
                             <span>Laporan Akhir</span>
-                        </a>
-                    </li>
-                    {{-- Manajemen Kelas --}}
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
-                            <i class="fas fa-solid fa-layer-group"></i>
-                            <span>Manajemen Kelas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('data.periode.index') }}"><i
-                                class="fas fa-solid fa-calendar-day"></i>
-                            <span>Manajemen Periode</span>
                         </a>
                     </li>
                     {{-- Mitra Sidebar Menu --}}
@@ -258,13 +233,13 @@
                             <span>Kegiatanku</span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="nav-link" href="components-chat-box.html">Laporan Harian</a>
+                                <a class="nav-link" href="#">Laporan Harian</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>
+                                <a class="nav-link" href="#">Laporan Mingguan</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="components-gallery.html">Laporan Akhir</a>
+                                <a class="nav-link" href="#">Laporan Akhir</a>
                             </li>
                         </ul>
                     </li>
@@ -276,7 +251,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li @endrole @role('dosen') {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
@@ -325,7 +300,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i class="fas fa-solid fa-book"></i>
+                        <a class="nav-link" href="{{ route('daftar.matakuliah.index') }}"><i
+                                class="fas fa-solid fa-book"></i>
                             <span>Matakuliah</span>
                         </a>
                     </li>
@@ -342,16 +318,17 @@
                             <span>Matkul Kurikulum</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i class="fas fa-building"></i>
-                            <span>Data Magang External</span>
-                        </a>
-                    </li>
                     {{-- Manajemen Kelas --}}
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
                             <i class="fas fa-solid fa-layer-group"></i>
                             <span>Manajemen Kelas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.data.magangext.index') }}"><i
+                                class="fas fa-building"></i>
+                            <span>Data Magang External</span>
                         </a>
                     </li>
                     <li>

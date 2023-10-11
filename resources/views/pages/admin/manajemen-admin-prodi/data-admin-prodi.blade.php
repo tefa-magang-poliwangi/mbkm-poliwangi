@@ -1,6 +1,7 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Daftar Admin | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Admin Prodi | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -13,13 +14,13 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Data Admin</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen Admin Prodi</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
@@ -35,10 +36,10 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-center text-white" width="10%">No</th>
-                                        <th class="text-white text-center" width="10%">Nama</th>
-                                        <th class="text-white text-center" width="10%">Username</th>
-                                        <th class="text-white text-center" width="10%">Program Studi</th>
-                                        <th class="text-white text-center" width="10%">Aksi</th>
+                                        <th class="text-white text-center">Nama</th>
+                                        <th class="text-white text-center">Username</th>
+                                        <th class="text-white text-center">Program Studi</th>
+                                        <th class="text-white text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 @php
@@ -48,20 +49,15 @@
                                 <tbody>
                                     @foreach ($admins as $data)
                                         <tr>
-                                            <td class="text-center">
-                                                {{ $no }}
-                                            </td>
-                                            <td>{{ $data->user->name }}</td>
-                                            <td>
-                                                {{ $data->user->username }}
-                                            </td>
-                                            <td>
-                                                {{ $data->prodi->nama }}
-                                            </td>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->user->name }}</td>
+                                            <td class="text-center">{{ $data->user->username }}</td>
+                                            <td>{{ $data->prodi->nama }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('data.admin.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"> <i
-                                                        class="fa-solid fas fa-trash "></i></a>
+                                                    class="btn btn-danger ml-auto">
+                                                    <i class="fa-solid fas fa-trash "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @php
@@ -99,7 +95,7 @@
                                     @enderror"
                                 id="create_user" name="create_user">
                                 <option value="">User</option>
-                                @foreach ($users as $datauser)
+                                @foreach ($user_option as $datauser)
                                     <option value="{{ $datauser->id }}">{{ $datauser->name }}</option>
                                 @endforeach
                             </select>

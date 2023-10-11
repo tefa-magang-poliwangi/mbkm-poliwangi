@@ -9,8 +9,6 @@ use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
-
-
 class AdminProdiController extends Controller
 {
     /**
@@ -20,8 +18,12 @@ class AdminProdiController extends Controller
      */
     public function index()
     {
+        $usersWithAdminProdiRoles = User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin-prodi');
+        })->get();
 
         $data = [
+            'user_option' => $usersWithAdminProdiRoles,
             'users' => User::all(),
             'admins' => AdminProdi::all(),
             'prodi' => Prodi::all()
@@ -50,7 +52,6 @@ class AdminProdiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-
             'create_user' => ['required'],
             'create_prodi' => ['required'],
 

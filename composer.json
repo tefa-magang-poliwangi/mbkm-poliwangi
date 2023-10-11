@@ -12,7 +12,10 @@
         "laravel/tinker": "^2.7",
         "laravelcollective/html": "^6.4",
         "laravolt/indonesia": "^0.34.0",
+        "maatwebsite/excel": "^3.1.4",
+        "phpoffice/phpspreadsheet": "^1.29",
         "realrashid/sweet-alert": "^7.1",
+        "spatie/laravel-html": "^3.2",
         "spatie/laravel-permission": "^5.11"
     },
     "require-dev": {

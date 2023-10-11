@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Mahasiswa | MBKM Poliwangi</title>
+    <title>Manajemen Kriteria Magang External | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -24,8 +24,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
-                                        class="fa-solid fa-plus"></i> &ensp; Tambah
-                                    Kriteria</button>
+                                        class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria</button>
                             </div>
                         </div>
 
@@ -35,10 +34,10 @@
                                     <table class="table table-striped" id="table-1">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center text-white">No</th>
+                                                <th width="10%" class="text-center text-white">No</th>
                                                 <th class="text-center text-white">Kriteria Penilaian</th>
-                                                <th class="text-center text-white">Edit</th>
-                                                <th class="text-center text-white">Hapus</th>
+                                                <th width="10%" class="text-center text-white">Edit</th>
+                                                <th width="10%" class="text-center text-white">Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -50,18 +49,71 @@
                                                 <tr>
                                                     <td class="text-center">{{ $no }}</td>
                                                     <td class="text-center">{{ $data->penilaian }}</td>
-                                                    <td class="text-center"> <button type="button" class="btn btn-info ml-auto"
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-info ml-auto"
                                                             data-toggle="modal"
-                                                            data-target="#updateModal{{ $data->id }}"><i
-                                                                class="fa-solid fa-pen"></i></button>
+                                                            data-target="#updateModal{{ $data->id }}">
+                                                            <i class="fa-solid fa-pen"></i>
+                                                        </button>
                                                     </td>
-                                                    <td class="text-center"> <a href="{{ route('kriteria.penilaian.delete', [$id_magang_ext, $data->id]) }}"
-                                                            class="btn btn-danger ml-auto"> <i
-                                                                class="fa-solid fas fa-trash"></i></a></td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('kriteria.penilaian.delete', $data->id) }}"
+                                                            class="btn btn-danger ml-auto">
+                                                            <i class="fa-solid fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
-                                            @php
-                                                $no++;
-                                            @endphp
+
+                                                {{-- Modal Update Kriteria --}}
+                                                <div class="modal fade" tabindex="-1" role="dialog"
+                                                    id="updateModal{{ $data->id }}">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Edit Kriteria Penilaian</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <form
+                                                                action="{{ route('kriteria.penilaian.update', $data->id) }}"
+                                                                method="POST">
+                                                                @method('put')
+                                                                @csrf
+
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label for="update_kriteria"
+                                                                            class="form-label">Kriteria Penilaian</label>
+                                                                        <input id="update_kriteria" type="text"
+                                                                            class="form-control @error('update_kriteria') is-invalid @enderror"
+                                                                            name="update_kriteria"
+                                                                            placeholder="Nama kriteria"
+                                                                            value="{{ $data->penilaian }}">
+                                                                        @error('update_kriteria')
+                                                                            <div id="update_kriteria"
+                                                                                class="form-text text-danger">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer bg-whitesmoke br">
+                                                                    <button type="button" class="btn btn-cancel"
+                                                                        data-dismiss="modal">Batal</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-submit">Submit</button>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @php
+                                                    $no++;
+                                                @endphp
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -72,42 +124,42 @@
                 </div>
             </div>
         </div>
-    </section>
 
-     {{-- Modal Tambah Periode --}}
-     <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Kriteria Penilaian</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('kriteria.penilaian.store', $id_magang_ext) }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="create_kriteria" class="form-label">Kriteria Penilaian</label>
-                            <input id="create_kriteria" type="text"
-                                class="form-control @error('create_kriteria')
-                                is-invalid
-                            @enderror"
-                                name="create_kriteria">
-                            @error('create_kriteria')
-                                <div id="create_kriteria" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
+        {{-- Modal Tambah Kriteria --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Kriteria Penilaian</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('kriteria.penilaian.store', $id_magang_ext) }}" method="POST">
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="create_kriteria" class="form-label">Kriteria Penilaian</label>
+                                <input id="create_kriteria" type="text"
+                                    class="form-control @error('create_kriteria') is-invalid @enderror"
+                                    name="create_kriteria" placeholder="Nama kriteria">
+                                @error('create_kriteria')
+                                    <div id="create_kriteria" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </div>
-                </form>
+
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('script')

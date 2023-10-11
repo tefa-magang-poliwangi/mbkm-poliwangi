@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetailPenilaianMagangExt;
 use App\Models\Mahasiswa;
+use App\Models\NilaiMagangExt;
 use App\Models\PenilaianMagangExt;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,7 +18,7 @@ class InputKriteriaMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_magang_ext)
+    public function index($id_magang_ext, $id_nilai_magang_ext)
     {
         $user = User::findOrFail(Auth()->user()->id);
         $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
@@ -33,6 +34,7 @@ class InputKriteriaMahasiswaController extends Controller
             'kriteria_magang_ext' => PenilaianMagangExt::where('id_magang_ext', $id_magang_ext)->orderBy('penilaian', 'asc')->get(),
             'nilai_kriteria_mhs' => $data_nilai,
             'mahasiswa' => $mahasiswa,
+            'transkrip_mhs' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
         ];
 
         return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-input-nilai', $data);

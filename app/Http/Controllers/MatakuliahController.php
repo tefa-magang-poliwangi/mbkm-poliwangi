@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminProdi;
 use App\Models\Matkul;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MatakuliahController extends Controller
@@ -16,14 +18,13 @@ class MatakuliahController extends Controller
      */
     public function index(Request $request)
     {
-        $matkul = Matkul::query();
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
-        if ($request->prodi) {
-            $matkul->where('id_prodi', $request->prodi);
-        }
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $matakuliah = Matkul::where('id_prodi', $prodi_id)->get();
 
         $data =[
-            'matakuliah' => $matkul->get(),
+            'matakuliah' => $matakuliah,
             'prodi' => Prodi::all(),
             'request' => $request
         ];
@@ -54,18 +55,19 @@ class MatakuliahController extends Controller
      */
     public function store(Request $request)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
         $validated = $request->validate([
             'create_matkul' => ['required', 'string'],
             'create_kode_matkul' => ['required', 'string'],
             'create_sks' => ['required'],
-            'create_prodi' => ['required'],
         ]);
 
         Matkul::create([
             'nama' => $validated['create_matkul'],
             'kode_matakuliah' => $validated['create_kode_matkul'],
             'sks' => $validated['create_sks'],
-            'id_prodi' => $validated['create_prodi'],
+            'id_prodi' => $prodi_id,
         ]);
 
         Alert::success('Succsess', 'Data Matakuliah Berhasil Ditambahkan');
@@ -104,18 +106,19 @@ class MatakuliahController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
         $validated = $request->validate([
             'update_matkul' => ['required', 'string'],
             'update_kode_matkul' => ['required', 'string'],
             'update_sks' => ['required'],
-            'update_prodi' => ['required'],
         ]);
 
         Matkul::where('id', $id)->update([
             'nama' => $validated['update_matkul'],
             'kode_matakuliah' => $validated['update_kode_matkul'],
             'sks' => $validated['update_sks'],
-            'id_prodi' => $validated['update_prodi'],
+            'id_prodi' => $prodi_id,
         ]);
 
         Alert::success('Success', 'Data Matakuliah Berhasil Diupdate');

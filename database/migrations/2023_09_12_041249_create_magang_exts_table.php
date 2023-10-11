@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('magang_exts', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->nullable(false);
+            $table->unsignedBigInteger('id_periode')->nullable(false);
+            $table->foreign('id_periode')->references('id')->on('periodes')->onDelete('cascade');
             $table->timestamps();
         });
     }
