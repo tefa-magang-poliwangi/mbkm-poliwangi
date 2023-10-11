@@ -1,12 +1,12 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Dosen| MBKM Poliwangi</title>
+    <title>Tambah Dosen | MBKM Poliwangi</title>
 @endsection
 
 @section('content')
     <section>
-        <div class="row pt-5">
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">

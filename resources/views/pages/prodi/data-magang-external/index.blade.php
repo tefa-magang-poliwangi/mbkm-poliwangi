@@ -11,19 +11,19 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 5%">
-        <div class="row">
+    <section>
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start my-auto">Data Magang External</h5>
+                                <h5 class="justify-start my-auto">Manajemen Magang External</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal"
-                                    data-target="#tambahdataMagangext"><i class="fa-solid fa-plus"></i> &ensp; Tambah
-                                    Data Magang</button>
+                                    data-target="#tambahdataMagangext"><i class="fa-solid fa-plus"></i> &ensp; Tambah Magang
+                                    Ext</button>
                             </div>
                         </div>
                     </div>
@@ -96,9 +96,9 @@
                                                                     class="form-control @error('update_name') is-invalid @enderror"
                                                                     id="update_name" name="update_name"
                                                                     value="{{ $data->name }}"
-                                                                    placeholder="Masukkan Data Tempat Magang External">
+                                                                    placeholder="Masukkan Nama Tempat Magang External">
                                                                 @error('update_name')
-                                                                    <div id="update_name" class="form-text pb-1">
+                                                                    <div id="update_name" class="form-text text-danger pb-1">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -119,7 +119,7 @@
                                                                     @endforeach
                                                                 </select>
                                                                 @error('update_id_periode')
-                                                                    <div id="update_id_periode" class="form-text">
+                                                                    <div id="update_id_periode" class="form-text text-danger">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -145,58 +145,61 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- modall create --}}
-    <div class="modal fade" tabindex="-1" role="dialog" id="tambahdataMagangext">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Magang External</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        {{-- modal create --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="tambahdataMagangext">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Data Magang External</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('data.magangext.store') }}" method="POST">
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="create_name">Nama</label>
+                                <input type="text" class="form-control @error('create_name') is-invalid @enderror"
+                                    id="create_name" name="create_name"
+                                    placeholder="Masukkan Data Tempat Magang External">
+                                @error('create_name')
+                                    <div id="create_name" class="form-text text-danger pb-1">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="create_id_periode">Periode</label>
+                                <select class="form-control @error('create_id_periode') is-invalid @enderror"
+                                    id="create_id_periode" name="create_id_periode">
+                                    <option value="">Pilih Periode</option>
+                                    @foreach ($periodes as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->semester % 2 ? 'Semester Genap' : 'Semester Ganjil' }}
+                                            ({{ $item->tahun }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('create_id_periode')
+                                    <div id="create_id_periode" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-submit">Simpan</button>
+                        </div>
+                    </form>
                 </div>
-                <form action="{{ route('data.magangext.store') }}" method="POST">
-                    @csrf
-
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="create_name">Nama</label>
-                            <input type="text" class="form-control @error('create_name') is-invalid @enderror"
-                                id="create_name" name="create_name" placeholder="Masukkan Data Tempat Magang External">
-                            @error('create_name')
-                                <div id="create_name" class="form-text pb-1">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label" for="create_id_periode">Periode</label>
-                            <select class="form-control @error('create_id_periode') is-invalid @enderror"
-                                id="create_id_periode" name="create_id_periode">
-                                <option value="">Pilih Periode</option>
-                                @foreach ($periodes as $item)
-                                    <option value="{{ $item->id }}">
-                                        {{ $item->semester % 2 ? 'Semester Genap' : 'Semester Ganjil' }}
-                                        ({{ $item->tahun }})
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('create_id_periode')
-                                <div id="create_id_periode" class="form-text">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-submit">Simpan</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
+
+    </section>
+
 @endsection
 
 @section('script')

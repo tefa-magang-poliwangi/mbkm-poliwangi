@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Mitra | MBKM Poliwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -9,8 +11,8 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
-        <div class="row">
+    <section>
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -29,9 +31,6 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            @php
-                                $no = 1;
-                            @endphp
                             <table class="table table-hover table-borderless rounded" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
@@ -45,19 +44,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($formmitra as $data)
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($mitras as $data)
                                         <tr>
-                                            <td class="text-center text-white">{{ $no }}</td>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->sektor_industri->nama }}</td>
-                                            <td>{{ $data->kategori->nama }}</td>
-                                            <td>{{ $data->kota }}</td>
-                                            <td>{{ $data->status }}</td>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->nama }}</td>
+                                            <td class="text-center">{{ $data->sektor_industri->nama }}</td>
+                                            <td class="text-center">{{ $data->kategori->nama }}</td>
+                                            <td class="text-center">{{ $data->kota }}</td>
+                                            <td class="text-center">{{ $data->status }}</td>
                                             <td>
                                                 <a href="{{ route('formulir.mitra.edit', $data->id) }}"
-                                                    class="btn btn-info ml-auto"><i class="fa-solid fa-pen"></i></a>
+                                                    class="btn btn-info ml-auto">
+                                                    <i class="fa-solid fa-pen text-white"></i>
+                                                </a>
                                                 <a href="{{ route('formulir.mitra.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
+                                                    class="btn btn-danger ml-auto">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @php
@@ -71,7 +78,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('script')

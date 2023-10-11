@@ -155,8 +155,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/kriteria-penilaian', [KriteriaPenilaianController::class, 'index'])->name('kriteria.penilaian.index');
         Route::post('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/tambah-kriteria-penilaian', [KriteriaPenilaianController::class, 'store'])->name('kriteria.penilaian.store');
-        Route::put('/dashboard-admin/manajemen-kriteria/update/{id}', [KriteriaPenilaianController::class, 'update'])->name('kriteria.penilaian.update');
-        Route::get('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/{id}/hapus-kriteria-penilaian', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
+        Route::put('/dashboard-admin/manajemen-kriteria/update/{id_penilaian_magang_ext}', [KriteriaPenilaianController::class, 'update'])->name('kriteria.penilaian.update');
+        Route::get('/dashboard-admin/manajemen-kriteria/{id_penilaian_magang_ext}/hapus-kriteria-penilaian', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
 
         //route mitra
         Route::get('/dashboard-admin/formulir-mitra/index', [FormMitraController::class, 'index'])->name('formulir.mitra.index');
@@ -170,6 +170,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         Route::get('/dashboard-mitra/daftar-pendamping/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
         Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
+        Route::put('/dashboard-mitra/daftar-pendamping/update/{id_pl_mitra}', [PLMitraController::class, 'update'])->name('data.plmitra.update');
+        Route::get('/dashboard-mitra/daftar-pendamping/destroy/{id_pl_mitra}', [PLMitraController::class, 'destroy'])->name('data.plmitra.destroy');
 
         // Route API Laravolt Indonesia
         Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');

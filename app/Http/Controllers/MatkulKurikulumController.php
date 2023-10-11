@@ -46,7 +46,7 @@ class MatkulKurikulumController extends Controller
             'kurikulum' => Kurikulum::all(),
             'matkulkurikulum' => MatkulKurikulum::all(),
         ];
-        return view('pages.prodi.create-data-kurikulum', $data);
+        return view('pages.prodi.create-matkul-kurikulum', $data);
     }
 
     /**

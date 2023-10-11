@@ -12,18 +12,18 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-12">
-                <div class="card border-0">
+                <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start my-auto">Data Periode</h5>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto">Manajemen Periode</h5>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-2">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
-                                        class="fa-solid fa-plus"></i> &ensp; Tambah
-                                    Data Periode</button>
+                                        class="fa-solid fa-plus"></i> &ensp; Tambah Data Periode
+                                </button>
                             </div>
                         </div>
                     </div>

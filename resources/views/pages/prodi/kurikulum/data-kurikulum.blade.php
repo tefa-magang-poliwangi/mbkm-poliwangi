@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Kurikulum | MBKM Poliwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -10,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -21,7 +23,7 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah
+                                    Tambah Kurikulum
                                 </a>
                             </div>
                         </div>
@@ -151,9 +153,6 @@
         </div>
 
     </section>
-
-
-
 @endsection
 
 @section('script')

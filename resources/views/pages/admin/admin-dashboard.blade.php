@@ -6,18 +6,18 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
-            <div class="col-md-12">
-                <div class="card card-custom rounded ">
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-theme text-white rounded ">
                     <div class="card-body d-flex">
                         <h3 class="card-title my-auto">Dashboard Super Admin</h3>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 mx-auto">
-                <div class="card card-rounded">
-                    <div class="card-body">
+            <div class="col-12">
+                <div class="card card-rounded d-flex">
+                    <div class="card-body mx-auto my-auto">
                         <img src="{{ asset('assets/images/Group 1737.jpg') }}" class="img-fluid">
                     </div>
                 </div>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                 <a href="{{ route('roles.index') }}" class="tag-menu">
                     <div class="card card-hover card-rounded">
                         <div class="card-body">
@@ -41,7 +41,7 @@
                 </a>
             </div>
 
-            <div class="col-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                 <a href="{{ route('permissions.index') }}" class="tag-menu">
                     <div class="card card-hover card-rounded">
                         <div class="card-body">
@@ -57,7 +57,7 @@
                 </a>
             </div>
 
-            <div class="col-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                 <a href="{{ route('users.index') }}" class="tag-menu">
                     <div class="card card-hover card-rounded">
                         <div class="card-body">

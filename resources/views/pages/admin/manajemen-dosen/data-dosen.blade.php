@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Dosen | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Dosen | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -14,10 +14,10 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card border-0">
-                    <div class="">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Filter Prodi Dosen</h5>

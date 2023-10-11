@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mitra;
+use App\Models\PelamarMagang;
 use Illuminate\Http\Request;
 
 class MitraDaftarPelamarController extends Controller
@@ -15,7 +15,7 @@ class MitraDaftarPelamarController extends Controller
     public function index()
     {
         $data = [
-            'mitradaftarpelamar' => Mitra::all()
+            'daftar_pelamar' => PelamarMagang::all()
         ];
 
         return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);

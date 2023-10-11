@@ -20,7 +20,7 @@ class FormMitraController extends Controller
     public function index()
     {
         $data = [
-            'formmitra' => Mitra::all(),
+            'mitras' => Mitra::all(),
             'sektor_industri' => SektorIndustri::all(),
             'kategori' => Kategori::all(),
         ];
@@ -60,8 +60,8 @@ class FormMitraController extends Controller
             'provinces' => ['required'],
             'cities' => ['required'],
             'website' => ['required'],
-            'narahubung' => ['required','string','between:11,15'],
-            'email' => ['required','email'],
+            'narahubung' => ['required', 'string', 'between:11,15'],
+            'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
             'status' => ['required'],
@@ -93,16 +93,14 @@ class FormMitraController extends Controller
             'website' => $validated['website'],
             'narahubung' => $validated['narahubung'],
             'email' => $validated['email'],
-            // 'foto' => isset($saveData['foto']) ? $saveData['foto'] : null,
             'password_confirmation' => $validated['password_confirmation'],
             'status' => $validated['status'],
             'id_user' => $user_mitra->id,
         ]);
 
-        Alert::success('Success', 'Berhasil Menambahkan Data Mitra');
+        Alert::success('Success', 'Mitra Berhasil Ditambahkan');
 
         return redirect()->route('formulir.mitra.index');
-
     }
 
     /**
@@ -152,8 +150,8 @@ class FormMitraController extends Controller
             'provinces' => ['required'],
             'cities' => ['required'],
             'update_link_website' => ['required'],
-            'update_no_telephone' => ['required','string','between:11,15'],
-            'update_email' => ['required','email'],
+            'update_no_telephone' => ['required', 'string', 'between:11,15'],
+            'update_email' => ['required', 'email'],
             'update_password' => ['nullable', 'confirmed', 'min:8'],
             'update_password_konfirmasi' => ['nullable', 'min:8', Rules\Password::defaults()],
             'update_status' => ['required'],
@@ -182,10 +180,9 @@ class FormMitraController extends Controller
             'id_user' => $user->id,
         ]);
 
-        Alert::success('Success', 'Berhasil Update Data Mitra');
+        Alert::success('Success', 'Mitra Berhasil Diupdate');
 
         return redirect()->route('formulir.mitra.index');
-
     }
 
     /**
@@ -197,7 +194,11 @@ class FormMitraController extends Controller
     public function destroy($id)
     {
         $mitra = Mitra::findOrFail($id);
+        $user = User::findOrFail($mitra->id_user);
+        $user->delete();
         $mitra->delete();
+
+        Alert::success('Success', 'Mitra Berhasil Dihapus');
 
         return redirect()->route('formulir.mitra.index');
     }
