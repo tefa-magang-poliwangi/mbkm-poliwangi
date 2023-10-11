@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminProdi;
 use App\Models\Kelas;
 use App\Models\Periode;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KelasController extends Controller
 {
@@ -16,8 +19,13 @@ class KelasController extends Controller
      */
     public function index()
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $kelas = Kelas::where('id_prodi', $prodi_id)->get();
+
         $data = [
-            'kelas' => Kelas::all(),
+            'kelas' => $kelas,
             'prodis' => Prodi::all(),
             'periodes' => Periode::all(),
         ];
@@ -43,19 +51,23 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
         $validated = $request->validate([
             'create_tingkat_kelas' => ['required'],
             'create_abjad_kelas' => ['required'],
-            'create_id_prodi' => ['required'],
+
             'create_id_periode' => ['required'],
         ]);
 
         Kelas::create([
             'tingkat_kelas' => $validated['create_tingkat_kelas'],
             'abjad_kelas' => $validated['create_abjad_kelas'],
-            'id_prodi' => $validated['create_id_prodi'],
+            'id_prodi' => $prodi_id,
             'id_periode' => $validated['create_id_periode'],
         ]);
+
+        Alert::success('Success', 'Data Kelas Berhasil Ditambahan');
 
         return redirect()->route('manajemen.kelas.index');
     }
@@ -91,19 +103,22 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
         $validated = $request->validate([
             'update_tingkat_kelas' => ['required'],
             'update_abjad_kelas' => ['required'],
-            'update_id_prodi' => ['required'],
             'update_id_periode' => ['required'],
         ]);
 
         Kelas::where('id', $id)->update([
             'tingkat_kelas' => $validated['update_tingkat_kelas'],
             'abjad_kelas' => $validated['update_abjad_kelas'],
-            'id_prodi' => $validated['update_id_prodi'],
+            'id_prodi' => $prodi_id,
             'id_periode' => $validated['update_id_periode'],
         ]);
+
+        Alert::success('Success', 'Data Kelas Berhasil Diupdate');
 
         return redirect()->route('manajemen.kelas.index');
     }
@@ -118,6 +133,8 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $kelas->delete();
+
+        Alert::success('Success', 'Data Kelas Berhasil Dihapus');
 
         return redirect()->route('manajemen.kelas.index');
     }

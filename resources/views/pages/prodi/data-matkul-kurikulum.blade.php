@@ -72,15 +72,18 @@
                                                     <td>{{ $data->semester }}</td>
                                                     <td> <span class="badge bg-primary text-white">Wajib</span>
                                                     </td>
-                                                    <td> <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                            data-target="#updateModal{{$data->id}}"><i class="fa-solid fa-pen"></i></button>
+                                                    <td> <button type="button" class="btn btn-info ml-auto"
+                                                            data-toggle="modal"
+                                                            data-target="#updateModal{{ $data->id }}"><i
+                                                                class="fa-solid fa-pen"></i></button>
                                                         <a href="{{ route('daftar.matkul.kurikulum.delete', $data->id) }}"
                                                             class="btn btn-danger ml-auto"> <i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>
 
                                                 {{-- Modal Update --}}
-                                                <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{$data->id}}">
+                                                <div class="modal fade" tabindex="-1" role="dialog"
+                                                    id="updateModal{{ $data->id }}">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -90,7 +93,8 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ route('daftar.matkul.kurikulum.update', $data->id) }}"
+                                                            <form
+                                                                action="{{ route('daftar.matkul.kurikulum.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -120,12 +124,14 @@
                                                                             </option>
                                                                         </select>
                                                                         @error('update_semester')
-                                                                            <div id="update_semester" class="form-text text-danger">
+                                                                            <div id="update_semester"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="update_kurikulum" class="form-label">Pilih
+                                                                        <label for="update_kurikulum"
+                                                                            class="form-label">Pilih
                                                                             Kurikulum</label>
                                                                         <select
                                                                             class="form-control @error('update_kurikulum')
@@ -133,19 +139,21 @@
                                                                     @enderror"
                                                                             id="update_kurikulum" name="update_kurikulum">
                                                                             <option value="">Kurikulum</option>
-                                                                            @foreach ($kurikulum as $dataKurikulum)
-                                                                                <option value="{{ $dataKurikulum->id }}"
-                                                                                    {{ $data->id_kurikulum == $dataKurikulum->id ? 'selected' : '' }}>
-                                                                                    {{ $dataKurikulum->nama }}</option>
+                                                                            @foreach ($kurikulum_all as $item)
+                                                                                <option value="{{ $item->id }}"
+                                                                                    {{ $data->id_kurikulum == $item->id ? 'selected' : '' }}>
+                                                                                    {{ $item->nama }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         @error('update_kurikulum')
-                                                                            <div id="update_kurikulum" class="form-text text-danger">
+                                                                            <div id="update_kurikulum"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="update_matkul" class="form-label">Pilih Mata
+                                                                        <label for="update_matkul" class="form-label">Pilih
+                                                                            Mata
                                                                             Kuliah</label>
                                                                         <select
                                                                             class="form-control @error('update_matkul')
@@ -154,12 +162,14 @@
                                                                             id="update_matkul" name="update_matkul">
                                                                             <option value="">Mata Kuliah</option>
                                                                             @foreach ($matkul as $dataMatkul)
-                                                                                <option value="{{ $dataMatkul->id }}" {{ $data->id_matkul == $dataMatkul->id ? 'selected' : '' }}>
+                                                                                <option value="{{ $dataMatkul->id }}"
+                                                                                    {{ $data->id_matkul == $dataMatkul->id ? 'selected' : '' }}>
                                                                                     {{ $dataMatkul->nama }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         @error('update_matkul')
-                                                                            <div id="update_matkul" class="form-text text-danger">
+                                                                            <div id="update_matkul"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
@@ -168,7 +178,8 @@
                                                                 <div class="modal-footer bg-whitesmoke br">
                                                                     <button type="button" class="btn btn-cancel"
                                                                         data-dismiss="modal">Batal</button>
-                                                                    <button type="submit" class="btn btn-submit">Simpan</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-submit">Simpan</button>
                                                                 </div>
                                                             </form>
                                                         </div>

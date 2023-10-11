@@ -21,8 +21,9 @@ class MagangExternalController extends Controller
         $data = [
             'prodi' => Prodi::all(),
             'magang_ext' => MagangExt::all(),
-            'periodes' => Periode::all(),
+            'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
+
         return view('pages.prodi.data-magang.index', $data);
     }
 

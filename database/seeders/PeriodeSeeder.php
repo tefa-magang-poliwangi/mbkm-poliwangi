@@ -17,8 +17,8 @@ class PeriodeSeeder extends Seeder
     {
         Periode::create([
             'id' => 1,
-            'semester' => '6',
-            'tahun' => '2023',
+            'semester' => 2,
+            'tahun' => 2023,
             'status' => 'Aktif',
         ]);
     }
