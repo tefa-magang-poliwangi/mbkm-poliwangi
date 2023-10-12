@@ -23,10 +23,17 @@ class KurikulumController extends Controller
         // Ambil daftar mahasiswa berdasarkan prodi_id
         $kurikulum = Kurikulum::where('id_prodi', $prodi_id)->get();
 
+        $kurikulum = Kurikulum::query();
+
+        if ($request->prodi) {
+            // Memastikan $request->prodi tidak kosong atau null sebelum digunakan dalam kueri
+            $kurikulum->where('id_prodi', $request->prodi);
+        }
+
         $data = [
             'kurikulums' => $kurikulum,
             'prodi' => Prodi::all(),
-            'request' => $request
+            'request' => $request,
         ];
 
         return view('pages.prodi.kurikulum.data-kurikulum', $data);
