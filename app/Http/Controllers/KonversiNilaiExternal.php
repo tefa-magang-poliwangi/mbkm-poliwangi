@@ -12,7 +12,6 @@ use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;

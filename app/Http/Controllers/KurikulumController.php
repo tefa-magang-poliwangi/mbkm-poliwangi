@@ -69,7 +69,8 @@ class KurikulumController extends Controller
         ]);
 
         Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan');
-        return redirect()->route('daftar.kurikulum.index');
+
+        return redirect()->route('manajemen.kurikulum.index');
     }
 
     /**
@@ -119,7 +120,7 @@ class KurikulumController extends Controller
 
         Alert::success('Success', 'Data Kurikulum Berhasil Diupdate');
 
-        return redirect()->route('daftar.kurikulum.index');
+        return redirect()->route('manajemen.kurikulum.index');
     }
 
     /**
@@ -135,6 +136,6 @@ class KurikulumController extends Controller
 
         Alert::success('Success', 'Data Kurikulum Berhasil Dihapus');
 
-        return redirect()->route('daftar.kurikulum.index');
+        return redirect()->route('manajemen.kurikulum.index');
     }
 }

@@ -23,7 +23,7 @@ class MatakuliahController extends Controller
         // Ambil daftar mahasiswa berdasarkan prodi_id
         $matakuliah = Matkul::where('id_prodi', $prodi_id)->get();
 
-        $data =[
+        $data = [
             'matakuliah' => $matakuliah,
             'prodi' => Prodi::all(),
             'request' => $request
@@ -44,7 +44,6 @@ class MatakuliahController extends Controller
         ];
 
         return view('pages.prodi.matkul.create', $data);
-
     }
 
     /**
@@ -72,7 +71,7 @@ class MatakuliahController extends Controller
 
         Alert::success('Succsess', 'Data Matakuliah Berhasil Ditambahkan');
 
-        return redirect()->route('daftar.matakuliah.index');
+        return redirect()->route('manajemen.matakuliah.index');
     }
 
     /**
@@ -122,8 +121,7 @@ class MatakuliahController extends Controller
         ]);
 
         Alert::success('Success', 'Data Matakuliah Berhasil Diupdate');
-        return redirect()->route('daftar.matakuliah.index');
-
+        return redirect()->route('manajemen.matakuliah.index');
     }
 
     /**
@@ -140,6 +138,6 @@ class MatakuliahController extends Controller
         Alert::success('Success', 'Data Matakuliah Berhasil Dihapus');
 
 
-        return redirect()->route('daftar.matakuliah.index');
+        return redirect()->route('manajemen.matakuliah.index');
     }
 }

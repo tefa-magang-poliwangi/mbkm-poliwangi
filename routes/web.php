@@ -7,9 +7,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
+use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
-use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
@@ -46,198 +46,182 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
-    // Landing Page and Logout Routes
+    // Route Landing page dan logout route
     Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
     Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
 
-    // Guest Routes
+    // Route Guest
     Route::group(['middleware' => ['guest']], function () {
-        // auth route
+        // Route Auth
         Route::get('/login', [AuthController::class, 'login'])->name('login.page');
         Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
     });
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
-        /**
-         * Route Super Admin
-         */
-        Route::get('/dashboard-admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
+        // # (Route Super Admin)
+        Route::get('/dashboard/admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
 
-        // (Route Data Master)
-        // Manajemen Dosen
-        Route::get('/dashboard-admin/manajemen-dosen', [DosenController::class, 'index'])->name('data.dosen.index');
-        Route::get('/dashboard-admin/manajemen-dosen/create', [DosenController::class, 'create'])->name('data.dosen.create');
-        Route::post('/dashboard-admin/manajemen-dosen/store', [DosenController::class, 'store'])->name('data.dosen.store');
-        Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('data.dosen.edit');
-        Route::put('/dashboard-admin/manajemen-dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('data.dosen.update');
-        Route::get('/dashboard-admin/manajemen-dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('data.dosen.destroy');
-        Route::post('/dashboard-admin/manajemen-dosen/import', [DosenController::class, 'import'])->name('data.dosen.import');
+        // Route Manajemen Dosen
+        Route::get('/manajemen/dosen', [DosenController::class, 'index'])->name('manajemen.dosen.index');
+        Route::get('/manajemen/dosen/create', [DosenController::class, 'create'])->name('manajemen.dosen.create');
+        Route::post('/manajemen/dosen/store', [DosenController::class, 'store'])->name('manajemen.dosen.store');
+        Route::get('/manajemen/dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('manajemen.dosen.edit');
+        Route::put('/manajemen/dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('manajemen.dosen.update');
+        Route::get('/manajemen/dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('manajemen.dosen.destroy');
+        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
 
-        // (Route Konversi Nilai Magang External)
-        Route::get('/daftar-konversi-nilai/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.mahasiswa.index');
-        Route::get('/daftar-konversi-nilai/create', [KonversiNilaiExternal::class, 'create'])->name('daftar.mahasiswa.create');
-        Route::get('/daftar-konversi-nilai/mahasiswa-{id_mahasiswa}/magang-ext-{id_magang_ext}/{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.mahasiswa.transkrip.index');
-        Route::post('/konversi-nilai/mahasiswa-external/{id_mahasiswa}/{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi_nilai.mahasiswa.external');
-        Route::get('/konversi-nilai/mahasiswa-external/{id}/delete', [KonversiNilaiExternal::class, 'destroy'])->name('konversi_nilai.mahasiswa.external.hapus');
-        Route::post('/konversi-nilai/mahasiswa-internal/{id_mahasiswa}/{id_matkul}/{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi_nilai.mahasiswa.internal');
+        // Route Transkrip Mahasiswa External dan Internal
+        Route::get('/daftar-transkrip-nilai/mahasiswa-external/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
+        Route::get('/daftar-transkrip-nilai/mahasiswa-external/create', [KonversiNilaiExternal::class, 'create'])->name('daftar.transkrip.mahasiswa.ext.create');
+        Route::get('/daftar-transkrip-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/magang_{id_magang_ext}/transkrip_{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.transkrip.mahasiswa.ext.show');
 
-        // (Route Prodi)
-        Route::get('/daftar-program-studi/index', [ProdiController::class, 'index'])->name('daftar.prodi.index');
-        Route::post('/daftar-program-studi/store', [ProdiController::class, 'store'])->name('daftar.prodi.store');
-        Route::get('/daftar-program-studi/delete/{id}', [ProdiController::class, 'destroy'])->name('daftar.prodi.delete');
+        // Route Konversi Mahasiswa External dan Internal
+        Route::post('/konversi-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/transkrip_{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi.nilai.mahasisa.ext.create');
+        Route::get('/konversi-nilai/mahasiswa-external/{id_nilai_konversi}/destroy', [KonversiNilaiExternal::class, 'destroy'])->name('konversi.nilai.mahasisa.ext.destroy');
+        Route::post('/konversi-nilai/mahasiswa-internal/mahasiswa_{id_mahasiswa}/matkul_{id_matkul}/lowongan_{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi.nilai.mahasisa.int.create');
 
-        /**
-         * Route Admin Prodi
-         */
-        Route::get('/dashboar-adminprodi', [AdminProdiPageController::class, 'dashboard_adminprodi'])->name('dashboard.admin.prodi.page');
+        // Route Manajemen Prodi
+        Route::get('/manajemen/prodi', [ProdiController::class, 'index'])->name('manajemen.prodi.index');
+        Route::post('/manajemen/prodi/store', [ProdiController::class, 'store'])->name('manajemen.prodi.store');
+        Route::get('/manajemen/prodi/{id_prodi}/destroy', [ProdiController::class, 'destroy'])->name('manajemen.prodi.destroy');
 
-        // Manajemen Mahasiswa
-        Route::get('/dashboard-admin/manajemen-mahasiswa', [MahasiswaController::class, 'index'])->name('data.mahasiswa.index');
-        Route::get('/dashboard-admin/manajemen-mahasiswa/create', [MahasiswaController::class, 'create'])->name('data.mahasiswa.create');
-        Route::post('/dashboard-admin/manajemen-mahasiswa/store', [MahasiswaController::class, 'store'])->name('data.mahasiswa.store');
-        Route::get('/dashboard-admin/manajemen-mahasiswa/{id_mahasiswa}/edit', [MahasiswaController::class, 'edit'])->name('data.mahasiswa.edit');
-        Route::put('/dashboard-admin/manajemen-mahasiswa/{id_mahasiswa}/update', [MahasiswaController::class, 'update'])->name('data.mahasiswa.update');
-        Route::get('/dashboard-admin/manajemen-mahasiswa/{id_mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('data.mahasiswa.destroy');
+        // # (Route Admin Prodi)
+        Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_adminprodi'])->name('dashboard.admin.prodi.page');
 
-        // Manajemen Admin
-        Route::get('/dashboard-admin/data-admin', [AdminProdiController::class, 'index'])->name('data.admin.index');
-        Route::get('/dashboard-admin/data-admin/create', [AdminProdiController::class, 'create'])->name('data.admin.create');
-        Route::post('/dashboard-admin/data-admin/store', [AdminProdiController::class, 'store'])->name('data.admin.store');
-        Route::get('/dashboard-admin/data-admin/delete/{id}', [AdminProdiController::class, 'destroy'])->name('data.admin.delete');
+        // Route Manajemen Mahasiswa
+        Route::get('/manajemen/mahasiswa', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');
+        Route::get('/manajemen/mahasiswa/create', [MahasiswaController::class, 'create'])->name('manajemen.mahasiswa.create');
+        Route::post('/manajemen/mahasiswa/store', [MahasiswaController::class, 'store'])->name('manajemen.mahasiswa.store');
+        Route::get('/manajemen/mahasiswa/{id_mahasiswa}/edit', [MahasiswaController::class, 'edit'])->name('manajemen.mahasiswa.edit');
+        Route::put('/manajemen/mahasiswa/{id_mahasiswa}/update', [MahasiswaController::class, 'update'])->name('manajemen.mahasiswa.update');
+        Route::get('/manajemen/mahasiswa/{id_mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('manajemen.mahasiswa.destroy');
 
-        // (Route Kurikulum)
-        Route::get('/daftar-kurikulum/index', [KurikulumController::class, 'index'])->name('daftar.kurikulum.index');
-        Route::get('/daftar-kurikulum/create', [KurikulumController::class, 'create'])->name('daftar.kurikulum.create');
-        Route::post('/daftar-kurikulum/store', [KurikulumController::class, 'store'])->name('daftar.kurikulum.store');
-        Route::put('/daftar-kurikulum/update/{id}', [KurikulumController::class, 'update'])->name('daftar.kurikulum.update');
-        Route::get('/daftar-kurikulum/delete/{id}', [KurikulumController::class, 'destroy'])->name('daftar.kurikulum.delete');
+        // Route Manajemen Admin
+        Route::get('/manajemen/admin-prodi', [AdminProdiController::class, 'index'])->name('manajemen.admin.prodi.index');
+        Route::get('/manajemen/admin-prodi/create', [AdminProdiController::class, 'create'])->name('manajemen.admin.prodi.create');
+        Route::post('/manajemen/admin-prodi/store', [AdminProdiController::class, 'store'])->name('manajemen.admin.prodi.store');
+        Route::get('/manajemen/admin-prodi/{id_admin_prodi}/destroy', [AdminProdiController::class, 'destroy'])->name('manajemen.admin.prodi.destroy');
 
-        // (Route Matakuliah)
-        Route::get('/daftar-matakuliah/index', [MatakuliahController::class, 'index'])->name('daftar.matakuliah.index');
-        Route::get('/daftar-matakuliah/create', [MatakuliahController::class, 'create'])->name('daftar.matakuliah.create');
-        Route::post('/daftar-matakuliah/store', [MatakuliahController::class, 'store'])->name('daftar.matakuliah.store');
-        Route::put('/daftar-matakuliah/update/{id}', [MatakuliahController::class, 'update'])->name('daftar.matakuliah.update');
-        Route::get('/daftar-matakuliah/delete/{id}', [MatakuliahController::class, 'destroy'])->name('daftar.matakuliah.delete');
+        // Route Manajemen Matakuliah
+        Route::get('/manajemen/matakuliah', [MatakuliahController::class, 'index'])->name('manajemen.matakuliah.index');
+        Route::get('/manajemen/matakuliah/create', [MatakuliahController::class, 'create'])->name('manajemen.matakuliah.create');
+        Route::post('/manajemen/matakuliah/store', [MatakuliahController::class, 'store'])->name('manajemen.matakuliah.store');
+        Route::put('/manajemen/matakuliah/{id_matkul}/update', [MatakuliahController::class, 'update'])->name('manajemen.matakuliah.update');
+        Route::get('/manajemen/matakuliah/{id_matkul}/destroy', [MatakuliahController::class, 'destroy'])->name('manajemen.matakuliah.destroy');
 
-        // (Route Matkul Kurikulum)
-        Route::get('/daftar-matkul-kurikulum/index', [MatkulKurikulumController::class, 'index'])->name('daftar.matkul.kurikulum.index');
-        Route::get('/daftar-matkul-kurikulum/create', [MatkulKurikulumController::class, 'create'])->name('daftar.matkul.kurikulum.create');
-        Route::post('/daftar-matkul-kurikulum/store', [MatkulKurikulumController::class, 'store'])->name('daftar.matkul.kurikulum.store');
-        Route::put('/daftar-matkul-kurikulum/update/{id}', [MatkulKurikulumController::class, 'update'])->name('daftar.matkul.kurikulum.update');
-        Route::get('/daftar-matkul-kurikulum/delete/{id}', [MatkulKurikulumController::class, 'destroy'])->name('daftar.matkul.kurikulum.delete');
+        // Route Manajemen Kurikulum
+        Route::get('/manajemen/kurikulum', [KurikulumController::class, 'index'])->name('manajemen.kurikulum.index');
+        Route::get('/manajemen/kurikulum/create', [KurikulumController::class, 'create'])->name('manajemen.kurikulum.create');
+        Route::post('/manajemen/kurikulum/store', [KurikulumController::class, 'store'])->name('manajemen.kurikulum.store');
+        Route::put('/manajemen/kurikulum/{id_kurikulum}/update', [KurikulumController::class, 'update'])->name('manajemen.kurikulum.update');
+        Route::get('/manajemen/kurikulum/{id_kurikulum}/destroy', [KurikulumController::class, 'destroy'])->name('manajemen.kurikulum.destroy');
 
-        // (Route Daftar Magang External)
-        Route::get('/daftar-data-magang-ext/index', [MagangExternalController::class, 'index'])->name('daftar.data.magangext.index');
-        Route::post('/daftar-data-magang-ext/store', [MagangExternalController::class, 'store'])->name('data.magangext.store');
-        Route::put('/daftar-data-magang-ext/update/{id}', [MagangExternalController::class, 'update'])->name('data.magangext.update');
-        Route::get('/daftar-data-magang-ext/delete/{id}', [MagangExternalController::class, 'destroy'])->name('data.magangext.delete');
+        // Route Manajemen Matakuliah Kurikulum
+        Route::get('/manajemen/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
+        Route::get('/manajemen/matakuliah-kurikulum/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
+        Route::post('/manajemen/matakuliah-kurikulum/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
+        Route::put('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/update', [MatkulKurikulumController::class, 'update'])->name('manajemen.matkul.kurikulum.update');
+        Route::get('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/destroy', [MatkulKurikulumController::class, 'destroy'])->name('manajemen.matkul.kurikulum.destroy');
 
-        // (Route Manajemen Kelas dan Peserta Kelas)
-        // route kelas
-        Route::get('/dashboard-admin/manajemen-kelas', [KelasController::class, 'index'])->name('manajemen.kelas.index');
-        Route::post('/dashboard-admin/manajemen-kelas/tambah-kelas', [KelasController::class, 'store'])->name('manajemen.kelas.store');
-        Route::put('/dashboard-admin/manajemen-kelas/{id_kelas}/edit-kelas', [KelasController::class, 'update'])->name('manajemen.kelas.update');
-        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/hapus-kelas', [KelasController::class, 'destroy'])->name('manajemen.kelas.destroy');
+        // Route Manajemen Magang External
+        Route::get('/manajemen/magang-external', [MagangExternalController::class, 'index'])->name('manajemen.magang.ext.index');
+        Route::post('/manajemen/magang-external/store', [MagangExternalController::class, 'store'])->name('manajemen.magang.ext.store');
+        Route::put('/manajemen/magang-external/{id_magang_ext}/update', [MagangExternalController::class, 'update'])->name('manajemen.magang.ext.update');
+        Route::get('/manajemen/magang-external/{id_magang_ext}/destroy', [MagangExternalController::class, 'destroy'])->name('manajemen.magang.ext.destroy');
 
-        // route peserta kelas
-        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/peserta-kelas', [PesertaKelasController::class, 'index'])->name('peserta.kelas.index');
-        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/tambah-peserta-kelas', [PesertaKelasController::class, 'create'])->name('peserta.kelas.create');
-        Route::post('/dashboard-admin/manajemen-kelas/{id_kelas}/tambah-peserta-kelas', [PesertaKelasController::class, 'store'])->name('peserta.kelas.store');
-        Route::get('/dashboard-admin/manajemen-kelas/{id_kelas}/{id_peserta_kelas}/hapus-peserta-kelas', [PesertaKelasController::class, 'destroy'])->name('peserta.kelas.destroy');
+        // Route Manajemen Kelas
+        Route::get('/manajemen/kelas', [KelasController::class, 'index'])->name('manajemen.kelas.index');
+        Route::post('/manajemen/kelas/store', [KelasController::class, 'store'])->name('manajemen.kelas.store');
+        Route::put('/manajemen/kelas/{id_kelas}/update', [KelasController::class, 'update'])->name('manajemen.kelas.update');
+        Route::get('/manajemen/kelas/{id_kelas}/destroy', [KelasController::class, 'destroy'])->name('manajemen.kelas.destroy');
 
-        //route periode
-        Route::get('/dashboard-admin/data-periode/index', [PeriodeController::class, 'index'])->name('data.periode.index');
-        Route::post('/dashboard-admin/data-periode/store', [PeriodeController::class, 'store'])->name('data.periode.store');
-        Route::put('/dashboard-admin/data-periode/update/{id}', [PeriodeController::class, 'update'])->name('data.periode.update');
+        // Route Manajemen Peserta Kelas
+        Route::get('/manajemen/peserta-kelas/{id_kelas}/index', [PesertaKelasController::class, 'index'])->name('manajemen.peserta.kelas.index');
+        Route::get('/manajemen/peserta-kelas/{id_kelas}/create', [PesertaKelasController::class, 'create'])->name('manajemen.peserta.kelas.create');
+        Route::post('/manajemen/peserta-kelas/{id_kelas}/store', [PesertaKelasController::class, 'store'])->name('manajemen.peserta.kelas.store');
+        Route::get('/manajemen/peserta-kelas/kelas_{id_kelas}/peserta_kelas_{id_peserta_kelas}/destroy', [PesertaKelasController::class, 'destroy'])->name('manajemen.peserta.kelas.destroy');
 
-        // (Route Daftar Peserta Magang External)
-        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/peserta-magang_ext', [PesertaMagangExtController::class, 'index'])->name('peserta.magang_ext.index');
-        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'create'])->name('peserta.magang_ext.create');
-        Route::post('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/tambah-peserta-magang_ext', [PesertaMagangExtController::class, 'store'])->name('peserta.magang_ext.store');
-        Route::get('/dashboard-admin/manajemen-magang_ext/{id_magang_ext}/{id_peserta_magang_ext}/hapus-peserta-magang_ext', [PesertaMagangExtController::class, 'destroy'])->name('peserta.magang_ext.destroy');
-        Route::get('/dashboard-admin/manajemen-maganag_ext/{id_magang_ext}/kriteria-penilaian', [MagangExternalController::class], 'show')->name('kriteria.magang_ext.show');
+        // Route Manajemen Periode
+        Route::get('/manajemen/periode', [PeriodeController::class, 'index'])->name('manajemen.periode.index');
+        Route::post('/manajemen/periode/store', [PeriodeController::class, 'store'])->name('manajemen.periode.store');
+        Route::put('/manajemen/periode/{id_periode}/update', [PeriodeController::class, 'update'])->name('manajemen.periode.update');
 
-        Route::get('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/kriteria-penilaian', [KriteriaPenilaianController::class, 'index'])->name('kriteria.penilaian.index');
-        Route::post('/dashboard-admin/manajemen-kriteria/{id_magang_ext}/tambah-kriteria-penilaian', [KriteriaPenilaianController::class, 'store'])->name('kriteria.penilaian.store');
-        Route::put('/dashboard-admin/manajemen-kriteria/update/{id_penilaian_magang_ext}', [KriteriaPenilaianController::class, 'update'])->name('kriteria.penilaian.update');
-        Route::get('/dashboard-admin/manajemen-kriteria/{id_penilaian_magang_ext}/hapus-kriteria-penilaian', [KriteriaPenilaianController::class, 'destroy'])->name('kriteria.penilaian.delete');
+        // Route Manajemen Kategori
+        Route::get('/manajemen/kategori', [KategoriController::class, 'index'])->name('manajemen.kategori.index');
+        Route::get('/manajemen/kategori/create', [KategoriController::class, 'create'])->name('manajemen.kategori.create');
+        Route::post('/manajemen/kategori/store', [KategoriController::class, 'store'])->name('manajemen.kategori.store');
+        Route::put('/manajemen/kategori/{id_kategori}/update', [KategoriController::class, 'update'])->name('manajemen.kategori.update');
+        Route::get('/manajemen/kategori/{id_kategori}/destroy', [KategoriController::class, 'destroy'])->name('manajemen.kategori.destroy');
 
-        // Manajemen Kategori
-        Route::get('/dashboard-admin/kategori', [KategoriController::class, 'index'])->name('data.kategori.index');
-        Route::get('/dashboard-admin/kategori/create', [KategoriController::class, 'create'])->name('data.kategori.create');
-        Route::post('/dashboard-admin/kategori/store', [KategoriController::class, 'store'])->name('data.kategori.store');
-        Route::get('/dashboard-admin/kategori/delete{id}', [KategoriController::class, 'destroy'])->name('data.kategori.delete');
-        Route::put('/dashboard-admin/kategori/{id_kategori}/update', [KategoriController::class, 'update'])->name('data.kategori.update');
+        // Route Manajemen Sektor Industri
+        Route::get('/manajemen/sektor-industri', [SektorIndustriController::class, 'index'])->name('manajemen.sektor.industri.index');
+        Route::get('/manajemen/sektor-industri/create', [SektorIndustriController::class, 'create'])->name('manajemen.sektor.industri.create');
+        Route::post('/manajemen/sektor-industri/store', [SektorIndustriController::class, 'store'])->name('manajemen.sektor.industri.store');
+        Route::put('/manajemen/sektor-industri/{id_sektor_industri}/update', [SektorIndustriController::class, 'update'])->name('manajemen.sektor.industri.update');
+        Route::get('/manajemen/sektor-industri/{id_sektor_industri}/destroy', [SektorIndustriController::class, 'destroy'])->name('manajemen.sektor.industri.destroy');
 
-        // Manajemen Sektor Industri
-        Route::get('/dashboard-admin/sektor-industri', [SektorIndustriController::class, 'index'])->name('data.sektor_industri.index');
-        Route::get('/dashboyard-admin/sektor-industri/create', [SektorIndustriController::class, 'create'])->name('data.sektor_industri.create');
-        Route::post('/dashboard-admin/sektor-industri/store', [SektorIndustriController::class, 'store'])->name('data.sektor_industri.store');
-        Route::get('/dashboard-admin/sektor-industri/delete{id}', [SektorIndustriController::class, 'destroy'])->name('data.sektor_industri.delete');
-        Route::put('/dashboard-admin/sektor-industri/{id_sektor_industri}', [SektorIndustriController::class, 'update'])->name('data.sektor_industri.update');
+        // Route Manajemen Peserta Magang External
+        Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}', [PesertaMagangExtController::class, 'index'])->name('manajemen.peserta.magang.ext.index');
+        Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/create', [PesertaMagangExtController::class, 'create'])->name('manajemen.peserta.magang.ext.create');
+        Route::post('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/store', [PesertaMagangExtController::class, 'store'])->name('manajemen.peserta.magang.ext.store');
+        Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/peserta_magang_ext_{id_peserta_magang_ext}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
 
-        //route mitra
-        Route::get('/dashboard-mitra/mitra-lowongan/index', [LowonganController::class, 'index'])->name('lowongan.mitra.index');
-        Route::get('/dashboard-admin/formulir-mitra/index', [FormMitraController::class, 'index'])->name('formulir.mitra.index');
-        Route::get('/dashboard-admin/formulir-mitra/ceate', [FormMitraController::class, 'create'])->name('formulir.mitra.create');
-        Route::post('/dashboard-admin/formulir-mitra/store', [FormMitraController::class, 'store'])->name('formulir.mitra.store');
-        Route::get('/dashboard-admin/formulir-mitra/edit/{id}', [FormMitraController::class, 'edit'])->name('formulir.mitra.edit');
-        Route::put('/dashboard-admin/formulir-mitra/update/{id}', [FormMitraController::class, 'update'])->name('formulir.mitra.update');
-        Route::get('/dashboard-admin/formulir-mitra/delete/{id}', [FormMitraController::class, 'destroy'])->name('formulir.mitra.delete');
+        // Route Manajemen Kriteria
+        Route::get('/manajemen/kriteria/{id_magang_ext}/index', [KriteriaPenilaianController::class, 'index'])->name('manajemen.kriteria.index');
+        Route::post('/manajemen/kriteria/{id_magang_ext}/store', [KriteriaPenilaianController::class, 'store'])->name('manajemen.kriteria.store');
+        Route::put('/manajemen/kriteria/{id_penilaian_magang_ext}/update', [KriteriaPenilaianController::class, 'update'])->name('manajemen.kriteria.update');
+        Route::get('/manajemen/kriteria/{id_penilaian_magang_ext}/destroy', [KriteriaPenilaianController::class, 'destroy'])->name('manajemen.kriteria.destroy');
 
-        Route::get('/dashboard-admin/mitra-daftar-pelamar', [MitraDaftarPelamarController::class, 'index'])->name('daftar-pelamar.mitra.page');
+        // Route Manajemen Mitra
+        Route::get('/manajemen/mitra', [FormMitraController::class, 'index'])->name('manajemen.mitra.index');
+        Route::get('/manajemen/mitra/create', [FormMitraController::class, 'create'])->name('manajemen.mitra.create');
+        Route::post('/manajemen/mitra/store', [FormMitraController::class, 'store'])->name('manajemen.mitra.store');
+        Route::get('/manajemen/mitra/{id_mitra}/edit', [FormMitraController::class, 'edit'])->name('manajemen.mitra.edit');
+        Route::put('/manajemen/mitra/{id_mitra}/update', [FormMitraController::class, 'update'])->name('manajemen.mitra.update');
+        Route::get('/manajemen/mitra/{id_mitra}/destroy', [FormMitraController::class, 'destroy'])->name('manajemen.mitra.destroy');
 
-        Route::get('/dashboard-mitra/daftar-pendamping/index', [PLMitraController::class, 'index'])->name('data.plmitra.index');
-        Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
-        Route::put('/dashboard-mitra/daftar-pendamping/update/{id_pl_mitra}', [PLMitraController::class, 'update'])->name('data.plmitra.update');
-        Route::get('/dashboard-mitra/daftar-pendamping/destroy/{id_pl_mitra}', [PLMitraController::class, 'destroy'])->name('data.plmitra.destroy');
+        // Route Manajemen Lowongan Mitra
+        Route::get('/manajemen/lowongan-mitra', [LowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
 
-        // Route API Laravolt Indonesia
-        Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
-        Route::get('cities', 'DependentDropdownController@cities')->name('cities');
-        Route::get('districts', 'DependentDropdownController@districts')->name('districts');
-        Route::get('villages', 'DependentDropdownController@villages')->name('villages');
+        // Route Manajemen Pelamar Mitra
+        Route::get('/manajemen/pelamar-mitra', [MitraDaftarPelamarController::class, 'index'])->name('manajemen.pelamar.mitra.index');
 
-        /**
-         * Route Dosen
-         */
-        Route::get('/dashboard-dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
+        // Route Manajemen Pendamping Lapang Mitra
+        Route::get('/manajemen/pendamping-lapang-mitra', [PLMitraController::class, 'index'])->name('manajemen.pendamping.lapang.mitra.index');
+        Route::post('/manajemen/pendamping-lapang-mitra/store', [PLMitraController::class, 'store'])->name('manajemen.pendamping.lapang.mitra.store');
+        Route::put('/manajemen/pendamping-lapang-mitra/{id_pl_mitra}/update', [PLMitraController::class, 'update'])->name('manajemen.pendamping.lapang.mitra.update');
+        Route::get('/manajemen/pendamping-lapang-mitra/{id_pl_mitra}/destroy', [PLMitraController::class, 'destroy'])->name('manajemen.pendamping.lapang.mitra.destroy');
 
-        // route kaprodi
-        Route::get('/dashboard-dosen/daftar-dosen-wali', [KaprodiController::class, 'index']);
-        Route::post('/dashboard-dosen/daftar-dosen-wali', [KaprodiController::class, 'store'])->name('dosen-wali-tambah');
+        // # (Route Dosen)
+        Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
 
-        // route dosen
-        // route dosen wali
-        // route dosen pembimbing
+        // Route Manajemen Dosen Wali
+        Route::get('/manajemen/dosen-wali', [DosenWaliController::class, 'index'])->name('manajemen.dosen.wali.index');
+        Route::post('/manajemen/dosen-wali/store', [DosenWaliController::class, 'store'])->name('manajemen.dosen.wali.store');
 
-        /**
-         * Route Akademik
-         */
-        Route::get('/dashboard-akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
-        Route::get('/dashboard-akademik/daftar-prodi', [DaftarNilaiMahasiswaController::class, 'daftar_prodi'])->name('akademik.daftar.prodi');
-        Route::get('/dashboard-akademik/daftar-kelas/{id_prodi}', [DaftarNilaiMahasiswaController::class, 'daftar_kelas'])->name('akademik.daftar.kelas');
-        Route::get('/dashboard-akademik/daftar-mahasiswa/{id_kelas}', [DaftarNilaiMahasiswaController::class, 'daftar_mahasiswa'])->name('akademik.daftar.mahasiswa');
-        Route::get('/dashboard-akademik/daftar-nilai-mahasiswa/{id_mahasiswa}', [DaftarNilaiMahasiswaController::class, 'daftar_nilai_mahasiswa'])->name('akademik.daftar.nilai');
+        // # (Route Akademik)
+        Route::get('/dashboard/akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
 
-        /**
-         * Route Mahasiswa
-         */
-        Route::get('/dashboard-mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
+        // Route Daftar Nilai Mahasiswa - Akademik
+        Route::get('/daftar-nilai-khs-mahasiswa/daftar-prodi', [DaftarNilaiMahasiswaController::class, 'daftar_prodi'])->name('akademik.daftar.prodi');
+        Route::get('/daftar-nilai-khs-mahasiswa/{id_prodi}/daftar-kelas', [DaftarNilaiMahasiswaController::class, 'daftar_kelas'])->name('akademik.daftar.kelas');
+        Route::get('/daftar-nilai-khs-mahasiswa/{id_kelas}/daftar-mahasiswa', [DaftarNilaiMahasiswaController::class, 'daftar_mahasiswa'])->name('akademik.daftar.mahasiswa');
+        Route::get('/daftar-nilai-khs-mahasiswa/{id_mahasiswa}/daftar-nilai-mahasiswa', [DaftarNilaiMahasiswaController::class, 'daftar_nilai_mahasiswa'])->name('akademik.daftar.nilai');
 
-        // (Route Upload Transkrip External)
-        Route::get('/dashboard-mahasiswa/upload-transkrip-mahasiswa/create/{id_user}', [UploadTranskripNilai::class, 'create'])->name('upload-transkrip-mahasiswa.create');
-        Route::post('/dashboard-mahasiswa/upload-transkrip-mahasiswa/store/{id_user}', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.store');
-        Route::get('/dashboard-mahasiswa/upload-transkrip-mahasiswa/delete/{id_nilai_magang_ext}', [UploadTranskripNilai::class, 'destroy'])->name('upload.transkrip.mahasiswa.destroy');
+        // # (Route Mahasiswa)
+        Route::get('/dashboard/mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
 
-        // route kriteria penilaian mahasiswa
-        Route::get('/dashboard-mahasiswa/input-kriteria-penilaian/{id_magang_ext}/{id_nilai_magang_ext}', [InputKriteriaMahasiswaController::class, 'index'])->name('nilai_kriteria.magang_ext.page');
-        Route::post('/dashboard-mahasiswa/input-kriteria-penilaian/store', [InputKriteriaMahasiswaController::class, 'store'])->name('nilai_kriteria.magang_ext.store');
-        Route::get('/dashboard-mahasiswa/hapus-nilai/{id_detail_penilaian_magang_ext}', [InputKriteriaMahasiswaController::class, 'destroy'])->name('nilai_kriteria.magang_ext.destroy');
+        // Route Upload Transkrip Mahasiswa Magang Ext
+        Route::get('/upload-transkrip-mahasiswa/magang-external/{id_user}/create', [UploadTranskripNilai::class, 'create'])->name('upload.transkrip.mahasiswa.ext.create');
+        Route::post('/upload-transkrip-mahasiswa/magang-external/{id_user}/store', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.ext.store');
+        Route::get('/upload-transkrip-mahasiswa/magang-external/{id_nilai_magang_ext}/destroy', [UploadTranskripNilai::class, 'destroy'])->name('upload.transkrip.mahasiswa.ext.destroy');
 
-        /**
-         * Super User Routes
-         */
+        // Route Input Kriteria Penilaian Mahasiswa Magang Ext
+        Route::get('/input-kriteria-penilaian/magang_{id_magang_ext}/kriteria_{id_nilai_magang_ext}/index', [InputKriteriaMahasiswaController::class, 'index'])->name('input.kriteria.mahasiswa.ext.index');
+        Route::post('/input-kriteria-penilaian/store', [InputKriteriaMahasiswaController::class, 'store'])->name('input.kriteria.mahasiswa.ext.store');
+        Route::get('/input-kriteria-penilaian/{id_detail_penilaian_magang_ext}/destroy', [InputKriteriaMahasiswaController::class, 'destroy'])->name('input.kriteria.mahasiswa.ext.destroy');
+
+        // # (Route User Super Admin - Spatie)
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', 'UsersController@index')->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
@@ -245,11 +229,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/{user}/show', 'UsersController@show')->name('users.show');
             Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
-            Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
+            Route::get('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
         });
-        // Role and Permissions Route
+
+        // Route Role dan Permissions
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
+
+        // Route API Laravolt Indonesia
+        Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
+        Route::get('cities', 'DependentDropdownController@cities')->name('cities');
+        Route::get('districts', 'DependentDropdownController@districts')->name('districts');
+        Route::get('villages', 'DependentDropdownController@villages')->name('villages');
     });
 });
 

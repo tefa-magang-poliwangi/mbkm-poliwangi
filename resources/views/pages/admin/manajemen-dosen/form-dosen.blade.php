@@ -5,13 +5,8 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
-    <section class="container">
-        <div class="row py-5">
-=======
     <section>
         <div class="row pt-3">
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
             <div class="col-12">
                 <div class="card-body">
                     <div class="card">
@@ -19,7 +14,7 @@
                             <h4>Edit Data Dosen</h4>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('data.dosen.update', $dosen->id) }}">
+                            <form method="POST" action="{{ route('manajemen.dosen.update', $dosen->id) }}">
                                 @method('put')
                                 @csrf
 
@@ -107,6 +102,4 @@
             </div>
         </div>
     </section>
-
-
 @endsection

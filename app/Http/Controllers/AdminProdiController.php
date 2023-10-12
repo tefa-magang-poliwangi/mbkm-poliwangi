@@ -40,7 +40,7 @@ class AdminProdiController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -64,7 +64,7 @@ class AdminProdiController extends Controller
 
 
         Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
-        return redirect()->route('data.admin.index');
+        return redirect()->route('manajemen.admin.prodi.index');
     }
 
     /**
@@ -109,13 +109,11 @@ class AdminProdiController extends Controller
      */
     public function destroy($id)
     {
-
         $adminprodi = AdminProdi::findOrFail($id);
         $adminprodi->delete();
 
         Alert::success('Success', 'User Admin Prodi Berhasil Dihapus');
 
-        return redirect()->route('data.admin.index');
-
+        return redirect()->route('manajemen.admin.prodi.index');
     }
 }

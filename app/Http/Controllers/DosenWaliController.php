@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Dosen;
+use App\Models\Prodi;
+use App\Models\DosenWali;
+use Illuminate\Support\Facades\Auth;
 
-
-class KategoriController extends Controller
+class DosenWaliController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +17,15 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $data = [
-            'kategori' => Kategori::all(),
+        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
+
+        $datas = [
+            'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
+            'prodi' => Prodi::Where('id', $prodi_id)->first(),
+            'dosenwali' => DosenWali::all(),
         ];
 
-        return view('pages.admin.manajemen-kategori.kategori', $data);
+        return view('pages.dosen.daftar-dosen-wali', $datas);
     }
 
     /**
@@ -41,17 +46,13 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'create_nama' => ['required'],
-        ]);
-
-        Kategori::create([
-            'nama' => $validated['create_nama'],
-        ]);
-
-        Alert::success('Success', 'Kategori Berhasil Ditambahkan');
-
-        return redirect()->route('manajemen.kategori.index');
+        $list_dosen = $request->listdosen;
+        foreach ($list_dosen as $data) {
+            DosenWali::create([
+                'id_dosen' => $data
+            ]);
+        }
+        return back();
     }
 
     /**
@@ -85,17 +86,7 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'update_nama' => ['required'],
-        ]);
-
-        Kategori::where('id', $id)->update([
-            'nama' => $validated['update_nama'],
-        ]);
-
-        Alert::success('Success', 'Kategori Berhasil Diupdate');
-
-        return redirect()->route('manajemen.kategori.index');
+        //
     }
 
     /**
@@ -106,11 +97,6 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = Kategori::findOrFail($id);
-        $kategori->delete();
-
-        Alert::success('Success', 'Kategori Berhasil Dihapus');
-
-        return redirect()->route('manajemen.kategori.index');
+        //
     }
 }

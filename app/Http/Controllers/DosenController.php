@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class DosenController extends Controller
 {
@@ -87,7 +86,7 @@ class DosenController extends Controller
 
         Alert::success('Success', 'Berhasil Menambahkan Data Dosen');
 
-        return redirect()->route('data.dosen.index');
+        return redirect()->route('manajemen.dosen.index');
     }
 
     /**
@@ -107,12 +106,6 @@ class DosenController extends Controller
         Excel::import(new DosenImport, $file);
 
         return redirect()->back()->with('success', 'Data berhasil diimpor.');
-        // $spreadsheet = IOFactory::load('public/storage/file.xlsx');
-
-        // // Menulis file Excel XLS
-        // IOFactory::createWriter($spreadsheet, 'Xls')->save('public/storage/file.xls');
-        // Excel::import(new DosenImport, $request->excel);
-        // return back();
     }
 
     public function show($id)
@@ -176,7 +169,7 @@ class DosenController extends Controller
 
         Alert::success('Success', 'Berhasil Mengubah Data Dosen');
 
-        return redirect()->route('data.dosen.index');
+        return redirect()->route('manajemen.dosen.index');
     }
 
     /**
@@ -194,6 +187,6 @@ class DosenController extends Controller
 
         Alert::success('Success', 'Berhasil Menghapus Data Dosen');
 
-        return redirect()->route('data.dosen.index');
+        return redirect()->route('manajemen.dosen.index');
     }
 }

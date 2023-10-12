@@ -72,7 +72,7 @@ class PesertaKelasController extends Controller
 
         Alert::success('Success', 'Peserta Kelas Berhasil Ditambahkan');
 
-        return redirect()->route('peserta.kelas.index', $id_kelas);
+        return redirect()->route('manajemen.peserta.kelas.index', $id_kelas);
     }
 
     /**
@@ -122,6 +122,6 @@ class PesertaKelasController extends Controller
 
         Alert::success('Success', 'Peserta Kelas Berhasil Dihapus');
 
-        return redirect()->route('peserta.kelas.index', $id_kelas);
+        return redirect()->route('manajemen.peserta.kelas.index', $id_kelas);
     }
 }
