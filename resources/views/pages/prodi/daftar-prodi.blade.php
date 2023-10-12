@@ -48,7 +48,7 @@
                                                     <td>{{ $data->nama }}</td>
                                                     <td class="text-center"> - </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('daftar.prodi.delete', $data->id) }}"
+                                                        <a href="{{ route('manajemen.prodi.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
@@ -80,7 +80,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('daftar.prodi.store') }}" method="POST">
+                    <form action="{{ route('manajemen.prodi.store') }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

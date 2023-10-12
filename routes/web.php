@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\AdminProdiPageController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CPLKurikulumController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
@@ -101,6 +102,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/admin-prodi/create', [AdminProdiController::class, 'create'])->name('manajemen.admin.prodi.create');
         Route::post('/manajemen/admin-prodi/store', [AdminProdiController::class, 'store'])->name('manajemen.admin.prodi.store');
         Route::get('/manajemen/admin-prodi/{id_admin_prodi}/destroy', [AdminProdiController::class, 'destroy'])->name('manajemen.admin.prodi.destroy');
+
+        Route::get('/manajemen/cpl-kurikulum/{id_kurikulum}/index', [CPLKurikulumController::class, 'index'])->name('manajemen.cpl.kurikulum.index');
+        Route::get('/manajemen/cpl-kurikulum/create', [CPLKurikulumController::class, 'create'])->name('manajemen.cpl.kurikulum.create');
+        Route::post('/manajemen/cpl-kurikulum/{id_kurikulum}/store', [CPLKurikulumController::class, 'store'])->name('manajemen.cpl.kurikulum.store');
+        Route::put('/manajemen/cpl-kurikulum/cpl_{id_cpl}/kurikulum_{id_kurikulum}/update', [CPLKurikulumController::class, 'update'])->name('manajemen.cpl.kurikulum.update');
+        Route::get('/manajemen/cpl-kurikulum/{id_cpl}/destroy', [CPLKurikulumController::class, 'destroy'])->name('manajemen.cpl.kurikulum.destroy');
 
         // Route Manajemen Matakuliah
         Route::get('/manajemen/matakuliah', [MatakuliahController::class, 'index'])->name('manajemen.matakuliah.index');
