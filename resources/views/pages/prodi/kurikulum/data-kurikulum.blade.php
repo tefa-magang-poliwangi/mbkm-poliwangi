@@ -19,7 +19,7 @@
                                 <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('data.dosen.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah
                                 </a>
@@ -81,7 +81,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
+                                                <a href="{{route('daftar.cpl_kurikulum.index', $item->id)}}" class="btn btn-primary">
                                                     <i class="fa-solid fa-search"></i> CPL
                                                 </a>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
@@ -191,9 +191,9 @@
         </div>
 
     </section>
-    
-        
-    
+
+
+
 @endsection
 
 @section('script')

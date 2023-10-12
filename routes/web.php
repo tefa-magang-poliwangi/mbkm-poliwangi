@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\AdminProdiPageController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CPLKurikulumController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
@@ -127,6 +128,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/daftar-kurikulum/update/{id}', [KurikulumController::class, 'update'])->name('daftar.kurikulum.update');
         Route::get('/daftar-kurikulum/delete/{id}', [KurikulumController::class, 'destroy'])->name('daftar.kurikulum.delete');
 
+        // (Route CPL Kurikulum)
+        Route::get('/daftar-cpl-kurikulum/{id_kurikulum}/index', [CPLKurikulumController::class, 'index'])->name('daftar.cpl_kurikulum.index');
+        Route::get('/daftar-cpl-kurikulum/create', [CPLKurikulumController::class, 'create'])->name('daftar.cpl_kurikulum.create');
+        Route::post('/daftar-cpl-kurikulum/{id_kurikulum}/store', [CPLKurikulumController::class, 'store'])->name('daftar.cpl_kurikulum.store');
+        Route::put('/daftar-cpl-kurikulum/{id}/{id_kurikulum}/update', [CPLKurikulumController::class, 'update'])->name('daftar.cpl_kurikulum.update');
+        Route::get('/daftar-cpl-kurikulum/delete/{id}', [CPLKurikulumController::class, 'destroy'])->name('daftar.cpl_kurikulum.delete');
+
         // (Route Matakuliah)
         Route::get('/daftar-matakuliah/index', [MatakuliahController::class, 'index'])->name('daftar.matakuliah.index');
         Route::get('/daftar-matakuliah/create', [MatakuliahController::class, 'create'])->name('daftar.matakuliah.create');
@@ -233,12 +241,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-mahasiswa/hapus-nilai/{id_detail_penilaian_magang_ext}', [InputKriteriaMahasiswaController::class, 'destroy'])->name('nilai_kriteria.magang_ext.destroy');
 
 
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/create-data-kurikulum', function () {
-            return view('pages.prodi.create-data-kurikulum');
-        });
+
         Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
             return view('pages.prodi.daftar-cpl-kurikulum');
         });
@@ -296,12 +299,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
             return view('pages.dosen.kaprodi-konversi-nilai');
         });
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-            return view('pages.prodi.form-data-kurikulum');
-        });
+
         Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
             return view('pages.prodi.daftar-cpl-kurikulum');
         });
@@ -324,12 +322,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         });
         Route::get('/dashboard-dosen/laporan-akhir', function () {
             return view('pages.dosen.dosbim-laporan-akhir');
-        });
-        Route::get('/dashboard-dosen/data-kurikulum', function () {
-            return view('pages.prodi.data-kurikulum');
-        });
-        Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-            return view('pages.prodi.form-data-kurikulum');
         });
 
         // Halaman Dosen wali
@@ -361,10 +353,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     });
 });
 
-//Route data kurikulum
-// Route::get('/data-kurikulum', function () {
-//     return view('pages.prodi.data-kurikulum1');
-// });
 
 Route::get('/dashboard-adminprodi', function () {
     return view('pages.admin.adminProdi-dashboard');

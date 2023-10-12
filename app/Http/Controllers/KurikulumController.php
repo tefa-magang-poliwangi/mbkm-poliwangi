@@ -16,16 +16,17 @@ class KurikulumController extends Controller
      */
     public function index(Request $request)
     {
-
         $kurikulum = Kurikulum::query();
 
         if ($request->prodi) {
+            // Memastikan $request->prodi tidak kosong atau null sebelum digunakan dalam kueri
             $kurikulum->where('id_prodi', $request->prodi);
         }
+
         $data = [
             'kurikulums' => $kurikulum->get(),
             'prodi' => Prodi::all(),
-            'request' => $request
+            'request' => $request,
         ];
 
         return view('pages.prodi.kurikulum.data-kurikulum', $data);
@@ -38,8 +39,6 @@ class KurikulumController extends Controller
      */
     public function create()
     {
-
-
         $data = [
             'kurikulum' => Kurikulum::all(),
             'prodi' => Prodi::all(),
@@ -68,7 +67,7 @@ class KurikulumController extends Controller
             'id_prodi' => $validated['create_prodi'],
         ]);
 
-        Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan' );
+        Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan');
         return redirect()->route('daftar.kurikulum.index');
     }
 
