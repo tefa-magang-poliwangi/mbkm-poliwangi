@@ -11,11 +11,13 @@ use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaPageController;
@@ -28,6 +30,7 @@ use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\PLMitraController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use Illuminate\Support\Facades\Route;
@@ -182,6 +185,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/dashboard-admin/sektor-industri/{id_sektor_industri}', [SektorIndustriController::class, 'update'])->name('data.sektor_industri.update');
 
         //route mitra
+        Route::get('/dashboard-mitra/mitra-lowongan/index', [LowonganController::class, 'index'])->name('lowongan.mitra.index');
         Route::get('/dashboard-admin/formulir-mitra/index', [FormMitraController::class, 'index'])->name('formulir.mitra.index');
         Route::get('/dashboard-admin/formulir-mitra/ceate', [FormMitraController::class, 'create'])->name('formulir.mitra.create');
         Route::post('/dashboard-admin/formulir-mitra/store', [FormMitraController::class, 'store'])->name('formulir.mitra.store');
@@ -272,6 +276,9 @@ Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
 });
 
 // # Halaman Mitra - Lowongan
+Route::get('/dashboard-mitra/form-mitra', function () {
+    return view('pages.mitra.manajemen-mitra.mitra-form');
+});
 Route::get('/dashboard-mitra/daftar-pelamar', function () {
     return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
 });
@@ -330,8 +337,8 @@ Route::get('/dashboard-mitra/daftar-pelamar', function () {
             return view('pages.dosen.doswal-daftarKonversi');
         });
         Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
-            return view('pages.dosen.doswal-viewHasilKonversi');
-        });
+            return view('pages.dosen.doswal-viewHasilKonversi');        });
+
 
         /**
          * Super User Routes

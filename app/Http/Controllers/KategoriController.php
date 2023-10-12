@@ -19,7 +19,8 @@ class KategoriController extends Controller
         $data = [
             'kategori' => Kategori::all(),
         ];
-        return view ('pages.admin.manajemen-kategori.kategori', $data);
+
+        return view('pages.admin.manajemen-kategori.kategori', $data);
     }
 
     /**
@@ -40,7 +41,7 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-         $validated = $request->validate([
+        $validated = $request->validate([
             'create_nama' => ['required'],
         ]);
 
@@ -48,7 +49,7 @@ class KategoriController extends Controller
             'nama' => $validated['create_nama'],
         ]);
 
-        Alert::success('Success', 'Data Kategori Berhasil Ditambahkan');
+        Alert::success('Success', 'Kategori Berhasil Ditambahkan');
 
         return redirect()->route('data.kategori.index');
     }
@@ -92,7 +93,7 @@ class KategoriController extends Controller
             'nama' => $validated['update_nama'],
         ]);
 
-        Alert::success('Success', 'Data Kategori Berhasil Diupdate');
+        Alert::success('Success', 'Kategori Berhasil Diupdate');
 
         return redirect()->route('data.kategori.index');
     }
@@ -108,7 +109,7 @@ class KategoriController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->delete();
 
-        Alert::success('Success', 'Data kategori Berhasil Dihapus');
+        Alert::success('Success', 'Kategori Berhasil Dihapus');
 
         return redirect()->route('data.kategori.index');
     }

@@ -15,10 +15,11 @@ class SektorIndustriController extends Controller
      */
     public function index()
     {
-         $data = [
+        $data = [
             'sektorindustri' => SektorIndustri::all(),
         ];
-        return view ('pages.admin.manajemen-sektor-industri.sektor-industri', $data);
+
+        return view('pages.admin.manajemen-sektor-industri.sektor-industri', $data);
     }
 
     /**
@@ -47,7 +48,7 @@ class SektorIndustriController extends Controller
             'nama' => $validated['create_nama'],
         ]);
 
-        Alert::success('Success', 'Data Sektor Industri Berhasil Ditambahkan');
+        Alert::success('Success', 'Sektor Industri Berhasil Ditambahkan');
 
         return redirect()->route('data.sektor_industri.index');
     }
@@ -91,7 +92,7 @@ class SektorIndustriController extends Controller
             'nama' => $validated['update_nama'],
         ]);
 
-        Alert::success('Success', 'Data Sektor Industri Berhasil Diupdate');
+        Alert::success('Success', 'Sektor Industri Berhasil Diupdate');
 
         return redirect()->route('data.sektor_industri.index');
     }
@@ -107,7 +108,7 @@ class SektorIndustriController extends Controller
         $sektorindustri = SektorIndustri::findOrFail($id);
         $sektorindustri->delete();
 
-        Alert::success('Success', 'Data Sektor Industri Berhasil Dihapus');
+        Alert::success('Success', 'Sektor Industri Berhasil Dihapus');
 
         return redirect()->route('data.sektor_industri.index');
     }

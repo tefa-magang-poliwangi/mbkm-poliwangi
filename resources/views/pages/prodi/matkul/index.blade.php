@@ -60,7 +60,7 @@
                                                         <button type="button" class="btn btn-info text-white"
                                                             data-toggle="modal"
                                                             data-target="#updateModal{{ $data->id }}">
-                                                            <i class="fa-solid fa-pen"></i>
+                                                            <i class="fa-solid fa-pen text-white"></i>
                                                         </button>
                                                     </td>
                                                     <td class="text-center">

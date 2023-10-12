@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Sektor Industri | Politeknik Negeri Banyuwangi</title>
+    <title>Manajemen Sektor Industri | MBKM Poliwangi</title>
 @endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -9,14 +11,14 @@
 @endsection
 
 @section('content')
-    <section >
-        <div class="row py-5">
+    <section>
+        <div class="row pt-3">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Sektor Industri</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen Sektor Industri</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
@@ -32,53 +34,55 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-center text-white" width="10%">No</th>
-                                        <th class="text-white text-center" width="10%">Nama</th>
-                                        <th class="text-white text-center" width="10%">Aksi</th>
+                                        <th class="text-white text-center">Nama Sektor Industri</th>
+                                        <th class="text-white text-center" width="10%">Edit</th>
+                                        <th class="text-white text-center" width="10%">Hapus</th>
                                     </tr>
                                 </thead>
-                                @php
-                                    $no = 1;
-                                @endphp
 
                                 <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
                                     @foreach ($sektorindustri as $data)
                                         <tr>
-                                            <td class="text-center">
-                                                {{ $no }}
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $data->nama }}
-                                            </td>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->nama }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('data.sektor_industri.update', $data->id) }}"
                                                     class="btn btn-primary ml-auto" data-toggle="modal"
-                                                            data-target=".modalUpdate{{ $data->id }}"> <i
-                                                    class="fa-solid fas fa-edit "></i></a>
-
+                                                    data-target=".modalUpdate{{ $data->id }}">
+                                                    <i class="fa-solid fa-pen text-white"></i>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
                                                 <a href="{{ route('data.sektor_industri.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"> <i
-                                                    class="fa-solid fas fa-trash "></i></a>
+                                                    class="btn btn-danger ml-auto"><i class="fa-solid fas fa-trash "></i>
+                                                </a>
                                             </td>
                                         </tr>
-                                        @php
-                                            $no++;
-                                        @endphp
 
+                                        {{-- Modal Update Sektor Industri --}}
                                         <div class="modal fade modalUpdate{{ $data->id }}" tabindex="-1" role="dialog"
                                             aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Ubah Sektor Industri
+                                                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Ubah Sektor
+                                                            Industri
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
-                                                            aria-hidden="true">×</button>
+                                                            aria-hidden="true">
+                                                        </button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <form action="{{ route('data.sektor_industri.update', $data->id) }}"
-                                                            method="POST">
-                                                            @method('put')
-                                                            @csrf
+
+                                                    <form action="{{ route('data.sektor_industri.update', $data->id) }}"
+                                                        method="POST">
+                                                        @method('put')
+                                                        @csrf
+
+                                                        <div class="modal-body">
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -86,10 +90,9 @@
                                                                         <label for="update_nama"
                                                                             class="form-label">Nama</label>
                                                                         <input id="update_nama" type="text"
-                                                                            class="form-control @error('update_nama')
-                                                                          is-invalid
-                                                                          @enderror"
-                                                                            name="update_nama" value="{{$data->nama}}">
+                                                                            class="form-control @error('update_nama') is-invalid @enderror"
+                                                                            name="update_nama" value="{{ $data->nama }}"
+                                                                            placeholder="Nama sektor industri baru">
                                                                         @error('update_nama')
                                                                             <div id="update_nama" class="form-text text-danger">
                                                                                 {{ $message }}</div>
@@ -98,15 +101,27 @@
                                                                 </div>
                                                             </div>
 
-                                                            <button type="submit"
-                                                                class="btn btn-sm btn-primary">Simpan</button>
-                                                            <button type="button" class="btn btn-sm btn-danger"
-                                                                data-dismiss="modal">Batal</button>
-                                                        </form>
-                                                    </div>
+                                                            <div class="row">
+                                                                <div class="col d-flex">
+                                                                    <div class="ml-auto">
+                                                                        <button type="button" class="btn btn-cancel"
+                                                                            data-dismiss="modal">Batal</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-submit">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
                                         </div><!-- /.modal -->
+
+                                        @php
+                                            $no++;
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>
@@ -115,43 +130,49 @@
                 </div>
             </div>
         </div>
-    </section>
 
-    {{-- Modal Tambah Periode --}}
-    <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tambah Sektor Industri</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('data.sektor_industri.store') }}" method="POST">
-                    @csrf
+        {{-- Modal Tambah Sektor Industri --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-theme">Tambah Sektor Industri</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="create_nama" class="form-label">Nama</label>
-                            <input id="create_nama" type="text"
-                                class="form-control @error('create_nama')
-                                is-invalid
-                            @enderror"
-                                name="create_nama">
-                            @error('create_nama')
-                                <div id="create_nama" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
+                    <form action="{{ route('data.sektor_industri.store') }}" method="POST">
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="create_nama" class="form-label">Nama</label>
+                                <input id="create_nama" type="text"
+                                    class="form-control @error('create_nama') is-invalid @enderror" name="create_nama"
+                                    placeholder="Nama sektor industri" placeholder="Nama sektor industri">
+                                @error('create_nama')
+                                    <div id="create_nama" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="row">
+                                <div class="col d-flex">
+                                    <div class="ml-auto">
+                                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-submit">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </div>
-                </form>
+                    </form>
+
+                </div>
             </div>
         </div>
-    </div>
+
+    </section>
 @endsection
 
 @section('script')

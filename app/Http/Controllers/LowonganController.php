@@ -14,11 +14,11 @@ class LowonganController extends Controller
      */
     public function index()
     {
-         $data = [
+        $data = [
             'lowongan' => Lowongan::all(),
         ];
 
-        return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
+        return view('pages.mitra.manajemen-mitra.mitra-lowongan', $data);
     }
 
     /**
