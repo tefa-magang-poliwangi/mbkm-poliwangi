@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Lowongan;
 use App\Models\Mahasiswa;
 use App\Models\Mitra;
-=======
 use App\Models\PelamarMagang;
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -22,13 +19,10 @@ class MitraDaftarPelamarController extends Controller
     public function index()
     {
         $data = [
-<<<<<<< HEAD
             'mitradaftarpelamar' => Mitra::all(),
             'mahasiswa' => Mahasiswa::all(),
             'Lowongan' => Lowongan::all(),
-=======
             'daftar_pelamar' => PelamarMagang::all()
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
         ];
 
         return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
@@ -57,7 +51,7 @@ class MitraDaftarPelamarController extends Controller
             'create_lowongan' => ['required'],
         ]);
 
-         MitraDaftarPelamarController::create([
+        MitraDaftarPelamarController::create([
             'id_mahasiswa' => $validated['create_mahasiswa'],
             'id_lowongan' => $validated['create_lowongan']
         ]);

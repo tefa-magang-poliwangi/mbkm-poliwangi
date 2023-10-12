@@ -185,13 +185,13 @@
                     {{-- Mitra Sidebar Menu --}}
                     <li class="menu-header">MITRA</li>
                     <li>
-                        <a class="nav-link" href="{{route('data.kategori.index')}}"><i
-                                class="fas fa-solid fa-envelopes-bulk"></i>
+                        <a class="nav-link" href="{{ route('data.kategori.index') }}">
+                            <i class="fas fa-solid fa-shapes"></i>
                             <span>Kategori</span></a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{route('data.sektor_industri.index')}}"><i
-                                class="fas fa-solid fa-envelopes-bulk"></i>
+                        <a class="nav-link" href="{{ route('data.sektor_industri.index') }}">
+                            <i class="fas fa-solid fa-industry"></i>
                             <span>Sektor Industri</span></a>
                     </li>
                     <li>
@@ -217,8 +217,8 @@
                     </li>
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="{{route('lowongan.mitra.index')}}"><i
-                                class="fas fa-solid fa-bars-progress"></i>
+                        <a class="nav-link" href="{{ route('lowongan.mitra.index') }}">
+                            <i class="fas fa-solid fa-briefcase"></i>
                             <span>Lowongan</span>
                         </a>
                     </li>
