@@ -256,10 +256,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 // # Halaman yang tidak digunakan
 // Halaman Admin
 Route::get('/dashboard-admin-prodi', function () {
-    return view('pages.admin.adminProdi-dashboard');
-});
-Route::get('/dashboard-mitra/mitra-lowongan', function () {
-    return view('pages.mitra.manajemen-mitra.mitra-lowongan');
+    return view('pages.admin.admin-prodi-dashboard');
 });
 Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
     return view('pages.prodi.daftar-cpl-kurikulum');
@@ -291,29 +288,9 @@ Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
     return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
 });
 
-// # Halaman Mitra - Lowongan
-Route::get('/dashboard-mitra/form-mitra', function () {
-    return view('pages.mitra.manajemen-mitra.mitra-form');
-});
-Route::get('/dashboard-mitra/daftar-pelamar', function () {
-    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
-});
-
 // Halaman Kaprodi
 Route::get('/dashboard-dosen/laporan-akhir', function () {
     return view('pages.dosen.kaprodi-laporan-akhir');
-});
-Route::get('/dashboard-dosen/daftar-konversi', function () {
-    return view('pages.dosen.kaprodi-daftar-konversi');
-});
-Route::get('/dashboard-dosen/daftar-konversi/konversi-nilai', function () {
-    return view('pages.dosen.kaprodi-konversi-nilai');
-});
-Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-    return view('pages.prodi.form-data-kurikulum');
-});
-Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
-    return view('pages.prodi.daftar-cpl-kurikulum');
 });
 Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
     return view('pages.prodi.form-daftar-cpl');
@@ -335,17 +312,8 @@ Route::get('/dashboard-dosen/laporan-mingguan', function () {
 Route::get('/dashboard-dosen/laporan-akhir', function () {
     return view('pages.dosen.dosbim-laporan-akhir');
 });
-Route::get('/dashboard-dosen/form-data-kurikulum', function () {
-    return view('pages.prodi.form-data-kurikulum');
-});
 
 // Halaman Dosen wali
 Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
     return view('pages.dosen.doswal-kelayakan');
-});
-Route::get('/dashboard-dosen/daftar-konversi', function () {
-    return view('pages.dosen.doswal-daftarKonversi');
-});
-Route::get('/dashboard-dosen/daftar-konversi/view-hasil', function () {
-    return view('pages.dosen.doswal-viewHasilKonversi');
 });

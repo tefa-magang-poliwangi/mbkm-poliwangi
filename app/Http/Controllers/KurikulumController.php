@@ -44,6 +44,7 @@ class KurikulumController extends Controller
             'prodi' => Prodi::all(),
             'action' => route('daftar.kurikulum.store'),
         ];
+
         return view('pages.prodi.kurikulum.form-data-kurikulum', $data);
     }
 

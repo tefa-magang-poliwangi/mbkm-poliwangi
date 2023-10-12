@@ -121,11 +121,6 @@
                             <span>Admin</span>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a class="nav-link" href="{{ route('data.mahasiswa.index') }}"><i class="fas fa-graduation-cap"></i>
-                            <span>Mahasiswa</span>
-                        </a>
-                    </li> --}}
                     <li>
                         <a class="nav-link" href="{{ route('data.dosen.index') }}"><i
                                 class="fas fa-solid fa-user-graduate"></i>
@@ -248,13 +243,8 @@
                             <span>Transkrip Nilai</span>
                         </a>
                     </li>
-
-                    <li class="menu-header">Tentang Akun</li>
-                    <li>
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
-                            <span>Profil</span>
-                        </a>
-                    </li @endrole @role('dosen') {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
+                    @endrole @role('dosen')
+                    {{-- Dosen Sidebar Menu --}} <li class="menu-header">DOSEN</li>
                     <li>
                         <a class="nav-link" href="#"><i class="fas fa-info-circle"></i>
                             <span>Laporan Akhir</span>
@@ -410,7 +400,7 @@
 
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="/dashboard-mahasiswa/profil"><i class="fas fa-user"></i>
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i>
                             <span>Profil</span>
                         </a>
                     </li>
