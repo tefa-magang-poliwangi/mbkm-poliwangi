@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
+use App\Models\Mitra;
 use Illuminate\Http\Request;
 
 class LowonganController extends Controller
@@ -16,9 +17,10 @@ class LowonganController extends Controller
     {
         $data = [
             'lowongan' => Lowongan::all(),
+            'mitras' => Mitra::all(),
         ];
 
-        return view('pages.mitra.manajemen-mitra.mitra-lowongan', $data);
+        return view('pages.mitra.manajemen-lowongan-mitra.index', $data);
     }
 
     /**
@@ -28,7 +30,12 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'lowongan' => Lowongan::all(),
+            'mitra' => Mitra::all()
+        ];
+
+        return view('pages.mitra.manajemen-lowongan-mitra.create', $data);
     }
 
     /**
@@ -39,7 +46,33 @@ class LowonganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama' => ['required'],
+            'jumlah_lowongan' => ['required'],
+            'deskripsi' => ['required'],
+            'tanggal_dibuka' => ['required'],
+            'tanggal_ditutup' => ['required'],
+            'tanggal_magang_dimulai' => ['required'],
+            'tanggal_magang_berakhir' => ['required'],
+            'status' => ['required'],
+            'id_mitra' => ['required']
+        ]);
+
+        Lowongan::create([
+            'nama' => $validated['nama'],
+            'jumlah_lowongan' => $validated['jumlah_lowongan'],
+            'deskripsi' => $validated['deskripsi'],
+            'tanggal_dibuka' => $validated['tanggal_dibuka'],
+            'tanggal_ditutup' => $validated['tanggal_ditutup'],
+            'tanggal_magang_dimulai' => $validated['tanggal_magang_dimulai'],
+            'tanggal_magang_berakhir' => $validated['tanggal_magang_berakhir'],
+            'status' => $validated['status'],
+            'id_mitra' =>$validated['id_mitra']
+        ]);
+
+        Alert::success('Success', 'Lowongan Mitra Berhasil Ditambahkan');
+
+        return redirect()->route('pages.mitra.manajemen-lowongan-mitra.index');
     }
 
     /**
@@ -61,7 +94,11 @@ class LowonganController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'lowongan' => Lowongan::all(),
+        ];
+
+        return view('pages.mitra.manajemen-lowongan-mitra.form-update', $data);
     }
 
     /**

@@ -212,12 +212,17 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{ route('data.lowongan-mitra.index') }}"><i class="fas fa-user"></i>
+                            <span>Daftar Lowongan</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="#"><i class="fas fa-book"></i>
                             <span>Log Book</span></a>
                     </li>
                     <li class="menu-header">LOWONGAN MAGANG</li>
                     <li>
-                        <a class="nav-link" href="{{ route('lowongan.mitra.index') }}">
+                        <a class="nav-link" href="#">
                             <i class="fas fa-solid fa-briefcase"></i>
                             <span>Lowongan</span>
                         </a>
@@ -357,6 +362,11 @@
                     <li>
                         <a class="nav-link" href="{{ route('daftar-pelamar.mitra.page') }}"><i class="fas fa-user"></i>
                             <span>Daftar Pelamar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('data.lowongan-mitra.index') }}"><i class="fas fa-user"></i>
+                            <span>Daftar Lowongan</span>
                         </a>
                     </li>
                     <li>

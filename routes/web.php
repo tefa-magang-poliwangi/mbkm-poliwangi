@@ -177,7 +177,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/dashboard-admin/sektor-industri/{id_sektor_industri}', [SektorIndustriController::class, 'update'])->name('data.sektor_industri.update');
 
         //route mitra
-        Route::get('/dashboard-mitra/mitra-lowongan/index', [LowonganController::class, 'index'])->name('lowongan.mitra.index');
         Route::get('/dashboard-admin/formulir-mitra/index', [FormMitraController::class, 'index'])->name('formulir.mitra.index');
         Route::get('/dashboard-admin/formulir-mitra/ceate', [FormMitraController::class, 'create'])->name('formulir.mitra.create');
         Route::post('/dashboard-admin/formulir-mitra/store', [FormMitraController::class, 'store'])->name('formulir.mitra.store');
@@ -191,6 +190,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/dashboard-mitra/daftar-pendamping/store', [PLMitraController::class, 'store'])->name('data.plmitra.store');
         Route::put('/dashboard-mitra/daftar-pendamping/update/{id_pl_mitra}', [PLMitraController::class, 'update'])->name('data.plmitra.update');
         Route::get('/dashboard-mitra/daftar-pendamping/destroy/{id_pl_mitra}', [PLMitraController::class, 'destroy'])->name('data.plmitra.destroy');
+
+        //route lowongan mitra
+        Route::get('/dashboard-mitra/lowongan-mitra/index', [LowonganController::class, 'index'])->name('data.lowongan-mitra.index');
+        Route::get('/dashboard-mitra/lowongan-mitra/create', [LowonganController::class, 'create'])->name('data.lowongan-mitra.create');
+        Route::post('/dashboard-mitra/lowongan-mitra/store', [LowonganController::class, 'store'])->name('data.lowongan-mitra.store');
+
 
         // Route API Laravolt Indonesia
         Route::get('provinces', 'DependentDropdownController@provinces')->name('provinces');
@@ -258,9 +263,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::get('/dashboard-admin-prodi', function () {
     return view('pages.admin.adminProdi-dashboard');
 });
-Route::get('/dashboard-mitra/mitra-lowongan', function () {
-    return view('pages.mitra.manajemen-mitra.mitra-lowongan');
-});
+// Route::get('/dashboard-mitra/mitra-lowongan', function () {
+//     return view('pages.mitra.manajemen-mitra.mitra-lowongan');
+// });
 Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
     return view('pages.prodi.daftar-cpl-kurikulum');
 });
