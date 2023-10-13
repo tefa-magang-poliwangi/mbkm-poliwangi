@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class DosenPageController extends Controller
+
+class KategoriController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $data = [
+            'kategori' => Kategori::all(),
+        ];
+
+        return view('pages.admin.manajemen-kategori.kategori', $data);
     }
 
     /**
@@ -39,7 +41,17 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'create_nama' => ['required'],
+        ]);
+
+        Kategori::create([
+            'nama' => $validated['create_nama'],
+        ]);
+
+        Alert::success('Success', 'Kategori Berhasil Ditambahkan');
+
+        return redirect()->route('manajemen.kategori.index');
     }
 
     /**
@@ -73,7 +85,17 @@ class DosenPageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_nama' => ['required'],
+        ]);
+
+        Kategori::where('id', $id)->update([
+            'nama' => $validated['update_nama'],
+        ]);
+
+        Alert::success('Success', 'Kategori Berhasil Diupdate');
+
+        return redirect()->route('manajemen.kategori.index');
     }
 
     /**
@@ -84,6 +106,11 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+
+        Alert::success('Success', 'Kategori Berhasil Dihapus');
+
+        return redirect()->route('manajemen.kategori.index');
     }
 }

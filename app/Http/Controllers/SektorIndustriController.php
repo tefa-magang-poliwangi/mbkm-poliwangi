@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SektorIndustri;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class DosenPageController extends Controller
+class SektorIndustriController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $data = [
+            'sektorindustri' => SektorIndustri::all(),
+        ];
+
+        return view('pages.admin.manajemen-sektor-industri.sektor-industri', $data);
     }
 
     /**
@@ -39,7 +40,17 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'create_nama' => ['required'],
+        ]);
+
+        SektorIndustri::create([
+            'nama' => $validated['create_nama'],
+        ]);
+
+        Alert::success('Success', 'Sektor Industri Berhasil Ditambahkan');
+
+        return redirect()->route('manajemen.sektor.industri.index');
     }
 
     /**
@@ -73,7 +84,17 @@ class DosenPageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_nama' => ['required'],
+        ]);
+
+        SektorIndustri::where('id', $id)->update([
+            'nama' => $validated['update_nama'],
+        ]);
+
+        Alert::success('Success', 'Sektor Industri Berhasil Diupdate');
+
+        return redirect()->route('manajemen.sektor.industri.index');
     }
 
     /**
@@ -84,6 +105,11 @@ class DosenPageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sektorindustri = SektorIndustri::findOrFail($id);
+        $sektorindustri->delete();
+
+        Alert::success('Success', 'Sektor Industri Berhasil Dihapus');
+
+        return redirect()->route('manajemen.sektor.industri.index');
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prodi;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -51,7 +50,7 @@ class ProdiController extends Controller
 
         Alert::success('Success', 'Data Prodi Berhasil Ditambahkan');
 
-        return redirect()->route('daftar.prodi.index');
+        return redirect()->route('manajemen.prodi.index');
     }
 
     /**
@@ -101,6 +100,6 @@ class ProdiController extends Controller
 
         Alert::success('Success', 'Data Matkul Kurikulum Berhasil Dihapus');
 
-        return redirect()->route('daftar.prodi.index');
+        return redirect()->route('manajemen.prodi.index');
     }
 }

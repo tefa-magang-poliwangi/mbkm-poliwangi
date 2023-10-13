@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-3">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -40,13 +40,13 @@
                                 <div class="col-12">
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="table-1">
-                                            <thead>
+                                            <thead class="bg-primary">
                                                 <tr>
-                                                    <th class="text-center">#</th>
-                                                    <th class="text-center">Nim</th>
-                                                    <th class="text-center">Nama</th>
-                                                    <th class="text-center">Angkatan</th>
-                                                    <th class="text-center">Nama Prodi</th>
+                                                    <th class="text-center text-white">#</th>
+                                                    <th class="text-center text-white">Nim</th>
+                                                    <th class="text-center text-white">Nama</th>
+                                                    <th class="text-center text-white">Angkatan</th>
+                                                    <th class="text-center text-white">Nama Prodi</th>
                                                 </tr>
                                             </thead>
 

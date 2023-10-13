@@ -92,12 +92,11 @@ class KriteriaPenilaianController extends Controller
         ]);
 
         PenilaianMagangExt::where('id', $id)->update([
-            'id_magang_ext' => $validated['update_perusahaan'],
             'penilaian' => $validated['update_kriteria'],
         ]);
 
-        Alert::success('Success', 'Kriteria Penilaian Berhasil DiUpdate');
-        return redirect()->route('kriteria.penilaian.index');
+        Alert::success('Success', 'Kriteria Penilaian Berhasil Diubah');
+        return redirect()->back();
     }
 
     /**
@@ -106,13 +105,13 @@ class KriteriaPenilaianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_magang_ext, $id)
+    public function destroy($id)
     {
         $kriteria = PenilaianMagangExt::findOrFail($id);
         $kriteria->delete();
 
         Alert::success('Success', 'Kriteria Penilaian Berhasil Dihapus');
 
-        return redirect()->route('kriteria.penilaian.index', $id_magang_ext);
+        return redirect()->back();
     }
 }

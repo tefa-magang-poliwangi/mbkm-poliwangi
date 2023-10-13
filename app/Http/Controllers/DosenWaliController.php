@@ -3,22 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Dosen;
+use App\Models\Prodi;
+use App\Models\DosenWali;
+use Illuminate\Support\Facades\Auth;
 
-class DosenPageController extends Controller
+class DosenWaliController extends Controller
 {
-    // Halaman Dosen
-    public function dashboard_dosen()
-    {
-        return view('pages.dosen.dosen-dashboard');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
+
+        $datas = [
+            'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
+            'prodi' => Prodi::Where('id', $prodi_id)->first(),
+            'dosenwali' => DosenWali::all(),
+        ];
+
+        return view('pages.dosen.daftar-dosen-wali', $datas);
     }
 
     /**
@@ -39,7 +46,13 @@ class DosenPageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $list_dosen = $request->listdosen;
+        foreach ($list_dosen as $data) {
+            DosenWali::create([
+                'id_dosen' => $data
+            ]);
+        }
+        return back();
     }
 
     /**
