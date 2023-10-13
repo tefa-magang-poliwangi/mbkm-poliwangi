@@ -83,7 +83,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('data.admin.store') }}" method="POST">
+                <form action="{{ route('manajemen.admin.prodi.store') }}" method="POST">
                     @csrf
 
                     <div class="modal-body">

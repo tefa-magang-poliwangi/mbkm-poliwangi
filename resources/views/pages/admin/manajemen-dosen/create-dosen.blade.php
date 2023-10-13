@@ -13,7 +13,7 @@
                         <h4>Tambah Data Dosen</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('data.dosen.store') }}">
+                        <form method="POST" action="{{ route('manajemen.dosen.store') }}">
                             @csrf
 
                             <div class="form-group">

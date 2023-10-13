@@ -35,8 +35,6 @@ class PesertaMagangExtController extends Controller
      */
     public function create($id_magang_ext)
     {
-        $magang_ext = MagangExt::findOrFail($id_magang_ext);
-
         $mahasiswas = Mahasiswa::whereDoesntHave('peserta_magang_ext')->get();
 
         $data = [
@@ -74,7 +72,7 @@ class PesertaMagangExtController extends Controller
 
         Alert::success('Success', 'Peserta Magang Berhasil Ditambahkan');
 
-        return redirect()->route('peserta.magang_ext.index', $id_magang_ext);
+        return redirect()->route('manajemen.peserta.magang.ext.index', $id_magang_ext);
     }
 
     /**
@@ -124,6 +122,6 @@ class PesertaMagangExtController extends Controller
 
         Alert::success('Success', 'Peserta Magang Berhasil Dihapus');
 
-        return redirect()->route('peserta.magang_ext.index', $id_magang_ext);
+        return redirect()->route('manajemen.peserta.magang.ext.index', $id_magang_ext);
     }
 }

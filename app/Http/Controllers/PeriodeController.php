@@ -57,7 +57,7 @@ class PeriodeController extends Controller
 
         Alert::success('Success', 'Data Periode Berhasil Ditambahkan');
 
-        return redirect()->route('data.periode.index');
+        return redirect()->route('manajemen.periode.index');
     }
 
     /**
@@ -115,7 +115,7 @@ class PeriodeController extends Controller
 
         Alert::success('Success', 'Data Periode Berhasil Diupdate');
 
-        return redirect()->route('data.periode.index');
+        return redirect()->route('manajemen.periode.index');
     }
 
     /**
@@ -126,17 +126,6 @@ class PeriodeController extends Controller
      */
     public function destroy($id)
     {
-        // $periode = Periode::findOrFail($id);
-
-        // if ($periode->status == 'Aktif') {
-        //     Alert::error('Oops', 'Data Periode Masih Aktif');
-        //     return redirect()->back();
-        // }
-
-        // $periode->delete();
-
-        // Alert::success('Success', 'Data Periode Berhasil Dihapus');
-
-        // return redirect()->route('data.periode.index');
+        //
     }
 }

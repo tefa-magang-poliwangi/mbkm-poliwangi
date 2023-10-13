@@ -56,8 +56,8 @@ class MitraDaftarPelamarController extends Controller
             'id_lowongan' => $validated['create_lowongan']
         ]);
 
-        Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
-        return redirect()->route('daftar-pelamar.mitra.page');
+        Alert::success('Success', 'Data Admin Prodi Berhasil Ditambahkan');
+        return redirect()->route('manajemen.pelamar.mitra.index');
     }
 
     /**

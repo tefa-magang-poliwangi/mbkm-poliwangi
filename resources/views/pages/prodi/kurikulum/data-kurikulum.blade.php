@@ -64,7 +64,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
+                                                <a href="{{route('daftar.cpl_kurikulum.index', $item->id)}}" class="btn btn-primary">
                                                     <i class="fa-solid fa-search"></i> CPL
                                                 </a>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
@@ -153,6 +153,9 @@
         </div>
 
     </section>
+
+
+
 @endsection
 
 @section('script')

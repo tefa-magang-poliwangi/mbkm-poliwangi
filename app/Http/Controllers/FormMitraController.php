@@ -100,7 +100,7 @@ class FormMitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Ditambahkan');
 
-        return redirect()->route('formulir.mitra.index');
+        return redirect()->route('manajemen.mitra.index');
     }
 
     /**
@@ -182,7 +182,7 @@ class FormMitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Diupdate');
 
-        return redirect()->route('formulir.mitra.index');
+        return redirect()->route('manajemen.mitra.index');
     }
 
     /**
@@ -200,6 +200,6 @@ class FormMitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Dihapus');
 
-        return redirect()->route('formulir.mitra.index');
+        return redirect()->route('manajemen.mitra.index');
     }
 }

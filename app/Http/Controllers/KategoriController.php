@@ -51,7 +51,7 @@ class KategoriController extends Controller
 
         Alert::success('Success', 'Kategori Berhasil Ditambahkan');
 
-        return redirect()->route('data.kategori.index');
+        return redirect()->route('manajemen.kategori.index');
     }
 
     /**
@@ -95,7 +95,7 @@ class KategoriController extends Controller
 
         Alert::success('Success', 'Kategori Berhasil Diupdate');
 
-        return redirect()->route('data.kategori.index');
+        return redirect()->route('manajemen.kategori.index');
     }
 
     /**
@@ -111,6 +111,6 @@ class KategoriController extends Controller
 
         Alert::success('Success', 'Kategori Berhasil Dihapus');
 
-        return redirect()->route('data.kategori.index');
+        return redirect()->route('manajemen.kategori.index');
     }
 }

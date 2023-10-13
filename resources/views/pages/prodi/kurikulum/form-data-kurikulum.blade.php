@@ -1,4 +1,4 @@
-@extends('layouts.base-mahasiswa')
+@extends('layouts.base-admin')
 
 @section('Kegiatan')
     <title>Kegiatan MBKM | MBKM Poliwangi</title>

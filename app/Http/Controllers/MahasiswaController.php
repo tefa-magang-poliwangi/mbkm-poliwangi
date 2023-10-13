@@ -91,7 +91,7 @@ class MahasiswaController extends Controller
 
         Alert::success('Success', 'Berhasil Menambahkan Data Mahasiswa');
 
-        return redirect()->route('data.mahasiswa.index');
+        return redirect()->route('manajemen.mahasiswa.index');
     }
 
     /**
@@ -165,7 +165,7 @@ class MahasiswaController extends Controller
 
         Alert::success('Success', 'Berhasil Mengubah Data Mahasiswa');
 
-        return redirect()->route('data.mahasiswa.index');
+        return redirect()->route('manajemen.mahasiswa.index');
     }
 
     /**
@@ -183,6 +183,6 @@ class MahasiswaController extends Controller
 
         Alert::success('Success', 'Berhasil Menghapus Data Mahasiswa');
 
-        return redirect()->route('data.mahasiswa.index');
+        return redirect()->route('manajemen.mahasiswa.index');
     }
 }

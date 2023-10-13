@@ -18,12 +18,12 @@ class MatkulKurikulumController extends Controller
      */
     public function index(Request $request)
     {
-
         if ($request->prodi) {
-        $id_prodi = $request->prodi;
+            $id_prodi = $request->prodi;
         } else {
             $id_prodi = 0;
         }
+
         $data = [
             'prodi' => Prodi::all(),
             'matkul' => Matkul::all(),
@@ -31,6 +31,7 @@ class MatkulKurikulumController extends Controller
             'kurikulum_all' => Kurikulum::all(),
             'matkulkurikulum' => MatkulKurikulum::all(),
         ];
+
         return view('pages.prodi.data-matkul-kurikulum', $data);
     }
 
@@ -46,6 +47,7 @@ class MatkulKurikulumController extends Controller
             'kurikulum' => Kurikulum::all(),
             'matkulkurikulum' => MatkulKurikulum::all(),
         ];
+
         return view('pages.prodi.create-matkul-kurikulum', $data);
     }
 
@@ -71,7 +73,7 @@ class MatkulKurikulumController extends Controller
 
         Alert::success('Success', 'Data Matkul Kurikulum Berhasil Ditambahkan');
 
-        return redirect()->route('daftar.matkul.kurikulum.index');
+        return redirect()->route('manajemen.matkul.kurikulum.index');
     }
 
     /**
@@ -119,8 +121,7 @@ class MatkulKurikulumController extends Controller
 
         Alert::success('Success', 'Data Matkul Kurikulum Berhasil Diupdate');
 
-
-        return redirect()->route('daftar.matkul.kurikulum.index');
+        return redirect()->route('manajemen.matkul.kurikulum.index');
     }
 
 
@@ -135,9 +136,8 @@ class MatkulKurikulumController extends Controller
         $matkul_kurikulum = MatkulKurikulum::findOrFail($id);
         $matkul_kurikulum->delete();
 
-
         Alert::success('Success', 'Data Matkul Kurikulum Berhasil Dihapus');
 
-        return redirect()->route('daftar.matkul.kurikulum.index');
+        return redirect()->route('manajemen.matkul.kurikulum.index');
     }
 }
