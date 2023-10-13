@@ -480,3 +480,8 @@ body {
 .fs-50 {
     font-size: 50px !important;
 }
+
+.ruler-program{
+    max-height: 1000px !important;
+    overflow-y: auto !important;
+}

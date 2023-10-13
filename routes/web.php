@@ -272,6 +272,9 @@ Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
 });
 
 // # Halaman Mitra - Lowongan
+Route::get('/daftar-program-mhs', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program');
+});
 Route::get('/dashboard-mitra/daftar-pelamar', function () {
     return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
 });
