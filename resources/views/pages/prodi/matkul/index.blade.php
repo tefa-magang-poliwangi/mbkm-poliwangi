@@ -23,7 +23,7 @@
                                 <h5 class="justify-start my-auto text-theme">Data Matakuliah</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('daftar.matakuliah.create') }}"
+                                <a href="{{ route('manajemen.matakuliah.create') }}"
                                     class="btn btn-primary fa-plus ml-auto">Tambah
                                     Matakuliah</a>
                             </div>
@@ -64,7 +64,7 @@
                                                         </button>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('daftar.matakuliah.delete', $data->id) }}"
+                                                        <a href="{{ route('manajemen.matakuliah.destroy', $data->id) }}"
                                                             class="btn btn-danger">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
@@ -84,7 +84,7 @@
                                                                 </button>
                                                             </div>
                                                             <form
-                                                                action="{{ route('daftar.matakuliah.update', $data->id) }}"
+                                                                action="{{ route('manajemen.matakuliah.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf

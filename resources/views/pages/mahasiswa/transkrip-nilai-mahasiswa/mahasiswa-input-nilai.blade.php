@@ -53,11 +53,11 @@
                 </div>
             </div>
 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                 <div class="card card-rounded-sm card-hover d-flex flex-column">
                     <div class="card-body">
 
-                        <form action="{{ route('nilai_kriteria.magang_ext.store') }}" method="post">
+                        <form action="{{ route('input.kriteria.mahasiswa.ext.store') }}" method="post">
                             @csrf
 
                             <div class="table-responsive">
@@ -143,7 +143,7 @@
                                                 <td class="text-center">{{ $item->penilaian }}</td>
                                                 <td class="text-center">{{ $item->nilai }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('nilai_kriteria.magang_ext.destroy', $item->id) }}"
+                                                    <a href="{{ route('input.kriteria.mahasiswa.ext.destroy', $item->id) }}"
                                                         class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                                 </td>
                                             </tr>

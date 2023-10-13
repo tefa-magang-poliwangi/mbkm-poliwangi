@@ -318,4 +318,3 @@ Route::get('/dashboard-dosen/laporan-akhir', function () {
 Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
     return view('pages.dosen.doswal-kelayakan');
 });
-

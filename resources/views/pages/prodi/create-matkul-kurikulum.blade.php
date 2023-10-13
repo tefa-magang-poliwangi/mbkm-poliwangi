@@ -11,16 +11,16 @@
 
 @section('content')
     <section>
-        <div class="row d-flex justify-content-center pt-3">
+        <div class="row d-flex justify-content-center pt-4">
             <div class="col-12">
                 <div class="card card-rounded-sm">
                     <div class="card-header d-flex">
                         <h4 class="mb-3">Tambah Mata Kuliah ke Dalam Kurikulum</h4>
-                        <button class="btn btn-secondary ml-auto mb-3" onclick="goBack()">Kembali</button>
+                        <button class="btn btn-danger ml-auto mb-3" onclick="goBack()">Kembali</button>
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('daftar.matkul.kurikulum.store') }}" method="POST">
+                        <form action="{{ route('manajemen.matkul.kurikulum.store') }}" method="POST">
                             @csrf
 
                             <div class="form-group">

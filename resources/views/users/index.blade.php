@@ -35,7 +35,7 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col" width="1%" class="text-white">No</th>
-                                        <th scope="col" width="20%" class="text-white">Nama Permission</th>
+                                        <th scope="col" width="20%" class="text-white">Nama User</th>
                                         <th scope="col" width="20%" class="text-white">Email</th>
                                         <th scope="col" width="10%" class="text-white text-center">Username</th>
                                         <th scope="col" width="10%" class="text-white text-center">Roles</th>

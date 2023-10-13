@@ -14,13 +14,13 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-4">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start my-auto">Manajemen Kelas</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen Kelas</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
@@ -61,7 +61,7 @@
                                                     <td class="text-center">{{ $data->periode->tahun }}</td>
                                                     <td class="text-center">{{ $data->periode->status }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('peserta.kelas.index', $data->id) }}"
+                                                        <a href="{{ route('manajemen.peserta.kelas.index', $data->id) }}"
                                                             class="btn btn-primary ml-auto"><i
                                                                 class="fa-solid fa-eye"></i></a>
                                                     </td>

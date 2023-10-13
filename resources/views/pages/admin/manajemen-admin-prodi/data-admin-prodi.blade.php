@@ -54,7 +54,7 @@
                                             <td class="text-center">{{ $data->user->username }}</td>
                                             <td>{{ $data->prodi->nama }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('data.admin.delete', $data->id) }}"
+                                                <a href="{{ route('manajemen.admin.prodi.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto">
                                                     <i class="fa-solid fas fa-trash "></i>
                                                 </a>
