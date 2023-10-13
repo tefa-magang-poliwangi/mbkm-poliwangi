@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -50,14 +50,14 @@
                                             <td class="text-center">{{ $no }}</td>
                                             <td class="text-center">{{ $data->nama }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('data.sektor_industri.update', $data->id) }}"
+                                                <a href="{{ route('manajemen.sektor.industri.update', $data->id) }}"
                                                     class="btn btn-primary ml-auto" data-toggle="modal"
                                                     data-target=".modalUpdate{{ $data->id }}">
                                                     <i class="fa-solid fa-pen text-white"></i>
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('data.sektor_industri.delete', $data->id) }}"
+                                                <a href="{{ route('manajemen.sektor.industri.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fas fa-trash "></i>
                                                 </a>
                                             </td>
@@ -77,7 +77,8 @@
                                                         </button>
                                                     </div>
 
-                                                    <form action="{{ route('data.sektor_industri.update', $data->id) }}"
+                                                    <form
+                                                        action="{{ route('manajemen.sektor.industri.update', $data->id) }}"
                                                         method="POST">
                                                         @method('put')
                                                         @csrf
@@ -142,7 +143,7 @@
                         </button>
                     </div>
 
-                    <form action="{{ route('data.sektor_industri.store') }}" method="POST">
+                    <form action="{{ route('manajemen.sektor.industri.store') }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

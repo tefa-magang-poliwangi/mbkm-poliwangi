@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('daftar.matakuliah.store') }}" method="POST">
+                        <form action="{{ route('manajemen.matakuliah.store') }}" method="POST">
                             @csrf
 
                             <div class="form-group">

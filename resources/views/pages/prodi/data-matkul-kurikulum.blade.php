@@ -21,7 +21,7 @@
                                 <h5 class="justify-start my-auto text-theme">Manajemen Matkul Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('daftar.matkul.kurikulum.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.matkul.kurikulum.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Matkul Kurikulum
                                 </a>
@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-12 col-6 col-lg-4">
                                 <div class="form-group">
-                                    <form action="{{ route('daftar.matkul.kurikulum.index') }}" method="GET">
+                                    <form action="{{ route('manajemen.matkul.kurikulum.index') }}" method="GET">
                                         <select class="form-control select2" name="prodi" onchange="this.form.submit()">
                                             <option value="">Semua Prodi</option>
                                             @foreach ($prodi as $item)
@@ -81,7 +81,7 @@
                                                             data-target="#updateModal{{ $data->id }}">
                                                             <i class="fa-solid fa-pen text-white"></i>
                                                         </button>
-                                                        <a href="{{ route('daftar.matkul.kurikulum.delete', $data->id) }}"
+                                                        <a href="{{ route('manajemen.matkul.kurikulum.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
@@ -101,7 +101,7 @@
                                                                 </button>
                                                             </div>
                                                             <form
-                                                                action="{{ route('daftar.matkul.kurikulum.update', $data->id) }}"
+                                                                action="{{ route('manajemen.matkul.kurikulum.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf

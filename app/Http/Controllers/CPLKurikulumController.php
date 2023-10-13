@@ -46,18 +46,16 @@ class CPLKurikulumController extends Controller
             'create_kode_cpl' => ['required'],
             'create_deskripsi' => ['required'],
             'create_jenis_cpl' => ['required'],
-
         ]);
 
         Cpl::create([
             'kode_cpl' => $validated['create_kode_cpl'],
             'deskripsi' => $validated['create_deskripsi'],
-
             'jenis_cpl' => $validated['create_jenis_cpl'],
             'id_kurikulum' => $id_kurikulum,
         ]);
 
-        Alert::success('Success', 'Data Kategori Berhasil Ditambahkan');
+        Alert::success('Success', 'CPL  Berhasil Ditambahkan');
 
         return redirect()->route('manajemen.cpl.kurikulum.index', $id_kurikulum);
     }
@@ -107,7 +105,7 @@ class CPLKurikulumController extends Controller
             'id_kurikulum' => $id_kurikulum,
         ]);
 
-        Alert::success('Success', 'Data Kategori Berhasil Diupdate');
+        Alert::success('Success', 'CPL Berhasil Diupdate');
 
         return redirect()->back();
     }
@@ -123,7 +121,7 @@ class CPLKurikulumController extends Controller
         $cpl = Cpl::findOrFail($id);
         $cpl->delete();
 
-        Alert::success('Success', 'Data CPL Berhasil Dihapus');
+        Alert::success('Success', 'CPL Berhasil Dihapus');
 
         return redirect()->back();
     }

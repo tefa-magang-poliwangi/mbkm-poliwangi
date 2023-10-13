@@ -77,7 +77,7 @@
                 <div class="card card-rounded-sm card-hover d-flex flex-column">
                     <div class="card-body">
                         <form
-                            action="{{ route('konversi_nilai.mahasiswa.external', [$nilai_magang_ext->id_mahasiswa, $nilai_magang_ext->id]) }}"
+                            action="{{ route('konversi.nilai.mahasisa.ext.create', [$nilai_magang_ext->id_mahasiswa, $nilai_magang_ext->id]) }}"
                             method="post">
                             @csrf
 
@@ -253,7 +253,7 @@
                                                                 <td class="text-center">{{ $data->kredit }}</td>
                                                                 <td class="text-center">{{ $data->mutu }}</td>
                                                                 <td class="text-center">
-                                                                    <a href="{{ route('konversi_nilai.mahasiswa.external.hapus', $data->id) }}"
+                                                                    <a href="{{ route('konversi.nilai.mahasisa.ext.destroy', $data->id) }}"
                                                                         class="btn btn-danger ml-auto"><i
                                                                             class="fa-solid fa-trash"></i></a>
                                                                 </td>

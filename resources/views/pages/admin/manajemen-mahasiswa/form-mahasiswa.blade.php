@@ -13,7 +13,7 @@
                         <h4>Edit Data Mahasiswa</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('data.mahasiswa.update', $mahasiswa->id) }}">
+                        <form method="POST" action="{{ route('manajemen.mahasiswa.update', $mahasiswa->id) }}">
                             @method('put')
                             @csrf
 

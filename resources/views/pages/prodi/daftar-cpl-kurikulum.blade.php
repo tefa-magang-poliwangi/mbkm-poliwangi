@@ -1,4 +1,5 @@
 @extends('layouts.base-admin')
+
 @section('title')
     <title>Daftar Admin | Politeknik Negeri Banyuwangi</title>
 @endsection
@@ -13,13 +14,13 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
+        <div class="row pt-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">manajemen CPL : {{ $kurikulum->nama }}</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen CPL : {{ $kurikulum->nama }}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
@@ -35,9 +36,9 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-center text-white" width="10%">No</th>
-                                        <th class="text-white text-center" width="10%">Kode CPL</th>
-                                        <th class="text-white text-center" width="10%">Deskripsi</th>
-                                        <th class="text-white text-center" width="10%">Jenis CPL</th>
+                                        <th class="text-white text-center">Kode CPL</th>
+                                        <th class="text-white text-center">Deskripsi</th>
+                                        <th class="text-white text-center">Jenis CPL</th>
                                         <th class="text-white text-center" width="10%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,39 +49,36 @@
                                 <tbody>
                                     @foreach ($cpl as $data)
                                         <tr>
-                                            <td class="text-center">
-                                                {{ $no }}
-                                            </td>
-                                            <td>{{ $data->kode_cpl }}</td>
-                                            <td>
-                                                {{ $data->deskripsi }}
-                                            </td>
-                                            <td>
-                                                {{ $data->jenis_cpl }}
-                                            </td>
-
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->kode_cpl }}</td>
+                                            <td>{{ $data->deskripsi }}</td>
+                                            <td class="text-center">{{ $data->jenis_cpl }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                    data-target="#updateModal{{ $data->id }}"><i
-                                                        class="fa-solid fa-pen"></i></button>
-                                                <a href="{{ route('daftar.cpl_kurikulum.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"> <i
-                                                        class="fa-solid fas fa-trash "></i></a>
+                                                    data-target="#updateModal{{ $data->id }}">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </button>
+                                                <a href="{{ route('manajemen.cpl.kurikulum.destroy', $data->id) }}"
+                                                    class="btn btn-danger ml-auto">
+                                                    <i class="fa-solid fas fa-trash "></i>
+                                                </a>
                                             </td>
                                         </tr>
 
                                         {{-- Modal Update Periode --}}
-                                        <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{ $data->id }}">
+                                        <div class="modal fade" tabindex="-1" role="dialog"
+                                            id="updateModal{{ $data->id }}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah CPL Kurikulum</h5>
+                                                        <h5 class="modal-title text-theme">Edit CPL Kurikulum</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('daftar.cpl_kurikulum.update', [$data->id, $id_kurikulum]) }}"
+                                                    <form
+                                                        action="{{ route('manajemen.cpl.kurikulum.update', [$data->id, $id_kurikulum]) }}"
                                                         method="POST">
                                                         @method('put')
                                                         @csrf
@@ -93,23 +91,10 @@
                                                                     class="form-control @error('update_kode_cpl')
                                                                     is-invalid
                                                                     @enderror"
-                                                                    name="update_kode_cpl" value="{{ $data->kode_cpl}}">
+                                                                    name="update_kode_cpl" value="{{ $data->kode_cpl }}"
+                                                                    placeholder="Kode cpl">
                                                                 @error('update_kode_cpl')
                                                                     <div id="update_kode_cpl" class="form-text text-danger">
-                                                                        {{ $message }}</div>
-                                                                @enderror
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="update_deskripsi"
-                                                                    class="form-label">Deskripsi</label>
-                                                                <input id="update_deskripsi" type="text"
-                                                                    class="form-control @error('update_deskripsi')
-                                                                        is-invalid
-                                                                        @enderror"
-                                                                    name="update_deskripsi" value="{{ $data->deskripsi}}">
-                                                                @error('update_deskripsi')
-                                                                    <div id="update_deskripsi" class="form-text text-danger">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
@@ -121,17 +106,36 @@
                                                                     class="form-control @error('update_jenis_cpl')
                                                                     is-invalid
                                                                      @enderror"
-                                                                    name="update_jenis_cpl" value="{{ $data->jenis_cpl}}">
+                                                                    name="update_jenis_cpl" value="{{ $data->jenis_cpl }}"
+                                                                    placeholder="Jenis cpl">
                                                                 @error('update_jenis_cpl')
                                                                     <div id="update_jenis_cpl" class="form-text text-danger">
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer bg-whitesmoke br">
-                                                            <button type="button" class="btn btn-cancel"
-                                                                data-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-submit">Submit</button>
+
+                                                            <div class="form-group">
+                                                                <label for="update_deskripsi"
+                                                                    class="form-label">Deskripsi</label>
+                                                                <textarea name="update_deskripsi" id="update_deskripsi" cols="30" rows="10"
+                                                                    class="form-control @error('update_deskripsi') is-invalid @enderror" placeholder="Deskripsi cpl">{{ $data->deskripsi }}</textarea>
+                                                                @error('update_deskripsi')
+                                                                    <div id="update_deskripsi" class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col d-flex">
+                                                                    <div class="ml-auto">
+                                                                        <button type="button" class="btn btn-cancel"
+                                                                            data-dismiss="modal">Batal</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-submit">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </form>
                                                 </div>
@@ -155,12 +159,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah CPL Kurikulum</h5>
+                    <h5 class="modal-title text-theme">Tambah CPL Kurikulum</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('daftar.cpl_kurikulum.store', $id_kurikulum) }}" method="POST">
+
+                <form action="{{ route('manajemen.cpl.kurikulum.store', $id_kurikulum) }}" method="POST">
                     @csrf
 
                     <div class="modal-body">
@@ -170,7 +175,7 @@
                                 class="form-control @error('create_kode_cpl')
                                 is-invalid
                             @enderror"
-                                name="create_kode_cpl">
+                                name="create_kode_cpl" placeholder="Kode cpl">
                             @error('create_kode_cpl')
                                 <div id="create_kode_cpl" class="form-text text-danger">
                                     {{ $message }}</div>
@@ -178,34 +183,34 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="create_jenis_cpl" class="form-label">Jenis CPL</label>
+                            <input id="create_jenis_cpl" type="text"
+                                class="form-control @error('create_jenis_cpl') is-invalid @enderror"
+                                name="create_jenis_cpl" placeholder="Jenis cpl">
+                            @error('create_jenis_cpl')
+                                <div id="create_jenis_cpl" class="form-text text-danger">
+                                    {{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="create_deskripsi" class="form-label">Deskripsi</label>
-                            <input id="create_deskripsi" type="text"
-                                class="form-control @error('create_deskripsi')
-                                is-invalid
-                            @enderror"
-                                name="create_deskripsi">
+                            <textarea name="create_deskripsi" id="create_deskripsi" cols="30" rows="10"
+                                class="form-control @error('create_deskripsi') is-invalid @enderror" placeholder="Deskripsi cpl"></textarea>
                             @error('create_deskripsi')
                                 <div id="create_deskripsi" class="form-text text-danger">
                                     {{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="create_jenis_cpl" class="form-label">Jenis CPL</label>
-                            <input id="create_jenis_cpl" type="text"
-                                class="form-control @error('create_jenis_cpl')
-                                is-invalid
-                            @enderror"
-                                name="create_jenis_cpl">
-                            @error('create_jenis_cpl')
-                                <div id="create_jenis_cpl" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
+                        <div class="row">
+                            <div class="col d-flex">
+                                <div class="ml-auto">
+                                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-submit">Submit</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer bg-whitesmoke br">
-                        <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-submit">Submit</button>
                     </div>
                 </form>
             </div>

@@ -25,7 +25,7 @@
                         </div>
 
                         {{-- Form Checklist Peserta Kelas --}}
-                        <form action="{{ route('peserta.kelas.store', $id_kelas) }}" method="POST">
+                        <form action="{{ route('manajemen.peserta.kelas.store', $id_kelas) }}" method="POST">
                             @csrf
 
                             @error('mahasiswas')
@@ -82,7 +82,8 @@
                                     <button type="submit" class="btn btn-primary mr-auto my-auto">
                                         Tambah
                                     </button>
-                                    <a href="{{ route('peserta.kelas.index', $id_kelas) }}" class="btn btn-cancel">Back</a>
+                                    <a href="{{ route('manajemen.peserta.kelas.index', $id_kelas) }}"
+                                        class="btn btn-cancel">Batal</a>
                                 </div>
                             </div>
                         </form>

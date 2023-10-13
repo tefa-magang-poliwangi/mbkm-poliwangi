@@ -437,13 +437,13 @@
                         <span>Kegiatanku</span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="nav-link" href="/dashboard-mahasiswa/laporan-mahasiswa-harian">Laporan Harian</a>
+                            <a class="nav-link" href="#">Laporan Harian</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="components-gallery.html">Laporan Mingguan</a>
+                            <a class="nav-link" href="#">Laporan Mingguan</a>
                         </li>
                         <li>
-                            <a class="nav-link" href="components-gallery.html">Laporan Akhir</a>
+                            <a class="nav-link" href="#">Laporan Akhir</a>
                         </li>
                     </ul>
                 </li>
