@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PesertaKelas extends Model
+class PesertaDosen extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'id',
         'id_mahasiswa',
-        'id_dosen_walis',
+        'id_dosen_wali',
     ];
 
     // relasi
@@ -21,8 +21,8 @@ class PesertaKelas extends Model
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
     }
 
-    public function peserta_dosen()
+    public function dosen_wali()
     {
-        return $this->belongsTo(PesertaDosen::class, 'id_dosen_walis', 'id');
+        return $this->belongsTo(DosenWali::class, 'id_dosen_wali', 'id');
     }
 }

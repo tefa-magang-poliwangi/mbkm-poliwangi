@@ -13,7 +13,7 @@
                         <h4>Tambah Data Mahasiswa</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('data.mahasiswa.store') }}">
+                        <form method="POST" action="{{ route('manajemen.mahasiswa.store') }}">
                             @csrf
 
                             <div class="form-group">

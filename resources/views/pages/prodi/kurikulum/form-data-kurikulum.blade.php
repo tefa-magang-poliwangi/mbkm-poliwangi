@@ -17,7 +17,7 @@
                     <h4>Tambah Data Kurikulum Kuliah</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('daftar.kurikulum.store') }}" method="POST">
+                    <form action="{{ route('manajemen.kurikulum.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="create_nama" class="form-label">Nama Kurikulum</label>

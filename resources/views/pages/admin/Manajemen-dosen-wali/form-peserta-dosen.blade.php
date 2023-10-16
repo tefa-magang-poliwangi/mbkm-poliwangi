@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Tambah Peserta Kelas | MBKM Poliwangi</title>
+    <title>Tambah Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,17 +20,17 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-2">
-                                <h5 class="justify-start">Tambah Peserta Kelas</h5>
+                                <h5 class="justify-start">Tambah Mahasiswa</h5>
                             </div>
                         </div>
 
-                        {{-- Form Checklist Peserta Kelas --}}
-                        <form action="{{ route('manajemen.peserta.kelas.store', $id_kelas) }}" method="POST">
+                        {{-- Form Checklist Peserta Dosen --}}
+                        <form action="{{ route('manajemen.peserta.dosen.store', $id_dosen_wali) }}" method="POST">
                             @csrf
 
                             @error('mahasiswas')
                                 <div id="berkas" class="text-danger py-1">
-                                    *pilih minimal satu mahasiswa
+                                    *pilih minimal satu Mahasiswa
                                 </div>
                             @else
                                 <small>(Mohon Pilih Minimal Satu Mahasiswa)</small>
@@ -43,10 +43,10 @@
                                             <thead>
                                                 <tr class="bg-primary">
                                                     <th class="text-center text-white">#</th>
-                                                    <th class="text-center text-white">Nim</th>
+                                                    <th class="text-center text-white">NIM</th>
                                                     <th class="text-center text-white">Nama</th>
-                                                    <th class="text-center text-white">Angkatan</th>
                                                     <th class="text-center text-white">Nama Prodi</th>
+                                                    <th class="text-center text-white">Angkatan</th>
                                                 </tr>
                                             </thead>
 
@@ -64,8 +64,8 @@
                                                         </td>
                                                         <td class="text-center">{{ $data->nim }}</td>
                                                         <td class="text-center">{{ $data->nama }}</td>
-                                                        <td class="text-center">{{ $data->angkatan }}</td>
                                                         <td class="text-center">{{ $data->prodi->nama }}</td>
+                                                        <td class="text-center">{{ $data->angkatan }}</td>
                                                     </tr>
                                                     @php
                                                         $no++;
@@ -82,7 +82,7 @@
                                     <button type="submit" class="btn btn-primary mr-auto my-auto">
                                         Tambah
                                     </button>
-                                    <a href="{{ route('manajemen.peserta.kelas.index', $id_kelas) }}" class="btn btn-cancel">Back</a>
+                                    <a href="#" class="btn btn-cancel">Back</a>
                                 </div>
                             </div>
                         </form>

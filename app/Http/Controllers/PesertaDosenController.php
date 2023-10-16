@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
+use App\Models\DosenWali;
 use App\Models\Mahasiswa;
-use App\Models\PesertaKelas;
+use App\Models\PesertaDosen;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PesertaKelasController extends Controller
+class PesertaDosenController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_kelas)
+    public function index($id_dosen_wali)
     {
         $data = [
-            'id_kelas' => $id_kelas,
-            'peserta_kelas' => PesertaKelas::where('id_kelas', $id_kelas)->get(),
+            'id_dosen_wali' => $id_dosen_wali,
+            'peserta_dosen' => PesertaDosen::where('id_dosen_wali', $id_dosen_wali)->get(),
         ];
 
-        return view('pages.admin.manajemen-peserta-kelas.index', $data);
+        return view('pages.admin.Manajemen-dosen-wali.data-peserta-dosen', $data);
     }
 
     /**
@@ -30,20 +30,20 @@ class PesertaKelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_kelas)
+    public function create($id_dosen_wali)
     {
-        $kelas = Kelas::findOrFail($id_kelas);
-        $prodi_kelas = $kelas->id_prodi;
+        $dosen_wali = DosenWali::findOrFail($id_dosen_wali);
+        $prodi_dosen = $dosen_wali->dosen->id_prodi;
 
-        $mahasiswas = Mahasiswa::where('id_prodi', $prodi_kelas)->whereDoesntHave('peserta_kelas')->get();
 
+        $mahasiswas = Mahasiswa::where('id_prodi', $prodi_dosen)->whereDoesntHave('peserta_dosen')->get();
         $data = [
-            'id_kelas' => $id_kelas,
+            'id_dosen_wali' => $id_dosen_wali,
             'mahasiswas' => $mahasiswas,
         ];
 
 
-        return view('pages.admin.manajemen-peserta-kelas.create', $data);
+       return view('pages.admin.Manajemen-dosen-wali.form-peserta-dosen', $data);
     }
 
     /**
@@ -52,28 +52,27 @@ class PesertaKelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_dosen_wali)
     {
         $validated = $request->validate([
             'mahasiswas' => ['required', 'array', 'min:1'],
         ]);
 
-        $id_kelas = $request->id_kelas;
         $mahasiswa_convert = collect($validated['mahasiswas']);
         $check_id_mahasiswa = $mahasiswa_convert->except('_token');
 
         if ($check_id_mahasiswa) {
             foreach ($check_id_mahasiswa as $mahasiswaId) {
-                PesertaKelas::create([
-                    'id_kelas' => $id_kelas,
+                PesertaDosen::create([
+                    'id_dosen_wali' => $id_dosen_wali,
                     'id_mahasiswa' => $mahasiswaId,
                 ]);
             }
         }
 
-        Alert::success('Success', 'Peserta Kelas Berhasil Ditambahkan');
+        Alert::success('Success', 'Peserta Dosen Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.peserta.kelas.index', $id_kelas);
+        return redirect()->route('manajemen.peserta.dosen.index', $id_dosen_wali);
     }
 
     /**
@@ -118,10 +117,10 @@ class PesertaKelasController extends Controller
      */
     public function destroy($id_kelas, $id)
     {
-        $peserta_kelas = PesertaKelas::findOrFail($id);
-        $peserta_kelas->delete();
+        $dosen_wali = DosenWali::findOrFail($id);
+        $dosen_wali->delete();
 
-        Alert::success('Success', 'Peserta Kelas Berhasil Dihapus');
+        Alert::success('Success', 'Peserta Dosen Berhasil Dihapus');
 
         return redirect()->route('manajemen.peserta.kelas.index', $id_kelas);
     }

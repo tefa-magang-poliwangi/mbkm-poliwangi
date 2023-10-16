@@ -57,7 +57,7 @@
                                                         </button>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('kriteria.penilaian.delete', $data->id) }}"
+                                                        <a href="{{ route('manajemen.kriteria.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fas fa-trash"></i>
                                                         </a>
@@ -78,7 +78,7 @@
                                                             </div>
 
                                                             <form
-                                                                action="{{ route('kriteria.penilaian.update', $data->id) }}"
+                                                                action="{{ route('manajemen.kriteria.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -135,7 +135,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('kriteria.penilaian.store', $id_magang_ext) }}" method="POST">
+                    <form action="{{ route('manajemen.kriteria.store', $id_magang_ext) }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

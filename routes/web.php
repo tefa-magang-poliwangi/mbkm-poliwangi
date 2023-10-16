@@ -26,6 +26,7 @@ use App\Http\Controllers\MatkulKurikulumController;
 use App\Http\Controllers\MitraDaftarPelamarController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\PesertaDosenController;
 use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\PLMitraController;
@@ -57,6 +58,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/login', [AuthController::class, 'login'])->name('login.page');
         Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
     });
+
 
     Route::group(['middleware' => ['auth', 'permission']], function () {
         // # (Route Super Admin)
@@ -171,7 +173,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}', [PesertaMagangExtController::class, 'index'])->name('manajemen.peserta.magang.ext.index');
         Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/create', [PesertaMagangExtController::class, 'create'])->name('manajemen.peserta.magang.ext.create');
         Route::post('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/store', [PesertaMagangExtController::class, 'store'])->name('manajemen.peserta.magang.ext.store');
-        Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/peserta_magang_ext_{id_peserta_magang_ext}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
+        Route::get('/manajemen/peserta-magang-ext/peserta_magang_ext_{id_peserta_magang_ext}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
 
         // Route Manajemen Kriteria
         Route::get('/manajemen/kriteria/{id_magang_ext}/index', [KriteriaPenilaianController::class, 'index'])->name('manajemen.kriteria.index');
@@ -201,7 +203,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Manajemen Dosen Wali
         Route::get('/manajemen/dosen-wali', [DosenWaliController::class, 'index'])->name('manajemen.dosen.wali.index');
+        Route::get('/manajemen/dosen-wali/create', [DosenWaliController::class, 'create'])->name('manajemen.dosen.wali.create');
         Route::post('/manajemen/dosen-wali/store', [DosenWaliController::class, 'store'])->name('manajemen.dosen.wali.store');
+        Route::get('/manajemen/dosen-wali/{id_dosen_wali}/destroy', [DosenWaliController::class, 'destroy'])->name('manajemen.dosen.wali.destroy');
+
+        // Route Manajemen Peserta Dosen
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
+        Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/destroy', [PesertaDosenController::class, 'destroy'])->name('manajemen.peserta.dosen.destroy');
 
         // # (Route Akademik)
         Route::get('/dashboard/akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
@@ -318,4 +328,3 @@ Route::get('/dashboard-dosen/laporan-akhir', function () {
 Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
     return view('pages.dosen.doswal-kelayakan');
 });
-

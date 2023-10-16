@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminProdi;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\DosenWali;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role;
 
 class DosenWaliController extends Controller
 {
@@ -17,15 +21,15 @@ class DosenWaliController extends Controller
      */
     public function index()
     {
-        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
+        $prodi_id = AdminProdi::Where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $datas = [
             'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
             'prodi' => Prodi::Where('id', $prodi_id)->first(),
-            'dosenwali' => DosenWali::all(),
+            'dosen_walis' => DosenWali::all(),
         ];
 
-        return view('pages.dosen.daftar-dosen-wali', $datas);
+        return view('pages.admin.Manajemen-dosen-wali.data-dosen-wali', $datas);
     }
 
     /**
@@ -35,7 +39,17 @@ class DosenWaliController extends Controller
      */
     public function create()
     {
-        //
+        $id_user = Auth()->user()->id;
+        $admin_prodi_user = AdminProdi::where('id_user', $id_user)->first();
+        $prodi_user = $admin_prodi_user->id_prodi;
+
+        $data = [
+            'dosens' => Dosen::where('id_prodi', $prodi_user)
+                ->whereDoesntHave('dosen_wali')
+                ->get(),
+        ];
+
+        return view('pages.admin.Manajemen-dosen-wali.form-data-dosen-wali', $data);
     }
 
     /**
@@ -46,13 +60,31 @@ class DosenWaliController extends Controller
      */
     public function store(Request $request)
     {
-        $list_dosen = $request->listdosen;
-        foreach ($list_dosen as $data) {
-            DosenWali::create([
-                'id_dosen' => $data
-            ]);
+        $validated = $request->validate([
+            'dosens' => ['required', 'array', 'min:1'],
+        ]);
+
+        $dosen_wali_role = Role::where('name', 'dosen-wali')->first();
+
+        $dosen_convert = collect($validated['dosens']);
+        $check_id_dosen = $dosen_convert->except('_token');
+
+        if ($check_id_dosen) {
+            foreach ($check_id_dosen as $dosenId) {
+                $dosen_user = Dosen::where('id', $dosenId)->first();
+                $user = User::findOrFail($dosen_user->id_user);
+                $user->removeRole('dosen');
+
+                DosenWali::create([
+                    'id_dosen' => $dosenId,
+                ]);
+
+                $user->assignRole($dosen_wali_role);
+            }
         }
-        return back();
+        Alert::success('Success', 'Berhasil Menambahkan Dosen Wali');
+
+        return redirect()->route('manajemen.dosen.wali.index');
     }
 
     /**
@@ -95,8 +127,21 @@ class DosenWaliController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_dosen_wali)
     {
-        //
+        // dd($id_dosen_wali);
+        $dosen_role = Role::where('name', 'dosen')->first();
+
+        $dosen_wali = DosenWali::findOrFail($id_dosen_wali);
+        $dosen_user = Dosen::where('id', $id_dosen_wali)->first();
+        $user = User::findOrFail($dosen_user->id_user);
+        // $user->removeRole('dosen-wali');
+        $dosen_wali->delete();
+
+        // $user->assignRole($dosen_role);
+
+        Alert::success('Success', 'Berhasil Mengahapus Dosen Wali');
+
+        return redirect()->route('manajemen.dosen.wali.index');
     }
 }

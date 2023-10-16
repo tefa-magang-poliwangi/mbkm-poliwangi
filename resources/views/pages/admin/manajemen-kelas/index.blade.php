@@ -61,7 +61,7 @@
                                                     <td class="text-center">{{ $data->periode->tahun }}</td>
                                                     <td class="text-center">{{ $data->periode->status }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('peserta.kelas.index', $data->id) }}"
+                                                        <a href="{{ route('manajemen.peserta.kelas.index', $data->id) }}"
                                                             class="btn btn-primary ml-auto"><i
                                                                 class="fa-solid fa-eye"></i></a>
                                                     </td>

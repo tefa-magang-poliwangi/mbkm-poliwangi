@@ -10,14 +10,7 @@ class Dosen extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'nama',
-        'email',
-        'no_telp',
-        'id_prodi',
-        'id_user',
-    ];
+    protected $fillable = ['id', 'nama', 'email', 'no_telp', 'id_prodi', 'id_user'];
 
     // relasi
     public function prodi()
@@ -43,5 +36,10 @@ class Dosen extends Model
     public function pendamping_lapang_mahasiswa()
     {
         return $this->hasMany(PendampingLapangMahasiswa::class);
+    }
+
+    public function dosen_wali()
+    {
+        return $this->hasMany(DosenWali::class, 'id_dosen', 'id');
     }
 }

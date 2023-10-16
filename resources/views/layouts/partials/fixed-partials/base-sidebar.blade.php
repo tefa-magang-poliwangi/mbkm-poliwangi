@@ -260,6 +260,7 @@
                     <li class="menu-header">ADMIN PRODI</li>
                 @endrole
 
+
                 @can('manajemen.matkul.kurikulum.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.matkul.kurikulum.index') }}">
@@ -337,6 +338,24 @@
                         <a class="nav-link" href="{{ route('manajemen.periode.index') }}">
                             <i class="fas fa-solid fa-calendar-day"></i>
                             <span>Manajemen Periode</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.dosen.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.dosen.index') }}">
+                            <i class="fas fa-solid fa-calendar-day"></i>
+                            <span>Manajemen Dosen</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.dosen.wali.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.dosen.wali.index') }}">
+                            <i class="fas fa-solid fa-calendar-day"></i>
+                            <span>Manajemen Dosen Wali</span>
                         </a>
                     </li>
                 @endcan

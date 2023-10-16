@@ -49,7 +49,7 @@ class KurikulumController extends Controller
         $data = [
             'kurikulum' => Kurikulum::all(),
             'prodi' => Prodi::all(),
-            'action' => route('daftar.kurikulum.store'),
+            'action' => route('manajemen.kurikulum.store'),
         ];
 
         return view('pages.prodi.kurikulum.form-data-kurikulum', $data);

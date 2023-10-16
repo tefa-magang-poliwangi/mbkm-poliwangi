@@ -53,7 +53,7 @@ class KriteriaPenilaianController extends Controller
         ]);
 
         Alert::success('Success', 'Kriteria Penilaian Berhasil Ditambahkan');
-        return redirect()->route('kriteria.penilaian.index', $id_magang_ext);
+        return redirect()->route('manajemen.kriteria.index', $id_magang_ext);
     }
 
     /**

@@ -23,7 +23,7 @@
                                 <h5 class="justify-start text-theme">Manajemen Peserta {{ $magang_ext->name }}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <a href="{{ route('peserta.magang_ext.create', $id_magang_ext) }}"
+                                <a href="{{ route('manajemen.peserta.magang.ext.create', $id_magang_ext) }}"
                                     class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp; Tambah Peserta
                                 </a>
@@ -57,7 +57,7 @@
                                                     <td class="text-center">{{ $data->mahasiswa->angkatan }}</td>
                                                     <td>{{ $data->mahasiswa->prodi->nama }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('peserta.magang_ext.destroy', [$id_magang_ext, $data->id]) }}"
+                                                        <a href="{{ route('manajemen.peserta.magang.ext.destroy', [$id_magang_ext, $data->id]) }}"
                                                             class="btn btn-danger ml-auto"><i
                                                                 class="fa-solid fa-trash"></i></a>
                                                     </td>

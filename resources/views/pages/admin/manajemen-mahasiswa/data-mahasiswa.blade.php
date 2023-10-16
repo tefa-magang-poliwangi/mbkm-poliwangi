@@ -23,7 +23,7 @@
                                 <h5 class="justify-start my-auto text-theme">Data Mahasiswa</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('data.mahasiswa.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.mahasiswa.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Mahasiswa
                                 </a>
@@ -62,13 +62,13 @@
                                                     <td class="text-center">{{ $data->angkatan }}</td>
                                                     <td class="text-center">{{ $data->email }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('data.mahasiswa.edit', $data->id) }}"
+                                                        <a href="{{ route('manajemen.mahasiswa.edit', $data->id) }}"
                                                             class="btn btn-primary ml-auto">
                                                             <i class="fa-solid fa-pen"></i>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('data.mahasiswa.destroy', $data->id) }}"
+                                                        <a href="{{ route('manajemen.mahasiswa.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
