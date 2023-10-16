@@ -448,12 +448,15 @@
                     </ul>
                 </li>
 
-                <li class="menu-header">Tentang Akun</li>
-                <li>
-                    <a class="nav-link" href="#"><i class="fas fa-user"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
+                @can('profil.mahasiswa.page')
+                    <li class="menu-header">Tentang Akun</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('profil.mahasiswa.page', auth()->user()->id) }}"><i
+                                class="fas fa-user"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+                @endcan
             @endauth
 
             {{-- Menu Mitra --}}
@@ -480,9 +483,9 @@
                     </li>
                 @endcan
 
-                @can('data.lowongan-mitra.index')
+                @can('manajemen.lowongan.mitra.index')
                     <li>
-                        <a class="nav-link" href="{{ route('data.lowongan-mitra.index') }}">
+                        <a class="nav-link" href="{{ route('manajemen.lowongan.mitra.index') }}">
                             <i class="fas fa-solid fa-briefcase"></i>
                             <span>Lowongan</span>
                         </a>
@@ -545,8 +548,3 @@
         </ul>
     </aside>
 </div>
-<li>
-    <a class="nav-link" href="{{ route('data.lowongan-mitra.index') }}"><i class="fas fa-user"></i>
-        <span>Daftar Lowongan</span>
-    </a>
-</li>
