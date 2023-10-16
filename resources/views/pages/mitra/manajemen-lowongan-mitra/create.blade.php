@@ -1,6 +1,6 @@
 @extends('layouts.base-admin')
-@section('Form Mitra')
-    <title>Form Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
+@section('Tambah Lowongan')
+    <title>Tambah Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
 
 @section('css')
@@ -20,7 +20,7 @@
                             <h4>Form Mitra</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('data.lowongan-mitra.store') }}" method="POST"
+                            <form action="{{ route('manajemen.lowongan.mitra.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="jumlah_lowongan" class="jumlah_lowongan">Jumlah Lowongan</label>
-                                    <input id="jumlah_lowongan" type="text" name="jumlah_lowongan"
+                                    <input id="jumlah_lowongan" type="number" name="jumlah_lowongan"
                                         class="form-control @error('jumlah_lowongan')
                                         is-invalid
                                     @enderror"
@@ -48,7 +48,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="deskripsi">deskripsi</label>
+                                    <label for="deskripsi">Deskripsi</label>
                                     <input id="deskripsi" type="text" name="deskripsi"
                                         class="form-control @error('deskripsi')
                                         is-invalid

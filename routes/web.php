@@ -34,6 +34,7 @@ use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
+use App\Http\Controllers\MitraPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -231,10 +232,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/input-kriteria-penilaian/{id_detail_penilaian_magang_ext}/destroy', [InputKriteriaMahasiswaController::class, 'destroy'])->name('input.kriteria.mahasiswa.ext.destroy');
 
         // # (Route Mitra)
-        //route lowongan mitra
-        Route::get('/dashboard-mitra/lowongan-mitra/index', [LowonganController::class, 'index'])->name('data.lowongan-mitra.index');
-        Route::get('/dashboard-mitra/lowongan-mitra/create', [LowonganController::class, 'create'])->name('data.lowongan-mitra.create');
-        Route::post('/dashboard-mitra/lowongan-mitra/store', [LowonganController::class, 'store'])->name('data.lowongan-mitra.store');
+        //Route Dashboard Mitra
+        Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
+
+        //Route Lowongan Mitra
+        Route::get('/manajemen/lowongan-mitra', [LowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
+        Route::get('/manajemen/lowongan-mitra/create', [LowonganController::class, 'create'])->name('manajemen.lowongan.mitra.create');
+        Route::post('/manajemen/lowongan-mitra/store', [LowonganController::class, 'store'])->name('manajemen.lowongan.mitra.store');
+        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/edit', [LowonganController::class, 'edit'])->name('manajemen.lowongan.mitra.edit');
+        Route::put('/manajemen/lowongan-mitra/lowongan-mitra/mitra_{id_mitra}/lowongan_{id_lowongan}/update', [LowonganController::class, 'update'])->name('manajemen.lowongan.mitra.update');
+        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [LowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
 
         // # (Route User Super Admin - Spatie)
         Route::group(['prefix' => 'users'], function () {
