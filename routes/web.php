@@ -35,6 +35,7 @@ use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
+use App\Http\Controllers\ValidasiNilaiKaprodi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,6 +91,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // # (Route Admin Prodi)
         Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_adminprodi'])->name('dashboard.admin.prodi.page');
+
+        // # (Route Kaprodi)
+        Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
+        Route::get('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/show', [ValidasiNilaiKaprodi::class, 'show'])->name('kaprodi.daftar.transkrip.show');
+        Route::put('/daftar-transkrip-mahasiswa/{id_nilai_konversi}/update', [ValidasiNilaiKaprodi::class, 'update'])->name('kaprodi.daftar.transkrip.update');
 
         // Route Manajemen Mahasiswa
         Route::get('/manajemen/mahasiswa', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');
@@ -251,7 +257,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/{user}/show', 'UsersController@show')->name('users.show');
             Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
-            Route::get('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
+            Route::delete('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
         });
 
         // Route Role dan Permissions

@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Transkrip Nilai | MBKM Poliwangi</title>
+    <title>Daftar Transkrip Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white mt-2">
-                        <h3 class="text-theme">Daftar Transkrip Nilai</h3>
+                        <h4 class="text-theme">Daftar Transkrip Nilai</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -31,7 +31,7 @@
                                         <th class="text-white">Nama</th>
                                         <th class="text-center text-white">NIM</th>
                                         <th class="text-white">Program Studi</th>
-                                        <th class="text-center text-white">Action</th>
+                                        <th class="text-center text-white">Lihat Nilai</th>
                                     </tr>
                                 </thead>
 
@@ -40,7 +40,7 @@
                                         $no = 1;
                                     @endphp
 
-                                    @foreach ($nilai_magang_ext as $data)
+                                    @foreach ($transkrip_nilai_mhs as $data)
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
                                             <td>{{ $data->mahasiswa->nama }}</td>
@@ -49,12 +49,15 @@
 
                                             <td class="text-center">
                                                 @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)
-                                                    <a href="{{ route('daftar.transkrip.mahasiswa.ext.show', [$data->id_mahasiswa, $data->id_magang_ext, $data->id]) }}"
-                                                        class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"
-                                                            title="Siap Dikonversi"></i></a>
+                                                    <a href="{{ route('kaprodi.daftar.transkrip.show', $data->id) }}"
+                                                        class="btn btn-primary ml-auto">
+                                                        <i class="fa-solid fa-eye" title="Siap Dikonversi"></i>
+                                                    </a>
                                                 @else
                                                     <a href="#" class="btn btn-danger ml-auto"
-                                                        title="Tidak Ada Kelas"><i class="fa-solid fa-eye-slash"></i></a>
+                                                        title="Tidak Ada Kelas">
+                                                        <i class="fa-solid fa-eye-slash"></i>
+                                                    </a>
                                                 @endif
                                             </td>
                                         </tr>

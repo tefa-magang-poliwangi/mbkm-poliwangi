@@ -357,15 +357,18 @@
                     </li>
                 @endcan
 
+                @can('kaprodi.daftar.transkrip.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('kaprodi.daftar.transkrip.index') }}">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Daftar Trankrip Nilai</span>
+                        </a>
+                    </li>
+                @endcan
+
                 <li>
                     <a class="nav-link" href="#"><i class="fas fa-solid fa-user-check"></i>
                         <span>Kelayakan Mahasiswa</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="nav-link" href="#"><i class="fas fa-credit-card"></i>
-                        <span>Transkrip Nilai</span>
                     </a>
                 </li>
             @endauth
