@@ -11,26 +11,17 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
     <div class="container-fluid" style="padding-top: 5%">
         <div class="row">
-=======
-    <section>
-        <div class="row pt-3">
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-<<<<<<< HEAD
                                 <h5 class="justify-start my-auto text-theme">Formulir Mitra</h5>
-=======
-                                <h5 class="justify-start my-auto text-theme">Manajemen Mitra</h5>
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('formulir.mitra.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.mitra.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Mitra
                                 </a>
@@ -66,11 +57,11 @@
                                             <td class="text-center">{{ $data->kota }}</td>
                                             <td class="text-center">{{ $data->status }}</td>
                                             <td>
-                                                <a href="{{ route('formulir.mitra.edit', $data->id) }}"
+                                                <a href="{{ route('manajemen.mitra.edit', $data->id) }}"
                                                     class="btn btn-info ml-auto">
                                                     <i class="fa-solid fa-pen text-white"></i>
                                                 </a>
-                                                <a href="{{ route('formulir.mitra.delete', $data->id) }}"
+                                                <a href="{{ route('manajemen.mitra.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
