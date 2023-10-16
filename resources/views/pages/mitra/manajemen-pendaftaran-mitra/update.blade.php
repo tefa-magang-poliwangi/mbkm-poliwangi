@@ -20,7 +20,7 @@
                         <h4>Edit Mitra - Magang Internal</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('formulir.mitra.update', $mitra->id) }}" method="POST">
+                        <form action="{{ route('manajemen.mitra.update', $mitra->id) }}" method="POST">
                             @method('put')
                             @csrf
 

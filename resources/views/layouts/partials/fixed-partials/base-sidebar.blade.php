@@ -480,9 +480,9 @@
                     </li>
                 @endcan
 
-                @can('data.lowongan-mitra.index')
+                @can('manajemen.lowongan.mitra.index')
                     <li>
-                        <a class="nav-link" href="{{ route('data.lowongan-mitra.index') }}">
+                        <a class="nav-link" href="{{ route('manajemen.lowongan.mitra.index') }}">
                             <i class="fas fa-solid fa-briefcase"></i>
                             <span>Lowongan</span>
                         </a>
@@ -545,8 +545,3 @@
         </ul>
     </aside>
 </div>
-<li>
-    <a class="nav-link" href="{{ route('data.lowongan-mitra.index') }}"><i class="fas fa-user"></i>
-        <span>Daftar Lowongan</span>
-    </a>
-</li>
