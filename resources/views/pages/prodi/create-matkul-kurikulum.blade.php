@@ -11,7 +11,7 @@
 
 @section('content')
     <section>
-        <div class="row d-flex justify-content-center pt-4">
+        <div class="row d-flex justify-content-center pt-5">
             <div class="col-12">
                 <div class="card card-rounded-sm">
                     <div class="card-header d-flex">

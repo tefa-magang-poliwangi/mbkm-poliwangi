@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card card-custom rounded ">
                     <div class="card-body">
