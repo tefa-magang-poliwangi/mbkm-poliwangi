@@ -11,7 +11,7 @@
 
 @section('content')
     <section>
-        <div class="row mt-4">
+        <div class="row pt-5">
             <div class="col-12 col-md-12 col-lg-5">
                 <div class="card card-hover">
                     <div class="card-body">
