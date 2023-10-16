@@ -6,7 +6,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="bg-white p-4 rounded">
                     <h1>Update user</h1>
@@ -18,6 +18,7 @@
                         <form method="post" action="{{ route('users.update', $user->id) }}">
                             @method('patch')
                             @csrf
+
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input value="{{ $user->name }}" type="text" class="form-control" id="name"

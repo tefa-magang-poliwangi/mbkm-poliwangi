@@ -46,8 +46,11 @@ class PeriodeController extends Controller
             'create_status' => ['required'],
         ]);
 
-        // Nonaktifkan semua periode yang sebelumnya aktif
-        Periode::where('status', 'Aktif')->update(['status' => 'Tidak Aktif']);
+        // jikalau request status tidak sama dengan tidak aktif
+        if (!$request->create_status == 'Tidak Aktif') {
+            // Nonaktifkan semua periode yang sebelumnya aktif
+            Periode::where('status', 'Aktif')->update(['status' => 'Tidak Aktif']);
+        }
 
         Periode::create([
             'semester' => $validated['create_semester'],
@@ -94,20 +97,23 @@ class PeriodeController extends Controller
         $periode = Periode::findOrFail($id);
 
         $validated = $request->validate([
-            'update_semester' => ['required'],
-            'update_tahun' => ['required'],
-            'update_status' => ['required'],
+            'update_semester' => 'required',
+            'update_tahun' => 'required|numeric', // Pastikan tahun adalah angka
+            'update_status' => 'required|in:Aktif,Tidak Aktif', // Pastikan status sesuai
         ]);
 
-        if ($periode->status = 'Aktif' && $request->update_status == "Tidak Aktif") {
+        if ($periode->status == 'Aktif' && $request->update_status == 'Tidak Aktif') {
+            // Anda tidak dapat mengubah periode aktif menjadi tidak aktif
             Alert::error('Oops', 'Mohon Ubah Periode yang Tidak Aktif');
             return redirect()->back();
-        } elseif ($periode->status = 'Tidak Aktif' && $request->update_status == "Aktif") {
-            // Nonaktifkan semua periode yang sebelumnya aktif
+        }
+
+        // Hanya jika status berubah menjadi Aktif, nonaktifkan periode lainnya
+        if ($periode->status == 'Tidak Aktif' && $request->update_status == 'Aktif') {
             Periode::where('status', 'Aktif')->update(['status' => 'Tidak Aktif']);
         }
 
-        Periode::where('id', $id)->update([
+        $periode->update([
             'semester' => $validated['update_semester'],
             'tahun' => $validated['update_tahun'],
             'status' => $validated['update_status'],
@@ -117,6 +123,7 @@ class PeriodeController extends Controller
 
         return redirect()->route('manajemen.periode.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

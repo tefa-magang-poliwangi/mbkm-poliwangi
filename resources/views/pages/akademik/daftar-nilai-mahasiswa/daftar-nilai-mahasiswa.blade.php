@@ -14,13 +14,13 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start">Daftar Nilai Transkrip Mahasiswa</h5>
+                                <h5 class="justify-start text-theme">Daftar Nilai Transkrip Mahasiswa</h5>
                             </div>
                         </div>
 
@@ -28,13 +28,13 @@
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">Kode</th>
-                                                <th class="text-center">Nama Matakuliah</th>
-                                                <th class="text-center">Nilai Angka</th>
-                                                <th class="text-center">Nilai Huruf</th>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-center text-white">Kode</th>
+                                                <th class="text-center text-white">Nama Matakuliah</th>
+                                                <th class="text-center text-white">Nilai Angka</th>
+                                                <th class="text-center text-white">Nilai Huruf</th>
                                             </tr>
                                         </thead>
                                         <tbody>

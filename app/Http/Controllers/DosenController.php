@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class DosenController extends Controller
 {
@@ -97,15 +98,33 @@ class DosenController extends Controller
      */
     public function import(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:xlsx,csv',
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
         $file = $request->file('file');
 
-        Excel::import(new DosenImport, $file);
+        // membuat nama file unik
+        $nama_file = $file->hashName();
 
-        return redirect()->back()->with('success', 'Data berhasil diimpor.');
+        //temporary file
+        $path = $file->storeAs('public/excel/', $nama_file);
+
+        // import data
+        $import = Excel::import(new DosenImport(), storage_path('app/public/excel/' . $nama_file));
+
+        //remove from server
+        Storage::delete($path);
+
+        if ($import) {
+            //redirect
+            Alert::success('Success', 'Data Berhasil Di Import');
+            return redirect()->back();
+        } else {
+            //redirect
+            Alert::error('Error', 'Data Berhasil Di Import');
+            return redirect()->back();
+        }
     }
 
     public function show($id)

@@ -14,13 +14,13 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start my-auto">Daftar Kelas</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Kelas</h5>
                             </div>
                         </div>
 
@@ -28,16 +28,16 @@
                             <div class="col-12">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">Tingkat</th>
-                                                <th class="text-center">Pararel</th>
-                                                <th class="text-center">Prodi</th>
-                                                <th class="text-center">Semester</th>
-                                                <th class="text-center">Tahun</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Lihat</th>
+                                                <th class="text-center text-white">No</th>
+                                                <th class="text-center text-white">Tingkat</th>
+                                                <th class="text-center text-white">Pararel</th>
+                                                <th class="text-center text-white">Prodi</th>
+                                                <th class="text-center text-white">Semester</th>
+                                                <th class="text-center text-white">Tahun</th>
+                                                <th class="text-center text-white">Status</th>
+                                                <th class="text-center text-white">Lihat</th>
                                             </tr>
                                         </thead>
                                         <tbody>

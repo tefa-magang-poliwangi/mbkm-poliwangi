@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
-@section('Kegiatan')
-    <title>Kegiatan MBKM | MBKM Poliwangi</title>
+@section('title')
+    <title>Tambah Kurikulum | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -10,53 +10,56 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Tambah Data Kurikulum Kuliah</h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('manajemen.kurikulum.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="create_nama" class="form-label">Nama Kurikulum</label>
-                            <input id="create_nama" type="text"
-                                class="form-control @error('create_nama')
-                                is-invalid
-                            @enderror"
-                                name="create_nama">
-                            @error('create_nama')
-                                <div id="create_nama" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
+    <section>
+        <div class="row pt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Tambah Data Kurikulum Kuliah</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('manajemen.kurikulum.store') }}" method="POST">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="create_nama" class="form-label">Nama Kurikulum</label>
+                                <input id="create_nama" type="text"
+                                    class="form-control @error('create_nama')
+                                    is-invalid
+                                @enderror"
+                                    name="create_nama" placeholder="Nama kurikulum">
+                                @error('create_nama')
+                                    <div id="create_nama" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
 
 
-                        <div class="form-group">
-                            <label for="create_status" class="form-label">Status</label>
-                            <select class="form-control @error('create_status') is-invalid @enderror" id="create_status"
-                                name="create_status">
-                                <option value="">Pilih Status</option>
-                                <option value="1">Wajib</option>
-                                <option value="2">Tidak Wajib</option>
-                            </select>
-                            @error('create_status')
-                                <div id="create_status" class="form-text pb-1">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
+                            <div class="form-group">
+                                <label for="create_status" class="form-label">Status</label>
+                                <select class="form-control @error('create_status') is-invalid @enderror" id="create_status"
+                                    name="create_status">
+                                    <option value="">Pilih Status</option>
+                                    <option value="1">Wajib</option>
+                                    <option value="2">Tidak Wajib</option>
+                                </select>
+                                @error('create_status')
+                                    <div id="create_status" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                Tambah Data
-                            </button>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                    Tambah Data
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('script')

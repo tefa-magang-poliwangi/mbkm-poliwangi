@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -70,7 +70,8 @@
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Edit Kriteria Penilaian</h5>
+                                                                <h5 class="modal-title text-theme">Edit Kriteria Penilaian
+                                                                </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -130,7 +131,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Kriteria Penilaian</h5>
+                        <h5 class="modal-title text-theme">Tambah Kriteria Penilaian</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

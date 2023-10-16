@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -64,13 +64,14 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="{{route('manajemen.cpl_kurikulum.index', $item->id)}}" class="btn btn-primary">
+                                                <a href="{{ route('manajemen.cpl.kurikulum.index', $item->id) }}"
+                                                    class="btn btn-primary">
                                                     <i class="fa-solid fa-search"></i> CPL
                                                 </a>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $item->id }}"><i
                                                         class="fa-solid fa-pen"></i></button>
-                                                <a href="{{ route('manajemen.kurikulum.delete', $item->id) }}"
+                                                <a href="{{ route('manajemen.kurikulum.destroy', $item->id) }}"
                                                     class="btn btn-danger ml-auto"> <i
                                                         class="fa-solid fas fa-trash"></i></a>
                                             </td>
@@ -153,9 +154,6 @@
         </div>
 
     </section>
-
-
-
 @endsection
 
 @section('script')

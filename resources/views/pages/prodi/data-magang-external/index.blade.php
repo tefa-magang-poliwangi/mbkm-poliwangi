@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -78,7 +78,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah Data Magang External</h5>
+                                                        <h5 class="modal-title text-theme">Tambah Data Magang External</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>

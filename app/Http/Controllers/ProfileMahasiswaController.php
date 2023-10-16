@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MagangExt;
-use App\Models\PenilaianMagangExt;
+use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Validation\Rules;
 
-class KriteriaPenilaianController extends Controller
+class ProfileMahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_magang_ext)
+    public function index()
     {
-        $data = [
-            'id_magang_ext' => $id_magang_ext,
-            'kriteria' => PenilaianMagangExt::where('id_magang_ext', $id_magang_ext)->get(),
-            'magang_ext' => MagangExt::findOrFail($id_magang_ext),
-        ];
-
-        return view('pages.admin.manajemen-kriteria.index', $data);
+        //
     }
 
     /**
@@ -41,20 +37,9 @@ class KriteriaPenilaianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_magang_ext)
+    public function store(Request $request)
     {
-        $validated = $request->validate([
-            'create_kriteria' => ['required']
-        ]);
-
-        PenilaianMagangExt::create([
-            'id_magang_ext' => $id_magang_ext,
-            'penilaian' => $validated['create_kriteria'],
-        ]);
-
-        Alert::success('Success', 'Kriteria Penilaian Berhasil Ditambahkan');
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -65,7 +50,15 @@ class KriteriaPenilaianController extends Controller
      */
     public function show($id)
     {
-        //
+        if ($id != Auth::user()->id) {
+            return redirect()->back();
+        }
+
+        $data = [
+            'mahasiswa' => Mahasiswa::where('id_user', $id)->first(),
+        ];
+
+        return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil', $data);
     }
 
     /**
@@ -88,15 +81,34 @@ class KriteriaPenilaianController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $mahasiswa = Mahasiswa::findOrFail($id);
+
         $validated = $request->validate([
-            'update_kriteria' => ['required']
+            'nama' => 'required',
+            'email' => 'required|email',
+            'angkatan' => 'required',
+            'no_telp' => 'required|string|between:11,15',
+            'password' => ['nullable', 'confirmed', 'min:8'],
+            'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
 
-        PenilaianMagangExt::where('id', $id)->update([
-            'penilaian' => $validated['update_kriteria'],
+        $user = User::findOrFail($mahasiswa->id_user);
+
+        User::where('id', $user->id)->update([
+            'name' => $validated['nama'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
         ]);
 
-        Alert::success('Success', 'Kriteria Penilaian Berhasil Diubah');
+        Mahasiswa::where('id', $mahasiswa->id)->update([
+            'nama' => $validated['nama'],
+            'email' => $validated['email'],
+            'angkatan' => $validated['angkatan'],
+            'no_telp' => $validated['no_telp'],
+        ]);
+
+        Alert::success('Success', 'Profil Berhasil Diubah');
+
         return redirect()->back();
     }
 
@@ -108,11 +120,6 @@ class KriteriaPenilaianController extends Controller
      */
     public function destroy($id)
     {
-        $kriteria = PenilaianMagangExt::findOrFail($id);
-        $kriteria->delete();
-
-        Alert::success('Success', 'Kriteria Penilaian Berhasil Dihapus');
-
-        return redirect()->back();
+        //
     }
 }

@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -31,7 +31,6 @@
                         </div>
 
                         {{-- Filter Prodi Mahasiswa --}}
-
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
