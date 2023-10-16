@@ -30,6 +30,7 @@ use App\Http\Controllers\PesertaKelasController;
 use App\Http\Controllers\PesertaMagangExtController;
 use App\Http\Controllers\PLMitraController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
@@ -215,6 +216,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Mahasiswa)
         Route::get('/dashboard/mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
 
+        // Route Profil Mahasiswa
+        Route::get('/dashboard/mahasiswa/ubah-profil/{id_user}', [ProfileMahasiswaController::class, 'show'])->name('profil.mahasiswa.page');
+        Route::put('/dashboard/mahasiswa/update-profil/{id_mahasiswa}', [ProfileMahasiswaController::class, 'update'])->name('profil.mahasiswa.update');
+
         // Route Upload Transkrip Mahasiswa Magang Ext
         Route::get('/upload-transkrip-mahasiswa/magang-external/{id_user}/create', [UploadTranskripNilai::class, 'create'])->name('upload.transkrip.mahasiswa.ext.create');
         Route::post('/upload-transkrip-mahasiswa/magang-external/{id_user}/store', [UploadTranskripNilai::class, 'store'])->name('upload.transkrip.mahasiswa.ext.store');
@@ -261,11 +266,6 @@ Route::get('/dashboard-admin-prodi', function () {
 });
 Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
     return view('pages.prodi.daftar-cpl-kurikulum');
-});
-
-// # Halaman Mahasiswa - Eksternal
-Route::get('/dashboard-mahasiswa/profil', function () {
-    return view('pages.mahasiswa.profil-mahasiswa.mahasiswa-profil');
 });
 
 // # Halaman Mahasiswa - Internal (Kurang laporan harian, laporan mingguan)
