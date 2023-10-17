@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-4">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -23,8 +23,7 @@
                                 <h5 class="justify-start text-theme">Manajemen Peserta Kelas</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <a href="{{ route('manajemen.peserta.kelas.create', $id_kelas) }}"
-                                    class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.peserta.kelas.create', $id_kelas) }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp; Tambah Peserta Kelas
                                 </a>
                             </div>

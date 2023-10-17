@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -82,8 +82,7 @@
                                     <button type="submit" class="btn btn-primary mr-auto my-auto">
                                         Tambah
                                     </button>
-                                    <a href="{{ route('manajemen.peserta.kelas.index', $id_kelas) }}"
-                                        class="btn btn-cancel">Batal</a>
+                                    <a href="{{ route('manajemen.peserta.kelas.index', $id_kelas) }}" class="btn btn-cancel">Back</a>
                                 </div>
                             </div>
                         </form>

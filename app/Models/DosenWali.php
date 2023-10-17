@@ -19,4 +19,9 @@ class DosenWali extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
     }
+    public function peserta_dosen()
+    {
+        return $this->belongsTo(PesertaDosen::class, 'id_dosen_walis', 'id');
+    }
+
 }

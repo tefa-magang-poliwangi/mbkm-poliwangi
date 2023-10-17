@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Tambah Peserta Magang External | MBKM Poliwangi</title>
+    <title>Tambah Peserta Dosen | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -14,38 +14,37 @@
 
 @section('content')
     <section>
-        <div class="row pt-5">
+        <div class="row py-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-2">
-                                <h5 class="justify-start">Tambah Peserta magang External</h5>
+                                <h5 class="justify-start">Tambah Dosen Wali</h5>
                             </div>
                         </div>
 
                         {{-- Form Checklist Peserta Kelas --}}
-                        <form action="{{ route('manajemen.peserta.magang.ext.store', $id_magang_ext) }}" method="POST">
+                        <form action="{{ route('manajemen.dosen.wali.store') }}" method="POST">
                             @csrf
 
-                            @error('mahasiswas')
+                            @error('dosens')
                                 <div id="berkas" class="text-danger py-1">
-                                    *pilih minimal satu mahasiswa
+                                    *pilih minimal satu Dosen
                                 </div>
                             @else
-                                <small>(Mohon Pilih Minimal Satu Mahasiswa)</small>
+                                <small>(Mohon Pilih Minimal Satu Dosen)</small>
                             @enderror
 
                             <div class="row mt-3">
                                 <div class="col-12">
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="table-1">
-                                            <thead class="bg-primary">
-                                                <tr>
+                                            <thead>
+                                                <tr class="bg-primary">
                                                     <th class="text-center text-white">#</th>
-                                                    <th class="text-center text-white">Nim</th>
                                                     <th class="text-center text-white">Nama</th>
-                                                    <th class="text-center text-white">Angkatan</th>
+                                                    <th class="text-center text-white">Email</th>
                                                     <th class="text-center text-white">Nama Prodi</th>
                                                 </tr>
                                             </thead>
@@ -55,16 +54,15 @@
                                                     $no = 1;
                                                 @endphp
 
-                                                @foreach ($mahasiswas as $data)
+                                                @foreach ($dosens as $data)
                                                     <tr>
                                                         <td class="text-center">
                                                             <input class="form-check-input" type="checkbox"
-                                                                name="mahasiswas[]" id="{{ $data->id }}"
+                                                                name="dosens[]" id="{{ $data->id }}"
                                                                 value="{{ $data->id }}">
                                                         </td>
-                                                        <td class="text-center">{{ $data->nim }}</td>
                                                         <td class="text-center">{{ $data->nama }}</td>
-                                                        <td class="text-center">{{ $data->angkatan }}</td>
+                                                        <td class="text-center">{{ $data->email }}</td>
                                                         <td class="text-center">{{ $data->prodi->nama }}</td>
                                                     </tr>
                                                     @php
@@ -82,8 +80,7 @@
                                     <button type="submit" class="btn btn-primary mr-auto my-auto">
                                         Tambah
                                     </button>
-                                    <a href="{{ route('manajemen.peserta.magang.ext.index', $id_magang_ext) }}"
-                                        class="btn btn-cancel">Back</a>
+                                    <a href="#" class="btn btn-cancel">Back</a>
                                 </div>
                             </div>
                         </form>

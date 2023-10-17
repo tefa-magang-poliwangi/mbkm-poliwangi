@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('waktu_mulai')->nullable(false);
             $table->date('waktu_akhir')->nullable(false);
             $table->string('posisi_mahasiswa', 255)->nullable(false);
-            $table->enum('validasi_kaprodi', ['Setuju', 'Tidak Setuju'])->nullable(false);
+            $table->enum('validasi_kaprodi', ['Setuju', 'Tidak Setuju', 'Belum Disetujui'])->nullable(false)->default('Belum Disetujui');
             $table->unsignedBigInteger('id_lowongan')->nullable(false);
             $table->unsignedBigInteger('id_pl_mitra')->nullable(false);
             $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
