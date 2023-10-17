@@ -27,12 +27,14 @@ class UserImport implements ToCollection
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            User::create([
+            $user = User::create([
                 'name' => $row[0],
                 'email'     => $row[1],
                 'username'  => $row[2],
                 'password'  => Hash::make($row[3]),
             ]);
+
+            $user->assignRole('dosen');
         }
     }
 }
