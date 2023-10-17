@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row py-3">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
