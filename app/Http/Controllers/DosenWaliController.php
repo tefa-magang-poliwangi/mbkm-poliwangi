@@ -129,16 +129,17 @@ class DosenWaliController extends Controller
      */
     public function destroy($id_dosen_wali)
     {
-        // dd($id_dosen_wali);
         $dosen_role = Role::where('name', 'dosen')->first();
 
         $dosen_wali = DosenWali::findOrFail($id_dosen_wali);
-        $dosen_user = Dosen::where('id', $id_dosen_wali)->first();
+        $dosen_user = Dosen::where('id', $dosen_wali->id_dosen)->first();
         $user = User::findOrFail($dosen_user->id_user);
-        // $user->removeRole('dosen-wali');
+
+        $user->removeRole('dosen-wali');
+
         $dosen_wali->delete();
 
-        // $user->assignRole($dosen_role);
+        $user->assignRole($dosen_role);
 
         Alert::success('Success', 'Berhasil Mengahapus Dosen Wali');
 

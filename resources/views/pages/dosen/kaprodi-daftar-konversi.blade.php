@@ -57,7 +57,8 @@
                                                             title="Siap Dikonversi"></i></a>
                                                 @else
                                                     <a href="#" class="btn btn-danger ml-auto"
-                                                        title="Tidak Ada Kelas"><i class="fa-solid fa-eye-slash"></i></a>
+                                                        title="Mahasiswa Tidak Memiliki Kelas dan Dosen Wali"><i
+                                                            class="fa-solid fa-eye-slash"></i></a>
                                                 @endif
                                             </td>
                                         </tr>
