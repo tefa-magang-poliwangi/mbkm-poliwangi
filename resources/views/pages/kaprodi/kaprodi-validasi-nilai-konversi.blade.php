@@ -19,130 +19,143 @@
     <section>
         <div class="row pt-5">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <form action="" method="POST">
-                    @method('put')
-                    @csrf
+                <div class="card card-border card-rounded-sm card-hover my-auto">
+                    <div class="card-body">
+                        <h5 class="header-title text-theme mb-3">Nilai Transkrip - {{ $transkrip_mhs->mahasiswa->nama }}
+                        </h5>
 
-                    <div class="card card-border card-rounded-sm card-hover my-auto">
-                        <div class="card-body">
-                            <h5 class="header-title text-theme mb-3">Nilai Transkrip - {{ $transkrip_mhs->mahasiswa->nama }}
-                            </h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table-1">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <th class="text-white text-center">No</th>
+                                        <th class="text-white text-center">Kode</th>
+                                        <th class="text-white text-center">Mata Kuliah</th>
+                                        <th class="text-white text-center">Nilai Angka</th>
+                                        <th class="text-white text-center">Nilai Huruf</th>
+                                        <th class="text-white text-center">Angka Mutu</th>
+                                        <th class="text-white text-center">Kredit</th>
+                                        <th class="text-white text-center">Mutu</th>
+                                        <th class="text-white text-center">Edit</th>
+                                    </tr>
+                                </thead>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped" id="table-1">
-                                    <thead class="bg-primary">
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @if ($nilai_transkrip_mhs->isEmpty())
                                         <tr>
-                                            <th class="text-white text-center">No</th>
-                                            <th class="text-white text-center">Kode</th>
-                                            <th class="text-white text-center">Mata Kuliah</th>
-                                            <th class="text-white text-center">Nilai Angka</th>
-                                            <th class="text-white text-center">Nilai Huruf</th>
-                                            <th class="text-white text-center">Angka Mutu</th>
-                                            <th class="text-white text-center">Kredit</th>
-                                            <th class="text-white text-center">Mutu</th>
-                                            <th class="text-white text-center">Edit</th>
+                                            <td colspan="8" class="text-center">Mohon Tunggu Dosen Wali untuk Melakukan
+                                                Konversi</td>
                                         </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        @php
-                                            $no = 1;
-                                        @endphp
-
-                                        @if ($nilai_transkrip_mhs->isEmpty())
+                                    @else
+                                        @foreach ($nilai_transkrip_mhs as $data)
                                             <tr>
-                                                <td colspan="8" class="text-center">Mohon Tambahkan Nilai
-                                                    Konversi</td>
+                                                <td class="text-center">{{ $no }}</td>
+                                                <td class="text-center">
+                                                    {{ $data->matkul->kode_matakuliah }}</td>
+                                                <td class="text-center">{{ $data->matkul->nama }}</td>
+                                                <td class="text-center">{{ $data->nilai_angka }}</td>
+                                                <td class="text-center">{{ $data->nilai_huruf }}</td>
+                                                <td class="text-center">{{ $data->angka_mutu }}</td>
+                                                <td class="text-center">{{ $data->kredit }}</td>
+                                                <td class="text-center">{{ $data->mutu }}</td>
+                                                <td class="text-center">
+                                                    <button type="button" data-toggle="modal"
+                                                        data-target="#editNilai{{ $data->id }}"
+                                                        class="btn btn-info ml-auto">
+                                                        <i class="fa-solid fa-pen text-white"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
-                                        @else
-                                            @foreach ($nilai_transkrip_mhs as $data)
-                                                <tr>
-                                                    <td class="text-center">{{ $no }}</td>
-                                                    <td class="text-center">
-                                                        {{ $data->matkul->kode_matakuliah }}</td>
-                                                    <td class="text-center">{{ $data->matkul->nama }}</td>
-                                                    <td class="text-center">{{ $data->nilai_angka }}</td>
-                                                    <td class="text-center">{{ $data->nilai_huruf }}</td>
-                                                    <td class="text-center">{{ $data->angka_mutu }}</td>
-                                                    <td class="text-center">{{ $data->kredit }}</td>
-                                                    <td class="text-center">{{ $data->mutu }}</td>
-                                                    <td class="text-center">
-                                                        <button type="button" data-toggle="modal"
-                                                            data-target="#editNilai{{ $data->id }}"
-                                                            class="btn btn-info ml-auto">
-                                                            <i class="fa-solid fa-pen text-white"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
 
-                                                {{-- Modal Update Nilai --}}
-                                                <div class="modal fade" tabindex="-1" role="dialog"
-                                                    id="editNilai{{ $data->id }}">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Edit Nilai Angka</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form
-                                                                    action="{{ route('kaprodi.daftar.transkrip.update', $data->id) }}"
-                                                                    method="POST">
-                                                                    @method('put')
-                                                                    @csrf
+                                            {{-- Modal Update Nilai --}}
+                                            <div class="modal fade" tabindex="-1" role="dialog"
+                                                id="editNilai{{ $data->id }}">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Edit Nilai Angka</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form
+                                                                action="{{ route('kaprodi.daftar.transkrip.update', $data->id) }}"
+                                                                method="POST">
+                                                                @method('put')
+                                                                @csrf
 
-                                                                    <div class="row">
-                                                                        <div class="col">
-                                                                            <div class="form-group">
-                                                                                <label for="nilai_angka">Nilai</label>
-                                                                                <input id="nilai_angka" type="number"
-                                                                                    class="form-control @error('nilai_angka') is-invalid @enderror"
-                                                                                    name="nilai_angka"
-                                                                                    placeholder="Nilai baru"
-                                                                                    pattern="[0-9]*" min="0"
-                                                                                    max="100"
-                                                                                    value="{{ $data->nilai_angka }}">
-                                                                                @error('nilai_angka')
-                                                                                    <div id="nilai_angka" class="form-text">
-                                                                                        {{ $message }}</div>
-                                                                                @enderror
-                                                                            </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label for="nilai_angka">Nilai</label>
+                                                                            <input id="nilai_angka" type="number"
+                                                                                class="form-control @error('nilai_angka') is-invalid @enderror"
+                                                                                name="nilai_angka" placeholder="Nilai baru"
+                                                                                pattern="[0-9]*" min="0"
+                                                                                max="100"
+                                                                                value="{{ $data->nilai_angka }}">
+                                                                            @error('nilai_angka')
+                                                                                <div id="nilai_angka" class="form-text">
+                                                                                    {{ $message }}</div>
+                                                                            @enderror
                                                                         </div>
                                                                     </div>
+                                                                </div>
 
-                                                                    <div class="row">
-                                                                        <div class="col d-flex">
-                                                                            <div class="ml-auto">
-                                                                                <button type="button"
-                                                                                    class="btn btn-danger"
-                                                                                    data-dismiss="modal">Batal</button>
-                                                                                <button type="submit"
-                                                                                    class="btn btn-primary">Simpan</button>
-                                                                            </div>
+                                                                <div class="row">
+                                                                    <div class="col d-flex">
+                                                                        <div class="ml-auto">
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                data-dismiss="modal">Batal</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Simpan</button>
                                                                         </div>
                                                                     </div>
+                                                                </div>
 
-                                                                </form>
-                                                            </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                @php
-                                                    $no++;
-                                                @endphp
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-
+                                            @php
+                                                $no++;
+                                            @endphp
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
+
+                        <div class="row mt-2">
+                            <div class="col">
+                                @if ($transkrip_mhs->validasi_kaprodi == 'Setuju')
+                                    <button class="btn btn-success ml-auto">
+                                        Disetujui <i class="fa-solid fa-circle-check"></i>
+                                    </button>
+                                @else
+                                    <form action="{{ route('kaprodi.daftar.transkrip.validate', $transkrip_mhs->id) }}"
+                                        method="POST">
+                                        @method('put')
+                                        @csrf
+
+                                        <button type="submit" class="btn btn-success ml-auto">
+                                            Setujui <i class="fa-solid fa-circle-check"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>

@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Transkrip Mahasiswa | MBKM Poliwangi</title>
+    <title>Daftar Transkrip Disetujui | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -22,12 +22,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Daftar Transkrip Nilai - Belum Disetujui</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Transkrip Nilai - Disetujui</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('kaprodi.daftar.transkrip.disetujui') }}"
+                                <a href="{{ route('kaprodi.daftar.transkrip.index') }}"
                                     class="btn btn-primary btn-sm ml-auto px-2 py-1">
-                                    Transkrip Disetujui
+                                    Transkrip Belum Disetujui
                                 </a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                             @endforeach
 
                                             <td class="text-center">
-                                                <button class="btn btn-warning text-white card-rounded-sm">
+                                                <button class="btn btn-success text-white card-rounded-sm">
                                                     {{ $data->validasi_kaprodi }}
                                                 </button>
                                             </td>
