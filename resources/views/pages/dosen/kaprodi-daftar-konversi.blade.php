@@ -48,7 +48,10 @@
                                             <td>{{ $data->mahasiswa->prodi->nama }}</td>
 
                                             <td class="text-center">
-                                                @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)
+                                                @if (
+                                                    $data->mahasiswa->peserta_kelas &&
+                                                        $data->mahasiswa->peserta_kelas->count() > 0 &&
+                                                        $data->mahasiswa->peserta_dosen->count() > 0)
                                                     <a href="{{ route('daftar.transkrip.mahasiswa.ext.show', [$data->id_mahasiswa, $data->id_magang_ext, $data->id]) }}"
                                                         class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"
                                                             title="Siap Dikonversi"></i></a>

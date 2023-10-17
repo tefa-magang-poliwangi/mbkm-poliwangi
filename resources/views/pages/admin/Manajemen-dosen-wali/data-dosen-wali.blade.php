@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -39,7 +39,7 @@
                                     <tr>
                                         <th class="text-center text-white" class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">email</th>
+                                        <th class="text-center text-white">Email</th>
                                         <th class="text-center text-white">Prodi</th>
                                         <th class="text-center text-white">Lihat Peserta</th>
                                         <th class="text-center text-white">Aksi</th>
@@ -56,13 +56,13 @@
                                             <td>
                                                 {{ $item->dosen->prodi->nama }}
                                             </td>
-                                             <td class="text-center">
-                                                <a href="{{route('manajemen.peserta.dosen.index', $item->id)}}" class="btn btn-primary ml-auto"><i
-                                                        class="fa-solid fa-eye"></i></a>
+                                            <td class="text-center">
+                                                <a href="{{ route('manajemen.peserta.dosen.index', $item->id) }}"
+                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{route('manajemen.dosen.wali.destroy', $item->id)}}" class="btn btn-danger ml-auto"><i
-                                                        class="fa-solid fa-trash"></i></a>
+                                                <a href="{{ route('manajemen.dosen.wali.destroy', $item->id) }}"
+                                                    class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @php

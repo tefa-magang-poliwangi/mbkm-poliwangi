@@ -14,13 +14,13 @@
 
 @section('content')
     <section>
-        <div class="row py-3">
+        <div class="row py-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-2">
-                                <h5 class="justify-start">Tambah Mahasiswa</h5>
+                                <h5 class="justify-start text-theme">Tambah Mahasiswa</h5>
                             </div>
                         </div>
 
