@@ -267,7 +267,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/{user}/show', 'UsersController@show')->name('users.show');
             Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
-            Route::delete('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
+            Route::get('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
+            Route::post('/import', 'UsersController@import')->name('users.import');
         });
 
         // Route Role dan Permissions
