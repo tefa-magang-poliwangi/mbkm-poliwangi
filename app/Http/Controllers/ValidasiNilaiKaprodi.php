@@ -72,7 +72,7 @@ class ValidasiNilaiKaprodi extends Controller
         $user_id = Auth::user()->id;
         $dosen = Dosen::where('id_user', $user_id)->first();
         $prodi_id = $dosen->id_prodi;
-        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
+        $nilai_magang_ext = NilaiMagangExt::where('validasi_kaprodi', 'Belum Disetujui')->whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
 
         $data = [
             'transkrip_nilai_mhs' => $nilai_magang_ext,
@@ -88,7 +88,16 @@ class ValidasiNilaiKaprodi extends Controller
      */
     public function create()
     {
-        //
+        $user_id = Auth::user()->id;
+        $dosen = Dosen::where('id_user', $user_id)->first();
+        $prodi_id = $dosen->id_prodi;
+        $nilai_magang_ext = NilaiMagangExt::where('validasi_kaprodi', 'Setuju')->whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
+
+        $data = [
+            'transkrip_nilai_mhs' => $nilai_magang_ext,
+        ];
+
+        return view('pages.kaprodi.kaprodi-daftar-transkrip-disetujui', $data);
     }
 
     /**
@@ -127,6 +136,17 @@ class ValidasiNilaiKaprodi extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function validate_transkrip($id)
+    {
+        NilaiMagangExt::where('id', $id)->update([
+            'validasi_kaprodi' => 'Setuju',
+        ]);
+
+        Alert::success('Success', 'Nilai Transkrip Berhasil Disetujui');
+
+        return redirect()->route('kaprodi.daftar.transkrip.index');
     }
 
     /**

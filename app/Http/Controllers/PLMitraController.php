@@ -22,7 +22,7 @@ class PLMitraController extends Controller
             'plmitra' => PlMitra::all(),
             'mitra' => Mitra::all(),
         ];
-        return view('pages.mitra.pl-mitra', $data);
+        return view('pages.mitra.manajemen-pendamping-mitra.pl-mitra', $data);
     }
 
     /**

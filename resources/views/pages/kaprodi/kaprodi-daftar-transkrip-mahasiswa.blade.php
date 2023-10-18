@@ -19,10 +19,19 @@
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white mt-2">
-                        <h4 class="text-theme">Daftar Transkrip Nilai</h4>
-                    </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Daftar Transkrip Nilai - Belum Disetujui</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('kaprodi.daftar.transkrip.disetujui') }}"
+                                    class="btn btn-primary btn-sm ml-auto px-2 py-1">
+                                    Transkrip Disetujui
+                                </a>
+                            </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless rounded bg-white" id="table-1">
                                 <thead class="bg-primary">
@@ -30,7 +39,10 @@
                                         <th class="text-center text-white">No</th>
                                         <th class="text-white">Nama</th>
                                         <th class="text-center text-white">NIM</th>
-                                        <th class="text-white">Program Studi</th>
+                                        <th class="text-center text-white">Program Studi</th>
+                                        <th class="text-center text-white">Kelas</th>
+                                        <th class="text-center text-white">Semester</th>
+                                        <th class="text-white text-center">Validasi</th>
                                         <th class="text-center text-white">Lihat Nilai</th>
                                     </tr>
                                 </thead>
@@ -45,7 +57,22 @@
                                             <td class="text-center">{{ $no }}</td>
                                             <td>{{ $data->mahasiswa->nama }}</td>
                                             <td class="text-center">{{ $data->mahasiswa->nim }}</td>
-                                            <td>{{ $data->mahasiswa->prodi->nama }}</td>
+                                            <td class="text-center">{{ $data->mahasiswa->prodi->nama }}</td>
+
+                                            @foreach ($data->mahasiswa->peserta_kelas as $peserta_kelas)
+                                                <td class="text-center">{{ $peserta_kelas->kelas->tingkat_kelas }}
+                                                    {{ $peserta_kelas->kelas->abjad_kelas }}</td>
+                                            @endforeach
+
+                                            @foreach ($data->mahasiswa->peserta_kelas as $peserta_kelas)
+                                                <td class="text-center">{{ $peserta_kelas->kelas->periode->semester }}</td>
+                                            @endforeach
+
+                                            <td class="text-center">
+                                                <button class="btn btn-warning text-white card-rounded-sm">
+                                                    {{ $data->validasi_kaprodi }}
+                                                </button>
+                                            </td>
 
                                             <td class="text-center">
                                                 @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)

@@ -10,6 +10,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\FormMitraController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriController;
@@ -18,7 +19,6 @@ use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\KurikulumController;
-use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaPageController;
@@ -37,6 +37,7 @@ use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
+use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use Illuminate\Support\Facades\Route;
 
@@ -75,7 +76,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('manajemen.dosen.edit');
         Route::put('/manajemen/dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('manajemen.dosen.update');
         Route::get('/manajemen/dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('manajemen.dosen.destroy');
-        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
 
         // Route Transkrip Mahasiswa External dan Internal
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
@@ -99,6 +99,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
         Route::get('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/show', [ValidasiNilaiKaprodi::class, 'show'])->name('kaprodi.daftar.transkrip.show');
         Route::put('/daftar-transkrip-mahasiswa/{id_nilai_konversi}/update', [ValidasiNilaiKaprodi::class, 'update'])->name('kaprodi.daftar.transkrip.update');
+        Route::put('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/setujui', [ValidasiNilaiKaprodi::class, 'validate_transkrip'])->name('kaprodi.daftar.transkrip.validate');
+        Route::get('/daftar-transkrip-mahasiswa-disetujui', [ValidasiNilaiKaprodi::class, 'create'])->name('kaprodi.daftar.transkrip.disetujui');
 
         // Route Manajemen Mahasiswa
         Route::get('/manajemen/mahasiswa', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');
@@ -225,7 +227,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
         Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
         Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
-        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/destroy', [PesertaDosenController::class, 'destroy'])->name('manajemen.peserta.dosen.destroy');
+        Route::get('/manajemen/peserta-dosen/{id}/destroy', [PesertaDosenController::class, 'destroy'])->name('manajemen.peserta.dosen.destroy');
 
         // # (Route Akademik)
         Route::get('/dashboard/akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
@@ -257,13 +259,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Dashboard Mitra
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
-        //Route Lowongan Mitra
-        Route::get('/manajemen/lowongan-mitra', [LowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
-        Route::get('/manajemen/lowongan-mitra/create', [LowonganController::class, 'create'])->name('manajemen.lowongan.mitra.create');
-        Route::post('/manajemen/lowongan-mitra/store', [LowonganController::class, 'store'])->name('manajemen.lowongan.mitra.store');
-        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/edit', [LowonganController::class, 'edit'])->name('manajemen.lowongan.mitra.edit');
-        Route::put('/manajemen/lowongan-mitra/lowongan-mitra/mitra_{id_mitra}/lowongan_{id_lowongan}/update', [LowonganController::class, 'update'])->name('manajemen.lowongan.mitra.update');
-        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [LowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
+        //Route Manajemen Lowongan Mitra
+        Route::get('/manajemen/lowongan-mitra', [MitraLowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
+        Route::get('/manajemen/lowongan-mitra/create', [MitraLowonganController::class, 'create'])->name('manajemen.lowongan.mitra.create');
+        Route::post('/manajemen/lowongan-mitra/store', [MitraLowonganController::class, 'store'])->name('manajemen.lowongan.mitra.store');
+        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/edit', [MitraLowonganController::class, 'edit'])->name('manajemen.lowongan.mitra.edit');
+        Route::put('/manajemen/lowongan-mitra/{id_lowongan}/update', [MitraLowonganController::class, 'update'])->name('manajemen.lowongan.mitra.update');
+        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [MitraLowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
+
+        // Route Manajemen Program Magang
+        Route::get('/manajemen/program-magang',[ProgramMagangController::class,'index'])->name('manajemen.program.magang.index');
+        Route::get('/manajemen/program-magang/create',[ProgramMagangController::class, 'create'])->name('manajemen.program.magang.create');
+        Route::post('/manajemen/program-magang/store', [ProgramMagangController::class, 'store'])->name('manajemen.program.magang.store');
+        Route::get('/manajemen/program-magang/{id}/edit', [ProgramMagangController::class, 'edit'])->name('manajemen.program.magang.edit');
+        Route::put('/manajemen/program-magang/{id}/update', [ProgramMagangController::class, 'update'])->name('manajemen.program.magang.update');
+        Route::get('/manajemen/program-magang/{id}/destroy', [ProgramMagangController::class, 'destroy'])->name('manajemen.program.magang.destroy');
 
         // # (Route User Super Admin - Spatie)
         Route::group(['prefix' => 'users'], function () {
@@ -286,6 +296,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('cities', 'DependentDropdownController@cities')->name('cities');
         Route::get('districts', 'DependentDropdownController@districts')->name('districts');
         Route::get('villages', 'DependentDropdownController@villages')->name('villages');
+
+        // Route Imports Data
+        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
+        Route::post('/import-data/user-mahasiswa', [ImportController::class, 'import_data_user_mahasiswa'])->name('import.data.user.mahasiswa');
+        Route::post('/import-data/mahasiswa', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
     });
 });
 

@@ -1,5 +1,5 @@
 @extends('layouts.base-admin')
-@section('Tambah Lowongan')
+@section('title')
     <title>Tambah Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
 
@@ -11,13 +11,13 @@
 @endsection
 
 @section('content')
-    <section class="container-fluid py-3">
+    <section class="container-fluid pt-4">
         <div class="container py-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-12">
                     <div class="card card-rounded">
                         <div class="card-header">
-                            <h4>Form Mitra</h4>
+                            <h4>Form Manajemen Lowongan</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('manajemen.lowongan.mitra.store') }}" method="POST"
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="jumlah_lowongan" class="jumlah_lowongan">Jumlah Lowongan</label>
-                                    <input id="jumlah_lowongan" type="number" name="jumlah_lowongan"
+                                    <input id="jumlah_lowongan" type="text" pattern="[0-9]*" name="jumlah_lowongan"
                                         class="form-control @error('jumlah_lowongan')
                                         is-invalid
                                     @enderror"
@@ -49,11 +49,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">Deskripsi</label>
-                                    <input id="deskripsi" type="text" name="deskripsi"
+                                    <textarea id="deskripsi" type="text" name="deskripsi"
                                         class="form-control @error('deskripsi')
                                         is-invalid
                                     @enderror"
-                                        name="deskripsi" placeholder="deskripsi">
+                                        name="deskripsi" placeholder="deskripsi"></textarea>
                                     @error('deskripsi')
                                         <div id="deskripsi" class="form-text text-danger">
                                             {{ $message }}</div>
@@ -116,24 +116,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_mitra">Mitra</label>
-                                    <select
-                                        class="form-control @error('id_mitra')
-                                    is-invalid
-                                @enderror"
-                                        name="id_mitra" id="id_mitra" >
-                                        <option value="">Pilih Mitra</option>
-                                        @foreach ($mitra as $data)
-                                            <option value="{{ $data->id }}"> {{ $data->nama }} </option>
-                                        @endforeach
-                                    </select>
-                                    @error('id_mitra')
-                                        <div id="id_mitra" class="form-text text-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label>Status</label>
                                     <select
                                         class="form-control @error('status')
@@ -141,7 +123,7 @@
                                 @enderror"
                                         name="status" id="status">
                                         <option value="">Pilih Status</option>
-                                        <option value="Aktif"> Aktif </option>
+                                        <option value="Aktif" selected> Aktif </option>
                                         <option value="Tidak Aktif"> Tidak Aktif </option>
                                     </select>
                                     @error('status')

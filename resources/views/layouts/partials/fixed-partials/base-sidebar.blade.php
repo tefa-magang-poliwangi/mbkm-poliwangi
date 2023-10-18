@@ -455,8 +455,7 @@
 
             <li class="menu-header">LOWONGAN MAGANG</li>
             <li>
-                <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i
-                        class="fas fa-solid fa-bars-progress"></i>
+                <a class="nav-link" href="#"><i class="fas fa-solid fa-bars-progress"></i>
                     <span>Program</span>
                 </a>
             </li>
@@ -469,6 +468,33 @@
                     <li>
                         <a class="nav-link" href="#">Laporan Harian</a>
                     </li>
+                    @endcan <li class="menu-header">LOWONGAN MAGANG
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#"><i class="fas fa-solid fa-bars-progress"></i>
+                            <span>Program</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">KEGIATANKU MBKM</li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-alt"></i>
+                            <span>Kegiatanku</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="nav-link" href="#">Laporan Harian</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">Laporan Mingguan</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">Laporan Akhir</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    @can('profil.mahasiswa.page')
+                    <li class="menu-header">Tentang Akun</li>
                     <li>
                         <a class="nav-link" href="#">Laporan Mingguan</a>
                     </li>
@@ -530,21 +556,14 @@
             </li>
             @endcan
 
-            @can('manajemen.pelamar.mitra.index')
+            @can('manajemen.program.magang.index')
             <li>
-                <a class="nav-link" href="{{ route('manajemen.pelamar.mitra.index') }}">
-                    <i class="fas fa-user"></i>
-                    <span>Daftar Pelamar</span>
+                <a class="nav-link" href="{{ route('manajemen.program.magang.index')}}">
+                    <i class="fas fa-solid fa-bars-progress"></i>
+                    <span>Program Magang</span>
                 </a>
             </li>
             @endcan
-
-            <li>
-                <a class="nav-link" href="#">
-                    <i class="fas fa-solid fa-bars-progress"></i>
-                    <span>Program</span>
-                </a>
-            </li>
 
             <li>
                 <a class="nav-link" href="#">

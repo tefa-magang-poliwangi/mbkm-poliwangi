@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Mahasiswa | MBKM Poliwangi</title>
+    <title>Manajemen Perwalian | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -12,16 +12,19 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Data Mahasiswa</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Mahasiswa Dosen Wali
+                                    ({{ $dosen_wali->dosen->nama }})
+                                </h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.peserta.dosen.create', $id_dosen_wali) }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.peserta.dosen.create', $id_dosen_wali) }}"
+                                    class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Mahasiswa
                                 </a>
@@ -57,13 +60,13 @@
                                                 {{ $item->mahasiswa->prodi->nama }}
                                             </td>
                                             <td>{{ $item->mahasiswa->angkatan }}</td>
-                                             {{-- <td class="text-center">
+                                            {{-- <td class="text-center">
                                                 <a href="" class="btn btn-primary ml-auto"><i
                                                         class="fa-solid fa-eye"></i></a>
                                             </td> --}}
                                             <td class="text-center">
-                                                <a href="{{route('manajemen.dosen.wali.destroy', $item->id)}}" class="btn btn-danger ml-auto"><i
-                                                        class="fa-solid fa-trash"></i></a>
+                                                <a href="{{ route('manajemen.peserta.dosen.destroy', $item->id) }}"
+                                                    class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @php

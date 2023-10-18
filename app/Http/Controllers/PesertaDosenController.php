@@ -18,6 +18,7 @@ class PesertaDosenController extends Controller
     public function index($id_dosen_wali)
     {
         $data = [
+            'dosen_wali' => DosenWali::findOrFail($id_dosen_wali),
             'id_dosen_wali' => $id_dosen_wali,
             'peserta_dosen' => PesertaDosen::where('id_dosen_wali', $id_dosen_wali)->get(),
         ];
@@ -38,6 +39,7 @@ class PesertaDosenController extends Controller
 
         $mahasiswas = Mahasiswa::where('id_prodi', $prodi_dosen)->whereDoesntHave('peserta_dosen')->get();
         $data = [
+
             'id_dosen_wali' => $id_dosen_wali,
             'mahasiswas' => $mahasiswas,
         ];
@@ -115,13 +117,13 @@ class PesertaDosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_kelas, $id)
+    public function destroy( $id)
     {
-        $dosen_wali = DosenWali::findOrFail($id);
-        $dosen_wali->delete();
+        $peserta_dosen = PesertaDosen::findOrFail($id);
+        $peserta_dosen->delete();
 
         Alert::success('Success', 'Peserta Dosen Berhasil Dihapus');
 
-        return redirect()->route('manajemen.peserta.kelas.index', $id_kelas);
+        return redirect()->back();
     }
 }
