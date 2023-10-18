@@ -10,6 +10,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\FormMitraController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
@@ -74,7 +75,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('manajemen.dosen.edit');
         Route::put('/manajemen/dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('manajemen.dosen.update');
         Route::get('/manajemen/dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('manajemen.dosen.destroy');
-        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
 
         // Route Transkrip Mahasiswa External dan Internal
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
@@ -282,6 +282,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('cities', 'DependentDropdownController@cities')->name('cities');
         Route::get('districts', 'DependentDropdownController@districts')->name('districts');
         Route::get('villages', 'DependentDropdownController@villages')->name('villages');
+
+        // Route Imports Data
+        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
+        Route::post('/import-data/user-mahasiswa', [ImportController::class, 'import_data_user_mahasiswa'])->name('import.data.user.mahasiswa');
+        Route::post('/import-data/mahasiswa', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
     });
 });
 
