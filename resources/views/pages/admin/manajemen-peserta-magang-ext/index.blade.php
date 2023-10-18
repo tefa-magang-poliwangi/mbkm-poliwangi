@@ -58,9 +58,8 @@
                                                     <td>{{ $data->mahasiswa->prodi->nama }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.peserta.magang.ext.destroy', [$id_magang_ext, $data->id]) }}"
-                                                            class="btn btn-danger ml-auto">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
+                                                            class="btn btn-danger ml-auto"><i
+                                                                class="fa-solid fa-trash"></i></a>
                                                     </td>
                                                 </tr>
 

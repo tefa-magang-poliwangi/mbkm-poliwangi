@@ -16,7 +16,6 @@ class NilaiKonversi extends Model
         'angka_mutu',
         'kredit',
         'mutu',
-        'validasi_kaprodi',
         'id_mahasiswa',
         'id_matkul',
         'id_lowongan',

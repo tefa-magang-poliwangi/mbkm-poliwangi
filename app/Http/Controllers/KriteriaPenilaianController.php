@@ -53,6 +53,7 @@ class KriteriaPenilaianController extends Controller
         ]);
 
         Alert::success('Success', 'Kriteria Penilaian Berhasil Ditambahkan');
+
         return redirect()->back();
     }
 

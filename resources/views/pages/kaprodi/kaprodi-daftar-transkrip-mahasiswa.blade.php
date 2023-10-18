@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Transkrip Nilai | MBKM Poliwangi</title>
+    <title>Daftar Transkrip Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -19,10 +19,19 @@
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
-                    <div class="card-header bg-white mt-2">
-                        <h3 class="text-theme">Daftar Transkrip Nilai</h3>
-                    </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <h5 class="justify-start my-auto text-theme">Daftar Transkrip Nilai - Belum Disetujui</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('kaprodi.daftar.transkrip.disetujui') }}"
+                                    class="btn btn-primary btn-sm ml-auto px-2 py-1">
+                                    Transkrip Disetujui
+                                </a>
+                            </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless rounded bg-white" id="table-1">
                                 <thead class="bg-primary">
@@ -30,8 +39,11 @@
                                         <th class="text-center text-white">No</th>
                                         <th class="text-white">Nama</th>
                                         <th class="text-center text-white">NIM</th>
-                                        <th class="text-white">Program Studi</th>
-                                        <th class="text-center text-white">Action</th>
+                                        <th class="text-center text-white">Program Studi</th>
+                                        <th class="text-center text-white">Kelas</th>
+                                        <th class="text-center text-white">Semester</th>
+                                        <th class="text-white text-center">Validasi</th>
+                                        <th class="text-center text-white">Lihat Nilai</th>
                                     </tr>
                                 </thead>
 
@@ -40,25 +52,39 @@
                                         $no = 1;
                                     @endphp
 
-                                    @foreach ($nilai_magang_ext as $data)
+                                    @foreach ($transkrip_nilai_mhs as $data)
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
                                             <td>{{ $data->mahasiswa->nama }}</td>
                                             <td class="text-center">{{ $data->mahasiswa->nim }}</td>
-                                            <td>{{ $data->mahasiswa->prodi->nama }}</td>
+                                            <td class="text-center">{{ $data->mahasiswa->prodi->nama }}</td>
+
+                                            @foreach ($data->mahasiswa->peserta_kelas as $peserta_kelas)
+                                                <td class="text-center">{{ $peserta_kelas->kelas->tingkat_kelas }}
+                                                    {{ $peserta_kelas->kelas->abjad_kelas }}</td>
+                                            @endforeach
+
+                                            @foreach ($data->mahasiswa->peserta_kelas as $peserta_kelas)
+                                                <td class="text-center">{{ $peserta_kelas->kelas->periode->semester }}</td>
+                                            @endforeach
 
                                             <td class="text-center">
-                                                @if (
-                                                    $data->mahasiswa->peserta_kelas &&
-                                                        $data->mahasiswa->peserta_kelas->count() > 0 &&
-                                                        $data->mahasiswa->peserta_dosen->count() > 0)
-                                                    <a href="{{ route('daftar.transkrip.mahasiswa.ext.show', [$data->id_mahasiswa, $data->id_magang_ext, $data->id]) }}"
-                                                        class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"
-                                                            title="Siap Dikonversi"></i></a>
+                                                <button class="btn btn-warning text-white card-rounded-sm">
+                                                    {{ $data->validasi_kaprodi }}
+                                                </button>
+                                            </td>
+
+                                            <td class="text-center">
+                                                @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)
+                                                    <a href="{{ route('kaprodi.daftar.transkrip.show', $data->id) }}"
+                                                        class="btn btn-primary ml-auto">
+                                                        <i class="fa-solid fa-eye" title="Siap Dikonversi"></i>
+                                                    </a>
                                                 @else
                                                     <a href="#" class="btn btn-danger ml-auto"
-                                                        title="Mahasiswa Tidak Memiliki Kelas dan Dosen Wali"><i
-                                                            class="fa-solid fa-eye-slash"></i></a>
+                                                        title="Tidak Ada Kelas">
+                                                        <i class="fa-solid fa-eye-slash"></i>
+                                                    </a>
                                                 @endif
                                             </td>
                                         </tr>

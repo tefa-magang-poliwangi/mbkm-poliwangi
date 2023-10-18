@@ -95,4 +95,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(DetailPenilaianMagangExt::class);
     }
+
+    public function peserta_dosen()
+    {
+        return $this->hasMany(PesertaDosen::class, 'id_mahasiswa', 'id');
+    }
 }
