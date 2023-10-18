@@ -262,8 +262,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [MitraLowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
 
         // Route Manajemen Program Magang
-        Route::get('/manajemen/program-magang',[ProgramMagangController::class,'index'])->name('manajemen.program.magang.index');
-        Route::get('/manajemen/program-magang/create',[ProgramMagangController::class, 'create'])->name('manajemen.program.magang.create');
+        Route::get('/manajemen/program-magang', [ProgramMagangController::class, 'index'])->name('manajemen.program.magang.index');
+        Route::get('/manajemen/program-magang/create', [ProgramMagangController::class, 'create'])->name('manajemen.program.magang.create');
         Route::post('/manajemen/program-magang/store', [ProgramMagangController::class, 'store'])->name('manajemen.program.magang.store');
         Route::get('/manajemen/program-magang/{id}/edit', [ProgramMagangController::class, 'edit'])->name('manajemen.program.magang.edit');
         Route::put('/manajemen/program-magang/{id}/update', [ProgramMagangController::class, 'update'])->name('manajemen.program.magang.update');
@@ -278,7 +278,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
             Route::get('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
-            Route::post('/import', 'UsersController@import')->name('users.import');
         });
 
         // Route Role dan Permissions
@@ -292,9 +291,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('villages', 'DependentDropdownController@villages')->name('villages');
 
         // Route Imports Data
-        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
-        Route::post('/import-data/user-mahasiswa', [ImportController::class, 'import_data_user_mahasiswa'])->name('import.data.user.mahasiswa');
-        Route::post('/import-data/mahasiswa', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
+        Route::post('/import-data-user/admin-prodi/import', [ImportController::class, 'import_data_user_admin_prodi'])->name('import.data.user.admin.prodi');
+        Route::post('/import-data-user/dosen/import', [ImportController::class, 'import_data_user_dosen'])->name('import.data.user.dosen');
+        Route::post('/import-user/mahasiswa/import', [ImportController::class, 'import_user_mahasiswa'])->name('import.user.mahasiswa');
+        Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
     });
 });
 

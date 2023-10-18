@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- Form untuk Unggah File Excel -->
-                                        <form action="{{ route('import.data.user.mahasiswa') }}" method="POST"
+                                        <form action="{{ route('import.user.mahasiswa') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 

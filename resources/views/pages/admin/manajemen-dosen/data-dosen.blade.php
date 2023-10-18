@@ -22,30 +22,34 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Filter Prodi Dosen</h5>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-12 d-flex mb-3">
-                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#uploadModal"><i
-                                        class="fa-solid fa-file-arrow-up"></i> &ensp; Import Dosen</button>
-                                <a href="{{ route('manajemen.dosen.create') }}" class="btn btn-primary ml-2">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Dosen
-                                </a>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <div class="ml-auto">
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#importDataUserDosen" title="Impot Data User Dosen"><i
+                                            class="fa-solid fa-cloud-arrow-up"></i></button>
+
+                                    <a href="{{ route('manajemen.dosen.create') }}" class="btn btn-primary ml-2">
+                                        <i class="fa-solid fa-plus"></i> &ensp;
+                                        Tambah Dosen
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Modal Import Dosen-->
-                        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="importDataUserDosen" tabindex="-1" role="dialog"
                             aria-labelledby="uploadModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Dosen</h5>
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data User Dosen</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <!-- Form untuk Unggah File Excel -->
-                                        <form action="{{ route('manajemen.dosen.import') }}" method="POST"
+                                        <form action="{{ route('import.data.user.dosen') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 

@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class MahasiswasImport implements ToCollection
+class DataMahasiswaImport implements ToCollection
 {
     /**
      * @param Collection $collection

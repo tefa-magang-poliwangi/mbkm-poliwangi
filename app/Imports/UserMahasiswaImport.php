@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class UserMahasiswasImport implements ToCollection
+class UserMahasiswaImport implements ToCollection
 {
     /**
      * @param array $row
