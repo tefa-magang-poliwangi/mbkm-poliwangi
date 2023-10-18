@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Mitra | MBKM Poliwangi</title>
+    <title>Manajemen Program Magang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -9,6 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
+@php
+    function dateConversion($date)
+    {
+        $month = [1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $slug = explode('-', $date);
+        return $slug[2] . ' ' . $month[(int) $slug[1]] . ' ' . $slug[0];
+    }
+@endphp
 
 @section('content')
     <div class="container-fluid" style="padding-top: 5%">
@@ -18,12 +26,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Formulir Mitra</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Program Magang</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.mitra.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{Route ('manajemen.program.magang.create')}}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Mitra
+                                    Tambah Program Magang
                                 </a>
                             </div>
                         </div>
@@ -35,11 +43,12 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-center text-white">No</th>
-                                        <th class="text-center text-white">Nama Perusahaan</th>
-                                        <th class="text-center text-white">Sektor Industri</th>
-                                        <th class="text-center text-white">Kategori</th>
-                                        <th class="text-center text-white">Kota</th>
-                                        <th class="text-center text-white">Status</th>
+                                        <th class="text-center text-white">Kegiatan Perusahaan</th>
+                                        <th class="text-center text-white">Waktu Mulai</th>
+                                        <th class="text-center text-white">Waktu Akhir</th>
+                                        <th class="text-center text-white">Posisi Mahasiswa</th>
+                                        <th class="text-center text-white">Lowongan</th>
+                                        <th class="text-center text-white">Pendamping Lapang</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,20 +57,21 @@
                                         $no = 1;
                                     @endphp
 
-                                    @foreach ($mitras as $data)
+                                    @foreach ($programmagang as $data)
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
-                                            <td class="text-center">{{ $data->nama }}</td>
-                                            <td class="text-center">{{ $data->sektor_industri->nama }}</td>
-                                            <td class="text-center">{{ $data->kategori->nama }}</td>
-                                            <td class="text-center">{{ $data->kota }}</td>
-                                            <td class="text-center">{{ $data->status }}</td>
+                                            <td class="text-center">{{ $data->kegiatan }}</td>
+                                            <td class="text-center">{{ dateConversion($data->waktu_mulai) }}</td>
+                                            <td class="text-center">{{ dateConversion($data->waktu_akhir) }}</td>
+                                            <td class="text-center">{{ $data->posisi_mahasiswa }}</td>
+                                            <td class="text-center">{{ $data->lowongan->nama }}</td>
+                                            <td class="text-center">{{ $data->pl_mitra->nama }}</td>
                                             <td>
-                                                <a href="{{ route('manajemen.mitra.edit', $data->id) }}"
+                                                <a href="{{ route('manajemen.program.magang.edit', $data->id)}}"
                                                     class="btn btn-info ml-auto">
                                                     <i class="fa-solid fa-pen text-white"></i>
                                                 </a>
-                                                <a href="{{ route('manajemen.mitra.destroy', $data->id) }}"
+                                                <a href="{{ route('manajemen.program.magang.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
