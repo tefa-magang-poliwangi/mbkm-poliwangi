@@ -447,7 +447,7 @@
 
                 <li class="menu-header">LOWONGAN MAGANG</li>
                 <li>
-                    <a class="nav-link" href="/dashboard-mahasiswa/pendaftaran-magang"><i
+                    <a class="nav-link" href="#"><i
                             class="fas fa-solid fa-bars-progress"></i>
                         <span>Program</span>
                     </a>
@@ -522,21 +522,14 @@
                     </li>
                 @endcan
 
-                @can('manajemen.pelamar.mitra.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.pelamar.mitra.index') }}">
-                            <i class="fas fa-user"></i>
-                            <span>Daftar Pelamar</span>
-                        </a>
-                    </li>
-                @endcan
-
+                @can('manajemen.program.magang.index')
                 <li>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('manajemen.program.magang.index')}}">
                         <i class="fas fa-solid fa-bars-progress"></i>
-                        <span>Program</span>
+                        <span>Program Magang</span>
                     </a>
                 </li>
+                @endcan
 
                 <li>
                     <a class="nav-link" href="#">

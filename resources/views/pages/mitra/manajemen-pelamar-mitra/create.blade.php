@@ -12,8 +12,8 @@
 @endsection
 
 @section('content')
-    <section>
-        <div class="row d-flex justify-content-center pt-3">
+    <section class="pt-4">
+        <div class="row d-flex justify-content-center pt-5">
             <div class="col-12">
                 <div class="card card-rounded-sm">
                     <div class="card-header">
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('formulir.mitra.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('manajemen.mitra.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -149,31 +149,38 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="password">Password</label>
                                 <div class="input-group">
-                                    <input id="password" type="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        placeholder="password">
+                                    <input type="password" id="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="Password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <i id="togglePassword" class="fa-solid fa-eye"></i>
+                                        </span>
+                                    </div>
                                 </div>
                                 @error('password')
-                                    <div id="password" class="form-text text-danger">
-                                        {{ $message }}
-                                    </div>
+                                    <div id="password" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="password_confirmation">Password Konfirmasi</label>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="password_confirmation">Konfirmasi
+                                    Password</label>
                                 <div class="input-group">
-                                    <input id="password_confirmation" type="password" name="password_confirmation"
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
                                         class="form-control @error('password_confirmation') is-invalid @enderror"
-                                        name="password_confirmation" placeholder="Password Konfirmasi">
+                                        placeholder="Konfirmasi password baru">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <i id="togglePasswordConfirmation" class="fa-solid fa-eye"></i>
+                                        </span>
+                                    </div>
                                 </div>
                                 @error('password_confirmation')
-                                    <div id="password_confirmation" class="form-text text-danger">
-                                        {{ $message }}
-                                    </div>
+                                    <div id="password_confirmation" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -241,5 +248,31 @@
                 onChangeSelect('{{ route('villages') }}', $(this).val(), 'desa');
             })
         });
+    </script>
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function() {
+            togglePasswordVisibility("password", "togglePassword");
+        });
+
+        document.getElementById("togglePasswordConfirmation").addEventListener("click", function() {
+            togglePasswordVisibility("password_confirmation", "togglePasswordConfirmation");
+        });
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (passwordInput && icon) {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    icon.classList.remove("fa-eye");
+                    icon.classList.add("fa-eye-slash");
+                } else {
+                    passwordInput.type = "password";
+                    icon.classList.remove("fa-eye-slash");
+                    icon.classList.add("fa-eye");
+                }
+            }
+        }
     </script>
 @endsection

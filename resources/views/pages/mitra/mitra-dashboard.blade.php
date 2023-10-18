@@ -15,28 +15,63 @@
                     </div>
                 </div>
             </div>
-            <div class="row py-5">
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <img src="{{ asset('images/image 3.png') }}">
-                    </div>
-                </div>
-                <div class="col-md-6 py-5">
-                    <div class="d-grid gap-5">
-                        <button class="btn btn-theme-two px-5 py-4 fw-medium" type="button">Lowongan
-                            <i class="fas fa-search" style="font-size: 2em;"></i>
-                        </button>
-                        <button class="btn btn-theme-two px-5 py-4 fw-medium" type="button">Pendamping Lapang
-                            <i class="fas fa-user" style="font-size: 2em;"></i>
-                        </button>
-                        <button class="btn btn-theme-two px-5 py-4 fw-medium" type="button">Penilaian Mahasiswa Akhir
-                            <i class="fas fa-book" style="font-size: 2em;"></i>
-                        </button>
+            <div class="col-12">
+                <div class="card card-rounded">
+                    <div class="card-body d-flex">
+                        <img src="{{ asset('assets/images/dashboardmitra.png') }}" width="85%" class="img-fluid my-auto mx-auto">
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <a href="{{ route('roles.index') }}" class="tag-menu">
+                    <div class="card card-hover card-rounded">
+                        <div class="card-body">
+                            <h5 class="header-title text-theme mb-4">Manajemen Lowongan</h5>
+                            <div class="align-self-center">
+                                <i class="fa-solid fa-briefcase fa-2xl p-4 menu-card text-theme card-rounded-sm"></i>
+                            </div>
+                            <div class="ml-3 align-self-center text-right mt-3">
+                                <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
+                            </div><!--end media body-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </a>
+            </div>
 
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <a href="{{ route('permissions.index') }}" class="tag-menu">
+                    <div class="card card-hover card-rounded">
+                        <div class="card-body">
+                            <h5 class="header-title text-theme mb-4">Manajemen PL</h5>
+                            <div class="align-self-center">
+                                <i class="fa-solid fa-users-gear fa-2xl p-4 menu-card text-theme card-rounded-sm"></i>
+                            </div>
+                            <div class="ml-3 align-self-center text-right mt-3">
+                                <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
+                            </div><!--end media body-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </a>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <a href="{{ route('users.index') }}" class="tag-menu">
+                    <div class="card card-hover card-rounded">
+                        <div class="card-body">
+                            <h5 class="header-title text-theme mb-4">Laporan Akhir Mahasiswa</h5>
+                            <div class="align-self-center">
+                                <i class="fa-solid fa-file-contract fa-2xl p-4 menu-card text-theme card-rounded-sm"></i>
+                            </div>
+                            <div class="ml-3 align-self-center text-right mt-3">
+                                <span class="text-muted mb-0 text-nowrap">MBKM Poliwangi</span>
+                            </div><!--end media body-->
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </a>
+            </div>
+        </div>
     </div>
 @endsection
 

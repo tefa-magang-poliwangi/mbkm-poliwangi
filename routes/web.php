@@ -18,7 +18,6 @@ use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\KurikulumController;
-use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaPageController;
@@ -37,6 +36,7 @@ use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
+use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use Illuminate\Support\Facades\Route;
 
@@ -253,13 +253,21 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Dashboard Mitra
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
-        //Route Lowongan Mitra
-        Route::get('/manajemen/lowongan-mitra', [LowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
-        Route::get('/manajemen/lowongan-mitra/create', [LowonganController::class, 'create'])->name('manajemen.lowongan.mitra.create');
-        Route::post('/manajemen/lowongan-mitra/store', [LowonganController::class, 'store'])->name('manajemen.lowongan.mitra.store');
-        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/edit', [LowonganController::class, 'edit'])->name('manajemen.lowongan.mitra.edit');
-        Route::put('/manajemen/lowongan-mitra/lowongan-mitra/mitra_{id_mitra}/lowongan_{id_lowongan}/update', [LowonganController::class, 'update'])->name('manajemen.lowongan.mitra.update');
-        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [LowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
+        //Route Manajemen Lowongan Mitra
+        Route::get('/manajemen/lowongan-mitra', [MitraLowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
+        Route::get('/manajemen/lowongan-mitra/create', [MitraLowonganController::class, 'create'])->name('manajemen.lowongan.mitra.create');
+        Route::post('/manajemen/lowongan-mitra/store', [MitraLowonganController::class, 'store'])->name('manajemen.lowongan.mitra.store');
+        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/edit', [MitraLowonganController::class, 'edit'])->name('manajemen.lowongan.mitra.edit');
+        Route::put('/manajemen/lowongan-mitra/{id_lowongan}/update', [MitraLowonganController::class, 'update'])->name('manajemen.lowongan.mitra.update');
+        Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [MitraLowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
+
+        // Route Manajemen Program Magang
+        Route::get('/manajemen/program-magang',[ProgramMagangController::class,'index'])->name('manajemen.program.magang.index');
+        Route::get('/manajemen/program-magang/create',[ProgramMagangController::class, 'create'])->name('manajemen.program.magang.create');
+        Route::post('/manajemen/program-magang/store', [ProgramMagangController::class, 'store'])->name('manajemen.program.magang.store');
+        Route::get('/manajemen/program-magang/{id}/edit', [ProgramMagangController::class, 'edit'])->name('manajemen.program.magang.edit');
+        Route::put('/manajemen/program-magang/{id}/update', [ProgramMagangController::class, 'update'])->name('manajemen.program.magang.update');
+        Route::get('/manajemen/program-magang/{id}/destroy', [ProgramMagangController::class, 'destroy'])->name('manajemen.program.magang.destroy');
 
         // # (Route User Super Admin - Spatie)
         Route::group(['prefix' => 'users'], function () {
