@@ -12,6 +12,7 @@ use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
+use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
@@ -211,6 +212,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Dosen)
         Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
 
+        //Route Manajemen Kaprodi
+        Route::get('/manajemen/kaprodi', [KaprodiController::class, 'index'])->name('manajemen.kaprodi.index');
+        Route::post('/manajemen/kaprodi/store', [KaprodiController::class, 'store'])->name('manajemen.kaprodi.store');
+        Route::get('/manajemen/kaprodi/{id_kaprodi}/destroy', [KaprodiController::class, 'destroy'])->name('manajemen.kaprodi.destroy');
+
         // Route Manajemen Dosen Wali
         Route::get('/manajemen/dosen-wali', [DosenWaliController::class, 'index'])->name('manajemen.dosen.wali.index');
         Route::get('/manajemen/dosen-wali/create', [DosenWaliController::class, 'create'])->name('manajemen.dosen.wali.create');
@@ -356,4 +362,8 @@ Route::get('/dashboard-dosen/laporan-akhir', function () {
 // Halaman Dosen wali
 Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
     return view('pages.dosen.doswal-kelayakan');
+});
+
+Route::get('/dashboard-admin/manajemen-kaprodi', function () {
+    return view('pages.admin.manajemen-kaprodi.index');
 });
