@@ -301,6 +301,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/import-data-user/dosen/import', [ImportController::class, 'import_data_user_dosen'])->name('import.data.user.dosen');
         Route::post('/import-user/mahasiswa/import', [ImportController::class, 'import_user_mahasiswa'])->name('import.user.mahasiswa');
         Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
+        Route::post('/import-data/magang-external/import', [ImportController::class, 'import_data_magang_ext'])->name('import.data.magang.ext');
+        Route::post('/import-data/nilai-kriteria-km/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
     });
 });
 
