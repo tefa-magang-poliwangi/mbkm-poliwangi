@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-4">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -58,9 +58,8 @@
                                                     <td>{{ $data->mahasiswa->prodi->nama }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.peserta.magang.ext.destroy', [$id_magang_ext, $data->id]) }}"
-                                                            class="btn btn-danger ml-auto">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
+                                                            class="btn btn-danger ml-auto"><i
+                                                                class="fa-solid fa-trash"></i></a>
                                                     </td>
                                                 </tr>
 

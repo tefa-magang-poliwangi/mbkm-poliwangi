@@ -50,7 +50,7 @@
             @include('layouts.partials.fixed-partials.base-sidebar')
 
             <!-- Main Content -->
-            <div class="main-content pt-4">
+            <div class="main-content pt-5   ">
                 @yield('content')
             </div>
 

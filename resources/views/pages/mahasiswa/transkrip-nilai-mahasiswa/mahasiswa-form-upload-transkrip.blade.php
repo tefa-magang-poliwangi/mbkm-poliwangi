@@ -1,4 +1,4 @@
-@extends('layouts.base-mahasiswa')
+@extends('layouts.base-admin')
 
 @section('title')
     <title>Upload Transkrip Nilai Mahasiswa | MBKM Poliwangi</title>
@@ -11,7 +11,7 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
+        <div class="row pt-5">
             <h4 class="text-theme mb-4">Upload Transkrip Nilai Mahasiswa</h4>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">

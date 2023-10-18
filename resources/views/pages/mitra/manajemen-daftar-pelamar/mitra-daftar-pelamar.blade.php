@@ -13,7 +13,11 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD:resources/views/pages/mitra/manajemen-daftar-pelamar/mitra-daftar-pelamar.blade.php
     <section class="pt-4">
+=======
+    <section class="">
+>>>>>>> 3cd09e3b4550becabb2f6822fc1dbfa91b94bcb8:resources/views/pages/mitra/manajemen-pelamar-mitra/mitra-daftar-pelamar.blade.php
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card">

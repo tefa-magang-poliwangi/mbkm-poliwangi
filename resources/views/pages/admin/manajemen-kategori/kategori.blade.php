@@ -12,7 +12,7 @@
 
 @section('content')
     <section class="">
-        <div class="row pt-4">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">

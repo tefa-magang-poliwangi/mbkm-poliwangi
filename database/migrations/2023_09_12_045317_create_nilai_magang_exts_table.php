@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('file_transkrip', 255)->nullable(false);
             $table->string('file_sertifikat', 255)->nullable(false);
             $table->string('file_laporan_akhir', 255)->nullable(false);
+            $table->enum('validasi_kaprodi', ['Setuju', 'Tidak Setuju', 'Belum Disetujui'])->nullable(false)->default('Belum Disetujui');
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_magang_ext')->nullable(false);
             $table->unsignedBigInteger('id_periode')->nullable(false);

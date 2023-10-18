@@ -14,7 +14,7 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="bg-white p-4 rounded">
                     <h1>Update Role: {{ ucfirst($role->name) }}</h1>

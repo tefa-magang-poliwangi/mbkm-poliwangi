@@ -17,7 +17,7 @@
 
 @section('content')
     <section class="">
-        <div class="pb-4">
+        <div class="pt-5 pb-4">
             <div class="row bg-white card-rounded-sm">
                 <div class="col-12 col-sm-2 col-md-2 col-lg-1 text-start d-flex text-uppercase d-lg-flex pt-2 pb-2 mt-1">
                     <div class="px-3 mx-auto my-auto">
