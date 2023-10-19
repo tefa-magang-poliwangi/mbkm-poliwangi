@@ -373,9 +373,6 @@
                 @endcan
 
 
-
-
-
             @can('manajemen.kaprodi.index')
             <li>
                 <a class="nav-link" href="{{ route('manajemen.kaprodi.index') }}">
