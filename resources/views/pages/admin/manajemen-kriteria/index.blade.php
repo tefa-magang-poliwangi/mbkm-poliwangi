@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -23,8 +23,47 @@
                                 <h5 class="justify-start my-auto text-theme">Kriteria Penilaian {{ $magang_ext->name }}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
-                                        class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria</button>
+                                <div class="ml-auto">
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#importDataUserDosen" title="Impot Data Kriteria dan Nilai">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </button>
+
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
+                                        <i class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Import Data Kriteria dan Nilai Magang Ext -->
+                        <div class="modal fade" id="importDataUserDosen" tabindex="-1" role="dialog"
+                            aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data Kriteria dan
+                                            Nilai</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form untuk Unggah File Excel -->
+                                        <form action="{{ route('import.data.nilai.kriteria.km') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="file">Pilih File Excel</label>
+                                                <input type="file" class="form-control-file" id="file"
+                                                    name="file">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Unggah</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -57,7 +96,7 @@
                                                         </button>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('kriteria.penilaian.delete', $data->id) }}"
+                                                        <a href="{{ route('manajemen.kriteria.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fas fa-trash"></i>
                                                         </a>
@@ -70,7 +109,8 @@
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Edit Kriteria Penilaian</h5>
+                                                                <h5 class="modal-title text-theme">Edit Kriteria Penilaian
+                                                                </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -78,7 +118,7 @@
                                                             </div>
 
                                                             <form
-                                                                action="{{ route('kriteria.penilaian.update', $data->id) }}"
+                                                                action="{{ route('manajemen.kriteria.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -130,12 +170,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Kriteria Penilaian</h5>
+                        <h5 class="modal-title text-theme">Tambah Kriteria Penilaian</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('kriteria.penilaian.store', $id_magang_ext) }}" method="POST">
+                    <form action="{{ route('manajemen.kriteria.store', $id_magang_ext) }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

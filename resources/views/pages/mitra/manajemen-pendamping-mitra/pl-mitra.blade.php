@@ -11,14 +11,18 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD:resources/views/pages/mitra/manajemen-pendamping-mitra/pl-mitra.blade.php
+    <section class="pt-4">
+=======
     <section>
-        <div class="row pt-3">
+>>>>>>> 3cd09e3b4550becabb2f6822fc1dbfa91b94bcb8:resources/views/pages/mitra/pl-mitra.blade.php
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Manajemen Pendamping Lapang</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Pendamping Lapang</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
@@ -57,7 +61,7 @@
                                                             data-target="#updateModal{{ $data->id }}"><i
                                                                 class="fa-solid fa-pen text-white"></i>
                                                         </button>
-                                                        <a href="{{ route('data.plmitra.destroy', $data->id) }}"
+                                                        <a href="{{ route('manajemen.pendamping.lapang.mitra.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
@@ -77,7 +81,7 @@
                                                                 </button>
                                                             </div>
 
-                                                            <form action="{{ route('data.plmitra.update', $data->id) }}"
+                                                            <form action="{{ route('manajemen.pendamping.lapang.mitra.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -227,7 +231,7 @@
                     </button>
                 </div>
 
-                <form action="{{ route('data.plmitra.store') }}" method="POST">
+                <form action="{{ route('manajemen.pendamping.lapang.mitra.store') }}" method="POST">
                     @csrf
 
                     <div class="modal-body">

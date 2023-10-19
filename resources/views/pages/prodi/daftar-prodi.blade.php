@@ -12,13 +12,13 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="mb-3">
-                            <h1>Prodi</h1>
-                            <div class="lead d-flex">
+                            <h1 class="text-theme">Prodi</h1>
+                            <div class="lead d-flex text-theme">
                                 Manajemen Prodi.
                                 <button class="btn btn-primary fa-plus ml-auto" data-toggle="modal"
                                     data-target="#tambahProdiModal">Tambah Prodi</button>
@@ -48,7 +48,7 @@
                                                     <td>{{ $data->nama }}</td>
                                                     <td class="text-center"> - </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('daftar.prodi.delete', $data->id) }}"
+                                                        <a href="{{ route('manajemen.prodi.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
@@ -80,7 +80,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('daftar.prodi.store') }}" method="POST">
+                    <form action="{{ route('manajemen.prodi.store') }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

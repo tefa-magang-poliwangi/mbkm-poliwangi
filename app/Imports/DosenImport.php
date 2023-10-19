@@ -3,25 +3,42 @@
 namespace App\Imports;
 
 use App\Models\Dosen;
-use Maatwebsite\Excel\Concerns\ToModel;
+use App\Models\Prodi;
+use App\Models\User;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
-class DosenImport implements ToModel
+class DosenImport implements ToCollection
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+     * @param Collection $collection
+     */
+    public function collection(Collection $rows)
     {
-        return new Dosen([
+        $prodis = Prodi::all();
 
-                'nama' => $row[0],
-                'email' => $row[1],
-                'no_telp'=> $row[2],
-                'id_prodi'=> $row[3],
-                'id_user' => $row[4],
+        foreach ($rows as $column) {
+            $prodiName = $column[3];
+            $matchingProdi = $prodis->first(function ($prodi) use ($prodiName) {
+                return $prodi->nama == $prodiName;
+            });
 
-        ]);
+            $user_dosen = User::create([
+                'name' => $column[0],
+                'email' => $column[1],
+                'username' => $column[4],
+                'password' => bcrypt($column[5]),
+            ]);
+
+            $user_dosen->assignRole('dosen');
+
+            Dosen::create([
+                'nama' => $column[0],
+                'email' => $column[1],
+                'no_telp' => $column[2],
+                'id_prodi' => $matchingProdi->id,
+                'id_user' => $user_dosen->id,
+            ]);
+        }
     }
 }

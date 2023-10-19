@@ -14,6 +14,7 @@ class NilaiMagangExt extends Model
         'file_transkrip',
         'file_sertifikat',
         'file_laporan_akhir',
+        'validasi_kaprodi',
         'id_mahasiswa',
         'id_magang_ext',
         'id_periode',

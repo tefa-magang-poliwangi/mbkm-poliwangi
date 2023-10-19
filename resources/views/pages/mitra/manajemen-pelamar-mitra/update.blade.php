@@ -12,15 +12,15 @@
 @endsection
 
 @section('content')
-    <section>
-        <div class="row pt-3">
+    <section class="pt-4">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Mitra - Magang Internal</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('formulir.mitra.update', $mitra->id) }}" method="POST">
+                        <form action="{{ route('manajemen.mitra.update', $mitra->id) }}" method="POST">
                             @method('put')
                             @csrf
 
@@ -157,26 +157,38 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="update_password" class="form-label">Password</label>
-                                <input id="update_password" type="password"
-                                    class="form-control @error('update_password') is-invalid @enderror"
-                                    name="update_password" value="{{ $mitra->password }}" placeholder="Password baru">
-                                @error('update_password')
-                                    <div id="update_password" class="form-text text-danger">
-                                        {{ $message }}</div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="password">Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="Password" {{ $mitra->password }}>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <i id="togglePassword" class="fa-solid fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                @error('password')
+                                    <div id="password" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="update_password_konfirmasi" class="form-label">Password Konfirmasi</label>
-                                <input id="update_password_konfirmasi" type="password"
-                                    class="form-control @error('update_password_konfirmasi') is-invalid @enderror"
-                                    name="update_password_konfirmasi" value="{{ $mitra->password_confirmation }}"
-                                    placeholder="Konfirmasi password baru">
-                                @error('update_password_konfirmasi')
-                                    <div id="update_password_konfirmasi" class="form-text text-danger">
-                                        {{ $message }}</div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="password_confirmation">Konfirmasi
+                                    Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
+                                        class="form-control @error('password_confirmation') is-invalid @enderror"
+                                        placeholder="Konfirmasi password baru" {{ $mitra->password_confirmation }}>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <i id="togglePasswordConfirmation" class="fa-solid fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                @error('password_confirmation')
+                                    <div id="password_confirmation" class="form-text">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -244,5 +256,31 @@
                 onChangeSelect('{{ route('villages') }}', $(this).val(), 'desa');
             })
         });
+    </script>
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function() {
+            togglePasswordVisibility("password", "togglePassword");
+        });
+
+        document.getElementById("togglePasswordConfirmation").addEventListener("click", function() {
+            togglePasswordVisibility("password_confirmation", "togglePasswordConfirmation");
+        });
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (passwordInput && icon) {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    icon.classList.remove("fa-eye");
+                    icon.classList.add("fa-eye-slash");
+                } else {
+                    passwordInput.type = "password";
+                    icon.classList.remove("fa-eye-slash");
+                    icon.classList.add("fa-eye");
+                }
+            }
+        }
     </script>
 @endsection

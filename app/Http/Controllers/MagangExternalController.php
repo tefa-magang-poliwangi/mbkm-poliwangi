@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
-use App\Models\PenilaianMagangExt;
 use App\Models\Periode;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -57,7 +56,7 @@ class MagangExternalController extends Controller
 
         Alert::success('Success', 'Data Magang External Berhasil Ditambahkan');
 
-        return redirect()->route('daftar.data.magangext.index');
+        return redirect()->route('manajemen.magang.ext.index');
     }
 
     /**
@@ -103,7 +102,7 @@ class MagangExternalController extends Controller
 
         Alert::success('Success', 'Data Magang External Berhasil Diubah');
 
-        return redirect()->route('daftar.data.magangext.index');
+        return redirect()->route('manajemen.magang.ext.index');
     }
 
     /**
@@ -119,6 +118,6 @@ class MagangExternalController extends Controller
 
         Alert::success('Success', 'Data Magang External Berhasil Dihapus');
 
-        return redirect()->route('daftar.data.magangext.index');
+        return redirect()->route('manajemen.magang.ext.index');
     }
 }

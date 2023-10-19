@@ -22,7 +22,7 @@ class PLMitraController extends Controller
             'plmitra' => PlMitra::all(),
             'mitra' => Mitra::all(),
         ];
-        return view('pages.mitra.pl-mitra', $data);
+        return view('pages.mitra.manajemen-pendamping-mitra.pl-mitra', $data);
     }
 
     /**
@@ -71,7 +71,7 @@ class PLMitraController extends Controller
 
         Alert::success('Success', 'PL Mitra Berhasil Ditambahkan');
 
-        return redirect()->route('data.plmitra.index');
+        return redirect()->route('manajemen.pendamping.lapang.mitra.index');
     }
 
     /**
@@ -134,7 +134,7 @@ class PLMitraController extends Controller
 
         Alert::success('Success', 'PL Mitra Berhasil Diubah');
 
-        return redirect()->route('data.plmitra.index');
+        return redirect()->route('manajemen.pendamping.lapang.mitra.index');
     }
 
     /**
@@ -148,6 +148,6 @@ class PLMitraController extends Controller
         $plmitra = PlMitra::findOrFail($id);
         $plmitra->delete();
 
-        return redirect()->route('data.periode.index');
+        return redirect()->route('manajemen.pendamping.lapang.mitra.index');
     }
 }

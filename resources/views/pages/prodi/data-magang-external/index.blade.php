@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -21,9 +21,48 @@
                                 <h5 class="justify-start my-auto">Manajemen Magang External</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <button class="btn btn-primary ml-auto" data-toggle="modal"
-                                    data-target="#tambahdataMagangext"><i class="fa-solid fa-plus"></i> &ensp; Tambah Magang
-                                    Ext</button>
+                                <div class="ml-auto">
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#importDataUserDosen" title="Impot Data Magang External">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </button>
+
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#tambahdataMagangext">
+                                        <i class="fa-solid fa-plus"></i> &ensp; Tambah
+                                        Magang Ext
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Import Magang Ext -->
+                    <div class="modal fade" id="importDataUserDosen" tabindex="-1" role="dialog"
+                        aria-labelledby="uploadModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data Magang External
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form untuk Unggah File Excel -->
+                                    <form action="{{ route('import.data.magang.ext') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+
+                                        <div class="form-group">
+                                            <label for="file">Pilih File Excel</label>
+                                            <input type="file" class="form-control-file" id="file" name="file">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Unggah</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -38,10 +77,10 @@
                                     <tr>
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">Periode</th>
+                                        <th class="text-center text-white" width="15%">Periode</th>
                                         <th class="text-center text-white">Kriteria Penilaian</th>
                                         <th class="text-center text-white">Lihat Peserta</th>
-                                        <th class="text-center text-white">Aksi</th>
+                                        <th class="text-center text-white" width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,12 +93,12 @@
                                             </td>
 
                                             <td class="text-center">
-                                                <a href="{{ route('kriteria.penilaian.index', $data->id) }}"
+                                                <a href="{{ route('manajemen.kriteria.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
 
                                             <td class="text-center">
-                                                <a href="{{ route('peserta.magang_ext.index', $data->id) }}"
+                                                <a href="{{ route('manajemen.peserta.magang.ext.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></a>
                                             </td>
 
@@ -67,7 +106,7 @@
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateMagangext{{ $data->id }}"><i
                                                         class="fa-solid fa-pen text-white"></i></button>
-                                                <a href="{{ route('data.magangext.delete', $data->id) }}"
+                                                <a href="{{ route('manajemen.magang.ext.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -78,13 +117,13 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Tambah Data Magang External</h5>
+                                                        <h5 class="modal-title text-theme">Tambah Data Magang External</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('data.magangext.update', $data->id) }}"
+                                                    <form action="{{ route('manajemen.magang.ext.update', $data->id) }}"
                                                         method="POST">
                                                         @method('put')
                                                         @csrf
@@ -156,7 +195,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('data.magangext.store') }}" method="POST">
+                    <form action="{{ route('manajemen.magang.ext.store') }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

@@ -25,7 +25,7 @@ class FormMitraController extends Controller
             'kategori' => Kategori::all(),
         ];
 
-        return view('pages.mitra.manajemen-pendaftaran-mitra.index', $data);
+        return view('pages.mitra.manajemen-pelamar-mitra.index', $data);
     }
 
     /**
@@ -41,7 +41,7 @@ class FormMitraController extends Controller
             'kategori' => Kategori::all(),
         ];
 
-        return view('pages.mitra.manajemen-pendaftaran-mitra.create', $data);
+        return view('pages.mitra.manajemen-pelamar-mitra.create', $data);
     }
 
     /**
@@ -100,7 +100,7 @@ class FormMitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Ditambahkan');
 
-        return redirect()->route('formulir.mitra.index');
+        return redirect()->route('manajemen.mitra.index');
     }
 
     /**
@@ -128,7 +128,7 @@ class FormMitraController extends Controller
             'mitra' => Mitra::findOrFail($id),
         ];
 
-        return view('pages.mitra.manajemen-pendaftaran-mitra.update', $data);
+        return view('pages.mitra.manajemen-pelamar-mitra.update', $data);
     }
 
     /**
@@ -152,8 +152,8 @@ class FormMitraController extends Controller
             'update_link_website' => ['required'],
             'update_no_telephone' => ['required', 'string', 'between:11,15'],
             'update_email' => ['required', 'email'],
-            'update_password' => ['nullable', 'confirmed', 'min:8'],
-            'update_password_konfirmasi' => ['nullable', 'min:8', Rules\Password::defaults()],
+            'password' => ['nullable', 'confirmed', 'min:8'],
+            'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
             'update_status' => ['required'],
         ]);
 
@@ -163,7 +163,7 @@ class FormMitraController extends Controller
             'name' => $validated['update_nama'],
             'email' => $validated['update_email'],
             'username' => $validated['update_email'],
-            'password' => bcrypt($validated['update_password']),
+            'password' => bcrypt($validated['password']),
         ]);
 
         Mitra::where('id', $mitra->id)->update([
@@ -182,7 +182,7 @@ class FormMitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Diupdate');
 
-        return redirect()->route('formulir.mitra.index');
+        return redirect()->route('manajemen.mitra.index');
     }
 
     /**
@@ -200,6 +200,6 @@ class FormMitraController extends Controller
 
         Alert::success('Success', 'Mitra Berhasil Dihapus');
 
-        return redirect()->route('formulir.mitra.index');
+        return redirect()->route('manajemen.mitra.index');
     }
 }

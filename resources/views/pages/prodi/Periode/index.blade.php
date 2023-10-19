@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -70,7 +70,7 @@
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $data->id }}"><i
-                                                        class="fa-solid fa-pen"></i>
+                                                        class="fa-solid fa-pen text-white"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -87,7 +87,8 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('data.periode.update', $data->id) }}"
+
+                                                    <form action="{{ route('manajemen.periode.update', $data->id) }}"
                                                         method="POST">
                                                         @method('put')
                                                         @csrf
@@ -146,13 +147,20 @@
                                                                         {{ $message }}</div>
                                                                 @enderror
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-footer bg-whitesmoke br">
-                                                            <button type="button" class="btn btn-cancel"
-                                                                data-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-submit">Simpan</button>
+
+                                                            <div class="row">
+                                                                <div class="col d-flex">
+                                                                    <div class="ml-auto">
+                                                                        <button type="button" class="btn btn-cancel"
+                                                                            data-dismiss="modal">Batal</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-submit">Simpan</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </form>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -179,7 +187,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('data.periode.store') }}" method="POST">
+                    <form action="{{ route('manajemen.periode.store') }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

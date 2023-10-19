@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Mitra | MBKM Poliwangi</title>
+    <title>Manajemen Perwalian | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -12,59 +12,61 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
-            <div class="col-12">
+        <div class="row pt-5">
+            <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Manajemen Mitra</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Mahasiswa Dosen Wali
+                                    ({{ $dosen_wali->dosen->nama }})
+                                </h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('formulir.mitra.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.peserta.dosen.create', $id_dosen_wali) }}"
+                                    class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Mitra
+                                    Tambah Mahasiswa
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body py-0 mb-0">
                         <div class="table-responsive">
-                            <table class="table table-hover table-borderless rounded" id="table-1">
+                            @php
+                                $no = 1;
+                            @endphp
+                            <table class="table table-striped" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th class="text-center text-white">No</th>
-                                        <th class="text-center text-white">Nama Perusahaan</th>
-                                        <th class="text-center text-white">Sektor Industri</th>
-                                        <th class="text-center text-white">Kategori</th>
-                                        <th class="text-center text-white">Kota</th>
-                                        <th class="text-center text-white">Status</th>
+                                        <th class="text-center text-white" class="text-center text-white">No</th>
+                                        <th class="text-center text-white">NIM</th>
+                                        <th class="text-center text-white">Nama</th>
+                                        <th class="text-center text-white">Prodi</th>
+                                        <th class="text-center text-white">Angkatan</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-
-                                    @foreach ($mitras as $data)
+                                    @foreach ($peserta_dosen as $item)
                                         <tr>
-                                            <td class="text-center">{{ $no }}</td>
-                                            <td class="text-center">{{ $data->nama }}</td>
-                                            <td class="text-center">{{ $data->sektor_industri->nama }}</td>
-                                            <td class="text-center">{{ $data->kategori->nama }}</td>
-                                            <td class="text-center">{{ $data->kota }}</td>
-                                            <td class="text-center">{{ $data->status }}</td>
                                             <td>
-                                                <a href="{{ route('formulir.mitra.edit', $data->id) }}"
-                                                    class="btn btn-info ml-auto">
-                                                    <i class="fa-solid fa-pen text-white"></i>
-                                                </a>
-                                                <a href="{{ route('formulir.mitra.delete', $data->id) }}"
-                                                    class="btn btn-danger ml-auto">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
+                                                {{ $no }}
+                                            </td>
+                                            <td>{{ $item->mahasiswa->nim }}</td>
+                                            <td>{{ $item->mahasiswa->nama }}</td>
+                                            <td>
+                                                {{ $item->mahasiswa->prodi->nama }}
+                                            </td>
+                                            <td>{{ $item->mahasiswa->angkatan }}</td>
+                                            {{-- <td class="text-center">
+                                                <a href="" class="btn btn-primary ml-auto"><i
+                                                        class="fa-solid fa-eye"></i></a>
+                                            </td> --}}
+                                            <td class="text-center">
+                                                <a href="{{ route('manajemen.peserta.dosen.destroy', $item->id) }}"
+                                                    class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @php
@@ -78,6 +80,7 @@
                 </div>
             </div>
         </div>
+
     </section>
 @endsection
 

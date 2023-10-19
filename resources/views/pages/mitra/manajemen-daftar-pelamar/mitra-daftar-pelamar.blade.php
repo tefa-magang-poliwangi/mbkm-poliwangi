@@ -13,14 +13,18 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD:resources/views/pages/mitra/manajemen-daftar-pelamar/mitra-daftar-pelamar.blade.php
+    <section class="pt-4">
+=======
     <section class="">
-        <div class="row pt-3">
+>>>>>>> 3cd09e3b4550becabb2f6822fc1dbfa91b94bcb8:resources/views/pages/mitra/manajemen-pelamar-mitra/mitra-daftar-pelamar.blade.php
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Manajemen Daftar Pelamar - Magang Internal</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Pelamar Magang</h5>
                             </div>
                         </div>
 

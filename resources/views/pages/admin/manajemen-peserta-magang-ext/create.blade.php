@@ -14,7 +14,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -25,7 +25,7 @@
                         </div>
 
                         {{-- Form Checklist Peserta Kelas --}}
-                        <form action="{{ route('peserta.magang_ext.store', $id_magang_ext) }}" method="POST">
+                        <form action="{{ route('manajemen.peserta.magang.ext.store', $id_magang_ext) }}" method="POST">
                             @csrf
 
                             @error('mahasiswas')
@@ -82,7 +82,7 @@
                                     <button type="submit" class="btn btn-primary mr-auto my-auto">
                                         Tambah
                                     </button>
-                                    <a href="{{ route('peserta.magang_ext.index', $id_magang_ext) }}"
+                                    <a href="{{ route('manajemen.peserta.magang.ext.index', $id_magang_ext) }}"
                                         class="btn btn-cancel">Back</a>
                                 </div>
                             </div>

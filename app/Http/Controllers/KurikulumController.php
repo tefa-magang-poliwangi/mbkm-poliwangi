@@ -26,7 +26,7 @@ class KurikulumController extends Controller
         $data = [
             'kurikulums' => $kurikulum,
             'prodi' => Prodi::all(),
-            'request' => $request
+            'request' => $request,
         ];
 
         return view('pages.prodi.kurikulum.data-kurikulum', $data);
@@ -42,8 +42,9 @@ class KurikulumController extends Controller
         $data = [
             'kurikulum' => Kurikulum::all(),
             'prodi' => Prodi::all(),
-            'action' => route('daftar.kurikulum.store'),
+            'action' => route('manajemen.kurikulum.store'),
         ];
+
         return view('pages.prodi.kurikulum.form-data-kurikulum', $data);
     }
 
@@ -68,7 +69,8 @@ class KurikulumController extends Controller
         ]);
 
         Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan');
-        return redirect()->route('daftar.kurikulum.index');
+
+        return redirect()->route('manajemen.kurikulum.index');
     }
 
     /**
@@ -118,7 +120,7 @@ class KurikulumController extends Controller
 
         Alert::success('Success', 'Data Kurikulum Berhasil Diupdate');
 
-        return redirect()->route('daftar.kurikulum.index');
+        return redirect()->route('manajemen.kurikulum.index');
     }
 
     /**
@@ -134,6 +136,6 @@ class KurikulumController extends Controller
 
         Alert::success('Success', 'Data Kurikulum Berhasil Dihapus');
 
-        return redirect()->route('daftar.kurikulum.index');
+        return redirect()->route('manajemen.kurikulum.index');
     }
 }

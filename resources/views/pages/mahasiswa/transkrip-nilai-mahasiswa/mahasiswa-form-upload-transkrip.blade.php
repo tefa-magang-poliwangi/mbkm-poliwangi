@@ -1,4 +1,4 @@
-@extends('layouts.base-mahasiswa')
+@extends('layouts.base-admin')
 
 @section('title')
     <title>Upload Transkrip Nilai Mahasiswa | MBKM Poliwangi</title>
@@ -11,7 +11,7 @@
 
 @section('content')
     <section class="">
-        <div class="row py-5">
+        <div class="row pt-5">
             <h4 class="text-theme mb-4">Upload Transkrip Nilai Mahasiswa</h4>
 
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
@@ -25,7 +25,7 @@
                             @if (!$data_nilai_magang_ext == null)
                                 @foreach ($khs_per_transkrip as $data)
                                     <a class="list-group-item list-group-item-action" id="list-profile-list"
-                                        href="{{ route('nilai_kriteria.magang_ext.page', [$data->magang_ext->id, $data_nilai_magang_ext->id]) }}"
+                                        href="{{ route('input.kriteria.mahasiswa.ext.index', [$data->magang_ext->id, $data_nilai_magang_ext->id]) }}"
                                         role="tab">2. Insert Nilai Magang</a>
                                 @endforeach
                             @endif
@@ -42,7 +42,7 @@
                         role="tabpanel" aria-labelledby="list-home-list">
 
                         {{-- Form Upload Transkip --}}
-                        <form action="{{ route('upload.transkrip.mahasiswa.store', Auth::user()->id) }}" method="POST"
+                        <form action="{{ route('upload.transkrip.mahasiswa.ext.store', Auth::user()->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
 
@@ -205,7 +205,7 @@
                                                                 target="_blank"
                                                                 class="btn btn-download d-md-inline">Laporan
                                                                 Akhir</a>
-                                                            <a href="{{ route('upload.transkrip.mahasiswa.destroy', $data->id) }}"
+                                                            <a href="{{ route('upload.transkrip.mahasiswa.ext.destroy', $data->id) }}"
                                                                 class="btn btn-delete">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </a>

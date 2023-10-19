@@ -12,14 +12,12 @@ use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KonversiNilaiExternal extends Controller
 {
-
     public function KonversiNilaiAngka($nilai_angka)
     {
         // Penentuan nilai huruf berdasarkan nilai angka
@@ -84,8 +82,6 @@ class KonversiNilaiExternal extends Controller
                     $data['nilai_angka'] = $matkuls[$array_key];
                     $data['nilai_huruf'] = $this->KonversiNilaiAngka($matkuls[$array_key]);
                     $data['angka_mutu'] = $this->KonversiAngkaMutu($matkuls[$array_key]);
-
-                    // dd($data['angka_mutu']);
 
                     // Ambil objek matakuliah berdasarkan kunci (ID matakuliah)
                     $matakuliah = Matkul::find($array_key);

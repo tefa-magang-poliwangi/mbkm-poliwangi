@@ -49,8 +49,6 @@ class UploadTranskripNilai extends Controller
             'data_nilai_magang_ext' => NilaiMagangExt::where('id_periode', $periode_aktif->id)->where('id_mahasiswa', $mahasiswa->id)->first()
         ];
 
-        // dd($data['data_nilai_magang_ext']);
-
         return view('pages.mahasiswa.transkrip-nilai-mahasiswa.mahasiswa-form-upload-transkrip', $data);
     }
 
@@ -100,7 +98,7 @@ class UploadTranskripNilai extends Controller
 
         Alert::success('Success', 'Berkas transkrip berhasil di unggah');
 
-        return redirect()->route('upload-transkrip-mahasiswa.create', $id_user);
+        return redirect()->route('upload.transkrip.mahasiswa.ext.create', $id_user);
     }
 
     /**
@@ -163,6 +161,6 @@ class UploadTranskripNilai extends Controller
 
         Alert::success('Success', 'Berkas transkrip berhasil di hapus');
 
-        return redirect()->route('upload-transkrip-mahasiswa.create', $id);
+        return redirect()->route('upload.transkrip.mahasiswa.ext.create', $id);
     }
 }

@@ -50,7 +50,7 @@ class SektorIndustriController extends Controller
 
         Alert::success('Success', 'Sektor Industri Berhasil Ditambahkan');
 
-        return redirect()->route('data.sektor_industri.index');
+        return redirect()->route('manajemen.sektor.industri.index');
     }
 
     /**
@@ -94,7 +94,7 @@ class SektorIndustriController extends Controller
 
         Alert::success('Success', 'Sektor Industri Berhasil Diupdate');
 
-        return redirect()->route('data.sektor_industri.index');
+        return redirect()->route('manajemen.sektor.industri.index');
     }
 
     /**
@@ -110,6 +110,6 @@ class SektorIndustriController extends Controller
 
         Alert::success('Success', 'Sektor Industri Berhasil Dihapus');
 
-        return redirect()->route('data.sektor_industri.index');
+        return redirect()->route('manajemen.sektor.industri.index');
     }
 }

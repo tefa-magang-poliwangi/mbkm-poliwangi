@@ -12,7 +12,7 @@
 
 @section('content')
     <section>
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -21,7 +21,7 @@
                                 <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('daftar.kurikulum.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.kurikulum.create') }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Kurikulum
                                 </a>
@@ -64,13 +64,14 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
+                                                <a href="{{ route('manajemen.cpl.kurikulum.index', $item->id) }}"
+                                                    class="btn btn-primary">
                                                     <i class="fa-solid fa-search"></i> CPL
                                                 </a>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $item->id }}"><i
                                                         class="fa-solid fa-pen"></i></button>
-                                                <a href="{{ route('daftar.kurikulum.delete', $item->id) }}"
+                                                <a href="{{ route('manajemen.kurikulum.destroy', $item->id) }}"
                                                     class="btn btn-danger ml-auto"> <i
                                                         class="fa-solid fas fa-trash"></i></a>
                                             </td>
@@ -88,7 +89,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="{{ route('daftar.kurikulum.update', $item->id) }}"
+                                                    <form action="{{ route('manajemen.kurikulum.update', $item->id) }}"
                                                         method="POST">
                                                         @method('put')
                                                         @csrf

@@ -14,16 +14,16 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start">Manajemen Peserta Kelas</h5>
+                                <h5 class="justify-start text-theme">Manajemen Peserta Kelas</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <a href="{{ route('peserta.kelas.create', $id_kelas) }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.peserta.kelas.create', $id_kelas) }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp; Tambah Peserta Kelas
                                 </a>
                             </div>
@@ -58,7 +58,7 @@
                                                     <td class="text-center">{{ $data->mahasiswa->angkatan }}</td>
                                                     <td>{{ $data->kelas->prodi->nama }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('peserta.kelas.destroy', [$id_kelas, $data->id]) }}"
+                                                        <a href="{{ route('manajemen.peserta.kelas.destroy', [$id_kelas, $data->id]) }}"
                                                             class="btn btn-danger ml-auto"><i
                                                                 class="fa-solid fa-trash"></i></a>
                                                     </td>

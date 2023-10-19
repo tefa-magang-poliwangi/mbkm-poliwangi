@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Transkrip Nilai | Politeknik Negeri Banyuwangi</title>
+    <title>Daftar Transkrip Nilai | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -16,7 +16,7 @@
 
 @section('content')
     <section>
-        <div class="row py-5">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-header bg-white mt-2">
@@ -48,13 +48,17 @@
                                             <td>{{ $data->mahasiswa->prodi->nama }}</td>
 
                                             <td class="text-center">
-                                                @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)
-                                                    <a href="{{ route('daftar.mahasiswa.transkrip.index', [$data->id_mahasiswa, $data->id_magang_ext, $data->id]) }}"
+                                                @if (
+                                                    $data->mahasiswa->peserta_kelas &&
+                                                        $data->mahasiswa->peserta_kelas->count() > 0 &&
+                                                        $data->mahasiswa->peserta_dosen->count() > 0)
+                                                    <a href="{{ route('daftar.transkrip.mahasiswa.ext.show', [$data->id_mahasiswa, $data->id_magang_ext, $data->id]) }}"
                                                         class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"
                                                             title="Siap Dikonversi"></i></a>
                                                 @else
                                                     <a href="#" class="btn btn-danger ml-auto"
-                                                        title="Tidak Ada Kelas"><i class="fa-solid fa-eye-slash"></i></a>
+                                                        title="Mahasiswa Tidak Memiliki Kelas dan Dosen Wali"><i
+                                                            class="fa-solid fa-eye-slash"></i></a>
                                                 @endif
                                             </td>
                                         </tr>
