@@ -2,13 +2,13 @@
 
 namespace App\Imports;
 
-use App\Models\Dosen;
+use App\Models\AdminProdi;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class DosenImport implements ToCollection
+class AdminProdiImport implements ToCollection
 {
     /**
      * @param Collection $collection
@@ -18,26 +18,23 @@ class DosenImport implements ToCollection
         $prodis = Prodi::all();
 
         foreach ($rows as $column) {
-            $prodiName = $column[3];
+            $prodiName = $column[4];
             $matchingProdi = $prodis->first(function ($prodi) use ($prodiName) {
                 return $prodi->nama == $prodiName;
             });
 
-            $user_dosen = User::create([
+            $user_admin = User::create([
                 'name' => $column[0],
                 'email' => $column[1],
-                'username' => $column[4],
-                'password' => bcrypt($column[5]),
+                'username' => $column[2],
+                'password' => bcrypt($column[3]),
             ]);
 
-            $user_dosen->assignRole('dosen');
+            $user_admin->assignRole('admin-prodi');
 
-            Dosen::create([
-                'nama' => $column[0],
-                'email' => $column[1],
-                'no_telp' => $column[2],
+            AdminProdi::create([
+                'id_user' => $user_admin->id,
                 'id_prodi' => $matchingProdi->id,
-                'id_user' => $user_dosen->id,
             ]);
         }
     }

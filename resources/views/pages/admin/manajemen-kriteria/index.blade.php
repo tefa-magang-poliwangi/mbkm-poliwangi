@@ -23,8 +23,47 @@
                                 <h5 class="justify-start my-auto text-theme">Kriteria Penilaian {{ $magang_ext->name }}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
-                                        class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria</button>
+                                <div class="ml-auto">
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#importDataUserDosen" title="Impot Data Kriteria dan Nilai">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </button>
+
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
+                                        <i class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Import Data Kriteria dan Nilai Magang Ext -->
+                        <div class="modal fade" id="importDataUserDosen" tabindex="-1" role="dialog"
+                            aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data Kriteria dan
+                                            Nilai</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form untuk Unggah File Excel -->
+                                        <form action="{{ route('import.data.nilai.kriteria.km') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="file">Pilih File Excel</label>
+                                                <input type="file" class="form-control-file" id="file"
+                                                    name="file">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Unggah</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

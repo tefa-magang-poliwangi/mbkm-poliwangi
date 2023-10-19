@@ -25,7 +25,7 @@ class User extends Authenticatable
         'email',
         'username',
         'password',
-        
+
     ];
 
     protected $hidden = [
@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function admin_prodi()
     {
-        return $this->hasMany(AdminProdi::class);
+        return $this->hasMany(AdminProdi::class, 'id_user', 'id');
     }
 
     public function mahasiswa()

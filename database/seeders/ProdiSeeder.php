@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Prodi;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProdiSeeder extends Seeder
@@ -22,11 +21,11 @@ class ProdiSeeder extends Seeder
         ]);
         Prodi::create([
             'id' => 2,
-            'nama' => 'S1 Terapan dan Bisnis Digital',
+            'nama' => 'S1 Terapan Teknologi Rekayasa Komputer',
         ]);
         Prodi::create([
             'id' => 3,
-            'nama' => 'S1 Terapan Teknologi Rekayasa Komputer',
+            'nama' => 'S1 Terapan dan Bisnis Digital',
         ]);
 
         // Jurusan Teknik Sipil
