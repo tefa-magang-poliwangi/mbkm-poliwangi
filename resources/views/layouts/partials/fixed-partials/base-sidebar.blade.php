@@ -315,15 +315,6 @@
                     </li>
                 @endcan
 
-                @can('manajemen.kelas.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
-                            <i class="fas fa-solid fa-layer-group"></i>
-                            <span>Manajemen Kelas</span>
-                        </a>
-                    </li>
-                @endcan
-
                 @can('manajemen.magang.ext.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.magang.ext.index') }}">
@@ -333,32 +324,45 @@
                     </li>
                 @endcan
 
-                @can('manajemen.periode.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.periode.index') }}">
-                            <i class="fas fa-solid fa-calendar-day"></i>
-                            <span>Manajemen Periode</span>
-                        </a>
-                    </li>
-                @endcan
+                <li class="dropdown">
+                    <a href="#" class="nav-link has-dropdown"> <i class="fas fa-solid fa-layer-group"></i>
+                        <span>Manajemen</span></a>
+                    <ul class="dropdown-menu">
 
-                @can('manajemen.dosen.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.dosen.index') }}">
-                            <i class="fas fa-solid fa-calendar-day"></i>
-                            <span>Manajemen Dosen</span>
-                        </a>
-                    </li>
-                @endcan
+                        @can('manajemen.kelas.index')
+                            <li>
+                                <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
 
-                @can('manajemen.dosen.wali.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.dosen.wali.index') }}">
-                            <i class="fas fa-solid fa-calendar-day"></i>
-                            <span>Manajemen Dosen Wali</span>
-                        </a>
-                    </li>
-                @endcan
+                                    <span>Kelas</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('manajemen.periode.index')
+                            <li>
+                                <a class="nav-link" href="{{ route('manajemen.periode.index') }}">
+                                    <span>Periode</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('manajemen.dosen.index')
+                            <li>
+                                <a class="nav-link" href="{{ route('manajemen.dosen.index') }}">
+                                    <span>Dosen</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('manajemen.dosen.wali.index')
+                            <li>
+                                <a class="nav-link" href="{{ route('manajemen.dosen.wali.index') }}">
+                                    <span>Dosen Wali</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
 
             @endauth
 
