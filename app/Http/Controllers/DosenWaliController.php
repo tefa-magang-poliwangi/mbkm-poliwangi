@@ -43,10 +43,15 @@ class DosenWaliController extends Controller
         $admin_prodi_user = AdminProdi::where('id_user', $id_user)->first();
         $prodi_user = $admin_prodi_user->id_prodi;
 
+        // mengambil seluruh data dosen dengan role dosen
+        $dosens = Dosen::where('id_prodi', $prodi_user)->whereDoesntHave('dosen_wali')->whereHas('user', function ($query) {
+            $query->whereHas('roles', function ($query) {
+                $query->where('name', 'dosen');
+            });
+        })->get();
+
         $data = [
-            'dosens' => Dosen::where('id_prodi', $prodi_user)
-                ->whereDoesntHave('dosen_wali')
-                ->get(),
+            'dosens' => $dosens,
         ];
 
         return view('pages.admin.Manajemen-dosen-wali.form-data-dosen-wali', $data);

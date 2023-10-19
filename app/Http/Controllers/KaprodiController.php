@@ -137,15 +137,15 @@ class KaprodiController extends Controller
         $dosen_role = Role::where('name', 'dosen')->first();
 
         $kaprodi = Kaprodi::findOrFail($id_kaprodi);
-        $dosen_user = Dosen::where('id', $id_kaprodi)->first();
+        $dosen_user = Dosen::where('id', $kaprodi->id_dosen)->first();
         $user = User::findOrFail($dosen_user->id_user);
-        // $user->removeRole('dosen-wali');
+        $user->removeRole('kaprodi');
         $kaprodi->delete();
 
-        // $user->assignRole($dosen_role);
+        $user->assignRole($dosen_role);
 
-        Alert::success('Success', 'Berhasil Mengahapus Dosen Wali');
+        Alert::success('Success', 'Berhasil Mengahapus Kaprodi');
 
-        return redirect()->route('manajemen.dosen.wali.index');
+        return redirect()->route('manajemen.kaprodi.index');
     }
 }

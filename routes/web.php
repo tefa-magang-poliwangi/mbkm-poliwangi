@@ -38,6 +38,7 @@ use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MitraLowonganController;
+use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use Illuminate\Support\Facades\Route;
 
@@ -83,9 +84,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/magang_{id_magang_ext}/transkrip_{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.transkrip.mahasiswa.ext.show');
 
         // Route Konversi Mahasiswa External dan Internal
-        Route::post('/konversi-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/transkrip_{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi.nilai.mahasisa.ext.create');
-        Route::get('/konversi-nilai/mahasiswa-external/{id_nilai_konversi}/destroy', [KonversiNilaiExternal::class, 'destroy'])->name('konversi.nilai.mahasisa.ext.destroy');
-        Route::post('/konversi-nilai/mahasiswa-internal/mahasiswa_{id_mahasiswa}/matkul_{id_matkul}/lowongan_{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi.nilai.mahasisa.int.create');
+        Route::post('/konversi-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/transkrip_{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi.nilai.mahasiswa.ext.create');
+        Route::get('/konversi-nilai/mahasiswa-external/{id_nilai_konversi}/destroy', [KonversiNilaiExternal::class, 'destroy'])->name('konversi.nilai.mahasiswa.ext.destroy');
+        Route::post('/konversi-nilai/mahasiswa-internal/mahasiswa_{id_mahasiswa}/matkul_{id_matkul}/lowongan_{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi.nilai.mahasiswa.int.create');
 
         // Route Manajemen Prodi
         Route::get('/manajemen/prodi', [ProdiController::class, 'index'])->name('manajemen.prodi.index');
@@ -93,7 +94,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/prodi/{id_prodi}/destroy', [ProdiController::class, 'destroy'])->name('manajemen.prodi.destroy');
 
         // # (Route Admin Prodi)
-        Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_adminprodi'])->name('dashboard.admin.prodi.page');
+        Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_admin_prodi'])->name('dashboard.admin.prodi.page');
 
         // # (Route Kaprodi)
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
@@ -212,7 +213,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Dosen)
         Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
 
-        //Route Manajemen Kaprodi
+        // Route Manajemen Kaprodi
         Route::get('/manajemen/kaprodi', [KaprodiController::class, 'index'])->name('manajemen.kaprodi.index');
         Route::post('/manajemen/kaprodi/store', [KaprodiController::class, 'store'])->name('manajemen.kaprodi.store');
         Route::get('/manajemen/kaprodi/{id_kaprodi}/destroy', [KaprodiController::class, 'destroy'])->name('manajemen.kaprodi.destroy');

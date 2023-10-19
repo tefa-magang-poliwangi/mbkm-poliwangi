@@ -16,15 +16,26 @@
             <div class="col-md-12">
                 <div class="card card-custom rounded ">
                     <div class="card-body">
-                        <h3 class="card-title">Dashboard @auth
-                                @role('dosen')
-                                    dosen
-                                    @endrole @role('kaprodi')
-                                    Kaprodi
-                                    @endrole @role('wd-1')
+                        <h3 class="card-title">Dashboard
+                            @auth
+                                @role('wadir')
                                     Wadir 1
-                                    @endrole @role('dosen-wali')
+                                @endrole
+
+                                @role('kaprodi')
+                                    Kaprodi
+                                @endrole
+
+                                @role('dosen')
+                                    Dosen
+                                @endrole
+
+                                @role('dosen-wali')
                                     Dosen Wali
+                                @endrole
+
+                                @role('dosen-pembimbing')
+                                    Dosen Pembimbing
                                 @endrole
                             @endauth
                         </h3>
