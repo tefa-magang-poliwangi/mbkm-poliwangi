@@ -11,23 +11,14 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
-    <div class="container-fluid" style="padding-top: 5%">
-        <div class="row">
-=======
     <section>
         <div class="row pt-3">
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-<<<<<<< HEAD
-                                <h5 class="justify-start my-auto text-theme">Formulir Mitra</h5>
-=======
                                 <h5 class="justify-start my-auto text-theme">Manajemen Mitra</h5>
->>>>>>> 5a0095ff9c3a74622d90986c3e17b4d2d6f13514
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <a href="{{ route('formulir.mitra.create') }}" class="btn btn-primary ml-auto">
