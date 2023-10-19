@@ -139,9 +139,7 @@ class DosenWaliController extends Controller
         $dosen_wali = DosenWali::findOrFail($id_dosen_wali);
         $dosen_user = Dosen::where('id', $dosen_wali->id_dosen)->first();
         $user = User::findOrFail($dosen_user->id_user);
-
         $user->removeRole('dosen-wali');
-
         $dosen_wali->delete();
 
         $user->assignRole($dosen_role);

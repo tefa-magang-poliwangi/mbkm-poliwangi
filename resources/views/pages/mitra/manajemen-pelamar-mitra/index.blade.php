@@ -78,16 +78,16 @@
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+        </section>
+    @endsection
 
-@section('script')
-    {{-- Datatable JS --}}
-    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
-    <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+    @section('script')
+        {{-- Datatable JS --}}
+        <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+        <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+        <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
 
-    {{-- Modal JS --}}
-    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
-@endsection
+        {{-- Modal JS --}}
+        <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
+    @endsection

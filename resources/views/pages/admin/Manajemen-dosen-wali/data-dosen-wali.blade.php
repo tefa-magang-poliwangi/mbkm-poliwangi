@@ -37,7 +37,7 @@
                             <table class="table table-striped" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th class="text-center text-white" class="text-center text-white">No</th>
+                                        <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Email</th>
                                         <th class="text-center text-white">Prodi</th>
@@ -48,7 +48,7 @@
                                 <tbody>
                                     @foreach ($dosen_walis as $item)
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $no }}
                                             </td>
                                             <td>{{ $item->dosen->nama }}</td>
