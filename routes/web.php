@@ -184,7 +184,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}', [PesertaMagangExtController::class, 'index'])->name('manajemen.peserta.magang.ext.index');
         Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/create', [PesertaMagangExtController::class, 'create'])->name('manajemen.peserta.magang.ext.create');
         Route::post('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/store', [PesertaMagangExtController::class, 'store'])->name('manajemen.peserta.magang.ext.store');
-        Route::get('/manajemen/peserta-magang-ext/peserta_magang_ext_{id_peserta_magang_ext}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
+        Route::get('/manajemen/peserta-magang-ext/peserta_magang_ext_{id_peserta_magang_ext}/{id}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
 
         // Route Manajemen Kriteria
         Route::get('/manajemen/kriteria/{id_magang_ext}/index', [KriteriaPenilaianController::class, 'index'])->name('manajemen.kriteria.index');
@@ -303,6 +303,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
         Route::post('/import-data/magang-external/import', [ImportController::class, 'import_data_magang_ext'])->name('import.data.magang.ext');
         Route::post('/import-data/nilai-kriteria-km/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
+        Route::post('/import-data/peserta-km/import', [ImportController::class, 'import_peserta_km'])->name('import.data.peserta.km');
     });
 });
 
