@@ -230,12 +230,14 @@
                 @role('akademik')
                     <li class="menu-header">AKADEMIK</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Akademik</span>
-                        </a>
-                    </li>
+                    @can('profil.akademik.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.akademik.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Akademik</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @role('akademik')

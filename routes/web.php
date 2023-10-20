@@ -39,6 +39,7 @@ use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\ProfileAdminController;
+use App\Http\Controllers\ProfileAkademikController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ProfileMitraController;
@@ -238,6 +239,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // # (Route Akademik)
         Route::get('/dashboard/akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
+
+        // Route Akademik Mahasiswa
+        Route::get('/dashboard/akademik/ubah-profil/{id_user}', [ProfileAkademikController::class, 'show'])->name('profil.akademik.page');
+        Route::put('/dashboard/akademik/update-profil/{id_user}', [ProfileAkademikController::class, 'update'])->name('profil.akademik.update');
 
         // Route Daftar Nilai Mahasiswa - Akademik
         Route::get('/daftar-nilai-khs-mahasiswa/daftar-prodi', [DaftarNilaiMahasiswaController::class, 'daftar_prodi'])->name('akademik.daftar.prodi');

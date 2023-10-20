@@ -53,7 +53,7 @@
                                                     <td class="text-center">{{ $data->mahasiswa->angkatan }}</td>
                                                     <td>{{ $data->kelas->prodi->nama }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('akademik.daftar.nilai', $data->id) }}"
+                                                        <a href="{{ route('akademik.daftar.nilai', $data->mahasiswa->id) }}"
                                                             class="btn btn-primary ml-auto"><i
                                                                 class="fa-solid fa-eye"></i></a>
                                                     </td>
