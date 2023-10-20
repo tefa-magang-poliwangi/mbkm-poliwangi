@@ -23,9 +23,9 @@ class Lowongan extends Model
     ];
 
     // relasi
-    public function lowongan()
+    public function mitra()
     {
-        return $this->belongsTo(Lowongan::class, 'id_kurikulum', 'id');
+        return $this->belongsTo(Mitra::class, 'id_mitra');
     }
 
     public function program_magang()

@@ -25,7 +25,7 @@ class MitraDaftarPelamarController extends Controller
             'daftar_pelamar' => PelamarMagang::all()
         ];
 
-        return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar', $data);
+        return view('pages.mitra.manajemen-daftar-pelamar.mitra-daftar-pelamar', $data);
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
-@section('lowongan')
-    <title>Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
+@section('title')
+    <title>Manajemen Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
 
 @section('css')
@@ -20,8 +20,8 @@
 @endphp
 
 @section('content')
-    <div class="container-fluid" style="padding-top: 10%">
-        <div class="row">
+    <section class="pt-4">
+        <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
@@ -49,10 +49,11 @@
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Jumlah Lowongan</th>
-                                        <th class="text-center text-white">Tanggal Buka</th>
+                                        {{-- <th class="text-center text-white">Tanggal Buka</th>
                                         <th class="text-center text-white">Tanggal Tutup</th>
                                         <th class="text-center text-white">Tanggal Magang Dimulai</th>
-                                        <th class="text-center text-white">Tanggal Magang Berakhir</th>
+                                        <th class="text-center text-white">Tanggal Magang Berakhir</th> --}}
+                                        <th class="text-center text-white">Program Magang</th>
                                         <th class="text-center text-white">Status</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
@@ -67,10 +68,13 @@
                                             <td class="text-center">{{ $no }}</td>
                                             <td class="text-center">{{ $data->nama }}</td>
                                             <td class="text-center">{{ $data->jumlah_lowongan }}</td>
-                                            <td class="text-center">{{ dateConversion($data->tanggal_dibuka) }}</td>
+                                            {{-- <td class="text-center">{{ dateConversion($data->tanggal_dibuka) }}</td>
                                             <td class="text-center">{{ dateConversion($data->tanggal_ditutup) }}</td>
                                             <td class="text-center">{{ dateConversion($data->tanggal_magang_dimulai) }}</td>
-                                            <td class="text-center">{{ dateConversion($data->tanggal_magang_berakhir) }}
+                                            <td class="text-center">{{ dateConversion($data->tanggal_magang_berakhir) }}</td> --}}
+                                            <td class="text-center">
+                                                <a href="{{ route('manajemen.program.magang.index', $data->id) }}"
+                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
                                             <td class="text-center">{{ $data->status }}</td>
                                             <td>
@@ -92,7 +96,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('script')

@@ -16,16 +16,45 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = Permission::all();
-
-        $admin = Role::create([
-            'name' => 'admin',
+        Role::create([
+            'name' => 'akademik',
             'guard_name' => 'web'
         ]);
-
-        // Berikan semua izin ke peran 'admin'
-        foreach ($permissions as $permission) {
-            $admin->givePermissionTo($permission);
-        }
+        Role::create([
+            'name' => 'wadir',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'admin-prodi',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'kaprodi',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'dosen',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'dosen-wali',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'dosen-pembimbing',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'mahasiswa',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'mitra',
+            'guard_name' => 'web'
+        ]);
+        Role::create([
+            'name' => 'pl-mitra',
+            'guard_name' => 'web'
+        ]);
     }
 }
