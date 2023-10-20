@@ -38,6 +38,7 @@ use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MitraLowonganController;
+use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ProfileMitraController;
@@ -70,6 +71,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::group(['middleware' => ['auth', 'permission']], function () {
         // # (Route Super Admin)
         Route::get('/dashboard/admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
+
+        // Route Profil Admin
+        Route::get('/dashboard/admin/ubah-profil/{id_user}', [ProfileAdminController::class, 'show'])->name('profil.admin.page');
+        Route::put('/dashboard/admin/update-profil/{id_user}', [ProfileAdminController::class, 'update'])->name('profil.admin.update');
 
         // Route Manajemen Dosen
         Route::get('/manajemen/dosen', [DosenController::class, 'index'])->name('manajemen.dosen.index');
@@ -261,7 +266,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Dashboard Mitra
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
-        // Route Profil Mahasiswa
+        // Route Profil Mitra
         Route::get('/dashboard/mitra/ubah-profil/{id_user}', [ProfileMitraController::class, 'show'])->name('profil.mitra.page');
         Route::put('/dashboard/mitra/update-profil/{id_mitra}/update', [ProfileMitraController::class, 'update'])->name('profil.mitra.update');
 
@@ -274,8 +279,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/lowongan-mitra/{id_lowongan}/destroy', [MitraLowonganController::class, 'destroy'])->name('manajemen.lowongan.mitra.destroy');
 
         // Route Manajemen Program Magang
-        Route::get('/manajemen/{id_lowongan}/program-magang',[ProgramMagangController::class,'index'])->name('manajemen.program.magang.index');
-        Route::get('/manajemen/program-magang/{id_lowongan}/create',[ProgramMagangController::class, 'create'])->name('manajemen.program.magang.create');
+        Route::get('/manajemen/{id_lowongan}/program-magang', [ProgramMagangController::class, 'index'])->name('manajemen.program.magang.index');
+        Route::get('/manajemen/program-magang/{id_lowongan}/create', [ProgramMagangController::class, 'create'])->name('manajemen.program.magang.create');
         Route::post('/manajemen/program-magang/{id_lowongan}/store', [ProgramMagangController::class, 'store'])->name('manajemen.program.magang.store');
         Route::get('/manajemen/program-magang/lowongan_{id_lowongan}/{id_program_magang}/edit', [ProgramMagangController::class, 'edit'])->name('manajemen.program.magang.edit');
         Route::put('/manajemen/program-magang/lowongan_{id_lowongan}/{id_program_magang}/update', [ProgramMagangController::class, 'update'])->name('manajemen.program.magang.update');

@@ -43,7 +43,7 @@
                 @endrole
 
                 @role('mitra')
-                    <a href="{{route('dashboard.mitra.page')}}">Poliwangi</a>
+                    <a href="{{ route('dashboard.mitra.page') }}">Poliwangi</a>
                 @endrole
 
                 @role('pl-mitra')
@@ -158,12 +158,14 @@
                 @role('admin')
                     <li class="menu-header">SUPER ADMIN</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Admin</span>
-                        </a>
-                    </li>
+                    @can('profil.admin.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.admin.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Admin</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @can('roles.index')
@@ -609,7 +611,8 @@
                     <a class="nav-link" href="#"><i class="fas fa-book"></i>
                         <span>Log Book</span>
                     </a>
-                </li>
+                </li> --}}
+
                 @can('profil.mitra.page')
                     <li class="menu-header">Tentang Akun</li>
                     <li>
@@ -620,8 +623,6 @@
                     </li>
                 @endcan
             @endauth
-
-            {{-- Eof --}}
         </ul>
     </aside>
 </div>
