@@ -39,6 +39,7 @@ use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\ProfileAdminController;
+use App\Http\Controllers\ProfileAdminProdiController;
 use App\Http\Controllers\ProfileAkademikController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use App\Http\Controllers\ProgramMagangController;
@@ -102,6 +103,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // # (Route Admin Prodi)
         Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_admin_prodi'])->name('dashboard.admin.prodi.page');
+
+        // Route Profil Admin Prodi
+        Route::get('/dashboard/admin-prodi/ubah-profil/{id_user}', [ProfileAdminProdiController::class, 'show'])->name('profil.admin.prodi.page');
+        Route::put('/dashboard/admin-prodi/update-profil/{id_dosen}', [ProfileAdminProdiController::class, 'update'])->name('profil.admin.prodi.update');
 
         // # (Route Kaprodi)
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
@@ -240,7 +245,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Akademik)
         Route::get('/dashboard/akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
 
-        // Route Akademik Mahasiswa
+        // Route Profil Akademik
         Route::get('/dashboard/akademik/ubah-profil/{id_user}', [ProfileAkademikController::class, 'show'])->name('profil.akademik.page');
         Route::put('/dashboard/akademik/update-profil/{id_user}', [ProfileAkademikController::class, 'update'])->name('profil.akademik.update');
 

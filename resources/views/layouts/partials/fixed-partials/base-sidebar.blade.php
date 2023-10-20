@@ -259,12 +259,14 @@
                 @role('admin-prodi')
                     <li class="menu-header">ADMIN PRODI</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Admin Prodi</span>
-                        </a>
-                    </li>
+                    @can('profil.admin.prodi.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.admin.prodi.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Admin Prodi</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @can('manajemen.dosen.index')
