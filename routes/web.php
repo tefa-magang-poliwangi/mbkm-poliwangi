@@ -10,7 +10,9 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\FormMitraController;
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
+use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
@@ -76,7 +78,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen/{id_dosen}/edit', [DosenController::class, 'edit'])->name('manajemen.dosen.edit');
         Route::put('/manajemen/dosen/{id_dosen}/update', [DosenController::class, 'update'])->name('manajemen.dosen.update');
         Route::get('/manajemen/dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('manajemen.dosen.destroy');
-        Route::post('/manajemen/dosen/import', [DosenController::class, 'import'])->name('manajemen.dosen.import');
 
         // Route Transkrip Mahasiswa External dan Internal
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
@@ -84,9 +85,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/magang_{id_magang_ext}/transkrip_{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.transkrip.mahasiswa.ext.show');
 
         // Route Konversi Mahasiswa External dan Internal
-        Route::post('/konversi-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/transkrip_{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi.nilai.mahasisa.ext.create');
-        Route::get('/konversi-nilai/mahasiswa-external/{id_nilai_konversi}/destroy', [KonversiNilaiExternal::class, 'destroy'])->name('konversi.nilai.mahasisa.ext.destroy');
-        Route::post('/konversi-nilai/mahasiswa-internal/mahasiswa_{id_mahasiswa}/matkul_{id_matkul}/lowongan_{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi.nilai.mahasisa.int.create');
+        Route::post('/konversi-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/transkrip_{id_nilai_magang_ext}/create', [KonversiNilaiExternal::class, 'konversi_nilai_external'])->name('konversi.nilai.mahasiswa.ext.create');
+        Route::get('/konversi-nilai/mahasiswa-external/{id_nilai_konversi}/destroy', [KonversiNilaiExternal::class, 'destroy'])->name('konversi.nilai.mahasiswa.ext.destroy');
+        Route::post('/konversi-nilai/mahasiswa-internal/mahasiswa_{id_mahasiswa}/matkul_{id_matkul}/lowongan_{id_lowongan}/create', [KonversiNilaiInternal::class, 'konversi_nilai_nilai'])->name('konversi.nilai.mahasiswa.int.create');
 
         // Route Manajemen Prodi
         Route::get('/manajemen/prodi', [ProdiController::class, 'index'])->name('manajemen.prodi.index');
@@ -94,7 +95,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/prodi/{id_prodi}/destroy', [ProdiController::class, 'destroy'])->name('manajemen.prodi.destroy');
 
         // # (Route Admin Prodi)
-        Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_adminprodi'])->name('dashboard.admin.prodi.page');
+        Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_admin_prodi'])->name('dashboard.admin.prodi.page');
 
         // # (Route Kaprodi)
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
@@ -213,6 +214,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Dosen)
         Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
 
+        // Route Manajemen Kaprodi
+        Route::get('/manajemen/kaprodi', [KaprodiController::class, 'index'])->name('manajemen.kaprodi.index');
+        Route::post('/manajemen/kaprodi/store', [KaprodiController::class, 'store'])->name('manajemen.kaprodi.store');
+        Route::get('/manajemen/kaprodi/{id_kaprodi}/destroy', [KaprodiController::class, 'destroy'])->name('manajemen.kaprodi.destroy');
+
         // Route Manajemen Dosen Wali
         Route::get('/manajemen/dosen-wali', [DosenWaliController::class, 'index'])->name('manajemen.dosen.wali.index');
         Route::get('/manajemen/dosen-wali/create', [DosenWaliController::class, 'create'])->name('manajemen.dosen.wali.create');
@@ -284,7 +290,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
             Route::get('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
-            Route::post('/import', 'UsersController@import')->name('users.import');
         });
 
         // Route Role dan Permissions
@@ -296,6 +301,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('cities', 'DependentDropdownController@cities')->name('cities');
         Route::get('districts', 'DependentDropdownController@districts')->name('districts');
         Route::get('villages', 'DependentDropdownController@villages')->name('villages');
+
+        // Route Imports Data
+        Route::post('/import-data-user/admin-prodi/import', [ImportController::class, 'import_data_user_admin_prodi'])->name('import.data.user.admin.prodi');
+        Route::post('/import-data-user/dosen/import', [ImportController::class, 'import_data_user_dosen'])->name('import.data.user.dosen');
+        Route::post('/import-user/mahasiswa/import', [ImportController::class, 'import_user_mahasiswa'])->name('import.user.mahasiswa');
+        Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
+        Route::post('/import-data/magang-external/import', [ImportController::class, 'import_data_magang_ext'])->name('import.data.magang.ext');
+        Route::post('/import-data/nilai-kriteria-km/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
     });
 });
 
@@ -357,4 +370,8 @@ Route::get('/dashboard-dosen/laporan-akhir', function () {
 // Halaman Dosen wali
 Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
     return view('pages.dosen.doswal-kelayakan');
+});
+
+Route::get('/dashboard-admin/manajemen-kaprodi', function () {
+    return view('pages.admin.manajemen-kaprodi.index');
 });

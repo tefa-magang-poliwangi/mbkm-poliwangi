@@ -40,7 +40,7 @@
                             <table class="table table-striped" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th class="text-center text-white" class="text-center text-white">No</th>
+                                        <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">NIM</th>
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Prodi</th>
@@ -51,19 +51,19 @@
                                 <tbody>
                                     @foreach ($peserta_dosen as $item)
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $no }}
                                             </td>
-                                            <td>{{ $item->mahasiswa->nim }}</td>
-                                            <td>{{ $item->mahasiswa->nama }}</td>
+                                            <td>
+                                                {{ $item->mahasiswa->nim }}
+                                            </td>
+                                            <td>
+                                                {{ $item->mahasiswa->nama }}
+                                            </td>
                                             <td>
                                                 {{ $item->mahasiswa->prodi->nama }}
                                             </td>
                                             <td>{{ $item->mahasiswa->angkatan }}</td>
-                                            {{-- <td class="text-center">
-                                                <a href="" class="btn btn-primary ml-auto"><i
-                                                        class="fa-solid fa-eye"></i></a>
-                                            </td> --}}
                                             <td class="text-center">
                                                 <a href="{{ route('manajemen.peserta.dosen.destroy', $item->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>

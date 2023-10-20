@@ -24,9 +24,45 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#importAdminProdi"
+                                        title="Import Data User Admin Prodi"><i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </button>
+
                                     <button class="btn btn-primary ml-auto" data-toggle="modal"
                                         data-target="#createModal"><i class="fa-solid fa-plus"></i> &ensp; Tambah
                                         Admin Prodi</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Import Data User Admin Prodi -->
+                        <div class="modal fade" id="importAdminProdi" tabindex="-1" role="dialog"
+                            aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data User Admin
+                                            Prodi
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form untuk Unggah File Excel -->
+                                        <form action="{{ route('import.data.user.admin.prodi') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="file">Pilih File Excel</label>
+                                                <input type="file" class="form-control-file" id="file"
+                                                    name="file">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Unggah</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

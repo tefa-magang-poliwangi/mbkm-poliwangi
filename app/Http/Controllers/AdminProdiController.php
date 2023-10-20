@@ -20,7 +20,7 @@ class AdminProdiController extends Controller
     {
         $usersWithAdminProdiRoles = User::whereHas('roles', function ($query) {
             $query->where('name', 'admin-prodi');
-        })->get();
+        })->whereDoesntHave('admin_prodi')->get();
 
         $data = [
             'user_option' => $usersWithAdminProdiRoles,
