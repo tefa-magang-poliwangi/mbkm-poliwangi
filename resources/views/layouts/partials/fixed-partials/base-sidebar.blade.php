@@ -39,11 +39,11 @@
                 @endrole
 
                 @role('mitra')
-                    <a href="#">Poliwangi</a>
+                    <a href="{{route('dashboard.mitra.page')}}">Poliwangi</a>
                 @endrole
 
                 @role('pl-mitra')
-                    <a href="#">Poliwangi</a>
+                    <a href="{{ route('dashboard.mitra.page') }}">Poliwangi</a>
                 @endrole
             @endauth
         </div>
@@ -522,15 +522,6 @@
                     </li>
                 @endcan
 
-                @can('manajemen.program.magang.index')
-                <li>
-                    <a class="nav-link" href="{{ route('manajemen.program.magang.index')}}">
-                        <i class="fas fa-solid fa-bars-progress"></i>
-                        <span>Program Magang</span>
-                    </a>
-                </li>
-                @endcan
-
                 <li>
                     <a class="nav-link" href="#">
                         <i class="fas fa-regular fa-file-lines"></i>
@@ -557,6 +548,15 @@
                         <span>Log Book</span>
                     </a>
                 </li>
+                @can('profil.mitra.page')
+                    <li class="menu-header">Tentang Akun</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}"><i
+                                class="fas fa-user"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+                @endcan
             @endauth
 
             {{-- Eof --}}

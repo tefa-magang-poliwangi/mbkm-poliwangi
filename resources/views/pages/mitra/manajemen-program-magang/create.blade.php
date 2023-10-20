@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('manajemen.program.magang.store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('manajemen.program.magang.store', $id_lowongan)}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -75,7 +75,7 @@
                                     name="id_lowongan">
                                     <option value="">Pilih Lowongan</option>
                                     @foreach ($lowongan as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}" selected>{{ $data->nama }}</option>
                                     @endforeach
                                 </select>
                                 @error('id_lowongan')

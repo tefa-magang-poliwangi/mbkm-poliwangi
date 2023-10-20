@@ -11,11 +11,7 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD:resources/views/pages/mitra/manajemen-pendamping-mitra/pl-mitra.blade.php
     <section class="pt-4">
-=======
-    <section>
->>>>>>> 3cd09e3b4550becabb2f6822fc1dbfa91b94bcb8:resources/views/pages/mitra/pl-mitra.blade.php
         <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
@@ -129,7 +125,7 @@
                                                                         @enderror
                                                                     </div>
 
-                                                                    <div class="form-group">
+                                                                    {{-- <div class="form-group">
                                                                         <label for="update_id_mitra"
                                                                             class="form-label">Mitra</label>
                                                                         <select
@@ -148,7 +144,7 @@
                                                                                 class="form-text pb-1 text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
-                                                                    </div>
+                                                                    </div> --}}
 
                                                                     <div class="form-group">
                                                                         <label for="update_password"
@@ -268,7 +264,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="create_id_mitra" class="form-label">Mitra</label>
                             <select class="form-control @error('create_id_mitra') is-invalid @enderror"
                                 id="create_id_mitra" name="create_id_mitra">
@@ -281,7 +277,7 @@
                                 <div id="create_id_mitra" class="form-text pb-1 text-danger">
                                     {{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <label for="create_password" class="control-label">Password</label>

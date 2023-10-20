@@ -16,7 +16,7 @@
                     <h4>Tambah Program Magang</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('manajemen.program.magang.update', $programmagang->id) }}" method="POST">
+                    <form action="{{ route('manajemen.program.magang.update', [$id_lowongan, $programmagang->id]) }}" method="POST">
                         @method('put')
                         @csrf
 
