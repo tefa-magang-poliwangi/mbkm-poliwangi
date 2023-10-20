@@ -15,7 +15,7 @@ class MitraLowonganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $user_id = auth()->user()->id;
         $mitra = Mitra::where('id_user', $user_id)->first();

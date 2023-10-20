@@ -31,15 +31,30 @@
                 <div class="row py-2">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="fas fa-exchange-alt"></i>
+                            <div class="card-icon bg-success">
+                                <i class="far fa-user"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
                                     <h4>Mahasiswa</h4>
                                 </div>
                                 <div class="card-body">
-                                    1,450
+                                    {{ $mahasiswa_count }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-user"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Dosen</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $dosen_count }}
                                 </div>
                             </div>
                         </div>
@@ -47,14 +62,14 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger">
-                                <i class="far fa-user"></i>
+                                <i class="fas fa-exchange-alt"></i>
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
                                     <h4>Kurikulum</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+                                    {{ $kurikulum_count }}
                                 </div>
                             </div>
                         </div>
@@ -69,7 +84,7 @@
                                     <h4>Mata Kuliah Kurikulum</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+                                    {{ $matkul_kurikulum_count }}
                                 </div>
                             </div>
                         </div>
@@ -81,10 +96,10 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Data Magang Eksternal</h4>
+                                    <h4>Magang Eksternal</h4>
                                 </div>
                                 <div class="card-body">
-                                    20
+                                    {{ $magang_ext_count }}
                                 </div>
                             </div>
                         </div>
@@ -96,25 +111,10 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Management Kelas</h4>
+                                    <h4>Kelas</h4>
                                 </div>
                                 <div class="card-body">
-                                    12
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Management Periode</h4>
-                                </div>
-                                <div class="card-body">
-                                    3
+                                    {{ $kelas_count }}
                                 </div>
                             </div>
                         </div>

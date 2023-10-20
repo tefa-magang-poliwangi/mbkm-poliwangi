@@ -41,20 +41,24 @@ class AuthController extends Controller
 
             if ($user->hasRole('admin')) {
                 return redirect()->route('dashboard.admin.page');
-            } elseif ($user->hasRole('mahasiswa')) {
-                return redirect()->route('dashboard.mahasiswa.page');
+            } elseif ($user->hasRole('akademik')) {
+                return redirect()->route('dashboard.akademik.page');
+            } elseif ($user->hasRole('admin-prodi')) {
+                return redirect()->route('dashboard.admin.prodi.page');
+            } elseif ($user->hasRole('kaprodi')) {
+                return redirect()->route('dashboard.dosen.page');
             } elseif ($user->hasRole('dosen')) {
                 return redirect()->route('dashboard.dosen.page');
             } elseif ($user->hasRole('dosen-wali')) {
                 return redirect()->route('dashboard.dosen.page');
-            } elseif ($user->hasRole('kaprodi')) {
+            } elseif ($user->hasRole('dosen-pembimbing')) {
                 return redirect()->route('dashboard.dosen.page');
-            } elseif ($user->hasRole('akademik')) {
-                return redirect()->route('dashboard.akademik.page');
-            } elseif ($user->hasRole('wd-1')) {
-                return redirect()->route('dashboard.dosen.page');
-            } elseif ($user->hasRole('admin-prodi')) {
-                return redirect()->route('dashboard.admin.prodi.page');
+            } elseif ($user->hasRole('mahasiswa')) {
+                return redirect()->route('dashboard.mahasiswa.page');
+            } elseif ($user->hasRole('mitra')) {
+                return redirect()->route('dashboard.mitra.page');
+            } elseif ($user->hasRole('pl-mitra')) {
+                return redirect()->route('dashboard.mitra.page');
             }
         }
 
