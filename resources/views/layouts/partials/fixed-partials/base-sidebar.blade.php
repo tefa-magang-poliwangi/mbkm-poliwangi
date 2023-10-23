@@ -394,12 +394,14 @@
                 @role('kaprodi')
                     <li class="menu-header">KAPRODI</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Kaprodi</span>
-                        </a>
-                    </li>
+                    @can('profil.kaprodi.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.kaprodi.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Kaprodi</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @can('kaprodi.daftar.transkrip.index')
@@ -424,12 +426,14 @@
                 @role('dosen')
                     <li class="menu-header">DOSEN</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Dosen</span>
-                        </a>
-                    </li>
+                    @can('profil.dosen.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.dosen.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Dosen</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
             @endauth
@@ -439,12 +443,14 @@
                 @role('dosen-wali')
                     <li class="menu-header">DOSEN WALI</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Dosen Wali</span>
-                        </a>
-                    </li>
+                    @can('profil.dosen.wali.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.dosen.wali.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Dosen Wali</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @can('daftar.transkrip.mahasiswa.ext.index')

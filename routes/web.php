@@ -41,6 +41,9 @@ use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
 use App\Http\Controllers\ProfileAkademikController;
+use App\Http\Controllers\ProfileDosenController;
+use App\Http\Controllers\ProfileDosenWaliController;
+use App\Http\Controllers\ProfileKaprodiController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ProfileMitraController;
@@ -109,6 +112,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/dashboard/admin-prodi/update-profil/{id_dosen}', [ProfileAdminProdiController::class, 'update'])->name('profil.admin.prodi.update');
 
         // # (Route Kaprodi)
+
+        // Route Profil Kaprodi
+        Route::get('/dashboard/kaprodi/ubah-profil/{id_user}', [ProfileKaprodiController::class, 'show'])->name('profil.kaprodi.page');
+        Route::put('/dashboard/kaprodi/update-profil/{id_dosen}', [ProfileKaprodiController::class, 'update'])->name('profil.kaprodi.update');
+
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
         Route::get('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/show', [ValidasiNilaiKaprodi::class, 'show'])->name('kaprodi.daftar.transkrip.show');
         Route::put('/daftar-transkrip-mahasiswa/{id_nilai_konversi}/update', [ValidasiNilaiKaprodi::class, 'update'])->name('kaprodi.daftar.transkrip.update');
@@ -225,6 +233,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Dosen)
         Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
 
+        // Route Profil Dosen
+        Route::get('/dashboard/dosen/ubah-profil/{id_user}', [ProfileDosenController::class, 'show'])->name('profil.dosen.page');
+        Route::put('/dashboard/dosen/update-profil/{id_dosen}', [ProfileDosenController::class, 'update'])->name('profil.dosen.update');
+
         // Route Manajemen Kaprodi
         Route::get('/manajemen/kaprodi', [KaprodiController::class, 'index'])->name('manajemen.kaprodi.index');
         Route::post('/manajemen/kaprodi/store', [KaprodiController::class, 'store'])->name('manajemen.kaprodi.store');
@@ -254,6 +266,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-nilai-khs-mahasiswa/{id_prodi}/daftar-kelas', [DaftarNilaiMahasiswaController::class, 'daftar_kelas'])->name('akademik.daftar.kelas');
         Route::get('/daftar-nilai-khs-mahasiswa/{id_kelas}/daftar-mahasiswa', [DaftarNilaiMahasiswaController::class, 'daftar_mahasiswa'])->name('akademik.daftar.mahasiswa');
         Route::get('/daftar-nilai-khs-mahasiswa/{id_mahasiswa}/daftar-nilai-mahasiswa', [DaftarNilaiMahasiswaController::class, 'daftar_nilai_mahasiswa'])->name('akademik.daftar.nilai');
+
+        // # (Route Dosen Wali)
+
+        // Route Profil Dosen Wali
+        Route::get('/dashboard/dosen-wali/ubah-profil/{id_user}', [ProfileDosenWaliController::class, 'show'])->name('profil.dosen.wali.page');
+        Route::put('/dashboard/dosen-wali/update-profil/{id_dosen}', [ProfileDosenWaliController::class, 'update'])->name('profil.dosen.wali.update');
 
         // # (Route Mahasiswa)
         Route::get('/dashboard/mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
