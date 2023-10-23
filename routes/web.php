@@ -47,6 +47,8 @@ use App\Http\Controllers\ProfileKaprodiController;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
 use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ProfileMitraController;
+use App\Http\Controllers\ProfileWadirController;
+use App\Http\Controllers\WadirPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -253,6 +255,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
         Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
         Route::get('/manajemen/peserta-dosen/{id}/destroy', [PesertaDosenController::class, 'destroy'])->name('manajemen.peserta.dosen.destroy');
+
+        // # (Route Wadir)
+        Route::get('/dashboard/wadir', [WadirPageController::class, 'index'])->name('dashboard.wadir.page');
+
+        // Route Profil Wadir
+        Route::get('/dashboard/wadir/ubah-profil/{id_user}', [ProfileWadirController::class, 'show'])->name('profil.wadir.page');
+        Route::put('/dashboard/wadir/update-profil/{id_user}', [ProfileWadirController::class, 'update'])->name('profil.wadir.update');
 
         // # (Route Akademik)
         Route::get('/dashboard/akademik', [AkademikPageController::class, 'index'])->name('dashboard.akademik.page');
