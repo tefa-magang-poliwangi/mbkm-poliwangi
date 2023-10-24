@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Lowongan | MBKM Poliwangi</title>
+    <title>Daftar Lowongan Magang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,20 +20,14 @@
 @endphp
 
 @section('content')
-    <section class="pt-4">
+    <section class="pt-3">
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Manajemen Lowongan</h5>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.lowongan.mitra.create') }}" class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Lowongan
-                                </a>
+                                <h5 class="justify-start my-auto text-theme">Daftar Lowongan Magang</h5>
                             </div>
                         </div>
                     </div>
@@ -47,16 +41,12 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-center text-white">No</th>
-                                        <th class="text-center text-white">Nama</th>
+                                        <th class="text-center text-white">Nama Mitra</th>
+                                        <th class="text-center text-white">Nama Lowongan</th>
                                         <th class="text-center text-white">Jumlah Lowongan</th>
-                                        {{-- <th class="text-center text-white">Tanggal Buka</th>
-                                        <th class="text-center text-white">Tanggal Tutup</th>
-                                        <th class="text-center text-white">Tanggal Magang Dimulai</th>
-                                        <th class="text-center text-white">Tanggal Magang Berakhir</th> --}}
                                         <th class="text-center text-white">Prodi</th>
                                         <th class="text-center text-white">Program Magang</th>
                                         <th class="text-center text-white">Status</th>
-                                        <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,26 +57,16 @@
                                     @foreach ($lowongans as $data)
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->mitra->nama }}</td>
                                             <td class="text-center">{{ $data->nama }}</td>
                                             <td class="text-center">{{ $data->jumlah_lowongan }}</td>
                                             <td class="text-center">{{ $data->prodi->nama }}</td>
-                                            {{-- <td class="text-center">{{ dateConversion($data->tanggal_dibuka) }}</td>
-                                            <td class="text-center">{{ dateConversion($data->tanggal_ditutup) }}</td>
-                                            <td class="text-center">{{ dateConversion($data->tanggal_magang_dimulai) }}</td>
-                                            <td class="text-center">{{ dateConversion($data->tanggal_magang_berakhir) }}</td> --}}
                                             <td class="text-center">
-                                                <a href="{{ route('manajemen.program.magang.index', $data->id) }}"
+                                                <a href="{{ route('kaprodi.validasi.program.magang.show', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
                                             <td class="text-center">
                                                 <span class="badge bg-primary text-white">{{ $data->status }}</span>
-                                            </td>
-                                            <td>
-                                                <a href="{{ Route('manajemen.lowongan.mitra.edit', $data->id) }}"
-                                                    class="btn btn-info ml-auto"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="{{ Route('manajemen.lowongan.mitra.destroy', $data->id) }}"
-                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
 

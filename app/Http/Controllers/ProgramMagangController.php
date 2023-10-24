@@ -76,7 +76,7 @@ class ProgramMagangController extends Controller
 
         Alert::success('Succsess', 'Data Program Magang Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.program.magang.index',$id_lowongan);
+        return redirect()->route('manajemen.program.magang.index', $id_lowongan);
     }
 
     /**
@@ -156,6 +156,8 @@ class ProgramMagangController extends Controller
     {
         $programmagang = ProgramMagang::findOrFail($id);
         $programmagang->delete();
+
+        Alert::success('Succsess', 'Data Program Magang Berhasil Dihapus');
 
         return redirect()->back();
     }

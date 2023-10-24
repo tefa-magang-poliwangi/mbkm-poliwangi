@@ -419,6 +419,7 @@
                 @endcan
             @endauth
 
+            {{-- Menu Kaprodi --}}
             @auth
                 @role('kaprodi')
                     <li class="menu-header">KAPRODI</li>
@@ -437,7 +438,16 @@
                     <li>
                         <a class="nav-link" href="{{ route('kaprodi.daftar.transkrip.index') }}">
                             <i class="fas fa-credit-card"></i>
-                            <span>Daftar Transkrip Nilai</span>
+                            <span>Validasi Transkrip Nilai</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('kaprodi.validasi.program.magang.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('kaprodi.validasi.program.magang.index') }}">
+                            <i class="fas fa-solid fa-bars-progress"></i>
+                            <span>Validasi Program Magang</span>
                         </a>
                     </li>
                 @endcan

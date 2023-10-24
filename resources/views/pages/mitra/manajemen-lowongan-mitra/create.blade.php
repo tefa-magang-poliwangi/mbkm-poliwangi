@@ -1,6 +1,7 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Tambah Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Tambah Lowongan | MBKM Poliwangi </title>
 @endsection
 
 @section('css')

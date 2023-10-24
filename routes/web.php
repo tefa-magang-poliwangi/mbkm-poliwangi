@@ -48,6 +48,7 @@ use App\Http\Controllers\ValidasiNilaiKaprodi;
 use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ProfileMitraController;
 use App\Http\Controllers\ProfileWadirController;
+use App\Http\Controllers\ValidasiProgramMagangKaprodi;
 use App\Http\Controllers\WadirPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -119,11 +120,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/kaprodi/ubah-profil/{id_user}', [ProfileKaprodiController::class, 'show'])->name('profil.kaprodi.page');
         Route::put('/dashboard/kaprodi/update-profil/{id_dosen}', [ProfileKaprodiController::class, 'update'])->name('profil.kaprodi.update');
 
+        // Route Validasi Nilai Transkrip
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
         Route::get('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/show', [ValidasiNilaiKaprodi::class, 'show'])->name('kaprodi.daftar.transkrip.show');
         Route::put('/daftar-transkrip-mahasiswa/{id_nilai_konversi}/update', [ValidasiNilaiKaprodi::class, 'update'])->name('kaprodi.daftar.transkrip.update');
         Route::put('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/setujui', [ValidasiNilaiKaprodi::class, 'validate_transkrip'])->name('kaprodi.daftar.transkrip.validate');
         Route::get('/daftar-transkrip-mahasiswa-disetujui', [ValidasiNilaiKaprodi::class, 'create'])->name('kaprodi.daftar.transkrip.disetujui');
+
+        // Route Validasi Program Magang
+        Route::get('/daftar-lowongan-magang', [ValidasiProgramMagangKaprodi::class, 'index'])->name('kaprodi.validasi.program.magang.index');
+        Route::get('/daftar-lowongan-magang/{id_lowongan}/program-magang', [ValidasiProgramMagangKaprodi::class, 'show'])->name('kaprodi.validasi.program.magang.show');
+        Route::put('/daftar-lowongan-magang/{id_lowongan}/validasi-program-magang', [ValidasiProgramMagangKaprodi::class, 'validate_program_magang'])->name('kaprodi.validasi.program.magang.validate');
 
         // Route Manajemen Mahasiswa
         Route::get('/manajemen/mahasiswa', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');

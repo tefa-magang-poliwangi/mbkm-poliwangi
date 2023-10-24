@@ -1,6 +1,7 @@
-@extends('layouts.base-mahasiswa')
+@extends('layouts.base-admin')
+
 @section('title')
-    <title>Update Lowongan MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Update Lowongan | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -9,7 +10,7 @@
 @endsection
 
 @section('content')
-    <section class="pt-5">
+    <section class="pt-3">
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card">
