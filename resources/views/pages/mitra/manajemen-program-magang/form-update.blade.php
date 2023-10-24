@@ -1,4 +1,5 @@
-@extends('layouts.base-mahasiswa')
+@extends('layouts.base-admin')
+
 @section('title')
     <title>Update Program Magang MBKM | Politeknik Negeri Banyuwangi</title>
 @endsection
@@ -9,107 +10,112 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Tambah Program Magang</h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('manajemen.program.magang.update', [$id_lowongan, $programmagang->id]) }}" method="POST">
-                        @method('put')
-                        @csrf
+    <section>
+        <div class="row pt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Ubah Program Magang</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('manajemen.program.magang.update', [$id_lowongan, $programmagang->id]) }}"
+                            method="POST">
+                            @method('put')
+                            @csrf
 
-                        <div class="form-group">
-                            <label for="kegiatan" class="form-label">Kegiatan Perusahaan</label>
-                            <input id="kegiatan" type="text"
-                                class="form-control @error('kegiatan')
-                                is-invalid
-                            @enderror"
-                                name="kegiatan" value="{{ $programmagang->kegiatan }}" placeholder="kegiatan lowongan baru">
-                            @error('kegiatan')
-                                <div id="kegiatan" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
-                            <input id="waktu_mulai" type="date"
-                                class="form-control @error('waktu_mulai')
-                                is-invalid
-                            @enderror"
-                                name="waktu_mulai" value="{{ $programmagang->waktu_mulai }}" placeholder="Waktu Mulai">
-                            @error('waktu_mulai')
-                                <div id="waktu_mulai" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="waktu_akhir" class="form-label">Waktu Akhir</label>
-                            <input id="waktu_akhir" type="date"
-                                class="form-control @error('waktu_akhir')
-                                is-invalid
-                            @enderror"
-                                name="waktu_akhir" value="{{ $programmagang->waktu_akhir }}" placeholder="Waktu Akhir">
-                            @error('waktu_akhir')
-                                <div id="waktu_akhir" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="posisi_mahasiswa" class="form-label">Posisi Mahasiswa</label>
-                            <input id="posisi_mahasiswa" type="text"
-                                class="form-control @error('posisi_mahasiswa')
-                                is-invalid
-                            @enderror"
-                                name="posisi_mahasiswa" value="{{ $programmagang->posisi_mahasiswa }}" placeholder="Posisi Mahasiswa">
-                            @error('posisi_mahasiswa')
-                                <div id="posisi_mahasiswa" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="id_lowongan" class="form-label">Lowongan</label>
-                            <select class="form-control @error('id_lowongan') is-invalid @enderror"
-                                id="id_lowongan" name="id_lowongan">
-                                <option value="">Pilih Lowongan</option>
-                                @foreach ($lowongan as $data)
-                                    <option value="{{ $data->id }}"
-                                        {{ $programmagang->id_lowongan == $data->id ? 'selected' : '' }}>
-                                        {{ $data->nama }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_lowongan')
-                                <div id="id_lowongan" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="id_pl_mitra" class="form-label">Pendamping Lapang</label>
-                            <select class="form-control @error('id_pl_mitra') is-invalid @enderror"
-                                id="id_pl_mitra" name="id_pl_mitra">
-                                <option value="">Pilih Pendamping Lapang</option>
-                                @foreach ($plmitra as $data)
-                                    <option value="{{ $data->id }}"
-                                        {{ $programmagang->id_pl_mitra == $data->id ? 'selected' : '' }}>
-                                        {{ $data->nama }}</option>
-                                @endforeach
-                            </select>
-                            @error('id_pl_mitra')
-                                <div id="id_pl_mitra" class="form-text text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                Tambah Data
-                            </button>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label for="kegiatan" class="form-label">Kegiatan Perusahaan</label>
+                                <input id="kegiatan" type="text"
+                                    class="form-control @error('kegiatan')
+                                    is-invalid
+                                @enderror"
+                                    name="kegiatan" value="{{ $programmagang->kegiatan }}"
+                                    placeholder="kegiatan lowongan baru">
+                                @error('kegiatan')
+                                    <div id="kegiatan" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
+                                <input id="waktu_mulai" type="date"
+                                    class="form-control @error('waktu_mulai')
+                                    is-invalid
+                                @enderror"
+                                    name="waktu_mulai" value="{{ $programmagang->waktu_mulai }}" placeholder="Waktu Mulai">
+                                @error('waktu_mulai')
+                                    <div id="waktu_mulai" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="waktu_akhir" class="form-label">Waktu Akhir</label>
+                                <input id="waktu_akhir" type="date"
+                                    class="form-control @error('waktu_akhir')
+                                    is-invalid
+                                @enderror"
+                                    name="waktu_akhir" value="{{ $programmagang->waktu_akhir }}" placeholder="Waktu Akhir">
+                                @error('waktu_akhir')
+                                    <div id="waktu_akhir" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="posisi_mahasiswa" class="form-label">Posisi Mahasiswa</label>
+                                <input id="posisi_mahasiswa" type="text"
+                                    class="form-control @error('posisi_mahasiswa')
+                                    is-invalid
+                                @enderror"
+                                    name="posisi_mahasiswa" value="{{ $programmagang->posisi_mahasiswa }}"
+                                    placeholder="Posisi Mahasiswa">
+                                @error('posisi_mahasiswa')
+                                    <div id="posisi_mahasiswa" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="id_lowongan" class="form-label">Lowongan</label>
+                                <select class="form-control @error('id_lowongan') is-invalid @enderror" id="id_lowongan"
+                                    name="id_lowongan">
+                                    <option value="">Pilih Lowongan</option>
+                                    @foreach ($lowongan as $data)
+                                        <option value="{{ $data->id }}"
+                                            {{ $programmagang->id_lowongan == $data->id ? 'selected' : '' }}>
+                                            {{ $data->nama }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_lowongan')
+                                    <div id="id_lowongan" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="id_pl_mitra" class="form-label">Pendamping Lapang</label>
+                                <select class="form-control @error('id_pl_mitra') is-invalid @enderror" id="id_pl_mitra"
+                                    name="id_pl_mitra">
+                                    <option value="">Pilih Pendamping Lapang</option>
+                                    @foreach ($plmitra as $data)
+                                        <option value="{{ $data->id }}"
+                                            {{ $programmagang->id_pl_mitra == $data->id ? 'selected' : '' }}>
+                                            {{ $data->nama }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_pl_mitra')
+                                    <div id="id_pl_mitra" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                    Tambah Data
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
 
 @section('script')

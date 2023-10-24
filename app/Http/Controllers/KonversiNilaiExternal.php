@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Mahasiswa;
 use App\Models\Matkul;
 use App\Models\Dosen;
+use App\Models\DosenWali;
 use App\Models\MatkulKurikulum;
 use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
@@ -113,8 +114,16 @@ class KonversiNilaiExternal extends Controller
      */
     public function index()
     {
-        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
-        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
+        $prodi_id = Dosen::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $dosen = Dosen::where('id_user', Auth::user()->id)->first();
+        $id_dosen_wali = DosenWali::where('id_dosen', $dosen->id)->first();
+
+        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))
+            ->whereHas('mahasiswa.peserta_dosen', function ($query) use ($id_dosen_wali) {
+                $query->where('id_dosen_wali', $id_dosen_wali->id);
+            })
+            ->get();
+
 
         $data = [
             'nilai_magang_ext' => $nilai_magang_ext,

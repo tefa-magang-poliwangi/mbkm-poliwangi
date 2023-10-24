@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
+
 @php
     function dateConversion($date)
     {
@@ -29,7 +30,8 @@
                                 <h5 class="justify-start my-auto text-theme">Daftar Program Magang</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{Route ('manajemen.program.magang.create', $id_lowongan)}}" class="btn btn-primary ml-auto">
+                                <a href="{{ Route('manajemen.program.magang.create', $id_lowongan) }}"
+                                    class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Program Magang
                                 </a>
@@ -48,7 +50,8 @@
                                         <th class="text-center text-white">Waktu Akhir</th>
                                         <th class="text-center text-white">Posisi Mahasiswa</th>
                                         <th class="text-center text-white">Pendamping Lapang</th>
-                                        <th class="text-center text-white">Aksi</th>
+                                        <th class="text-center text-white" width="15%">Status</th>
+                                        <th class="text-center text-white" width="10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,8 +67,23 @@
                                             <td class="text-center">{{ dateConversion($data->waktu_akhir) }}</td>
                                             <td class="text-center">{{ $data->posisi_mahasiswa }}</td>
                                             <td class="text-center">{{ $data->pl_mitra->nama }}</td>
+                                            <td class="text-center">
+                                                @if ($data->validasi_kaprodi == 'Belum Disetujui')
+                                                    <div class="btn btn-warning">
+                                                        Blm Disetujui
+                                                    </div>
+                                                @elseif($data->validasi_kaprodi == 'Tidak Setuju')
+                                                    <div class="btn btn-danger">
+                                                        Tidak Setuju
+                                                    </div>
+                                                @elseif($data->validasi_kaprodi == 'Setuju')
+                                                    <div class="btn btn-success">
+                                                        Disetujui
+                                                    </div>
+                                                @endif
+                                            </td>
                                             <td>
-                                                <a href="{{ route('manajemen.program.magang.edit', [$id_lowongan, $data->id])}}"
+                                                <a href="{{ route('manajemen.program.magang.edit', [$id_lowongan, $data->id]) }}"
                                                     class="btn btn-info ml-auto">
                                                     <i class="fa-solid fa-pen text-white"></i>
                                                 </a>
@@ -86,16 +104,16 @@
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+        </section>
+    @endsection
 
-@section('script')
-    {{-- Datatable JS --}}
-    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
-    <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+    @section('script')
+        {{-- Datatable JS --}}
+        <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+        <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+        <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
 
-    {{-- Modal JS --}}
-    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
-@endsection
+        {{-- Modal JS --}}
+        <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
+    @endsection

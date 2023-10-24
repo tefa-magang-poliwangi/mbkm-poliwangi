@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <section class="pt-5">
+    <section>
         <div class="row d-flex justify-content-center pt-5">
             <div class="col-12">
                 <div class="card card-rounded-sm">
@@ -21,7 +21,8 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('manajemen.program.magang.store', $id_lowongan)}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('manajemen.program.magang.store', $id_lowongan) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -60,8 +61,8 @@
                             <div class="form-group">
                                 <label for="posisi_mahasiswa">Posisi Mahasiswa</label>
                                 <input id="posisi_mahasiswa" type="text" name="posisi_mahasiswa"
-                                    class="form-control @error('posisi_mahasiswa') is-invalid @enderror" name="posisi_mahasiswa"
-                                    placeholder="Posisi Mahasiswa">
+                                    class="form-control @error('posisi_mahasiswa') is-invalid @enderror"
+                                    name="posisi_mahasiswa" placeholder="Posisi Mahasiswa">
                                 @error('posisi_mahasiswa')
                                     <div id="posisi_mahasiswa" class="form-text text-danger">
                                         {{ $message }}
@@ -120,5 +121,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
-
 @endsection
