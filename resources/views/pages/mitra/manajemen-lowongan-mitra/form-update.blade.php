@@ -17,8 +17,7 @@
                         <h4>Tambah Lowongan</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('manajemen.lowongan.mitra.update', $lowongan->id) }}"
-                            method="POST">
+                        <form action="{{ route('manajemen.lowongan.mitra.update', $lowongan->id) }}" method="POST">
                             @method('put')
                             @csrf
 
@@ -113,13 +112,33 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="id_prodi" class="form-label">Prodi</label>
+                                <select
+                                    class="form-control @error('id_prodi')
+                                            is-invalid
+                                        @enderror"
+                                    id="id_prodi" name="id_prodi">
+                                    <option value="">Prodi</option>
+                                    @foreach ($prodi as $dataprodi)
+                                        <option value="{{ $dataprodi->id }}"
+                                            {{ $lowongan->id_prodi == $dataprodi->id ? 'selected' : '' }}>
+                                            {{ $dataprodi->nama }}</option>
+                                    @endforeach
+                                </select>
+                                @error('id_prodi')
+                                    <div id="id_prodi" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-control @error('status') is-invalid @enderror" id="status"
                                     name="status">
                                     <option value="">Pilih Status</option>
                                     <option value="Aktif" {{ $lowongan->status == 'Aktif' ? 'selected' : '' }}>Aktif
                                     </option>
-                                    <option value="Tidak Aktif" {{ $lowongan->status == 'Tidak Aktif' ? 'selected' : '' }}>
+                                    <option value="Tidak Aktif"
+                                        {{ $lowongan->status == 'Tidak Aktif' ? 'selected' : '' }}>
                                         Tidak Aktif</option>
                                 </select>
                                 @error('status')

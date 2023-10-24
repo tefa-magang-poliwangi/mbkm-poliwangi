@@ -116,6 +116,23 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="id_prodi" class="form-label">Prodi</label>
+                                    <select
+                                        class="form-control @error('id_prodi')
+                                                is-invalid
+                                            @enderror"
+                                        id="id_prodi" name="id_prodi">
+                                        <option value="">Prodi</option>
+                                        @foreach ($prodi as $dataprodi)
+                                            <option value="{{ $dataprodi->id }}">{{ $dataprodi->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_prodi')
+                                        <div id="id_prodi" class="form-text text-danger">
+                                            {{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Status</label>
                                     <select
                                         class="form-control @error('status')
@@ -123,7 +140,7 @@
                                 @enderror"
                                         name="status" id="status">
                                         <option value="">Pilih Status</option>
-                                        <option value="Aktif" selected> Aktif </option>
+                                        <option value="Aktif"> Aktif </option>
                                         <option value="Tidak Aktif"> Tidak Aktif </option>
                                     </select>
                                     @error('status')

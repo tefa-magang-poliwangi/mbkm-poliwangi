@@ -44,4 +44,8 @@ class Prodi extends Model
     {
         return $this->hasMany(Kelas::class);
     }
+    public function lowongan()
+    {
+        return $this->hasMany(Lowongan::class);
+    }
 }

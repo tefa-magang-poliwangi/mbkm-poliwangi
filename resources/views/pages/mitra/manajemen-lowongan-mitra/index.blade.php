@@ -53,6 +53,7 @@
                                         <th class="text-center text-white">Tanggal Tutup</th>
                                         <th class="text-center text-white">Tanggal Magang Dimulai</th>
                                         <th class="text-center text-white">Tanggal Magang Berakhir</th> --}}
+                                        <th class="text-center text-white">Prodi</th>
                                         <th class="text-center text-white">Program Magang</th>
                                         <th class="text-center text-white">Status</th>
                                         <th class="text-center text-white">Aksi</th>
@@ -68,6 +69,7 @@
                                             <td class="text-center">{{ $no }}</td>
                                             <td class="text-center">{{ $data->nama }}</td>
                                             <td class="text-center">{{ $data->jumlah_lowongan }}</td>
+                                            <td class="text-center">{{ $data->prodi->nama }}</td>
                                             {{-- <td class="text-center">{{ dateConversion($data->tanggal_dibuka) }}</td>
                                             <td class="text-center">{{ dateConversion($data->tanggal_ditutup) }}</td>
                                             <td class="text-center">{{ dateConversion($data->tanggal_magang_dimulai) }}</td>
@@ -76,10 +78,13 @@
                                                 <a href="{{ route('manajemen.program.magang.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
-                                            <td class="text-center">{{ $data->status }}</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-primary text-white">{{ $data->status }}</span>
+                                            </td>
                                             <td>
                                                 <a href="{{ Route('manajemen.lowongan.mitra.edit', $data->id) }}"
-                                                    class="btn btn-info ml-auto"><i class="fa-solid fa-pen text-white"></i></a>
+                                                    class="btn btn-info ml-auto"><i
+                                                        class="fa-solid fa-pen text-white"></i></a>
                                                 <a href="{{ Route('manajemen.lowongan.mitra.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
                                             </td>
