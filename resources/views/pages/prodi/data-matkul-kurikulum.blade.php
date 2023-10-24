@@ -21,26 +21,10 @@
                                 <h5 class="justify-start my-auto text-theme">Manajemen Matkul Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.matkul.kurikulum.create') }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.matkul.kurikulum.create', $id_kurikulum) }}" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Matkul Kurikulum
+                                    Set Matkul Kurikulum
                                 </a>
-                            </div>
-                        </div>
-
-                        {{-- Filter Prodi Dosen --}}
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-6 col-lg-4">
-                                <div class="form-group">
-                                    <form action="{{ route('manajemen.matkul.kurikulum.index') }}" method="GET">
-                                        <select class="form-control select2" name="prodi" onchange="this.form.submit()">
-                                            <option value="">Semua Prodi</option>
-                                            @foreach ($prodi as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                    </form>
-                                </div>
                             </div>
                         </div>
 
@@ -56,10 +40,8 @@
                                                 <th class="text-center text-white" class="text-center text-white">No</th>
                                                 <th class="text-center text-white">Kode MK</th>
                                                 <th class="text-center text-white">Nama Mata Kuliah</th>
-                                                <th class="text-center text-white">Kurikulum</th>
                                                 <th class="text-center text-white">Bobot MK</th>
                                                 <th class="text-center text-white">Semester</th>
-                                                <th class="text-center text-white">Status</th>
                                                 <th class="text-center text-white">Aksi</th>
                                             </tr>
                                         </thead>
@@ -69,123 +51,15 @@
                                                     <td class="text-center">{{ $no }}</td>
                                                     <td>{{ $data->matkul->kode_matakuliah }}</td>
                                                     <td>{{ $data->matkul->nama }}</td>
-                                                    <td class="text-center">{{ $data->kurikulum->nama }}</td>
                                                     <td class="text-center">{{ $data->matkul->sks }} SKS</td>
                                                     <td class="text-center">{{ $data->semester }}</td>
                                                     <td class="text-center">
-                                                        <span class="badge bg-primary text-white">Wajib</span>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-info ml-auto"
-                                                            data-toggle="modal"
-                                                            data-target="#updateModal{{ $data->id }}">
-                                                            <i class="fa-solid fa-pen text-white"></i>
-                                                        </button>
                                                         <a href="{{ route('manajemen.matkul.kurikulum.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
-
-                                                {{-- Modal Update --}}
-                                                <div class="modal fade" tabindex="-1" role="dialog"
-                                                    id="updateModal{{ $data->id }}">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Edit data Matkul Kurikulum</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form
-                                                                action="{{ route('manajemen.matkul.kurikulum.update', $data->id) }}"
-                                                                method="POST">
-                                                                @method('put')
-                                                                @csrf
-
-                                                                <div class="modal-body">
-                                                                    <div class="form-group">
-                                                                        <label for="update_semester"
-                                                                            class="form-label">Semester</label>
-                                                                        <select
-                                                                            class="form-control @error('update_semester') is-invalid @enderror"
-                                                                            id="update_semester" name="update_semester">
-                                                                            <option value="">Pilih Semester</option>
-                                                                            <option value="5"
-                                                                                {{ $data->semester == '5' ? 'selected' : '' }}>
-                                                                                5
-                                                                            </option>
-                                                                            <option value="6"
-                                                                                {{ $data->semester == '6' ? 'selected' : '' }}>
-                                                                                6
-                                                                            </option>
-                                                                            <option value="7"
-                                                                                {{ $data->semester == '7' ? 'selected' : '' }}>
-                                                                                7
-                                                                            </option>
-                                                                        </select>
-                                                                        @error('update_semester')
-                                                                            <div id="update_semester"
-                                                                                class="form-text text-danger">
-                                                                                {{ $message }}</div>
-                                                                        @enderror
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="update_kurikulum"
-                                                                            class="form-label">Kurikulum</label>
-                                                                        <select
-                                                                            class="form-control @error('update_kurikulum') is-invalid @enderror"
-                                                                            id="update_kurikulum" name="update_kurikulum">
-                                                                            <option value="">Pilih Kurikulum</option>
-                                                                            @foreach ($kurikulum_all as $item)
-                                                                                <option value="{{ $item->id }}"
-                                                                                    {{ $data->id_kurikulum == $item->id ? 'selected' : '' }}>
-                                                                                    {{ $item->nama }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        @error('update_kurikulum')
-                                                                            <div id="update_kurikulum"
-                                                                                class="form-text text-danger">
-                                                                                {{ $message }}</div>
-                                                                        @enderror
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="update_matkul" class="form-label">Mata
-                                                                            Kuliah</label>
-                                                                        <select
-                                                                            class="form-control @error('update_matkul') is-invalid @enderror"
-                                                                            id="update_matkul" name="update_matkul">
-                                                                            <option value="">Pilih Mata Kuliah
-                                                                            </option>
-                                                                            @foreach ($matkul as $dataMatkul)
-                                                                                <option value="{{ $dataMatkul->id }}"
-                                                                                    {{ $data->id_matkul == $dataMatkul->id ? 'selected' : '' }}>
-                                                                                    {{ $dataMatkul->nama }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        @error('update_matkul')
-                                                                            <div id="update_matkul"
-                                                                                class="form-text text-danger">
-                                                                                {{ $message }}</div>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="modal-footer bg-whitesmoke br">
-                                                                    <button type="button" class="btn btn-cancel"
-                                                                        data-dismiss="modal">Batal</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-submit">Simpan</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                                 @php
                                                     $no++;

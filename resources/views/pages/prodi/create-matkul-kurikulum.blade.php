@@ -20,50 +20,58 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('manajemen.matkul.kurikulum.store') }}" method="POST">
+                        <form action="{{ route('manajemen.matkul.kurikulum.store', $id_kurikulum) }}" method="POST">
                             @csrf
 
                             <div class="form-group">
-                                <label for="create_semester" class="form-label">Semester</label>
-                                <select class="form-control @error('create_semester') is-invalid @enderror"
-                                    id="create_semester" name="create_semester">
+                                <label for="semester" class="form-label">Semester</label>
+                                <select class="form-control @error('semester') is-invalid @enderror"
+                                    id="semester" name="semester">
                                     <option value="">Pilih Semester</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
                                     <option value="7">7</option>
                                 </select>
-                                @error('create_semester')
-                                    <div id="create_semester" class="form-text text-danger">
+                                @error('semester')
+                                    <div id="semester" class="form-text text-danger">
                                         {{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="create_kurikulum" class="form-label">Pilih Kurikulum</label>
-                                <select class="form-control @error('create_kurikulum') is-invalid @enderror"
-                                    id="create_kurikulum" name="create_kurikulum">
-                                    <option value="">Pilih Kurikulum</option>
-                                    @foreach ($kurikulum as $dataKurikulum)
-                                        <option value="{{ $dataKurikulum->id }}">{{ $dataKurikulum->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('create_kurikulum')
-                                    <div id="create_kurikulum" class="form-text text-danger">
-                                        {{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="create_matkul" class="form-label">Pilih Mata Kuliah</label>
-                                <select class="form-control @error('create_matkul') is-invalid @enderror" id="create_matkul"
-                                    name="create_matkul">
-                                    <option value="">Pilih Mata Kuliah</option>
-                                    @foreach ($matkul as $dataMatkul)
-                                        <option value="{{ $dataMatkul->id }}">{{ $dataMatkul->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('create_matkul')
-                                    <div id="create_matkul" class="form-text text-danger">
-                                        {{ $message }}</div>
-                                @enderror
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr class="text-nowrap">
+                                                <th>Matakuliah
+
+                                                    @error('matkul')
+                                                        <div id="" class="text-danger py-1">
+                                                            *pilih matakuliah
+                                                        </div>
+                                                    @else
+                                                        <small>(Mohon Pilih Minimal Satu Matakuliah)</small>
+                                                    @enderror
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($matkul as $dataMatkul)
+                                                <tr>
+                                                    <td class="d-flex">
+                                                        <div class="form-check my-auto">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="{{ $dataMatkul->id }}" name="matkul[]"
+                                                                id="{{ $dataMatkul->id }}">
+                                                            <label class="form-check-label" for="{{ $dataMatkul->id }}">
+                                                                {{ $dataMatkul->nama }}
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                        </tbody>
+                                        @endforeach
+                                    </table>
+
                             </div>
                             <button class="btn btn-primary mr-auto" type="submit">Tambah Mata Kuliah</button>
                         </form>

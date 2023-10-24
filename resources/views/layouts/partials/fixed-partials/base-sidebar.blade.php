@@ -328,14 +328,14 @@
                     </li>
                 @endcan
 
-                @can('manajemen.matkul.kurikulum.index')
+                {{-- @can('manajemen.matkul.kurikulum.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.matkul.kurikulum.index') }}">
                             <i class="fas fa-solid fa-book-bookmark"></i>
                             <span>Matkul Kurikulum</span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 @can('manajemen.magang.ext.index')
                     <li class="menu-header">Data Magang</li>
@@ -609,7 +609,7 @@
                     <a class="nav-link" href="#"><i class="fas fa-book"></i>
                         <span>Log Book</span>
                     </a>
-                </li>
+                </li> --}}
                 @can('profil.mitra.page')
                     <li class="menu-header">Tentang Akun</li>
                     <li>

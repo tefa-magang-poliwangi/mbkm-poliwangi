@@ -139,9 +139,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/kurikulum/{id_kurikulum}/destroy', [KurikulumController::class, 'destroy'])->name('manajemen.kurikulum.destroy');
 
         // Route Manajemen Matakuliah Kurikulum
-        Route::get('/manajemen/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
-        Route::get('/manajemen/matakuliah-kurikulum/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
-        Route::post('/manajemen/matakuliah-kurikulum/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
+        Route::get('/manajemen/{id_kurikulum}/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
+        Route::get('/manajemen/matakuliah-kurikulum/{id_kurikulum}/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
+        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
         Route::put('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/update', [MatkulKurikulumController::class, 'update'])->name('manajemen.matkul.kurikulum.update');
         Route::get('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/destroy', [MatkulKurikulumController::class, 'destroy'])->name('manajemen.matkul.kurikulum.destroy');
 

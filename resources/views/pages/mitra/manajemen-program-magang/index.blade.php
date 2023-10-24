@@ -47,7 +47,6 @@
                                         <th class="text-center text-white">Waktu Mulai</th>
                                         <th class="text-center text-white">Waktu Akhir</th>
                                         <th class="text-center text-white">Posisi Mahasiswa</th>
-                                        {{-- <th class="text-center text-white">Lowongan</th> --}}
                                         <th class="text-center text-white">Pendamping Lapang</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
@@ -64,7 +63,6 @@
                                             <td class="text-center">{{ dateConversion($data->waktu_mulai) }}</td>
                                             <td class="text-center">{{ dateConversion($data->waktu_akhir) }}</td>
                                             <td class="text-center">{{ $data->posisi_mahasiswa }}</td>
-                                            {{-- <td class="text-center">{{ $data->lowongan->nama }}</td> --}}
                                             <td class="text-center">{{ $data->pl_mitra->nama }}</td>
                                             <td>
                                                 <a href="{{ route('manajemen.program.magang.edit', [$id_lowongan, $data->id])}}"
