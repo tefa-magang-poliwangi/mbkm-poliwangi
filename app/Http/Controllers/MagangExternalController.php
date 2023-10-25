@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminProdi;
 use App\Models\MagangExt;
 use App\Models\Periode;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MagangExternalController extends Controller
@@ -17,9 +19,12 @@ class MagangExternalController extends Controller
      */
     public function index()
     {
+        $id_user = Auth::user()->id;
+        $user_admin = AdminProdi::where('id_user', $id_user)->first();
+
         $data = [
-            'prodi' => Prodi::all(),
-            'magang_ext' => MagangExt::all(),
+            'prodi' => Prodi::where('id', $user_admin->id_prodi)->get(),
+            'magang_ext' => MagangExt::where('id_prodi', $user_admin->id_prodi)->get(),
             'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
 
@@ -46,12 +51,16 @@ class MagangExternalController extends Controller
     {
         $validated = $request->validate([
             'create_name' => ['required', 'string'],
+            'create_jenis_magang' => ['required'],
             'create_id_periode' => ['required'],
+            'create_id_prodi' => ['required'],
         ]);
 
         $magangext = new MagangExt();
         $magangext->name = $validated['create_name'];
+        $magangext->jenis_magang = $validated['create_jenis_magang'];
         $magangext->id_periode = $validated['create_id_periode'];
+        $magangext->id_prodi = $validated['create_id_prodi'];
         $magangext->save();
 
         Alert::success('Success', 'Data Magang External Berhasil Ditambahkan');
@@ -92,12 +101,16 @@ class MagangExternalController extends Controller
     {
         $validated = $request->validate([
             'update_name' => ['required', 'string'],
+            'update_jenis_magang' => ['required', 'string'],
             'update_id_periode' => ['required', 'string'],
+            'update_id_prodi' => ['required', 'string'],
         ]);
 
         MagangExt::where('id', $id)->update([
             'name' => $validated['update_name'],
+            'jenis_magang' => $validated['update_jenis_magang'],
             'id_periode' => $validated['update_id_periode'],
+            'id_prodi' => $validated['update_id_prodi'],
         ]);
 
         Alert::success('Success', 'Data Magang External Berhasil Diubah');

@@ -650,18 +650,6 @@
                         <span>Log Book</span>
                     </a>
                 </li> --}}
-<<<<<<< HEAD
-                @can('profil.mitra.page')
-                    <li class="menu-header">Tentang Akun</li>
-                    <li>
-                        <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}"><i
-                                class="fas fa-user"></i>
-                            <span>Profil</span>
-                        </a>
-                    </li>
-                @endcan
-=======
->>>>>>> 52c58faba3ba19db617b073a639289fcd14415c0
             @endauth
 
             {{-- Menu PL Mitra --}}
