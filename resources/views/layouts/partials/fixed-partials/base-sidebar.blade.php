@@ -580,14 +580,7 @@
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')
-                    <li class="menu-header">PL Mitra</li>
-
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil PL Mitra</span>
-                        </a>
-                    </li>
+                <li class="menu-header">MITRA</li>
                 @endrole
 
                 {{-- <li>
