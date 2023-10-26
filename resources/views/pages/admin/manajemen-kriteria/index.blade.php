@@ -24,10 +24,17 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
+                                    {{-- Import Data Kriteria --}}
                                     <button class="btn btn-primary ml-auto" data-toggle="modal"
-                                        data-target="#importDataUserDosen" title="Impot Data Kriteria dan Nilai">
-                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        data-target="#importDataKriteria" title="Impot Data Kriteria">
+                                        <i class="fa-solid fa-upload"></i>
                                     </button>
+
+                                    {{-- Import Nilai Kriteria Mahasiswa --}}
+                                    {{-- <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#importNilaiKriteria" title="Impot Nilai Kriteria">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </button> --}}
 
                                     <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
                                         <i class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria
@@ -36,14 +43,43 @@
                             </div>
                         </div>
 
-                        <!-- Modal Import Data Kriteria dan Nilai Magang Ext -->
-                        <div class="modal fade" id="importDataUserDosen" tabindex="-1" role="dialog"
+                        {{-- Modal Import Data Kriteria --}}
+                        <div class="modal fade" id="importDataKriteria" tabindex="-1" role="dialog"
                             aria-labelledby="uploadModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data Kriteria dan
-                                            Nilai</h5>
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data Kriteria</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form untuk Unggah File Excel -->
+                                        <form action="{{ route('import.data.kriteria.magang.ext') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="file">Pilih File Excel</label>
+                                                <input type="file" class="form-control-file" id="file"
+                                                    name="file">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Unggah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Import Nilai Kriteria Mahasiswa -->
+                        {{-- <div class="modal fade" id="importNilaiKriteria" tabindex="-1" role="dialog"
+                            aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Nilai Kriteria</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -65,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="row">
                             <div class="col-12">

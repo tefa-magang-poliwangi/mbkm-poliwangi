@@ -12,13 +12,20 @@ class MagangExt extends Model
     protected $fillable = [
         'id',
         'name',
+        'jenis_magang',
         'id_periode',
+        'id_prodi',
     ];
 
     // relasi
     public function periode()
     {
         return $this->belongsTo(Periode::class, 'id_periode', 'id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
 
     public function nilai_magang_ext()

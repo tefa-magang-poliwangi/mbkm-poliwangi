@@ -59,7 +59,7 @@
                                                     {{ $item->status }} </span>
                                             </td>
                                             <td>
-                                                <a href="/dashboard-dosen/daftar-cpl-kurikulum" class="btn btn-primary">
+                                                <a href="{{ route('manajemen.matkul.kurikulum.index', $item->id) }}" class="btn btn-primary">
                                                     <i class="fa-solid fa-plus"></i> Matkul
                                                 </a>
                                             </td>

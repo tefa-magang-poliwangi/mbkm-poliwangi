@@ -24,7 +24,7 @@
                                 <div class="ml-auto">
                                     <button class="btn btn-primary ml-auto" data-toggle="modal"
                                         data-target="#importDataUserDosen" title="Impot Data Magang External">
-                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        <i class="fa-solid fa-upload"></i>
                                     </button>
 
                                     <button class="btn btn-primary ml-auto" data-toggle="modal"
@@ -78,6 +78,7 @@
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white" width="15%">Periode</th>
+                                        <th class="text-center text-white">Jenis</th>
                                         <th class="text-center text-white">Kriteria Penilaian</th>
                                         <th class="text-center text-white">Lihat Peserta</th>
                                         <th class="text-center text-white" width="10%">Aksi</th>
@@ -91,6 +92,7 @@
                                             <td class="text-center">Semester {{ $data->periode->semester }}
                                                 ({{ $data->periode->tahun }})
                                             </td>
+                                            <td class="text-center">{{ $data->jenis_magang }}</td>
 
                                             <td class="text-center">
                                                 <a href="{{ route('manajemen.kriteria.index', $data->id) }}"
@@ -143,6 +145,94 @@
                                                             </div>
 
                                                             <div class="form-group">
+                                                                <label class="form-label" for="update_jenis_magang">Jenis
+                                                                    Magang</label>
+                                                                <select
+                                                                    class="form-control @error('update_jenis_magang') is-invalid @enderror"
+                                                                    id="update_jenis_magang" name="update_jenis_magang">
+                                                                    <option value="">Pilih Jenis</option>
+                                                                    <option value="Magang Bersertifikat"
+                                                                        {{ $data->jenis_magang == 'Magang Bersertifikat' ? 'selected' : '' }}>
+                                                                        Magang Bersertifikat
+                                                                    </option>
+                                                                    <option value="Studi Independen"
+                                                                        {{ $data->jenis_magang == 'Studi Independen' ? 'selected' : '' }}>
+                                                                        Studi Independen
+                                                                    </option>
+                                                                    <option value="Bangkit"
+                                                                        {{ $data->jenis_magang == 'Bangkit' ? 'selected' : '' }}>
+                                                                        Bangkit
+                                                                    </option>
+                                                                    <option value="Kampus Mengajar"
+                                                                        {{ $data->jenis_magang == 'Kampus Mengajar' ? 'selected' : '' }}>
+                                                                        Kampus Mengajar
+                                                                    </option>
+                                                                    <option
+                                                                        value="Indonesian International Student Mobility Awards (IISMA)"
+                                                                        {{ $data->jenis_magang == 'Indonesian International Student Mobility Awards (IISMA)' ? 'selected' : '' }}>
+                                                                        Indonesian
+                                                                        International Student Mobility Awards (IISMA)
+                                                                    </option>
+                                                                    <option value="Pertukaran Mahasiswa Merdeka"
+                                                                        {{ $data->jenis_magang == 'Pertukaran Mahasiswa Merdeka' ? 'selected' : '' }}>
+                                                                        Pertukaran
+                                                                        Mahasiswa Merdeka
+                                                                    </option>
+                                                                    <option value="Membangun Desa (KKN Tematik)"
+                                                                        {{ $data->jenis_magang == 'Membangun Desa (KKN Tematik)' ? 'selected' : '' }}>
+                                                                        Membangun
+                                                                        Desa (KKN Tematik)
+                                                                    </option>
+                                                                    <option value="Proyek Kemanusiaan"
+                                                                        {{ $data->jenis_magang == 'Proyek Kemanusiaan' ? 'selected' : '' }}>
+                                                                        Proyek Kemanusiaan
+                                                                    </option>
+                                                                    <option value="Riset atau Penelitian"
+                                                                        {{ $data->jenis_magang == 'Riset atau Penelitian' ? 'selected' : '' }}>
+                                                                        Riset atau
+                                                                        Penelitian
+                                                                    </option>
+                                                                    <option value="Wirausaha"
+                                                                        {{ $data->jenis_magang == 'Wirausaha' ? 'selected' : '' }}>
+                                                                        Wirausaha
+                                                                    </option>
+                                                                    <option value="Gerilya"
+                                                                        {{ $data->jenis_magang == 'Gerilya' ? 'selected' : '' }}>
+                                                                        Gerilya
+                                                                    </option>
+                                                                    <option value="Praktisi Mengajar"
+                                                                        {{ $data->jenis_magang == 'Praktisi Mengajar' ? 'selected' : '' }}>
+                                                                        Praktisi Mengajar
+                                                                    </option>
+                                                                </select>
+                                                                @error('update_jenis_magang')
+                                                                    <div id="update_jenis_magang"
+                                                                        class="form-text text-danger">{{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="form-label"
+                                                                    for="update_id_prodi">Prodi</label>
+                                                                <select
+                                                                    class="form-control @error('update_id_prodi') is-invalid @enderror"
+                                                                    id="update_id_prodi" name="update_id_prodi">
+                                                                    <option value="">Pilih Prodi</option>
+                                                                    @foreach ($prodi as $item)
+                                                                        <option value="{{ $item->id }}"
+                                                                            {{ $item->id == $data->id_prodi ? 'selected' : '' }}>
+                                                                            {{ $item->nama }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('update_id_prodi')
+                                                                    <div id="update_id_prodi" class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="form-group">
                                                                 <label class="form-label"
                                                                     for="update_id_periode">Periode</label>
                                                                 <select
@@ -152,7 +242,10 @@
                                                                     @foreach ($periodes as $item)
                                                                         <option value="{{ $item->id }}"
                                                                             {{ $item->id == $data->id_periode ? 'selected' : '' }}>
-                                                                            {{ $item->semester % 2 ? 'Semester Genap' : 'Semester Ganjil' }}
+                                                                            {{ $item->semester % 2
+                                                                                ? 'Semester Genap'
+                                                                                : 'Semester
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Ganjil' }}
                                                                             ({{ $item->tahun }})
                                                                         </option>
                                                                     @endforeach
@@ -211,13 +304,53 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="form-label" for="create_jenis_magang">Jenis Magang</label>
+                                <select class="form-control @error('create_jenis_magang') is-invalid @enderror"
+                                    id="create_jenis_magang" name="create_jenis_magang">
+                                    <option value="">Pilih Jenis</option>
+                                    <option value="Magang Bersertifikat">Magang Bersertifikat</option>
+                                    <option value="Studi Independen">Studi Independen</option>
+                                    <option value="Bangkit">Bangkit</option>
+                                    <option value="Kampus Mengajar">Kampus Mengajar</option>
+                                    <option value="Indonesian International Student Mobility Awards (IISMA)">Indonesian
+                                        International Student Mobility Awards (IISMA)</option>
+                                    <option value="Pertukaran Mahasiswa Merdeka">Pertukaran Mahasiswa Merdeka</option>
+                                    <option value="Membangun Desa (KKN Tematik)">Membangun Desa (KKN Tematik)</option>
+                                    <option value="Proyek Kemanusiaan">Proyek Kemanusiaan</option>
+                                    <option value="Riset atau Penelitian">Riset atau Penelitian</option>
+                                    <option value="Wirausaha">Wirausaha</option>
+                                    <option value="Gerilya">Gerilya</option>
+                                    <option value="Praktisi Mengajar">Praktisi Mengajar</option>
+                                </select>
+                                @error('create_jenis_magang')
+                                    <div id="create_jenis_magang" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="create_id_prodi">Prodi</label>
+                                <select class="form-control @error('create_id_prodi') is-invalid @enderror"
+                                    id="create_id_prodi" name="create_id_prodi">
+                                    <option value="">Pilih Prodi</option>
+                                    @foreach ($prodi as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('create_id_prodi')
+                                    <div id="create_id_prodi" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label class="form-label" for="create_id_periode">Periode</label>
                                 <select class="form-control @error('create_id_periode') is-invalid @enderror"
                                     id="create_id_periode" name="create_id_periode">
                                     <option value="">Pilih Periode</option>
                                     @foreach ($periodes as $item)
                                         <option value="{{ $item->id }}">
-                                            {{ $item->semester % 2 ? 'Semester Genap' : 'Semester Ganjil' }}
+                                            Semester {{ $item->semester }} -
                                             ({{ $item->tahun }})
                                         </option>
                                     @endforeach

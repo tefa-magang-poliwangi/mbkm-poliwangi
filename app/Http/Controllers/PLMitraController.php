@@ -6,6 +6,7 @@ use App\Models\Mitra;
 use App\Models\PlMitra;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rules;
 
@@ -18,9 +19,11 @@ class PLMitraController extends Controller
      */
     public function index()
     {
+        $user_id = auth()->user()->id;
+        $mitra = Mitra::where('id_user', $user_id)->first();
+
         $data = [
-            'plmitra' => PlMitra::all(),
-            'mitra' => Mitra::all(),
+            'plmitra' => PLMitra::where('id_mitra', $mitra->id)->get(),
         ];
         return view('pages.mitra.manajemen-pendamping-mitra.pl-mitra', $data);
     }
@@ -43,11 +46,12 @@ class PLMitraController extends Controller
      */
     public function store(Request $request)
     {
+        $mitra = Mitra::where('id_user', Auth::user()->id)->first();
+
         $validated = $request->validate([
             'create_nama' => 'required',
             'create_no_telp' => 'required|string|between:11,15',
             'create_email' => 'required|email',
-            'create_id_mitra' => 'required',
             'create_password' => ['required', 'confirmed', 'min:8'],
             'create_password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
         ]);
@@ -65,7 +69,7 @@ class PLMitraController extends Controller
             'nama' => $validated['create_nama'],
             'no_telp' => $validated['create_no_telp'],
             'email' => $validated['create_email'],
-            'id_mitra' => $validated['create_id_mitra'],
+            'id_mitra' => $mitra->id,
             'id_user' => $user_pl_mitra->id,
         ]);
 
@@ -128,7 +132,6 @@ class PLMitraController extends Controller
             'nama' => $validated['update_nama'],
             'no_telp' => $validated['update_no_telp'],
             'email' => $validated['update_email'],
-            'id_mitra' => $validated['update_id_mitra'],
             'id_user' => $user->id,
         ]);
 

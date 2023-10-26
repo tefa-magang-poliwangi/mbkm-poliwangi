@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         // Mengecek apakah user memiliki role yang diizinkan untuk login
         $user = User::where('username', $credentials['username'])->first();
-        if (!$user || !$user->hasAnyRole(['admin', 'mahasiswa', 'dosen', 'mitra', 'kaprodi', 'dosen-wali', 'wd-1', 'admin-prodi', 'akademik'])) {
+        if (!$user || !$user->hasAnyRole(['admin', 'akademik', 'wadir', 'admin-prodi', 'kaprodi', 'dosen', 'dosen-wali', 'dosen-pembimbing', 'mahasiswa', 'mitra', 'pl-mitra'])) {
             return back()->withErrors([
                 'username' => 'User tidak ditemukan atau tidak memiliki role',
             ])->onlyInput('username');
@@ -41,6 +41,8 @@ class AuthController extends Controller
 
             if ($user->hasRole('admin')) {
                 return redirect()->route('dashboard.admin.page');
+            } elseif ($user->hasRole('wadir')) {
+                return redirect()->route('dashboard.wadir.page');
             } elseif ($user->hasRole('akademik')) {
                 return redirect()->route('dashboard.akademik.page');
             } elseif ($user->hasRole('admin-prodi')) {

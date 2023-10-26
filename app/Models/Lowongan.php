@@ -20,12 +20,18 @@ class Lowongan extends Model
         'tanggal_magang_berakhir',
         'status',
         'id_mitra',
+        'id_prodi'
     ];
 
     // relasi
-    public function lowongan()
+    public function mitra()
     {
-        return $this->belongsTo(Lowongan::class, 'id_kurikulum', 'id');
+        return $this->belongsTo(Mitra::class, 'id_mitra');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi');
     }
 
     public function program_magang()

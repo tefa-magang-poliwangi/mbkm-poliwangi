@@ -54,6 +54,46 @@
                                     </li>
                                 @endrole
 
+                                @role('akademik')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.akademik.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
+                                @role('wadir')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.dosen.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
+                                @role('admin-prodi')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.admin.prodi.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
+                                @role('kaprodi')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.dosen.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
                                 @role('dosen')
                                     <li>
                                         <a class="dropdown-item text-theme fw-medium"
@@ -64,10 +104,20 @@
                                     </li>
                                 @endrole
 
-                                @role('mitra')
+                                @role('dosen-wali')
                                     <li>
                                         <a class="dropdown-item text-theme fw-medium"
-                                            href="{{ route('dashboard.mitra.page') }}">
+                                            href="{{ route('dashboard.dosen.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
+                                @role('dosen-pembimbing')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.dosen.page') }}">
                                             <i class="fa-solid fa-user"></i>
                                             &ensp; Akun
                                         </a>
@@ -84,15 +134,28 @@
                                     </li>
                                 @endrole
 
-                                @role('akademik')
+                                @role('mitra')
                                     <li>
                                         <a class="dropdown-item text-theme fw-medium"
-                                            href="{{ route('dashboard.akademik.page') }}">
+                                            href="{{ route('dashboard.mitra.page') }}">
                                             <i class="fa-solid fa-user"></i>
                                             &ensp; Akun
                                         </a>
                                     </li>
                                 @endrole
+
+                                @role('pl-mitra')
+                                    <li>
+                                        <a class="dropdown-item text-theme fw-medium"
+                                            href="{{ route('dashboard.mitra.page') }}">
+                                            <i class="fa-solid fa-user"></i>
+                                            &ensp; Akun
+                                        </a>
+                                    </li>
+                                @endrole
+
+
+
 
                                 <li>
                                     <a class="dropdown-item text-theme fw-medium" href="{{ route('do.logout') }}">

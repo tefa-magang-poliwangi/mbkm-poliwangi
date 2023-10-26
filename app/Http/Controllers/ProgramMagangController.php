@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ProgramMagang;
 use App\Models\PLMitra;
 use App\Models\Lowongan;
+use App\Models\Mitra;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProgramMagangController extends Controller
@@ -15,14 +17,14 @@ class ProgramMagangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_lowongan)
     {
         $data = [
-            'programmagang' => ProgramMagang::all(),
-            'plmitra' => PLMitra::all(),
-            'lowongan' => Lowongan::all(),
+            'programmagang' => ProgramMagang::where('id_lowongan', $id_lowongan)->get(),
+            'id_lowongan' => $id_lowongan,
         ];
-        return view('pages.mitra.manajemen-program-magang.index',$data);
+
+        return view('pages.mitra.manajemen-program-magang.index', $data);
     }
 
     /**
@@ -30,12 +32,17 @@ class ProgramMagangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_lowongan)
     {
+        $user = Auth::user();
+        $mitra = Mitra::where('id_user', $user->id)->first();
+        $plmitra = PLMitra::where('id_mitra', $mitra->id)->get();
+
         $data = [
             'programmagang' => ProgramMagang::all(),
-            'plmitra' => PLMitra::all(),
-            'lowongan' => Lowongan::all(),
+            'plmitra' => $plmitra,
+            'lowongan' => Lowongan::where('id', $id_lowongan)->get(),
+            'id_lowongan' => $id_lowongan,
         ];
 
         return view('pages.mitra.manajemen-program-magang.create', $data);
@@ -47,15 +54,15 @@ class ProgramMagangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_lowongan)
     {
         $validated = $request->validate([
             'kegiatan' => ['required', 'string'],
             'waktu_mulai' => ['required'],
             'waktu_akhir' => ['required'],
-            'posisi_mahasiswa' => ['required','string'],
+            'posisi_mahasiswa' => ['required', 'string'],
             'id_lowongan' => ['required'],
-            'id_pl_mitra' => ['required']
+            'id_pl_mitra' => ['required'],
         ]);
 
         ProgramMagang::create([
@@ -63,14 +70,13 @@ class ProgramMagangController extends Controller
             'waktu_mulai' => $validated['waktu_mulai'],
             'waktu_akhir' => $validated['waktu_akhir'],
             'posisi_mahasiswa' => $validated['posisi_mahasiswa'],
-            'id_lowongan' => $validated['id_lowongan'],
+            'id_lowongan' => $id_lowongan,
             'id_pl_mitra' => $validated['id_pl_mitra'],
         ]);
 
         Alert::success('Succsess', 'Data Program Magang Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.program.magang.index');
-
+        return redirect()->route('manajemen.program.magang.index', $id_lowongan);
     }
 
     /**
@@ -90,16 +96,22 @@ class ProgramMagangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_lowongan, $id_program_magang)
     {
-            $data = [
-                'programmagang' => ProgramMagang::findOrFail($id),
-                'plmitra' => PLMitra::all(),
-                'lowongan' => Lowongan::all(),
-            ];
+        $user = Auth::user();
+        $mitra = Mitra::where('id_user', $user->id)->first();
 
-            return view('pages.mitra.manajemen-program-magang.form-update', $data);
+        $lowongan = Lowongan::where('id_mitra', $mitra->id)->get();
+        $plmitra = PLMitra::where('id_mitra', $mitra->id)->get();
 
+        $data = [
+            'programmagang' =>  ProgramMagang::findOrFail($id_program_magang),
+            'plmitra' => $plmitra,
+            'lowongan' => $lowongan,
+            'id_lowongan' => $id_lowongan,
+        ];
+
+        return view('pages.mitra.manajemen-program-magang.form-update', $data);
     }
 
     /**
@@ -109,18 +121,18 @@ class ProgramMagangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_lowongan, $id_program_magang)
     {
         $validated = $request->validate([
             'kegiatan' => ['required', 'string'],
             'waktu_mulai' => ['required'],
             'waktu_akhir' => ['required'],
-            'posisi_mahasiswa' => ['required','string'],
+            'posisi_mahasiswa' => ['required', 'string'],
             'id_lowongan' => ['required'],
-            'id_pl_mitra' => ['required']
+            'id_pl_mitra' => ['required'],
         ]);
 
-        ProgramMagang::where('id', $id)->update([
+        ProgramMagang::where('id', $id_program_magang)->update([
             'kegiatan' => $validated['kegiatan'],
             'waktu_mulai' => $validated['waktu_mulai'],
             'waktu_akhir' => $validated['waktu_akhir'],
@@ -131,7 +143,7 @@ class ProgramMagangController extends Controller
 
         Alert::success('Success', 'Program Magang Berhasil Diupdate');
 
-        return redirect()->route('manajemen.program.magang.index');
+        return redirect()->route('manajemen.program.magang.index', $id_lowongan);
     }
 
     /**
@@ -144,6 +156,8 @@ class ProgramMagangController extends Controller
     {
         $programmagang = ProgramMagang::findOrFail($id);
         $programmagang->delete();
+
+        Alert::success('Succsess', 'Data Program Magang Berhasil Dihapus');
 
         return redirect()->back();
     }
