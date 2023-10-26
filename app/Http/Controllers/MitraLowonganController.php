@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
 use App\Models\Mitra;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,6 +23,7 @@ class MitraLowonganController extends Controller
 
         $data = [
             'lowongans' => Lowongan::where('id_mitra', $mitra->id)->get(),
+            'prodi' => Prodi::all()
         ];
 
         return view('pages.mitra.manajemen-lowongan-mitra.index', $data);
@@ -37,6 +39,7 @@ class MitraLowonganController extends Controller
 
         $data = [
             'lowongans' => Lowongan::all(),
+            'prodi' => Prodi::all()
         ];
 
         return view('pages.mitra.manajemen-lowongan-mitra.create', $data);
@@ -61,6 +64,7 @@ class MitraLowonganController extends Controller
             'tanggal_magang_dimulai' => ['required'],
             'tanggal_magang_berakhir' => ['required'],
             'status' => ['required'],
+            'id_prodi' => ['required']
 
         ]);
 
@@ -74,6 +78,7 @@ class MitraLowonganController extends Controller
             'tanggal_magang_berakhir' => $validated['tanggal_magang_berakhir'],
             'status' => $validated['status'],
             'id_mitra' => $mitra->id,
+            'id_prodi' => $validated['id_prodi']
         ]);
 
         Alert::success('Success', 'Lowongan Mitra Berhasil Ditambahkan');
@@ -103,6 +108,7 @@ class MitraLowonganController extends Controller
         $data = [
             'lowongan' => Lowongan::findOrFail($id),
             'id_mitra' => Mitra::all(),
+            'prodi' => Prodi::all()
         ];
 
         return view('pages.mitra.manajemen-lowongan-mitra.form-update', $data);
@@ -128,6 +134,7 @@ class MitraLowonganController extends Controller
             'tanggal_magang_dimulai' => ['required'],
             'tanggal_magang_berakhir' => ['required'],
             'status' => ['required'],
+            'id_prodi' => ['required']
         ]);
 
         Lowongan::where('id', $id)->update([
@@ -139,6 +146,7 @@ class MitraLowonganController extends Controller
             'tanggal_magang_dimulai' => $validated['tanggal_magang_dimulai'],
             'tanggal_magang_berakhir' => $validated['tanggal_magang_berakhir'],
             'status' => $validated['status'],
+            'id_prodi' => $validated['id_prodi']
         ]);
 
         Alert::success('Success', 'Lowongan Mitra Berhasil Diupdate');

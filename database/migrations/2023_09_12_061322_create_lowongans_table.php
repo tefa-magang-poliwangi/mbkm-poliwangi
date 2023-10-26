@@ -24,7 +24,9 @@ return new class extends Migration
             $table->date('tanggal_magang_berakhir')->nullable(false);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
             $table->unsignedBigInteger('id_mitra')->unsigned()->nullable(false);
+            $table->unsignedBigInteger('id_prodi')->unsigned()->nullable(false);
             $table->foreign('id_mitra')->references('id')->on('mitras')->onDelete('cascade');
+            $table->foreign('id_prodi')->references('id')->on('prodis')->onDelete('cascade');
             $table->timestamps();
         });
     }

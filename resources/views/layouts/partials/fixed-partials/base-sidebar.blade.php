@@ -15,7 +15,7 @@
                 @endrole
 
                 @role('wadir')
-                    <a href="{{ route('dashboard.dosen.page') }}">Poliwangi</a>
+                    <a href="{{ route('dashboard.wadir.page') }}">Poliwangi</a>
                 @endrole
 
                 @role('admin-prodi')
@@ -73,7 +73,7 @@
 
                 @role('wadir')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.dosen.page') }}">
+                        <a class="nav-link" href="{{ route('dashboard.wadir.page') }}">
                             <i class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
@@ -223,9 +223,42 @@
                     </li>
                 @endcan
 
+                @can('formulir.mitra.page')
+                    <li>
+                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}">
+                            <i class="fas fa-solid fa-envelopes-bulk"></i>
+                            <span>Form Mitra</span>
+                        </a>
+                    </li>
+                @endcan
             @endauth
 
-            {{-- Menu Akademik dan Wadir --}}
+            {{-- Menu Wadir --}}
+            @auth
+                @role('wadir')
+                    <li class="menu-header">WADIR</li>
+
+                    @can('profil.wadir.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.wadir.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Wadir</span>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('akademik.daftar.prodi')
+                        <li>
+                            <a class="nav-link" href="{{ route('akademik.daftar.prodi') }}">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Daftar Nilai</span>
+                            </a>
+                        </li>
+                    @endcan
+                @endrole
+            @endauth
+
+            {{-- Menu Akademik --}}
             @auth
                 @role('akademik')
                     <li class="menu-header">AKADEMIK</li>
@@ -238,20 +271,16 @@
                             </a>
                         </li>
                     @endcan
-                @endrole
 
-                @role('akademik')
-                    <li class="menu-header">Wadir</li>
+                    @can('akademik.daftar.prodi')
+                        <li>
+                            <a class="nav-link" href="{{ route('akademik.daftar.prodi') }}">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Daftar Nilai</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
-
-                @can('akademik.daftar.prodi')
-                    <li>
-                        <a class="nav-link" href="{{ route('akademik.daftar.prodi') }}">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Daftar Nilai</span>
-                        </a>
-                    </li>
-                @endcan
             @endauth
 
             {{-- Menu Admin Prodi --}}
@@ -334,14 +363,14 @@
                     </li>
                 @endcan
 
-                @can('manajemen.matkul.kurikulum.index')
+                {{-- @can('manajemen.matkul.kurikulum.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.matkul.kurikulum.index') }}">
                             <i class="fas fa-solid fa-book-bookmark"></i>
                             <span>Matkul Kurikulum</span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 @can('manajemen.magang.ext.index')
                     <li class="menu-header">Data Magang</li>
@@ -390,33 +419,44 @@
                 @endcan
             @endauth
 
+            {{-- Menu Kaprodi --}}
             @auth
                 @role('kaprodi')
                     <li class="menu-header">KAPRODI</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Kaprodi</span>
-                        </a>
-                    </li>
+                    @can('profil.kaprodi.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.kaprodi.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Kaprodi</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @can('kaprodi.daftar.transkrip.index')
                     <li>
                         <a class="nav-link" href="{{ route('kaprodi.daftar.transkrip.index') }}">
                             <i class="fas fa-credit-card"></i>
-                            <span>Daftar Transkrip Nilai</span>
+                            <span>Validasi Transkrip Nilai</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('kaprodi.validasi.program.magang.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('kaprodi.validasi.program.magang.index') }}">
+                            <i class="fas fa-solid fa-bars-progress"></i>
+                            <span>Validasi Program Magang</span>
                         </a>
                     </li>
                 @endcan
 
                 {{-- <li>
-                <a class="nav-link" href="#"><i class="fas fa-solid fa-user-check"></i>
-                    <span>Kelayakan Mahasiswa</span>
-                </a>
-            </li> --}}
-
+                    <a class="nav-link" href="#"><i class="fas fa-solid fa-user-check"></i>
+                        <span>Kelayakan Mahasiswa</span>
+                    </a>
+                </li> --}}
             @endauth
 
             {{-- Menu Dosen --}}
@@ -424,12 +464,14 @@
                 @role('dosen')
                     <li class="menu-header">DOSEN</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Dosen</span>
-                        </a>
-                    </li>
+                    @can('profil.dosen.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.dosen.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Dosen</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
             @endauth
@@ -439,12 +481,14 @@
                 @role('dosen-wali')
                     <li class="menu-header">DOSEN WALI</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Dosen Wali</span>
-                        </a>
-                    </li>
+                    @can('profil.dosen.wali.page')
+                        <li>
+                            <a class="nav-link" href="{{ route('profil.dosen.wali.page', auth()->user()->id) }}">
+                                <i class="fas fa-solid fa-user"></i>
+                                <span>Profil Dosen Wali</span>
+                            </a>
+                        </li>
+                    @endcan
                 @endrole
 
                 @can('daftar.transkrip.mahasiswa.ext.index')
@@ -455,28 +499,20 @@
                         </a>
                     </li>
                 @endcan
-
             @endauth
 
-            {{-- Menu PL Mitra --}}
+            {{-- Menu Dosen Pembimbing --}}
             @auth
-                @role('pl-mitra')
-                    <li class="menu-header">PL Mitra</li>
+                @role('dosen-pembimbing')
+                    <li class="menu-header">DOSEN PEMBIMBING</li>
 
                     <li>
                         <a class="nav-link" href="#">
                             <i class="fas fa-solid fa-user"></i>
-                            <span>Profil PL Mitra</span>
+                            <span>Profil Dosen Pembimbing</span>
                         </a>
                     </li>
                 @endrole
-
-                {{-- <li>
-                    <a class="nav-link" href="#"><i class="fas fa-solid fa-circle-check"></i>
-                        <span>Validasi PL</span>
-                    </a>
-                </li> --}}
-
             @endauth
 
             {{-- Menu Mahasiswa --}}
@@ -485,11 +521,20 @@
                     <li class="menu-header">MAHASISWA</li>
                 @endrole
 
+                @can('profil.mahasiswa.page')
+                    <li>
+                        <a class="nav-link" href="{{ route('profil.mahasiswa.page', auth()->user()->id) }}">
+                            <i class="fas fa-user"></i>
+                            <span>Profil Mahasiswa</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('upload.transkrip.mahasiswa.ext.create')
                     <li>
-                        <a class="nav-link" href="{{ route('upload.transkrip.mahasiswa.ext.create', Auth::user()->id) }}"><i
-                                class="fas fa-credit-card"></i>
-                            <span>Transkrip Nilai</span>
+                        <a class="nav-link" href="{{ route('upload.transkrip.mahasiswa.ext.create', Auth::user()->id) }}">
+                            <i class="fas fa-solid fa-upload"></i>
+                            <span>Upload Transkrip</span>
                         </a>
                     </li>
                 @endcan
@@ -499,9 +544,9 @@
                     <a class="nav-link" href="#"><i class="fas fa-solid fa-bars-progress"></i>
                         <span>Program</span>
                     </a>
-                </li> --}}
+                </li>
 
-                {{-- <li class="menu-header">KEGIATANKU MBKM</li>
+                <li class="menu-header">KEGIATANKU MBKM</li>
                 <li class="dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-alt"></i>
                         <span>Kegiatanku</span></a>
@@ -533,20 +578,8 @@
                                 </li>
                             </ul>
                         </li>
-
-
                     </ul>
                 </li> --}}
-
-                @can('profil.mahasiswa.page')
-                    <li class="menu-header">Tentang Akun</li>
-                    <li>
-                        <a class="nav-link" href="{{ route('profil.mahasiswa.page', auth()->user()->id) }}"><i
-                                class="fas fa-user"></i>
-                            <span>Profil</span>
-                        </a>
-                    </li>
-                @endcan
             @endauth
 
             {{-- Menu Mitra --}}
@@ -555,11 +588,11 @@
                     <li class="menu-header">MITRA</li>
                 @endrole
 
-                @can('manajemen.pelamar.mitra.index')
+                @can('profil.mitra.page')
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.pelamar.mitra.index') }}"><i
-                                class="fas fa-solid fa-list-check"></i>
-                            <span>Daftar Pelamar</span>
+                        <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}">
+                            <i class="fas fa-user"></i>
+                            <span>Profil Mitra</span>
                         </a>
                     </li>
                 @endcan
@@ -567,8 +600,8 @@
                 @can('manajemen.pendamping.lapang.mitra.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.pendamping.lapang.mitra.index') }}">
-                            <i class="fas fa-solid fa-handshake-simple"></i>
-                            <span>PL Mitra</span>
+                            <i class="fas fa-solid fa-users-gear fa-2xl"></i>
+                            <span>Manajemen PL Mitra</span>
                         </a>
                     </li>
                 @endcan
@@ -582,11 +615,12 @@
                     </li>
                 @endcan
 
-                @can('formulir.mitra.page')
+                @can('manajemen.pelamar.mitra.index')
                     <li>
-                        <a class="nav-link" href="{{ route('formulir.mitra.page') }}">
-                            <i class="fas fa-solid fa-envelopes-bulk"></i>
-                            <span>Form Mitra</span></a>
+                        <a class="nav-link" href="{{ route('manajemen.pelamar.mitra.index') }}">
+                            <i class="fas fa-solid fa-list-ol"></i>
+                            <span>Daftar Pelamar</span>
+                        </a>
                     </li>
                 @endcan
 
@@ -616,16 +650,26 @@
                         <span>Log Book</span>
                     </a>
                 </li> --}}
+            @endauth
 
-                @can('profil.mitra.page')
-                    <li class="menu-header">Tentang Akun</li>
+            {{-- Menu PL Mitra --}}
+            @auth
+                @role('pl-mitra')
+                    <li class="menu-header">PL Mitra</li>
+
                     <li>
-                        <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}"><i
-                                class="fas fa-user"></i>
-                            <span>Profil</span>
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Profil PL Mitra</span>
                         </a>
                     </li>
-                @endcan
+                @endrole
+
+                {{-- <li>
+                    <a class="nav-link" href="#"><i class="fas fa-solid fa-circle-check"></i>
+                        <span>Validasi PL</span>
+                    </a>
+                </li> --}}
             @endauth
         </ul>
     </aside>
