@@ -393,6 +393,14 @@ Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
     return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
 });
 
+// # Halaman Mitra - Lowongan
+Route::get('/daftar-program-mhs', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program');
+});
+Route::get('/dashboard-mitra/daftar-pelamar', function () {
+    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
+});
+
 // Halaman Kaprodi
 Route::get('/dashboard-dosen/laporan-akhir', function () {
     return view('pages.dosen.kaprodi-laporan-akhir');

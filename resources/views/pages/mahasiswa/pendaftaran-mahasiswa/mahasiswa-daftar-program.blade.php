@@ -12,18 +12,17 @@
     <section>
         <div class="container">
             <div class="row py-5">
-                <div class="col-md-12">
-                    
+                <div class="col-md-12 my-4">
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                        <div class="col-12 col-md-6 d-flex mb-3 mt-5">
                             <h5 class="justify-start my-auto text-theme">Daftar Perusahaan Magang Internal</h5>
                         </div>
                     </div>
-                    <div class="card border-0 ">
+                    <div class="card border-0">
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-sm-12 mb-3">
                                         <div class="form-group">
                                             <select class="form-control select2">
                                                 <option value="">Pilihan Sektor Industri</option>
@@ -34,7 +33,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-sm-12 mb-3">
                                         <div class="form-group">
                                             <select class="form-control select2">
                                                 <option value="">Pilihan Lokasi</option>
@@ -45,7 +44,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-sm-12 mb-3">
                                         <div class="form-group">
                                             <select class="form-control select2">
                                                 <option value="">Pilihan Perusahaan</option>
@@ -56,10 +55,9 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-2 ml-auto">
-                                        <a href="#cari lowongan" class="btn btn-primary">
-                                            <i class="fa-solid fa-search"></i> &ensp;
-                                            Cari Lowongan
+                                    <div class="col-md-2 col-sm-12">
+                                        <a href="#cari lowongan" class="btn btn-primary btn-block">
+                                            <i class="fa-solid fa-search"></i> &ensp; Cari Lowongan
                                         </a>
                                     </div>
                                 </div>
@@ -69,148 +67,120 @@
                 </div>
             </div>
         </div>
-        
     </section>
 
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                     <div class="card">
                         <div class="card-body text-center">
                             <div class="mx-auto d-flex align-items-center">
-                                <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
+                                <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
+                                    width="150" alt="">
                             </div>
                             <div class="text-justify py-3">
                                 <h6>PT. Supra Primatama Nusantara</h6>
                                 <p>Kota Surabaya</p>
                                 <p>
-                                    Biznet Home adalah layanan internet ultra cepat dan TV interaktif dengan 
+                                    Biznet Home adalah layanan internet ultra cepat dan TV interaktif dengan
                                     kualitas resolusi 4K terbaik di Indonesia untuk perumahan dan apartemen
                                 </p>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="mb-3" style="display: inline-block; width: 430px; margin-right: 50px; margin-top: 50px;">
-                        <div style="max-height: 1000px; overflow-y: auto;">
-                            <div class="card mx-3 my-3">
-                                <div class="card-body text-center">
-                                    <div class="mx-auto d-flex align-items-center">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
-                                    </div>
-                                    <div class="text-justify py-1">
-                                        <h5>Frontend Developer</h5>
-                                        <h6>PT. Supra Primatama Nusantara</h6>
-                                        <p>Kota Surabaya</p>
-                                        <p class="text-danger mt-1">Pelamar</p>
-                                    </div>
-                                    <div class="text-justify mt-1">
-                                        <li>Durasi magang <p>16 Sep - 29 Des 2023 (3 Bulan)</p></li>
-                                        <li>Penutupan <p class="text-danger">13 September 2023</p></li>
-                                        <li>Pengumuman <p>15 September 2023</p></li>
-                                    </div>
-                                    <hr>
-                                    <div class="list-group px-1" id="list-tab" role="tablist">
-                                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                            href="#test1" role="tab">Detail</a>
-                                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                            href="#test2" role="tab">Frontend</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mx-3 my-3">
-                                <div class="card-body text-center">
-                                    <div class="mx-auto d-flex align-items-center">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
-                                    </div>
-                                    <div class="text-justify py-3">
-                                        <h5>Frontend Developer</h5>
-                                        <h6>PT. Supra Primatama Nusantara</h6>
-                                        <p>Kota Surabaya</p>
-                                        <p class="text-danger">Pelamar</p>
-                                    </div>
-                                    <div class="text-justify py-2">
-                                        <li>Durasi magang <p>16 Sep - 29 Des 2023 (3 Bulan)</p></li>
-                                        <li>Penutupan <p class="text-danger">13 September 2023</p></li>
-                                        <li>Pengumuman <p>15 September 2023</p></li>
-                                    </div>
-                                    <hr>
-                                    <div class="list-group" id="list-tab" role="tablist">
-                                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                            href="#test1" role="tab">Detail</a>
-                                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                            href="#test2" role="tab">Frontend</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mx-3 my-3">
-                                <div class="card-body text-center">
-                                    <div class="mx-auto d-flex align-items-center">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
-                                    </div>
-                                    <div class="text-justify py-3">
-                                        <h5>Frontend Developer</h5>
-                                        <h6>PT. Supra Primatama Nusantara</h6>
-                                        <p>Kota Surabaya</p>
-                                        <p class="text-danger">Pelamar</p>
-                                    </div>
-                                    <div class="text-justify py-2">
-                                        <li>Durasi magang <p>16 Sep - 29 Des 2023 (3 Bulan)</p></li>
-                                        <li>Penutupan <p class="text-danger">13 September 2023</p></li>
-                                        <li>Pengumuman <p>15 September 2023</p></li>
-                                    </div>
-                                    <hr>
-                                    <div class="list-group" id="list-tab" role="tablist">
-                                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                            href="#test1" role="tab">Detail</a>
-                                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                            href="#test2" role="tab">Frontend</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <div class="container">
-                                <div class="card my-3">
-                                    <div class="row bg-primary">
-                                        <div class="col bg-danger">
-                                            <div class="card-body text-center">
-                                                <div class="mx-auto d-flex align-items-center">
-                                                    <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
+
+                    <div class="mt-4">
+                        <div class="ruler-program ">
+                            <div class="row mt-3">
+                                <div class="col-md-12 col-sm-12 ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card mx-3 my-3">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto d-flex align-items-center">
+                                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}"
+                                                            class="img-fluid" width="150" alt="">
+                                                    </div>
+                                                    <div class="text-justify py-1">
+                                                        <h5>Frontend Developer</h5>
+                                                        <h6>PT. Supra Primatama Nusantara</h6>
+                                                        <p>Kota Surabaya</p>
+                                                        <p class="text-danger mt-1">Pelamar</p>
+                                                    </div>
+                                                    <div class="text-justify mt-1">
+                                                        <ul>
+                                                            <li>Durasi magang <p>16 Sep - 29 Des 2023 (3 Bulan)</p>
+                                                            </li>
+                                                            <li>Penutupan <p class="text-danger">13 September 2023
+                                                                </p>
+                                                            </li>
+                                                            <li>Pengumuman <p>15 September 2023</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="list-group px-1" id="list-tab" role="tablist">
+                                                        <a class="list-group-item list-group-item-action active"
+                                                            id="list-home-list" data-toggle="list" href="#test1"
+                                                            role="tab">Detail</a>
+                                                        <a class="list-group-item list-group-item-action"
+                                                            id="list-profile-list" data-toggle="list" href="#test2"
+                                                            role="tab">Frontend</a>
+                                                    </div>
                                                 </div>
-                                                <div class="text-justify py-3">
-                                                    <h5>Frontend Developer</h5>
-                                                    <h6>PT. Supra Primatama Nusantara</h6>
-                                                    <p>Kota Surabaya</p>
-                                                    <p class="text-danger">Pelamar</p>
-                                                </div>
-                                                <div class="text-justify py-2">
-                                                    <li>Durasi magang <p>16 Sep - 29 Des 2023 (3 Bulan)</p></li>
-                                                    <li>Penutupan <p class="text-danger">13 September 2023</p></li>
-                                                    <li>Pengumuman <p>15 September 2023</p></li>
-                                                </div>
-                                                <hr>
-                                                <div class="list-group" id="list-tab" role="tablist">
-                                                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                                        href="#test1" role="tab">Detail</a>
-                                                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                                        href="#test2" role="tab">Frontend</a>
+                                            </div>
+                                            <div class="card mx-3 my-3">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto d-flex align-items-center">
+                                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}"
+                                                            class="img-fluid" width="150" alt="">
+                                                    </div>
+                                                    <div class="text-justify py-1">
+                                                        <h5>Frontend Developer</h5>
+                                                        <h6>PT. Supra Primatama Nusantara</h6>
+                                                        <p>Kota Surabaya</p>
+                                                        <p class="text-danger mt-1">Pelamar</p>
+                                                    </div>
+                                                    <div class="text-justify mt-1">
+                                                        <ul>
+                                                            <li>Durasi magang <p>16 Sep - 29 Des 2023 (3 Bulan)</p>
+                                                            </li>
+                                                            <li>Penutupan <p class="text-danger">13 September 2023
+                                                                </p>
+                                                            </li>
+                                                            <li>Pengumuman <p>15 September 2023</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="list-group px-1" id="list-tab" role="tablist">
+                                                        <a class="list-group-item list-group-item-action active"
+                                                            id="list-home-list" data-toggle="list" href="#test1"
+                                                            role="tab">Detail</a>
+                                                        <a class="list-group-item list-group-item-action"
+                                                            id="list-profile-list" data-toggle="list"
+                                                            href="#test2" role="tab">Frontend</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+
                                 </div>
-                            </div>   --}}
+                            </div>
                         </div>
                     </div>
                 </div>
-    
-                <div class="col-8">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 ">
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active card card-border card-rounded-sm card-hover" id="test1"
-                            role="tabpanel" aria-labelledby="list-home-list">
+                        <div class="tab-pane fade show active card card-border card-rounded-sm card-hover"
+                            id="test1" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="card-body my-2 mx-5">
                                 <div class="mx-auto d-flex">
-                                    <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
+                                    <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
+                                        width="150" alt="">
                                 </div>
                                 <div class="text-justify py-3">
                                     <h6>PT. Supra Primatama Nusantara</h6>
@@ -233,35 +203,41 @@
                                 <hr>
                                 <div class="text-justify">
                                     <p class="mb-2">Rincian Lowongan</p>
-                                    <small>Melakukan kegiatan manajemen kearsipan meliputi pengklasifikasian, pencatatan, 
-                                        pengendalian dan pendistribusian, penyimpanan, pemeliharaan, pengawasan, pemindahan, 
-                                        dan pemusnahan arsip.Melakukan kegiatan manajemen kearsipan meliputi pengklasifikasian, 
-                                        pencatatan, pengendalian dan pendistribusian, penyimpanan, pemeliharaan, pengawasan, pemindahan, 
+                                    <small>Melakukan kegiatan manajemen kearsipan meliputi pengklasifikasian,
+                                        pencatatan,
+                                        pengendalian dan pendistribusian, penyimpanan, pemeliharaan, pengawasan,
+                                        pemindahan,
+                                        dan pemusnahan arsip.Melakukan kegiatan manajemen kearsipan meliputi
+                                        pengklasifikasian,
+                                        pencatatan, pengendalian dan pendistribusian, penyimpanan, pemeliharaan,
+                                        pengawasan,
+                                        pemindahan,
                                         dan pemusnahan arsip.</small>
                                 </div>
                                 <hr>
                                 <div class="text-justify">
                                     <p class="mb-2">Tentang Perusahaan</p>
-                                    <small>Ruko Pakis, Jl. Letjen S Parman No.1, Sumberrejo, 
+                                    <small>Ruko Pakis, Jl. Letjen S Parman No.1, Sumberrejo,
                                         Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68419</small>
                                 </div>
-    
-                                
+
+
                             </div>
                         </div>
-                        
-                        <div class="tab-pane fade  card card-border card-rounded-sm card-hover" id="test2" role="tabpanel"
-                            aria-labelledby="list-profile-list">
+
+                        <div class="tab-pane fade card card-border card-rounded-sm card-hover" id="test2"
+                            role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="card-body my-2 mx-5">
                                 <div class="mx-auto d-flex">
-                                    <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150" alt="">
+                                    <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
+                                        width="150" alt="">
                                 </div>
                                 <div class="text-justify py-3">
                                     <h6>PT. Supra Primatama Nusantara</h6>
                                     <p>Kota Surabaya</p>
                                     <small class="text-danger">Pelamar</small>
                                 </div>
-                                
+
                                 <div class="text-justify">
                                     <p class="mb-2">Sertifikat</p>
                                     <p>kerja dari kantor</p>
@@ -270,9 +246,10 @@
                                 <div class="text-justify">
                                     <p class="mb-2">Rincian Kegiatan</p>
                                     <p>Amoeba Management</p>
-                                    <small>Proyek tersebut bertujuan untuk membangun sistem berupa platfrom 
-                                        yang dibangun secara modular (microservices) sehingga dapat memudahkan 
-                                        pengimplementasia platform kedepan sesuai dengan karakteriskik customer.</small>
+                                    <small>Proyek tersebut bertujuan untuk membangun sistem berupa platfrom
+                                        yang dibangun secara modular (microservices) sehingga dapat memudahkan
+                                        pengimplementasia platform kedepan sesuai dengan karakteriskik
+                                        customer.</small>
                                 </div>
                                 <hr>
                                 <div class="text-justify">
@@ -306,7 +283,7 @@
                                 <hr>
                                 <div class="text-justify">
                                     <p class="mb-2">Tentang Perusahaan</p>
-                                    <small>Ruko Pakis, Jl. Letjen S Parman No.1, Sumberrejo, 
+                                    <small>Ruko Pakis, Jl. Letjen S Parman No.1, Sumberrejo,
                                         Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 68419</small>
                                 </div>
                             </div>
@@ -314,12 +291,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
-
-
-
 @endsection
 
 @section('script')
