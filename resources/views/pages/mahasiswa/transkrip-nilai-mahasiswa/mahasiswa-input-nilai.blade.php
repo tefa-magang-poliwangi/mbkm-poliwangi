@@ -53,65 +53,8 @@
                 </div>
             </div>
 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-7">
-                <div class="card card-rounded-sm card-hover d-flex flex-column">
-                    <div class="card-body">
-
-                        <form action="{{ route('input.kriteria.mahasiswa.ext.store') }}" method="post">
-                            @csrf
-
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered text-white bg-white">
-                                    <thead class="bg-theme text-white">
-                                        <tr class="text-white-header">
-                                            <th class="text-white text-center">No</th>
-                                            <th class="text-white text-center">Kriteria Penilaian</th>
-                                            <th class="text-white text-center">Nilai</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $no = 1;
-                                        @endphp
-
-                                        @foreach ($kriteria_magang_ext as $data)
-                                            <tr>
-                                                <td class="text-center">{{ $no }}</td>
-                                                <td class="text-center">{{ $data->penilaian }}</td>
-                                                <td>
-                                                    @php
-                                                        $result = $data->isDetailPenilaianMagangExt($data->id, $mahasiswa->id);
-                                                    @endphp
-                                                    <input type="text" class="form-control"
-                                                        name="nilai[{{ $data->id }}]"
-                                                        placeholder="{{ $result ? $result->nilai : 'Nilai angka' }}"
-                                                        pattern="[0-9]*" {{ $result ? 'disabled' : 'required' }}>
-                                                </td>
-                                            </tr>
-                                            @php
-                                                $no++;
-                                            @endphp
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6 text-right ">
-                                    <button type="submit" class="btn btn-primary btn-block">Simpan</button>
-                                </div>
-                                <div class="col-6 text-left">
-                                    <button type="reset" class="btn btn-danger btn-block">Batal</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
             {{-- Hasil Nilai Kriteria --}}
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                 <div class="card card-border card-rounded-sm card-hover">
                     <div class="card-body">
                         <h5 class="header-title text-theme mb-3">Hasil Nilai Kriteria</h5>
@@ -123,7 +66,6 @@
                                         <th class="text-white text-center">No</th>
                                         <th class="text-white text-center">Kriteria Penilaian</th>
                                         <th class="text-white text-center">Nilai</th>
-                                        <th class="text-white text-center">Action</th>
                                     </tr>
                                 </thead>
 
@@ -142,10 +84,6 @@
                                                 <td class="text-center">{{ $no }}</td>
                                                 <td class="text-center">{{ $item->penilaian }}</td>
                                                 <td class="text-center">{{ $item->nilai }}</td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('input.kriteria.mahasiswa.ext.destroy', $item->id) }}"
-                                                        class="btn btn-danger ml-auto"><i class="fa-solid fa-trash"></i></a>
-                                                </td>
                                             </tr>
                                             @php
                                                 $no++;
