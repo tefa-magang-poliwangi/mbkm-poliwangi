@@ -358,7 +358,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
         Route::post('/import-data/magang-external/import', [ImportController::class, 'import_data_magang_ext'])->name('import.data.magang.ext');
         Route::post('/import-data/kriteria-magang-external/import', [ImportController::class, 'import_data_kriteria_magang_ext'])->name('import.data.kriteria.magang.ext');
-        Route::post('/import-data/nilai-kriteria-km/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
+        Route::post('/import-data/nilai-kriteria-km/{id_magang_ext}/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
         Route::post('/import-data/peserta-km/import', [ImportController::class, 'import_peserta_km'])->name('import.data.peserta.km');
     });
 });

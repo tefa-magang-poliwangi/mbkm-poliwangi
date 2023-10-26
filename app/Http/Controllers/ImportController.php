@@ -204,7 +204,7 @@ class ImportController extends Controller
     }
 
     // import data Kampus Mengajar
-    public function import_data_nilai_kriteria_km(Request $request)
+    public function import_data_nilai_kriteria_km(Request $request, $id_magang_ext)
     {
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
@@ -219,7 +219,7 @@ class ImportController extends Controller
         $path = $file->storeAs('public/excel/', $nama_file);
 
         // import data
-        $import = Excel::import(new NilaiKriteriaKm(), storage_path('app/public/excel/' . $nama_file));
+        $import = Excel::import(new NilaiKriteriaKm($id_magang_ext), storage_path('app/public/excel/' . $nama_file));
 
         //remove from server
         Storage::delete($path);
