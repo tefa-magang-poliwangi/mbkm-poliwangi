@@ -215,6 +215,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/create', [PesertaMagangExtController::class, 'create'])->name('manajemen.peserta.magang.ext.create');
         Route::post('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/store', [PesertaMagangExtController::class, 'store'])->name('manajemen.peserta.magang.ext.store');
         Route::get('/manajemen/peserta-magang-ext/peserta_magang_ext_{id_peserta_magang_ext}/{id}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
+        Route::get('/daftar-nilai-kriteria-mahasiswa/{id_mahasiswa}/show', [PesertaMagangExtController::class, 'show'])->name('daftar.nilai.kriteria.mahasiswa.show');
 
         // Route Manajemen Kriteria
         Route::get('/manajemen/kriteria/{id_magang_ext}/index', [KriteriaPenilaianController::class, 'index'])->name('manajemen.kriteria.index');
