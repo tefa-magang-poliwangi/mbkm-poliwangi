@@ -50,6 +50,8 @@ use App\Http\Controllers\ProfileMitraController;
 use App\Http\Controllers\ProfileWadirController;
 use App\Http\Controllers\ValidasiProgramMagangKaprodi;
 use App\Http\Controllers\WadirPageController;
+use App\Http\Controllers\PLMitraPageController;
+use App\Http\Controllers\ProfilePLMitraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -311,8 +313,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
         // Route Profil Mitra
-        Route::get('/dashboard/mitra/ubah-profil/{id_user}', [ProfileMitraController::class, 'show'])->name('profil.mitra.page');
-        Route::put('/dashboard/mitra/update-profil/{id_mitra}/update', [ProfileMitraController::class, 'update'])->name('profil.mitra.update');
+        Route::get('/dashboard/mitra/ubah-profil/{id_user}', [ProfileMitraController::class, 'show'])->name('manajemen.profil.mitra.page');
+        Route::put('/dashboard/mitra/update-profil/{id_mitra}/update', [ProfileMitraController::class, 'update'])->name('manajemen.profil.mitra.update');
 
         //Route Manajemen Lowongan Mitra
         Route::get('/manajemen/lowongan-mitra', [MitraLowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
@@ -329,6 +331,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/program-magang/lowongan_{id_lowongan}/{id_program_magang}/edit', [ProgramMagangController::class, 'edit'])->name('manajemen.program.magang.edit');
         Route::put('/manajemen/program-magang/lowongan_{id_lowongan}/{id_program_magang}/update', [ProgramMagangController::class, 'update'])->name('manajemen.program.magang.update');
         Route::get('/manajemen/program-magang/{id_program_magang}/destroy', [ProgramMagangController::class, 'destroy'])->name('manajemen.program.magang.destroy');
+
+        // # (Route PLMitra)
+        //Route Dashboard PLMitra
+        Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
+
+        // Route Profil PLMitra
+        Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('manajemen.profil.plmitra.page');
+        Route::put('/dashboard/plmitra/update-profil/{id_plmitra}/update', [ProfilePLMitraController::class, 'update'])->name('manajemen.profil.plmitra.update');
 
         // # (Route User Super Admin - Spatie)
         Route::group(['prefix' => 'users'], function () {

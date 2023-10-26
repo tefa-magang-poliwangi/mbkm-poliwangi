@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Profil Mitra | MBKM Poliwangi</title>
+    <title>Profil PL Mitra | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -24,8 +24,8 @@
                             </div>
                             <div class="col-8 d-flex">
                                 <div class="my-auto mx-auto">
-                                    <h5>{{ $mitra->nama }}</h5>
-                                    <span>{{ $mitra->nama }}</span>
+                                    <h5>{{ $plmitra->nama }}</h5>
+                                    <span>{{ $plmitra->nama }}</span>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="px-3 pt-4">
-                            <form action="{{ route('manajemen.profil.mitra.update', $mitra->id) }}" method="post">
+                            <form action="{{ route('manajemen.profil.plmitra.update', $plmitra->id) }}" method="post">
                                 @method('put')
                                 @csrf
 
@@ -51,7 +51,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" id="nama" name="nama"
                                             class="form-control  @error('nama') is-invalid @enderror"
-                                            placeholder="Nama lengkap" value="{{ $mitra->nama }}">
+                                            placeholder="Nama lengkap" value="{{ $plmitra->nama }}">
                                         @error('nama')
                                             <div id="nama" class="form-text">{{ $message }}</div>
                                         @enderror
@@ -59,24 +59,13 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="alamat">Alamat</label>
+                                    <label class="col-sm-3 col-form-label" for="no_telp">No Telepon</label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="alamat" name="alamat"
-                                            class="form-control  @error('alamat') is-invalid @enderror"
-                                            placeholder="Alamat lengkap" value="{{ $mitra->alamat }}">
-                                        @error('alamat')
-                                            <div id="alamat" class="form-text">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="website">Website</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="website" name="website"
-                                            class="form-control  @error('website') is-invalid @enderror"
-                                            placeholder="Masukkan Website" value="{{ $mitra->website }}">
-                                        @error('website')
-                                            <div id="website" class="form-text">{{ $message }}</div>
+                                        <input type="number" id="no_telp" name="no_telp"
+                                            class="form-control  @error('no_telp') is-invalid @enderror"
+                                            placeholder="No telepon" pattern="[0-9]*" value="{{ $plmitra->no_telp }}">
+                                        @error('no_telp')
+                                            <div id="no_telp" class="form-text">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -86,24 +75,13 @@
                                     <div class="col-sm-9">
                                         <input type="email" id="email" name="email"
                                             class="form-control  @error('email') is-invalid @enderror"
-                                            placeholder="Alamat email" value="{{ $mitra->email }}">
+                                            placeholder="Alamat email" value="{{ $plmitra->email }}">
                                         @error('email')
                                             <div id="email" class="form-text">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="narahubung">No Telepon</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="narahubung" name="narahubung"
-                                            class="form-control  @error('narahubung') is-invalid @enderror"
-                                            placeholder="No telepon" pattern="[0-9]*" value="{{ $mitra->narahubung }}">
-                                        @error('narahubung')
-                                            <div id="narahubung" class="form-text">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="password">Password Baru</label>
