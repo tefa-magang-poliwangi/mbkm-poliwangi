@@ -381,15 +381,6 @@
                     </li>
                 @endcan
 
-                @can('manajemen.periode.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.periode.index') }}">
-                            <i class="fas fa-solid fa-calendar-day"></i>
-                            <span>Manajemen Periode</span>
-                        </a>
-                    </li>
-                @endcan
-
                 @can('manajemen.mitra.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.mitra.index') }}"><i

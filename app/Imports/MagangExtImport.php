@@ -2,9 +2,11 @@
 
 namespace App\Imports;
 
+use App\Models\AdminProdi;
 use App\Models\MagangExt;
 use App\Models\Periode;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
 class MagangExtImport implements ToCollection
@@ -14,22 +16,20 @@ class MagangExtImport implements ToCollection
      */
     public function collection(Collection $rows)
     {
+        $id_user = Auth::user()->id;
+        $user_admin = AdminProdi::where('id_user', $id_user)->first();
         $periode_aktif = Periode::where('status', 'Aktif')->first();
 
         foreach ($rows as $column) {
-            $name = $column[7];
+            $name = $column[0];
+            $jenis_magang = $column[1];
 
-            // Cek apakah entri dengan nama yang sama sudah ada dalam periode aktif
-            $existingEntry = MagangExt::where('name', $name)
-                ->where('id_periode', $periode_aktif->id)
-                ->first();
-
-            if (!$existingEntry) {
-                MagangExt::create([
-                    'name' => $name,
-                    'id_periode' => $periode_aktif->id,
-                ]);
-            }
+            MagangExt::create([
+                'name' => $name,
+                'jenis_magang' => $jenis_magang,
+                'id_periode' => $periode_aktif->id,
+                'id_prodi' => $user_admin->id_prodi,
+            ]);
         }
     }
 }

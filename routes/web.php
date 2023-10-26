@@ -217,6 +217,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/create', [PesertaMagangExtController::class, 'create'])->name('manajemen.peserta.magang.ext.create');
         Route::post('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/store', [PesertaMagangExtController::class, 'store'])->name('manajemen.peserta.magang.ext.store');
         Route::get('/manajemen/peserta-magang-ext/peserta_magang_ext_{id_peserta_magang_ext}/{id}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
+        Route::get('/daftar-nilai-kriteria-mahasiswa/{id_mahasiswa}/show', [PesertaMagangExtController::class, 'show'])->name('daftar.nilai.kriteria.mahasiswa.show');
 
         // Route Manajemen Kriteria
         Route::get('/manajemen/kriteria/{id_magang_ext}/index', [KriteriaPenilaianController::class, 'index'])->name('manajemen.kriteria.index');
@@ -367,7 +368,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/import-user/mahasiswa/import', [ImportController::class, 'import_user_mahasiswa'])->name('import.user.mahasiswa');
         Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');
         Route::post('/import-data/magang-external/import', [ImportController::class, 'import_data_magang_ext'])->name('import.data.magang.ext');
-        Route::post('/import-data/nilai-kriteria-km/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
+        Route::post('/import-data/kriteria-magang-external/import', [ImportController::class, 'import_data_kriteria_magang_ext'])->name('import.data.kriteria.magang.ext');
+        Route::post('/import-data/nilai-kriteria-km/{id_magang_ext}/import', [ImportController::class, 'import_data_nilai_kriteria_km'])->name('import.data.nilai.kriteria.km');
         Route::post('/import-data/peserta-km/import', [ImportController::class, 'import_peserta_km'])->name('import.data.peserta.km');
     });
 });
@@ -400,6 +402,14 @@ Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
 // # Halaman Mahasiswa Internal - tidak ada isi
 Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
     return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
+});
+
+// # Halaman Mitra - Lowongan
+Route::get('/daftar-program-mhs', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program');
+});
+Route::get('/dashboard-mitra/daftar-pelamar', function () {
+    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
 });
 
 // Halaman Kaprodi
