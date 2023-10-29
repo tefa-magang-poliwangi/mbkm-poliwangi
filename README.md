@@ -104,6 +104,11 @@ Migrate Dan Seeder :
   php artisan db:seed
 
 ```
+- Jalankan Storage Link :
+```bash
+  php artisan storage:link
+
+```
 - Runing app
 ```bash
   php artisan serve
