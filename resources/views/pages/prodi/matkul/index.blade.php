@@ -23,9 +23,46 @@
                                 <h5 class="justify-start my-auto text-theme">Data Matakuliah</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.matakuliah.create') }}"
-                                    class="btn btn-primary fa-plus ml-auto">Tambah
-                                    Matakuliah</a>
+                                <div class="ml-auto">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#importMatakuliah"
+                                        title="Import Data Matakuliah"><i class="fa-solid fa-upload"></i>
+                                    </button>
+
+                                    <a href="{{ route('manajemen.matakuliah.create') }}" class="btn btn-primary fa-plus">
+                                        Tambah Matakuliah
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Import Data Matakuliah --}}
+                        <div class="modal fade" id="importMatakuliah" tabindex="-1" role="dialog"
+                            aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-theme" id="uploadModalLabel">Import Data Matakuliah
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Form untuk Unggah File Excel -->
+                                        <form action="{{ route('import.data.matakuliah') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="file">Pilih File Excel</label>
+                                                <input type="file" class="form-control-file" id="file"
+                                                    name="file">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Unggah</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -124,9 +161,11 @@
                                                                             SKS</label>
                                                                         <input id="update_sks" type="number"
                                                                             class="form-control @error('update_sks') is-invalid @enderror"
-                                                                            name="update_sks" value="{{ $data->sks }}">
+                                                                            name="update_sks"
+                                                                            value="{{ $data->sks }}">
                                                                         @error('update_sks')
-                                                                            <div id="update_sks" class="form-text text-danger">
+                                                                            <div id="update_sks"
+                                                                                class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>

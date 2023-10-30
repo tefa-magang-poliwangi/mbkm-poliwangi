@@ -22,6 +22,12 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
                                 <h5 class="justify-start my-auto text-theme">Daftar Kelas</h5>
                             </div>
+
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="#" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-rotate"></i> &ensp; Sinkron Feeder
+                                </a>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -172,7 +178,8 @@
                                                                             for="update_id_periode">Periode</label>
                                                                         <select
                                                                             class="form-control @error('update_id_periode') is-invalid @enderror"
-                                                                            id="update_id_periode" name="update_id_periode">
+                                                                            id="update_id_periode"
+                                                                            name="update_id_periode">
                                                                             <option value="">Pilih Periode</option>
                                                                             @foreach ($periodes as $item)
                                                                                 <option value="{{ $item->id }}"
