@@ -28,10 +28,10 @@
                     <a class="nav-link navbar-text-hover fw-medium" href="{{ route('landing.page') }}#">Beranda</a>
                 </li>
                 <li class="nav-item mx-3 my-auto">
-                    <a class="nav-link navbar-text-hover" href="#">Program</a>
+                    <a class="nav-link navbar-text-hover" href="{{ route('daftar.lowongan.program') }}">Program</a>
                 </li>
                 <li class="nav-item mx-3 my-auto">
-                    <a class="nav-link navbar-text-hover" href="#persyaratan">Persyaratan</a>
+                    <a class="nav-link navbar-text-hover" href="{{ route('landing.page') }}#persyaratan">Persyaratan</a>
                 </li>
 
                 @auth

@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="px-3 pt-4">
-                            <form action="{{ route('manajemen.profil.mitra.update', $mitra->id) }}" method="post">
+                            <form action="{{ route('profil.mitra.update', $mitra->id) }}" method="post">
                                 @method('put')
                                 @csrf
 
@@ -129,7 +129,8 @@
                                         Password</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
-                                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                            <input type="password" id="password_confirmation"
+                                                name="password_confirmation"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 placeholder="Konfirmasi password baru">
                                             <div class="input-group-append">
