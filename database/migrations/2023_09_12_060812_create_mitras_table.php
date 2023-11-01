@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('email', 255)->nullable(false);
             $table->string('foto', 255)->nullable(true);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->text('deskripsi')->nullable(true);
             $table->unsignedBigInteger('id_user')->nullable(false);
             $table->unsignedBigInteger('id_sektor_industri')->nullable(false);
             $table->unsignedBigInteger('id_kategori')->nullable(false);

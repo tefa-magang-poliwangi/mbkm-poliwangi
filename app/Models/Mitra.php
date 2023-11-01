@@ -20,6 +20,7 @@ class Mitra extends Model
         'email',
         'foto',
         'status',
+        'deskripsi',
         'id_user',
         'id_sektor_industri',
         'id_kategori',
