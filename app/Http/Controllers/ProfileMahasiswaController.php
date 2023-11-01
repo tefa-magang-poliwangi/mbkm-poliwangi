@@ -86,19 +86,32 @@ class ProfileMahasiswaController extends Controller
         $validated = $request->validate([
             'nama' => 'required',
             'email' => 'required|email',
-            'angkatan' => 'required',
+            'angkatan' => ['required', 'digits:4', 'integer', 'min:1900', 'max:' . (date('Y'))],
             'no_telp' => 'required|string|between:11,15',
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
+
+        // Menggunakan array kosong untuk $saveData sebagai awalan
+        $saveData = [];
+
+        // Pengecekan apakah ada input password
+        if (!empty($request->input('password'))) {
+            // Hash password
+            $saveData['password'] = bcrypt($request->input('password'));
+        }
 
         $user = User::findOrFail($mahasiswa->id_user);
 
         User::where('id', $user->id)->update([
             'name' => $validated['nama'],
             'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
         ]);
+
+        // Jika ada password baru, update password
+        if (isset($saveData['password'])) {
+            $user->update(['password' => $saveData['password']]);
+        }
 
         Mahasiswa::where('id', $mahasiswa->id)->update([
             'nama' => $validated['nama'],

@@ -11,35 +11,38 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 
 class NilaiKriteriaKm implements ToCollection
 {
-    /**
-     * @param Collection $collection
-     */
+    protected $id_magang_ext;
+
+    public function __construct($id_magang_ext)
+    {
+        $this->id_magang_ext = $id_magang_ext;
+    }
+
     public function collection(Collection $rows)
     {
         $mahasiswas = Mahasiswa::all();
+        $penilaian_kriteria = PenilaianMagangExt::where('id_magang_ext', $this->id_magang_ext)->get();
 
         foreach ($rows as $column) {
-            $nim = $column[2];
-            $magang_ext = MagangExt::where('name', $column[3])->first();
-            $penilaian_kriteria = PenilaianMagangExt::where('id_magang_ext', $magang_ext->id)->get();
-
-            // mengambil data mahasiswa
+            $nim = $column[1];
             $matchingMahasiswa = $mahasiswas->first(function ($mahasiswa) use ($nim) {
                 return $mahasiswa->nim == $nim;
             });
 
-            // jumlah kolom
-            $count_nilai = 8;
+            if ($matchingMahasiswa) {
+                // inisiasi indeks kolom awal untuk nilai
+                $count_nilai = 2;
 
-            // Loop sebanyak penilaian kriteria yang sesuai
-            foreach ($penilaian_kriteria as $penilaian) {
-                DetailPenilaianMagangExt::create([
-                    'nilai' => $column[$count_nilai],
-                    'id_penilaian_magang_ext' => $penilaian->id,
-                    'id_mahasiswa' => $matchingMahasiswa->id,
-                ]);
+                // Loop sebanyak penilaian kriteria yang sesuai
+                foreach ($penilaian_kriteria as $penilaian) {
+                    DetailPenilaianMagangExt::create([
+                        'nilai' => $column[$count_nilai],
+                        'id_penilaian_magang_ext' => $penilaian->id,
+                        'id_mahasiswa' => $matchingMahasiswa->id,
+                    ]);
 
-                $count_nilai++;
+                    $count_nilai++;
+                }
             }
         }
     }

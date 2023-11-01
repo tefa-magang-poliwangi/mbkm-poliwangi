@@ -30,11 +30,11 @@
                                         <i class="fa-solid fa-upload"></i>
                                     </button>
 
-                                    {{-- Import Nilai Kriteria Mahasiswa --}}
-                                    {{-- <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                    {{-- Import Nilai Kriteria Mahasiswa KM --}}
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
                                         data-target="#importNilaiKriteria" title="Impot Nilai Kriteria">
                                         <i class="fa-solid fa-cloud-arrow-up"></i>
-                                    </button> --}}
+                                    </button>
 
                                     <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
                                         <i class="fa-solid fa-plus"></i> &ensp; Tambah Kriteria
@@ -73,8 +73,8 @@
                             </div>
                         </div>
 
-                        <!-- Modal Import Nilai Kriteria Mahasiswa -->
-                        {{-- <div class="modal fade" id="importNilaiKriteria" tabindex="-1" role="dialog"
+                        <!-- Modal Import Nilai Kriteria Mahasiswa KM -->
+                        <div class="modal fade" id="importNilaiKriteria" tabindex="-1" role="dialog"
                             aria-labelledby="uploadModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -86,8 +86,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- Form untuk Unggah File Excel -->
-                                        <form action="{{ route('import.data.nilai.kriteria.km') }}" method="POST"
-                                            enctype="multipart/form-data">
+                                        <form action="{{ route('import.data.nilai.kriteria.km', $magang_ext->id) }}"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="form-group">
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="row">
                             <div class="col-12">
@@ -147,8 +147,8 @@
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title text-theme">Edit Kriteria Penilaian
                                                                 </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>

@@ -12,10 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        // url yang ingin di acc ketika tidak ada token @csrf
-        '/upload-transkrip-nilai-mahasiswa-external/1/1/1/create', // 1, 5, dan 10 ganti dengan data id yang dimiliki
-
-        // konversi nilai magang external
-        '/konversi-nilai/mahasiswa-external/'
+        //
     ];
 }

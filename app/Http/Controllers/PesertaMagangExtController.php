@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPenilaianMagangExt;
 use App\Models\MagangExt;
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use App\Models\PesertaMagangExt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PesertaMagangExtController extends Controller
@@ -83,7 +85,19 @@ class PesertaMagangExtController extends Controller
      */
     public function show($id)
     {
-        //
+        $data_nilai = DB::table('detail_penilaian_magang_exts as dpm')
+            ->join('penilaian_magang_exts as pme', 'dpm.id_penilaian_magang_ext', '=', 'pme.id')
+            ->join('magang_exts as mge', 'pme.id_magang_ext', '=', 'mge.id')
+            ->where('dpm.id_mahasiswa', '=', $id)
+            ->select('dpm.nilai', 'dpm.id', 'pme.penilaian', 'pme.id_magang_ext', 'mge.name')->orderBy('pme.id', 'asc')
+            ->get();
+
+        $data = [
+            'nilai_kriterias' => $data_nilai,
+            'mahasiswa' => Mahasiswa::findOrFail($id),
+        ];
+
+        return view('pages.admin.manajemen-peserta-magang-ext.daftar-nilai-kriteria-mahasiswa', $data);
     }
 
     /**
