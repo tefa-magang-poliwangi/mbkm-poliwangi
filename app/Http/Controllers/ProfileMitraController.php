@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileMitraController extends Controller
 {
@@ -83,7 +84,6 @@ class ProfileMitraController extends Controller
     public function update(Request $request, $id)
     {
         $mitra = Mitra::findOrFail($id);
-        // dd($request);
 
         $validated = $request->validate([
             'foto' => ['max:10240', 'mimes:png,jpeg,jpg'],
@@ -92,21 +92,28 @@ class ProfileMitraController extends Controller
             'website' => ['required'],
             'narahubung' => ['required', 'string', 'between:11,15'],
             'email' => ['required', 'email'],
-            'password' => ['nullable', 'confirmed', 'min:8',],
-            'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
             'deskripsi' => ['required'],
+            'provinces' => ['required'],
+            'cities' => ['required'],
+            'password' => ['nullable', 'confirmed', 'min:8', Rules\Password::defaults()],
+            'password_confirmation' => ['nullable', 'min:8'],
         ]);
+
+        // Menggunakan array kosong untuk $saveData sebagai awalan
+        $saveData = [];
+
+        // Pengecekan apakah ada input password
+        if (!empty($request->input('password'))) {
+            // Hash password
+            $saveData['password'] = bcrypt($request->input('password'));
+        }
 
         // checking any field foto
         if ($request->file('foto')) {
-            // if user does not have foto
             if ($mitra->foto == null || $mitra->foto == '') {
                 $saveData['foto'] = Storage::putFile('public/profile-mitra', $request->file('foto'));
             } else {
-                //   delete any foto files that own already
                 Storage::delete($mitra->foto);
-
-                // and then save new foto
                 $saveData['foto'] = Storage::putFile('public/profile-mitra', $request->file('foto'));
             }
         } else {
@@ -119,8 +126,12 @@ class ProfileMitraController extends Controller
             'name' => $validated['nama'],
             'email' => $validated['email'],
             'username' => $validated['email'],
-            'password' => bcrypt($validated['password']),
         ]);
+
+        // Jika ada password baru, update password
+        if (isset($saveData['password'])) {
+            $user->update(['password' => $saveData['password']]);
+        }
 
         Mitra::where('id', $mitra->id)->update([
             'foto' => $saveData['foto'],
@@ -130,6 +141,8 @@ class ProfileMitraController extends Controller
             'narahubung' => $validated['narahubung'],
             'email' => $validated['email'],
             'deskripsi' => $validated['deskripsi'],
+            'provinsi' => $validated['provinces'],
+            'kota' => $validated['cities'],
         ]);
 
         Alert::success('Success', 'Profile Berhasil Diupdate');

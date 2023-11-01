@@ -20,17 +20,20 @@ class KaprodiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $prodi_id = AdminProdi::Where('id_user', Auth::user()->id)->first()->id_prodi;
+    {   
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $datas = [
-            'dosen' => Dosen::Where('id_prodi', $prodi_id)->get(),
-            'prodi' => Prodi::Where('id', $prodi_id)->first(),
-            'kaprodi' => Kaprodi::all(),
+            'dosen' => Dosen::where('id_prodi', $prodi_id)->get(),
+            'prodi' => Prodi::where('id', $prodi_id)->first(),
+            'kaprodi' => Kaprodi::whereHas('dosen', function ($query) use ($prodi_id) {
+                $query->where('id_prodi', $prodi_id);
+            })->get(),
         ];
 
         return view('pages.admin.manajemen-kaprodi.index', $datas);
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -154,11 +154,20 @@ class FormMitraController extends Controller
             'update_link_website' => ['required'],
             'update_no_telephone' => ['required', 'string', 'between:11,15'],
             'update_email' => ['required', 'email'],
-            'password' => ['nullable', 'confirmed', 'min:8'],
-            'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
             'update_status' => ['required'],
             'deskripsi' => ['required'],
+            'password' => ['nullable', 'confirmed', 'min:8'],
+            'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
+
+        // Menggunakan array kosong untuk $saveData sebagai awalan
+        $saveData = [];
+
+        // Pengecekan apakah ada input password
+        if (!empty($request->input('password'))) {
+            // Hash password
+            $saveData['password'] = bcrypt($request->input('password'));
+        }
 
         $user = User::findOrFail($mitra->id_user);
 
@@ -166,8 +175,12 @@ class FormMitraController extends Controller
             'name' => $validated['update_nama'],
             'email' => $validated['update_email'],
             'username' => $validated['update_email'],
-            'password' => bcrypt($validated['password']),
         ]);
+
+        // Jika ada password baru, update password
+        if (isset($saveData['password'])) {
+            $user->update(['password' => $saveData['password']]);
+        }
 
         Mitra::where('id', $mitra->id)->update([
             'nama' => $validated['update_nama'],
