@@ -13,6 +13,7 @@ use App\Http\Controllers\FormMitraController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\KatalogLowonganController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KonversiNilaiExternal;
@@ -69,6 +70,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     // Route Landing page dan logout route
     Route::get('/', [PageController::class, 'landing_page'])->name('landing.page');
     Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
+
+    // Route Daftar Lowongan Mitra
+    Route::get('/daftar-lowongan-mitra', [KatalogLowonganController::class, 'index'])->name('daftar.lowongan.program');
 
     // Route Guest
     Route::group(['middleware' => ['guest']], function () {
@@ -406,9 +410,6 @@ Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
 });
 
 // # Halaman Mitra - Lowongan
-Route::get('/daftar-program-mhs', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program');
-});
 Route::get('/dashboard-mitra/daftar-pelamar', function () {
     return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
 });

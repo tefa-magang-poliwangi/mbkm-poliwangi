@@ -142,7 +142,8 @@
                                         Password</label>
                                     <div class="col-sm-9">
                                         <div class="input-group">
-                                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                            <input type="password" id="password_confirmation"
+                                                name="password_confirmation"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 placeholder="Konfirmasi password baru">
                                             <div class="input-group-append">

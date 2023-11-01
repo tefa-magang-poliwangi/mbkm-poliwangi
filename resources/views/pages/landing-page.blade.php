@@ -46,7 +46,6 @@
 
     <section id="searchPerusahaan" class="container-fluid section-bg-one py-5">
         <div class="container py-5">
-
             <div class="row d-flex justify-content-start pt-5">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                     <h4 class="fw-bold text-white mb-3">Kategori Perusahaan</h4>
@@ -196,9 +195,9 @@
         <div class="container pt-5">
             <div class="row pt-4">
                 <div class="col-12 mb-3 p-3" data-aos="fade-up"data-aos-delay="300">
-                    <h3 class="fw-bold text-theme">Apa saja syarat yang diperlukan untuk Magang Internal?</h3>
+                    <h2 class="fw-x-bold text-theme">Apa saja syarat yang diperlukan untuk Magang Internal?</h2>
 
-                    <div class="card mt-4">
+                    <div class="card mt-5">
                         <div class="card-header p-3 header-theme">
                             <h6 class="card-title">
                                 <i class="fa-solid fa-list-ul"></i> &ensp; Tabel Daftar Persyaratan Mengikuti Kegiatan

@@ -66,7 +66,7 @@ class Lowongan extends Model
 
     public function berkas_lowongan()
     {
-        return $this->hasMany(BerkasLowongan::class);
+        return $this->hasMany(BerkasLowongan::class, 'id_lowongan');
     }
 
     public function nilai_konversi()
