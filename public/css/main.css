@@ -480,3 +480,15 @@ body {
 .fs-50 {
     font-size: 50px !important;
 }
+
+.input-file {
+    margin-bottom: 16px;
+}
+
+.container-file {
+    padding: 16px;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: #ffffff;
+}

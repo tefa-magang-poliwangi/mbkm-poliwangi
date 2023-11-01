@@ -11,11 +11,7 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD:resources/views/pages/mitra/manajemen-pendamping-mitra/pl-mitra.blade.php
     <section class="pt-4">
-=======
-    <section>
->>>>>>> 3cd09e3b4550becabb2f6822fc1dbfa91b94bcb8:resources/views/pages/mitra/pl-mitra.blade.php
         <div class="row pt-5">
             <div class="col-md-12">
                 <div class="card border-0">
