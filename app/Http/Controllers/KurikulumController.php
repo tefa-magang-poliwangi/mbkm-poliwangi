@@ -39,13 +39,7 @@ class KurikulumController extends Controller
      */
     public function create()
     {
-        $data = [
-            'kurikulum' => Kurikulum::all(),
-            'prodi' => Prodi::all(),
-            'action' => route('manajemen.kurikulum.store'),
-        ];
 
-        return view('pages.prodi.kurikulum.form-data-kurikulum', $data);
     }
 
     /**

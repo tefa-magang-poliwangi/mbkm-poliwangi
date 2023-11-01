@@ -28,9 +28,9 @@
                                         title="Import Data Matakuliah"><i class="fa-solid fa-upload"></i>
                                     </button>
 
-                                    <a href="{{ route('manajemen.matakuliah.create') }}" class="btn btn-primary fa-plus">
-                                        Tambah Matakuliah
-                                    </a>
+                                    <button class="btn btn-primary ml-auto" data-toggle="modal"
+                                        data-target="#createModal"><i class="fa-solid fa-plus"></i> &ensp; Tambah Data
+                                        Matakuliah</button>
                                 </div>
                             </div>
                         </div>
@@ -134,8 +134,7 @@
                                                                             Kuliah</label>
                                                                         <input id="update_matkul" type="text"
                                                                             class="form-control @error('update_matkul') is-invalid @enderror"
-                                                                            name="update_matkul"
-                                                                            value="{{ $data->nama }}">
+                                                                            name="update_matkul">
                                                                         @error('update_matkul')
                                                                             <div id="update_matkul"
                                                                                 class="form-text text-danger">
@@ -192,6 +191,63 @@
 
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal create --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Mata Kuliah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('manajemen.matakuliah.store') }}" method="POST">
+                        @csrf
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="create_matkul" class="form-label">Nama
+                                    Mata
+                                    Kuliah</label>
+                                <input id="create_matkul" type="text"
+                                    class="form-control @error('create_matkul') is-invalid @enderror"
+                                    name="create_matkul">
+                                @error('create_matkul')
+                                    <div id="create_matkul" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="create_kode_matkul" class="form-label">Kode Mata
+                                    Kuliah</label>
+                                <input id="create_kode_matkul" type="text"
+                                    class="form-control @error('create_kode_matkul') is-invalid @enderror"
+                                    name="create_kode_matkul">
+                                @error('create_kode_matkul')
+                                    <div id="create_kode_matkul" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="create_sks" class="form-label">Jumlah
+                                    SKS</label>
+                                <input id="create_sks" type="number"
+                                    class="form-control @error('create_sks') is-invalid @enderror" name="create_sks">
+                                @error('create_sks')
+                                    <div id="create_sks" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-submit">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

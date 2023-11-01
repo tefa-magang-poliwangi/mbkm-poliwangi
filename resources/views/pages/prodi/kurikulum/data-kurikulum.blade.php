@@ -20,11 +20,10 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.kurikulum.create') }}" class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Kurikulum
-                                </a>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
+                                <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
+                                        class="fa-solid fa-plus"></i> &ensp; Tambah
+                                    Kurikulum</button>
                             </div>
                         </div>
                     </div>
@@ -59,7 +58,8 @@
                                                     {{ $item->status }} </span>
                                             </td>
                                             <td>
-                                                <a href="{{ route('manajemen.matkul.kurikulum.index', $item->id) }}" class="btn btn-primary">
+                                                <a href="{{ route('manajemen.matkul.kurikulum.index', $item->id) }}"
+                                                    class="btn btn-primary">
                                                     <i class="fa-solid fa-plus"></i> Matkul
                                                 </a>
                                             </td>
@@ -83,7 +83,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Mata Kuliah</h5>
+                                                        <h5 class="modal-title">Edit Data Kurikulum</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -118,11 +118,11 @@
                                                                     <option value="">Pilih Status</option>
                                                                     <option value="1"
                                                                         {{ $item->status == 'Wajib' ? 'selected' : '' }}>
-                                                                        Wajib
+                                                                        Aktif
                                                                     </option>
                                                                     <option value="2"
-                                                                        {{ $item->status == 'Tidak Wajib' ? 'selected' : '' }}>
-                                                                        Tidak Wajib
+                                                                        {{ $item->status == 'Tidak Aktif' ? 'selected' : '' }}>
+                                                                        Tidak Aktif
                                                                     </option>
                                                                 </select>
                                                                 @error('update_status')
@@ -149,6 +149,57 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal Create --}}
+        <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tambah Data Kurikulum Kuliah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('manajemen.kurikulum.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="create_nama" class="form-label">Nama
+                                    Kurikulum</label>
+                                <input id="create_nama" type="text"
+                                    class="form-control @error('create_nama')
+                                 is-invalid
+                             @enderror"
+                                    name="create_nama">
+                                @error('create_nama')
+                                    <div id="create_nama" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="create_status" class="form-label">Status</label>
+                                <select class="form-control @error('create_status') is-invalid @enderror"
+                                    id="create_status" name="create_status">
+                                    <option value="">Pilih Status</option>
+                                    <option value="1">Aktif</option>
+                                    <option value="2">Tidak Aktif</option>
+                                </select>
+                                @error('create_status')
+                                    <div id="create_status" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-submit">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
