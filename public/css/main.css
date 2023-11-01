@@ -485,3 +485,9 @@ body {
     max-height: 1000px !important;
     overflow-y: auto !important;
 }
+
+.custom-image-profile {
+    width: 100px;
+    height: 100px;
+}
+

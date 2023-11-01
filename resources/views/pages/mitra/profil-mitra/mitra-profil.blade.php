@@ -18,8 +18,11 @@
                         <div class="row">
                             <div class="col-4 d-flex">
                                 <div class="mx-auto my-auto text-center">
-                                    <img src="{{ asset('assets/images/avatar/avatar-1.png') }}" alt="Foto Profil"
-                                        class="img-fluid rounded-circle">
+                                    @if ($mitra->foto)
+                                    <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}" alt="Foto Profil" class="img-fluid rounded-circle custom-image-profile">
+                                    @else
+                                        <img src="{{ asset('assets/images/avatar/avatar-1.png') }}" alt="Foto Profil" class="img-fluid rounded-circle">
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-8 d-flex">
@@ -42,9 +45,19 @@
                         </div>
 
                         <div class="px-3 pt-4">
-                            <form action="{{ route('manajemen.profil.mitra.update', $mitra->id) }}" method="post">
+                            <form action="{{ route('profil.mitra.update', $mitra->id) }}" method="post" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="foto">Foto Profil</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" id="foto" name="foto" class="form-control @error('foto') is-invalid @enderror">
+                                        @error('foto')
+                                            <div id="foto" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="nama">Nama</label>
@@ -140,6 +153,18 @@
                                         </div>
                                         @error('password_confirmation')
                                             <div id="password_confirmation" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="deskripsi">Deskripsi</label>
+                                    <div class="col-sm-9">
+                                        <textarea type="text" id="deskripsi" name="deskripsi"
+                                            class="form-control  @error('deskripsi') is-invalid @enderror"
+                                            placeholder="deskripsi">{{ $mitra->deskripsi }}</textarea>
+                                        @error('deskripsi')
+                                            <div id="deskripsi" class="form-text">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>

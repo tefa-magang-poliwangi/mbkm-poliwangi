@@ -236,7 +236,7 @@
                     <li>
                         <a class="nav-link" href="{{ route('formulir.mitra.page') }}">
                             <i class="fas fa-solid fa-envelopes-bulk"></i>
-                            <span>Form Mitra</span>
+                            <span>Data Mitra</span>
                         </a>
                     </li>
                 @endcan
@@ -385,7 +385,7 @@
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.mitra.index') }}"><i
                                 class="fas fa-solid fa-envelopes-bulk"></i>
-                            <span>Form Mitra</span>
+                            <span>Data Mitra</span>
                         </a>
                     </li>
                 @endcan

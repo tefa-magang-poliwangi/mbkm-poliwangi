@@ -65,6 +65,7 @@ class FormMitraController extends Controller
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
             'status' => ['required'],
+            'deskripsi' => ['required'],
         ]);
 
         $user_mitra = User::create([
@@ -96,6 +97,7 @@ class FormMitraController extends Controller
             'password_confirmation' => $validated['password_confirmation'],
             'status' => $validated['status'],
             'id_user' => $user_mitra->id,
+            'deskripsi' => $validated['deskripsi'],
         ]);
 
         Alert::success('Success', 'Mitra Berhasil Ditambahkan');
@@ -155,6 +157,7 @@ class FormMitraController extends Controller
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
             'update_status' => ['required'],
+            'deskripsi' => ['required'],
         ]);
 
         $user = User::findOrFail($mitra->id_user);
@@ -178,6 +181,7 @@ class FormMitraController extends Controller
             'email' => $validated['update_email'],
             'status' => $validated['update_status'],
             'id_user' => $user->id,
+            'deskripsi' => $validated['deskripsi'],
         ]);
 
         Alert::success('Success', 'Mitra Berhasil Diupdate');

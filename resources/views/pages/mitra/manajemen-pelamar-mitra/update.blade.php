@@ -208,6 +208,17 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                <textarea id="deskripsi" type="text"
+                                    class="form-control @error('deskripsi') is-invalid @enderror"
+                                    name="deskripsi" >{{ $mitra->deskripsi }}</textarea>
+                                @error('deskripsi')
+                                    <div id="deskripsi" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Simpan</button>
                         </form>
                     </div>

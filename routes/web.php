@@ -314,8 +314,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
         // Route Profil Mitra
-        Route::get('/dashboard/mitra/ubah-profil/{id_user}', [ProfileMitraController::class, 'show'])->name('manajemen.profil.mitra.page');
-        Route::put('/dashboard/mitra/update-profil/{id_mitra}/update', [ProfileMitraController::class, 'update'])->name('manajemen.profil.mitra.update');
+        Route::get('/dashboard/mitra/ubah-profil/{id_user}', [ProfileMitraController::class, 'show'])->name('profil.mitra.page');
+        Route::put('/dashboard/mitra/update-profil/{id_mitra}/update', [ProfileMitraController::class, 'update'])->name('profil.mitra.update');
 
         //Route Manajemen Lowongan Mitra
         Route::get('/manajemen/lowongan-mitra', [MitraLowonganController::class, 'index'])->name('manajemen.lowongan.mitra.index');
