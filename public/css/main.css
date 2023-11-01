@@ -481,7 +481,19 @@ body {
     font-size: 50px !important;
 }
 
-.ruler-program{
+.ruler-program {
     max-height: 1000px !important;
     overflow-y: auto !important;
+}
+
+.input-file {
+    margin-bottom: 16px;
+}
+
+.container-file {
+    padding: 16px;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: #ffffff;
 }
