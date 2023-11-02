@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama', 255)->nullable(false);
             $table->float('ukuran_max')->nullable(false)->unsigned();
+            $table->unsignedBigInteger('id_mitra')->unsigned()->nullable(false);
+            $table->foreign('id_mitra')->references('id')->on('mitras')->onDelete('cascade');
             $table->timestamps();
         });
     }

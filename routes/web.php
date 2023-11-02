@@ -53,6 +53,8 @@ use App\Http\Controllers\ValidasiProgramMagangKaprodi;
 use App\Http\Controllers\WadirPageController;
 use App\Http\Controllers\PLMitraPageController;
 use App\Http\Controllers\ProfilePLMitraController;
+use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\BerkasLowonganController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -336,6 +338,23 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/program-magang/lowongan_{id_lowongan}/{id_program_magang}/edit', [ProgramMagangController::class, 'edit'])->name('manajemen.program.magang.edit');
         Route::put('/manajemen/program-magang/lowongan_{id_lowongan}/{id_program_magang}/update', [ProgramMagangController::class, 'update'])->name('manajemen.program.magang.update');
         Route::get('/manajemen/program-magang/{id_program_magang}/destroy', [ProgramMagangController::class, 'destroy'])->name('manajemen.program.magang.destroy');
+
+        //Route Manajemen Berkas Mitra
+        Route::get('/manajemen/berkas-mitra', [BerkasController::class, 'index'])->name('manajemen.berkas.mitra.index');
+        Route::get('/manajemen/berkas-mitra/create', [BerkasController::class, 'create'])->name('manajemen.berkas.mitra.create');
+        Route::post('/manajemen/berkas-mitra/store', [BerkasController::class, 'store'])->name('manajemen.berkas.mitra.store');
+        Route::get('/manajemen/berkas-mitra/{id_berkas}/edit', [BerkasController::class, 'edit'])->name('manajemen.berkas.mitra.edit');
+        Route::put('/manajemen/berkas-mitra/{id_berkas}/update', [BerkasController::class, 'update'])->name('manajemen.berkas.mitra.update');
+        Route::get('/manajemen/berkas-mitra/{id_berkas}/destroy', [BerkasController::class, 'destroy'])->name('manajemen.berkas.mitra.destroy');
+
+        //Route Manajemen Berkas Lowongan Mitra
+        Route::get('/manajemen/{id_berkas}/berkas-lowongan', [BerkasLowonganController::class, 'index'])->name('manajemen.berkas-lowongan.mitra.index');
+        Route::get('/manajemen/berkas-lowongan/{id_berkas}/create', [BerkasLowonganController::class, 'create'])->name('manajemen.berkas-lowongan.mitra.create');
+        Route::post('/manajemen/berkas-lowongan/{id_berkas}/store', [BerkasLowonganController::class, 'store'])->name('manajemen.berkas-lowongan.mitra.store');
+        Route::get('/manajemen/berkas-lowongan/{id_berkas}/{id_berkas_lowongan}/edit', [BerkasLowonganController::class, 'edit'])->name('manajemen.berkas-lowongan.mitra.edit');
+        Route::put('/manajemen/berkas-lowongan/{id_berkas}/{id_berkas_lowongan}/update', [BerkasLowonganController::class, 'update'])->name('manajemen.berkas-lowongan.mitra.update');
+        Route::get('/manajemen/berkas-lowongan/{id_berkas_lowongan}/destroy', [BerkasLowonganController::class, 'destroy'])->name('manajemen.berkas-lowongan.mitra.destroy');
+
 
         // # (Route PLMitra)
         //Route Dashboard PLMitra
