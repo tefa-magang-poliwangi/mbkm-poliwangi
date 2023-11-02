@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4 d-flex">
                                 <div class="mx-auto my-auto text-center">
-                                    <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
+                                    <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('images/logo/km-template.png') }}"
                                         class="image-fluid" width="150" alt="">
                                 </div>
                             </div>

@@ -13,14 +13,25 @@ class KatalogLowonganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
-        $mitra = Mitra::inRandomOrder()->first();
+        if ($id) {
+            // Jika ada ID mitra yang diberikan, ambil data mitra berdasarkan ID tersebut
+            $mitra = Mitra::find($id);
+        } else {
+            // Jika tidak ada ID mitra yang diberikan, ambil data mitra secara acak
+            $mitra = Mitra::inRandomOrder()->first();
+        }
+
+        // Dapatkan data lowongan untuk mitra yang dipilih
+        $lowongan_mitra = Lowongan::where('id_mitra', $mitra->id)->with('berkas_lowongan')->get();
+
+        $mitras = Mitra::all();
 
         $data = [
             'mitra' => $mitra,
-            'lowongan_mitra' => Lowongan::where('id_mitra', $mitra->id)->with('berkas_lowongan')->get(),
-            'mitras' => Mitra::all(),
+            'lowongan_mitra' => $lowongan_mitra,
+            'mitras' => $mitras,
         ];
 
         return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program', $data);

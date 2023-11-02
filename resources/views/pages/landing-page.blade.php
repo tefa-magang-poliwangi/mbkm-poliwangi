@@ -45,17 +45,17 @@
     </section>
 
     <section id="searchPerusahaan" class="container-fluid section-bg-one py-5">
+        {{-- Filter Perusahaan --}}
         <div class="container py-5">
             <div class="row d-flex justify-content-start pt-5">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                    <h4 class="fw-bold text-white mb-3">Kategori Perusahaan</h4>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3">
+                    <h4 class="fw-bold text-white mb-3">Cari Perusahaan</h4>
                     <div class="form-group">
-                        <select class="form-control select2">
+                        <select class="form-control select2" id="selectMitra" onchange="goToMitra()">
                             <option value="">Pilih Nama Perusahaan</option>
-                            <option value="">Indomilk</option>
-                            <option>Biznet</option>
-                            <option>Pertamina</option>
-                            <option>Kampus Merdeka</option>
+                            @foreach ($mitras_all as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -74,7 +74,8 @@
                                 <p class="text-justify fw-regular pt-2 limit-description" title="{{ $item->deskripsi }}">
                                     {{ $item->deskripsi }}
                                 </p>
-                                <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
+                                <a href="{{ route('daftar.lowongan.program', ['id_mitra' => $item->id]) }}"
+                                    class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -83,13 +84,14 @@
                 {{-- showmore item --}}
                 @foreach ($show_more_mitras as $item)
                     <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
-                        <div class="card card-height p-3 card-hover shadow card-rounded">
+                        <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
                             <div class="card-body text-center">
-                                <div class="mx-auto">
+                                <div class="mx-auto pb-3">
                                     <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
-                                        class="image-fluid" width="150" alt="">
+                                        class="image-fluid" width="100" alt="">
                                 </div>
-                                <p class="text-justify fw-regular pt-4 pb-5 limit-text">
+                                <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}</h4>
+                                <p class="text-justify fw-regular pt-2 limit-description" title="{{ $item->deskripsi }}">
                                     {{ $item->deskripsi }}
                                 </p>
                                 <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
@@ -205,6 +207,17 @@
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
 
+    {{-- Script Submit Mitra Search by Dropdown --}}
+    <script>
+        function goToMitra() {
+            var selectedMitra = document.getElementById('selectMitra').value;
+            if (selectedMitra) {
+                window.location.href = "{{ route('daftar.lowongan.program') }}/" + selectedMitra;
+            }
+        }
+    </script>
+
+    {{-- Script Show More --}}
     <script>
         // Ambil elemen-elemen yang dibutuhkan
         const container = document.getElementById('container');
