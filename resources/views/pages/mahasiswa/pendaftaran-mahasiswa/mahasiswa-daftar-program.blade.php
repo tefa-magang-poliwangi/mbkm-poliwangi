@@ -39,21 +39,17 @@
                     </div>
 
                     <div class="row d-flex justify-content-between mt-2">
-                        <div class="col-10 col-sm-10 col-md-10 col-lg-11 mb-3">
-                            <div class="input-group">
-                                <select class="form-control select2">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-8 mb-3">
+                            <div class="form-group">
+                                <label for="selectMitra" class="form-label fw-medium">Filter Lowongan Perusahaan</label>
+                                <select class="form-control select2" id="selectMitra" onchange="goToMitra()">
                                     <option value="">Pilih Nama Perusahaan</option>
                                     @foreach ($mitras as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        <option value="{{ $item->id }}" {{ $item->id == $mitra->id ? 'selected' : '' }}>
+                                            {{ $item->nama }}
+                                        </option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-2 col-sm-2 col-md-2 col-lg-1 mb-3 d-flex">
-                            <div class="input-group-append mx-auto my-auto">
-                                <button type="button" class="btn btn-search">
-                                    <i class="fa-solid fa-search"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -153,7 +149,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8 order-1">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 order-1">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                             aria-labelledby="list-home-list">
@@ -286,6 +282,16 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+
+    {{-- Script Submit Mitra Search by Dropdown --}}
+    <script>
+        function goToMitra() {
+            var selectedMitra = document.getElementById('selectMitra').value;
+            if (selectedMitra) {
+                window.location.href = "{{ route('daftar.lowongan.program') }}/" + selectedMitra;
+            }
+        }
     </script>
 
     {{-- JS Card Detail Mitra --}}

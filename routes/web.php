@@ -74,7 +74,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::get('/logout', [AuthController::class, 'do_logout'])->name('do.logout');
 
     // Route Daftar Lowongan Mitra
-    Route::get('/daftar-lowongan-mitra', [KatalogLowonganController::class, 'index'])->name('daftar.lowongan.program');
+    Route::get('/daftar-lowongan-mitra/{id_mitra?}', [KatalogLowonganController::class, 'index'])->name('daftar.lowongan.program');
 
     // Route Guest
     Route::group(['middleware' => ['guest']], function () {

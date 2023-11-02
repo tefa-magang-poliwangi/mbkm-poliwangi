@@ -41,7 +41,7 @@
                             <button class="btn bg-white btn-rounded" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 @role('mitra')
-                                    <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                    <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('images/logo/km-template.png') }}"
                                         class="img-fluid rounded-circle" width="35" alt="">
                                 @else
                                     <img src="{{ asset('assets/images/avatar/avatar-1.png') }}" class="img-fluid rounded-circle"
