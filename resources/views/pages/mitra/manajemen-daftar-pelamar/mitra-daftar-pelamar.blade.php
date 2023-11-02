@@ -13,11 +13,7 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
-    <section class="">
-=======
     <section class="pt-4">
->>>>>>> ngoding
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card">

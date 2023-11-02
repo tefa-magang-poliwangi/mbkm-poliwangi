@@ -60,14 +60,23 @@ class BerkasLowonganController extends Controller
     {
 
         $validated = $request->validate([
-            'id_lowongan' => ['required'],
-            'id_berkas' => ['required'],
+            'berkas' => ['required'],
         ]);
 
-        BerkasLowongan::create([
-            'id_lowongan' => $id_lowongan,
-            'id_berkas' => $validated['id_berkas'],
-        ]);
+        if (isset($validated['berkas'])) {
+            $id_berkas = $validated['berkas'];
+
+            $berkas = Berkas::all();
+
+            foreach ($id_berkas as $berkasID) {
+                if ($berkas->contains('id', $berkasID)) {
+                    BerkasLowongan::create([
+                        'id_lowongan' => $id_lowongan,
+                        'id_berkas' => $berkasID,
+                    ]);
+                }
+            }
+        }
 
         Alert::success('Success', 'Berkas Lowongan Berhasil Ditambahkan');
 
@@ -91,22 +100,9 @@ class BerkasLowonganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_lowongan, $id_berkas_lowongan)
+    public function edit()
     {
-        $user = Auth::user();
-        $mitra = Mitra::where('id_user', $user->id)->first();
-
-        $lowongan = Lowongan::where('id_mitra', $mitra->id)->get();
-        $berkas = Berkas::where('id_mitra', $mitra->id)->get();
-
-        $data = [
-            'berkaslowongan' =>  BerkasLowongan::findOrFail($id_berkas_lowongan),
-            'berkas' => $berkas,
-            'lowongan' => $lowongan,
-            'id_lowongan' => $id_lowongan,
-        ];
-
-        return view('pages.mitra.manajemen-berkas-lowongan.form-update', $data);
+        //
     }
 
     /**
@@ -116,22 +112,10 @@ class BerkasLowonganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_lowongan, $id_berkas_lowongan)
+    public function update(Request $request, )
     {
 
-        $validated = $request->validate([
-            'id_lowongan' => ['required'],
-            'id_berkas' => ['required'],
-        ]);
-
-        BerkasLowongan::where('id', $id_berkas_lowongan)->update([
-            'id_lowongan' => $validated['id_lowongan'],
-            'id_berkas' => $validated['id_berkas'],
-        ]);
-
-        Alert::success('Success', 'Berkas Lowongan Berhasil Diupdate');
-
-        return redirect()->route('manajemen.berkas-lowongan.mitra.index' ,$id_lowongan);
+       //
     }
 
     /**

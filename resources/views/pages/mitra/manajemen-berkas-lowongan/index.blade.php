@@ -50,10 +50,10 @@
                                             <td class="text-center">{{ $no }}</td>
                                             <td class="text-center">{{ $data->berkas->nama}}</td>
                                             <td>
-                                                <a href="{{ route('manajemen.berkas-lowongan.mitra.edit', [$id_lowongan, $data->id]) }}"
+                                                {{-- <a href="{{ route('manajemen.berkas-lowongan.mitra.edit', [$id_lowongan, $data->id]) }}"
                                                     class="btn btn-info ml-auto">
                                                     <i class="fa-solid fa-pen text-white"></i>
-                                                </a>
+                                                </a> --}}
                                                 <a href="{{ route('manajemen.berkas-lowongan.mitra.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto">
                                                     <i class="fas fa-trash"></i>

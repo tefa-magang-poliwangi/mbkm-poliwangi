@@ -26,33 +26,39 @@
                             @csrf
 
                             <div class="form-group">
-                                <label class="form-label" for="id_lowongan">Lowongan</label>
-                                <select class="form-control @error('id_lowongan') is-invalid @enderror" id="id_lowongan"
-                                    name="id_lowongan">
-                                    <option value="">Pilih Lowongan</option>
-                                    @foreach ($lowongan as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_lowongan')
-                                    <div id="id_lowongan" class="form-text text-danger">
-                                        {{ $message }}</div>
-                                @enderror
-                            </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>Berkas
 
-                            <div class="form-group">
-                                <label class="form-label" for="id_berkas">Berkas</label>
-                                <select class="form-control @error('id_berkas') is-invalid @enderror" id="id_berkas"
-                                    name="id_berkas">
-                                    <option value="">Pilih Berkas</option>
-                                    @foreach ($berkas as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                                @error('matkul')
+                                                    <div id="" class="text-danger py-1">
+                                                        *pilih berkas
+                                                    </div>
+                                                @else
+                                                    <small>(Mohon Pilih Minimal Satu Berkas)</small>
+                                                @enderror
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($berkas as $dataBerkas)
+                                            <tr>
+                                                <td class="d-flex">
+                                                    <div class="form-check my-auto">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="{{ $dataBerkas->id }}" name="berkas[]"
+                                                            id="{{ $dataBerkas->id }}">
+                                                        <label class="form-check-label" for="{{ $dataBerkas->id }}">
+                                                            {{ $dataBerkas->nama }}
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                    </tbody>
                                     @endforeach
-                                </select>
-                                @error('id_berkas')
-                                    <div id="id_berkas" class="form-text text-danger">
-                                        {{ $message }}</div>
-                                @enderror
+                                </table>
                             </div>
 
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Tambah</button>
