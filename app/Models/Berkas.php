@@ -13,11 +13,17 @@ class Berkas extends Model
         'id',
         'nama',
         'ukuran_max',
+        'id_mitra'
     ];
 
     // relasi
     public function berkas_lowongan()
     {
         return $this->hasMany(BerkasLowongan::class);
+    }
+
+    public function mitra()
+    {
+        return $this->belongsTo(Mitra::class, 'id_mitra');
     }
 }

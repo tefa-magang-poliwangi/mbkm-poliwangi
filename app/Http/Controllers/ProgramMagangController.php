@@ -22,6 +22,7 @@ class ProgramMagangController extends Controller
         $data = [
             'programmagang' => ProgramMagang::where('id_lowongan', $id_lowongan)->get(),
             'id_lowongan' => $id_lowongan,
+            'lowongan' => Lowongan::findOrFail($id_lowongan),
         ];
 
         return view('pages.mitra.manajemen-program-magang.index', $data);

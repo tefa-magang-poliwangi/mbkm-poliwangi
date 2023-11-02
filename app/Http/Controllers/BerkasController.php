@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Kategori;
+use App\Models\Mitra;
+use App\Models\Berkas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
-class KategoriController extends Controller
+class BerkasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,14 @@ class KategoriController extends Controller
      */
     public function index()
     {
+        $user_id = auth()->user()->id;
+        $mitra = Mitra::where('id_user', $user_id)->first();
+
         $data = [
-            'kategori' => Kategori::all(),
+            'berkas' => Berkas::where('id_mitra', $mitra->id)->get(),
         ];
 
-        return view('pages.admin.manajemen-kategori.kategori', $data);
+        return view('pages.mitra.manajemen-berkas.berkas', $data);
     }
 
     /**
@@ -41,17 +44,22 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        $mitra = Mitra::where('id_user', Auth::user()->id)->first();
+
         $validated = $request->validate([
             'create_nama' => ['required'],
+            'create_ukuran_max' => ['required'],
         ]);
 
-        Kategori::create([
+        Berkas::create([
             'nama' => $validated['create_nama'],
+            'ukuran_max' => $validated['create_ukuran_max'],
+            'id_mitra' => $mitra->id,
         ]);
 
-        Alert::success('Success', 'Kategori Berhasil Ditambahkan');
+        Alert::success('Success', 'Berkas Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.kategori.index');
+        return redirect()->route('manajemen.berkas.mitra.index');
     }
 
     /**
@@ -85,17 +93,21 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $mitra_id = Mitra::where('id_user', Auth::user()->id)->first();
+
         $validated = $request->validate([
             'update_nama' => ['required'],
+            'update_ukuran_max' => ['required'],
         ]);
 
-        Kategori::where('id', $id)->update([
+        Berkas::where('id', $id)->update([
             'nama' => $validated['update_nama'],
+            'ukuran_max' => $validated['update_ukuran_max']
         ]);
 
-        Alert::success('Success', 'Kategori Berhasil Diupdate');
+        Alert::success('Success', 'Berkas Berhasil Diupdate');
 
-        return redirect()->route('manajemen.kategori.index');
+        return redirect()->route('manajemen.berkas.mitra.index');
     }
 
     /**
@@ -106,11 +118,11 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = Kategori::findOrFail($id);
-        $kategori->delete();
+        $berkas = Berkas::findOrFail($id);
+        $berkas->delete();
 
-        Alert::success('Success', 'Kategori Berhasil Dihapus');
+        Alert::success('Success', 'Berkas Berhasil Dihapus');
 
-        return redirect()->route('manajemen.kategori.index');
+        return redirect()->route('manajemen.berkas.mitra.index');
     }
 }
