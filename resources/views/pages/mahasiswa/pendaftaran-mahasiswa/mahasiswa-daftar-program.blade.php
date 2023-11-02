@@ -72,14 +72,14 @@
             </div>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 order-2 mb-4">
                     <div class="list-group" id="list-tab" role="tablist">
                         <div>
                             <div class="card ca rd-hover card-border p-3">
                                 <div class="card-body text-center">
                                     <div class="mx-auto d-flex align-items-center">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
-                                            width="150" alt="">
+                                        <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                            class="image-fluid" width="100" alt="">
                                     </div>
 
                                     <div class="text-justify mt-3">
@@ -107,8 +107,8 @@
                                     <div class="card card-border p-3 mb-4">
                                         <div class="card-body text-center">
                                             <div class="mx-auto d-flex align-items-center">
-                                                <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="img-fluid"
-                                                    width="150" alt="">
+                                                <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                                    class="img-fluid" width="100" alt="">
                                             </div>
                                             <div class="text-justify pt-4">
                                                 <h6 class="fw-bold">{{ $data->mitra->nama }}</h6>
@@ -153,15 +153,15 @@
                     </div>
                 </div>
 
-                <div class="col-8">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 order-1">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                             aria-labelledby="list-home-list">
                             <div class="card card-border p-4 mb-4">
                                 <div class="card-body">
                                     <div class="mx-auto d-flex">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
-                                            width="150" alt="">
+                                        <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                            class="image-fluid" width="100" alt="">
                                     </div>
                                     <div class="text-justify py-3">
                                         <h6 class="fw-bold">{{ $mitra->nama }}</h6>
@@ -210,8 +210,8 @@
                                 <div class="card card-border card-rounded-sm card-hover">
                                     <div class="card-body my-2 mx-5">
                                         <div class="mx-auto d-flex">
-                                            <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
-                                                width="150" alt="">
+                                            <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                                class="image-fluid" width="100" alt="">
                                         </div>
 
                                         <div class="text-justify mt-3">
@@ -220,7 +220,7 @@
                                         </div>
 
                                         <div class="text-justify">
-                                            <p class="mb-2 fw-bold">Berkas Pendaftaran</p>
+                                            <p class="mb-2 fw-bold">Syarat Berkas Pendaftaran : </p>
                                             @if ($data->berkas_lowongan->count() > 0)
                                                 <ol>
                                                     @foreach ($data->berkas_lowongan as $item)

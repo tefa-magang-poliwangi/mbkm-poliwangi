@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
+
 class DosenWaliController extends Controller
 {
     /**
@@ -26,7 +27,9 @@ class DosenWaliController extends Controller
         $datas = [
             'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
             'prodi' => Prodi::Where('id', $prodi_id)->first(),
-            'dosen_walis' => DosenWali::all(),
+            'dosen_walis' => DosenWali::whereHas('dosen', function ($query) use ($prodi_id) {
+                $query->where('id_prodi', $prodi_id);
+            })->get(),
         ];
 
         return view('pages.admin.Manajemen-dosen-wali.data-dosen-wali', $datas);

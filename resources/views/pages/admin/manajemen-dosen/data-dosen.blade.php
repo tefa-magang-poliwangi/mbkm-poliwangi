@@ -66,24 +66,6 @@
                             </div>
                         </div>
 
-                        {{-- Filter Prodi Dosen --}}
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-6 col-lg-4">
-                                <div class="form-group">
-                                    <form action="{{ route('manajemen.dosen.index') }}" method="GET">
-                                        <select class="form-control select2" name="prodi" onchange="this.form.submit()">
-                                            <option value="">Semua Prodi</option>
-                                            @foreach ($prodi as $item)
-                                                <option value="{{ $item->id }}"
-                                                    {{ $item->id == $request->prodi ? 'selected' : '' }}>
-                                                    {{ $item->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">

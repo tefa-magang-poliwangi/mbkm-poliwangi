@@ -91,14 +91,27 @@ class ProfilePLMitraController extends Controller
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
 
+        // Menggunakan array kosong untuk $saveData sebagai awalan
+        $saveData = [];
+
+        // Pengecekan apakah ada input password
+        if (!empty($request->input('password'))) {
+            // Hash password
+            $saveData['password'] = bcrypt($request->input('password'));
+        }
+
         $user = User::findOrFail($plmitra->id_user);
 
         User::where('id', $user->id)->update([
             'name' => $validated['nama'],
             'email' => $validated['email'],
             'username' => $validated['email'],
-            'password' => bcrypt($validated['password']),
         ]);
+
+        // Jika ada password baru, update password
+        if (isset($saveData['password'])) {
+            $user->update(['password' => $saveData['password']]);
+        }
 
         PlMitra::where('id', $plmitra->id)->update([
             'nama' => $validated['nama'],

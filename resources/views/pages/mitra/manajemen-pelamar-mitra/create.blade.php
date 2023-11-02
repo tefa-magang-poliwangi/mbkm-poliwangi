@@ -200,9 +200,8 @@
 
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
-                                <textarea id="deskripsi" rows="4"
-                                    class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi"
-                                    placeholder="Deskripsi"></textarea>
+                                <textarea id="deskripsi" rows="4" class="form-control @error('deskripsi') is-invalid @enderror"
+                                    name="deskripsi" placeholder="Deskripsi"></textarea>
                                 @error('deskripsi')
                                     <div id="deskripsi" class="form-text text-danger">
                                         {{ $message }}
@@ -261,6 +260,7 @@
             })
         });
     </script>
+
     <script>
         document.getElementById("togglePassword").addEventListener("click", function() {
             togglePasswordVisibility("password", "togglePassword");

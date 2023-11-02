@@ -372,7 +372,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/{user}/show', 'UsersController@show')->name('users.show');
             Route::get('/{user}/edit', 'UsersController@edit')->name('users.edit');
             Route::patch('/{user}/update', 'UsersController@update')->name('users.update');
-            Route::get('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
+            Route::delete('/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
         });
 
         // Route Role dan Permissions
@@ -465,4 +465,8 @@ Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
 
 Route::get('/dashboard-admin/manajemen-kaprodi', function () {
     return view('pages.admin.manajemen-kaprodi.index');
+});
+
+Route::get('/daftar-pelamar', function () {
+    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
 });
