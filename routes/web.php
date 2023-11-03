@@ -55,6 +55,7 @@ use App\Http\Controllers\PLMitraPageController;
 use App\Http\Controllers\ProfilePLMitraController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\BerkasLowonganController;
+use App\Http\Controllers\DaftarMagangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -301,6 +302,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Mahasiswa)
         Route::get('/dashboard/mahasiswa', [MahasiswaPageController::class, 'dashboard_mahasiswa'])->name('dashboard.mahasiswa.page');
 
+        // Route Daftar Magang Internal
+        Route::get('/daftar-magang-internal/{id_lowongan}/upload-berkas-lowongan', [DaftarMagangController::class, 'index'])->name('daftar.magang.internal.page');
+
         // Route Profil Mahasiswa
         Route::get('/dashboard/mahasiswa/ubah-profil/{id_user}', [ProfileMahasiswaController::class, 'show'])->name('profil.mahasiswa.page');
         Route::put('/dashboard/mahasiswa/update-profil/{id_mahasiswa}', [ProfileMahasiswaController::class, 'update'])->name('profil.mahasiswa.update');
@@ -354,7 +358,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/berkas-lowongan/{id_berkas}/{id_berkas_lowongan}/edit', [BerkasLowonganController::class, 'edit'])->name('manajemen.berkas-lowongan.mitra.edit');
         Route::put('/manajemen/berkas-lowongan/{id_berkas}/{id_berkas_lowongan}/update', [BerkasLowonganController::class, 'update'])->name('manajemen.berkas-lowongan.mitra.update');
         Route::get('/manajemen/berkas-lowongan/{id_berkas_lowongan}/destroy', [BerkasLowonganController::class, 'destroy'])->name('manajemen.berkas-lowongan.mitra.destroy');
-
 
         // # (Route PLMitra)
         //Route Dashboard PLMitra
@@ -430,7 +433,7 @@ Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
 
 // # Halaman Mitra - Lowongan
 Route::get('/dashboard-mitra/daftar-pelamar', function () {
-    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
+    return view('pages.mitra.manajemen-daftar-pelamar.mitra-daftar-pelamar');
 });
 
 // Halaman Kaprodi
@@ -465,8 +468,4 @@ Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
 
 Route::get('/dashboard-admin/manajemen-kaprodi', function () {
     return view('pages.admin.manajemen-kaprodi.index');
-});
-
-Route::get('/daftar-pelamar', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
 });

@@ -47,7 +47,7 @@
     <section id="searchPerusahaan" class="container-fluid section-bg-one py-5">
         {{-- Filter Perusahaan --}}
         <div class="container py-5">
-            <div class="row d-flex justify-content-start pt-5">
+            <div class="row d-flex justify-content-start pt-5" data-aos="fade-up" data-aos-delay="300">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3">
                     <h4 class="fw-bold text-white mb-3">Cari Perusahaan</h4>
                     <div class="form-group">
@@ -61,56 +61,69 @@
                 </div>
             </div>
 
-            <div class="row pt-5 d-flex justify-content-around" id="container">
-                @foreach ($mitras as $item)
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
-                        <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
-                            <div class="card-body text-center">
-                                <div class="mx-auto pb-3">
-                                    <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
-                                        class="image-fluid" width="100" alt="">
+            <div class="row pt-5 d-flex justify-content-around" id="container" data-aos="zoom-in" data-aos-delay="600">
+                @if ($mitras->isEmpty())
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex pb-3">
+                        <img src="{{ asset('assets/images/mitra-none.svg') }}" width="500"
+                            class="img-fluid p-5 mx-auto my-auto" alt="">
+                    </div>
+                    <h3 class="fw-x-bold text-white text-center pb-2">Belum ada Mitra untuk Saat ini.</h3>
+                @else
+                    @foreach ($mitras as $item)
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
+                            <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
+                                <div class="card-body text-center">
+                                    <div class="mx-auto pb-3">
+                                        <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
+                                            class="image-fluid" width="100" alt="">
+                                    </div>
+                                    <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}
+                                    </h4>
+                                    <p class="text-justify fw-regular pt-2 limit-description"
+                                        title="{{ $item->deskripsi }}">
+                                        {{ $item->deskripsi }}
+                                    </p>
+                                    <a href="{{ route('daftar.lowongan.program', ['id_mitra' => $item->id]) }}"
+                                        class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                                 </div>
-                                <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}</h4>
-                                <p class="text-justify fw-regular pt-2 limit-description" title="{{ $item->deskripsi }}">
-                                    {{ $item->deskripsi }}
-                                </p>
-                                <a href="{{ route('daftar.lowongan.program', ['id_mitra' => $item->id]) }}"
-                                    class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-                {{-- showmore item --}}
-                @foreach ($show_more_mitras as $item)
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
-                        <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
-                            <div class="card-body text-center">
-                                <div class="mx-auto pb-3">
-                                    <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
-                                        class="image-fluid" width="100" alt="">
+                    {{-- showmore item --}}
+                    @foreach ($show_more_mitras as $item)
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
+                            <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
+                                <div class="card-body text-center">
+                                    <div class="mx-auto pb-3">
+                                        <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
+                                            class="image-fluid" width="100" alt="">
+                                    </div>
+                                    <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}
+                                    </h4>
+                                    <p class="text-justify fw-regular pt-2 limit-description"
+                                        title="{{ $item->deskripsi }}">
+                                        {{ $item->deskripsi }}
+                                    </p>
+                                    <a href="{{ route('daftar.lowongan.program', ['id_mitra' => $item->id]) }}"
+                                        class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                                 </div>
-                                <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}</h4>
-                                <p class="text-justify fw-regular pt-2 limit-description" title="{{ $item->deskripsi }}">
-                                    {{ $item->deskripsi }}
-                                </p>
-                                <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-                @if (!$show_more_mitras->isEmpty())
-                    <div class="row py-5">
-                        <div class="col">
-                            <center>
-                                <button type="button" id="showMore" class="btn btn-theme-two px-3 py-3">
-                                    Lihat Perusahaan Lainnya &ensp;
-                                    <i class="fa-solid fa-caret-down"></i>
-                                </button>
-                            </center>
+                    @if (!$show_more_mitras->isEmpty())
+                        <div class="row py-5" data-aos="zoom-in-up" data-aos-delay="600">
+                            <div class="col">
+                                <center>
+                                    <button type="button" id="showMore" class="btn btn-theme-two px-3 py-3">
+                                        Lihat Perusahaan Lainnya &ensp;
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </button>
+                                </center>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endif
             </div>
         </div>
@@ -157,7 +170,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 d-flex  order-2 order-md-1 mb-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 d-flex  order-2 order-md-1 mb-3"
+                            data-aos="zoom-in" data-aos-delay="600">
                             <div class="card card-hover mx-auto my-auto">
                                 <div class="card-body p-5">
                                     <p class="fw-medium text-justify text-theme">
@@ -184,7 +198,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end order-1 order-md-2 mb-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end order-1 order-md-2 mb-3"
+                            data-aos="zoom-in-up" data-aos-delay="900">
                             <img src="{{ asset('images/note-ilustration.png') }}" class="mx-auto img-fluid p-5"
                                 alt="">
                         </div>
