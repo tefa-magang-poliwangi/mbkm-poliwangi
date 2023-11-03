@@ -26,27 +26,37 @@
                         <h4 class="fw-x-bold text-theme text-center pb-5 py-3">Syarat Berkas Pendaftaran Belum Ditambahkan.
                         </h4>
                     @else
-                        {{-- Loop Berkas Lowongan --}}
-                        <div class="pt-4">
-                            @foreach ($berkas_lowongan as $itemForm)
-                                <div class="custom-file form-group container-file input-file">
-                                    <label for="{{ $itemForm->berkas->nama }}"
-                                        class="form-label">{{ $itemForm->berkas->nama }}</label>
-                                    <input type="file" id="{{ $itemForm->berkas->nama }}"
-                                        name="{{ $itemForm->berkas->nama }}" class="form-control">
-                                </div>
-                            @endforeach
-
-                            <div class="pt-3">
-                                <center>
-                                    <button class="btn btn-theme" type="submit">
-                                        Unggah &ensp; <i class="fa-solid fa-floppy-disk"></i>
-                                    </button>
-                                </center>
-                            </div>
+                        <div class="mt-4">
+                            <small class="text-danger">*wajib pdf, max 5Mb</small>
                         </div>
-                    @endif
 
+                        <form action="{{ route('daftar.magang.internal.store', $lowongan->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+
+                            {{-- Loop Berkas Lowongan --}}
+                            <div class="pt-4">
+                                @foreach ($berkas_lowongan as $itemForm)
+                                    <div class="custom-file form-group container-file input-file">
+                                        <label for="{{ $itemForm->berkas->id }}"
+                                            class="form-label">{{ $itemForm->berkas->nama }}</label>
+                                        <input class="form-control" type="file" id="{{ $itemForm->berkas->id }}"
+                                            name="files[{{ $itemForm->berkas->id }}]"
+                                            berkas-id="{{ $itemForm->berkas->id }}" class="form-control" accept=".pdf"
+                                            required>
+                                    </div>
+                                @endforeach
+
+                                <div class="pt-3">
+                                    <center>
+                                        <button class="btn btn-theme" type="submit">
+                                            Unggah &ensp; <i class="fa-solid fa-floppy-disk"></i>
+                                        </button>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -59,5 +69,19 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+
+    {{-- Script untuk Mengambil ID Berkas pada Input File --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ratingInputs = document.querySelectorAll(".rating-input");
+
+            ratingInputs.forEach(input => {
+                input.addEventListener("change", function() {
+                    const currentRating = this.value;
+                    const surveiId = this.getAttribute("berkas-id");
+                });
+            });
+        });
     </script>
 @endsection

@@ -304,6 +304,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Daftar Magang Internal
         Route::get('/daftar-magang-internal/{id_lowongan}/upload-berkas-lowongan', [DaftarMagangController::class, 'index'])->name('daftar.magang.internal.page');
+        Route::post('/upload-berkas-lowongan/{id_lowongan}/store', [DaftarMagangController::class, 'store'])->name('daftar.magang.internal.store');
 
         // Route Profil Mahasiswa
         Route::get('/dashboard/mahasiswa/ubah-profil/{id_user}', [ProfileMahasiswaController::class, 'show'])->name('profil.mahasiswa.page');
