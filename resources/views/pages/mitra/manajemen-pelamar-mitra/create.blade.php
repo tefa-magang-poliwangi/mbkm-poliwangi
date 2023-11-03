@@ -26,7 +26,7 @@
 
                             <div class="form-group">
                                 <label for="nama" class="nama">Nama Perusahaan</label>
-                                <input id="nama" type="text" name="nama"
+                                <input id="nama" type="text"
                                     class="form-control @error('nama') is-invalid @enderror" name="nama"
                                     placeholder="Nama Perusahaan">
                                 @error('nama')
@@ -67,7 +67,7 @@
 
                             <div class="form-group">
                                 <label for="alamat" class="alamat">Alamat</label>
-                                <input id="alamat" type="text" name="alamat"
+                                <input id="alamat" type="text"
                                     class="form-control @error('alamat') is-invalid @enderror" name="alamat"
                                     placeholder="Alamat">
                                 @error('alamat')
@@ -116,7 +116,7 @@
 
                             <div class="form-group">
                                 <label for="website" class="website">Link Website</label>
-                                <input id="website" type="text" name="website"
+                                <input id="website" type="text"
                                     class="form-control @error('website') is-invalid @enderror" name="website"
                                     placeholder="Link Website">
                                 @error('website')
@@ -127,7 +127,7 @@
 
                             <div class="form-group">
                                 <label for="narahubung">No Telephone</label>
-                                <input id="narahubung" type="text" name="narahubung"
+                                <input id="narahubung" type="text"
                                     class="form-control @error('narahubung') is-invalid @enderror" name="narahubung"
                                     placeholder="No Telephone">
                                 @error('narahubung')
@@ -139,7 +139,7 @@
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" type="email" name="email"
+                                <input id="email" type="email"
                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                     placeholder="Email">
                                 @error('email')
@@ -198,6 +198,17 @@
                                 @enderror
                             </div>
 
+                            <div class="form-group">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea id="deskripsi" rows="4" class="form-control @error('deskripsi') is-invalid @enderror"
+                                    name="deskripsi" placeholder="Deskripsi"></textarea>
+                                @error('deskripsi')
+                                    <div id="deskripsi" class="form-text text-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Tambah</button>
                         </form>
                     </div>
@@ -249,6 +260,7 @@
             })
         });
     </script>
+
     <script>
         document.getElementById("togglePassword").addEventListener("click", function() {
             togglePasswordVisibility("password", "togglePassword");

@@ -76,7 +76,7 @@
                                     name="id_lowongan">
                                     <option value="">Pilih Lowongan</option>
                                     @foreach ($lowongan as $data)
-                                        <option value="{{ $data->id }}" selected>{{ $data->nama }}</option>
+                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                     @endforeach
                                 </select>
                                 @error('id_lowongan')

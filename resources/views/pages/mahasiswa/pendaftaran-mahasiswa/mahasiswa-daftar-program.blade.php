@@ -39,21 +39,17 @@
                     </div>
 
                     <div class="row d-flex justify-content-between mt-2">
-                        <div class="col-10 col-sm-10 col-md-10 col-lg-11 mb-3">
-                            <div class="input-group">
-                                <select class="form-control select2">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-8 mb-3">
+                            <div class="form-group">
+                                <label for="selectMitra" class="form-label fw-medium">Filter Lowongan Perusahaan</label>
+                                <select class="form-control select2" id="selectMitra" onchange="goToMitra()">
                                     <option value="">Pilih Nama Perusahaan</option>
                                     @foreach ($mitras as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                        <option value="{{ $item->id }}" {{ $item->id == $mitra->id ? 'selected' : '' }}>
+                                            {{ $item->nama }}
+                                        </option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-2 col-sm-2 col-md-2 col-lg-1 mb-3 d-flex">
-                            <div class="input-group-append mx-auto my-auto">
-                                <button type="button" class="btn btn-search">
-                                    <i class="fa-solid fa-search"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -72,14 +68,14 @@
             </div>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 order-2 mb-4">
                     <div class="list-group" id="list-tab" role="tablist">
                         <div>
                             <div class="card ca rd-hover card-border p-3">
                                 <div class="card-body text-center">
                                     <div class="mx-auto d-flex align-items-center">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
-                                            width="150" alt="">
+                                        <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                            class="image-fluid" width="100" alt="">
                                     </div>
 
                                     <div class="text-justify mt-3">
@@ -107,8 +103,8 @@
                                     <div class="card card-border p-3 mb-4">
                                         <div class="card-body text-center">
                                             <div class="mx-auto d-flex align-items-center">
-                                                <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="img-fluid"
-                                                    width="150" alt="">
+                                                <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                                    class="img-fluid" width="100" alt="">
                                             </div>
                                             <div class="text-justify pt-4">
                                                 <h6 class="fw-bold">{{ $data->mitra->nama }}</h6>
@@ -153,15 +149,15 @@
                     </div>
                 </div>
 
-                <div class="col-8">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 order-1">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                             aria-labelledby="list-home-list">
                             <div class="card card-border p-4 mb-4">
                                 <div class="card-body">
                                     <div class="mx-auto d-flex">
-                                        <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
-                                            width="150" alt="">
+                                        <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                            class="image-fluid" width="100" alt="">
                                     </div>
                                     <div class="text-justify py-3">
                                         <h6 class="fw-bold">{{ $mitra->nama }}</h6>
@@ -210,8 +206,8 @@
                                 <div class="card card-border card-rounded-sm card-hover">
                                     <div class="card-body my-2 mx-5">
                                         <div class="mx-auto d-flex">
-                                            <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid"
-                                                width="150" alt="">
+                                            <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                                                class="image-fluid" width="100" alt="">
                                         </div>
 
                                         <div class="text-justify mt-3">
@@ -220,7 +216,7 @@
                                         </div>
 
                                         <div class="text-justify">
-                                            <p class="mb-2 fw-bold">Berkas Pendaftaran</p>
+                                            <p class="mb-2 fw-bold">Syarat Berkas Pendaftaran : </p>
                                             @if ($data->berkas_lowongan->count() > 0)
                                                 <ol>
                                                     @foreach ($data->berkas_lowongan as $item)
@@ -286,6 +282,16 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+
+    {{-- Script Submit Mitra Search by Dropdown --}}
+    <script>
+        function goToMitra() {
+            var selectedMitra = document.getElementById('selectMitra').value;
+            if (selectedMitra) {
+                window.location.href = "{{ route('daftar.lowongan.program') }}/" + selectedMitra;
+            }
+        }
     </script>
 
     {{-- JS Card Detail Mitra --}}

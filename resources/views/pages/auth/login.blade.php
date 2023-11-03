@@ -9,8 +9,8 @@
         <div class="container mt-5 py-4">
             <div class="row d-flex justify-content-center margin-buttom">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 d-flex">
-                    <img src="{{ asset('assets/images/logo-support.png') }}" alt="logo"
-                        class="img-fluid mx-auto my-auto px-3" width="300">
+                    <img src="{{ asset('assets/images/logo-mbkm.png') }}" alt="logo" class="img-fluid mx-auto my-auto px-3"
+                        width="300">
                 </div>
             </div>
 

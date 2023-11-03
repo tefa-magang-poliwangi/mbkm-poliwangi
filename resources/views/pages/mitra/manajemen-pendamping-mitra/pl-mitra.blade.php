@@ -125,27 +125,6 @@
                                                                         @enderror
                                                                     </div>
 
-                                                                    {{-- <div class="form-group">
-                                                                        <label for="update_id_mitra"
-                                                                            class="form-label">Mitra</label>
-                                                                        <select
-                                                                            class="form-control @error('update_id_mitra') is-invalid @enderror"
-                                                                            id="update_id_mitra" name="update_id_mitra">
-                                                                            <option value="">Pilih Mitra</option>
-                                                                            @foreach ($mitra as $item)
-                                                                                <option value="{{ $item->id }}"
-                                                                                    {{ $data->id_mitra == $item->id ? 'selected' : '' }}>
-                                                                                    {{ $item->nama }}
-                                                                                </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        @error('update_id_mitra')
-                                                                            <div id="update_id_mitra"
-                                                                                class="form-text pb-1 text-danger">
-                                                                                {{ $message }}</div>
-                                                                        @enderror
-                                                                    </div> --}}
-
                                                                     <div class="form-group">
                                                                         <label for="update_password"
                                                                             class="control-label">Ubah Password</label>
@@ -263,21 +242,6 @@
                                     {{ $message }}</div>
                             @enderror
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label for="create_id_mitra" class="form-label">Mitra</label>
-                            <select class="form-control @error('create_id_mitra') is-invalid @enderror"
-                                id="create_id_mitra" name="create_id_mitra">
-                                <option value="">Pilih Mitra</option>
-                                @foreach ($mitra as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                @endforeach
-                            </select>
-                            @error('create_id_mitra')
-                                <div id="create_id_mitra" class="form-text pb-1 text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div> --}}
 
                         <div class="form-group">
                             <label for="create_password" class="control-label">Password</label>

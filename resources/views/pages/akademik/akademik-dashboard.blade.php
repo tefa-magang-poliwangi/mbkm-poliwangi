@@ -24,7 +24,7 @@
             </div>
 
             <div class="col-md-6">
-                <a href="{{ route('akademik.daftar.prodi') }}">
+                <a href="{{ route('akademik.daftar.prodi') }}" class="menu-none-decoration text-theme">
                     <div class="card hospital-info card-hover card-rounded">
                         <div class="card-body">
                             <h5 class="mt-0 mb-5">Daftar Nilai Mahasiswa </h5>

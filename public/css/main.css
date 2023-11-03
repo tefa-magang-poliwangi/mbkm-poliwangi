@@ -511,3 +511,34 @@ body {
     overflow-y: auto !important;
     overflow-x: hidden !important;
 }
+
+.custom-image-profile {
+    width: 100px;
+    height: 100px;
+}
+
+.limit-text-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.limit-description {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.input-file {
+    margin-bottom: 16px;
+}
+
+.container-file {
+    padding: 16px;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
