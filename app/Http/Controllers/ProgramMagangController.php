@@ -62,7 +62,6 @@ class ProgramMagangController extends Controller
             'waktu_mulai' => ['required'],
             'waktu_akhir' => ['required'],
             'posisi_mahasiswa' => ['required', 'string'],
-            'id_lowongan' => ['required'],
             'id_pl_mitra' => ['required'],
         ]);
 
@@ -129,7 +128,6 @@ class ProgramMagangController extends Controller
             'waktu_mulai' => ['required'],
             'waktu_akhir' => ['required'],
             'posisi_mahasiswa' => ['required', 'string'],
-            'id_lowongan' => ['required'],
             'id_pl_mitra' => ['required'],
         ]);
 
@@ -138,7 +136,6 @@ class ProgramMagangController extends Controller
             'waktu_mulai' => $validated['waktu_mulai'],
             'waktu_akhir' => $validated['waktu_akhir'],
             'posisi_mahasiswa' => $validated['posisi_mahasiswa'],
-            'id_lowongan' => $validated['id_lowongan'],
             'id_pl_mitra' => $validated['id_pl_mitra'],
         ]);
 
