@@ -374,3 +374,7 @@ Route::get('/dashboard-admin/manajemen-kaprodi', function () {
 Route::get('/daftar-pelamar', function () {
     return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
 });
+
+Route::get('/cek-permohonan-berkas', function () {
+    return view('pages.admin.cek-berkas-permohonan');
+});
