@@ -28,7 +28,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
+                    <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex text-theme">
                         <i class="fa-solid fa-house my-auto"></i> <span class="my-auto">&ensp; Beranda</span>
                     </a>
 
