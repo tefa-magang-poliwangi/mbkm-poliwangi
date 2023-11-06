@@ -50,8 +50,8 @@
                                         <th class="text-center text-white">Waktu Akhir</th>
                                         <th class="text-center text-white">Posisi Mahasiswa</th>
                                         <th class="text-center text-white">Pendamping Lapang</th>
-                                        <th class="text-center text-white" width="15%">Status</th>
-                                        <th class="text-center text-white" width="10%">Aksi</th>
+                                        <th class="text-center text-white" width="10%">Status</th>
+                                        <th class="text-center text-white" width="12%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

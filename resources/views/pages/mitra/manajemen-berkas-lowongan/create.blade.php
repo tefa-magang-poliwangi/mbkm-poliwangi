@@ -31,9 +31,9 @@
                                         <tr class="text-nowrap">
                                             <th>Berkas
 
-                                                @error('matkul')
+                                                @error('berkas')
                                                     <div id="" class="text-danger py-1">
-                                                        *pilih berkas
+                                                        *pilih minimal satu berkas
                                                     </div>
                                                 @else
                                                     <small>(Mohon Pilih Minimal Satu Berkas)</small>
@@ -49,6 +49,7 @@
                                                         <input class="form-check-input" type="checkbox"
                                                             value="{{ $dataBerkas->id }}" name="berkas[]"
                                                             id="{{ $dataBerkas->id }}">
+
                                                         <label class="form-check-label" for="{{ $dataBerkas->id }}">
                                                             {{ $dataBerkas->nama }}
                                                         </label>
