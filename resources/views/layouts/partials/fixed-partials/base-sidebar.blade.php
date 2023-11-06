@@ -575,6 +575,15 @@
                         </a>
                     </li>
                 @endcan
+
+                {{-- @can('pages.admin.cek-berkas-permohonan')
+                    <li>
+                        <a class="nav-link" href="{{ route('pages.admin.cek-berkas-permohonan') }}">
+                            <i class="fas fa-solid fa-bars-progress"></i>
+                            <span>Cek Permohonan Berkas</span>
+                        </a>
+                    </li>
+                @endcan --}}
             @endauth
 
             {{-- Menu PL Mitra --}}
