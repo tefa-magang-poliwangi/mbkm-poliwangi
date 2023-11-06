@@ -16,6 +16,7 @@ class PageController extends Controller
         $show_more_mitras = Mitra::where('status', 'Aktif')->whereNotIn('id', $mitras->pluck('id'))->inRandomOrder()->take(4)->get();
 
         $data = [
+            'mitras_all' => Mitra::select('id', 'nama')->get(),
             'mitras' => $mitras,
             'show_more_mitras' => $show_more_mitras,
         ];

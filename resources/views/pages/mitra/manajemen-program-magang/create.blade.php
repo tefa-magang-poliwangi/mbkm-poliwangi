@@ -71,21 +71,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="id_lowongan">Lowongan</label>
-                                <select class="form-control @error('id_lowongan') is-invalid @enderror" id="id_lowongan"
-                                    name="id_lowongan">
-                                    <option value="">Pilih Lowongan</option>
-                                    @foreach ($lowongan as $data)
-                                        <option value="{{ $data->id }}" selected>{{ $data->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_lowongan')
-                                    <div id="id_lowongan" class="form-text text-danger">
-                                        {{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
                                 <label class="form-label" for="id_pl_mitra">Pendamping Lapang</label>
                                 <select class="form-control @error('id_pl_mitra') is-invalid @enderror" id="id_pl_mitra"
                                     name="id_pl_mitra">

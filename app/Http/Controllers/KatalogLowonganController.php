@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
+use App\Models\Mahasiswa;
 use App\Models\Mitra;
+use App\Models\PelamarMagang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KatalogLowonganController extends Controller
 {
@@ -13,14 +16,40 @@ class KatalogLowonganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
-        $mitra = Mitra::inRandomOrder()->first();
+        if ($id) {
+            // Jika ada ID mitra yang diberikan, cek apakah ID tersebut ada di tabel Mitra
+            $mitra = Mitra::find($id);
+
+            if (!$mitra) {
+                // Jika ID tidak ada dalam tabel Mitra, ambil data mitra secara acak
+                $mitra = Mitra::inRandomOrder()->first();
+            }
+        } else {
+            // Jika tidak ada ID mitra yang diberikan, ambil data mitra secara acak
+            $mitra = Mitra::inRandomOrder()->first();
+        }
+
+        // Dapatkan data lowongan untuk mitra yang dipilih
+        $lowongan_mitra = Lowongan::where('id_mitra', $mitra->id)->where('status', 'Aktif')->with('berkas_lowongan')->get();
+        $mitras = Mitra::all();
+        $mahasiswa = null;
+
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            // Periksa apakah pengguna memiliki peran 'mahasiswa'
+            if ($user->hasRole('mahasiswa')) {
+                $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
+            }
+        }
 
         $data = [
             'mitra' => $mitra,
-            'lowongan_mitra' => Lowongan::where('id_mitra', $mitra->id)->with('berkas_lowongan')->get(),
-            'mitras' => Mitra::all(),
+            'lowongan_mitra' => $lowongan_mitra,
+            'mitras' => $mitras,
+            'permohonan' => $mahasiswa ? PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->latest('created_at')->first() : null,
         ];
 
         return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program', $data);

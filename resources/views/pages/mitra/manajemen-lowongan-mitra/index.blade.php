@@ -50,6 +50,7 @@
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Jumlah Lowongan</th>
                                         <th class="text-center text-white">Program Magang</th>
+                                        <th class="text-center text-white">Berkas Lowongan</th>
                                         <th class="text-center text-white">Status</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
@@ -66,6 +67,10 @@
                                             <td class="text-center">{{ $data->jumlah_lowongan }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('manajemen.program.magang.index', $data->id) }}"
+                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{ route('manajemen.berkas-lowongan.mitra.index', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
                                             <td class="text-center">

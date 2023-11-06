@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Daftar Program Magang</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Program Magang - {{$lowongan->nama}}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <a href="{{ Route('manajemen.program.magang.create', $id_lowongan) }}"
@@ -50,8 +50,8 @@
                                         <th class="text-center text-white">Waktu Akhir</th>
                                         <th class="text-center text-white">Posisi Mahasiswa</th>
                                         <th class="text-center text-white">Pendamping Lapang</th>
-                                        <th class="text-center text-white" width="15%">Status</th>
-                                        <th class="text-center text-white" width="10%">Aksi</th>
+                                        <th class="text-center text-white" width="10%">Status</th>
+                                        <th class="text-center text-white" width="12%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

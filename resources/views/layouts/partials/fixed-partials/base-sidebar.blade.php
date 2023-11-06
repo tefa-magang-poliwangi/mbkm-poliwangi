@@ -522,6 +522,15 @@
                         </a>
                     </li>
                 @endcan
+
+                @can('daftar.permohonan.magang.page')
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.permohonan.magang.page') }}">
+                            <i class="fas fa-regular fa-folder-open"></i>
+                            <span>Daftar Permohonan</span>
+                        </a>
+                    </li>
+                @endcan
             @endauth
 
             {{-- Menu Mitra --}}
@@ -531,6 +540,7 @@
                 @endrole
 
                 @can('profil.mitra.page')
+                    <li class="menu-header">Tentang Akun</li>
                     <li>
                         <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}">
                             <i class="fas fa-user"></i>
@@ -540,10 +550,20 @@
                 @endcan
 
                 @can('manajemen.pendamping.lapang.mitra.index')
+                    <li class="menu-header">Data Mitra</li>
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.pendamping.lapang.mitra.index') }}">
                             <i class="fas fa-solid fa-users-gear fa-2xl"></i>
-                            <span>Manajemen PL Mitra</span>
+                            <span>Data PL Mitra</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.berkas.mitra.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.berkas.mitra.index') }}">
+                            <i class="fas fa-solid fa-briefcase"></i>
+                            <span>Data Berkas</span>
                         </a>
                     </li>
                 @endcan
@@ -552,16 +572,18 @@
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.lowongan.mitra.index') }}">
                             <i class="fas fa-solid fa-briefcase"></i>
-                            <span>Lowongan</span>
+                            <span>Data Lowongan</span>
                         </a>
                     </li>
                 @endcan
+
+
 
                 @can('manajemen.pelamar.mitra.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.pelamar.mitra.index') }}">
                             <i class="fas fa-solid fa-list-ol"></i>
-                            <span>Daftar Pelamar</span>
+                            <span>Data Pelamar</span>
                         </a>
                     </li>
                 @endcan
@@ -589,29 +611,15 @@
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')
-                <li class="menu-header">MITRA</li>
+                    <li class="menu-header">MITRA</li>
                 @endrole
-
-                {{-- <li>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-solid fa-users-gear fa-2xl"></i>
-                        <span>Peserta Magang</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-book"></i>
-                        <span>Loog Book</span>
-                    </a>
-                </li> --}}
 
                 @can('manajemen.profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.profil.plmitra.page', auth()->user()->id) }}"><i
                                 class="fas fa-user"></i>
-                            <span>Profil</span>
+                            <span>Profil PL Mitra</span>
                         </a>
                     </li>
                 @endcan

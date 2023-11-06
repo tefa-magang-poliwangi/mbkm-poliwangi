@@ -51,4 +51,9 @@ class Mitra extends Model
     {
         return $this->hasMany(PlMitra::class);
     }
+
+    public function berkas()
+    {
+        return $this->hasMany(Berkas::class);
+    }
 }

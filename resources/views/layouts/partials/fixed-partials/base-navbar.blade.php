@@ -18,7 +18,7 @@
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     @role('mitra')
                         <img alt="image"
-                            src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('assets/images/avatar/avatar-1.png') }}"
+                            src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('images/logo/km-template.png') }}"
                             class="rounded-circle mr-1">
                     @else
                         <img alt="image" src="{{ asset('assets/images/avatar/avatar-1.png') }}"
@@ -28,7 +28,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex">
+                    <a href="{{ route('landing.page') }}" class="dropdown-item has-icon d-flex text-theme">
                         <i class="fa-solid fa-house my-auto"></i> <span class="my-auto">&ensp; Beranda</span>
                     </a>
 

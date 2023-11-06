@@ -25,9 +25,4 @@ class BerkasLowongan extends Model
     {
         return $this->belongsTo(Berkas::class, 'id_berkas', 'id');
     }
-
-    public function berkas_pelamar()
-    {
-        return $this->hasMany(BerkasPelamar::class);
-    }
 }
