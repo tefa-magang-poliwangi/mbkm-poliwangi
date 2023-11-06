@@ -522,26 +522,35 @@
                         </a>
                     </li>
                 @endcan
+
+                @can('daftar.permohonan.magang.page')
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.permohonan.magang.page') }}">
+                            <i class="fas fa-regular fa-folder-open"></i>
+                            <span>Daftar Permohonan</span>
+                        </a>
+                    </li>
+                @endcan
             @endauth
 
             {{-- Menu Mitra --}}
             @auth
                 @role('mitra')
-                <li class="menu-header">MITRA</li>
+                    <li class="menu-header">MITRA</li>
                 @endrole
 
                 @can('profil.mitra.page')
-                <li class="menu-header">Tentang Akun</li>
-                <li>
-                    <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}">
-                        <i class="fas fa-user"></i>
-                        <span>Profil Mitra</span>
-                    </a>
-                </li>
+                    <li class="menu-header">Tentang Akun</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}">
+                            <i class="fas fa-user"></i>
+                            <span>Profil Mitra</span>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('manajemen.pendamping.lapang.mitra.index')
-                <li class="menu-header">Data Mitra</li>
+                    <li class="menu-header">Data Mitra</li>
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.pendamping.lapang.mitra.index') }}">
                             <i class="fas fa-solid fa-users-gear fa-2xl"></i>
@@ -551,8 +560,8 @@
                 @endcan
 
                 @can('manajemen.berkas.mitra.index')
-                <li>
-                    <a class="nav-link" href="{{ route('manajemen.berkas.mitra.index') }}">
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.berkas.mitra.index') }}">
                             <i class="fas fa-solid fa-briefcase"></i>
                             <span>Data Berkas</span>
                         </a>
@@ -579,12 +588,30 @@
                     </li>
                 @endcan
 
+                @can('manajemen.profil.mitra.page')
+                    <li class="menu-header">Tentang Akun</li>
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.profil.mitra.page', auth()->user()->id) }}"><i
+                                class="fas fa-user"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+                @endcan
+
+                {{-- @can('pages.admin.cek-berkas-permohonan')
+                    <li>
+                        <a class="nav-link" href="{{ route('pages.admin.cek-berkas-permohonan') }}">
+                            <i class="fas fa-solid fa-bars-progress"></i>
+                            <span>Cek Permohonan Berkas</span>
+                        </a>
+                    </li>
+                @endcan --}}
             @endauth
 
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')
-                <li class="menu-header">MITRA</li>
+                    <li class="menu-header">MITRA</li>
                 @endrole
 
                 @can('manajemen.profil.plmitra.page')

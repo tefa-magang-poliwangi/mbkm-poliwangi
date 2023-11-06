@@ -20,12 +20,24 @@ class DaftarMagangController extends Controller
      */
     public function index($id_lowongan)
     {
-        $data = [
-            'lowongan' => Lowongan::findOrFail($id_lowongan),
-            'berkas_lowongan' => BerkasLowongan::where('id_lowongan', $id_lowongan)->with('berkas')->get(),
-        ];
+        $mahasiswa = null;
+        $user = Auth::user();
+        $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
+        $permohonan = $mahasiswa ? PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->latest('created_at')->first() : null;
 
-        return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang', $data);
+        // Periksa status pengajuan
+        if ($permohonan && $permohonan->status_diterima !== 'Ditolak') {
+            Alert::error('Invalid', 'Tunggu Permohonan Anda Sebelumnya');
+
+            return redirect()->route('landing.page');
+        } else {
+            $data = [
+                'lowongan' => Lowongan::findOrFail($id_lowongan),
+                'berkas_lowongan' => BerkasLowongan::where('id_lowongan', $id_lowongan)->with('berkas')->get(),
+            ];
+
+            return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang', $data);
+        }
     }
 
     /**

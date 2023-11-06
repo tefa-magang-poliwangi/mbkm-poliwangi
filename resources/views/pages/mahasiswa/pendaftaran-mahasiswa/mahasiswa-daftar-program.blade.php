@@ -251,12 +251,14 @@
 
                                             @auth
                                                 @role('mahasiswa')
-                                                    <div class="pt-2 pb-3">
-                                                        <a href="{{ route('daftar.magang.internal.page', $data->id) }}"
-                                                            class="btn btn-theme">
-                                                            Daftar Magang
-                                                        </a>
-                                                    </div>
+                                                    @if (empty($permohonan) || $permohonan->status_diterima == 'Ditolak')
+                                                        <div class="pt-2 pb-3">
+                                                            <a href="{{ route('daftar.magang.internal.page', $data->id) }}"
+                                                                class="btn btn-theme">
+                                                                Daftar Magang
+                                                            </a>
+                                                        </div>
+                                                    @endif
                                                 @endrole
                                             @endauth
 
