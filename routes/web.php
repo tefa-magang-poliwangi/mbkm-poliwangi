@@ -242,6 +242,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Manajemen Pelamar Mitra
         Route::get('/manajemen/pelamar-mitra', [MitraDaftarPelamarController::class, 'index'])->name('manajemen.pelamar.mitra.index');
+        Route::put('/manajemen-pendaftaran/diterima/{id_pelamar_magang}', [MitraDaftarPelamarController::class, 'accept_submission'])->name('manajemen.pelamar.mitra.accept');
+        Route::get('/manajemen-pendaftaran/{id_pelamar_magang}/ditolak', [MitraDaftarPelamarController::class, 'decline_submission'])->name('manajemen.pelamar.mitra.decline');
+        Route::get('/manajemen-daftar-pelamar-diterima', [MitraDaftarPelamarController::class, 'create'])->name('manajemen.pelamar.mitra.diterima');
 
         // Route Manajemen Pendamping Lapang Mitra
         Route::get('/manajemen/pendamping-lapang-mitra', [PLMitraController::class, 'index'])->name('manajemen.pendamping.lapang.mitra.index');

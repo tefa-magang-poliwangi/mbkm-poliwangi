@@ -23,9 +23,9 @@
                                 <h5 class="justify-start my-auto text-theme">Daftar Pelamar Magang</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{route('manajemen.pelamar.mitra.diterima')}}"
+                                <a href="{{route('manajemen.pelamar.mitra.index')}}"
                                     class="btn btn-primary btn-sm ml-auto px-2 py-1">
-                                    Daftar Pelamar Disetujui
+                                    Daftar Pelamar
                                 </a>
                             </div>
                         </div>
@@ -39,7 +39,6 @@
                                         <th class="text-white text-center">Nim</th>
                                         <th class="text-white text-center">Nama Perusahaan</th>
                                         <th class="text-white text-center">Berkas</th>
-                                        <th class="text-white text-center">Action</th>
                                     </tr>
                                 </thead>
                                 @php
@@ -55,37 +54,6 @@
                                             <td class="text-center">{{ $data->lowongan->nama }}</td>
                                             <td class="text-center">
                                                 <a class="btn btn-primary btn-sm" href="#">Cek Kelengkapan</a>
-                                            </td>
-                                            <td class="text-center">
-
-                                                <div class="row">
-                                                    <div class="col">
-                                                        {{-- accept button --}}
-                                                        <form
-                                                            action="{{ route('manajemen.pelamar.mitra.accept', $data->id) }}"
-                                                            method="POST">
-                                                            @method('put')
-                                                            @csrf
-
-                                                            <button type="submit" class="btn btn-info ml-auto"
-                                                                title="Terima Pengajuan">
-                                                                <i
-                                                                    class="fa-solid fa-circle-check text-white"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
-                                                    <div class="col">
-                                                        {{-- decline button --}}
-                                                        <a type="button"
-                                                            href="{{ route('manajemen.pelamar.mitra.decline', $data->id) }}"
-                                                            class="btn btn btn-danger ml-auto" title="Tolak dan Hapus Pengajuan">
-                                                            <i
-                                                                class="fa-solid fa-circle-xmark"></i>
-                                                        </a>
-                                                    </div>
-
-                                                </div>
                                             </td>
                                         </tr>
                                         @php

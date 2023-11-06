@@ -16,7 +16,7 @@
         <div class="container py-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-12">
-                    <div class="card card-rounded">
+                    <div class="card card-rounded-sm">
                         <div class="card-header">
                             <h4>Form Manajemen Lowongan</h4>
                         </div>
@@ -54,7 +54,7 @@
                                         class="form-control @error('deskripsi')
                                         is-invalid
                                     @enderror"
-                                        name="deskripsi" placeholder="deskripsi"></textarea>
+                                        name="deskripsi" placeholder="Deskripsi"></textarea>
                                     @error('deskripsi')
                                         <div id="deskripsi" class="form-text text-danger">
                                             {{ $message }}</div>
