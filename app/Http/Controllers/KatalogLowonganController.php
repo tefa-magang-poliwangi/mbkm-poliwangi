@@ -16,8 +16,13 @@ class KatalogLowonganController extends Controller
     public function index($id = null)
     {
         if ($id) {
-            // Jika ada ID mitra yang diberikan, ambil data mitra berdasarkan ID tersebut
+            // Jika ada ID mitra yang diberikan, cek apakah ID tersebut ada di tabel Mitra
             $mitra = Mitra::find($id);
+
+            if (!$mitra) {
+                // Jika ID tidak ada dalam tabel Mitra, ambil data mitra secara acak
+                $mitra = Mitra::inRandomOrder()->first();
+            }
         } else {
             // Jika tidak ada ID mitra yang diberikan, ambil data mitra secara acak
             $mitra = Mitra::inRandomOrder()->first();

@@ -59,11 +59,6 @@ class Lowongan extends Model
         return $this->hasMany(PelamarMagang::class);
     }
 
-    public function berkas_pelamar()
-    {
-        return $this->hasMany(BerkasPelamar::class);
-    }
-
     public function berkas_lowongan()
     {
         return $this->hasMany(BerkasLowongan::class, 'id_lowongan');

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pelamar_magangs', function (Blueprint $table) {
             $table->id();
-            $table->enum('status_diterima', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->enum('status_diterima', ['Diterima', 'Ditolak', 'Menunggu'])->nullable(false)->default('Menunggu');
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_lowongan')->nullable(false);
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
