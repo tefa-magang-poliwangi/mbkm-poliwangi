@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Input Nilai Magang External | MBKM Poliwangi</title>
+    <title>Cek Kelengkapan Berkas | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -18,91 +18,77 @@
 @section('content')
     <section class="pt-5">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-6">
+            <div class="col-12 col-sm-12 col-md-5 col-lg-5">
                 <div class="card">
-                    <div class="card-title">
-                        <h4 class="p-3">Daftar berkas</h4>
+                    <div class="card-title d-flex">
+                        <h5 class="my-auto ml-4 mt-4 text-theme">Daftar berkas</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-borderless">
+                                @php
+                                    $no = 1;
+                                @endphp
 
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>KHS</td>
-                                    <td><i class="fas fa-check"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>SERTIFIKAT</td>
-                                    <td><i class="fas fa-check"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>PROPOSAL</td>
-                                    <td><i class="fas fa-check"></i></td>
-                                </tr>
-
+                                @foreach ($all_berkas as $item)
+                                    <tr>
+                                        <td class="text-center" scope="row">{{ $no }}</td>
+                                        <td>{{ $item->berkas->nama }}</td>
+                                        <td class="text-center">
+                                            <i class="fa-solid fa-circle-check text-success"></i>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                    @endphp
+                                @endforeach
                             </table>
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-6">
+
+            <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>File</h4>
-                    </div>
                     <div class="card-body">
                         <div id="accordion">
-                            <div class="accordion">
-                                <div class="accordion-header" role="button" data-toggle="collapse"
-                                    data-target="#panel-body-1" aria-expanded="true">
-                                    <h4>File 1</h4>
-                                </div>
-                                <div class="accordion-body collapse show" id="panel-body-1" data-parent="#accordion">
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                            <div class="accordion">
-                                <div class="accordion-header" role="button" data-toggle="collapse"
-                                    data-target="#panel-body-2">
-                                    <h4>File 2</h4>
-                                </div>
-                                <div class="accordion-body collapse" id="panel-body-2" data-parent="#accordion">
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                            <div class="accordion">
-                                <div class="accordion-header" role="button" data-toggle="collapse"
-                                    data-target="#panel-body-3">
-                                    <h4>File 3</h4>
-                                </div>
-                                <div class="accordion-body collapse" id="panel-body-3" data-parent="#accordion">
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
+                            @php
+                                $count = 1;
+                            @endphp
+
+                            @foreach ($all_berkas as $item)
+                                @if ($count == 1)
+                                    {{-- Card file pertama --}}
+                                    <div class="accordion">
+                                        <div class="accordion-header card-border" role="button" data-toggle="collapse"
+                                            data-target="#panel-body-{{ $count }}" aria-expanded="true">
+                                            <h4>{{ $item->berkas->nama }}</h4>
+                                        </div>
+                                        <div class="accordion-body collapse show" id="panel-body-{{ $count }}"
+                                            data-parent="#accordion">
+                                            <iframe src="{{ Storage::url($item->file) }}" width="100%"
+                                                height="700px"></iframe>
+                                        </div>
+                                    </div>
+                                @else
+                                    {{-- Card file kedua dst --}}
+                                    <div class="accordion">
+                                        <div class="accordion-header card-border" role="button" data-toggle="collapse"
+                                            data-target="#panel-body-{{ $count }}">
+                                            <h4>{{ $item->berkas->nama }}</h4>
+                                        </div>
+                                        <div class="accordion-body collapse" id="panel-body-{{ $count }}"
+                                            data-parent="#accordion">
+                                            <iframe src="{{ Storage::url($item->file) }}" width="100%"
+                                                height="700px"></iframe>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @php
+                                    $count++;
+                                @endphp
+                            @endforeach
                         </div>
                     </div>
                 </div>

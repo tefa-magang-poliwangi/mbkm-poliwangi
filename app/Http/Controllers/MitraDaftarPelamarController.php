@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BerkasPelamar;
 use App\Models\Lowongan;
 use App\Models\Mahasiswa;
 use App\Models\Mitra;
 use App\Models\PelamarMagang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MitraDaftarPelamarController extends Controller
@@ -23,12 +25,12 @@ class MitraDaftarPelamarController extends Controller
         $mitra = Mitra::where('id_user', $user_id)->first();
 
         $pelamarmagang = PelamarMagang::where('status_diterima', 'Menunggu')
-        ->whereIn('id_lowongan', function ($query) use ($mitra) {
-            $query->select('id')
-                ->from('lowongans')
-                ->where('id_mitra', $mitra->id);
-        })
-        ->get();
+            ->whereIn('id_lowongan', function ($query) use ($mitra) {
+                $query->select('id')
+                    ->from('lowongans')
+                    ->where('id_mitra', $mitra->id);
+            })
+            ->get();
 
         $data = [
             'daftar_pelamar' => $pelamarmagang,
@@ -51,13 +53,27 @@ class MitraDaftarPelamarController extends Controller
 
     public function decline_submission($id_pelamar_magang)
     {
+        $all_berkas = BerkasPelamar::where('id_pelamar_magang', $id_pelamar_magang)->get();
+
         PelamarMagang::where('id', $id_pelamar_magang)->update([
             'status_diterima' => 'Ditolak',
         ]);
+
+        foreach ($all_berkas as $berkas) {
+            // Mengecek apakah file ada dan menghapusnya
+            if ($berkas->file) {
+                Storage::delete($berkas->file);
+            }
+            // Menghapus entri berkas dari database
+            $berkas->delete();
+        }
+
         Alert::success('Success', 'Pelamar Magang Berhasil Ditolak');
 
         return redirect()->back();
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -102,6 +118,7 @@ class MitraDaftarPelamarController extends Controller
         ]);
 
         Alert::success('Success', 'Data Admin Prodi Berhasil Ditambahkan');
+
         return redirect()->route('manajemen.pelamar.mitra.index');
     }
 
@@ -111,10 +128,43 @@ class MitraDaftarPelamarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_pelamar_magang)
     {
-       //
+        $user_id = auth()->user()->id;
+        $mitra = Mitra::where('id_user', $user_id)->first();
+
+        // Mengambil data pelamar magang berdasarkan id_pelamar_magang
+        $pelamarMagang = PelamarMagang::find($id_pelamar_magang);
+
+        // Memeriksa apakah data pelamar magang ditemukan
+        if ($pelamarMagang) {
+            $id_lowongan = $pelamarMagang->id_lowongan;
+            $lowongan = Lowongan::find($id_lowongan);
+
+            // Memeriksa apakah mitra yang sedang login adalah mitra yang memiliki lowongan yang sesuai
+            if ($lowongan && $lowongan->id_mitra == $mitra->id) {
+                // Memeriksa status diterima pelamar magang
+                if ($pelamarMagang->status_diterima == 'Ditolak') {
+                    Alert::error('Invalid', 'Pelamar Magang Tidak Ditemukan');
+
+                    // Jika status diterima 'Ditolak', arahkan pengguna ke halaman yang sesuai
+                    return redirect()->route('manajemen.pelamar.mitra.index');
+                }
+
+                $data = [
+                    'all_berkas' => BerkasPelamar::where('id_pelamar_magang', $id_pelamar_magang)->get(),
+                ];
+
+                return view('pages.admin.cek-berkas-permohonan', $data);
+            }
+        }
+
+        Alert::error('Invalid', 'Pelamar Magang Tidak Ditemukan');
+
+        // Jika tidak ditemukan atau mitra tidak sesuai, Anda bisa mengarahkan pengguna ke halaman lain atau menampilkan pesan kesalahan
+        return redirect()->route('manajemen.pelamar.mitra.index');
     }
+
 
     /**
      * Show the form for editing the specified resource.
