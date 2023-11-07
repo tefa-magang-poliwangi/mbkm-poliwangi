@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('file', 255)->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
-            $table->unsignedBigInteger('id_lowongan')->nullable(false);
-            $table->unsignedBigInteger('id_berkas_lowongan')->nullable(false);
-            $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
-            $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
-            $table->foreign('id_berkas_lowongan')->references('id')->on('berkas_lowongans')->onDelete('cascade');
+            $table->unsignedBigInteger('id_berkas')->nullable(false);
+            $table->foreign('id_pelamar_magang')->references('id')->on('pelamar_magangs')->onDelete('cascade');
+            $table->foreign('id_berkas')->references('id')->on('berkas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -22,6 +22,11 @@ class Berkas extends Model
         return $this->hasMany(BerkasLowongan::class);
     }
 
+    public function berkas_pelamar()
+    {
+        return $this->hasMany(BerkasPelamar::class);
+    }
+
     public function mitra()
     {
         return $this->belongsTo(Mitra::class, 'id_mitra');

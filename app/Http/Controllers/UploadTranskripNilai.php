@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\MagangExt;
 use App\Models\Mahasiswa;
-use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\User;

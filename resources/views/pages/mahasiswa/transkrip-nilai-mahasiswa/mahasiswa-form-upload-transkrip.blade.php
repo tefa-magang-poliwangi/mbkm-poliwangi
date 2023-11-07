@@ -26,7 +26,7 @@
                                 @foreach ($khs_per_transkrip as $data)
                                     <a class="list-group-item list-group-item-action" id="list-profile-list"
                                         href="{{ route('input.kriteria.mahasiswa.ext.index', [$data->magang_ext->id, $data_nilai_magang_ext->id]) }}"
-                                        role="tab">2. Insert Nilai Magang</a>
+                                        role="tab">2. Lihat Nilai Kriteria</a>
                                 @endforeach
                             @endif
                             <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"

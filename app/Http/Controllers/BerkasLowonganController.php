@@ -6,6 +6,7 @@ use App\Models\BerkasLowongan;
 use App\Models\Mitra;
 use App\Models\Berkas;
 use App\Models\Lowongan;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
@@ -60,7 +61,10 @@ class BerkasLowonganController extends Controller
     {
 
         $validated = $request->validate([
-            'berkas' => ['required'],
+            'berkas' => [
+                'required',
+                Rule::unique('berkas_lowongans', 'id_berkas')->where('id_lowongan', $id_lowongan)
+            ],
         ]);
 
         if (isset($validated['berkas'])) {
