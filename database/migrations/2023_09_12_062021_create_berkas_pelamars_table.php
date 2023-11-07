@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('file', 255)->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
+            $table->unsignedBigInteger('id_pelamar_magang')->nullable(false);
             $table->unsignedBigInteger('id_berkas')->nullable(false);
             $table->foreign('id_pelamar_magang')->references('id')->on('pelamar_magangs')->onDelete('cascade');
             $table->foreign('id_berkas')->references('id')->on('berkas')->onDelete('cascade');

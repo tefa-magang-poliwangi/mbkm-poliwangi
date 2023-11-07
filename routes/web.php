@@ -247,6 +247,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen-pendaftaran/{id_pelamar_magang}/ditolak', [MitraDaftarPelamarController::class, 'decline_submission'])->name('manajemen.pelamar.mitra.decline');
         Route::get('/manajemen-daftar-pelamar-diterima', [MitraDaftarPelamarController::class, 'create'])->name('manajemen.pelamar.mitra.diterima');
 
+        // Route Cek Berkas Permohonan Magang Internal Mahasiswa
+        Route::get('/manajemen/pelamar-mitra/{id_pelamar_magang}/cek-kelengkapan-berkas-permohonan', [MitraDaftarPelamarController::class, 'show'])->name('manajemen.pelamar.mitra.show');
+
         // Route Manajemen Pendamping Lapang Mitra
         Route::get('/manajemen/pendamping-lapang-mitra', [PLMitraController::class, 'index'])->name('manajemen.pendamping.lapang.mitra.index');
         Route::post('/manajemen/pendamping-lapang-mitra/store', [PLMitraController::class, 'store'])->name('manajemen.pendamping.lapang.mitra.store');
@@ -463,8 +466,4 @@ Route::get('/dashboard-admin/manajemen-kaprodi', function () {
 
 Route::get('/daftar-pelamar', function () {
     return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
-});
-
-Route::get('/cek-permohonan-berkas', function () {
-    return view('pages.admin.cek-berkas-permohonan');
 });
