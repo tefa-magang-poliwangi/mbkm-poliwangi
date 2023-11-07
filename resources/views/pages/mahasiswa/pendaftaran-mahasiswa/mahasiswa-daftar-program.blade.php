@@ -202,7 +202,11 @@
                                         <div class="text-justify">
                                             <p class="mb-2 fw-bold">Kontak Mitra</p>
                                             <ul>
-                                                <li>Email : {{ $mitra->email }}</li>
+                                                <li>Email :
+                                                    <a class="menu-none-decoration" href="mailto:{{ $mitra->email }}"
+                                                        target="_blank">{{ $mitra->email }}
+                                                    </a>
+                                                </li>
                                                 <li>Website : <a href="{{ $mitra->website }}" target="_blank"
                                                         class="menu-none-decoration">{{ $mitra->website }}</a></li>
                                             </ul>

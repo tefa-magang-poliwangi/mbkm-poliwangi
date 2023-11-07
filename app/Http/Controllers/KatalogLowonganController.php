@@ -32,18 +32,18 @@ class KatalogLowonganController extends Controller
         }
 
         // Dapatkan data lowongan untuk mitra yang dipilih
-        $lowongan_mitra = Lowongan::where('id_mitra', $mitra->id)->where('status', 'Aktif')->with('berkas_lowongan')->get();
+        $lowonganQuery = Lowongan::where('id_mitra', $mitra->id)->where('status', 'Aktif');
+
+        // Periksa apakah pengguna adalah mahasiswa
+        if (Auth::check() && Auth::user()->hasRole('mahasiswa')) {
+            $mahasiswa = Mahasiswa::where('id_user', Auth::user()->id)->first();
+            // Filter data lowongan berdasarkan id_prodi mahasiswa
+            $lowonganQuery->where('id_prodi', $mahasiswa->id_prodi);
+        }
+
+        $lowongan_mitra = $lowonganQuery->with('berkas_lowongan')->get();
         $mitras = Mitra::all();
         $mahasiswa = null;
-
-        if (Auth::check()) {
-            $user = Auth::user();
-
-            // Periksa apakah pengguna memiliki peran 'mahasiswa'
-            if ($user->hasRole('mahasiswa')) {
-                $mahasiswa = Mahasiswa::where('id_user', $user->id)->first();
-            }
-        }
 
         $data = [
             'mitra' => $mitra,
