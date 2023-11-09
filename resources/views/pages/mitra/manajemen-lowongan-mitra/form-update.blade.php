@@ -7,6 +7,9 @@
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    {{-- Datedroppper JS --}}
+    <script src="{{ asset('js-datedropper/datedropper-javascript.js') }}"></script>
 @endsection
 
 @section('content')
@@ -34,6 +37,7 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="jumlah_lowongan" class="form-label">Jumlah Lowongan</label>
                                 <input id="jumlah_lowongan" type="text" pattern="[0-9]*"
@@ -47,6 +51,7 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="deskripsi" class="form-label">Deskripsi</label>
                                 <textarea id="deskripsi" type="text"
@@ -62,8 +67,8 @@
 
                             <div class="form-group">
                                 <label for="tanggal_dibuka" class="form-label">Tanggal Dibuka</label>
-                                <input id="tanggal_dibuka" type="date"
-                                    class="form-control @error('tanggal_dibuka')
+                                <input id="tanggal_dibuka" type="text" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    class="form-control bg-white @error('tanggal_dibuka')
                                 is-invalid
                             @enderror"
                                     name="tanggal_dibuka" value="{{ $lowongan->tanggal_dibuka }}"
@@ -73,10 +78,11 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="tanggal_ditutup" class="form-label">Tanggal Ditutup</label>
-                                <input id="tanggal_ditutup" type="date"
-                                    class="form-control @error('tanggal_ditutup')
+                                <input id="tanggal_ditutup" type="text" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    class="form-control bg-white date-input @error('tanggal_ditutup')
                                 is-invalid
                             @enderror"
                                     name="tanggal_ditutup" value="{{ $lowongan->tanggal_ditutup }}"
@@ -86,10 +92,12 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="tanggal_magang_dimulai" class="form-label">Tanggal Magang Dimulai</label>
-                                <input id="tanggal_magang_dimulai" type="date"
-                                    class="form-control @error('tanggal_magang_dimulai')
+                                <input id="tanggal_magang_dimulai" type="text"
+                                    data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    class="form-control bg-white date-input @error('tanggal_magang_dimulai')
                                 is-invalid
                             @enderror"
                                     name="tanggal_magang_dimulai" value="{{ $lowongan->tanggal_magang_dimulai }}"
@@ -99,10 +107,12 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="tanggal_magang_berakhir" class="form-label">Tanggal Magang Ditutup</label>
-                                <input id="tanggal_magang_berakhir" type="date"
-                                    class="form-control @error('tanggal_magang_berakhir')
+                                <input id="tanggal_magang_berakhir" type="text"
+                                    data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    class="form-control bg-white date-input @error('tanggal_magang_berakhir')
                                 is-invalid
                             @enderror"
                                     name="tanggal_magang_berakhir" value="{{ $lowongan->tanggal_magang_berakhir }}"
@@ -112,6 +122,7 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="id_prodi" class="form-label">Prodi</label>
                                 <select
@@ -131,6 +142,7 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-control @error('status') is-invalid @enderror" id="status"
@@ -148,10 +160,9 @@
                                 @enderror
                             </div>
 
-
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                    Tambah Data
+                                    Simpan Data
                                 </button>
                             </div>
                         </form>
@@ -168,5 +179,48 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+
+    {{-- Inisiasi datedroppper --}}
+    <script>
+        dateDropper({
+            selector: '#tanggal_dibuka',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false, // Biarkan tetap false
+            defaultDate: '{{ $lowongan->tanggal_dibuka }}', // Tanggal Dibuka
+        });
+
+        dateDropper({
+            selector: '#tanggal_ditutup',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false,
+            defaultDate: '{{ $lowongan->tanggal_ditutup }}', // Tanggal Ditutup
+        });
+
+        dateDropper({
+            selector: '#tanggal_magang_dimulai',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false,
+            defaultDate: '{{ $lowongan->tanggal_magang_dimulai }}', // Tanggal Magang Dimulai
+        });
+
+        dateDropper({
+            selector: '#tanggal_magang_berakhir',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false,
+            defaultDate: '{{ $lowongan->tanggal_magang_berakhir }}', // Tanggal Magang Ditutup
+        });
     </script>
 @endsection
