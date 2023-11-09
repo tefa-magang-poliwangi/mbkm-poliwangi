@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    {{-- Datedroppper JS --}}
+    <script src="{{ asset('js-datedropper/datedropper-javascript.js') }}"></script>
 @endsection
 
 @section('content')
@@ -80,7 +83,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Kaprodi</h5>
+                        <h5 class="modal-title text-theme">Tambah Kaprodi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -91,8 +94,8 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="periode_mulai" class="form-label">Periode Mulai</label>
-                                <input id="periode_mulai" type="date"
-                                    class="form-control @error('periode_mulai')
+                                <input id="periode_mulai" type="text" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    class="form-control date-input bg-white @error('periode_mulai')
                                 is-invalid
                             @enderror"
                                     name="periode_mulai" placeholder="Masukkan Tanggal Mulai">
@@ -103,8 +106,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="periode_akhir" class="form-label">Periode Akhir</label>
-                                <input id="periode_akhir" type="date"
-                                    class="form-control @error('periode_akhir')
+                                <input id="periode_akhir" type="text" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    class="form-control date-input bg-white @error('periode_akhir')
                                 is-invalid
                             @enderror"
                                     name="periode_akhir" placeholder="Masukkan Tanggal Akhir">
@@ -114,13 +117,13 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="id_dosen" class="form-label">User</label>
+                                <label for="id_dosen" class="form-label">Dosen</label>
                                 <select
                                     class="form-control @error('id_dosen')
                                         is-invalid
                                     @enderror"
                                     id="id_dosen" name="id_dosen">
-                                    <option value="">User</option>
+                                    <option value="">Pilih Dosen</option>
                                     @foreach ($dosen as $data)
                                         <option value="{{ $data->id }}">{{ $data->nama }}</option>
                                     @endforeach
@@ -168,4 +171,16 @@
 
     {{-- Modal JS --}}
     <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
+
+    {{-- Inisiasi datedroppper --}}
+    <script>
+        dateDropper({
+            selector: '.date-input',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false
+        });
+    </script>
 @endsection

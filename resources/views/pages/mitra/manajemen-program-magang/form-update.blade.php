@@ -1,12 +1,15 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Update Program Magang MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Update Program Magang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    {{-- Datedroppper JS --}}
+    <script src="{{ asset('js-datedropper/datedropper-javascript.js') }}"></script>
 @endsection
 
 @section('content')
@@ -38,11 +41,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
-                                <input id="waktu_mulai" type="date"
-                                    class="form-control @error('waktu_mulai')
+                                <input id="waktu_mulai" type="text"
+                                    class="form-control bg-white @error('waktu_mulai')
                                     is-invalid
                                 @enderror"
-                                    name="waktu_mulai" value="{{ $programmagang->waktu_mulai }}" placeholder="Waktu Mulai">
+                                    name="waktu_mulai" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    value="{{ $programmagang->waktu_mulai }}" placeholder="Waktu Mulai">
                                 @error('waktu_mulai')
                                     <div id="waktu_mulai" class="form-text text-danger">
                                         {{ $message }}</div>
@@ -50,11 +54,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="waktu_akhir" class="form-label">Waktu Akhir</label>
-                                <input id="waktu_akhir" type="date"
-                                    class="form-control @error('waktu_akhir')
+                                <input id="waktu_akhir" type="text"
+                                    class="form-control bg-white @error('waktu_akhir')
                                     is-invalid
                                 @enderror"
-                                    name="waktu_akhir" value="{{ $programmagang->waktu_akhir }}" placeholder="Waktu Akhir">
+                                    name="waktu_akhir" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    value="{{ $programmagang->waktu_akhir }}" placeholder="Waktu Akhir">
                                 @error('waktu_akhir')
                                     <div id="waktu_akhir" class="form-text text-danger">
                                         {{ $message }}</div>
@@ -108,5 +113,28 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+
+    {{-- Inisiasi datedroppper --}}
+    <script>
+        dateDropper({
+            selector: '#waktu_mulai',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false, // Biarkan tetap false
+            defaultDate: '{{ $programmagang->waktu_mulai }}', // Waktu Mulai
+        });
+
+        dateDropper({
+            selector: '#waktu_akhir',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false,
+            defaultDate: '{{ $programmagang->waktu_akhir }}', // Waktu Akhir
+        });
     </script>
 @endsection

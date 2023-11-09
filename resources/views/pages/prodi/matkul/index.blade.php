@@ -134,7 +134,8 @@
                                                                             Kuliah</label>
                                                                         <input id="update_matkul" type="text"
                                                                             class="form-control @error('update_matkul') is-invalid @enderror"
-                                                                            name="update_matkul">
+                                                                            name="update_matkul"
+                                                                            value="{{ $data->nama }}">
                                                                         @error('update_matkul')
                                                                             <div id="update_matkul"
                                                                                 class="form-text text-danger">
