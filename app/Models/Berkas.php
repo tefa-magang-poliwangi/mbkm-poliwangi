@@ -19,7 +19,7 @@ class Berkas extends Model
     // relasi
     public function berkas_lowongan()
     {
-        return $this->hasMany(BerkasLowongan::class);
+        return $this->hasMany(BerkasLowongan::class,'id_berkaslowongan','id');
     }
 
     public function berkas_pelamar()
