@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berkas;
 use App\Models\BerkasLowongan;
 use App\Models\BerkasPelamar;
 use App\Models\Lowongan;
@@ -59,38 +60,52 @@ class DaftarMagangController extends Controller
      */
     public function store(Request $request, $id_lowongan)
     {
+        // Mengambil data berkas yang diunggah
+        $files = $request->file('files');
+
+        // Validasi untuk setiap berkas sebelum membuat data permohonan
+        foreach ($files as $id_berkas => $file) {
+            $request->validate([
+                "files.{$id_berkas}" => 'required|mimes:pdf|max:5120', // maksimal 5 MB
+            ]);
+        }
+
         $mahasiswa = Mahasiswa::where('id_user', Auth::user()->id)->first();
 
-        // Menambahkan data permohonan magang
+        // Menambahkan data permohonan magang setelah validasi berhasil
         $permohonan = PelamarMagang::create([
             'id_mahasiswa' => $mahasiswa->id,
             'id_lowongan' => $id_lowongan,
         ]);
 
-        // Mengambil data berkas yang diunggah
-        $files = $request->file('files');
-
-        foreach ($files as $id_berkas => $file) {
-            // Menyimpan file ke direktori yang spesifik dalam direktori public
-            if ($file) {
-                $path = $file->store('public/magang-internal/berkas-permohonan-mahasiswa');
-            } else {
-                $path = null;
-            }
-
-            // Menambahkan data berkas pelamar magang
-            BerkasPelamar::create([
-                'file' => $path, // Menyimpan path file yang diunggah
-                'id_pelamar_magang' => $permohonan->id,
-                'id_berkas' => $id_berkas,
+        foreach ($files as $nama_berkas => $file) {
+            // Validasi ekstensi dan ukuran file
+            $request->validate([
+                "files.{$nama_berkas}" => 'required|mimes:pdf|max:5120', // maksimal 5 MB
             ]);
+
+            $lowongan = Lowongan::findOrFail($id_lowongan);
+            $berkas = Berkas::where('nama', $nama_berkas)
+                ->where('id_mitra', $lowongan->id_mitra)
+                ->first();
+
+            if ($berkas) {
+                // Menyimpan file ke direktori yang spesifik dalam direktori public
+                $path = $file->store('public/magang-internal/berkas-permohonan-mahasiswa');
+
+                // Menambahkan data berkas pelamar magang
+                BerkasPelamar::create([
+                    'file' => $path, // Menyimpan path file yang diunggah
+                    'id_pelamar_magang' => $permohonan->id,
+                    'id_berkas' => $berkas->id,
+                ]);
+            }
         }
 
         Alert::success('Berhasil Upload Berkas', 'Silahkan menunggu persetujuan Mitra');
 
         return redirect()->route('dashboard.mahasiswa.page');
     }
-
 
     /**
      * Display the specified resource.

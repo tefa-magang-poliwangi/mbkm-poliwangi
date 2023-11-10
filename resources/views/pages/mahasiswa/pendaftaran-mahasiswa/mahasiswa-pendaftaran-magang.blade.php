@@ -40,17 +40,24 @@
                                     <div class="custom-file form-group container-file input-file">
                                         <label for="{{ $itemForm->berkas->id }}"
                                             class="form-label">{{ $itemForm->berkas->nama }}</label>
-                                        <input class="form-control" type="file" id="{{ $itemForm->berkas->id }}"
-                                            name="files[{{ $itemForm->berkas->id }}]"
-                                            berkas-id="{{ $itemForm->berkas->id }}" class="form-control" accept=".pdf"
-                                            required>
+                                        <input type="file" id="{{ $itemForm->berkas->id }}"
+                                            name="files[{{ $itemForm->berkas->nama }}]"
+                                            berkas-id="{{ $itemForm->berkas->nama }}"
+                                            class="form-control @error("files.{$itemForm->berkas->nama}") is-invalid @enderror"
+                                            accept=".pdf" required>
+                                        {{-- Tambahkan pesan error untuk validasi --}}
+                                        @error("files.{$itemForm->berkas->nama}")
+                                            <div id="name" class="form-text text-danger pb-1 pt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 @endforeach
 
                                 <div class="pt-3">
                                     <center>
-                                        <button class="btn btn-theme" type="submit">
-                                            Unggah &ensp; <i class="fa-solid fa-floppy-disk"></i>
+                                        <button class="btn btn-theme" type="submit">Unggah &ensp;
+                                            <i class="fa-solid fa-floppy-disk"></i>
                                         </button>
                                     </center>
                                 </div>

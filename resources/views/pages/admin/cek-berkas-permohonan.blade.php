@@ -20,22 +20,50 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-5 col-lg-5">
                 <div class="card">
-                    <div class="card-title d-flex">
-                        <h5 class="my-auto ml-4 mt-4 text-theme">Daftar berkas</h5>
+                    <div class="card-title">
+                        <h5 class="my-auto ml-4 mt-4 text-theme">Detail Permohonan Magang</h5>
                     </div>
+
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-borderless">
+                            <h5 class="my-auto ml-4 mt-1 text-theme">Data Pemohon</h5>
+                            <table class="table table-borderless table-hover">
+                                <tr>
+                                    <td scope="row">Nama</td>
+                                    <td scope="row">{{ $pelamar_magang->mahasiswa->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Mitra</td>
+                                    <td scope="row">{{ $pelamar_magang->lowongan->mitra->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Lowongan</td>
+                                    <td scope="row">{{ $pelamar_magang->lowongan->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Status</td>
+                                    <td scope="row">{{ $pelamar_magang->status_diterima }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <h5 class="my-auto ml-4 mt-1 text-theme">Daftar berkas</h5>
+                            <table class="table table-borderless table-hover">
                                 @php
                                     $no = 1;
                                 @endphp
 
-                                @foreach ($all_berkas as $item)
+                                @foreach ($berkas_lowongan as $item)
                                     <tr>
                                         <td class="text-center" scope="row">{{ $no }}</td>
                                         <td>{{ $item->berkas->nama }}</td>
                                         <td class="text-center">
-                                            <i class="fa-solid fa-circle-check text-success"></i>
+                                            @if ($all_berkas->contains('id', $item->berkas->id))
+                                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                            @else
+                                                <i class="fa-solid fa-circle-check text-success"></i>
+                                            @endif
                                         </td>
                                     </tr>
                                     @php

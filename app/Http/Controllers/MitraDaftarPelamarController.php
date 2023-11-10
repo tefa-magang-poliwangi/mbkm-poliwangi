@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BerkasLowongan;
 use App\Models\BerkasPelamar;
 use App\Models\Lowongan;
-use App\Models\Mahasiswa;
 use App\Models\Mitra;
 use App\Models\PelamarMagang;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -152,6 +151,8 @@ class MitraDaftarPelamarController extends Controller
                 }
 
                 $data = [
+                    'pelamar_magang' => $pelamarMagang,
+                    'berkas_lowongan' => BerkasLowongan::where('id_lowongan', $pelamarMagang->id_lowongan)->get(),
                     'all_berkas' => BerkasPelamar::where('id_pelamar_magang', $id_pelamar_magang)->get(),
                 ];
 
