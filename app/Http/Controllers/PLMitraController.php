@@ -25,6 +25,7 @@ class PLMitraController extends Controller
         $data = [
             'plmitra' => PLMitra::where('id_mitra', $mitra->id)->get(),
         ];
+
         return view('pages.mitra.manajemen-pendamping-mitra.pl-mitra', $data);
     }
 

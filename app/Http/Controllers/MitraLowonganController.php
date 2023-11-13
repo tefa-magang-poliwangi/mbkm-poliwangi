@@ -57,15 +57,14 @@ class MitraLowonganController extends Controller
 
         $validated = $request->validate([
             'nama' => ['required'],
-            'jumlah_lowongan' => ['required'],
+            'jumlah_lowongan' => ['required', 'numeric'],
             'deskripsi' => ['required'],
-            'tanggal_dibuka' => ['required'],
-            'tanggal_ditutup' => ['required'],
-            'tanggal_magang_dimulai' => ['required'],
-            'tanggal_magang_berakhir' => ['required'],
+            'tanggal_dibuka' => ['required', 'date'],
+            'tanggal_ditutup' => ['required', 'date'],
+            'tanggal_magang_dimulai' => ['required', 'date'],
+            'tanggal_magang_berakhir' => ['required', 'date'],
             'status' => ['required'],
             'id_prodi' => ['required']
-
         ]);
 
         Lowongan::create([
@@ -123,16 +122,14 @@ class MitraLowonganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mitra_id = Mitra::where('id_user', Auth::user()->id)->first();
-
         $validated = $request->validate([
             'nama' => ['required', 'string'],
-            'jumlah_lowongan' => ['required'],
+            'jumlah_lowongan' => ['required', 'numeric'],
             'deskripsi' => ['required'],
-            'tanggal_dibuka' => ['required', 'string'],
-            'tanggal_ditutup' => ['required'],
-            'tanggal_magang_dimulai' => ['required'],
-            'tanggal_magang_berakhir' => ['required'],
+            'tanggal_dibuka' => ['required', 'date'],
+            'tanggal_ditutup' => ['required', 'date'],
+            'tanggal_magang_dimulai' => ['required', 'date'],
+            'tanggal_magang_berakhir' => ['required', 'date'],
             'status' => ['required'],
             'id_prodi' => ['required']
         ]);

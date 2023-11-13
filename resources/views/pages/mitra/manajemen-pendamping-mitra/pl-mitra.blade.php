@@ -77,7 +77,8 @@
                                                                 </button>
                                                             </div>
 
-                                                            <form action="{{ route('manajemen.pendamping.lapang.mitra.update', $data->id) }}"
+                                                            <form
+                                                                action="{{ route('manajemen.pendamping.lapang.mitra.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -200,7 +201,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah PL Mitra</h5>
+                    <h5 class="modal-title text-theme">Tambah PL Mitra</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

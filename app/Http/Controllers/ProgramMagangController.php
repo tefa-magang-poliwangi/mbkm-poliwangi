@@ -59,8 +59,8 @@ class ProgramMagangController extends Controller
     {
         $validated = $request->validate([
             'kegiatan' => ['required', 'string'],
-            'waktu_mulai' => ['required'],
-            'waktu_akhir' => ['required'],
+            'waktu_mulai' => ['required', 'date'],
+            'waktu_akhir' => ['required', 'date'],
             'posisi_mahasiswa' => ['required', 'string'],
             'id_pl_mitra' => ['required'],
         ]);
@@ -125,8 +125,8 @@ class ProgramMagangController extends Controller
     {
         $validated = $request->validate([
             'kegiatan' => ['required', 'string'],
-            'waktu_mulai' => ['required'],
-            'waktu_akhir' => ['required'],
+            'waktu_mulai' => ['required', 'date'],
+            'waktu_akhir' => ['required', 'date'],
             'posisi_mahasiswa' => ['required', 'string'],
             'id_pl_mitra' => ['required'],
         ]);

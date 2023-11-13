@@ -28,7 +28,7 @@ class DaftarMagangController extends Controller
 
         // Periksa status pengajuan
         if ($permohonan && $permohonan->status_diterima !== 'Ditolak') {
-            Alert::error('Invalid', 'Tunggu Permohonan Anda Sebelumnya');
+            Alert::error('Invalid', 'Mohon Tunggu Permohonan Anda Sebelumnya');
 
             return redirect()->route('landing.page');
         } else {
@@ -64,9 +64,21 @@ class DaftarMagangController extends Controller
         $files = $request->file('files');
 
         // Validasi untuk setiap berkas sebelum membuat data permohonan
-        foreach ($files as $id_berkas => $file) {
+        foreach ($files as $nama_berkas => $file) {
+            $lowongan = Lowongan::findOrFail($id_lowongan);
+            $berkas = Berkas::where('nama', $nama_berkas)
+                ->where('id_mitra', $lowongan->id_mitra)
+                ->first();
+
+            // Konversi ukuran_max dari MB ke KB
+            $ukuranMaxInKB = (int) ($berkas->ukuran_max * 1024);
+
             $request->validate([
-                "files.{$id_berkas}" => 'required|mimes:pdf|max:5120', // maksimal 5 MB
+                "files.{$nama_berkas}" => [
+                    'required',
+                    'mimes:pdf',
+                    "max:{$ukuranMaxInKB}", // Menggunakan ukuran_max yang telah dikonversi ke KB
+                ],
             ]);
         }
 
@@ -79,11 +91,6 @@ class DaftarMagangController extends Controller
         ]);
 
         foreach ($files as $nama_berkas => $file) {
-            // Validasi ekstensi dan ukuran file
-            $request->validate([
-                "files.{$nama_berkas}" => 'required|mimes:pdf|max:5120', // maksimal 5 MB
-            ]);
-
             $lowongan = Lowongan::findOrFail($id_lowongan);
             $berkas = Berkas::where('nama', $nama_berkas)
                 ->where('id_mitra', $lowongan->id_mitra)

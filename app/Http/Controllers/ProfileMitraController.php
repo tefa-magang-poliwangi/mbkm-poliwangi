@@ -89,7 +89,7 @@ class ProfileMitraController extends Controller
             'foto' => ['max:10240', 'mimes:png,jpeg,jpg'],
             'nama' => ['required', 'string'],
             'alamat' => ['required', 'string'],
-            'website' => ['required'],
+            'website' => ['required', 'url'],
             'narahubung' => ['required', 'string', 'between:11,15'],
             'email' => ['required', 'email'],
             'deskripsi' => ['required'],

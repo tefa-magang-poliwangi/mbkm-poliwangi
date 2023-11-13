@@ -26,10 +26,6 @@
                         <h4 class="fw-x-bold text-theme text-center pb-5 py-3">Syarat Berkas Pendaftaran Belum Ditambahkan.
                         </h4>
                     @else
-                        <div class="mt-4">
-                            <small class="text-danger">*wajib pdf, max 5Mb</small>
-                        </div>
-
                         <form action="{{ route('daftar.magang.internal.store', $lowongan->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -39,7 +35,10 @@
                                 @foreach ($berkas_lowongan as $itemForm)
                                     <div class="custom-file form-group container-file input-file">
                                         <label for="{{ $itemForm->berkas->id }}"
-                                            class="form-label">{{ $itemForm->berkas->nama }}</label>
+                                            class="form-label">{{ $itemForm->berkas->nama }}
+                                            <small class="text-danger">(*wajib pdf, max
+                                                {{ $itemForm->berkas->ukuran_max }} Mb)</small>
+                                        </label>
                                         <input type="file" id="{{ $itemForm->berkas->id }}"
                                             name="files[{{ $itemForm->berkas->nama }}]"
                                             berkas-id="{{ $itemForm->berkas->nama }}"
