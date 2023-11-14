@@ -583,26 +583,50 @@
                 <li class="menu-header">MITRA</li>
                 @endrole
 
-                {{-- <li>
-                    <a class="nav-link" href="#">
+                <li>
+                    <a class="nav-link" href="{{ route('lowongan1.index') }}">
                         <i class="fas fa-solid fa-users-gear fa-2xl"></i>
-                        <span>Peserta Magang</span>
+                        <span>Lowongan</span>
+                    </a>
+                </li>
+
+           
+
+                <li>
+                    <a class="nav-link" href="{{ route('programmagang.index') }}">
+                        <i class="fas fa-solid fa-users-gear fa-2xl"></i>
+                        <span>Program Magang</span>
                     </a>
                 </li>
 
                 <li>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('kompetensilowongan.index') }}">
                         <i class="fas fa-book"></i>
-                        <span>Loog Book</span>
+                        <span>Kompetensi Lowongan</span>
                     </a>
-                </li> --}}
+                </li> 
+
+                
+                <li>
+                    <a class="nav-link" href="{{ route('penilaian.index') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Penilaian</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="{{ route('daftarlogbook.index') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Logbook Mahasiswa</span>
+                    </a>
+                </li>
 
                 @can('manajemen.profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.profil.plmitra.page', auth()->user()->id) }}"><i
                                 class="fas fa-user"></i>
-                            <span>Profil</span>
+                            <span>Profil PL Mitra</span>
                         </a>
                     </li>
                 @endcan

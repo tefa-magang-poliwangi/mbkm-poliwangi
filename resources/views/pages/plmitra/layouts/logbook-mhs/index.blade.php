@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Lowongan Magang | MBKM Poliwangi</title>
+    <title>Daftar Logbook Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,57 +20,69 @@
 @endphp
 
 @section('content')
-    <section class="pt-3">
+    <section class="pt-4">
         <div class="row pt-5">
             <div class="col-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Daftar Lowongan Magang</h5>
+                                <h5 class="justify-start my-auto text-theme">Logbook Mahasiswa</h5>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah Logbook
+                                </a>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            @php
-                                $no = 1;
-                            @endphp
+
                             <table class="table table-hover table-borderless rounded" id="table-1">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th class="text-center text-white">No</th>
-                                        <th class="text-center text-white">Nama Mitra</th>
-                                        <th class="text-center text-white">Nama Lowongan</th>
-                                        <th class="text-center text-white">Jumlah Lowongan</th>
-                                        <th class="text-center text-white">Prodi</th>
+                                        <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Program Magang</th>
-                                        <th class="text-center text-white">Status</th>
+                                        <th class="text-center text-white">Kegiatan</th>
+                                        <th class="text-center text-white">Bukti</th>
+                                        <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                         $no = 1;
-                                    @endphp
-
-                                    @foreach ($lowongans as $data)
+                                     @endphp
+                                        @foreach ($logbook as $data)
                                         <tr>
-                                            <td class="text-center">{{ $no }}</td>
-                                            <td class="text-center">{{ $data->mitra->nama }}</td>
-                                            <td class="text-center">{{ $data->nama }}</td>
-                                            <td class="text-center">{{ $data->jumlah_lowongan }}</td>
-                                            <td class="text-center">{{ $data->prodi->nama }}</td>
+                                            <td class="text-center">{{$no}}</td>
+                                            <td class="text-center">{{$data->mahasiswa->nama}}</td>
+                                            <td class="text-center">{{$data->program_magang->nama}}</td>
+                                            <td class="text-center">{{$data->kegiatan}}</td>
+                                            <td class="text-center">{{$data->bukti}}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('kaprodi.validasi.program.magang.show', $data->id) }}"
+                                                <a href=""
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-primary text-white"></span>
+                                            </td>
+                                            <td>
+                                                <a href=""
+                                                    class="btn btn-info ml-auto"><i
+                                                        class="fa-solid fa-pen text-white"></i></a>
+                                                <a href=""
+                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
+                                            </td>
                                         </tr>
-
                                         @php
                                             $no++;
                                         @endphp
-                                    @endforeach
+                                        @endforeach
+
                                 </tbody>
                             </table>
                         </div>
