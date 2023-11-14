@@ -540,7 +540,6 @@
                 @endrole
 
                 @can('profil.mitra.page')
-                    <li class="menu-header">Tentang Akun</li>
                     <li>
                         <a class="nav-link" href="{{ route('profil.mitra.page', auth()->user()->id) }}">
                             <i class="fas fa-user"></i>
@@ -577,23 +576,11 @@
                     </li>
                 @endcan
 
-
-
                 @can('manajemen.pelamar.mitra.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.pelamar.mitra.index') }}">
                             <i class="fas fa-solid fa-list-ol"></i>
                             <span>Data Pelamar</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('manajemen.profil.mitra.page')
-                    <li class="menu-header">Tentang Akun</li>
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.profil.mitra.page', auth()->user()->id) }}"><i
-                                class="fas fa-user"></i>
-                            <span>Profil</span>
                         </a>
                     </li>
                 @endcan
@@ -611,19 +598,17 @@
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')
-                    <li class="menu-header">MITRA</li>
+                    <li class="menu-header">PL Mitra</li>
                 @endrole
 
-                @can('manajemen.profil.plmitra.page')
-                    <li class="menu-header">Tentang Akun</li>
+                @can('profil.plmitra.page')
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.profil.plmitra.page', auth()->user()->id) }}"><i
-                                class="fas fa-user"></i>
+                        <a class="nav-link" href="{{ route('profil.plmitra.page', auth()->user()->id) }}">
+                            <i class="fas fa-user"></i>
                             <span>Profil PL Mitra</span>
                         </a>
                     </li>
                 @endcan
-
             @endauth
         </ul>
     </aside>

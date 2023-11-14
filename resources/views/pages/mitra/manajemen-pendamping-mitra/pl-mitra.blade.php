@@ -64,7 +64,7 @@
                                                     </td>
                                                 </tr>
 
-                                                {{-- Modal Ubah Periode --}}
+                                                {{-- Modal Ubah PL Mitra --}}
                                                 <div class="modal fade" tabindex="-1" role="dialog"
                                                     id="updateModal{{ $data->id }}">
                                                     <div class="modal-dialog" role="document">

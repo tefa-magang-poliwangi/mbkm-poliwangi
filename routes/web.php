@@ -375,8 +375,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
 
         // Route Profil PLMitra
-        Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('manajemen.profil.plmitra.page');
-        Route::put('/dashboard/plmitra/update-profil/{id_plmitra}/update', [ProfilePLMitraController::class, 'update'])->name('manajemen.profil.plmitra.update');
+        Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('profil.plmitra.page');
+        Route::put('/dashboard/plmitra/update-profil/{id_plmitra}/update', [ProfilePLMitraController::class, 'update'])->name('profil.plmitra.update');
 
         // # (Route User Super Admin - Spatie)
         Route::group(['prefix' => 'users'], function () {
