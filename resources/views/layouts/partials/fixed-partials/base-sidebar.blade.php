@@ -428,7 +428,7 @@
                     <li>
                         <a class="nav-link" href="{{ route('kaprodi.daftar.transkrip.index') }}">
                             <i class="fas fa-credit-card"></i>
-                            <span>Validasi Transkrip Nilai</span>
+                            <span>Validasi Transkrip</span>
                         </a>
                     </li>
                 @endcan

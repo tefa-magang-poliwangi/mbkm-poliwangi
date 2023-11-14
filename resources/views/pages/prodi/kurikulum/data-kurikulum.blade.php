@@ -70,7 +70,7 @@
                                                 </a>
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $item->id }}"><i
-                                                        class="fa-solid fa-pen"></i></button>
+                                                        class="fa-solid fa-pen text-white"></i></button>
                                                 <a href="{{ route('manajemen.kurikulum.destroy', $item->id) }}"
                                                     class="btn btn-danger ml-auto"> <i
                                                         class="fa-solid fas fa-trash"></i></a>
@@ -99,7 +99,8 @@
                                                             <div class="form-group">
                                                                 <label for="update_nama" class="form-label">Nama
                                                                     Kurikulum</label>
-                                                                <input id="update_nama" type="text"
+                                                                <input id="update_nama" placeholder="Nama kurikulum"
+                                                                    type="text"
                                                                     class="form-control @error('update_nama')
                                                                     is-invalid
                                                                 @enderror"
@@ -169,7 +170,7 @@
                             <div class="form-group">
                                 <label for="create_nama" class="form-label">Nama
                                     Kurikulum</label>
-                                <input id="create_nama" type="text"
+                                <input id="create_nama" placeholder="Nama kurikulum" type="text"
                                     class="form-control @error('create_nama')
                                  is-invalid
                              @enderror"

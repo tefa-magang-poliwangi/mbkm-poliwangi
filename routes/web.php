@@ -434,15 +434,6 @@ Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
 Route::get('/dashboard-dosen/laporan-akhir', function () {
     return view('pages.dosen.kaprodi-laporan-akhir');
 });
-Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
-    return view('pages.prodi.form-daftar-cpl');
-});
-Route::get('/dashboard-dosen/daftar-program', function () {
-    return view('pages.dosen.kaprodi-daftar-program');
-});
-Route::get('/dashboard-dosen/daftar-mahasiswa', function () {
-    return view('pages.dosen.kaprodi-daftar-mahasiswa');
-});
 
 // Halaman Dosen Pembimbing
 Route::get('/dashboard-dosen/laporan-harian', function () {

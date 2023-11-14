@@ -1,6 +1,7 @@
 @extends('layouts.base-admin')
+
 @section('title')
-    <title>Laporan Mingguan MBKM| Politeknik Negeri Banyuwangi</title>
+    <title>Laporan Mingguan | MBKM Poliwangi</title>
 @endsection
 
 @section('content')

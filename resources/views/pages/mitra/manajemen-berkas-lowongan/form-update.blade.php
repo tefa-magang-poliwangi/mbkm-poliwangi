@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Update Program Magang MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Update Program Magang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -18,7 +18,8 @@
                         <h4>Ubah Program Magang</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('manajemen.berkas-lowongan.mitra.update', [$id_lowongan, $berkaslowongan->id]) }}"
+                        <form
+                            action="{{ route('manajemen.berkas-lowongan.mitra.update', [$id_lowongan, $berkaslowongan->id]) }}"
                             method="POST">
                             @method('put')
                             @csrf

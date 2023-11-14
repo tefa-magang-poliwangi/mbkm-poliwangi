@@ -1,8 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>
-        Dashboard Dosen | MBKM Poliwangi</title>
+    <title>Dashboard Dosen | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -49,83 +48,28 @@
                     </div>
                 </div>
             </div>
-            <section class="section">
-                <div class="row py-2">
+
+            {{-- content --}}
+            <div class="row py-2">
+                @role('kaprodi')
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="fas fa-exchange-alt"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Konversi Nilai</h4>
+                        <a href="{{ route('kaprodi.daftar.transkrip.index') }}">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fas fa-exchange-alt"></i>
                                 </div>
-                                <div class="card-body">
-                                    10
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Daftar Transkrip Nilai</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ $daftar_transkrip_nilai_count }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Validasi PL</h4>
-                                </div>
-                                <div class="card-body">
-                                    42
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
-                                <i class="fas fa-check-to-slot"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Kelayakan Mahasiswa</h4>
-                                </div>
-                                <div class="card-body">
-                                    1,201
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-success">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Laporan Harian</h4>
-                                </div>
-                                <div class="card-body">
-                                    47
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="card-wrap">
-                                <div class="card-header">
-                                    <h4>Laporan Mingguan</h4>
-                                </div>
-                                <div class="card-body">
-                                    47
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger">
@@ -141,8 +85,58 @@
                             </div>
                         </div>
                     </div>
+                @endrole
+
+                @role('dosen-wali')
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="fas fa-check-to-slot"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Kelayakan Mahasiswa</h4>
+                                </div>
+                                <div class="card-body">
+                                    1,201
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endrole
+
+                {{-- card dosen pendamping (blm ada) --}}
+                {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-success">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Laporan Harian</h4>
+                            </div>
+                            <div class="card-body">
+                                47
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-primary">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Laporan Mingguan</h4>
+                            </div>
+                            <div class="card-body">
+                                47
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
         </div>
     </section>
 @endsection
