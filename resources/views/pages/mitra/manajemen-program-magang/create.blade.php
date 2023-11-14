@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Form Tambah Program Magang MBKM | Politeknik Negeri Banyuwangi</title>
+    <title>Form Tambah Program Magang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -9,6 +9,9 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/jquery-selectric/selectric.css') }}">
+
+    {{-- Datedroppper JS --}}
+    <script src="{{ asset('js-datedropper/datedropper-javascript.js') }}"></script>
 @endsection
 
 @section('content')
@@ -38,8 +41,9 @@
 
                             <div class="form-group">
                                 <label for="waktu_mulai" class="waktu_mulai">Waktu Mulai</label>
-                                <input id="waktu_mulai" type="date" name="waktu_mulai"
-                                    class="form-control @error('waktu_mulai') is-invalid @enderror" name="waktu_mulai"
+                                <input id="waktu_mulai" type="text" name="waktu_mulai"
+                                    class="form-control date-input bg-white @error('waktu_mulai') is-invalid @enderror"
+                                    data-dd-opt-custom-class="dd-theme-bootstrap" name="waktu_mulai"
                                     placeholder="Waktu Mulai">
                                 @error('waktu_mulai')
                                     <div id="waktu_mulai" class="form-text text-danger">
@@ -49,8 +53,9 @@
 
                             <div class="form-group">
                                 <label for="waktu_akhir" class="waktu_akhir">Waktu Akhir</label>
-                                <input id="waktu_akhir" type="date" name="waktu_akhir"
-                                    class="form-control @error('waktu_akhir') is-invalid @enderror" name="waktu_akhir"
+                                <input id="waktu_akhir" type="text" name="waktu_akhir"
+                                    class="form-control date-input bg-white @error('waktu_akhir') is-invalid @enderror"
+                                    data-dd-opt-custom-class="dd-theme-bootstrap" name="waktu_akhir"
                                     placeholder="Waktu Akhir">
                                 @error('waktu_akhir')
                                     <div id="waktu_akhir" class="form-text text-danger">
@@ -71,21 +76,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="id_lowongan">Lowongan</label>
-                                <select class="form-control @error('id_lowongan') is-invalid @enderror" id="id_lowongan"
-                                    name="id_lowongan">
-                                    <option value="">Pilih Lowongan</option>
-                                    @foreach ($lowongan as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_lowongan')
-                                    <div id="id_lowongan" class="form-text text-danger">
-                                        {{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
                                 <label class="form-label" for="id_pl_mitra">Pendamping Lapang</label>
                                 <select class="form-control @error('id_pl_mitra') is-invalid @enderror" id="id_pl_mitra"
                                     name="id_pl_mitra">
@@ -101,7 +91,7 @@
                             </div>
 
 
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Tambah</button>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Tambah Program Magang</button>
                         </form>
                     </div>
 
@@ -120,5 +110,17 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+
+    {{-- Inisiasi datedroppper --}}
+    <script>
+        dateDropper({
+            selector: '.date-input',
+            expandedDefault: true,
+            expandable: true,
+            overlay: true,
+            showArrowsOnHover: true,
+            autoFill: false
+        });
     </script>
 @endsection

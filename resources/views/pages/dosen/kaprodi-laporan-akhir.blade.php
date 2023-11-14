@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Acc Laporan Akhir| Kaprodi | Politeknik Negeri Banyuwangi</title>
+    <title>Persetujuan Laporan Akhir | MBKM Poliwangi</title>
 @endsection
 
 @section('css')

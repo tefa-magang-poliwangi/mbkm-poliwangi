@@ -6,9 +6,9 @@ use App\Models\BerkasLowongan;
 use App\Models\Mitra;
 use App\Models\Berkas;
 use App\Models\Lowongan;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BerkasLowonganController extends Controller
@@ -38,11 +38,16 @@ class BerkasLowonganController extends Controller
     {
         $user = Auth::user();
         $mitra = Mitra::where('id_user', $user->id)->first();
-        $berkas = Berkas::where('id_mitra', $mitra->id)->get();
+
+        // Dapatkan ID berkas yang sudah terkait dengan lowongan tertentu
+        $selectedBerkasIds = BerkasLowongan::where('id_lowongan', $id_lowongan)->pluck('id_berkas')->toArray();
+
+        // Kecualikan berkas yang sudah dipilih dari berkas yang tersedia
+        $availableBerkas = Berkas::where('id_mitra', $mitra->id)->whereNotIn('id', $selectedBerkasIds)->get();
 
         $data = [
             'berkaslowongan' => BerkasLowongan::all(),
-            'berkas' => $berkas,
+            'berkas' => $availableBerkas,
             'lowongan' => Lowongan::where('id_mitra', $id_lowongan)->get(),
             'id_lowongan' => $id_lowongan,
         ];
@@ -50,38 +55,38 @@ class BerkasLowonganController extends Controller
         return view('pages.mitra.manajemen-berkas-lowongan.create', $data);
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,$id_lowongan)
+    public function store(Request $request, $id_lowongan)
     {
-
         $validated = $request->validate([
-            'berkas' => ['required'],
+            'berkas' => [
+                'required',
+                Rule::unique('berkas_lowongans', 'id_berkas')->where('id_lowongan', $id_lowongan),
+            ],
         ]);
 
         if (isset($validated['berkas'])) {
             $id_berkas = $validated['berkas'];
 
-            $berkas = Berkas::all();
-
             foreach ($id_berkas as $berkasID) {
-                if ($berkas->contains('id', $berkasID)) {
-                    BerkasLowongan::create([
-                        'id_lowongan' => $id_lowongan,
-                        'id_berkas' => $berkasID,
-                    ]);
-                }
+                BerkasLowongan::create([
+                    'id_lowongan' => $id_lowongan,
+                    'id_berkas' => $berkasID,
+                ]);
             }
         }
 
-        Alert::success('Success', 'Berkas Lowongan Berhasil Ditambahkan');
+    Alert::success('Sukses', 'Berkas Lowongan Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.berkas-lowongan.mitra.index', $id_lowongan);
-    }
+    return redirect()->route('manajemen.berkas-lowongan.mitra.index', $id_lowongan);
+}
+
 
     /**
      * Display the specified resource.

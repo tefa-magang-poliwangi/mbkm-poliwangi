@@ -38,12 +38,7 @@ class MatakuliahController extends Controller
      */
     public function create()
     {
-        $data = [
-            'matakuliah' => Matkul::all(),
-            'prodi' => Prodi::all(),
-        ];
-
-        return view('pages.prodi.matkul.create', $data);
+    //
     }
 
     /**

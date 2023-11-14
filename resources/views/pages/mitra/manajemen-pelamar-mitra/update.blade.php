@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Form Ubah Mitra Magang Internal | Politeknik Negeri Banyuwangi</title>
+    <title>Form Ubah Mitra Magang Internal | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -210,9 +210,8 @@
 
                             <div class="form-group">
                                 <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea id="deskripsi" type="text"
-                                    class="form-control @error('deskripsi') is-invalid @enderror"
-                                    name="deskripsi" >{{ $mitra->deskripsi }}</textarea>
+                                <textarea id="deskripsi" type="text" class="form-control @error('deskripsi') is-invalid @enderror"
+                                    name="deskripsi">{{ $mitra->deskripsi }}</textarea>
                                 @error('deskripsi')
                                     <div id="deskripsi" class="form-text text-danger">
                                         {{ $message }}</div>

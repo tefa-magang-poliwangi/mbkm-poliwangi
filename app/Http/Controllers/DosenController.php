@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\DosenImport;
 use App\Models\AdminProdi;
 use App\Models\Dosen;
 use App\Models\Prodi;
@@ -11,8 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Storage;
 
 class DosenController extends Controller
 {

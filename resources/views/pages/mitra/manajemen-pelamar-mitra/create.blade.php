@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Form Tambah Mitra Magang Internal | Politeknik Negeri Banyuwangi</title>
+    <title>Form Tambah Mitra Magang Internal | MBKM Poliwangi</title>
 @endsection
 
 @section('css')

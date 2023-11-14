@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Admin | Politeknik Negeri Banyuwangi</title>
+    <title>Daftar CPL | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -37,8 +37,8 @@
                                     <tr>
                                         <th class="text-center text-white" width="10%">No</th>
                                         <th class="text-white text-center">Kode CPL</th>
-                                        <th class="text-white text-center">Deskripsi</th>
                                         <th class="text-white text-center">Jenis CPL</th>
+                                        <th class="text-white text-center">Deskripsi</th>
                                         <th class="text-white text-center" width="10%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,8 +51,8 @@
                                         <tr>
                                             <td class="text-center">{{ $no }}</td>
                                             <td class="text-center">{{ $data->kode_cpl }}</td>
-                                            <td>{{ $data->deskripsi }}</td>
                                             <td class="text-center">{{ $data->jenis_cpl }}</td>
+                                            <td>{{ $data->deskripsi }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                     data-target="#updateModal{{ $data->id }}">

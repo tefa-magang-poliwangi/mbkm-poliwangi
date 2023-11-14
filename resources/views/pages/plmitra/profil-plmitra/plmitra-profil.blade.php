@@ -26,6 +26,96 @@
                                 <span>{{ $plmitra->nama }}</span>
                             </div>
                         </div>
+
+                        <div class="px-3 pt-4">
+                            <form action="{{ route('profil.plmitra.update', $plmitra->id) }}" method="post">
+                                @method('put')
+                                @csrf
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="nama">Nama</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="nama" name="nama"
+                                            class="form-control  @error('nama') is-invalid @enderror"
+                                            placeholder="Nama lengkap" value="{{ $plmitra->nama }}">
+                                        @error('nama')
+                                            <div id="nama" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="no_telp">No Telepon</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" id="no_telp" name="no_telp"
+                                            class="form-control  @error('no_telp') is-invalid @enderror"
+                                            placeholder="No telepon" pattern="[0-9]*" value="{{ $plmitra->no_telp }}">
+                                        @error('no_telp')
+                                            <div id="no_telp" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="email">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" id="email" name="email"
+                                            class="form-control  @error('email') is-invalid @enderror"
+                                            placeholder="Alamat email" value="{{ $plmitra->email }}">
+                                        @error('email')
+                                            <div id="email" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="password">Password Baru</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="password" id="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="Password baru">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i id="togglePassword" class="fa-solid fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @error('password')
+                                            <div id="password" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="password_confirmation">Konfirmasi
+                                        Password</label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                placeholder="Konfirmasi password baru">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <i id="togglePasswordConfirmation" class="fa-solid fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @error('password_confirmation')
+                                            <div id="password_confirmation" class="form-text">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col d-flex">
+                                        <button class="btn btn-primary ml-auto">Simpan</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>

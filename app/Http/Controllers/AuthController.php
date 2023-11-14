@@ -60,7 +60,7 @@ class AuthController extends Controller
             } elseif ($user->hasRole('mitra')) {
                 return redirect()->route('dashboard.mitra.page');
             } elseif ($user->hasRole('pl-mitra')) {
-                return redirect()->route('dashboard.mitra.page');
+                return redirect()->route('dashboard.plmitra.page');
             }
         }
 

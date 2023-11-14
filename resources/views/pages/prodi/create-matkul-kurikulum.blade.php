@@ -25,8 +25,8 @@
 
                             <div class="form-group">
                                 <label for="semester" class="form-label">Semester</label>
-                                <select class="form-control @error('semester') is-invalid @enderror"
-                                    id="semester" name="semester">
+                                <select class="form-control @error('semester') is-invalid @enderror" id="semester"
+                                    name="semester">
                                     <option value="">Pilih Semester</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
@@ -38,39 +38,39 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr class="text-nowrap">
-                                                <th>Matakuliah
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th>Matakuliah
 
-                                                    @error('matkul')
-                                                        <div id="" class="text-danger py-1">
-                                                            *pilih matakuliah
-                                                        </div>
-                                                    @else
-                                                        <small>(Mohon Pilih Minimal Satu Matakuliah)</small>
-                                                    @enderror
-                                                </th>
+                                                @error('matkul')
+                                                    <div id="" class="text-danger py-1">
+                                                        *pilih matakuliah
+                                                    </div>
+                                                @else
+                                                    <small>(Mohon Pilih Minimal Satu Matakuliah)</small>
+                                                @enderror
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($matkul as $dataMatkul)
+                                            <tr>
+                                                <td class="d-flex">
+                                                    <div class="form-check my-auto">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="{{ $dataMatkul->id }}" name="matkul[]"
+                                                            id="{{ $dataMatkul->id }}">
+                                                        <label class="form-check-label" for="{{ $dataMatkul->id }}">
+                                                            {{ $dataMatkul->nama }}
+                                                        </label>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($matkul as $dataMatkul)
-                                                <tr>
-                                                    <td class="d-flex">
-                                                        <div class="form-check my-auto">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="{{ $dataMatkul->id }}" name="matkul[]"
-                                                                id="{{ $dataMatkul->id }}">
-                                                            <label class="form-check-label" for="{{ $dataMatkul->id }}">
-                                                                {{ $dataMatkul->nama }}
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
 
-                                        </tbody>
-                                        @endforeach
-                                    </table>
+                                    </tbody>
+                                    @endforeach
+                                </table>
 
                             </div>
                             <button class="btn btn-primary mr-auto" type="submit">Tambah Mata Kuliah</button>

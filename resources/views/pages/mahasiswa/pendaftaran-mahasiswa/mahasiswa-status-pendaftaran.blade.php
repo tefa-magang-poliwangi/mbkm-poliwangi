@@ -1,6 +1,7 @@
 @extends('layouts.base-mahasiswa')
-@section('Kegiatan')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+
+@section('title')
+    <title>Status Pendaftaran | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -13,19 +14,19 @@
         <div class="container py-1">
             <div class="row py-1">
 
-                    <div class="col-12 pt-5 d-flex" data-aos="zoom-in" data-aos-delay="600">
-                        <img src="{{ asset('images/gambar_kegiatan.png') }}" width="500"
-                            class="img-fluid p-5 mx-auto my-auto" alt="">
-                    </div>
+                <div class="col-12 pt-5 d-flex" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="{{ asset('images/gambar_kegiatan.png') }}" width="500"
+                        class="img-fluid p-5 mx-auto my-auto" alt="">
+                </div>
 
 
-                    <center>
-                        <div class="col-6 card-footer text-center grey-color p-3 card-content card-rounded ">
+                <center>
+                    <div class="col-6 card-footer text-center grey-color p-3 card-content card-rounded ">
                         <h2 class="text-color-black">Belum Ada Lamaran</h2>
                         <p class="text-color-black">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
                         <button class="btn btn-theme-two">Daftar Kegiatan</button>
                     </div>
-                    </center>
+                </center>
             </div>
 
         </div>
