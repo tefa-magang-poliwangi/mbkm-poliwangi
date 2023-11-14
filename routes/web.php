@@ -39,7 +39,8 @@ use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MitraLowonganController;
-use App\Http\Controllers\PLMitra\KompetensiLowonganPLController;
+use App\Http\Controllers\KompetensiLowonganController;
+use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
 use App\Http\Controllers\PLMitra\ProgramMagangPLController;
 use App\Http\Controllers\PLMitra\PenilaianPLController;
@@ -375,12 +376,22 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/manajemen/berkas-lowongan/{id_berkas}/{id_berkas_lowongan}/update', [BerkasLowonganController::class, 'update'])->name('manajemen.berkas-lowongan.mitra.update');
         Route::get('/manajemen/berkas-lowongan/{id_berkas_lowongan}/destroy', [BerkasLowonganController::class, 'destroy'])->name('manajemen.berkas-lowongan.mitra.destroy');
 
+        //Route Manajemen kompetensi lowongan
+        Route::get('/manajemen/{id_lowongan}/kompetensi-lowongan', [KompetensiLowonganController::class, 'index'])->name('manajemen.kompetensi.lowongan.index');
+        Route::post('/manajemen/{id_lowongan}/kompetensi-lowongan/store', [KompetensiLowonganController::class, 'store'])->name('manajemen.kompetensi.lowongan.store');
+        Route::put('/manajemen/{id}/kompetensi-lowongan/update', [KompetensiLowonganController::class, 'update'])->name('manajemen.kompetensi.lowongan.update');
+        Route::get('/manajemen/{id_lowongan}/kompetensi-lowongan/destroy', [KompetensiLowonganController::class, 'destroy'])->name('manajemen.kompetensi.lowongan.destroy');
+
+        ///Route Manajemen Kompetensi Program
+        Route::get('/manajemen/kompetensi-program', [KompetensiProgramController::class, 'index'])->name('manajemen.kompetensi.program.index');
+
+
+
         // # (Route PLMitra)
         //Route Dashboard PLMitra
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
         Route::get('/plmitra/program-magang', [ProgramMagangPLController::class, 'index'])->name('programmagang.index');
         Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
-        Route::get('/plmitra/kompetensi-lowongan', [KompetensiLowonganPLController::class, 'index'])->name('kompetensilowongan.index');
         Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('daftarlogbook.index');
         Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
 

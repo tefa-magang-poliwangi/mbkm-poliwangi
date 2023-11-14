@@ -50,6 +50,7 @@
                                         <th class="text-center text-white">Waktu Akhir</th>
                                         <th class="text-center text-white">Posisi Mahasiswa</th>
                                         <th class="text-center text-white">Pendamping Lapang</th>
+                                        <th class="text-center text-white">Kompetensi Program</th>
                                         <th class="text-center text-white" width="10%">Status</th>
                                         <th class="text-center text-white" width="12%">Aksi</th>
                                     </tr>
@@ -67,6 +68,10 @@
                                             <td class="text-center">{{ dateConversion($data->waktu_akhir) }}</td>
                                             <td class="text-center">{{ $data->posisi_mahasiswa }}</td>
                                             <td class="text-center">{{ $data->pl_mitra->nama }}</td>
+                                            <td class="text-center">
+                                                <a href="{{route('manajemen.kompetensi.program.index')}}"
+                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
+                                            </td>
                                             <td class="text-center">
                                                 @if ($data->validasi_kaprodi == 'Belum Disetujui')
                                                     <div class="btn btn-warning">
