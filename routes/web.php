@@ -39,6 +39,11 @@ use App\Http\Controllers\SuperAdminPageController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\MitraLowonganController;
+use App\Http\Controllers\PLMitra\KompetensiLowonganPLController;
+use App\Http\Controllers\PLMitra\LogbookMhsPLController;
+use App\Http\Controllers\PLMitra\ProgramMagangPLController;
+use App\Http\Controllers\PLMitra\PenilaianPLController;
+use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
 use App\Http\Controllers\ProfileAkademikController;
@@ -359,6 +364,25 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route PLMitra)
         //Route Dashboard PLMitra
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
+        Route::get('/plmitra/program-magang', [ProgramMagangPLController::class, 'index'])->name('programmagang.index');
+        Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
+        Route::get('/plmitra/kompetensi-lowongan', [KompetensiLowonganPLController::class, 'index'])->name('kompetensilowongan.index');
+        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('daftarlogbook.index');
+        Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
+
+        //Route CRUD penilaianplmitra Mitra
+
+        Route::get('/penilaianpl', [PenilaianPLController::class, 'index'])->name('penilaianpl.index');
+        Route::get('/penilaianpl/create', [PenilaianPLController::class, 'create'])->name('penilaianpl.create');
+        Route::post('/penilaianpl/store', [PenilaianPLController::class, 'store'])->name('penilaianpl.store');
+        Route::get('/penilaianpl/{id}', [PenilaianPLController::class, 'show'])->name('penilaianpl.show');
+        Route::get('/penilaianpl/{id}/edit', [PenilaianPLController::class, 'edit'])->name('penilaianpl.edit');
+        Route::put('/penilaianpl/{id}', [PenilaianPLController::class, 'update'])->name('penilaianpl.update');
+        Route::delete('/penilaianpl/{id}', [PenilaianPLController::class, 'destroy'])->name('penilaianpl.destroy');
+
+
+
+
 
         // Route Profil PLMitra
         Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('manajemen.profil.plmitra.page');
@@ -467,6 +491,3 @@ Route::get('/dashboard-admin/manajemen-kaprodi', function () {
     return view('pages.admin.manajemen-kaprodi.index');
 });
 
-Route::get('/daftar-pelamar', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
-});

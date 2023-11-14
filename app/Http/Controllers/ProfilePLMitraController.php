@@ -103,7 +103,7 @@ class ProfilePLMitraController extends Controller
         $user = User::findOrFail($plmitra->id_user);
 
         User::where('id', $user->id)->update([
-            'name' => $validated['nama'],
+            'nama' => $validated['nama'],
             'email' => $validated['email'],
             'username' => $validated['email'],
         ]);

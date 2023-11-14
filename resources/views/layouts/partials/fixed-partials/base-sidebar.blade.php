@@ -584,13 +584,13 @@
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')
-                <li class="menu-header">MITRA</li>
+                <li class="menu-header">PL Mitra</li>
                 @endrole
 
-                @can('manajemen.profil.plmitra.page')
+                @can('profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.profil.plmitra.page', auth()->user()->id) }}"><i
+                        <a class="nav-link" href="{{ route('profil.plmitra.page', auth()->user()->id) }}"><i
                                 class="fas fa-user"></i>
                             <span>Profil PL Mitra</span>
                         </a>
