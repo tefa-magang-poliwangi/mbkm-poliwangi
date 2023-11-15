@@ -46,9 +46,8 @@
                                     <tr>
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">Kopetensi Program</th>
-                                        <th class="text-center text-white">Nilai Angka</th>
-                                        <th class="text-center text-white">Nilai Huruf</th>
+                                        {{-- <th class="text-center text-white">Berkas Lowongan</th> --}}
+                                        <th class="text-center text-white">Status</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
@@ -56,17 +55,12 @@
                                         <tr>
                                             <td class="text-center">1</td>
                                             <td class="text-center">asam bisul</td>
-                                            <td class="text-center">hardware</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-primary text-white">75</span>
-                                            </td>
-                                            <td class="text-center">B</td>
-
+                                            <td class="text-center">panci warteg</td>
                                             <td>
-                                                <a href=""
+                                                <a href="#"
                                                     class="btn btn-info ml-auto"><i
                                                         class="fa-solid fa-pen text-white"></i></a>
-                                                <a href=""
+                                                <a href="#"
                                                     class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>

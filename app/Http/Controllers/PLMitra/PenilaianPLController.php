@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PLMitra;
+
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\NilaiMagang;
+use App\Models\Penilaian;
 
-class PenilaianController extends Controller
+class PenilaianPLController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,10 @@ class PenilaianController extends Controller
      */
     public function index()
     {
-        return view();
+        $data =[
+            'penilaian' => NilaiMagang::all()
+        ];
+        return view('pages.plmitra.layouts.penilaian.index', $data);
     }
 
     /**
@@ -23,26 +30,12 @@ class PenilaianController extends Controller
      */
     public function create()
     {
-
+        {
+            return view('penilaian.create');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

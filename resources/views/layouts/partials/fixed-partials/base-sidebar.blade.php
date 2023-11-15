@@ -589,24 +589,6 @@
                         <span>Lowongan</span>
                     </a>
                 </li>
-
-
-
-                <li>
-                    <a class="nav-link" href="{{ route('programmagang.index') }}">
-                        <i class="fas fa-solid fa-users-gear fa-2xl"></i>
-                        <span>Program Magang</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="nav-link" href="{{ route('kompetensilowongan.index') }}">
-                        <i class="fas fa-book"></i>
-                        <span>Kompetensi Lowongan</span>
-                    </a>
-                </li>
-
-
                 <li>
                     <a class="nav-link" href="{{ route('penilaian.index') }}">
                         <i class="fas fa-book"></i>

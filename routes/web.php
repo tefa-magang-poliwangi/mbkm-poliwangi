@@ -42,8 +42,7 @@ use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\KompetensiLowonganController;
 use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
-use App\Http\Controllers\PLMitra\ProgramMagangPLController;
-use App\Http\Controllers\PLMitra\PenilaianPLController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
@@ -390,23 +389,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route PLMitra)
         //Route Dashboard PLMitra
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
-        Route::get('/plmitra/program-magang', [ProgramMagangPLController::class, 'index'])->name('programmagang.index');
         Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
         Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('daftarlogbook.index');
-        Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
-
-        //Route CRUD penilaianplmitra Mitra
-
-        Route::get('/penilaianpl', [PenilaianPLController::class, 'index'])->name('penilaianpl.index');
-        Route::get('/penilaianpl/create', [PenilaianPLController::class, 'create'])->name('penilaianpl.create');
-        Route::post('/penilaianpl/store', [PenilaianPLController::class, 'store'])->name('penilaianpl.store');
-        Route::get('/penilaianpl/{id}', [PenilaianPLController::class, 'show'])->name('penilaianpl.show');
-        Route::get('/penilaianpl/{id}/edit', [PenilaianPLController::class, 'edit'])->name('penilaianpl.edit');
-        Route::put('/penilaianpl/{id}', [PenilaianPLController::class, 'update'])->name('penilaianpl.update');
-        Route::delete('/penilaianpl/{id}', [PenilaianPLController::class, 'destroy'])->name('penilaianpl.destroy');
-
-
-
+        Route::get('/plmitra/Penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
 
 
         // Route Profil PLMitra

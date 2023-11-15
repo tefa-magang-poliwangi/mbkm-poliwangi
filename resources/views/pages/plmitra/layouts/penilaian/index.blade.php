@@ -30,7 +30,7 @@
                                 <h5 class="justify-start my-auto text-theme">Lowongan Mitra</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="penilaianpl.create" class="btn btn-primary ml-auto">
+                                <a href="" class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     TambahLowongan
                                 </a>
@@ -46,21 +46,23 @@
                                     <tr>
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">Kopetensi Program</th>
-                                        <th class="text-center text-white">Nilai Angka</th>
-                                        <th class="text-center text-white">Nilai Huruf</th>
+                                        <th class="text-center text-white">Jumlah Lowongan</th>
+                                        <th class="text-center text-white">Program Magang</th>
+                                        <th class="text-center text-white">Kompetensi Lowongan</th>
+                                        <th class="text-center text-white">Berkas Lowongan</th>
+                                        <th class="text-center text-white">Status</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                         <tr>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">asam bisul</td>
+                                            <td class="text-center">hardware</td>
                                             <td class="text-center">
-                                                <span class="badge bg-primary text-white"></span>
+                                                <span class="badge bg-primary text-white">75</span>
                                             </td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">B</td>
 
                                             <td>
                                                 <a href=""
