@@ -88,7 +88,7 @@
                                             <th class="text-white text-center">No</th>
                                             <th class="text-white text-center">Kode</th>
                                             <th class="text-white text-center">Matakuliah</th>
-                                            <th class="text-white text-center">Nilai</th>
+                                            <th width="30%" class="text-white text-center">Nilai</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -106,10 +106,11 @@
                                                     $konversi = $nilai_konversi->where('id_matkul', $data->matkul->id)->first();
                                                 @endphp
                                                 <td>
-                                                    <input type="text" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         name="{{ $data->matkul->id }}"
                                                         placeholder="{{ $konversi ? $konversi->nilai_angka : 'Nilai angka' }}"
-                                                        pattern="[0-9]*" {{ $konversi ? 'disabled' : 'required' }}>
+                                                        {{ $konversi ? 'disabled' : 'required' }} min="0"
+                                                        max="100" step="1">
                                                 </td>
                                             </tr>
                                             @php
