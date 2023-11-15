@@ -136,20 +136,25 @@
 
                         <div class="row mt-2">
                             <div class="col">
-                                @if ($transkrip_mhs->validasi_kaprodi == 'Setuju')
-                                    <button class="btn btn-success ml-auto">
-                                        Disetujui <i class="fa-solid fa-circle-check"></i>
-                                    </button>
-                                @else
-                                    <form action="{{ route('kaprodi.daftar.transkrip.validate', $transkrip_mhs->id) }}"
-                                        method="POST">
-                                        @method('put')
-                                        @csrf
 
-                                        <button type="submit" class="btn btn-success ml-auto">
-                                            Setujui <i class="fa-solid fa-circle-check"></i>
+                                @if (!$nilai_transkrip_mhs->isEmpty())
+                                    @if ($transkrip_mhs->validasi_kaprodi == 'Setuju')
+                                        <button class="btn btn-success ml-auto">
+                                            Disetujui <i class="fa-solid fa-circle-check"></i>
                                         </button>
-                                    </form>
+                                    @endif
+
+                                    @if ($transkrip_mhs->validasi_kaprodi == 'Belum Disetujui')
+                                        <form action="{{ route('kaprodi.daftar.transkrip.validate', $transkrip_mhs->id) }}"
+                                            method="POST">
+                                            @method('put')
+                                            @csrf
+
+                                            <button type="submit" class="btn btn-success ml-auto">
+                                                Setujui <i class="fa-solid fa-circle-check"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 @endif
                             </div>
                         </div>
