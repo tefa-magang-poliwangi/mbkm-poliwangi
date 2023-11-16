@@ -69,7 +69,7 @@
                                             <td class="text-center">{{ $data->posisi_mahasiswa }}</td>
                                             <td class="text-center">{{ $data->pl_mitra->nama }}</td>
                                             <td class="text-center">
-                                                <a href="{{route('manajemen.kompetensi.program.index')}}"
+                                                <a href="{{route('manajemen.kompetensi.program.index', $data->id)}}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
                                             <td class="text-center">

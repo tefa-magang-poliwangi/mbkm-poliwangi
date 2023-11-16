@@ -382,9 +382,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/{id_lowongan}/kompetensi-lowongan/destroy', [KompetensiLowonganController::class, 'destroy'])->name('manajemen.kompetensi.lowongan.destroy');
 
         ///Route Manajemen Kompetensi Program
-        Route::get('/manajemen/kompetensi-program', [KompetensiProgramController::class, 'index'])->name('manajemen.kompetensi.program.index');
-
-
+        Route::get('/manajemen/{id_program_magang}/kompetensi-program', [KompetensiProgramController::class, 'index'])->name('manajemen.kompetensi.program.index');
+        Route::get('/manajemen/kompetensi-program/{id_program_magang}/create', [KompetensiProgramController::class, 'create'])->name('manajemen.kompetensi.program.create');
+        Route::post('/manajemen/{id_program_magang}/kompetensi-program/store', [KompetensiProgramController::class, 'store'])->name('manajemen.kompetensi.program.store');
+        Route::get('/manajemen/kompetensi-program/{id}/destroy', [KompetensiProgramController::class, 'destroy'])->name('manajemen.kompetensi.program.destroy');
 
         // # (Route PLMitra)
         //Route Dashboard PLMitra
