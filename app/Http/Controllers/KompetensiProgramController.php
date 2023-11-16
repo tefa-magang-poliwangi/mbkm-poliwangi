@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KompetensiLowongan;
+use App\Models\KompetensiProgram;
+use App\Models\Mitra;
+use App\Models\ProgramMagang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KompetensiProgramController extends Controller
 {
@@ -11,9 +18,17 @@ class KompetensiProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_program_magang)
     {
-        return view('pages.mitra.manajemen-program-magang.kompetensi-program');
+        $data = [
+            'id_program_magang' => $id_program_magang,
+            'kompetensi_program' => KompetensiProgram::where('id_program_magang', $id_program_magang)->get(),
+            'program_magang' => ProgramMagang::findOrFail($id_program_magang),
+        ];
+
+
+
+        return view('pages.mitra.manajemen-kompetensi-program.index', $data);
     }
 
     /**
@@ -21,9 +36,23 @@ class KompetensiProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_program_magang)
     {
-        //
+        $user = Auth::user();
+        $mitra = Mitra::where('id_user', $user->id)->first();
+
+        $selectkompetensiprogram = KompetensiProgram::where('id_program_magang', $id_program_magang)
+            ->pluck('id_kompetensi_lowongan')
+            ->toArray();
+
+        $data = [
+            'kompetensi_program' => KompetensiProgram::all(),
+            'kompetensi_lowongan' => KompetensiLowongan::all(),
+            'program_magang' => $selectkompetensiprogram,
+            'id_program_magang' => $id_program_magang,
+        ];
+
+        return view('pages.mitra.manajemen-kompetensi-program.create', $data);
     }
 
     /**
@@ -32,9 +61,29 @@ class KompetensiProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_program_magang)
     {
-        //
+        $validated = $request->validate([
+            'kompetensi' => [
+                'required',
+                Rule::unique('kompetensi_programs', 'id_kompetensi_lowongan')->where('id_program_magang', $id_program_magang),
+            ],
+        ]);
+
+        if (isset($validated['kompetensi'])) {
+            $id_kompetensi = $validated['kompetensi'];
+
+            foreach ($id_kompetensi as $kompetensiId) {
+                KompetensiProgram::create([
+                    'id_program_magang' => $id_program_magang,
+                    'id_kompetensi_lowongan' => $kompetensiId,
+                ]);
+            }
+        }
+
+    Alert::success('Sukses', 'Kompetensi Program Berhasil Ditambahkan');
+
+    return redirect()->route('manajemen.kompetensi.program.index', $id_program_magang);
     }
 
     /**
@@ -79,6 +128,11 @@ class KompetensiProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $KompetensiProgram = KompetensiProgram::findOrFail($id);
+        $KompetensiProgram->delete();
+
+        Alert::success('Success', 'Berkas Lowongan Berhasil Dihapus');
+
+        return redirect()->back();
     }
 }

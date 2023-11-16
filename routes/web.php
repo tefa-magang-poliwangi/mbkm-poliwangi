@@ -231,6 +231,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/manajemen/peserta-magang-ext/magang_{id_magang_ext}/store', [PesertaMagangExtController::class, 'store'])->name('manajemen.peserta.magang.ext.store');
         Route::get('/manajemen/peserta-magang-ext/peserta_magang_ext_{id_peserta_magang_ext}/{id}/destroy', [PesertaMagangExtController::class, 'destroy'])->name('manajemen.peserta.magang.ext.destroy');
         Route::get('/daftar-nilai-kriteria-mahasiswa/{id_mahasiswa}/show', [PesertaMagangExtController::class, 'show'])->name('daftar.nilai.kriteria.mahasiswa.show');
+        Route::put('/daftar-nilai-kriteria-mahasiswa/{id}/update', [PesertaMagangExtController::class, 'update'])->name('daftar.nilai.kriteria.mahasiswa.update');
 
         // Route Manajemen Kriteria
         Route::get('/manajemen/kriteria/{id_magang_ext}/index', [KriteriaPenilaianController::class, 'index'])->name('manajemen.kriteria.index');
@@ -382,9 +383,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/{id_lowongan}/kompetensi-lowongan/destroy', [KompetensiLowonganController::class, 'destroy'])->name('manajemen.kompetensi.lowongan.destroy');
 
         ///Route Manajemen Kompetensi Program
-        Route::get('/manajemen/kompetensi-program', [KompetensiProgramController::class, 'index'])->name('manajemen.kompetensi.program.index');
-
-
+        Route::get('/manajemen/{id_program_magang}/kompetensi-program', [KompetensiProgramController::class, 'index'])->name('manajemen.kompetensi.program.index');
+        Route::get('/manajemen/kompetensi-program/{id_program_magang}/create', [KompetensiProgramController::class, 'create'])->name('manajemen.kompetensi.program.create');
+        Route::post('/manajemen/{id_program_magang}/kompetensi-program/store', [KompetensiProgramController::class, 'store'])->name('manajemen.kompetensi.program.store');
+        Route::get('/manajemen/kompetensi-program/{id}/destroy', [KompetensiProgramController::class, 'destroy'])->name('manajemen.kompetensi.program.destroy');
 
         // # (Route PLMitra)
         //Route Dashboard PLMitra

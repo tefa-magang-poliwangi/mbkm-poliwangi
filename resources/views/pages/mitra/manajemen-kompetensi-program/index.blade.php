@@ -18,13 +18,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Kompetensi Lowongan</h5>
+                                <h5 class="justify-start my-auto text-theme">Kompetensi Program Magang</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
-                                    <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal">
-                                        <i class="fa-solid fa-plus"></i> &ensp; Tambah Kompetensi
-                                    </button>
+                                    <a href="{{ route('manajemen.kompetensi.program.create', $id_program_magang) }}"
+                                    class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah Kompetensi Program
+                                </a>
                                 </div>
                             </div>
                         </div>
@@ -42,23 +44,29 @@
                                         <th class="text-center text-white">Hapus</th>
                                     </tr>
                                 </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">testing</td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn btn-info ml-auto"
-                                                data-toggle="modal"
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($kompetensi_program as $data)
+                                    <tr>
+                                        <td class="text-center">{{$no}}</td>
+                                        <td class="text-center">{{$data->kompetensi_lowongan->kompetensi}}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
                                                 data-target="#">
                                                 <i class="fa-solid fa-pen"></i>
                                             </button>
-                                            <td class="text-center">
-                                                <a href="#"
-                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                    </tbody>
+                                        <td class="text-center">
+                                            <a href="{{route('manajemen.kompetensi.program.destroy', $data->id)}}" class="btn btn-danger ml-auto"><i
+                                                    class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $no++;
+                                    @endphp
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -67,8 +75,7 @@
         </div>
     </section>
 
-     {{-- Modal Tambah Kriteria --}}
-
+    {{-- Modal Tambah Kriteria --}}
 @endsection
 
 @section('script')

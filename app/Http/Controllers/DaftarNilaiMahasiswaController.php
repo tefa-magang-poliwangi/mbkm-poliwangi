@@ -45,8 +45,21 @@ class DaftarNilaiMahasiswaController extends Controller
 
     public function daftar_nilai_mahasiswa($id_mahasiswa)
     {
+        $periode_aktif = Periode::where('status', 'aktif')->first();
+        $result = $periode_aktif->semester;
+        $semester = "";
+
+        // pengecekan ganjil genap
+        if ($result % 2 == 0) {
+            $semester = "2";
+        } else {
+            $semester = "1";
+        }
         $data = [
             'nilai_transkrip' => NilaiKonversi::where('id_mahasiswa', $id_mahasiswa)->get(),
+            'nrp' => Mahasiswa::where('id', $id_mahasiswa)->first()->nim,
+            'periode_aktif' => $periode_aktif,
+            'semester' => $semester,
         ];
 
         return view('pages.akademik.daftar-nilai-mahasiswa.daftar-nilai-mahasiswa', $data);

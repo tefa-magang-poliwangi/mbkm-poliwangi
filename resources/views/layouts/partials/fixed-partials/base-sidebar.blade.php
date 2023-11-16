@@ -574,6 +574,14 @@
                         </a>
                     </li>
                 @endcan
+                @can('manajemen.berkas.mitra.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.berkas.mitra.index') }}">
+                            <i class="fas fa-solid fa-briefcase"></i>
+                            <span>Data Berkas</span>
+                        </a></i>
+                    </li>
+                @endcan
 
                 @can('manajemen.profil.mitra.page')
                     <li class="menu-header">Tentang Akun</li>
@@ -592,25 +600,23 @@
                     <li class="menu-header">MITRA</li>
                 @endrole
 
-                <li>
-                    <a class="nav-link" href="{{ route('lowongan1.index') }}">
-                        <i class="fas fa-solid fa-users-gear fa-2xl"></i>
-                        <span>Lowongan</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" href="{{ route('penilaian.index') }}">
-                        <i class="fas fa-book"></i>
-                        <span>Penilaian</span>
-                    </a>
-                </li>
+                @can('penilaian.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('penilaian.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>Penilaian</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li>
-                    <a class="nav-link" href="{{ route('daftarlogbook.index') }}">
-                        <i class="fas fa-book"></i>
-                        <span>Logbook Mahasiswa</span>
-                    </a>
-                </li>
+                @can('daftarlogbook.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('daftarlogbook.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>Logbook Mahasiswa</span>
+                        </a>
+                    </li>
+                @endcan
 
                 @can('manajemen.profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>
