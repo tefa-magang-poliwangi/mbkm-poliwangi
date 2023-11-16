@@ -507,7 +507,7 @@ body {
 }
 
 .ruler-program {
-    max-height: 500px !important;
+    max-height: 750px !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
 }

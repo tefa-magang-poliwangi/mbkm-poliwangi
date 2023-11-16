@@ -522,6 +522,15 @@
                         </a>
                     </li>
                 @endcan
+
+                @can('daftar.permohonan.magang.page')
+                    <li>
+                        <a class="nav-link" href="{{ route('daftar.permohonan.magang.page') }}">
+                            <i class="fas fa-regular fa-folder-open"></i>
+                            <span>Daftar Permohonan</span>
+                        </a>
+                    </li>
+                @endcan
             @endauth
 
             {{-- Menu Mitra --}}
@@ -580,7 +589,7 @@
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')
-                <li class="menu-header">MITRA</li>
+                    <li class="menu-header">MITRA</li>
                 @endrole
 
                 <li>

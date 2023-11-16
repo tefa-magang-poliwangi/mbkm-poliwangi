@@ -57,6 +57,11 @@ Install Paket :
   composer require realrashid/sweet-alert
 
 ```
+- Instal Paket Livewire 2.1 : 
+```bash
+  composer require livewire/livewire:^2.1
+
+```
 
 Public Vendor :
 - Publish Vendor Spatie : 
@@ -72,6 +77,11 @@ Public Vendor :
 - Publish Vendor Sweet Alert : 
 ```bash
   php artisan sweetalert:publish
+
+```
+- Publish Vendor Livewire 2.1 : 
+```bash
+  php artisan livewire:publish --assets
 
 ```
 

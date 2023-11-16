@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lowongan;
-use App\Models\Mahasiswa;
 use App\Models\Mitra;
-use App\Models\PelamarMagang;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class KatalogLowonganController extends Controller
 {
@@ -31,25 +27,11 @@ class KatalogLowonganController extends Controller
             $mitra = Mitra::inRandomOrder()->first();
         }
 
-        // Dapatkan data lowongan untuk mitra yang dipilih
-        $lowonganQuery = Lowongan::where('id_mitra', $mitra->id)->where('status', 'Aktif');
-
-        // Periksa apakah pengguna adalah mahasiswa
-        if (Auth::check() && Auth::user()->hasRole('mahasiswa')) {
-            $mahasiswa = Mahasiswa::where('id_user', Auth::user()->id)->first();
-            // Filter data lowongan berdasarkan id_prodi mahasiswa
-            $lowonganQuery->where('id_prodi', $mahasiswa->id_prodi);
-        }
-
-        $lowongan_mitra = $lowonganQuery->with('berkas_lowongan')->get();
         $mitras = Mitra::all();
-        $mahasiswa = null;
 
         $data = [
             'mitra' => $mitra,
-            'lowongan_mitra' => $lowongan_mitra,
             'mitras' => $mitras,
-            'permohonan' => $mahasiswa ? PelamarMagang::where('id_mahasiswa', $mahasiswa->id)->latest('created_at')->first() : null,
         ];
 
         return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-daftar-program', $data);
