@@ -111,6 +111,7 @@ class PesertaMagangExtController extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -120,7 +121,15 @@ class PesertaMagangExtController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'nilai' => ['required']
+        ]);
+
+        DetailPenilaianMagangExt::where('id', $id)->update([
+            'nilai' => $validated['nilai'],
+        ]);
+        Alert::success('Success', 'Nilai Magang Berhasil Di Update');
+        return redirect()->back();
     }
 
     /**

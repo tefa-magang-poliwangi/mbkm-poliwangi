@@ -30,18 +30,24 @@ class NilaiKriteriaKm implements ToCollection
             });
 
             if ($matchingMahasiswa) {
-                // inisiasi indeks kolom awal untuk nilai
-                $count_nilai = 2;
+                // Pengecekan untuk kriteria dan mahasiswa
+                $cekImporData = DetailPenilaianMagangExt::where('id_penilaian_magang_ext', $penilaian_kriteria->first()->id)
+                    ->where('id_mahasiswa', $matchingMahasiswa->id)
+                    ->exists();
 
-                // Loop sebanyak penilaian kriteria yang sesuai
-                foreach ($penilaian_kriteria as $penilaian) {
-                    DetailPenilaianMagangExt::create([
-                        'nilai' => $column[$count_nilai],
-                        'id_penilaian_magang_ext' => $penilaian->id,
-                        'id_mahasiswa' => $matchingMahasiswa->id,
-                    ]);
+                if (!$cekImporData) {
+                    // inisialisasi kolom mulai
+                    $count_nilai = 2;
 
-                    $count_nilai++;
+                    foreach ($penilaian_kriteria as $penilaian) {
+                        DetailPenilaianMagangExt::create([
+                            'nilai' => $column[$count_nilai],
+                            'id_penilaian_magang_ext' => $penilaian->id,
+                            'id_mahasiswa' => $matchingMahasiswa->id,
+                        ]);
+
+                        $count_nilai++;
+                    }
                 }
             }
         }
