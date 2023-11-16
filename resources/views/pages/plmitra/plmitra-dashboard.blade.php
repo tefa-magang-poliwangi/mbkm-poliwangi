@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col mt-3">
                     <div class="card-body">
-                        <h3 class="section-bg-two text-white card-rounded-sm px-3 py-4">Dashboard Mitra</h3>
+                        <h3 class="section-bg-two text-white card-rounded-sm px-3 py-4">Dashboard PL Mitra</h3>
                     </div>
                 </div>
             </div>

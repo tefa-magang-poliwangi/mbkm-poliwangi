@@ -28,19 +28,26 @@
                     <a class="nav-link navbar-text-hover fw-medium" href="{{ route('landing.page') }}#">Beranda</a>
                 </li>
                 <li class="nav-item mx-3 my-auto">
-                    <a class="nav-link navbar-text-hover" href="#">Program</a>
+                    <a class="nav-link navbar-text-hover" href="{{ route('daftar.lowongan.program') }}">Program</a>
                 </li>
                 <li class="nav-item mx-3 my-auto">
-                    <a class="nav-link navbar-text-hover" href="#persyaratan">Persyaratan</a>
+                    <a class="nav-link navbar-text-hover" href="{{ route('landing.page') }}#persyaratan">Persyaratan</a>
                 </li>
+
 
                 @auth
                     <li class="nav-item mx-3 my-auto">
                         <div class="dropdown">
                             <button class="btn bg-white btn-rounded" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <img src="{{ asset('assets/images/avatar/avatar-1.png') }}" class="img-fluid rounded-circle"
-                                    width="35" alt="">
+                                @role('mitra')
+                                    <img src="{{ $mitra->foto ? Storage::url($mitra->foto) : asset('images/logo/km-template.png') }}"
+                                        class="img-fluid rounded-circle" width="35" alt="">
+                                @else
+                                    <img src="{{ asset('assets/images/avatar/avatar-1.png') }}" class="img-fluid rounded-circle"
+                                        width="35" alt="">
+                                @endrole
+
                                 &ensp; <i class="fa-solid fa-bars text-theme"></i>
                             </button>
                             <ul class="dropdown-menu">

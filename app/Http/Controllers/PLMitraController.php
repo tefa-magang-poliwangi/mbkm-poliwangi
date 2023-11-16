@@ -25,6 +25,7 @@ class PLMitraController extends Controller
         $data = [
             'plmitra' => PLMitra::where('id_mitra', $mitra->id)->get(),
         ];
+
         return view('pages.mitra.manajemen-pendamping-mitra.pl-mitra', $data);
     }
 
@@ -109,24 +110,36 @@ class PLMitraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pl_mitra = PlMitra::findOrFail($id);
-        $user = User::findOrFail($pl_mitra->id_user);
-
         $validated = $request->validate([
             'update_nama' => 'required',
             'update_no_telp' => 'required|string|between:11,15',
             'update_email' => 'required|email',
-            'update_id_mitra' => 'required',
             'update_password' => ['nullable', 'confirmed', 'min:8'],
             'update_password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
+
+        $pl_mitra = PlMitra::findOrFail($id);
+        $user = User::findOrFail($pl_mitra->id_user);
+
+        // Menggunakan array kosong untuk $saveData sebagai awalan
+        $saveData = [];
+
+        // Pengecekan apakah ada input password
+        if (!empty($request->input('update_password'))) {
+            // Hash password
+            $saveData['update_password'] = bcrypt($request->input('update_password'));
+        }
 
         User::where('id', $user->id)->update([
             'name' => $validated['update_nama'],
             'email' => $validated['update_email'],
             'username' => $validated['update_email'],
-            'password' => bcrypt($validated['update_password']),
         ]);
+
+        // Jika ada password baru, update password
+        if (isset($saveData['update_password'])) {
+            $user->update(['password' => $saveData['update_password']]);
+        }
 
         PlMitra::where('id', $pl_mitra->id)->update([
             'nama' => $validated['update_nama'],
@@ -149,7 +162,11 @@ class PLMitraController extends Controller
     public function destroy($id)
     {
         $plmitra = PlMitra::findOrFail($id);
+        $user = User::findOrFail($plmitra->id_user);
         $plmitra->delete();
+        $user->delete();
+
+        Alert::success('Success', 'PL Mitra Berhasil Dihapus');
 
         return redirect()->route('manajemen.pendamping.lapang.mitra.index');
     }

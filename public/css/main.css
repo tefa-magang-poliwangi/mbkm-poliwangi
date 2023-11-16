@@ -21,6 +21,14 @@ body {
     font-weight: 600 !important;
 }
 
+.fw-x-bold {
+    font-weight: 800 !important;
+}
+
+.card-hover-theme {
+    box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
+}
+
 .card-hover:hover {
     box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
 }
@@ -187,7 +195,7 @@ body {
 
 .btn-theme {
     font-weight: 500 !important;
-    background-color: #4f709c !important;
+    background-color: #004978 !important;
     color: white !important;
     border-radius: 8px !important;
     border: 2px solid #004978 !important;
@@ -198,7 +206,23 @@ body {
     background-color: white !important;
     color: #004978 !important;
     border-radius: 8px !important;
-    border: 2px solid #00ccff !important;
+    border: 2px solid #004978 !important;
+}
+
+.btn-search {
+    font-weight: 500 !important;
+    background-color: #004978 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #004978 !important;
+}
+
+.btn-search:hover {
+    font-weight: 500 !important;
+    background-color: white !important;
+    color: #004978 !important;
+    border-radius: 8px !important;
+    border: 2px solid #004978 !important;
 }
 
 .btn-theme-inverse {
@@ -403,7 +427,8 @@ body {
 }
 
 .bg-theme {
-    background-color: #213555 !important;
+    background-color: #174276 !important;
+    color: white !important;
 }
 
 .sidebar-theme {
@@ -481,7 +506,39 @@ body {
     font-size: 50px !important;
 }
 
-.ruler-program{
-    max-height: 1000px !important;
+.ruler-program {
+    max-height: 500px !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+.custom-image-profile {
+    width: 100px;
+    height: 100px;
+}
+
+.limit-text-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.limit-description {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.input-file {
+    margin-bottom: 16px;
+}
+
+.container-file {
+    padding: 16px;
+    border-style: dashed;
+    border-width: 1px;
+    border-radius: 4px;
+    background-color: #ffffff;
 }

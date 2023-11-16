@@ -20,6 +20,7 @@ class Mitra extends Model
         'email',
         'foto',
         'status',
+        'deskripsi',
         'id_user',
         'id_sektor_industri',
         'id_kategori',
@@ -49,5 +50,10 @@ class Mitra extends Model
     public function pl_mitra()
     {
         return $this->hasMany(PlMitra::class);
+    }
+
+    public function berkas()
+    {
+        return $this->hasMany(Berkas::class);
     }
 }

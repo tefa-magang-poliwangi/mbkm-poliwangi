@@ -45,149 +45,86 @@
     </section>
 
     <section id="searchPerusahaan" class="container-fluid section-bg-one py-5">
+        {{-- Filter Perusahaan --}}
         <div class="container py-5">
-
-            <div class="row d-flex justify-content-start pt-5">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                    <h4 class="fw-bold text-white mb-3">Kategori Perusahaan</h4>
+            <div class="row d-flex justify-content-start pt-5" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-3">
+                    <h4 class="fw-bold text-white mb-3">Cari Perusahaan</h4>
                     <div class="form-group">
-                        <select class="form-control select2">
+                        <select class="form-control select2" id="selectMitra" onchange="goToMitra()">
                             <option value="">Pilih Nama Perusahaan</option>
-                            <option value="">Indomilk</option>
-                            <option>Biznet</option>
-                            <option>Pertamina</option>
-                            <option>Kampus Merdeka</option>
+                            @foreach ($mitras_all as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="row pt-5 d-flex justify-content-around" id="container">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/indomilk.png') }}" class="image-fluid" width="150"
-                                    alt="">
-                            </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
-                        </div>
+            <div class="row pt-5 d-flex justify-content-around" id="container" data-aos="zoom-in" data-aos-delay="600">
+                @if ($mitras->isEmpty())
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex pb-3">
+                        <img src="{{ asset('assets/images/mitra-none.svg') }}" width="500"
+                            class="img-fluid p-5 mx-auto my-auto" alt="">
                     </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/biznet.png') }}" class="image-fluid" width="150"
-                                    alt="">
+                    <h3 class="fw-x-bold text-white text-center pb-2">Belum ada Mitra untuk Saat ini.</h3>
+                @else
+                    @foreach ($mitras as $item)
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
+                            <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
+                                <div class="card-body text-center">
+                                    <div class="mx-auto pb-3">
+                                        <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
+                                            class="image-fluid" width="100" alt="">
+                                    </div>
+                                    <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}
+                                    </h4>
+                                    <p class="text-justify fw-regular pt-2 limit-description"
+                                        title="{{ $item->deskripsi }}">
+                                        {{ $item->deskripsi }}
+                                    </p>
+                                    <a href="{{ route('daftar.lowongan.program', ['id_mitra' => $item->id]) }}"
+                                        class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
+                                </div>
                             </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/pertamina.png') }}" class="image-fluid" width="150"
-                                    alt="">
-                            </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/kampus-merdeka.png') }}" class="image-fluid"
-                                    width="150" alt="">
-                            </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
 
-                {{-- showmore item --}}
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/oyo.png') }}" class="image-fluid" width="150"
-                                    alt="">
+                    {{-- showmore item --}}
+                    @foreach ($show_more_mitras as $item)
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
+                            <div class="card card-height p-3 card-hover shadow card-rounded" title="{{ $item->nama }}">
+                                <div class="card-body text-center">
+                                    <div class="mx-auto pb-3">
+                                        <img src="{{ $item->foto ? Storage::url($item->foto) : asset('assets/images/Kampus-Merdeka-01-768x403.png') }}"
+                                            class="image-fluid" width="100" alt="">
+                                    </div>
+                                    <h4 class="fw-bold limit-text-title" title="{{ $item->nama }}">{{ $item->nama }}
+                                    </h4>
+                                    <p class="text-justify fw-regular pt-2 limit-description"
+                                        title="{{ $item->deskripsi }}">
+                                        {{ $item->deskripsi }}
+                                    </p>
+                                    <a href="{{ route('daftar.lowongan.program', ['id_mitra' => $item->id]) }}"
+                                        class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
+                                </div>
                             </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/garuda-indonesia.png') }}" class="image-fluid"
-                                    width="150" alt="">
-                            </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/dpr-ri.png') }}" class="image-fluid" width="150"
-                                    alt="">
-                            </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3 mb-5 item hidden">
-                    <div class="card card-height p-3 card-hover shadow card-rounded">
-                        <div class="card-body text-center">
-                            <div class="mx-auto">
-                                <img src="{{ asset('images/logo-mitra/semen-gresik.png') }}" class="image-fluid"
-                                    width="150" alt="">
-                            </div>
-                            <p class="text-justify fw-regular pt-4 pb-5">
-                                Riset kolaboratif bersama perusahaan ternama melalui magang disini.
-                            </p>
-                            <a href="#" class="btn btn-detail shadow px-4 py-2">Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
 
-                <div class="row py-5">
-                    <div class="col">
-                        <center>
-                            <button type="button" id="showMore" class="btn btn-theme-two px-3 py-3">
-                                Lihat Perusahaan Lainnya &ensp;
-                                <i class="fa-solid fa-caret-down"></i>
-                            </button>
-                        </center>
-                    </div>
-                </div>
+                    @if (!$show_more_mitras->isEmpty())
+                        <div class="row py-5" data-aos="zoom-in-up" data-aos-delay="600">
+                            <div class="col">
+                                <center>
+                                    <button type="button" id="showMore" class="btn btn-theme-two px-3 py-3">
+                                        Lihat Perusahaan Lainnya &ensp;
+                                        <i class="fa-solid fa-caret-down"></i>
+                                    </button>
+                                </center>
+                            </div>
+                        </div>
+                    @endif
+                @endif
             </div>
         </div>
     </section>
@@ -196,9 +133,9 @@
         <div class="container pt-5">
             <div class="row pt-4">
                 <div class="col-12 mb-3 p-3" data-aos="fade-up"data-aos-delay="300">
-                    <h3 class="fw-bold text-theme">Apa saja syarat yang diperlukan untuk Magang Internal?</h3>
+                    <h2 class="fw-x-bold text-theme">Apa saja syarat yang diperlukan untuk Magang Internal?</h2>
 
-                    <div class="card mt-4">
+                    <div class="card mt-5">
                         <div class="card-header p-3 header-theme">
                             <h6 class="card-title">
                                 <i class="fa-solid fa-list-ul"></i> &ensp; Tabel Daftar Persyaratan Mengikuti Kegiatan
@@ -233,7 +170,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 d-flex  order-2 order-md-1 mb-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 d-flex  order-2 order-md-1 mb-3"
+                            data-aos="zoom-in" data-aos-delay="600">
                             <div class="card card-hover mx-auto my-auto">
                                 <div class="card-body p-5">
                                     <p class="fw-medium text-justify text-theme">
@@ -260,8 +198,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end order-1 order-md-2 mb-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end order-1 order-md-2 mb-3"
+                            data-aos="zoom-in-up" data-aos-delay="900">
                             <img src="{{ asset('images/note-ilustration.png') }}" class="mx-auto img-fluid p-5"
                                 alt="">
                         </div>
@@ -284,6 +222,17 @@
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
 
+    {{-- Script Submit Mitra Search by Dropdown --}}
+    <script>
+        function goToMitra() {
+            var selectedMitra = document.getElementById('selectMitra').value;
+            if (selectedMitra) {
+                window.location.href = "{{ route('daftar.lowongan.program') }}/" + selectedMitra;
+            }
+        }
+    </script>
+
+    {{-- Script Show More --}}
     <script>
         // Ambil elemen-elemen yang dibutuhkan
         const container = document.getElementById('container');

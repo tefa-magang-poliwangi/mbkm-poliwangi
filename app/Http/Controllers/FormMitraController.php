@@ -59,12 +59,13 @@ class FormMitraController extends Controller
             'alamat' => ['required', 'string'],
             'provinces' => ['required'],
             'cities' => ['required'],
-            'website' => ['required'],
+            'website' => ['required', 'url'],
             'narahubung' => ['required', 'string', 'between:11,15'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
             'status' => ['required'],
+            'deskripsi' => ['required'],
         ]);
 
         $user_mitra = User::create([
@@ -96,6 +97,7 @@ class FormMitraController extends Controller
             'password_confirmation' => $validated['password_confirmation'],
             'status' => $validated['status'],
             'id_user' => $user_mitra->id,
+            'deskripsi' => $validated['deskripsi'],
         ]);
 
         Alert::success('Success', 'Mitra Berhasil Ditambahkan');
@@ -149,13 +151,23 @@ class FormMitraController extends Controller
             'update_alamat' => ['required', 'string'],
             'provinces' => ['required'],
             'cities' => ['required'],
-            'update_link_website' => ['required'],
+            'update_link_website' => ['required', 'url'],
             'update_no_telephone' => ['required', 'string', 'between:11,15'],
             'update_email' => ['required', 'email'],
+            'update_status' => ['required'],
+            'deskripsi' => ['required'],
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
-            'update_status' => ['required'],
         ]);
+
+        // Menggunakan array kosong untuk $saveData sebagai awalan
+        $saveData = [];
+
+        // Pengecekan apakah ada input password
+        if (!empty($request->input('password'))) {
+            // Hash password
+            $saveData['password'] = bcrypt($request->input('password'));
+        }
 
         $user = User::findOrFail($mitra->id_user);
 
@@ -163,8 +175,12 @@ class FormMitraController extends Controller
             'name' => $validated['update_nama'],
             'email' => $validated['update_email'],
             'username' => $validated['update_email'],
-            'password' => bcrypt($validated['password']),
         ]);
+
+        // Jika ada password baru, update password
+        if (isset($saveData['password'])) {
+            $user->update(['password' => $saveData['password']]);
+        }
 
         Mitra::where('id', $mitra->id)->update([
             'nama' => $validated['update_nama'],
@@ -178,6 +194,7 @@ class FormMitraController extends Controller
             'email' => $validated['update_email'],
             'status' => $validated['update_status'],
             'id_user' => $user->id,
+            'deskripsi' => $validated['deskripsi'],
         ]);
 
         Alert::success('Success', 'Mitra Berhasil Diupdate');

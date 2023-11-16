@@ -12,24 +12,18 @@ class BerkasPelamar extends Model
     protected $fillable = [
         'id',
         'file',
-        'id_mahasiswa',
-        'id_lowongan',
-        'id_berkas_lowongan',
+        'id_pelamar_magang',
+        'id_berkas',
     ];
 
     // relasi
-    public function mahasiswa()
+    public function pelamar_magang()
     {
-        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+        return $this->belongsTo(PelamarMagang::class, 'id_pelamar_magang', 'id');
     }
 
-    public function lowongan()
+    public function berkas()
     {
-        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
-    }
-
-    public function berkas_lowongan()
-    {
-        return $this->belongsTo(BerkasLowongan::class, 'id_berkas_lowongan', 'id');
+        return $this->belongsTo(Berkas::class, 'id_berkas', 'id');
     }
 }

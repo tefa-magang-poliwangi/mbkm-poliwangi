@@ -1,6 +1,7 @@
 @extends('layouts.base-mahasiswa')
-@section('Kegiatan')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+
+@section('title')
+    <title>Tidak Lolos Pendaftaran Magang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -12,26 +13,21 @@
     <section class="container-fluid py-1">
         <div class="container py-1">
             <div class="row py-1">
+                <div class="col-12 pt-5 d-flex" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="{{ asset('images/kegiatan_tidak_lolos.png') }}" width="500"
+                        class="img-fluid p-5 mx-auto my-auto" alt="">
+                </div>
 
-                    <div class="col-12 pt-5 d-flex" data-aos="zoom-in" data-aos-delay="600">
-                        <img src="{{ asset('images/kegiatan_tidak_lolos.png') }}" width="500"
-                            class="img-fluid p-5 mx-auto my-auto" alt="">
-                    </div>
-
-
-                    <center>
-                        <div class="col-6 card-footer text-center grey-color p-3 card-content card-rounded ">
+                <center>
+                    <div class="col-6 card-footer text-center grey-color p-3 card-content card-rounded ">
                         <h2 class="text-color-black">Maaf Anda Belum Lolos</h2>
                         <p class="text-color-black">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
                         <button class="btn btn-theme-two">Daftar Kegiatan</button>
                     </div>
-                    </center>
+                </center>
             </div>
-
         </div>
-
     </section>
-    </div>
 @endsection
 
 @section('script')

@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-12 col-sm-10 col-md-10 c    ol-lg-10 d-flex pt-2 pb-2 mt-1">
                     <div class="my-auto">
-                        <h4 class="text-theme text-capitalize">INPUT NILAI KRITERIA</h4>
+                        <h4 class="text-theme text-capitalize">DAFTAR NILAI KRITERIA</h4>
                         <h5 class="text-theme">{{ Auth()->user()->name }}</h5>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                 <div class="card card-border card-rounded-sm card-hover">
                     <div class="card-body">
-                        <h5 class="header-title text-theme mb-3">Hasil Nilai Kriteria</h5>
+                        <h5 class="header-title text-theme mb-3">Daftar Nilai Kriteria</h5>
 
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered text-white">
@@ -76,7 +76,7 @@
 
                                     @if ($nilai_kriteria_mhs->isEmpty())
                                         <tr>
-                                            <td colspan="8" class="text-center">Mohon input nilai terlebih dahulu.</td>
+                                            <td colspan="8" class="text-center">Nilai Masih Belum Ditambahkan.</td>
                                         </tr>
                                     @else
                                         @foreach ($nilai_kriteria_mhs as $item)

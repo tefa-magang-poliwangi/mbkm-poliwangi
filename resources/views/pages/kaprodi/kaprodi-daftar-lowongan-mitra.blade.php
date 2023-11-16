@@ -65,9 +65,6 @@
                                                 <a href="{{ route('kaprodi.validasi.program.magang.show', $data->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
                                             </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-primary text-white">{{ $data->status }}</span>
-                                            </td>
                                         </tr>
 
                                         @php

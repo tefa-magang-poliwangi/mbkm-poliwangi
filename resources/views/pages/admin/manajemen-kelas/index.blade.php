@@ -43,7 +43,7 @@
                                                 <th class="text-center text-white">Tahun</th>
                                                 <th class="text-center text-white">Status</th>
                                                 <th class="text-center text-white">Lihat</th>
-                                                <th class="text-center text-white">Aksi</th>
+                                                <th class="text-center text-white" width="15%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,7 +65,7 @@
                                                             class="btn btn-primary ml-auto"><i
                                                                 class="fa-solid fa-eye"></i></a>
                                                     </td>
-                                                    <td class="text-center">
+                                                    <td class="text-center" width="15%">
                                                         <button type="button" class="btn btn-info ml-auto"
                                                             data-toggle="modal" data-target="#updateModal"><i
                                                                 class="fa-solid fa-pen"></i></button>

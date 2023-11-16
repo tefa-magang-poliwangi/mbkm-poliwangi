@@ -64,7 +64,7 @@
                                                     </td>
                                                 </tr>
 
-                                                {{-- Modal Ubah Periode --}}
+                                                {{-- Modal Ubah PL Mitra --}}
                                                 <div class="modal fade" tabindex="-1" role="dialog"
                                                     id="updateModal{{ $data->id }}">
                                                     <div class="modal-dialog" role="document">
@@ -77,7 +77,8 @@
                                                                 </button>
                                                             </div>
 
-                                                            <form action="{{ route('manajemen.pendamping.lapang.mitra.update', $data->id) }}"
+                                                            <form
+                                                                action="{{ route('manajemen.pendamping.lapang.mitra.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -124,27 +125,6 @@
                                                                                 {{ $message }}</div>
                                                                         @enderror
                                                                     </div>
-
-                                                                    {{-- <div class="form-group">
-                                                                        <label for="update_id_mitra"
-                                                                            class="form-label">Mitra</label>
-                                                                        <select
-                                                                            class="form-control @error('update_id_mitra') is-invalid @enderror"
-                                                                            id="update_id_mitra" name="update_id_mitra">
-                                                                            <option value="">Pilih Mitra</option>
-                                                                            @foreach ($mitra as $item)
-                                                                                <option value="{{ $item->id }}"
-                                                                                    {{ $data->id_mitra == $item->id ? 'selected' : '' }}>
-                                                                                    {{ $item->nama }}
-                                                                                </option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        @error('update_id_mitra')
-                                                                            <div id="update_id_mitra"
-                                                                                class="form-text pb-1 text-danger">
-                                                                                {{ $message }}</div>
-                                                                        @enderror
-                                                                    </div> --}}
 
                                                                     <div class="form-group">
                                                                         <label for="update_password"
@@ -221,7 +201,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah PL Mitra</h5>
+                    <h5 class="modal-title text-theme">Tambah PL Mitra</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -263,21 +243,6 @@
                                     {{ $message }}</div>
                             @enderror
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label for="create_id_mitra" class="form-label">Mitra</label>
-                            <select class="form-control @error('create_id_mitra') is-invalid @enderror"
-                                id="create_id_mitra" name="create_id_mitra">
-                                <option value="">Pilih Mitra</option>
-                                @foreach ($mitra as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                @endforeach
-                            </select>
-                            @error('create_id_mitra')
-                                <div id="create_id_mitra" class="form-text pb-1 text-danger">
-                                    {{ $message }}</div>
-                            @enderror
-                        </div> --}}
 
                         <div class="form-group">
                             <label for="create_password" class="control-label">Password</label>

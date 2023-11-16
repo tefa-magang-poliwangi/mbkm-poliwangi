@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\DosenImport;
+use App\Models\AdminProdi;
 use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use RealRashid\SweetAlert\Facades\Alert;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Storage;
 
 class DosenController extends Controller
 {
@@ -19,18 +18,13 @@ class DosenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $dosens = Dosen::query();
-
-        if ($request->prodi) {
-            $dosens->where('id_prodi', $request->prodi);
-        }
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $datas = [
-            'dosens' => $dosens->get(),
             'prodi' => Prodi::all(),
-            'request' => $request,
+            'dosens' => Dosen::where('id_prodi', $prodi_id)->get(),
         ];
 
         return view('pages.admin.manajemen-dosen.data-dosen', $datas);

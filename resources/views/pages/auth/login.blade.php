@@ -8,13 +8,13 @@
     <section class="section">
         <div class="container mt-5 py-4">
             <div class="row d-flex justify-content-center margin-buttom">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-4 d-flex">
-                    <img src="{{ asset('assets/images/logo-support.png') }}" alt="logo"
-                        class="img-fluid mx-auto my-auto px-3" width="300">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="300">
+                    <img src="{{ asset('assets/images/logo-mbkm.png') }}" alt="logo" class="img-fluid mx-auto my-auto px-3"
+                        width="300">
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row pt-2" data-aos="zoom-in" data-aos-delay="600">
                 <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                     <div class="card card-primary card-hover rounded">
                         <div class="card-body">
@@ -74,7 +74,7 @@
 
                     <div class="row py-1">
                         <div class="col text-center d-flex">
-                            <span class="mx-auto my-auto">
+                            <span class="mx-auto my-auto text-theme" data-aos="zoom-in-down" data-aos-delay="900">
                                 Copyright &copy; MBKM Poliwangi {{ now()->year }}
                             </span>
                         </div>

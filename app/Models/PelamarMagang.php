@@ -26,4 +26,9 @@ class PelamarMagang extends Model
     {
         return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
     }
+
+    public function berkas_pelamar()
+    {
+        return $this->hasMany(BerkasPelamar::class);
+    }
 }

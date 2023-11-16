@@ -1,6 +1,7 @@
 @extends('layouts.base-mahasiswa')
-@section('Kegiatan')
-    <title>Kegiatan MBKM | Politeknik Negeri Banyuwangi</title>
+
+@section('title')
+    <title>Rincian Kegiatan | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -9,62 +10,64 @@
 @endsection
 
 @section('content')
-<section class="container-fluid py-5">
+    <section class="container-fluid py-5">
         <div class="container py-5">
             <div class="row py-5">
                 <div class='col-6'>
                     <div class="card-body">
-                    <div class="chocolat-parent">
-                      <a href="assets/img/example-image.jpg" class="chocolat-image" title="Just an example">
-                        <div data-crop-image="400" id="btn-floating">
-                          <img alt="image" src="{{ asset('images/contoh.png') }}" class="img-fluid">
-                          <button class="btn btn-theme-two"><i class="fas fa-download"></i>&ensp;Rincian Kegiatan</button>
+                        <div class="chocolat-parent">
+                            <a href="assets/img/example-image.jpg" class="chocolat-image" title="Just an example">
+                                <div data-crop-image="400" id="btn-floating">
+                                    <img alt="image" src="{{ asset('images/contoh.png') }}" class="img-fluid">
+                                    <button class="btn btn-theme-two"><i class="fas fa-download"></i>&ensp;Rincian
+                                        Kegiatan</button>
+                                </div>
+                            </a>
                         </div>
-                      </a>
                     </div>
-                </div>
                 </div>
 
                 <div class='col-6'>
                     <center>
                         <div class="card-footer text-center grey-color p-3 card-content card-rounded">
-                        <h2 class="text-color-black">Belum Ada Lamaran</h2>
-                        <p class="text-color-black">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini</p>
-                        <div class="card-header-action">
-                      <a href="#" class="btn btn-theme-two">Lihat Nilai Akhir</a>
-                      <a href="#" class="btn btn-theme-two">Download Sertifikat</a>
-                    </div>
-                    </div>
+                            <h2 class="text-color-black">Belum Ada Lamaran</h2>
+                            <p class="text-color-black">Progres Pendaftaran Program Kampus Merdeka Akan Dapat Dilihat Disini
+                            </p>
+                            <div class="card-header-action">
+                                <a href="#" class="btn btn-theme-two">Lihat Nilai Akhir</a>
+                                <a href="#" class="btn btn-theme-two">Download Sertifikat</a>
+                            </div>
+                        </div>
                     </center>
                 </div>
 
                 <div class='col-6'>
                     <center>
                         <div class="card-footer text-center grey-color p-3 card-content card-rounded">
-                        <h2 class="text-color-black">Laporan Harian</h2>
-                        <p class="text-color-black">Lengkapi laporan harianmu disini, pastikan laporan selesai sesuai jadwal.</p>
-                        <div class="card-header-action">
-                      <a href="#" class="btn btn-theme-two">Masuk</a>
-                    </div>
-                    </div>
+                            <h2 class="text-color-black">Laporan Harian</h2>
+                            <p class="text-color-black">Lengkapi laporan harianmu disini, pastikan laporan selesai sesuai
+                                jadwal.</p>
+                            <div class="card-header-action">
+                                <a href="#" class="btn btn-theme-two">Masuk</a>
+                            </div>
+                        </div>
                     </center>
                 </div>
                 <div class='col-6'>
                     <center>
                         <div class="card-footer text-center grey-color p-3 card-content card-rounded">
-                        <h2 class="text-color-black">Laporan Mingguan</h2>
-                        <p class="text-color-black">Lengkapi laporan akhir disini, pastikan laporan selesai sesuai jadwal.</p>
-                        <div class="card-header-action">
-                      <a href="#" class="btn btn-theme-two">Masuk</a>
-                    </div>
-                    </div>
+                            <h2 class="text-color-black">Laporan Mingguan</h2>
+                            <p class="text-color-black">Lengkapi laporan akhir disini, pastikan laporan selesai sesuai
+                                jadwal.</p>
+                            <div class="card-header-action">
+                                <a href="#" class="btn btn-theme-two">Masuk</a>
+                            </div>
+                        </div>
                     </center>
                 </div>
-
             </div>
         </div>
-</section>
-
+    </section>
 @endsection
 
 @section('script')
