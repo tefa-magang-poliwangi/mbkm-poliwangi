@@ -31,4 +31,8 @@ class PelamarMagang extends Model
     {
         return $this->hasMany(BerkasPelamar::class);
     }
+    public function pendamping_lapang_mahasiswa()
+    {
+        return $this->hasMany(PendampingLapangMahasiswa::class, 'id_pelamar_magang', 'id');
+    }
 }

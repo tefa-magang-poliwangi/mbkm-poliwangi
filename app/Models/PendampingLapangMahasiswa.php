@@ -11,21 +11,21 @@ class PendampingLapangMahasiswa extends Model
 
     protected $fillable = [
         'id',
-        'id_dosen',
-        'id_mahasiswa',
+        'id_dosen_pl',
+        'id_pelamar_magang',
         'id_pl_mitra',
         'id_lowongan',
     ];
 
     // relasi
-    public function dosen()
+    public function dosen_pl()
     {
-        return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
+        return $this->belongsTo(DosenPL::class, 'id_dosen_pl', 'id');
     }
 
-    public function mahasiswa()
+    public function pelamar_magang()
     {
-        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
+        return $this->belongsTo(PelamarMagang::class, 'id_pelamar_magang', 'id');
     }
 
     public function pl_mitra()

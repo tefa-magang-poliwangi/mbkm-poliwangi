@@ -62,6 +62,9 @@ use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\BerkasLowonganController;
 use App\Http\Controllers\DaftarMagangController;
 use App\Http\Controllers\DaftarPermohonanMagangController;
+use App\Http\Controllers\DosenPLController;
+use App\Http\Controllers\MitraPlottingController;
+use App\Http\Controllers\PelamarMagangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -130,6 +133,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/dashboard/admin-prodi/update-profil/{id_dosen}', [ProfileAdminProdiController::class, 'update'])->name('profil.admin.prodi.update');
 
         // # (Route Kaprodi)
+        // Route Manajemen Dosen PL
+        Route::get('/manajemen/dosen-pl', [DosenPLController::class, 'index'])->name('manajemen.dosen.pl.index');
+        Route::get('/manajemen/dosen-pl/create', [DosenPLController::class, 'create'])->name('manajemen.dosen.pl.create');
+        Route::get('/manajemen/{id_dosen_pl}/dosen-pl/show', [DosenPLController::class, 'show'])->name('manajemen.dosen.pl.show');
+        Route::post('/manajemen/dosen-pl/store', [DosenPLController::class, 'store'])->name('manajemen.dosen.pl.store');
+        Route::get('/manajemen/dosen-pl/{id_dosen_pl}/destroy', [DosenPLController::class, 'destroy'])->name('manajemen.dosen.pl.destroy');
+
+        // Route Manajemen Pelamar
+        Route::get('/manajemen/pelamar/{id_dosen_pl}/create', [PelamarMagangController::class, 'create'])->name('manajemen.pelamar.magang.create');
+        Route::post('/manajemen/pelamar/{id_dosen_pl}/store', [PelamarMagangController::class, 'store'])->name('manajemen.pelamar.magang.store');
+        Route::get('/manajemen/pelamar/{id_dosen_pl}/magang/{id}/destroy', [PelamarMagangController::class, 'destroy'])->name('manajemen.pelamar.magang.destroy');
 
         // Route Profil Kaprodi
         Route::get('/dashboard/kaprodi/ubah-profil/{id_user}', [ProfileKaprodiController::class, 'show'])->name('profil.kaprodi.page');
@@ -280,6 +294,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/manajemen/dosen-wali/store', [DosenWaliController::class, 'store'])->name('manajemen.dosen.wali.store');
         Route::get('/manajemen/dosen-wali/{id_dosen_wali}/destroy', [DosenWaliController::class, 'destroy'])->name('manajemen.dosen.wali.destroy');
 
+        // Route Manajemen Dosen PL
+        Route::get('/manajemen/dosen-pl', [DosenPLController::class, 'index'])->name('manajemen.dosen.pl.index');
+        Route::get('/manajemen/dosen-pl/create', [DosenPLController::class, 'create'])->name('manajemen.dosen.pl.create');
+        Route::get('/manajemen/{id_dosen_pl}/dosen-pl/show', [DosenPLController::class, 'show'])->name('manajemen.dosen.pl.show');
+        Route::post('/manajemen/dosen-pl/store', [DosenPLController::class, 'store'])->name('manajemen.dosen.pl.store');
+        Route::get('/manajemen/dosen-pl/{id_dosen_pl}/destroy', [DosenPLController::class, 'destroy'])->name('manajemen.dosen.pl.destroy');
+
         // Route Manajemen Peserta Dosen
         Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
         Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
@@ -339,6 +360,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // # (Route Mitra)
         //Route Dashboard Mitra
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
+
+        // Route Manajemen Plotting Mita
+        Route::get('/manajemen/plotting-mitra/index', [MitraPlottingController::class, 'index'])->name('manajemen.plotting.mitra.index');
+        Route::get('/manajemen/plotting-mitra/{id_pl_mitra}/show', [MitraPlottingController::class, 'show'])->name('manajemen.plotting.mitra.show');
+        Route::get('/manajemen/plotting-mitra/{id_pl_mitra}/create', [MitraPlottingController::class, 'create'])->name('manajemen.plotting.mitra.create');
+        Route::put('/manajemen/plotting-mitra/{id}/update', [MitraPlottingController::class, 'update'])->name('manajemen.plotting.mitra.update');
+        Route::post('/manajemen/plotting-mitra/store', [MitraPlottingController::class, 'store'])->name('manajemen.plotting.mitra.store');
+        Route::get('/manajemen/plotting-mitra/destroy', [MitraPlottingController::class, 'destroy'])->name('manajemen.plotting.mitra.destroy');
 
         // Route Profil Mitra
         Route::get('/dashboard/mitra/ubah-profil/{id_user}', [ProfileMitraController::class, 'show'])->name('profil.mitra.page');
@@ -476,4 +505,3 @@ Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
 Route::get('/dashboard-admin/manajemen-kaprodi', function () {
     return view('pages.admin.manajemen-kaprodi.index');
 });
-

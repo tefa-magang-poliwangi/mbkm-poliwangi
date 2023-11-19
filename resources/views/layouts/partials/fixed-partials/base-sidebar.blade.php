@@ -441,6 +441,29 @@
                         </a>
                     </li>
                 @endcan
+
+                @can('manajemen.dosen.pl.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.dosen.pl.index') }}">
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Dosen Pembimbing</span>
+                        </a>
+                    </li>
+                @endcan
+                <li>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-solid fa-user"></i>
+                        <span>Logbook Mahasiswa</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-solid fa-user"></i>
+                        <span>Laporan Akhir</span>
+                    </a>
+
+                </li>
+
             @endauth
 
             {{-- Menu Dosen --}}
@@ -592,6 +615,16 @@
                         </a>
                     </li>
                 @endcan
+
+                @can('manajemen.plotting.mitra.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.plotting.mitra.index') }}">
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Data Peserta Magang</span>
+                        </a>
+                    </li>
+                @endcan
+
             @endauth
 
             {{-- Menu PL Mitra --}}
