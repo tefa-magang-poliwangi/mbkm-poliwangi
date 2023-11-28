@@ -32,9 +32,6 @@
                                             <tr>
                                                 <th class="text-center text-white">No</th>
                                                 <th class="text-center text-white">Nama Mahasisiwa</th>
-                                                {{-- <th class="text-center text-white">Evaluasi</th>
-                                                <th class="text-center text-white">Sertifikat</th>
-                                                <th class="text-center text-white">Transkrip</th> --}}
                                                 <th class="text-center text-white">Show</th>
                                                 <th class="text-center text-white">Action</th>
                                             </tr>
@@ -44,33 +41,10 @@
                                                 $no = 1;
                                             @endphp
                                             @foreach ($mahasiswas as $data)
+                                                {{-- @foreach ($transkrip_mitras as $transkrip) --}}
                                                 <tr>
                                                     <td class="text-center">{{ $no }}</td>
                                                     <td class="text-center">{{ $data->nama }}</td>
-                                                    {{-- <td class="text-center">
-                                                        @foreach ($transkrip_mitra as $item)
-                                                            @if ($item->pelamar_magang->mahasiswa->where('id', $data->id))
-                                                                <button class="btn btn-info" data-toggle="modal"
-                                                                    data-target="#textModal{{ $data->id }}">
-                                                                    Lihat Detail
-                                                                </button>
-                                                            @else
-                                                                Belum Diupload
-                                                            @endif
-                                                        @endforeach
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-warning" data-toggle="modal"
-                                                            data-target="#viewSertifikatModal{{ $data->id }}">
-                                                            <i class="fa-solid fa-eye"></i> Sertifikat
-                                                        </button>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-warning" data-toggle="modal"
-                                                            data-target="#viewTranskripModal{{ $data->id }}">
-                                                            <i class="fa-solid fa-eye"></i> Transkrip
-                                                        </button>
-                                                    </td> --}}
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.sertifikat.mitra.showdetail', ['id_transkrip' => $data->id_transkrip]) }}"
                                                             class="btn btn-info ml-auto">
@@ -79,7 +53,7 @@
                                                     </td>
                                                     <td class="text-center">
                                                         <button class="btn btn-info ml-auto" data-toggle="modal"
-                                                            data-target="#uploadmodal{{ $data->id }}">
+                                                            data-target="#uploadmodal{{ $data->id_pelamar }}">
                                                             <i class="fa-solid fa-upload"></i> Upload
                                                         </button>
                                                     </td>
@@ -87,6 +61,7 @@
                                                 @php
                                                     $no++;
                                                 @endphp
+                                                {{-- @endforeach --}}
                                             @endforeach
                                         </tbody>
                                     </table>
