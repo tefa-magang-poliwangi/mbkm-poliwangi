@@ -35,4 +35,9 @@ class PelamarMagang extends Model
     {
         return $this->hasMany(PendampingLapangMahasiswa::class, 'id_pelamar_magang', 'id');
     }
+
+    public function transkrip_mitra()
+    {
+        return $this->hasMany(TranskripMitra::class, 'id_mahasiswa');
+    }
 }

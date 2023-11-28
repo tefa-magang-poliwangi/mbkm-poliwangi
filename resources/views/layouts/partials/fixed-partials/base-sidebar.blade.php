@@ -450,19 +450,6 @@
                         </a>
                     </li>
                 @endcan
-                <li>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-solid fa-user"></i>
-                        <span>Logbook Mahasiswa</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-solid fa-user"></i>
-                        <span>Laporan Akhir</span>
-                    </a>
-
-                </li>
 
             @endauth
 
@@ -571,6 +558,25 @@
                     </li>
                 @endcan
 
+                @can('manajemen.mitra.logbook.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.mitra.logbook.index') }}">
+                            <i class="fas fa-solid fa-book"></i>
+                            <span>Logbook Mahasiswa</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.mitra.lapakhir.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.mitra.lapakhir.index') }}">
+                            <i class="fas fa-solid fa-book"></i>
+                            <span>Laporan Akhir</span>
+                        </a>
+
+                    </li>
+                @endcan
+
                 @can('manajemen.pendamping.lapang.mitra.index')
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.pendamping.lapang.mitra.index') }}">
@@ -602,6 +608,15 @@
                         <a class="nav-link" href="{{ route('manajemen.berkas.mitra.index') }}">
                             <i class="fas fa-solid fa-briefcase"></i>
                             <span>Data Berkas</span>
+                        </a></i>
+                    </li>
+                @endcan
+
+                @can('manajemen.sertifikat.mitra.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.sertifikat.mitra.index') }}">
+                            <i class="fas fa-solid fa-briefcase"></i>
+                            <span>Data Sertifikat</span>
                         </a></i>
                     </li>
                 @endcan

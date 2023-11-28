@@ -31,4 +31,9 @@ class Periode extends Model
     {
         return $this->hasMany(MagangExt::class);
     }
+
+    public function transkrip_mitra()
+    {
+        return $this->hasMany(TranskripMitra::class);
+    }
 }
