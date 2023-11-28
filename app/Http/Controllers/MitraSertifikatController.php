@@ -103,9 +103,9 @@ class MitraSertifikatController extends Controller
             'id_lowongan' => $id,
             'lowongan' => Lowongan::findOrFail($id),
             'pelamar_magang' => PelamarMagang::where('status_diterima', 'Diterima')->get(),
-            'mahasiswas' => Mahasiswa::select('transkrip_mitras.id AS id_transkrip', 'mahasiswas.*')
-                ->join('pelamar_magangs', 'pelamar_magangs.id_mahasiswa', '=', 'mahasiswas.id')
-                ->join('transkrip_mitras', 'transkrip_mitras.id_pelamar_magang', 'pelamar_magangs.id')
+            'mahasiswas' => Mahasiswa::select('transkrip_mitras.id AS id_transkrip', 'mahasiswas.*', 'pelamar_magangs.id AS id_pelamar')
+                ->leftJoin('pelamar_magangs', 'pelamar_magangs.id_mahasiswa', '=', 'mahasiswas.id')
+                ->leftJoin('transkrip_mitras', 'transkrip_mitras.id_pelamar_magang', '=', 'pelamar_magangs.id')
                 ->where('pelamar_magangs.status_diterima', '=', 'Diterima')
                 ->where('pelamar_magangs.id_lowongan', $id)
                 ->get(),

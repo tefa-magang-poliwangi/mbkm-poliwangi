@@ -46,7 +46,7 @@
                                                     <td class="text-center">{{ $no }}</td>
                                                     <td class="text-center">{{ $data->nama }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.sertifikat.mitra.showdetail', ['id_transkrip' => $data->id_transkrip]) }}"
+                                                        <a href="{{ route('manajemen.sertifikat.mitra.showdetail', ['id_transkrip' => $data->id_transkrip ?? 0]) }}"
                                                             class="btn btn-info ml-auto">
                                                             <i class="fa-solid fa-eye"></i> Lihat
                                                         </a>
