@@ -7,11 +7,11 @@ use App\Models\Lowongan;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\PelamarMagang;
-use App\Models\MahasiswaMagang;
 use App\Models\Mitra;
 use App\Models\Periode;
 use App\Models\TranskripMitra;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MitraSertifikatController extends Controller
@@ -70,6 +70,8 @@ class MitraSertifikatController extends Controller
             'evaluasi' => 'required|string',
         ]);
 
+        $saveData = [];
+
         $periode_aktif = Periode::where('status', 'Aktif')->first();
         $pelamarMagang = PelamarMagang::where('id', $id_pelamar_magang)->first();
         $nimMahasiswa = $pelamarMagang->mahasiswa->nim;
@@ -78,11 +80,26 @@ class MitraSertifikatController extends Controller
         $fileNameSertifikat = 'sertifikat_' . '_' . $nimMahasiswa . '.' . $request->file_sertifikat->getClientOriginalExtension();
         $fileNameTranskrip = 'transkrip_' . '_' . $nimMahasiswa . '.' . $request->file_transkrip->getClientOriginalExtension();
 
-        // Menyimpan file sertifikat
-        $fileSertifikatPath = $request->file_sertifikat->storeAs('public/sertifikat', $fileNameSertifikat);
-        // Menyimpan file transkrip
-        $fileTranskripPath = $request->file_transkrip->storeAs('public/transkrip', $fileNameTranskrip);
-        // Menyimpan file sertifikat
+        if ($request->hasFile('file_sertifikat' && $request->hasFile('file_transkrip'))) {
+            if ($pelamarMagang->file_sertifikat) {
+                Storage::delete($pelamarMagang->file_sertifikat);
+            }
+
+            if ($pelamarMagang->file_transkrip) {
+                Storage::delete($pelamarMagang->file_transkrip);
+            }
+
+            // Save the new files
+            $saveData['file_sertifikat'] = $request->file_sertifikat->storeAs('public/sertifikat', $fileNameSertifikat);
+            $saveData['file_transkrip'] = $request->file_transkrip->storeAs('public/transkrip', $fileNameTranskrip);
+        }
+        # code...
+        // // Menyimpan file sertifikat
+        // $fileSertifikatPath = $request->file_sertifikat->storeAs('public/sertifikat', $fileNameSertifikat);
+        // // Menyimpan file transkrip
+        // $fileTranskripPath = $request->file_transkrip->storeAs('public/transkrip', $fileNameTranskrip);
+        // // Menyimpan file sertifikat
+
 
         TranskripMitra::create([
             'id_pelamar_magang' => $id_pelamar_magang,
@@ -191,8 +208,15 @@ class MitraSertifikatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_transkrip)
     {
-        //
+        $transkrip = TranskripMitra::findOrFail($id_transkrip);
+
+        Storage::delete([$transkrip->file_sertifikat, $transkrip->file_transkrip]);
+
+        $transkrip->delete();
+
+        Alert::success('Success', 'Sertifikat dan Transkrip berhasil dihapus');
+        return redirect()->back();
     }
 }
