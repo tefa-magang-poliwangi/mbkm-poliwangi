@@ -53,7 +53,7 @@
                                             <td class="text-center">{{ $data->mahasiswa->nim }}</td>
                                             <td class="text-center">{{ $data->lowongan->nama }}</td>
                                             <td class="text-center">
-                                                <a class="btn btn-primary btn-sm" href="#">Cek Kelengkapan</a>
+                                                <a class="btn btn-primary btn-sm" href="{{route('manajemen.pelamar.mitra.show', $data->id)}}">Cek Kelengkapan</a>
                                             </td>
                                         </tr>
                                         @php

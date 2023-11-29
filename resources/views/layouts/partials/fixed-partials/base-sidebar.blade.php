@@ -533,12 +533,25 @@
                     </li>
                 @endcan
 
+                @role('mahasiswa')
+                    <li class="menu-header">Kegiatan Magang </li>
+                @endrole
                 @can('daftar.permohonan.magang.page')
                     <li>
                         <a class="nav-link" href="{{ route('daftar.permohonan.magang.page') }}">
                             <i class="fas fa-regular fa-folder-open"></i>
                             <span>Daftar Permohonan</span>
                         </a>
+                    </li>
+                @endcan
+
+                @can('upload.laporan.akhir.mahasiswa.int.create')
+                    <li>
+                        <a class="nav-link"
+                            href="{{ route('upload.laporan.akhir.mahasiswa.int.create', Auth::user()->id) }}">
+                            <i class="fas fa-solid fa-book"></i>
+                            <span>Laporan Akhir</span>
+                        </a>`
                     </li>
                 @endcan
             @endauth

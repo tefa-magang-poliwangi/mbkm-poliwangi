@@ -356,6 +356,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Route Daftar Permohonan Magang Internal
         Route::get('/dashboard/mahasiswa/daftar-permohonan-magang', [DaftarPermohonanMagangController::class, 'index'])->name('daftar.permohonan.magang.page');
 
+        //Route Laporan Akhir
+        Route::get('/upload-laporan-akhir/magang-internal/{id_user}/create', [MitraSertifikatController::class, 'create'])->name('upload.laporan.akhir.mahasiswa.int.create');
+        Route::put('/upload-laporan-akhir/magang-internal/{id_user}/update', [MitraSertifikatController::class, 'update'])->name('upload.laporan.akhir.mahasiswa.int.update');
+
         // Route Input Kriteria Penilaian Mahasiswa Magang Ext
         Route::get('/input-kriteria-penilaian/magang_{id_magang_ext}/kriteria_{id_nilai_magang_ext}/index', [InputKriteriaMahasiswaController::class, 'index'])->name('input.kriteria.mahasiswa.ext.index');
         Route::post('/input-kriteria-penilaian/store', [InputKriteriaMahasiswaController::class, 'store'])->name('input.kriteria.mahasiswa.ext.store');
@@ -525,4 +529,8 @@ Route::get('/dashboard-dosen/kelayakan-mahasiswa', function () {
 
 Route::get('/dashboard-admin/manajemen-kaprodi', function () {
     return view('pages.admin.manajemen-kaprodi.index');
+});
+
+Route::get('/dashboard-mahasiswa/upload-laporan-akhir', function () {
+    return view('pages.mahasiswa.laporan-mahasiswa.laporan-akhir-internal.index');
 });
