@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Sertifikat dan Evaluasi| MBKM Poliwangi</title>
+    <title>Manajemen Pendamping Lapang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,12 +20,6 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Logbook Mahasiswa</h5>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <button class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah PL Mitra
-                                </button>
-                            </div>
                         </div>
 
                         <div class="row">
@@ -39,25 +33,30 @@
                                                 <th class="text-center text-white">Nim</th>
                                                 <th class="text-center text-white">Lowongan</th>
                                                 <th class="text-center text-white">Pendamping Lapang</th>
-                                                <th class="text-center text-white">Action</th>
+                                                <th class="text-center text-white">Laporan Harian</th>
+                                                <th class="text-center text-white">Laporan Akhir</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($mahasiswas as $mahasiswa)
-                                                <tr>
-                                                    <td class="text-center">{{ $loop->iteration }}</td>
-                                                    <td class="text-center">{{ $mahasiswa->nama }}</td>
-                                                    <td class="text-center">{{ $mahasiswa->nim }}</td>
-                                                    <td class="text-center">{{ $mahasiswa->nama_lowongan }}</td>
-                                                    <td class="text-center">{{ $mahasiswa->nama_pl }}</td>
-                                                    <td class="text-center">
-                                                        <a href="{{ route('manajemen.mitra.logbook.show') }}"
-                                                            class="btn btn-info ml-auto">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                            <tr>
+                                                <td class="text-center">1</td>
+                                                <td class="text-center">Nanda Awimbi</td>
+                                                <td class="text-center">362055401024</td>
+                                                <td class="text-center">backend developer</td>
+                                                <td class="text-center">Syarifudin</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('manajemen.mitra.logbook.show') }}"
+                                                        class="btn btn-info ml-auto">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('manajemen.mitra.logbook.update') }}"
+                                                        class="btn btn-info ml-auto">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -67,10 +66,8 @@
                 </div>
             </div>
         </div>
-
     </section>
 @endsection
-
 
 @section('script')
     {{-- Datatable JS --}}

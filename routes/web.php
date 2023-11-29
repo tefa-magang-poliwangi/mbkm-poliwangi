@@ -63,6 +63,7 @@ use App\Http\Controllers\BerkasLowonganController;
 use App\Http\Controllers\DaftarMagangController;
 use App\Http\Controllers\DaftarPermohonanMagangController;
 use App\Http\Controllers\DosenPLController;
+use App\Http\Controllers\MahasiswaLaporanController;
 use App\Http\Controllers\MitraLaporanAkhirController;
 use App\Http\Controllers\MitraLaporanMingguanController;
 use App\Http\Controllers\MitraLogbookController;
@@ -361,6 +362,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/input-kriteria-penilaian/store', [InputKriteriaMahasiswaController::class, 'store'])->name('input.kriteria.mahasiswa.ext.store');
         Route::get('/input-kriteria-penilaian/{id_detail_penilaian_magang_ext}/destroy', [InputKriteriaMahasiswaController::class, 'destroy'])->name('input.kriteria.mahasiswa.ext.destroy');
 
+        //Route Laporan Mahasiswa
+        Route::get('/dashboard/mahasiswa/laporan-mingguan/index', [MahasiswaLaporanController::class, 'index'])->name('mahasiswa.laporan.mingguan.index');
+        Route::get('/dashboard/mahasiswa/laporan-harian/show', [MahasiswaLaporanController::class, 'show'])->name('mahasiswa.laporan.harian.show');
+        Route::get('/dashboard/mahasiswa/laporan-upload/create', [MahasiswaLaporanController::class, 'create'])->name('mahasiswa.laporan.upload.create');
+        Route::get('/dashboard/mahasiswa/laporan-akhir/store', [MahasiswaLaporanController::class, 'store'])->name('mahasiswa.laporan.akhir.store');
+
         // # (Route Mitra)
         //Route Dashboard Mitra
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
@@ -400,7 +407,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/sertifikat-mitra/{id_mitra}/show', [MitraSertifikatController::class, 'show'])->name('manajemen.sertifikat.mitra.show');
         Route::get('/manajemen/sertifikat-mitra/{id_transkrip}/show-detail', [MitraSertifikatController::class, 'showdetail'])->name('manajemen.sertifikat.mitra.showdetail');
         Route::post('/manajemen/sertifikat-mitra/{id_pelamar_magang}/store', [MitraSertifikatController::class, 'store'])->name('manajemen.sertifikat.mitra.store');
+        Route::delete('/manajemen/sertifikat-mitra/{id_transkrip}/destroy', [MitraSertifikatController::class, 'destroy'])->name('manajemen.sertifikat.mitra.destroy');
 
+        // Route Manajemen Logbook Mita
+        Route::get('/manajemen/mitra-logbook/index', [MitraLogbookController::class, 'index'])->name('manajemen.mitra.logbook.index');
+        Route::get('/manajemen/mitra-logbook/show', [MitraLogbookController::class, 'show'])->name('manajemen.mitra.logbook.show');
+        Route::get('/manajemen/mitra-logbook/update', [MitraLogbookController::class, 'update'])->name('manajemen.mitra.logbook.update');
 
         // Route Manajemen Program Magang
         Route::get('/manajemen/{id_lowongan}/program-magang', [ProgramMagangController::class, 'index'])->name('manajemen.program.magang.index');

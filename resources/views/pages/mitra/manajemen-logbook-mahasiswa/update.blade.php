@@ -19,16 +19,7 @@
 
                         <div class="list-group" id="list-tab" role="tablist">
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                                href="#sertifikat" role="tab">1. Lihat Sertifikat</a>
-                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                href="#transkip-dokumen" role="tab">2. Lihat Transkrip Nilai</a>
-                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
-                                href="#evaluasi" role="tab">3. Lihat hasil Evaluasi</a>
-                        </div>
-                        <div class="col-12 d-flex mt-3">
-                            <a href="{{ url()->previous() }}" class="btn btn-primary">
-                                <i class="fas fa-arrow-left"></i> Kembali
-                            </a>
+                                href="#sertifikat" role="tab">Lihat Laoran Akhir</a>
                         </div>
                     </div>
                 </div>
@@ -39,13 +30,13 @@
                     {{-- Form Upload Transkrip --}}
                     <div class="tab-pane fade show active card card-border card-rounded-sm card-hover" id="sertifikat"
                         role="tabpanel" aria-labelledby="list-home-list">
-                        <iframe src="{{ Storage::url('sertifikat/' . $transkrip->file_sertifikat) }}" width="100%"
-                            height="600px"></iframe>
+                        <iframe src="{{ asset('storage/app/public/sertifikat/sertifikat_362055401024.pdf') }}"
+                            width="100%" height="600px"></iframe>
                     </div>
                     <div class="tab-pane fade show card card-border card-rounded-sm card-hover" id="transkip-dokumen"
                         role="tabpanel" aria-labelledby="list-home-list">
-                        <iframe src="{{ Storage::url('transkrip/' . $transkrip->file_transkrip) }}" width="100%"
-                            height="600px"></iframe>
+                        <iframe src="{{ asset('storage/app/public/sertifikat/sertifikat_362055401024.pdf') }}"
+                            width="100%" height="600px"></iframe>
                     </div>
                     <div class="tab-pane fade pt-0" id="evaluasi" role="tabpanel" aria-labelledby="list-profile-list">
                         <div class="card">
@@ -53,7 +44,7 @@
                                 <h4>Evaluasi Mahasiswa Magang </h4>
                             </div>
                             <div class="card-body">
-                                <p>{{ $transkrip->evaluasi }}</p>
+                                <p>his</p>
                             </div>
                             <div class="card-footer bg-whitesmoke">
                                 By "Mentor"

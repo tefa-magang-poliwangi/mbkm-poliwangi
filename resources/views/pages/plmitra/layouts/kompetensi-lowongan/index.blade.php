@@ -43,80 +43,75 @@
                                     </tr>
                                 </thead>
 
-                                    <tbody>
-                                        @php
-                                            $no = 1;
-                                        @endphp
-                                        @foreach ($komptensi_lowongan as $data )
-
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($komptensi_lowongan as $data)
                                         <tr>
-                                            <td class="text-center">{{$no}}</td>
-                                            <td class="text-center">{{$data->kompetensi}}</td>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $data->kompetensi }}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-info ml-auto"
-                                                data-toggle="modal"
-                                                data-target="#updateModal{{ $data->id }}">
-                                                <i class="fa-solid fa-pen"></i>
-                                            </button>
+                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
+                                                    data-target="#updateModal{{ $data->id }}">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </button>
                                             <td class="text-center">
-                                                <a href="{{route('manajemen.kompetensi.lowongan.destroy', $data->id)}}"
+                                                <a href="{{ route('manajemen.kompetensi.lowongan.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
 
-                                             {{-- Modal Update kompetensi --}}
-                                             <div class="modal fade" tabindex="-1" role="dialog"
-                                             id="updateModal{{ $data->id }}">
-                                             <div class="modal-dialog" role="document">
-                                                 <div class="modal-content">
-                                                     <div class="modal-header">
-                                                         <h5 class="modal-title text-theme">Edit Kompetensi Lowongan
-                                                         </h5>
-                                                         <button type="button" class="close"
-                                                             data-dismiss="modal" aria-label="Close">
-                                                             <span aria-hidden="true">&times;</span>
-                                                         </button>
-                                                     </div>
+                                        {{-- Modal Update kompetensi --}}
+                                        <div class="modal fade" tabindex="-1" role="dialog"
+                                            id="updateModal{{ $data->id }}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-theme">Edit Kompetensi Lowongan
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
 
-                                                     <form
-                                                         action="{{ route('manajemen.kompetensi.lowongan.update', $data->id) }}"
-                                                         method="POST">
-                                                         @method('put')
-                                                         @csrf
+                                                    <form
+                                                        action="{{ route('manajemen.kompetensi.lowongan.update', $data->id) }}"
+                                                        method="POST">
+                                                        @method('put')
+                                                        @csrf
 
-                                                         <div class="modal-body">
-                                                             <div class="form-group">
-                                                                 <label for="update_kompetensi"
-                                                                     class="form-label">Kompetensi Lowongan</label>
-                                                                 <input id="update_kompetensi" type="text"
-                                                                     class="form-control @error('update_kompetensi') is-invalid @enderror"
-                                                                     name="update_kompetensi"
-                                                                     placeholder="Nama kriteria"
-                                                                     value="{{ $data->kompetensi }}">
-                                                                 @error('update_kompetensi')
-                                                                     <div id="update_kompetensi"
-                                                                         class="form-text text-danger">
-                                                                         {{ $message }}</div>
-                                                                 @enderror
-                                                             </div>
-                                                         </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label for="update_kompetensi" class="form-label">Kompetensi
+                                                                    Lowongan</label>
+                                                                <input id="update_kompetensi" type="text"
+                                                                    class="form-control @error('update_kompetensi') is-invalid @enderror"
+                                                                    name="update_kompetensi" placeholder="Nama kriteria"
+                                                                    value="{{ $data->kompetensi }}">
+                                                                @error('update_kompetensi')
+                                                                    <div id="update_kompetensi" class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
 
-                                                         <div class="modal-footer bg-whitesmoke br">
-                                                             <button type="button" class="btn btn-cancel"
-                                                                 data-dismiss="modal">Batal</button>
-                                                             <button type="submit"
-                                                                 class="btn btn-submit">Submit</button>
-                                                         </div>
-                                                     </form>
+                                                        <div class="modal-footer bg-whitesmoke br">
+                                                            <button type="button" class="btn btn-cancel"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-submit">Submit</button>
+                                                        </div>
+                                                    </form>
 
-                                                 </div>
-                                             </div>
-                                         </div>
-                                            @php
-                                                $no++;
-                                            @endphp
-                                            @endforeach
-                                    </tbody>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -125,8 +120,8 @@
         </div>
     </section>
 
-     {{-- Modal Tambah Kriteria --}}
-     <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
+    {{-- Modal Tambah Kriteria --}}
+    <div class="modal fade" tabindex="-1" role="dialog" id="createModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -135,7 +130,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{route('manajemen.kompetensi.lowongan.store', $id_lowongan)}}" method="POST">
+                <form action="{{ route('manajemen.kompetensi.lowongan.store', $id_lowongan) }}" method="POST">
                     @csrf
 
                     <div class="modal-body">

@@ -32,8 +32,8 @@
                                             <tr>
                                                 <th class="text-center text-white">No</th>
                                                 <th class="text-center text-white">Nama Mahasisiwa</th>
-                                                <th class="text-center text-white">Show</th>
                                                 <th class="text-center text-white">Action</th>
+                                                <th class="text-center text-white">Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -46,16 +46,28 @@
                                                     <td class="text-center">{{ $no }}</td>
                                                     <td class="text-center">{{ $data->nama }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.sertifikat.mitra.showdetail', ['id_transkrip' => $data->id_transkrip ?? 0]) }}"
-                                                            class="btn btn-info ml-auto">
-                                                            <i class="fa-solid fa-eye"></i> Lihat
-                                                        </a>
+                                                        @if ($data->id_transkrip !== null)
+                                                            <a href="{{ route('manajemen.sertifikat.mitra.showdetail', ['id_transkrip' => $data->id_transkrip ?? 0]) }}"
+                                                                class="btn btn-info ml-auto" title="Lihat File">
+                                                                <i class="fa-solid fa-eye"></i> Lihat
+                                                            </a>
+                                                        @else
+                                                            <button class="btn btn-warning ml-auto" data-toggle="modal"
+                                                                data-target="#uploadmodal{{ $data->id_pelamar }}">
+                                                                <i class="fa-solid fa-upload"></i> Upload
+                                                            </button>
+                                                        @endif
                                                     </td>
-                                                    <td class="text-center">
-                                                        <button class="btn btn-info ml-auto" data-toggle="modal"
-                                                            data-target="#uploadmodal{{ $data->id_pelamar }}">
-                                                            <i class="fa-solid fa-upload"></i> Upload
-                                                        </button>
+                                                    <td>
+                                                        <!-- Tombol Delete -->
+                                                        <form
+                                                            action="{{ route('manajemen.sertifikat.mitra.destroy', ['id_transkrip' => $data->id_transkrip ?? 0]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger"
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus transkrip ini?')">Hapus</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 @php
@@ -67,6 +79,11 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12 d-flex mt-3">
+                            <a href="{{ route('manajemen.sertifikat.mitra.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
                         </div>
                     </div>
                 </div>
