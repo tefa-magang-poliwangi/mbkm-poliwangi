@@ -1,14 +1,14 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Penilaian Mahasiswa | MBKM Poliwangi</title>
+    <title>Penilaian Magang | PL Mitra</title>
 @endsection
-
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
+
 
 @php
     function dateConversion($date)
@@ -19,6 +19,7 @@
     }
 @endphp
 
+
 @section('content')
     <section class="pt-4">
         <div class="row pt-5">
@@ -27,13 +28,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Lowongan Mitra</h5>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="" class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    TambahLowongan
-                                </a>
+                                <h5 class="justify-start my-auto text-theme">Penilaian Magang</h5>
                             </div>
                         </div>
                     </div>
@@ -46,33 +41,31 @@
                                     <tr>
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">Jumlah Lowongan</th>
-                                        <th class="text-center text-white">Program Magang</th>
-                                        <th class="text-center text-white">Kompetensi Lowongan</th>
-                                        <th class="text-center text-white">Berkas Lowongan</th>
-                                        <th class="text-center text-white">Status</th>
-                                        <th class="text-center text-white">Aksi</th>
+                                        <th class="text-center text-white">NIM</th>
+                                        <th class="text-center text-white">Program Studi</th>
+                                        <th class="text-center text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($pelamar_magang as $data)
                                         <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">asam bisul</td>
-                                            <td class="text-center">hardware</td>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{$data->mahasiswa->nama}}</td>
+                                            <td class="text-center">{{$data->mahasiswa->nim}}</td>
+                                            <td class="text-center">{{$data->mahasiswa->prodi->nama }}</td>
                                             <td class="text-center">
-                                                <span class="badge bg-primary text-white">75</span>
-                                            </td>
-                                            <td class="text-center">B</td>
-
-                                            <td>
-                                                <a href=""
-                                                    class="btn btn-info ml-auto"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href=""
-                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('penilaian.create',['id_mahasiswa'=>$data->id_mahasiswa]) }}" class="btn btn-info">
+                                                    <i class="fa-solid fa-eye text-white"></i>
+                                                </a>
                                             </td>
                                         </tr>
-
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

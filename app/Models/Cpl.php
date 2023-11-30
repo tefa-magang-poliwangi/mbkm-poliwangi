@@ -27,4 +27,9 @@ class Cpl extends Model
     {
         return $this->hasMany(KetercapaianCpl::class);
     }
+
+    public function logbooks()
+    {
+        return $this->belongsToMany(Logbook::class, 'cpl_maps','id_cpl','id_logbook');
+    }
 }

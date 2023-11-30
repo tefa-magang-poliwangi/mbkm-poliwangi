@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Penilaian Mahasiswa | MBKM Poliwangi</title>
+    <title>Manajemen Pendamping Lapang | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -22,56 +22,56 @@
 @section('content')
     <section class="pt-4">
         <div class="row pt-5">
-            <div class="col-12">
+            <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Lowongan Mitra</h5>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="" class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    TambahLowongan
-                                </a>
+                                <h5 class="justify-start my-auto text-theme">Daftar Lowongan</h5>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-
-                            <table class="table table-hover table-borderless rounded" id="table-1">
-                                <thead class="bg-primary">
-                                    <tr>
-                                        <th class="text-center text-white">No</th>
-                                        <th class="text-center text-white">Nama</th>
-                                        {{-- <th class="text-center text-white">Berkas Lowongan</th> --}}
-                                        <th class="text-center text-white">Status</th>
-                                        <th class="text-center text-white">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">asam bisul</td>
-                                            <td class="text-center">panci warteg</td>
-                                            <td>
-                                                <a href="#"
-                                                    class="btn btn-info ml-auto"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href="#"
-                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-
-                                </tbody>
-                            </table>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="table-1">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th class="text-center text-white" width="10%">No</th>
+                                                <th class="text-center text-white">Nama</th>
+                                                <th></th>
+                                                <th class="text-center text-white">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $no = 1;
+                                            @endphp
+                                            @foreach ($lowonganMitras as $mitra)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $mitra->nama }}</td>
+                                                <td class="text-center">{{ $mitra->kategori}}</td>
+                                                <td class="text-center">
+                                                    <a href="{{ route('lowongan1.show', ['id_lowongan' => $mitra->id]) }}">
+                                                        <i class="fa-solid fa-eye text-blue"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                            @php
+                                                $no++;
+                                            @endphp
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
 @endsection
 

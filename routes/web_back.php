@@ -42,7 +42,7 @@ use App\Http\Controllers\MitraLowonganController;
 use App\Http\Controllers\KompetensiLowonganController;
 use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
-use App\Http\Controllers\PLMitra\PenilaianPLController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
@@ -63,10 +63,6 @@ use App\Http\Controllers\BerkasLowonganController;
 use App\Http\Controllers\DaftarMagangController;
 use App\Http\Controllers\DaftarPermohonanMagangController;
 use App\Http\Controllers\DosenPLController;
-use App\Http\Controllers\DPL\LapakhirDPLController;
-use App\Http\Controllers\Kaprodi\LaporanAkhirController;
-use App\Http\Controllers\Kaprodi\LogbookMahasiswaController;
-use App\Http\Controllers\Kaprodi\PLMahasiswaController;
 use App\Http\Controllers\MitraLaporanAkhirController;
 use App\Http\Controllers\MitraLaporanMingguanController;
 use App\Http\Controllers\MitraLogbookController;
@@ -168,21 +164,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/daftar-lowongan-magang', [ValidasiProgramMagangKaprodi::class, 'index'])->name('kaprodi.validasi.program.magang.index');
         Route::get('/daftar-lowongan-magang/{id_lowongan}/program-magang', [ValidasiProgramMagangKaprodi::class, 'show'])->name('kaprodi.validasi.program.magang.show');
         Route::put('/daftar-lowongan-magang/{id_lowongan}/validasi-program-magang', [ValidasiProgramMagangKaprodi::class, 'validate_program_magang'])->name('kaprodi.validasi.program.magang.validate');
-
-        Route::get('/kaprodi/daftar-lowongan-magang', [PLMahasiswaController::class, 'index'])->name('kaprodi.daftarlowongan.index');
-        Route::get('/kaprodi/daftar-lowongan-magang/{id_lowongan}/program-magang', [PLMahasiswaController::class, 'show'])->name('kaprodi.validasi.daftarlowongan.show');
-
-        // Route view laporan akhir & log
-        Route::get('/kaprodi/daftar-logbook-mahasiswa', [LogbookMahasiswaController::class, 'index'])->name('kaprodi.logbookmhs.index');
-        Route::get('/kaprodi/daftar-logbook-mahasiswa/show/{id_dosen_pl}', [LogbookMahasiswaController::class, 'show'])->name('kaprodi.logbookmhs.show');
-        Route::get('/kaprodi/daftar-logbook-mahasiswa/show/page-file/{id_pelamar_magang}', [LogbookMahasiswaController::class, 'PageFile'])->name('kaprodi.logbookmhs.PageFile');
-        Route::get('/kaprodi/daftar-logbook-mahasiswa/show-file/{filename}', [LogbookMahasiswaController::class, 'ShowFile'])->name('kaprodi.logbookmhs.ShowFile');
-
-
-        Route::get('/kaprodi/daftar-lapakhir-mahasiswa', [LaporanAkhirController::class, 'index'])->name('kaprodi.lapakhir.index');
-        Route::get('/kaprodi/daftar-lapakhir-mahasiswa/show/{id_dosen_pl}', [LaporanAkhirController::class, 'show'])->name('kaprodi.lapakhir.show');
-        Route::get('/kaprodi/daftar-lapakhir-mahasiswa/page-file/{id_pelamar_magang}', [LaporanAkhirController::class, 'PageFile'])->name('kaprodi.daftarlapakhir.PageFile');
-        Route::get('/kaprodi/daftar-lapakhir-mahasiswa/show-file/{filename}', [LaporanAkhirController::class, 'showFile'])->name('kaprodi.daftarlapakhir.showFile');
 
         // Route Manajemen Mahasiswa
         Route::get('/manajemen/mahasiswa', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');
@@ -298,25 +279,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/manajemen/pendamping-lapang-mitra/store', [PLMitraController::class, 'store'])->name('manajemen.pendamping.lapang.mitra.store');
         Route::put('/manajemen/pendamping-lapang-mitra/{id_pl_mitra}/update', [PLMitraController::class, 'update'])->name('manajemen.pendamping.lapang.mitra.update');
         Route::get('/manajemen/pendamping-lapang-mitra/{id_pl_mitra}/destroy', [PLMitraController::class, 'destroy'])->name('manajemen.pendamping.lapang.mitra.destroy');
-
-        // # (Route Dosen Pembimbing Lapang)
-        Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
-        Route::get('/dashboard/dosen-pembimbing/ubah-profil/{id_user}', [ProfileDPLController::class, 'show'])->name('profil.dosen.pembimbing.page');
-        Route::put('/dashboard/dosen-pembimbing/update-profil/{id_dosen}', [ProfileDPLController::class, 'update'])->name('profil.dosen.pembimbing.update');
-        Route::get('/dosen-pembimbing/daftar-peserta-magang', [DaftarPesertaMagangController::class, 'index'])->name('daftar.pesertamagang.index');
-        Route::get('/dosen-pembimbing/daftarlogbook', [LogbookDPLController::class, 'index'])->name('daftarlogbook.index');
-        Route::get('/dosen-pembimbing/daftarlogbook/{id_user}', [LogbookDPLController::class, 'show'])->name('daftarlogbook.show');
-        Route::get('/dosen-pembimbing/daftarlapakhir', [LapakhirDPLController::class, 'index'])->name('daftarlapakhir.index');
-        Route::get('/dosen-pembimbing/daftarlapakhir/{id_mahasiswa}', [LapakhirDPLController::class, 'show'])->name('daftarlapakhir.show');
-        Route::get('/lapakhir/show-file/{filename}', [LapakhirDPLController::class, 'showFile'])->name('daftarlapakhir.showFile');
-        Route::get('/dosen-pembimbing/daftarcpl', [KonversiCPLController::class, 'index'])->name('daftarcpl.index');
-        Route::get('/dosen-pembimbing/daftarcpl/{id_user}/edit', [KonversiCPLController::class, 'edit'])->name('daftarcpl.edit');
-        Route::post('/dosen-pembimbing/daftarcpl/update/{id}', [KonversiCPLController::class, 'updateCPL'])->name('daftarcpl.update');
-        Route::get('/dosen-pembimbing/konversinilai', [KonversiNilaiController::class, 'index'])->name('konversinilai.index');
-        Route::get('/dosen-pembimbing/konversinilai/update/{id_user}', [KonversiNilaiController::class, 'update'])->name('konversinilai.update');
-        Route::post('/daftarcpl/cpl/save', [KonversiCPLController::class, 'save'])->name('cpl.save');
-        Route::post('/dosen-pembimbing/daftarlogbook/logbooks/store', [LogbookDPLController::class, 'storeKomentar'])->name('dosen-pembimbing.Komentar.Store');
-        Route::post('/dosen-pembimbing/daftarlogbook/logbooks/komentar/{id}', [LogbookDPLController::class, 'updateKomentar'])->name('dosen-pembimbing.Komentar.Update');
 
         // # (Route Dosen)
         Route::get('/dashboard/dosen', [DosenPageController::class, 'dashboard_dosen'])->name('dashboard.dosen.page');
@@ -480,13 +442,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Dashboard PLMitra
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
         Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
-        Route::get('/plmitra/LowonganMitra/{id_lowongan}/show', [LowonganPLController::class, 'show'])->name('lowongan1.show');
         Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('daftarlogbook.index');
-        Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
-        Route::get('/plmitra/penilaian-pl/{id_mahasiswa}/create', [PenilaianPLController::class, 'create'])->name('penilaian.create');
-        Route::post('/plmitra/penilaian/', [PenilaianPLController::class, 'store'])->name('penilaian.store');
-        Route::put('/plmitra/penilaian/', [PenilaianPLController::class, 'update'])->name('penilaian.update');
-        Route::get('/plmitra/penilaian/{id_nilaimagang}', [PenilaianPLController::class, 'destroy'])->name('penilaian.destroy');
+        Route::get('/plmitra/Penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+
 
         // Route Profil PLMitra
         Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('profil.plmitra.page');
@@ -527,14 +485,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 });
 
 // # Halaman yang tidak digunakan
-// Halaman Admin
-Route::get('/dashboard-admin-prodi', function () {
-    return view('pages.admin.admin-prodi-dashboard');
-});
-Route::get('/dashboard-dosen/daftar-cpl-kurikulum', function () {
-    return view('pages.prodi.daftar-cpl-kurikulum');
-});
-
 // # Halaman Mahasiswa - Internal (Kurang laporan harian, laporan mingguan)
 Route::get('/dashboard-mahasiswa/rincian-kegiatan', function () {
     return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-rincian-kegiatan');
@@ -551,28 +501,10 @@ Route::get('/dashboard-mahasiswa/status-pendaftaran', function () {
 Route::get('/dashboard-mahasiswa/laporan-akhir', function () {
     return view('pages.dosen.dosbim-laporan-akhir');
 });
-// # Halaman Mahasiswa Internal - tidak ada isi
-Route::get('/dashboard-mahasiswa/pendaftaran-magang', function () {
-    return view('pages.mahasiswa.pendaftaran-mahasiswa.mahasiswa-pendaftaran-magang');
-});
-
-// # Halaman Mitra - Lowongan
-Route::get('/dashboard-mitra/daftar-pelamar', function () {
-    return view('pages.mitra.manajemen-pelamar-mitra.mitra-daftar-pelamar');
-});
 
 // Halaman Kaprodi
 Route::get('/dashboard-dosen/laporan-akhir', function () {
     return view('pages.dosen.kaprodi-laporan-akhir');
-});
-Route::get('/dashboard-dosen/form-daftar-cpl-kurikulum', function () {
-    return view('pages.prodi.form-daftar-cpl');
-});
-Route::get('/dashboard-dosen/daftar-program', function () {
-    return view('pages.dosen.kaprodi-daftar-program');
-});
-Route::get('/dashboard-dosen/daftar-mahasiswa', function () {
-    return view('pages.dosen.kaprodi-daftar-mahasiswa');
 });
 
 // Halaman Dosen Pembimbing
