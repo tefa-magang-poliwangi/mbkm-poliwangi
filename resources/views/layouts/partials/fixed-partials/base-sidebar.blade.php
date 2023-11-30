@@ -586,7 +586,6 @@
                             <i class="fas fa-solid fa-book"></i>
                             <span>Laporan Akhir</span>
                         </a>
-
                     </li>
                 @endcan
 

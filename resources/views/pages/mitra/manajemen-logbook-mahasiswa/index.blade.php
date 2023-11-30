@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Logbook Mahasiswa</h5>
+                                <h5 class="justify-start my-auto text-theme">Lihat Daftar Mahasiswa | Logbook</h5>
                             </div>
                         </div>
 
@@ -33,30 +33,32 @@
                                                 <th class="text-center text-white">Nim</th>
                                                 <th class="text-center text-white">Lowongan</th>
                                                 <th class="text-center text-white">Pendamping Lapang</th>
-                                                <th class="text-center text-white">Laporan Harian</th>
+                                                <th class="text-center text-white">Logbook</th>
                                                 <th class="text-center text-white">Laporan Akhir</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">Nanda Awimbi</td>
-                                                <td class="text-center">362055401024</td>
-                                                <td class="text-center">backend developer</td>
-                                                <td class="text-center">Syarifudin</td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('manajemen.mitra.logbook.show') }}"
-                                                        class="btn btn-info ml-auto">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('manajemen.mitra.logbook.update') }}"
-                                                        class="btn btn-info ml-auto">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @foreach ($mahasiswas as $index => $mahasiswa)
+                                                <tr>
+                                                    <td class="text-center">{{ $index + 1 }}</td>
+                                                    <td class="text-center">{{ $mahasiswa->nama }}</td>
+                                                    <td class="text-center">{{ $mahasiswa->nim }}</td>
+                                                    <td class="text-center">{{ $mahasiswa->nama_lowongan }}</td>
+                                                    <td class="text-center">{{ $mahasiswa->nama_pl }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('manajemen.mitra.logbook.show', $mahasiswa->id) }}"
+                                                            class="btn btn-primary fw-medium">
+                                                            <i class="fas fa-eye"></i> Lihat Logbook Harian
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('manajemen.mitra.lapmingguan.index') }}"
+                                                            class="btn btn-primary">
+                                                            <i class="fas fa-eye"></i> Lihat Laporan Mingguan
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

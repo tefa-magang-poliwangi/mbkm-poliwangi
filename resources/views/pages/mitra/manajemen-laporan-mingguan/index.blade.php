@@ -20,16 +20,21 @@
                         <div class="ml-2"> Kembali</div>
                     </a>
                     <div class="card-body">
-                        @php
-                            $startOfWeek = now()->startOfWeek();
-                            $endOfWeek = now()->endOfWeek();
-                        @endphp
-                        <h6 class="card-text">{{ $startOfWeek->format('d') }} - {{ $endOfWeek->format('d M Y') }}</h6>
+                        <h6 class="card-text">25 - 30 Sep 2023</h6>
                         <div>
                             <select class="text-muted" style="border: 0px">
-                                @for ($week = 1; $week <= 4; $week++)
-                                    <option>Minggu Ke-{{ $week }}</option>
-                                @endfor
+                                <option>Minggu Ke-1</option>
+                                <option>Minggu Ke-2</option>
+                                <option>Minggu Ke-3</option>
+                                <option>Minggu Ke-4</option>
+                                <option>Minggu Ke-5</option>
+                                <option>Minggu Ke-6</option>
+                                <option>Minggu Ke-7</option>
+                                <option>Minggu Ke-8</option>
+                                <option>Minggu Ke-9</option>
+                                <option>Minggu Ke-10</option>
+                                <option>Minggu Ke-11</option>
+                                <option>Minggu Ke-12</option>
                             </select>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
@@ -49,16 +54,38 @@
                 </div>
             </div>
             <div class="col-md-8">
-                @for ($dayIndex = 0; $dayIndex < 6; $dayIndex++)
-                    @php
-                        $currentDay = $startOfWeek->clone()->addDays($dayIndex);
-                        $logbookEntries = $logbook->where('tanggal', $currentDay->format('Y-m-d'));
-                    @endphp
+                @for ($dayIndex = 1; $dayIndex <= 6; $dayIndex++)
                     <div class="card rounded mb-3">
                         <div class="card-body d-flex align-items-center">
                             <div>
-                                <h6 class="mb-0">{{ $currentDay->translatedFormat('l') }}</h6>
-                                <h6>{{ $currentDay->format('d F Y') }}</h6>
+                                <h6 class="mb-0">
+                                    @php
+                                        $date = \Carbon\Carbon::parse('25 September 2023')
+                                            ->startOfWeek()
+                                            ->addDays($dayIndex - 1);
+                                        switch ($date->dayOfWeek) {
+                                            case 1:
+                                                echo 'Senin';
+                                                break;
+                                            case 2:
+                                                echo 'Selasa';
+                                                break;
+                                            case 3:
+                                                echo 'Rabu';
+                                                break;
+                                            case 4:
+                                                echo 'Kamis';
+                                                break;
+                                            case 5:
+                                                echo 'Jumat';
+                                                break;
+                                            case 6:
+                                                echo 'Sabtu';
+                                                break;
+                                        }
+                                    @endphp
+                                </h6>
+                                <h6>{{ $date->format('d F Y') }}</h6>
                             </div>
                             <div class="ml-auto">
                                 <div class="btn btn-theme-two" data-toggle="modal" data-target="#showmodal">
@@ -67,20 +94,20 @@
                             </div>
                         </div>
                         <div style="margin-left: 25px; margin-right: 25px;">
-                            @foreach ($logbookEntries as $entry)
-                                <p>{{ $entry->kegiatan }}</p>
-                            @endforeach
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
                         </div>
                         <hr>
                         <div class="text-center mb-3 mr-3">
-                            {{-- <a href="{{ route('manajemen.mitra.logbook.create', ['date' => $currentDay->format('Y-m-d')]) }}"
-                                class="btn btn-theme-two fw-medium mt-2">
+                            <a href="" class="btn btn-theme-two fw-medium mt-2">
                                 Buat Laporan Harian
-                            </a> --}}
+                            </a>
                         </div>
                     </div>
                 @endfor
-
             </div>
         </div>
 

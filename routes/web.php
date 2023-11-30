@@ -376,16 +376,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Dashboard Mitra
         Route::get('/dashboard/mitra', [MitraPageController::class, 'dashboard_mitra'])->name('dashboard.mitra.page');
 
-        // Route Manajemen Logbook Mitra
-        Route::get('/manajemen/logbook-mitra/index', [MitraLogbookController::class, 'index'])->name('manajemen.mitra.logbook.index');
-        Route::get('/manajemen/logbook-mitra/show', [MitraLogbookController::class, 'show'])->name('manajemen.mitra.logbook.show');
-
-        // Route Manajemen Laporan Mingguan
-        Route::get('/manajemen/laporan-mingguan/index', [MitraLaporanMingguanController::class, 'index'])->name('manajemen.mitra.lapmingguan.index');
-
-        // Route Manajemen Laporan Akhir
-        Route::get('/manajemen/laporan-akhir/index', [MitraLaporanAkhirController::class, 'index'])->name('manajemen.mitra.lapakhir.index');
-
         // Route Manajemen Plotting Mita
         Route::get('/manajemen/plotting-mitra/index', [MitraPlottingController::class, 'index'])->name('manajemen.plotting.mitra.index');
         Route::get('/manajemen/plotting-mitra/{id_pl_mitra}/show', [MitraPlottingController::class, 'show'])->name('manajemen.plotting.mitra.show');
@@ -415,8 +405,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Manajemen Logbook Mita
         Route::get('/manajemen/mitra-logbook/index', [MitraLogbookController::class, 'index'])->name('manajemen.mitra.logbook.index');
-        Route::get('/manajemen/mitra-logbook/show', [MitraLogbookController::class, 'show'])->name('manajemen.mitra.logbook.show');
-        Route::get('/manajemen/mitra-logbook/update', [MitraLogbookController::class, 'update'])->name('manajemen.mitra.logbook.update');
+        Route::get('/manajemen/mitra-logbook/{id}/show', [MitraLogbookController::class, 'show'])->name('manajemen.mitra.logbook.show');
+
+        // Route Manajemen Laporan Mingguan
+        Route::get('/manajemen/laporan-mingguan/index', [MitraLaporanMingguanController::class, 'index'])->name('manajemen.mitra.lapmingguan.index');
+
+        // Route Manajemen Laporan Akhir
+        Route::get('/manajemen/laporan-akhir/index', [MitraLaporanAkhirController::class, 'index'])->name('manajemen.mitra.lapakhir.index');
 
         // Route Manajemen Program Magang
         Route::get('/manajemen/{id_lowongan}/program-magang', [ProgramMagangController::class, 'index'])->name('manajemen.program.magang.index');

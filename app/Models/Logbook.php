@@ -13,6 +13,7 @@ class Logbook extends Model
         'id',
         'kegiatan',
         'bukti',
+        'tanggal',
         'id_program_magang',
         'id_mahasiswa',
     ];
