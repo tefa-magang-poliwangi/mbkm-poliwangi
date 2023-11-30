@@ -451,6 +451,24 @@
                     </li>
                 @endcan
 
+                @can('kaprodi.logbookmhs.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('kaprodi.logbookmhs.index') }}">
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Logbook Mahasiswa</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('kaprodi.lapakhir.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('kaprodi.lapakhir.index') }}">
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Laporan Akhir</span>
+                        </a>
+                    </li>
+                @endcan
+
             @endauth
 
             {{-- Menu Dosen --}}
@@ -659,6 +677,15 @@
                 @role('pl-mitra')
                     <li class="menu-header">MITRA</li>
                 @endrole
+
+                @can('lowongan1.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('lowongan1.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>lowongan</span>
+                        </a>
+                    </li>
+                @endcan
 
                 @can('penilaian.index')
                     <li>

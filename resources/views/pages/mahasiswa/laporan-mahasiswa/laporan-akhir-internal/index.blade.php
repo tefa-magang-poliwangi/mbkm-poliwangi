@@ -22,8 +22,6 @@
                         <div class="list-group" id="list-tab" role="tablist">
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
                                 href="#form-transkip" role="tab"> Formulir Upload Trankrip</a>
-                            <a class="list-group-item list-group-item-action" id="list-profile-list" href="#"
-                                role="tab">Lihat Laporan Akhir</a>
                         </div>
                     </div>
                 </div>
@@ -75,69 +73,6 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-
-                    {{-- Daftar Transkip Nilai --}}
-                    <div class="tab-pane fade pt-0" id="daftar-transkip" role="tabpanel"
-                        aria-labelledby="list-profile-list">
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                @if ($transkrip_mahasiswa->isEmpty())
-                                    <div class="card d-flex bg-primary">
-                                        <h6 class="mx-auto my-auto py-4 text-white"><i
-                                                class="fa-solid fa-circle-info"></i>
-                                            &ensp; Silahkan tambahkan Transkrip
-                                            terlebih
-                                            dahulu
-                                        </h6>
-                                    </div>
-                                @else
-                                    @foreach ($transkrip_mahasiswa as $data)
-                                        <div class="card card-border card-rounded-sm card-hover">
-                                            <div class="card-header bg-primary text-white">
-                                                <h4 class="fw-bold">{{ $data->magang_ext->name }}</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col d-flex">
-                                                        <span class="fw-medium my-auto">{{ $data->mahasiswa->nama }}
-                                                            (Semester
-                                                            {{ $data->periode->semester }} -
-                                                            {{ $data->periode->tahun }})
-                                                        </span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="btn-group">
-                                                            <a href="{{ Storage::url($data->file_transkrip) }}"
-                                                                target="_blank"
-                                                                class="btn btn-download d-md-inline">Transkrip</a>
-                                                            <a href="{{ Storage::url($data->file_sertifikat) }}"
-                                                                target="_blank"
-                                                                class="btn btn-download d-md-inline">Serfifikat</a>
-                                                            <a href="{{ Storage::url($data->file_laporan_akhir) }}"
-                                                                target="_blank"
-                                                                class="btn btn-download d-md-inline">Laporan
-                                                                Akhir</a>
-                                                            <a href="{{ route('upload.transkrip.mahasiswa.ext.destroy', $data->id) }}"
-                                                                class="btn btn-delete">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    {{-- <div class="col-3 d-flex">
-                                                        <a href="{{ route('nilai_kriteria.magang_ext.page', $data->magang_ext->id) }}"
-                                                            class="btn btn-primary ml-auto my-auto">
-                                                            Masukkan Nilai
-                                                        </a>
-                                                    </div> --}}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
-                            </div>
-                        </div>
                     </div>
 
                 </div>
