@@ -23,7 +23,7 @@
                                 <h5 class="justify-start my-auto text-theme">Daftar Pelamar Magang</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{route('manajemen.pelamar.mitra.index')}}"
+                                <a href="{{ route('manajemen.pelamar.mitra.index') }}"
                                     class="btn btn-primary btn-sm ml-auto px-2 py-1">
                                     Daftar Pelamar
                                 </a>
@@ -53,7 +53,9 @@
                                             <td class="text-center">{{ $data->mahasiswa->nim }}</td>
                                             <td class="text-center">{{ $data->lowongan->nama }}</td>
                                             <td class="text-center">
-                                                <a class="btn btn-primary btn-sm" href="#">Cek Kelengkapan</a>
+                                                <a class="btn btn-primary btn-sm"
+                                                    href="{{ route('manajemen.pelamar.mitra.show', $data->id) }}">Cek
+                                                    Kelengkapan</a>
                                             </td>
                                         </tr>
                                         @php
