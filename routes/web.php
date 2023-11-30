@@ -399,16 +399,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/upload-laporan-akhir/magang-internal/{id_user}/create', [MitraSertifikatController::class, 'create'])->name('upload.laporan.akhir.mahasiswa.int.create');
         Route::put('/upload-laporan-akhir/magang-internal/{id_user}/update', [MitraSertifikatController::class, 'update'])->name('upload.laporan.akhir.mahasiswa.int.update');
 
+        //Route Laporan Mahasiswa
+        Route::get('/dashboard/mahasiswa/laporan-harian/index', [MahasiswaLaporanController::class, 'index'])->name('mahasiswa.laporan.harian.index');
+        Route::get('/dashboard/mahasiswa/laporan-harian/show', [MahasiswaLaporanController::class, 'show'])->name('mahasiswa.laporan.harian.show');
+        Route::get('/dashboard/mahasiswa/laporan-upload/create', [MahasiswaLaporanController::class, 'create'])->name('mahasiswa.laporan.upload.create');
+        Route::get('/dashboard/mahasiswa/laporan-akhir/store', [MahasiswaLaporanController::class, 'store'])->name('mahasiswa.laporan.akhir.store');
+
         // Route Input Kriteria Penilaian Mahasiswa Magang Ext
         Route::get('/input-kriteria-penilaian/magang_{id_magang_ext}/kriteria_{id_nilai_magang_ext}/index', [InputKriteriaMahasiswaController::class, 'index'])->name('input.kriteria.mahasiswa.ext.index');
         Route::post('/input-kriteria-penilaian/store', [InputKriteriaMahasiswaController::class, 'store'])->name('input.kriteria.mahasiswa.ext.store');
         Route::get('/input-kriteria-penilaian/{id_detail_penilaian_magang_ext}/destroy', [InputKriteriaMahasiswaController::class, 'destroy'])->name('input.kriteria.mahasiswa.ext.destroy');
-
-        //Route Laporan Mahasiswa
-        Route::get('/dashboard/mahasiswa/laporan-mingguan/index', [MahasiswaLaporanController::class, 'index'])->name('mahasiswa.laporan.mingguan.index');
-        Route::get('/dashboard/mahasiswa/laporan-harian/show', [MahasiswaLaporanController::class, 'show'])->name('mahasiswa.laporan.harian.show');
-        Route::get('/dashboard/mahasiswa/laporan-upload/create', [MahasiswaLaporanController::class, 'create'])->name('mahasiswa.laporan.upload.create');
-        Route::get('/dashboard/mahasiswa/laporan-akhir/store', [MahasiswaLaporanController::class, 'store'])->name('mahasiswa.laporan.akhir.store');
 
         // # (Route Mitra)
         //Route Dashboard Mitra

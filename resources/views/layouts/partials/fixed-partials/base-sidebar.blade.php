@@ -563,6 +563,15 @@
                     </li>
                 @endcan
 
+                @can('mahasiswa.laporan.harian.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('mahasiswa.laporan.harian.index') }}">
+                            <i class="fas fa-solid fa-book"></i>
+                            <span>Laporan Harian</span>
+                        </a>`
+                    </li>
+                @endcan
+
                 @can('upload.laporan.akhir.mahasiswa.int.create')
                     <li>
                         <a class="nav-link"

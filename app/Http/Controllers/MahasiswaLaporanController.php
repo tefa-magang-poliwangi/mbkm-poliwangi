@@ -14,7 +14,7 @@ class MahasiswaLaporanController extends Controller
      */
     public function index()
     {
-        return view('pages.mahasiswa.laporan-mahasiswa.index');
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MahasiswaLaporanController extends Controller
      */
     public function create()
     {
-        return view('pages.mahasiswa.laporan-mahasiswa.create');
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class MahasiswaLaporanController extends Controller
         $data = [
             'id_mahasiswa' => Logbook::all(),
         ];
-        return view('pages.mahasiswa.laporan-mahasiswa.show');
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.show');
     }
 
     /**
