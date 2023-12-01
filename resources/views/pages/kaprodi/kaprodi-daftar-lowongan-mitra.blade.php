@@ -46,7 +46,6 @@
                                         <th class="text-center text-white">Jumlah Lowongan</th>
                                         <th class="text-center text-white">Prodi</th>
                                         <th class="text-center text-white">Program Magang</th>
-                                        <th class="text-center text-white">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
