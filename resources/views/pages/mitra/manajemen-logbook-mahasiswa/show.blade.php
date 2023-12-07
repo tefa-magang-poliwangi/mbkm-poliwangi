@@ -25,26 +25,6 @@
                             $endOfWeek = now()->endOfWeek();
                         @endphp
                         <h6 class="card-text">{{ $startOfWeek->format('d') }} - {{ $endOfWeek->format('d M Y') }}</h6>
-                        <div>
-                            <select class="text-muted" style="border: 0px">
-                                @for ($week = 1; $week <= 4; $week++)
-                                    <option>Minggu Ke-{{ $week }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                        <div class="d-flex justify-content-between mt-3">
-                            @foreach (['S', 'S', 'R', 'K', 'J', 'S'] as $day)
-                                <div class="text-center">
-                                    <p>{{ $day }}</p>
-                                    <i class="far fa-smile"></i>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="mb-3 text-center">
-                        <a href="" class="btn btn-theme-two fw-medium mt-2">
-                            Buat Laporan Mingguan
-                        </a>
                     </div>
                 </div>
             </div>

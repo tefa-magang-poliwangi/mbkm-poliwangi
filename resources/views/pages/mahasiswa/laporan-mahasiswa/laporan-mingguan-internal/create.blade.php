@@ -7,12 +7,14 @@
 @section('css')
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/jquery-selectric/selectric.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
+
     {{-- Datedropper JS --}}
     <script src="{{ asset('js-datedropper/datedropper-javascript.js') }}"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -36,45 +38,46 @@
                 <div class="card-body">
 
                     {{-- form --}}
-                    <form action="{{ route('mahasiswa.laporan.harian.store') }}" method="POST"
+                    <form action="{{ route('manajemen.lowongan.mitra.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="tanggal" class="tanggal">Masukkan Tanggal</label>
-                                <input id="tanggal" type="text" name="tanggal"
-                                    class="form-control date-input bg-white @error('tanggal') is-invalid @enderror"
-                                    data-dd-opt-custom-class="dd-theme-bootstrap" placeholder="masukkan tanggal">
-                                @error('tanggal')
-                                    <div id="tanggal" class="form-text text-danger">
-                                        {{ $message }}
+                            <div class="form-group col-md-6">
+                                <label for="waktu_mulai" class="waktu_mulai">Waktu Mulai</label>
+                                <input id="waktu_mulai" type="text" name="waktu_mulai"
+                                    class="form-control date-input bg-white @error('waktu_mulai') is-invalid @enderror"
+                                    data-dd-opt-custom-class="dd-theme-bootstrap" placeholder="Waktu Mulai">
+                                @error('waktu_mulai')
+                                    <div id="waktu_mulai" class="form-text text-danger">
+                                        sj
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="waktu_akhir" class="waktu_akhir">Waktu Akhir</label>
+                                <input id="waktu_akhir" type="text" name="waktu_akhir"
+                                    class="form-control date-input bg-white @error('waktu_akhir') is-invalid @enderror"
+                                    data-dd-opt-custom-class="dd-theme-bootstrap" placeholder="Waktu Akhir">
+                                @error('waktu_akhir')
+                                    <div id="waktu_akhir" class="form-text text-danger">
+                                        sj
                                     </div>
                                 @enderror
                             </div>
                         </div>
-
-                        <h6 class="card-title">Bagaimana kegiatanmu hari ini?</h6>
-                        <div class="form-group">
-                            <textarea name="kegiatan" id="exampleFormControlTextarea1" style="width: 100%; height: 300px;"
-                                placeholder="Tips: ceritakan kegiatanmu tanpa menginformasikan data yang bersifat rahasia"></textarea>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control @error('bukti_image') is-invalid @enderror"
-                                aria-describedby="button-addon2" id="bukti_image" name="bukti_image">
-                            @error('bukti_image')
-                                <div id="bukti_image" class="form-text text-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="text-center py-3">
-                            <button type="submit" class="btn btn-theme-two">
-                                <i class="fas fa-save"></i> Simpan
-                            </button>
-                        </div>
                     </form>
+
+                    {{-- form end --}}
+                    <h6 class="card-title">Rekap Laporanmu Dalam Seminggu Ini</h6>
+                    <div class="form-group">
+                        <textarea id="exampleFormControlTextarea1" style="width: 100%; height: 300px;"
+                            placeholder="Tips: ceritakan kegiatanmu tanpa menginformasikan data yang bersifat rahasia"></textarea>
+                    </div>
+                    <div class="text-center py-3">
+                        <button class="btn btn-theme-two">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,6 +91,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
+
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
 
@@ -96,6 +100,7 @@
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             // Initialize datepicker

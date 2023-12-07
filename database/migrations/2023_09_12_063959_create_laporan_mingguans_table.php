@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('laporan_mingguans', function (Blueprint $table) {
             $table->id();
             $table->text('keterangan')->nullable(false);
+            $table->date('tgl_mingguan_awal')->nullable(false);
+            $table->date('tgl_mingguan_akhir')->nullable(false);
             $table->enum('validasi_pl', ['Aktif', 'Tidak Aktif'])->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_program_magang')->nullable(false);

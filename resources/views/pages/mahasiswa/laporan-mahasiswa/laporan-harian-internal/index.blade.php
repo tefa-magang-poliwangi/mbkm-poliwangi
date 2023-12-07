@@ -10,21 +10,9 @@
 @endsection
 
 @section('content')
-    <section class="container-fluid row pt-5">
+    <section class="container pt-5">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card rounded">
-                    <div class="banner bg-primary text-white text-center rounded-top">
-                        <h4></h4>
-                    </div>
-                    <div class="card-body">
-                        <img class="mt-4" src="{{ asset('images/visa.png') }}" class="card-img-top" alt="...">
-                        <h6 class="card-title">MBKM Internal Poliwangi</h6>
-                        <small class="card-text">Digital Transformation in The Government and Public Sector</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
                 <div class="card rounded mb-3">
                     <div class="banner bg-primary text-white text-center rounded-top">
                         <h4></h4>
@@ -33,10 +21,8 @@
                         <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="...">
                         <h6 class="card-title">Digital Transformation in The Government and Public Sector</h6>
                         <div class="card-text">
-                            <small class="text-muted">ID Kegiatan : 29030210</small>
-                            <br>
                             <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br>
-                            <a href="#" class="card-link mt-3" style="text-decoration: none;">Lihat Detail</a>
+                            {{-- kondisi ketika logbook sudah diterima --}}
                             <div class="mt-2">
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Semua laporan mingguan sudah diterima</span>
@@ -44,6 +30,7 @@
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Laporan akhir sudah diunggah</span>
                             </div>
+                            {{--  --}}
                             <h6 class="mt-4">Periode Kegiatan</h6>
                             <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p>
                         </div>
@@ -57,49 +44,67 @@
                                 <a>Belum Dibuat</a>
                             </div>
                             <div>
-                                <h6 class="mt-3">Buat Laporan Mingguan</h6>
-                                <p> 11- 15 Jun 2023></p>
-                                <select class="text-muted" style="border: 0px">
-                                    <option>Minggu Ke-1</option>
-                                    <option>Minggu Ke-2</option>
-                                    <option>Minggu Ke-3</option>
-                                    <option>Minggu Ke-4</option>
-                                </select>
+                                <h6 class="mt-3">Logbook Harian</h6>
                             </div>
                             <hr>
                             <div class="text-center">
-                                <a href="{{ route('mahasiswa.laporan.harian.show') }}">
+                                <a href="{{ route('mahasiswa.laporan.harian.create') }}">
                                     <button class="btn btn-primary mt-2 text">
-                                        Buat Laporan Mingguan
+                                        Buat Logbook Harian
                                     </button>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="card-text">
-                            <div class="mt-2" style="color: orange;">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                                <a>Belum Dibuat</a>
-                            </div>
-                            <h6 class="mt-4">Buat Laporan Akhir</h6>
-                            <p class="text-muted">Laporan akhir baru dapat dibuat setelah semua laporan sudah kami terima
-                                dengan baik</p>
-                            <hr>
-                            <div class="text-center">
-                                <a href="{{ route('mahasiswa.laporan.akhir.store') }}" class="btn btn-primary mt-2 text">
-                                    Buat Laporan Akhir
-                                </a>
-                            </div>
+                <div class="card p-3">
+                    <h6>List Logbook "Mahasiswa"</h6>
+                    <div class="row">
+                        <div class="col-12">
+                            @if ($logbooks->isEmpty())
+                                <p class="text-center">Belum ada data logbook.</p>
+                            @else
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="table-1">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th class="text-center text-white" width="5%">No</th>
+                                                <th class="text-center text-white">Tanggal</th>
+                                                <th class="text-center text-white overflow-auto">Kegiatan</th>
+                                                <th class="text-center text-white">Bukti</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($logbooks as $logbook)
+                                                <tr>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td class="text-center">
+                                                        {{ \Carbon\Carbon::parse($logbook->tanggal)->format('d-M-Y') }}
+                                                    </td>
+                                                    <td class="text-center overflow-auto">
+                                                        {{ $logbook->kegiatan ? $logbook->kegiatan : '-' }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($logbook->bukti)
+                                                            <a href="{{ route('mahasiswa.laporan.harian.show', $logbook->id) }}"
+                                                                class="btn btn-primary fw-medium">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        @else
+                                                            <span class="text-muted">-</span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        >
     </section>
 @endsection
 

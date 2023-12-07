@@ -34,7 +34,7 @@
                                                 <th class="text-center text-white">Lowongan</th>
                                                 <th class="text-center text-white">Pendamping Lapang</th>
                                                 <th class="text-center text-white">Logbook</th>
-                                                <th class="text-center text-white">Laporan Akhir</th>
+                                                <th class="text-center text-white">Laporan Mingguan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
