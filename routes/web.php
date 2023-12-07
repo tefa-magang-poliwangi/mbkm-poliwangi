@@ -161,10 +161,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Validasi Nilai Transkrip
         Route::get('/daftar-transkrip-mahasiswa', [ValidasiNilaiKaprodi::class, 'index'])->name('kaprodi.daftar.transkrip.index');
-        Route::get('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/show', [ValidasiNilaiKaprodi::class, 'show'])->name('kaprodi.daftar.transkrip.show');
-        Route::put('/daftar-transkrip-mahasiswa/{id_nilai_konversi}/update', [ValidasiNilaiKaprodi::class, 'update'])->name('kaprodi.daftar.transkrip.update');
-        Route::put('/daftar-transkrip-mahasiswa/{id_nilai_magang_ext}/setujui', [ValidasiNilaiKaprodi::class, 'validate_transkrip'])->name('kaprodi.daftar.transkrip.validate');
+        Route::get('/daftar-transkrip-mahasiswa/show/{id_mahasiswa}', [ValidasiNilaiKaprodi::class, 'show'])->name('kaprodi.daftar.transkrip.show');
+        Route::put('/daftar-transkrip-mahasiswa/update', [ValidasiNilaiKaprodi::class, 'update'])->name('kaprodi.daftar.transkrip.update');
+        Route::post('/daftar-transkrip-mahasiswa/{id_nilai_konversi}/setujui', [ValidasiNilaiKaprodi::class, 'setujuiNilai'])->name('kaprodi.daftar.transkrip.validate');
         Route::get('/daftar-transkrip-mahasiswa-disetujui', [ValidasiNilaiKaprodi::class, 'create'])->name('kaprodi.daftar.transkrip.disetujui');
+        Route::get('/setujui/{id_mahasiswa}', [ValidasiNilaiKaprodi::class, 'validate_transkrip'])->name('kaprodi.daftar.transkrip.setujui');
 
         // Route Validasi Program Magang
         Route::get('/daftar-lowongan-magang', [ValidasiProgramMagangKaprodi::class, 'index'])->name('kaprodi.validasi.program.magang.index');

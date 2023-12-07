@@ -29,8 +29,8 @@ class Logbook extends Model
         return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
     }
 
-    public function komentar_logbook()
+    public function komentar_logbooks()
     {
-        return $this->hasMany(KomentarLogbook::class);
+        return $this->hasMany(KomentarLogbook::class, 'id_logbook');
     }
 }

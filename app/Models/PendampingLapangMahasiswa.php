@@ -17,6 +17,10 @@ class PendampingLapangMahasiswa extends Model
         'id_lowongan',
     ];
 
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa'); // Sesuaikan dengan nama kolom yang sesuai
+    }
     // relasi
     public function dosen_pl()
     {

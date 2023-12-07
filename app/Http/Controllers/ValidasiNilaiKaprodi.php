@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\NilaiKonversi;
+use App\Models\NilaiMagang;
 use App\Models\NilaiMagangExt;
+use App\Models\PelamarMagang;
+use App\Models\PesertaKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ValidasiNilaiKaprodi extends Controller
@@ -69,21 +73,9 @@ class ValidasiNilaiKaprodi extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $dosen = Dosen::where('id_user', $user_id)->first();
-        $prodi_id = $dosen->id_prodi;
-        $nilai_magang_ext = NilaiMagangExt::where('validasi_kaprodi', 'Belum Disetujui')
-            ->whereIn('id_mahasiswa', function ($query) use ($prodi_id) {
-                $query->select('id')->from('mahasiswas')->where('id_prodi', $prodi_id)->whereExists(function ($query) {
-                    $query->select('id')->from('peserta_kelas')->whereRaw('peserta_kelas.id_mahasiswa = mahasiswas.id'); // Menambahkan kondisi peserta_kelas
-                });
-            })->get();
+        $pelamarMagangs = PelamarMagang::with(['mahasiswa', 'prodi', 'kelas'])->where('status_diterima','Diterima')->get();
 
-        $data = [
-            'transkrip_nilai_mhs' => $nilai_magang_ext,
-        ];
-
-        return view('pages.kaprodi.kaprodi-daftar-transkrip-mahasiswa', $data);
+        return view('pages.kaprodi.kaprodi-daftar-transkrip-mahasiswa', ['pelamarMagangs' => $pelamarMagangs]);
     }
 
     /**
@@ -122,14 +114,22 @@ class ValidasiNilaiKaprodi extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_mahasiswa)
     {
-        $data = [
-            'transkrip_mhs' => NilaiMagangExt::findOrFail($id),
-            'nilai_transkrip_mhs' => NilaiKonversi::where('id_nilai_magang_ext', $id)->get(),
-        ];
+        $semuaTervalidasi = false;
+        $mahasiswa = Mahasiswa::where('id',$id_mahasiswa)->first();
+        $nilaiKonversi = NilaiKonversi::where('id_mahasiswa',$id_mahasiswa)->get();
+        
+        foreach ($nilaiKonversi as $key => $konversi) {
+            if($konversi->validasi_kaprodi !== 1){
+                $semuaTervalidasi = false;
+                break; // Jika satu saja tidak tervalidasi, hentikan perulangan
+            } else {
+                $semuaTervalidasi = true;
+            }
+        }
 
-        return view('pages.kaprodi.kaprodi-validasi-nilai-konversi', $data);
+        return view('pages.kaprodi.kaprodi-validasi-nilai-konversi',['id_mahasiswa'=>$id_mahasiswa,'mahasiswa'=>$mahasiswa,'validasi'=>$semuaTervalidasi],  compact('nilaiKonversi'));
     }
 
     /**
@@ -138,20 +138,19 @@ class ValidasiNilaiKaprodi extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
-    public function validate_transkrip($id)
+
+
+
+    public function validate_transkrip($id_mahasiswa)
     {
-        NilaiMagangExt::where('id', $id)->update([
-            'validasi_kaprodi' => 'Setuju',
+        NilaiKonversi::where('id_mahasiswa', $id_mahasiswa)->update([
+            'validasi_kaprodi' => true,
         ]);
 
         Alert::success('Success', 'Nilai Transkrip Berhasil Disetujui');
 
-        return redirect()->route('kaprodi.daftar.transkrip.index');
+        return redirect()->route('kaprodi.daftar.transkrip.show',['id_mahasiswa'=>$id_mahasiswa]);
     }
 
     /**
@@ -161,28 +160,35 @@ class ValidasiNilaiKaprodi extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $nilai_konversi = NilaiKonversi::findOrFail($id);
-
-        $validated = $request->validate([
-            'nilai_angka' => ['required']
+        
+        NilaiKonversi::where('id',$request->id)->update([
+            'nilai_angka'=>$request->nilai_angka,
+            'nilai_huruf'=>$this->KonversiNilaiAngka($request->nilai_angka),
+            'angka_mutu'=>$this->KonversiAngkaMutu($request->nilai_angka),
+            'validasi_kaprodi'=>0,
         ]);
-
-        $new_nilai_huruf = $this->KonversiNilaiAngka($validated['nilai_angka']);
-        $new_angka_mutu = $this->KonversiAngkaMutu($validated['nilai_angka']);
-
-        NilaiKonversi::where('id', $id)->update([
-            'nilai_angka' => $validated['nilai_angka'],
-            'nilai_huruf' => $new_nilai_huruf,
-            'angka_mutu' => $new_angka_mutu,
-            'mutu' => $new_angka_mutu * $nilai_konversi->kredit,
-        ]);
-
-        Alert::success('Success', 'Nilai Berhasil Diubah');
-
-        return redirect()->back();
+        // Redirect atau berikan respons sesuai kebutuhan
+        return redirect()->back()->with('success', 'Nilai berhasil diperbarui.');
     }
+
+    // app/Http/Controllers/KaprodiDaftarTranskripController.php
+// public function setujuiNilai(Request $request)
+// {
+//     // Validasi request jika diperlukan
+
+//     // Ambil data dari request
+//     $nilaiIds = $request->input('nilai_ids');
+
+//     // Setujui nilai berdasarkan ID
+//     NilaiKonversi::whereIn('id', $nilaiIds)->update(['status_validasi' => true]);
+
+//     // Redirect atau berikan respons sesuai kebutuhan
+//     return redirect()->back()->with('success', 'Nilai berhasil disetujui.');
+// }
+
+    
 
     /**
      * Remove the specified resource from storage.

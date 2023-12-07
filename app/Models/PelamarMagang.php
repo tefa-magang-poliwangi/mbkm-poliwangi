@@ -36,8 +36,40 @@ class PelamarMagang extends Model
         return $this->hasMany(PendampingLapangMahasiswa::class, 'id_pelamar_magang', 'id');
     }
 
-    public function transkrip_mitra()
+    // Relasi dengan model DosenPL
+    public function dosenPL()
     {
-        return $this->hasMany(TranskripMitra::class, 'id_mahasiswa');
+        return $this->belongsTo(DosenPL::class, 'id_dosen_pl', 'id');
     }
+
+     // Fungsi untuk menentukan apakah user adalah dosen PL
+     public function isDosenPL()
+     {
+        return $this->dosenPL !== null;
+     }
+     
+    public function pl_mitra()
+    {
+        return $this->belongsTo(PlMitra::class, 'id_pl_mitra');
+    }
+
+    // PelamarMagang model
+
+    public function laporanAkhir()
+    {
+        return $this->hasOne(LaporanAkhir::class, 'id_pelamar_magang');
+    }
+
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
+
+
 }
