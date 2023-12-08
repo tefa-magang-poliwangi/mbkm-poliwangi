@@ -9,12 +9,7 @@ class PelamarMagang extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'status_diterima',
-        'id_mahasiswa',
-        'id_lowongan',
-    ];
+    protected $fillable = ['id', 'status_diterima', 'id_mahasiswa', 'id_lowongan'];
 
     // relasi
     public function mahasiswa()
@@ -39,5 +34,10 @@ class PelamarMagang extends Model
     public function transkrip_mitra()
     {
         return $this->hasMany(TranskripMitra::class, 'id_mahasiswa');
+    }
+
+    public function plmitra()
+    {
+        return $this->belongsTo(PlMitra::class, 'plmitra_id', 'id');
     }
 }

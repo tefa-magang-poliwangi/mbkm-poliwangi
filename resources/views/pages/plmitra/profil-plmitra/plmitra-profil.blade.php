@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="px-3 pt-4">
-                        <form action="{{ route('manajemen.profil.plmitra.update', $plmitra->id) }}" method="post">
+                        <form action="{{ route('profil.plmitra.update', $plmitra->id) }}" method="post">
                             @method('put')
                             @csrf
 

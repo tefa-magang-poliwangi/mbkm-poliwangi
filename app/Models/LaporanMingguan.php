@@ -9,14 +9,7 @@ class LaporanMingguan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'keterangan',
-        'validasi_pl',
-        'id_mahasiswa',
-        'id_program_magang',
-        'id_kompetensi_lowongan',
-    ];
+    protected $fillable = ['id', 'keterangan', 'validasi_pl', 'id_mahasiswa', 'id_program_magang', 'id_kompetensi_lowongan', 'plmitra_id'];
 
     // relasi
     public function mahasiswa()
@@ -32,5 +25,10 @@ class LaporanMingguan extends Model
     public function kompetensi_lowongan()
     {
         return $this->belongsTo(KompetensiLowongan::class, 'id_kompetensi_lowongan', 'id');
+    }
+
+    public function plmitra()
+    {
+        return $this->belongsTo(PLMitra::class, 'plmitra_id');
     }
 }

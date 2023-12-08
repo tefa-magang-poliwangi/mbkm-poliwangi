@@ -682,7 +682,7 @@
                 @can('lowongan1.index')
                     <li>
                         <a class="nav-link" href="{{ route('lowongan1.index') }}">
-                            <i class="fas fa-book"></i>
+                            <i class="fas fa-users"></i>
                             <span>lowongan</span>
                         </a>
                     </li>
@@ -706,10 +706,28 @@
                     </li>
                 @endcan
 
-                @can('manajemen.profil.plmitra.page')
+                @can('laporan-mingguan.index')
+                <li>
+                    <a class="nav-link" href="{{ route('laporan-mingguan.index') }}">
+                        <i class="fas fa-book"></i>
+                        <span>Laporan Mingguan</span>
+                    </a>
+                </li>
+            @endcan
+
+                @can('laporan-akhir.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('laporan-akhir.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>Laporan Akhir</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.profil.plmitra.page', auth()->user()->id) }}"><i
+                        <a class="nav-link" href="{{ route('profil.plmitra.page', auth()->user()->id) }}"><i
                                 class="fas fa-user"></i>
                             <span>Profil PL Mitra</span>
                         </a>

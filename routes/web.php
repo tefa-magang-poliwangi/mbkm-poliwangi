@@ -43,6 +43,8 @@ use App\Http\Controllers\KompetensiLowonganController;
 use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
 use App\Http\Controllers\PLMitra\PenilaianPLController;
+use App\Http\Controllers\LaporanAkhirPLController;
+use App\Http\Controllers\LaporanMingguanPLController;
 use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
@@ -503,6 +505,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/plmitra/penilaian/', [PenilaianPLController::class, 'store'])->name('penilaian.store');
         Route::put('/plmitra/penilaian/', [PenilaianPLController::class, 'update'])->name('penilaian.update');
         Route::get('/plmitra/penilaian/{id_nilaimagang}', [PenilaianPLController::class, 'destroy'])->name('penilaian.destroy');
+        Route::get('/plmitra/laporan-akhir', [LaporanAkhirPLController::class, 'index'])->name('laporan-akhir.index');
+        Route::get('/plmitra/laporan-akhir/{id}/show', [LaporanAkhirPLController::class, 'show'])->name('laporan-akhir.show');
+        Route::get('/plmitra/laporan-mingguan', [LaporanMingguanPLController::class, 'index'])->name('laporan-mingguan.index');
+        Route::get('/plmitra/laporan-mingguan/{id}', [LaporanMingguanPLController::class, 'show'])->name('laporan-mingguan.show');
+        Route::post('plmitra/laporan-mingguan/{id}/validate', [LaporanMingguanPLController::class, 'validateReport'])->name('laporan-mingguan.validate');
 
         // Route Profil PLMitra
         Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('profil.plmitra.page');

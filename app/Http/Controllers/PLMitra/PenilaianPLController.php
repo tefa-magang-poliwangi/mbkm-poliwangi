@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\PLMitra;
 
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\KompetensiLowongan;
@@ -58,11 +57,14 @@ class PenilaianPLController extends Controller
      */
     public function create($id_mahasiswa)
     {
-        $lowongan = PelamarMagang::where('id_mahasiswa',$id_mahasiswa)->first();
+        $lowongan = PelamarMagang::where('id_mahasiswa', $id_mahasiswa)->first();
 
         $mahasiswa = Mahasiswa::where('id', $id_mahasiswa)->first();
-        $nilaiMagangs = NilaiMagang::where('id_mahasiswa',$id_mahasiswa)->get();
-        $kompetensi_Lowongans = KompetensiLowongan::where('id_lowongan',$lowongan->id_lowongan)->get();
+        $nilaiMagangs = NilaiMagang::where('id_mahasiswa', $id_mahasiswa)->get();
+        $kompetensi_Lowongans = KompetensiLowongan::select('kompetensi_lowongans.*', 'kompetensi_programs.id AS id_kompetensi_program')
+            ->join('kompetensi_programs', 'kompetensi_programs.id_kompetensi_lowongan', 'kompetensi_lowongans.id')
+            ->where('id_lowongan', $lowongan->id_lowongan)
+            ->get();
 
         return view('pages.plmitra.layouts.penilaian.create', ['id_mahasiswa' => $id_mahasiswa, 'mahasiswa' => $mahasiswa], compact('nilaiMagangs', 'kompetensi_Lowongans'));
     }
@@ -86,7 +88,7 @@ class PenilaianPLController extends Controller
         $nilai = $request->nilai;
 
         foreach ($program as $key => $data) {
-            if($nilai[$key] != null){
+            if ($nilai[$key] != null) {
                 NilaiMagang::create([
                     'nilai_angka' => $nilai[$key],
                     'nilai_huruf' => $this->KonversiNilaiAngka($nilai[$key]),
@@ -124,8 +126,7 @@ class PenilaianPLController extends Controller
         $request->validate([
             'nilaimagang_id' => 'required',
             'mahasiswa_id' => 'required',
-            'nilai' => 'required',
-            'program' => 'required|array',
+            'nilai' => 'required'
         ]);
 
         // dd($request);
@@ -135,8 +136,7 @@ class PenilaianPLController extends Controller
                 ->where('id_mahasiswa', $request->mahasiswa_id)
                 ->update([
                     'nilai_angka' => $request->nilai[$key],
-                    'nilai_huruf' => $this->KonversiNilaiAngka($request->nilai[$key]),
-                    'id_kompetensi_program' => $request->program[$key],
+                    'nilai_huruf' => $this->KonversiNilaiAngka($request->nilai[$key])
                     // Jika Anda memiliki kolom lain, tambahkan di sini
                 ]);
         }
@@ -150,7 +150,7 @@ class PenilaianPLController extends Controller
      * @param  \App\Models\NilaiMagang  $nilaimagang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NilaiMagang $nilaimagang,$id_nilaimagang)
+    public function destroy(NilaiMagang $nilaimagang, $id_nilaimagang)
     {
         $nilaimagang->findOrFail($id_nilaimagang)->delete();
 

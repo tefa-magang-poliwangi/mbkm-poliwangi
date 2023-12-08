@@ -9,16 +9,7 @@ class Mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'nim',
-        'nama',
-        'angkatan',
-        'email',
-        'no_telp',
-        'id_prodi',
-        'id_user',
-    ];
+    protected $fillable = ['id', 'nim', 'nama', 'angkatan', 'email', 'no_telp', 'id_prodi', 'id_user'];
 
     // relasi
     public function prodi()
@@ -56,9 +47,9 @@ class Mahasiswa extends Model
         return $this->hasMany(NilaiMagang::class);
     }
 
-    public function pelamar_magang()
+    public function pelamarMagang()
     {
-        return $this->hasMany(PelamarMagang::class);
+        return $this->hasOne(PelamarMagang::class, 'id_mahasiswa', 'id');
     }
 
     public function berkas_pelamar()
@@ -100,4 +91,6 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(PesertaDosen::class, 'id_mahasiswa', 'id');
     }
+
+
 }
