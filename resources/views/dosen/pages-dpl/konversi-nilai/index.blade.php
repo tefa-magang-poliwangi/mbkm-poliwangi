@@ -7,8 +7,7 @@
 @section('css')
 <!-- CSS Libraries -->
 <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
-<link rel="stylesheet"
-    href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
 @endsection
 
@@ -28,33 +27,39 @@
                         <table class="table table-striped" id="table-1">
                             <thead class="bg-primary">
                                 <tr>
-                                    <th scope="col" width="1%" class="text-white">No</th>
-                                    <th scope="col" width="10%" class="text-white text-center">NIM</th>
-                                    <th scope="col" width="20%" class="text-white">Nama Mahasiswa</th>
-                                    <th scope="col" width="1%" class="text-white text-center">Lihat</th>
+                                    <th scope="col" width="1%" class="text-white ">No</th>
+                                    <th scope="col" width="20%" class="text-white text-center">NIM</th>
+                                    <th scope="col" width="20%" class="text-white text-center">Nama Mahasiswa</th>
+                                    <th scope="col" width="20%" class="text-white text-center">Lowongan</th>
+                                    <th scope="col" width="20%" class="text-white text-center">Dosen PL</th>
+                                    <th scope="col" width="20%" class="text-white text-center">Lihat</th>
+                                    <th scope="col" width="20%" class="text-white text-center">Transkrip</th>
                                 </tr>
                             </thead>
-                            @php
-                            $no = 1;
-                            @endphp
-
                             <tbody>
                                 @php
                                 $no = 1;
                                 @endphp
 
-                                @foreach ($users as $user)
+                                @foreach($pelamarMagangs as $pelamarMagang)
+                                @if ($pelamarMagang->status_diterima == 'Aktif')
                                 <tr>
                                     <th scope="row">{{ $no }}</th>
-                                    <td class="text-center">{{ $user->username }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td class="text-center"><a href="{{ route('konversinilai.update', $user->id) }}"
-                                            class="btn btn-primary btn-sm"><i class="fas fa-eye mr-2"></i>View</a></td>
-                                </tr>
+                                    <td>{{ $pelamarMagang->mahasiswa->nim }}</td>
+                                    <td>{{ $pelamarMagang->mahasiswa->nama }}</td>
+                                    <td>{{ $pelamarMagang->lowongan->nama }}</td>
+                                    <td>
+                                        {{ $pelamarMagang->nama_dosen }}
+                                    </td>
+                                    <td class="text-center"><a href="{{ route('konversinilai.edit', $pelamarMagang->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye mr-2"></i>View</a></td>
+                                    <td class="text-center"><a href="{{ route('konversinilai.update', $pelamarMagang->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye mr-2"></i>View</a>
+                                    </td>
 
+                                </tr>
                                 @php
                                 $no++;
                                 @endphp
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -68,8 +73,13 @@
 
 @section('script')
 {{-- Datatable JS --}}
-<script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
-<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+<script src=" {{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}">
+</script>
+
+
+
+<script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}">
+</script>
 <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
 @endsection

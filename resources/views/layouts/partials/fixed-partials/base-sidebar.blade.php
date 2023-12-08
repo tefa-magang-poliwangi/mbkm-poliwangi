@@ -424,11 +424,19 @@
                     @endcan
                 @endrole
 
+                @can('kaprodi.daftar.transkrip.ext.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('kaprodi.daftar.transkrip.ext.index') }}">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Validasi Transkrip Nilai External</span>
+                        </a>
+                    </li>
+                @endcan
                 @can('kaprodi.daftar.transkrip.index')
                     <li>
                         <a class="nav-link" href="{{ route('kaprodi.daftar.transkrip.index') }}">
                             <i class="fas fa-credit-card"></i>
-                            <span>Validasi Transkrip Nilai</span>
+                            <span>Validasi Transkrip Nilai Internal</span>
                         </a>
                     </li>
                 @endcan
@@ -513,18 +521,50 @@
                 @endcan
             @endauth
 
-            {{-- Menu Dosen Pembimbing --}}
+            {{-- Menu Dosen Pembimbing Lapang --}}
             @auth
                 @role('dosen-pembimbing')
                     <li class="menu-header">DOSEN PEMBIMBING</li>
 
-                    <li>
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Profil Dosen Pembimbing</span>
-                        </a>
-                    </li>
-                @endrole
+            <li>
+                <a class="nav-link" href="{{ route('profil.dosen.pembimbing.page', auth()->user()->id) }}">
+                    <i class="fas fa-solid fa-user"></i>
+                    <span>Profil DPL</span>
+                </a>
+            </li>
+
+            <li class="menu-header">MASTER DATA MAHASISWA</li>
+            <li>
+                <a class="nav-link" href="{{ route('daftar.pesertamagang.index') }}">
+                    <i class="fas fa-solid fa-user"></i>
+                    <span>Peserta Magang</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('daftarlogbook.index') }}">
+                    <i class="fas fa-solid fa-user"></i>
+                    <span>Logbook Mahasiswa</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('daftarlapakhir.index') }}">
+                    <i class="fas fa-solid fa-user"></i>
+                    <span>Laporan Akhir</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('daftarcpl.index') }}">
+                    <i class="fas fa-solid fa-user"></i>
+                    <span>Ketercapaian CPL</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="{{ route('konversinilai.index') }}">
+                    <i class="fas fa-solid fa-user"></i>
+                    <span>Konversi Nilai</span>
+                </a>
+            </li>
+            @endrole
             @endauth
 
             {{-- Menu Mahasiswa --}}
@@ -696,23 +736,12 @@
                     </li>
                 @endcan
 
-                @can('penilaian.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('penilaian.index') }}">
-                            <i class="fas fa-book"></i>
-                            <span>Penilaian</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('daftarlogbook.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('daftarlogbook.index') }}">
-                            <i class="fas fa-book"></i>
-                            <span>Logbook Mahasiswa</span>
-                        </a>
-                    </li>
-                @endcan
+                <li>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-book"></i>
+                        <span>LogBook Mahasiswa</span>
+                    </a>
+                </li>
 
                 @can('manajemen.profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>

@@ -47,7 +47,7 @@ class PelamarMagang extends Model
      {
         return $this->dosenPL !== null;
      }
-     
+
     public function pl_mitra()
     {
         return $this->belongsTo(PlMitra::class, 'id_pl_mitra');
@@ -70,6 +70,13 @@ class PelamarMagang extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
+
+    public function pendampingLapangMahasiswa()
+    {
+        return $this->hasOne(PendampingLapangMahasiswa::class, 'id_pelamar_magang', 'id');
+    }
+
+
 
 
 }

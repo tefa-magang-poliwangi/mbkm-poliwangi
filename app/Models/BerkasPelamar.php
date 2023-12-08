@@ -26,4 +26,9 @@ class BerkasPelamar extends Model
     {
         return $this->belongsTo(Berkas::class, 'id_berkas', 'id');
     }
+
+    public function lowongan()
+    {
+        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+    }
 }

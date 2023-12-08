@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NilaiKonversi extends Model
+class NilaiKonversiInt extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,7 @@ class NilaiKonversi extends Model
         'id_mahasiswa',
         'id_matkul',
         'id_lowongan',
-        'id_nilai_magang_ext',
+        'id_pelamar',
     ];
 
     // relasi
@@ -38,9 +38,9 @@ class NilaiKonversi extends Model
         return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
     }
 
-    public function nilai_magang_ext()
+    public function pelamar()
     {
-        return $this->belongsTo(NilaiMagangExt::class, 'id_nilai_magang_ext', 'id');
+        return $this->belongsTo(PelamarMagang::class, 'id_pelamar', 'id');
     }
 
     public function user()
@@ -51,5 +51,10 @@ class NilaiKonversi extends Model
     public function transkripMitra()
     {
         return $this->belongsTo(TranskripMitra::class, 'id_transkrip_mitra');
+    }
+
+    public function nilai_konversi_int()
+    {
+        return $this->hasMany(NilaiKonversiInt::class, 'id_pelamar', 'id');
     }
 }

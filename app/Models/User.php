@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function mahasiswa()
     {
-        return $this->hasMany(Mahasiswa::class, 'id_user');
+        return $this->hasMany(Mahasiswa::class, 'id_user', 'id');
     }
 
     public function dosen()
@@ -74,5 +74,32 @@ class User extends Authenticatable
     public function plmitra()
     {
         return $this->hasMany(PlMitra::class);
+    }
+
+    public function logbooks()
+    {
+        return $this->hasMany(Logbook::class, 'id_mahasiswa', 'id');
+    }
+
+    public function nilaiKonversis()
+    {
+        return $this->hasMany(NilaiKonversi::class, 'id_user', 'id');
+    }
+    public function laporanAkhirs()
+    {
+        return $this->hasMany(LaporanAkhir::class, 'id_mahasiswa', 'id');
+    }
+
+    // Relasi dengan model DosenPL
+    public function dosen_pl()
+    {
+        return $this->hasOne(DosenPL::class, 'id_user', 'id');
+    }
+
+    // Fungsi untuk menentukan apakah user adalah dosen PL
+    public function isDosenPL()
+    {
+        // Assuming you have a relationship named 'dosen_pl' on your User model
+        return $this->dosen_pl()->exists();
     }
 }
