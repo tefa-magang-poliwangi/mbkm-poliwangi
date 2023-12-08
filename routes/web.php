@@ -74,6 +74,7 @@ use App\Http\Controllers\DPL\KonversiCPLController;
 use App\Http\Controllers\DPL\KonversiNilaiController;
 use App\Http\Controllers\Kaprodi\LogbookMahasiswaController;
 use App\Http\Controllers\Kaprodi\PLMahasiswaController;
+use App\Http\Controllers\MahasiswaLaporanMingguanController;
 use App\Http\Controllers\MitraLaporanAkhirController;
 use App\Http\Controllers\MitraLaporanMingguanController;
 use App\Http\Controllers\MitraLogbookController;
@@ -411,15 +412,19 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Route Daftar Permohonan Magang Internal
         Route::get('/dashboard/mahasiswa/daftar-permohonan-magang', [DaftarPermohonanMagangController::class, 'index'])->name('daftar.permohonan.magang.page');
 
-        //Route Laporan Akhir
+        //Route Laporan Logbook / harian Mahasiswa
+        Route::get('/dashboard/mahasiswa/laporan-harian/index', [MahasiswaLaporanController::class, 'index'])->name('mahasiswa.laporan.harian.index');
+        Route::get('/dashboard/mahasiswa/laporan-harian/create', [MahasiswaLaporanController::class, 'create'])->name('mahasiswa.laporan.harian.create');
+        Route::post('/dashboard/mahasiswa/laporan-harian/store', [MahasiswaLaporanController::class, 'store'])->name('mahasiswa.laporan.harian.store');
+        Route::get('/dashboard/mahasiswa/laporan-harian/{id}/show/', [MahasiswaLaporanController::class, 'show'])->name('mahasiswa.laporan.harian.show');
+
+        //Route Laporan Mingguan mahasiswa
+        Route::get('/dashboard/mahasiswa/laporan-mingguan/index', [MahasiswaLaporanMingguanController::class, 'index'])->name('mahasiswa.laporan.mingguan.index');
+        Route::get('/dashboard/mahasiswa/laporan-mingguan/create', [MahasiswaLaporanMingguanController::class, 'create'])->name('mahasiswa.laporan.mingguan.create');
+
+        //Route Laporan Akhir mahasiswa
         Route::get('/upload-laporan-akhir/magang-internal/{id_user}/create', [MitraSertifikatController::class, 'create'])->name('upload.laporan.akhir.mahasiswa.int.create');
         Route::put('/upload-laporan-akhir/magang-internal/{id_user}/update', [MitraSertifikatController::class, 'update'])->name('upload.laporan.akhir.mahasiswa.int.update');
-
-        //Route Laporan Mahasiswa
-        Route::get('/dashboard/mahasiswa/laporan-harian/index', [MahasiswaLaporanController::class, 'index'])->name('mahasiswa.laporan.harian.index');
-        Route::get('/dashboard/mahasiswa/laporan-harian/show', [MahasiswaLaporanController::class, 'show'])->name('mahasiswa.laporan.harian.show');
-        Route::get('/dashboard/mahasiswa/laporan-upload/create', [MahasiswaLaporanController::class, 'create'])->name('mahasiswa.laporan.upload.create');
-        Route::get('/dashboard/mahasiswa/laporan-akhir/store', [MahasiswaLaporanController::class, 'store'])->name('mahasiswa.laporan.akhir.store');
 
         // Route Input Kriteria Penilaian Mahasiswa Magang Ext
         Route::get('/input-kriteria-penilaian/magang_{id_magang_ext}/kriteria_{id_nilai_magang_ext}/index', [InputKriteriaMahasiswaController::class, 'index'])->name('input.kriteria.mahasiswa.ext.index');

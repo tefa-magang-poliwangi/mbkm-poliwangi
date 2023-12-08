@@ -12,6 +12,8 @@ class LaporanMingguan extends Model
     protected $fillable = [
         'id',
         'keterangan',
+        'tgl_mingguan_awal',
+        'tgl_mingguan_akhir',
         'validasi_pl',
         'id_mahasiswa',
         'id_program_magang',

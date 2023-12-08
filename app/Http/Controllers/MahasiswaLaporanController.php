@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logbook;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MahasiswaLaporanController extends Controller
@@ -14,8 +15,17 @@ class MahasiswaLaporanController extends Controller
      */
     public function index()
     {
-        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.index');
+        // Ambil ID mahasiswa yang sedang login (sesuai dengan asumsi Anda)
+        $mahasiswaId = auth()->user()->mahasiswa->first()->id;
+
+        // Ambil logbooks terkait dengan mahasiswa tertentu
+        $logbooks = Logbook::where('id_mahasiswa', $mahasiswaId)
+            ->select('id', 'tanggal', 'kegiatan', 'bukti') // Hanya ambil kolom yang diperlukan
+            ->get();
+
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.index', ['logbooks' => $logbooks]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,6 +34,8 @@ class MahasiswaLaporanController extends Controller
      */
     public function create()
     {
+
+
         return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.create');
     }
 
@@ -35,8 +47,33 @@ class MahasiswaLaporanController extends Controller
      */
     public function store(Request $request)
     {
-        return view('pages.mahasiswa.laporan-mahasiswa.store');
+        // Validate the request data
+        $request->validate([
+            'tanggal' => 'required|date',
+            'kegiatan' => 'required|string',
+            'bukti_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle file upload if exists
+        $buktiImagePath = null;
+        if ($request->hasFile('bukti_image')) {
+            $buktiImagePath = $request->file('bukti_image')->store('bukti-logbook', 'public');
+        }
+
+        // Create a new logbook entry
+        Logbook::create([
+            'tanggal' => Carbon::parse($request->input('tanggal')),
+            'kegiatan' => $request->input('kegiatan'),
+            'bukti' => $buktiImagePath, // Ubah nama kolom sesuai dengan struktur database Anda
+            'id_program_magang' => 1, // Sesuaikan dengan ID program yang sebenarnya
+            'id_mahasiswa' => auth()->user()->mahasiswa->firstOrFail()->id,
+        ]);
+
+        // Redirect with success message
+        return redirect()->route('mahasiswa.laporan.harian.index')->with('success', 'Logbook harian berhasil disimpan.');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -44,14 +81,11 @@ class MahasiswaLaporanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $data = [
-            'id_mahasiswa' => Logbook::all(),
-        ];
-        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.show');
+        $logbook = Logbook::findOrFail($id); // Gantilah dengan cara sesuai kebutuhan Anda
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.show', ['logbook' => $logbook]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

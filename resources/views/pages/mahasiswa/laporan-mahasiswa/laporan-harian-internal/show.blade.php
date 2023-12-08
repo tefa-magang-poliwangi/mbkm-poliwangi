@@ -12,106 +12,18 @@
 @section('content')
     <section class="container-fluid row pt-5">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card rounded">
-                    <a href="{{ route('mahasiswa.laporan.harian.index') }}" class="btn btn-theme-one fw-medium mt-2"
-                        style="display: flex; align-items: center;">
-                        <i class="fas fa-chevron-left"></i>
-                        <div class="ml-2"> Kembali</div>
-                    </a>
+            <div class="col-sm-12">
+                <div class="card rounded mb-3">
+                    <div class="banner bg-primary text-white text-center rounded-top">
+                        <h4></h4>
+                    </div>
                     <div class="card-body">
-                        <h6 class="card-text">25 - 30 Sep 2023</h6>
-                        <div class="d-flex justify-content-between mt-3">
-                            <p>minggu ke-1</p>
-                        </div>
-                    </div>
-                    <div class="mb-3 text-center">
-                        <a href="{{ route('mahasiswa.laporan.upload.create') }}" class="btn btn-theme-two fw-medium mt-2">
-                            Buat Laporan Mingguan
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                @for ($dayIndex = 1; $dayIndex <= 6; $dayIndex++)
-                    <div class="card rounded mb-3">
-                        <div class="card-body d-flex align-items-center">
-                            <div>
-                                <h6 class="mb-0">
-                                    @php
-                                        $date = \Carbon\Carbon::parse('25 September 2023')
-                                            ->startOfWeek()
-                                            ->addDays($dayIndex - 1);
-                                        switch ($date->dayOfWeek) {
-                                            case 1:
-                                                echo 'Senin';
-                                                break;
-                                            case 2:
-                                                echo 'Selasa';
-                                                break;
-                                            case 3:
-                                                echo 'Rabu';
-                                                break;
-                                            case 4:
-                                                echo 'Kamis';
-                                                break;
-                                            case 5:
-                                                echo 'Jumat';
-                                                break;
-                                            case 6:
-                                                echo 'Sabtu';
-                                                break;
-                                        }
-                                    @endphp
-                                </h6>
-                                <h6>{{ $date->format('d F Y') }}</h6>
-                            </div>
-                            <div class="ml-auto">
-                                <div class="btn btn-theme-two" data-toggle="modal" data-target="#showmodal">
-                                    <i class="far fa-eye"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="margin-left: 25px; margin-right: 25px;">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="text-center mb-3 mr-3">
-                            <a href="{{ route('mahasiswa.laporan.upload.create') }}"
-                                class="btn btn-theme-two fw-medium mt-2">
-                                Buat Laporan Harian
+                        <h6 class="card-title">{{ \Carbon\Carbon::parse($logbook->tanggal)->format('d-M-Y') }}</h6>
+                        <img src="{{ Storage::url($logbook->bukti) }}" class="mt-4 card-img-top" alt="foto bukti">
+                        <div class="mt-4">
+                            <a href="{{ route('mahasiswa.laporan.harian.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Kembali
                             </a>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-        </div>
-
-        {{-- Modal upload Mitra --}}
-        <div class="modal fade" tabindex="-1" role="dialog" id="showmodal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <iframe src="{{ asset('storage/app/public/sertifikat/sertifikat_362055401024.pdf') }}"
-                                width="100%" height="600px"></iframe>
-                        </div>
-
-                        <div class="row">
-                            <div class="col d-flex">
-                                <div class="ml-auto">
-                                    <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
