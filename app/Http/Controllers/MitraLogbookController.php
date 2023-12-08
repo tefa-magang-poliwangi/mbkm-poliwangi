@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logbook;
 use App\Models\Mahasiswa;
 use App\Models\Mitra;
 use App\Models\PelamarMagang;
@@ -20,11 +21,28 @@ class MitraLogbookController extends Controller
     {
         $mitra = Mitra::where('id_user', Auth::user()->id)->first();
 
-        $data = [
-            'mahasiswas' => Mahasiswa::select('lowongans.nama AS nama_lowongan', 'mahasiswas.*', 'pl_mitras.nama AS nama_pl')->join('pelamar_magangs', 'pelamar_magangs.id_mahasiswa', '=', 'mahasiswas.id')->where('pelamar_magangs.status_diterima', '=', 'Diterima')->join('lowongans', 'lowongans.id', 'pelamar_magangs.id_lowongan')->join('pendamping_lapang_mahasiswas AS plm', 'plm.id_pelamar_magang', 'pelamar_magangs.id')->join('pl_mitras', 'pl_mitras.id', 'plm.id_pl_mitra')->where('lowongans.id_mitra', $mitra->id)->get(),
-        ];
+        // Mendapatkan tanggal sekarang
+        $currentDay = now();
 
-        return view('pages.mitra.manajemen-logbook-mahasiswa.index', $data);
+        // Mendapatkan data logbook untuk tanggal sekarang
+        $logbook = Logbook::where('tanggal', $currentDay->format('Y-m-d'))->get();
+
+        // Mendapatkan data mahasiswa sesuai kebutuhan
+        $mahasiswas = Mahasiswa::select('lowongans.nama AS nama_lowongan', 'mahasiswas.*', 'pl_mitras.nama AS nama_pl')
+            ->join('pelamar_magangs', 'pelamar_magangs.id_mahasiswa', '=', 'mahasiswas.id')
+            ->where('pelamar_magangs.status_diterima', '=', 'Diterima')
+            ->join('lowongans', 'lowongans.id', 'pelamar_magangs.id_lowongan')
+            ->join('pendamping_lapang_mahasiswas AS plm', 'plm.id_pelamar_magang', 'pelamar_magangs.id')
+            ->join('pl_mitras', 'pl_mitras.id', 'plm.id_pl_mitra')
+            ->where('lowongans.id_mitra', $mitra->id)
+            ->get();
+
+        // Kemudian meneruskan variabel ke view
+        return view('pages.mitra.manajemen-logbook-mahasiswa.index', [
+            'currentDay' => $currentDay,
+            'logbook' => $logbook,
+            'mahasiswas' => $mahasiswas,
+        ]);
     }
 
     /**
@@ -54,9 +72,12 @@ class MitraLogbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('pages.mitra.manajemen-logbook-mahasiswa.show');
+        // Tampilkan logbook untuk tanggal tertentu
+        $logbook = Logbook::where('tanggal', $id)->get();
+
+        return view('pages.mitra.manajemen-logbook-mahasiswa.show', ['logbook' => $logbook]);
     }
 
     /**
@@ -79,7 +100,6 @@ class MitraLogbookController extends Controller
      */
     public function update()
     {
-        return view('pages.mitra.manajemen-logbook-mahasiswa.update');
     }
 
     /**

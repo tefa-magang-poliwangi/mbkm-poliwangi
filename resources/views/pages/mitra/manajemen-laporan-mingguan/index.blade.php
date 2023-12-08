@@ -14,27 +14,29 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card rounded">
-                    <a href="{{ route('mahasiswa.laporan.mingguan.index') }}" class="btn btn-theme-one fw-medium mt-2"
+                    <a href="{{ route('manajemen.mitra.logbook.index') }}" class="btn btn-theme-one fw-medium mt-2"
                         style="display: flex; align-items: center;">
                         <i class="fas fa-chevron-left"></i>
                         <div class="ml-2"> Kembali</div>
                     </a>
                     <div class="card-body">
                         <h6 class="card-text">25 - 30 Sep 2023</h6>
-                        <select class="text-muted" style="border: 0px">
-                            <option>Minggu Ke-1</option>
-                            <option>Minggu Ke-2</option>
-                            <option>Minggu Ke-3</option>
-                            <option>Minggu Ke-4</option>
-                            <option>Minggu Ke-5</option>
-                            <option>Minggu Ke-6</option>
-                            <option>Minggu Ke-7</option>
-                            <option>Minggu Ke-8</option>
-                            <option>Minggu Ke-9</option>
-                            <option>Minggu Ke-10</option>
-                            <option>Minggu Ke-11</option>
-                            <option>Minggu Ke-12</option>
-                        </select>
+                        <div>
+                            <select class="text-muted" style="border: 0px">
+                                <option>Minggu Ke-1</option>
+                                <option>Minggu Ke-2</option>
+                                <option>Minggu Ke-3</option>
+                                <option>Minggu Ke-4</option>
+                                <option>Minggu Ke-5</option>
+                                <option>Minggu Ke-6</option>
+                                <option>Minggu Ke-7</option>
+                                <option>Minggu Ke-8</option>
+                                <option>Minggu Ke-9</option>
+                                <option>Minggu Ke-10</option>
+                                <option>Minggu Ke-11</option>
+                                <option>Minggu Ke-12</option>
+                            </select>
+                        </div>
                         <div class="d-flex justify-content-between mt-3">
                             @foreach (['S', 'S', 'R', 'K', 'J', 'S'] as $day)
                                 <div class="text-center">
@@ -45,7 +47,7 @@
                         </div>
                     </div>
                     <div class="mb-3 text-center">
-                        <a href="{{ route('mahasiswa.laporan.upload.create') }}" class="btn btn-theme-two fw-medium mt-2">
+                        <a href="" class="btn btn-theme-two fw-medium mt-2">
                             Buat Laporan Mingguan
                         </a>
                     </div>
@@ -100,8 +102,7 @@
                         </div>
                         <hr>
                         <div class="text-center mb-3 mr-3">
-                            <a href="{{ route('mahasiswa.laporan.upload.create') }}"
-                                class="btn btn-theme-two fw-medium mt-2">
+                            <a href="" class="btn btn-theme-two fw-medium mt-2">
                                 Buat Laporan Harian
                             </a>
                         </div>

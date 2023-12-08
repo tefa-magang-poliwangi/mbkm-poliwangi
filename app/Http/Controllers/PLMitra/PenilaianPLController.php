@@ -5,11 +5,14 @@ namespace App\Http\Controllers\PLMitra;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\KompetensiLowongan;
+use App\Models\KompetensiProgram;
 use App\Models\Lowongan;
 use App\Models\Mahasiswa;
 use App\Models\NilaiMagang;
 use App\Models\PelamarMagang;
 use App\Models\Penilaian;
+use App\Models\ProgramMagang;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenilaianPLController extends Controller
 {
@@ -77,7 +80,6 @@ class PenilaianPLController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data dari formulir
         $request->validate([
             'program' => 'required',
             'nilai' => 'required',
@@ -99,6 +101,7 @@ class PenilaianPLController extends Controller
             }
         }
 
+        Alert::success('Success', 'Nilai magang berhasil ditambahkan');
         // Redirect atau lakukan sesuatu setelah menyimpan data
         return back()->with('success', 'Data berhasil ditambahkan');
     }
@@ -141,6 +144,8 @@ class PenilaianPLController extends Controller
                 ]);
         }
 
+        Alert::success('Success', 'Nilai magang berhasil diupdate');
+
         return back()->with('success', 'Nilai Magang berhasil diperbarui.');
     }
 
@@ -153,6 +158,8 @@ class PenilaianPLController extends Controller
     public function destroy(NilaiMagang $nilaimagang, $id_nilaimagang)
     {
         $nilaimagang->findOrFail($id_nilaimagang)->delete();
+
+        Alert::success('Success', 'Nilai magang berhasil dihapus');
 
         return back()->with('success', 'Nilai Magang berhasil dihapus.');
     }

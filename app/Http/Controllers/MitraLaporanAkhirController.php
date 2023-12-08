@@ -13,7 +13,7 @@ class MitraLaporanAkhirController extends Controller
      */
     public function index()
     {
-        return view('pages.mitra.manajemen-laporan-mahasiswa.laporan-akhir');
+        return view('pages.mitra.manajemen-laporan-akhir.index');
     }
 
     /**

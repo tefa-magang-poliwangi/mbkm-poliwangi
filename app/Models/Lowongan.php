@@ -59,6 +59,11 @@ class Lowongan extends Model
         return $this->hasMany(PelamarMagang::class);
     }
 
+    public function berkas_pelamar()
+    {
+        return $this->hasMany(BerkasPelamar::class);
+    }
+
     public function berkas_lowongan()
     {
         return $this->hasMany(BerkasLowongan::class, 'id_lowongan');
@@ -67,5 +72,10 @@ class Lowongan extends Model
     public function nilai_konversi()
     {
         return $this->hasMany(NilaiKonversi::class);
+    }
+
+    public function laporanAkhir()
+    {
+        return $this->hasMany(LaporanAkhir::class, 'id_lowongan');
     }
 }

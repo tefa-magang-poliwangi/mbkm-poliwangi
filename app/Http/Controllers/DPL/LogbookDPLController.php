@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\DPL;
 
 use App\Models\User;
+use App\Models\DosenPL;
 use App\Models\Logbook;
 use Illuminate\Http\Request;
 use App\Models\PelamarMagang;
@@ -15,17 +16,38 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Dosen;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LogbookDPLController extends Controller
 {
+
     public function index()
     {
-        $pelamarMagangsDiterima = PelamarMagang::with(['mahasiswa', 'lowongan', 'pendampingLapangMahasiswa.dosen_pl.dosen'])
+        $dosen = Dosen::where('id_user', auth()->id())->first();
+        $dosenPl = DosenPL::where('id_dosen', $dosen->id)->first();
+
+        if (!$dosenPl) {
+            // Handle the case where DosenPL is not found for the authenticated user
+            abort(404, 'DosenPL not found for the authenticated user.');
+        }
+
+
+        $id_dosen_pl = $dosenPl->id;
+        // dd($id_dosen_pl);
+
+        $pelamarMagangsDiterima = PelamarMagang::select('dosens.nama AS nama_dosen', 'pelamar_magangs.*')
+            ->join('pendamping_lapang_mahasiswas AS plm', 'plm.id_pelamar_magang', 'pelamar_magangs.id')
+            ->join('dosen_p_l_s AS dpl', 'dpl.id', 'plm.id_dosen_pl')
+            ->join('dosens', 'dosens.id', 'dpl.id_dosen')
             ->where('status_diterima', 'Aktif')
+            ->where('plm.id_dosen_pl', $id_dosen_pl)
+            ->whereHas('pendampingLapangMahasiswa.dosen_pl', function ($query) use ($id_dosen_pl) {
+                $query->where('id', $id_dosen_pl);
+            })
             ->get();
 
-        return view('pages.dosen.pages-dpl.daftar-logbook-mhs.index', [
+        return view('dosen.pages-dpl.daftar-logbook-mhs.index', [
             'pelamarMagangs' => $pelamarMagangsDiterima,
 
         ]);
@@ -78,16 +100,23 @@ class LogbookDPLController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_pelamar_magang)
     {
-        $user = User::findOrFail($id);
+        // Assuming PelamarMagang model is used
+        $pelamarMagang = PelamarMagang::findOrFail($id_pelamar_magang);
+
+        // Extracting user and mahasiswa from PelamarMagang
+        $user = $pelamarMagang->mahasiswa->user;
+        $mahasiswa = $pelamarMagang->mahasiswa;
+
         // Assuming 'id_mahasiswa' is the foreign key in the logbooks table
-        $logbooks = Logbook::where('id_mahasiswa', $id)->get();
+        $logbooks = Logbook::where('id_mahasiswa', $id_pelamar_magang)->get();
+
         foreach ($logbooks as $logbook) {
             $logbook->komentar = $logbook->komentar_logbooks->first();
         }
 
-        return view('pages.dosen.pages-dpl.daftar-logbook-mhs.show', compact('user', 'logbooks'));
+        return view('dosen.pages-dpl.daftar-logbook-mhs.show', compact('user', 'logbooks'));
     }
 
     /**

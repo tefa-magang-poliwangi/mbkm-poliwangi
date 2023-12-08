@@ -9,7 +9,16 @@ class LaporanMingguan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'keterangan', 'validasi_pl', 'id_mahasiswa', 'id_program_magang', 'id_kompetensi_lowongan', 'plmitra_id'];
+    protected $fillable = [
+        'id',
+        'keterangan',
+        'tgl_mingguan_awal',
+        'tgl_mingguan_akhir',
+        'validasi_pl',
+        'id_mahasiswa',
+        'id_program_magang',
+        'id_kompetensi_lowongan',
+    ];
 
     // relasi
     public function mahasiswa()

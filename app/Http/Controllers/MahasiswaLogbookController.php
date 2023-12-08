@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MitraLaporanMingguanController extends Controller
+class MahasiswaLogbookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class MitraLaporanMingguanController extends Controller
      */
     public function index()
     {
-        return view('pages.mitra.manajemen-laporan-mingguan.index');
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.show');
     }
 
     /**

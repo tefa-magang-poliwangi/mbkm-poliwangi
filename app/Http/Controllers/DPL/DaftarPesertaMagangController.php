@@ -18,7 +18,7 @@ class DaftarPesertaMagangController extends Controller
             ->where('status_diterima', 'Tidak Aktif')
             ->get();
 
-        return view('pages.dosen.pages-dpl.daftar-peserta-magang.index', [
+        return view('dosen.pages-dpl.daftar-peserta-magang.index', [
             'pelamarMagangs' => $pelamarMagangsDiterima,
             'pelamarMagangsTidakAktif' => $pelamarMagangsTidakAktif,
         ]);

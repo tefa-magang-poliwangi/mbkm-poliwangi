@@ -25,7 +25,8 @@
                                 <h5 class="justify-start my-auto text-theme">Daftar Transkrip Nilai - Belum Disetujui</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="" class="btn btn-primary btn-sm ml-auto px-2 py-1">
+                                <a href="{{ route('kaprodi.daftar.transkrip.ext.disetujui') }}"
+                                    class="btn btn-primary btn-sm ml-auto px-2 py-1">
                                     Transkrip Disetujui
                                 </a>
                             </div>
@@ -47,44 +48,51 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($pelamarMagangs as $pelamar)
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($transkrip_nilai_mhs as $data)
                                         <tr>
-                                            <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $pelamar->mahasiswa->nama }}</td>
-                                            <td class="text-center">{{ $pelamar->mahasiswa->nim }}</td>
-                                            <td class="text-center">{{ $pelamar->mahasiswa->prodi->nama }}</td>
-                                            @php
-                                                $kelas = [];
-                                                $semester = [];
-                                            @endphp
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td>{{ $data->mahasiswa->nama }}</td>
+                                            <td class="text-center">{{ $data->mahasiswa->nim }}</td>
+                                            <td class="text-center">{{ $data->mahasiswa->prodi->nama }}</td>
 
-                                            @forelse ($pelamar->mahasiswa->peserta_kelas as $peserta_kelas)
-                                                @php
-                                                    $kelas[] = $peserta_kelas->kelas->tingkat_kelas . ' ' . $peserta_kelas->kelas->abjad_kelas;
-                                                    $semester[] = $peserta_kelas->kelas->periode->semester;
-                                                @endphp
-                                            @empty
-                                                @php
-                                                    $kelas[] = 'N/A';
-                                                    $semester[] = 'N/A';
-                                                @endphp
-                                            @endforelse
+                                            @foreach ($data->mahasiswa->peserta_kelas as $peserta_kelas)
+                                                <td class="text-center">{{ $peserta_kelas->kelas->tingkat_kelas }}
+                                                    {{ $peserta_kelas->kelas->abjad_kelas }}</td>
+                                            @endforeach
 
-                                            <td class="text-center">{{ implode(', ', $kelas) }}</td>
-                                            <td class="text-center">{{ implode(', ', $semester) }}</td>
+                                            @foreach ($data->mahasiswa->peserta_kelas as $peserta_kelas)
+                                                <td class="text-center">{{ $peserta_kelas->kelas->periode->semester }}</td>
+                                            @endforeach
+
                                             <td class="text-center">
-                                                <button
-                                                    class="btn btn-warning text-white card-rounded-sm">Validation</button>
+                                                <button class="btn btn-warning text-white card-rounded-sm">
+                                                    {{ $data->validasi_kaprodi }}
+                                                </button>
                                             </td>
+
                                             <td class="text-center">
-                                                <a href="{{ route('kaprodi.daftar.transkrip.show', $pelamar->mahasiswa->id) }}"
-                                                    class="btn btn-info text-white card-rounded-sm">
-                                                    Lihat Nilai
-                                                </a>
+                                                @if ($data->mahasiswa->peserta_kelas && $data->mahasiswa->peserta_kelas->count() > 0)
+                                                    <a href="{{ route('kaprodi.daftar.transkrip.ext.show', $data->id) }}"
+                                                        class="btn btn-primary ml-auto">
+                                                        <i class="fa-solid fa-eye" title="Siap Dikonversi"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="#" class="btn btn-danger ml-auto"
+                                                        title="Tidak Ada Kelas">
+                                                        <i class="fa-solid fa-eye-slash"></i>
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
-                                    @endforeach
 
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

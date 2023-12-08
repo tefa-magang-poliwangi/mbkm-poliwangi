@@ -46,11 +46,17 @@
                                 @foreach ($laporanAkhirs as $laporanAkhir)
                                 <tr>
                                     <th scope="row">{{ $no++ }}</th>
-                                    <td class="text-center mr-2"> {{ $laporanAkhir->file }}
+                                    <td class="text-center mr-2">
+                                        @if ($laporanAkhir->transkripMitra)
+                                        {{ $laporanAkhir->transkripMitra->file_laporan_akhir }}
+                                        @else
+                                        N/A
+                                        @endif
                                     </td>
                                     <td class="text-center">{{ $laporanAkhir->lowongan->nama }}</td>
                                     <td class="text-center">
-                                        {{ $laporanAkhir->created_at->isoFormat('D MMMM YYYY, HH:mm') }}</td>
+                                        {{ $laporanAkhir->created_at->isoFormat('D MMMM YYYY, HH:mm') }}
+                                    </td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-primary mr-2" data-toggle="modal"
                                             data-target="#viewFileModal{{ $loop->iteration }}">
@@ -66,7 +72,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
                                                             id="viewFileModalLabel{{ $loop->iteration }}">View File -
-                                                            {{ $laporanAkhir->file }}</h5>
+                                                            {{ $laporanAkhir->file }}
+                                                        </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -93,6 +100,8 @@
     </div>
 </section>
 @endsection
+
+
 
 
 @section('script')

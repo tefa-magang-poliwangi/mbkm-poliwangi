@@ -87,7 +87,7 @@
                                     <td class="text-truncate" style="max-width: 150px;">
                                         {{ $logbook->komentar ? $logbook->komentar->komentar : '-' }}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                             data-target="#komentarModal{{ $logbook->id }}">
                                             <i class="fas fa-pencil-alt"></i>

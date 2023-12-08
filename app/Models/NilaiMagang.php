@@ -27,4 +27,15 @@ class NilaiMagang extends Model
     {
         return $this->belongsTo(KompetensiProgram::class, 'id_kompetensi_program', 'id');
     }
+    public function matkul()
+    {
+        return $this->belongsTo(Matkul::class, 'id_matkul', 'id');
+    }
+
+
+    // Definisikan relasi dengan NilaiKonversi
+    public function nilai_konversi()
+    {
+        return $this->belongsTo(NilaiKonversi::class, 'id_nilai_konversi');
+    }
 }

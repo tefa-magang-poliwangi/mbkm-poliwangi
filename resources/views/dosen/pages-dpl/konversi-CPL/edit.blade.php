@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                            <h5 class="justify-start my-auto text-theme">Ketercapaian CPL Mahasiswa
+                            <h5 class="justify-start my-auto text-theme">{{ $user->name }} - Ketercapaian CPL Mahasiswa
                             </h5>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
             </div>
             <div class="modal-body">
                 <!-- Add a form element for data submission -->
-                <form action="{{ route('daftarcpl.update', ['id' => $logbook->id]) }}" method="POST">
+                <form action="{{ route('daftarcpl.update', ['id_logbook' => $logbook->id]) }}" method="POST">
                     @csrf
                     <div class="list-group">
                         @foreach ($cpls as $cpl)
@@ -123,7 +123,9 @@
 
 
 @section('script')
-{{-- Datatable JS --}}
+{{-- Datata
+ble JS --}}
+
 <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>

@@ -19,6 +19,21 @@
 @section('content')
     <section class="my-5">
         <div class="container">
+            <div class="pt-5 pb-4">
+                <div class="row bg-white card-rounded-sm">
+                    <div class="col-12 col-sm-2 col-md-2 col-lg-1 text-start d-flex text-uppercase d-lg-flex pt-2 pb-2 mt-1">
+                        <div class="px-3 mx-auto my-auto">
+                            <i class="fa-solid fa-file-invoice fa-2x text-theme fs-50"></i>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-10 col-md-10 col-lg-10 d-flex pt-2 pb-2 mt-1">
+                        <div class="my-auto">
+                            <h4 class="text-theme text-capitalize">Penilaian Mahasiswa Magang</h4>
+                            <h5 class="text-theme">{{ $mahasiswa->nama}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <!-- Kolom Kiri -->
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6">

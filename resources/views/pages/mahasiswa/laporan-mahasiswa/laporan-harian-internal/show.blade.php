@@ -10,26 +10,26 @@
 @endsection
 
 @section('content')
-<div class="container-fluid row py-6">
-    <div class="col-12 py-5">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Bagaimana kegiatanmu hari ini?</h4>
-                <div class="form-group">
-                    <textarea id="exampleFormControlTextarea1" style="width:100%; height: 300px;" placeholder="Tips: ceritakan kegiatanmu tanpa menginformasikan data yang bersifat rahasia"></textarea>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" aria-describedby="button-addon2" id="file_image" name="file_image">
-                </div>
-                <div class="text-center py-3">
-                    <button class="btn btn-theme-two">
-                        <i class="fas fa-save"></i> Simpan
-                    </button>
+    <section class="container-fluid row pt-5">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card rounded mb-3">
+                    <div class="banner bg-primary text-white text-center rounded-top">
+                        <h4></h4>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">{{ \Carbon\Carbon::parse($logbook->tanggal)->format('d-M-Y') }}</h6>
+                        <img src="{{ Storage::url($logbook->bukti) }}" class="mt-4 card-img-top" alt="foto bukti">
+                        <div class="mt-4">
+                            <a href="{{ route('mahasiswa.laporan.harian.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection
 
 @section('script')

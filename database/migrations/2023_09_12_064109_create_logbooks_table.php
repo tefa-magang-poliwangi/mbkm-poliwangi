@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('logbooks', function (Blueprint $table) {
             $table->id();
-            $table->string('kegiatan', 255)->nullable(false);
+            $table->string('kegiatan', 1000)->nullable(false);
             $table->string('bukti', 255)->nullable(false);
+            $table->date('tanggal')->nullable(false);
             $table->unsignedBigInteger('id_program_magang')->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->foreign('id_program_magang')->references('id')->on('program_magangs')->onDelete('cascade');

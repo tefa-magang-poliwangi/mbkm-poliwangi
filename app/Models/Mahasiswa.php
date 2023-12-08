@@ -92,5 +92,18 @@ class Mahasiswa extends Model
         return $this->hasMany(PesertaDosen::class, 'id_mahasiswa', 'id');
     }
 
+    // Mahasiswa.php
+
+public function laporanAkhir()
+{
+    return $this->hasOne(LaporanAkhir::class, 'id_mahasiswa', 'id');
+}
+
+public function mahasiswa()
+{
+    return $this->hasOne(Mahasiswa::class, 'id_user');
+
+
+}
 
 }

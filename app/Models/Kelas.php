@@ -32,4 +32,9 @@ class Kelas extends Model
     {
         return $this->hasMany(PesertaKelas::class);
     }
+
+    public function laporanAkhir()
+    {
+        return $this->hasMany(LaporanAkhir::class, 'id_kelas');
+    }
 }

@@ -25,7 +25,7 @@ class DosenPLController extends Controller
      */
     public function index()
     {
-        $prodi_id = Dosen::Where('id_user', Auth::user()->id)->first()->id_prodi;
+        $prodi_id = AdminProdi::Where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $datas = [
             'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
