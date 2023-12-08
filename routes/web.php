@@ -515,7 +515,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
         Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
         Route::get('/plmitra/LowonganMitra/{id_lowongan}/show', [LowonganPLController::class, 'show'])->name('lowongan1.show');
-        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('pl.daftarlogbook.index');
+        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('logbook-mhs.index');
+        Route::get('/plmitra/logbook-mahasiswa/{id}', [LogbookMhsPLController::class, 'show'])->name('logbook-mhs.show');
         Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
         Route::get('/plmitra/penilaian-pl/{id_mahasiswa}/create', [PenilaianPLController::class, 'create'])->name('penilaian.create');
         Route::post('/plmitra/penilaian/', [PenilaianPLController::class, 'store'])->name('penilaian.store');

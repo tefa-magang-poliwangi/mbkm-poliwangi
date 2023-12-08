@@ -12,8 +12,7 @@ class LaporanMingguanPLController extends Controller
     public function index()
     {
         // Get all the weekly reports for PL Mitra validation
-        $laporanMingguans = LaporanMingguan::where('id_plmitra', auth()->user()->id_plmitra)
-            ->get();
+        $laporanMingguans = LaporanMingguan::all();
 
         return view('pages.plmitra.layouts.laporan-mingguan.index', compact('laporanMingguans'));
     }
