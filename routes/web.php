@@ -423,6 +423,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Laporan Mingguan mahasiswa
         Route::get('/dashboard/mahasiswa/laporan-mingguan/index', [MahasiswaLaporanMingguanController::class, 'index'])->name('mahasiswa.laporan.mingguan.index');
         Route::get('/dashboard/mahasiswa/laporan-mingguan/create', [MahasiswaLaporanMingguanController::class, 'create'])->name('mahasiswa.laporan.mingguan.create');
+        Route::post('dashboard/mahasiswa/laporan-mingguan/store', [MahasiswaLaporanMingguanController::class, 'store'])->name('mahasiswa.laporan.mingguan.store');
 
         //Route Laporan Akhir mahasiswa
         Route::get('/upload-laporan-akhir/magang-internal/{id_user}/create', [MitraSertifikatController::class, 'create'])->name('upload.laporan.akhir.mahasiswa.int.create');

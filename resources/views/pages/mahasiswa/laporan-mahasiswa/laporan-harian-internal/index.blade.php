@@ -5,6 +5,7 @@
 @endsection
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
@@ -109,6 +110,43 @@
 @endsection
 
 @section('script')
+    {{-- Datatable JS --}}
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Hapus DataTable yang sudah ada jika ada
+            if ($.fn.DataTable.isDataTable('#table-1')) {
+                $('#table-1').DataTable().destroy();
+            }
+
+            // Inisialisasi DataTables
+            var table1 = $('#table-1').DataTable({
+                "pageLength": 6, // Menampilkan 6 baris per halaman
+                // ... opsi DataTables lainnya
+            });
+
+            // Mengatur pemindahan ke halaman berikutnya setiap 6 baris
+            table1.on('draw', function() {
+                var pageInfo = table.page.info();
+                var currentPage = pageInfo.page + 1;
+                var rowsPerPage = table.page.len();
+
+                // Menghitung jumlah baris yang sudah ditampilkan
+                var displayedRows = (currentPage - 1) * rowsPerPage + table.rows().count();
+
+                // Mengecek apakah jumlah baris sudah mencapai 6
+                if (displayedRows % 6 === 0) {
+                    // Pindah ke halaman berikutnya
+                    table.page('next').draw('page');
+                }
+            });
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
