@@ -20,7 +20,12 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Data Dosen Pembimbing Lapang</h5>
                             </div>
-
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
+                                <a href="{{ route('manajemen.dosen.pl.create') }}" class="btn btn-primary ml-auto">
+                                    <i class="fa-solid fa-plus"></i> &ensp;
+                                    Tambah Dosen PL
+                                </a>
+                            </div>
                         </div>
                     </div>
 

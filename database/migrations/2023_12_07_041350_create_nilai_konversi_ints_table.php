@@ -22,12 +22,12 @@ return new class extends Migration
             $table->tinyInteger('mutu')->nullable(false);
             $table->unsignedBigInteger('id_mahasiswa')->nullable(false);
             $table->unsignedBigInteger('id_matkul')->nullable(false);
-            $table->unsignedBigInteger('id_lowongan')->nullable(true);
-            $table->unsignedBigInteger('id_pelamar')->nullable(true);
+            // $table->unsignedBigInteger('id_lowongan')->nullable(true);
+            // $table->unsignedBigInteger('id_pelamar_magang')->nullable(true);
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas')->onDelete('cascade');
             $table->foreign('id_matkul')->references('id')->on('matkuls')->onDelete('cascade');
-            $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
-            $table->foreign('id_pelamar')->references('id')->on('pelamar_magangs')->onDelete('cascade');
+            // $table->foreign('id_lowongan')->references('id')->on('lowongans')->onDelete('cascade');
+            // $table->foreign('id_pelamar')->references('id')->on('pelamar_magangs')->onDelete('cascade');
             $table->timestamps();
         });
     }

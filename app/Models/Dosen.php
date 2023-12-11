@@ -42,4 +42,9 @@ class Dosen extends Model
     {
         return $this->hasMany(DosenWali::class, 'id_dosen', 'id');
     }
+
+    public function dosen_pl()
+    {
+        return $this->hasMany(DosenPL::class, 'id_dosen', 'id');
+    }
 }
