@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AdminProdiController;
+use App\Http\Controllers\AdminProdiPageController;
+use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DosenController;
@@ -21,8 +25,6 @@ use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MitraPageController;
 use App\Http\Controllers\WadirPageController;
-use App\Http\Controllers\AdminProdiController;
-use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\UploadTranskripNilai;
 use App\Http\Controllers\ValidasiNilaiKaprodi;
@@ -30,7 +32,6 @@ use App\Http\Controllers\KonversiNilaiExternal;
 use App\Http\Controllers\KonversiNilaiInternal;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\PLMitraPageController;
-use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\CPLKurikulumController;
 use App\Http\Controllers\DaftarMagangController;
 use App\Http\Controllers\MitraLogbookController;
@@ -46,7 +47,6 @@ use App\Http\Controllers\MitraPlottingController;
 use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\ProgramMagangController;
 use App\Http\Controllers\ValidasiNilaiKaprodiExt;
-use App\Http\Controllers\AdminProdiPageController;
 use App\Http\Controllers\BerkasLowonganController;
 use App\Http\Controllers\DPL\LogbookDPLController;
 use App\Http\Controllers\DPL\ProfileDPLController;
@@ -67,18 +67,17 @@ use App\Http\Controllers\ProfileDosenWaliController;
 use App\Http\Controllers\ProfileMahasiswaController;
 use App\Http\Controllers\DPL\KonversiNilaiController;
 use App\Http\Controllers\KompetensiProgramController;
-use App\Http\Controllers\KriteriaPenilaianController;
-use App\Http\Controllers\MitraLaporanAkhirController;
+use App\Http\Controllers\PLMitra\LogbookMhsPLController;
+use App\Http\Controllers\PLMitra\PenilaianPLController;
+use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\ProfileAdminProdiController;
 use App\Http\Controllers\KompetensiLowonganController;
 use App\Http\Controllers\MitraDaftarPelamarController;
 use App\Http\Controllers\ValidasiProgramMagangKaprodi;
 use App\Http\Controllers\Kaprodi\PLMahasiswaController;
-use App\Http\Controllers\PLMitra\PenilaianPLController;
 use App\Http\Controllers\DaftarNilaiMahasiswaController;
 use App\Http\Controllers\Kaprodi\LaporanAkhirController;
 use App\Http\Controllers\MitraLaporanMingguanController;
-use App\Http\Controllers\PLMitra\LogbookMhsPLController;
 use App\Http\Controllers\DaftarPermohonanMagangController;
 use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\DPL\DaftarPesertaMagangController;
@@ -516,12 +515,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
         Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
         Route::get('/plmitra/LowonganMitra/{id_lowongan}/show', [LowonganPLController::class, 'show'])->name('lowongan1.show');
-        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('pl.daftarlogbook.index');
+        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('logbook-mhs.index');
+        Route::get('/plmitra/logbook-mahasiswa/{id}', [LogbookMhsPLController::class, 'show'])->name('logbook-mhs.show');
         Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
         Route::get('/plmitra/penilaian-pl/{id_mahasiswa}/create', [PenilaianPLController::class, 'create'])->name('penilaian.create');
         Route::post('/plmitra/penilaian/', [PenilaianPLController::class, 'store'])->name('penilaian.store');
         Route::put('/plmitra/penilaian/', [PenilaianPLController::class, 'update'])->name('penilaian.update');
         Route::get('/plmitra/penilaian/{id_nilaimagang}', [PenilaianPLController::class, 'destroy'])->name('penilaian.destroy');
+        Route::get('/plmitra/laporan-akhir', [LaporanAkhirPLController::class, 'index'])->name('laporan-akhir.index');
+        Route::get('/plmitra/laporan-akhir/{id}/show', [LaporanAkhirPLController::class, 'show'])->name('laporan-akhir.show');
+        Route::get('/plmitra/laporan-mingguan', [LaporanMingguanPLController::class, 'index'])->name('laporan-mingguan.index');
+        Route::get('/plmitra/laporan-mingguan/{id}', [LaporanMingguanPLController::class, 'show'])->name('laporan-mingguan.show');
+        Route::post('plmitra/laporan-mingguan/{id}/validate', [LaporanMingguanPLController::class, 'validateReport'])->name('laporan-mingguan.validate');
 
         // Route Profil PLMitra
         Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('profil.plmitra.page');

@@ -47,7 +47,7 @@
                                     <table class="table table-hover table-bordered text-white bg-white">
                                         <thead class="bg-theme text-white">
                                             <tr class="text-white-header">
-                                                <th class="text-white text-center">Program</th>
+                                                <th class="text-white text-center">Nama</th>
                                                 <th width="30%" class="text-white text-center">Nilai</th>
                                             </tr>
                                         </thead>
