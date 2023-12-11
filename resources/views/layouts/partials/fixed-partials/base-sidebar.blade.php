@@ -706,19 +706,10 @@
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.mitra.logbook.index') }}">
                             <i class="fas fa-solid fa-book"></i>
-                            <span>Logbook Mahasiswa</span>
+                            <span>Laporan Mahasiswa</span>
                         </a>
                     </li>
-                @endcan
-
-                @can('manajemen.mitra.lapakhir.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.mitra.lapakhir.index') }}">
-                            <i class="fas fa-solid fa-book"></i>
-                            <span>Laporan Akhir</span>
-                        </a>
-                    </li>
-                @endcan
+                @endcan                
 
                 @can('manajemen.profil.mitra.page')
                     <li class="menu-header">Tentang Akun</li>
@@ -745,13 +736,6 @@
                         </a>
                     </li>
                 @endcan
-
-                <li>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-book"></i>
-                        <span>LogBook Mahasiswa</span>
-                    </a>
-                </li>
 
                 @can('manajemen.profil.plmitra.page')
                     <li class="menu-header">Tentang Akun</li>

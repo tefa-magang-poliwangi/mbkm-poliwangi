@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mitra;
+use App\Models\Logbook;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\PelamarMagang;
+use App\Models\LaporanMingguan;
+use Illuminate\Support\Facades\Auth;
 
 class MitraLaporanMingguanController extends Controller
 {
@@ -13,7 +19,6 @@ class MitraLaporanMingguanController extends Controller
      */
     public function index()
     {
-        return view('pages.mitra.manajemen-laporan-mingguan.index');
     }
 
     /**
@@ -45,7 +50,15 @@ class MitraLaporanMingguanController extends Controller
      */
     public function show($id)
     {
-        //
+        $laporanMingguan = LaporanMingguan::all();
+        $pelamarMagang = PelamarMagang::where('id_mahasiswa', $id)->first();
+
+        $data = [
+            'laporanMingguan' => $laporanMingguan,
+            'pelamarMagang' => $pelamarMagang,
+        ];
+
+        return view('pages.mitra.manajemen-laporan-mingguan.show', $data);
     }
 
     /**
