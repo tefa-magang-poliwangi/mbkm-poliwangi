@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mitra;
+use App\Models\Logbook;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MitraLaporanAkhirController extends Controller
 {
@@ -13,7 +17,7 @@ class MitraLaporanAkhirController extends Controller
      */
     public function index()
     {
-        return view('pages.mitra.manajemen-laporan-akhir.index');
+        //
     }
 
     /**
@@ -43,9 +47,9 @@ class MitraLaporanAkhirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view('pages.mitra.manajemen-laporan-akhir.show');
     }
 
     /**

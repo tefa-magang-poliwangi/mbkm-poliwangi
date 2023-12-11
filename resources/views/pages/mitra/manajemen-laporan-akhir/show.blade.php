@@ -16,7 +16,6 @@
                 <div class="card card-border card-rounded-sm card-hover">
                     <div class="card-body pb-4  ">
                         <h6 class="mb-3">Menu manajemen sertifikat detail</h6>
-
                         <div class="list-group" id="list-tab" role="tablist">
                             <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
                                 href="#sertifikat" role="tab">Lihat Laoran Akhir</a>
@@ -24,7 +23,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-12 col-sm-12 col-md-8 col-8">
                 <div class="tab-content" id="nav-tabContent">
                     {{-- Form Upload Transkrip --}}

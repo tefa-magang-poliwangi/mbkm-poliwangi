@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Manajemen Sertifikat | {{ $lowongan->nama }}r
+                                <h5 class="justify-start my-auto text-theme">Manajemen Sertifikat | {{ $lowongan->nama }}
                                 </h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">

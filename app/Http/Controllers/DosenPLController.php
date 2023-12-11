@@ -59,7 +59,7 @@ class DosenPLController extends Controller
             'dosens' => $dosens,
         ];
 
-        return view('pages.admin.Manajemen-dosen-pl.form-data-dosen-pl', $data);
+        return view('pages.kaprodi.pages-kaprodi.pl-mahasiswa.create', $data);
     }
 
     /**
@@ -74,7 +74,7 @@ class DosenPLController extends Controller
             'dosens' => ['required', 'array', 'min:1'],
         ]);
 
-        $dosen_pl_role = Role::where('name', 'dosen-pembimbing')->first();
+        $dosen_pl_role = Role::where('name', 'dosen-pl')->first();
 
         $dosen_convert = collect($validated['dosens']);
         $check_id_dosen = $dosen_convert->except('_token');

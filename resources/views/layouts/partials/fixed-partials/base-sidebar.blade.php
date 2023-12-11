@@ -705,16 +705,7 @@
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.mitra.logbook.index') }}">
                             <i class="fas fa-solid fa-book"></i>
-                            <span>Logbook Mahasiswa</span>
-                        </a>
-                    </li>
-                @endcan
-
-                @can('manajemen.mitra.lapakhir.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.mitra.lapakhir.index') }}">
-                            <i class="fas fa-solid fa-book"></i>
-                            <span>Laporan Akhir</span>
+                            <span>Laporan Mahasiswa</span>
                         </a>
                     </li>
                 @endcan
@@ -744,6 +735,22 @@
                         </a>
                     </li>
                 @endcan
+                @can('logbook-mhs.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('logbook-mhs.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>Logbook</span>
+                        </a>
+                    </li>
+                @endcan
+                @can('penilaian.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('penilaian.index') }}">
+                            <i class="fas fa-book"></i>
+                            <span>Penilaian</span>
+                        </a>
+                    </li>
+                @endcan
 
                 @can('laporan-mingguan.index')
                     <li>
@@ -753,7 +760,6 @@
                         </a>
                     </li>
                 @endcan
-
                 @can('laporan-akhir.index')
                     <li>
                         <a class="nav-link" href="{{ route('laporan-akhir.index') }}">

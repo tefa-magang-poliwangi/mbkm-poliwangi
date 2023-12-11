@@ -10,14 +10,14 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 @endsection
 
-{{-- @php
+@php
     function dateConversion($date)
     {
         $month = [1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         $slug = explode('-', $date);
         return $slug[2] . ' ' . $month[(int) $slug[1]] . ' ' . $slug[0];
     }
-@endphp --}}
+@endphp
 @section('content')
     <section class="pt-4">
         <div class="row pt-5">
@@ -43,25 +43,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php
+                                    @php
                                         $no = 1;
-                                     @endphp
-                                    @foreach ($transkripMitras as $index => $transkripMitra) --}}
+                                    @endphp
+                                    @foreach ($transkripMitras as $index => $transkripMitra)
                                         <tr>
-                                            <td class="text-center ">1</td>
-                                            <td class="text-center ">Aan Triambudi</td>
-                                            <td class="text-center ">12 November 2023</td>
-                                            <td class="text-center ">
-                                                <a href=""
+                                            <td class="text-center text-white">{{ $index + 1 }}</td>
+                                            <td class="text-center text-white">
+                                                {{ $transkripMitra->pelamar_magang->nama_mahasiswa }}</td>
+                                            <td class="text-center text-white">
+                                                {{ $transkripMitra->created_at->format('Y-m-d') }}</td>
+                                            <td class="text-center text-white">
+                                                <a href="{{ route('laporan-akhir.show', $transkripMitra->id) }}"
                                                     class="btn btn-primary">Detail</a>
                                                 {{-- Tambahkan tindakan lain jika diperlukan --}}
                                             </td>
                                         </tr>
-                                    {{-- @endforeach
+                                    @endforeach
 
                                     @php
                                         $no++;
-                                    @endphp --}}
+                                    @endphp
                                 </tbody>
                             </table>
                         </div>

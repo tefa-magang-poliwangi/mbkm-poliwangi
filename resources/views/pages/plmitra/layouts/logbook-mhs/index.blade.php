@@ -29,12 +29,6 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Logbook Mahasiswa</h5>
                             </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="" class="btn btn-primary ml-auto">
-                                    <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Logbook
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -46,7 +40,6 @@
                                     <tr>
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">Program Magang</th>
                                         <th class="text-center text-white">Kegiatan</th>
                                         <th class="text-center text-white">Bukti</th>
                                         <th class="text-center text-white">Aksi</th>
@@ -55,33 +48,23 @@
                                 <tbody>
                                     @php
                                         $no = 1;
-                                     @endphp
-                                        @foreach ($logbook as $data)
+                                    @endphp
+                                    @foreach ($logbooks as $logbook)
                                         <tr>
-                                            <td class="text-center">{{$no}}</td>
-                                            <td class="text-center">{{$data->mahasiswa->nama}}</td>
-                                            <td class="text-center">{{$data->program_magang->nama}}</td>
-                                            <td class="text-center">{{$data->kegiatan}}</td>
-                                            <td class="text-center">{{$data->bukti}}</td>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-center">{{ $logbook->mahasiswa->nama }}</td>
+
+                                            <td class="text-center">{{ $logbook->kegiatan }}</td>
+                                            <td class="text-center">{{ $logbook->bukti }}</td>
                                             <td class="text-center">
-                                                <a href=""
-                                                    class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></button>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-primary text-white"></span>
-                                            </td>
-                                            <td>
-                                                <a href=""
-                                                    class="btn btn-info ml-auto"><i
-                                                        class="fa-solid fa-pen text-white"></i></a>
-                                                <a href=""
-                                                    class="btn btn-danger ml-auto"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('logbook-mhs.show', $logbook->id) }}"
+                                                    class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                         </tr>
                                         @php
                                             $no++;
                                         @endphp
-                                        @endforeach
+                                    @endforeach
 
                                 </tbody>
                             </table>
