@@ -94,10 +94,10 @@ class Mahasiswa extends Model
 
     // Mahasiswa.php
 
-    public function laporanAkhir()
-    {
-        return $this->hasOne(LaporanAkhir::class, 'id_mahasiswa', 'id');
-    }
+    // public function laporanAkhir()
+    // {
+    //     return $this->hasOne(LaporanAkhir::class, 'id_mahasiswa', 'id');
+    // }
 
     public function mahasiswa()
     {

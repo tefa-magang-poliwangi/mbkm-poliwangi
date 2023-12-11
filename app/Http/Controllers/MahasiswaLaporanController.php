@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logbook;
+use App\Models\Lowongan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class MahasiswaLaporanController extends Controller
 
         // Ambil logbooks terkait dengan mahasiswa tertentu
         $logbooks = Logbook::where('id_mahasiswa', $mahasiswaId)
-            ->select('id', 'tanggal', 'kegiatan', 'bukti') // Hanya ambil kolom yang diperlukan
+            ->select('id', 'tanggal', 'kegiatan', 'bukti')
             ->get();
 
         return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.index', ['logbooks' => $logbooks]);
@@ -64,8 +65,8 @@ class MahasiswaLaporanController extends Controller
         Logbook::create([
             'tanggal' => Carbon::parse($request->input('tanggal')),
             'kegiatan' => $request->input('kegiatan'),
-            'bukti' => $buktiImagePath, // Ubah nama kolom sesuai dengan struktur database Anda
-            'id_program_magang' => 1, // Sesuaikan dengan ID program yang sebenarnya
+            'bukti' => $buktiImagePath,
+            'id_program_magang' => 1,
             'id_mahasiswa' => auth()->user()->mahasiswa->firstOrFail()->id,
         ]);
 
@@ -83,7 +84,7 @@ class MahasiswaLaporanController extends Controller
      */
     public function show($id)
     {
-        $logbook = Logbook::findOrFail($id); // Gantilah dengan cara sesuai kebutuhan Anda
+        $logbook = Logbook::findOrFail($id);
         return view('pages.mahasiswa.laporan-mahasiswa.laporan-harian-internal.show', ['logbook' => $logbook]);
     }
     /**

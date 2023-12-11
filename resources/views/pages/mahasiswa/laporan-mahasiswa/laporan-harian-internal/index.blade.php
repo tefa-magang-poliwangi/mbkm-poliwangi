@@ -19,21 +19,25 @@
                         <h4></h4>
                     </div>
                     <div class="card-body">
-                        <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="...">
+                        {{-- <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="..."> --}}
                         <h6 class="card-title">Digital Transformation in The Government and Public Sector</h6>
                         <div class="card-text">
-                            <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br>
+                            {{-- <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br> --}}
+
                             {{-- kondisi ketika logbook sudah diterima --}}
-                            <div class="mt-2">
+
+                            {{-- <div class="mt-2">
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Semua laporan mingguan sudah diterima</span>
                                 <br>
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Laporan akhir sudah diunggah</span>
-                            </div>
-                            {{--  --}}
-                            <h6 class="mt-4">Periode Kegiatan</h6>
-                            <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p>
+                            </div> --}}
+
+                            {{-- kondisi ketika logbook sudah diterima END --}}
+
+                            {{-- <h6 class="mt-4">Periode Kegiatan</h6>
+                            <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p> --}}
                         </div>
                     </div>
                 </div>
