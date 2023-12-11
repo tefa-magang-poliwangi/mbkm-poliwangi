@@ -129,8 +129,7 @@ class PenilaianPLController extends Controller
         $request->validate([
             'nilaimagang_id' => 'required',
             'mahasiswa_id' => 'required',
-            'nilai' => 'required',
-            'program' => 'required|array',
+            'nilai' => 'required'
         ]);
 
         // dd($request);
@@ -140,8 +139,7 @@ class PenilaianPLController extends Controller
                 ->where('id_mahasiswa', $request->mahasiswa_id)
                 ->update([
                     'nilai_angka' => $request->nilai[$key],
-                    'nilai_huruf' => $this->KonversiNilaiAngka($request->nilai[$key]),
-                    'id_kompetensi_program' => $request->program[$key],
+                    'nilai_huruf' => $this->KonversiNilaiAngka($request->nilai[$key])
                     // Jika Anda memiliki kolom lain, tambahkan di sini
                 ]);
         }

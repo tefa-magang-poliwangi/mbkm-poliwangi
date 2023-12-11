@@ -1,7 +1,9 @@
+<!-- resources/views/pages/plmitra/layouts/laporan-mingguan/index.blade.php -->
+
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Logbook Mahasiswa | MBKM Poliwangi</title>
+    <title>Laporan Akhir Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -27,45 +29,46 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Logbook Mahasiswa</h5>
+                                <h5 class="justify-start my-auto text-theme">Laporan Mingguan Mahasiswa</h5>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
-
-                            <table class="table table-hover table-borderless rounded" id="table-1">
+                            <table class="table table-hover table-borderless rounded" id="table-2">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th class="text-center text-white">No</th>
-                                        <th class="text-center text-white">Nama</th>
-                                        <th class="text-center text-white">Kegiatan</th>
-                                        <th class="text-center text-white">Bukti</th>
-                                        <th class="text-center text-white">Aksi</th>
+                                        <th class="text-center text-white">ID</th>
+                                        <th class="text-center text-white">Keterangan</th>
+                                        <th class="text-center text-white">Status Validasi</th>
+                                        <th class="text-center text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $no = 1;
-                                    @endphp
-                                    @foreach ($logbooks as $logbook)
+                                    @foreach ($laporanMingguans as $laporan)
                                         <tr>
-                                            <td class="text-center">{{ $no++ }}</td>
-                                            <td class="text-center">{{ $logbook->mahasiswa->nama }}</td>
-
-                                            <td class="text-center">{{ $logbook->kegiatan }}</td>
-                                            <td class="text-center">{{ $logbook->bukti }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('logbook-mhs.show', $logbook->id) }}"
-                                                    class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                            <td>{{ $laporan->id }}</td>
+                                            <td>{{ $laporan->keterangan }}</td>
+                                            <td>
+                                                @if ($laporan->validasi_pl)
+                                                    <span class="badge badge-success">Aktif</span>
+                                                @else
+                                                    <span class="badge badge-warning">Tidak Aktif</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('laporan-mingguan.show', $laporan->id) }}"
+                                                    class="btn btn-info">Detail</a>
+                                                <!-- Form for validation -->
+                                                <form action="{{ route('laporan-mingguan.validate', $laporan->id) }}"
+                                                    method="post" style="display: inline;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success">Validate</button>
+                                                </form>
                                             </td>
                                         </tr>
-                                        @php
-                                            $no++;
-                                        @endphp
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>

@@ -35,4 +35,9 @@ class LaporanMingguan extends Model
     {
         return $this->belongsTo(KompetensiLowongan::class, 'id_kompetensi_lowongan', 'id');
     }
+
+    public function plmitra()
+    {
+        return $this->belongsTo(PLMitra::class, 'plmitra_id');
+    }
 }

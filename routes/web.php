@@ -48,6 +48,8 @@ use App\Http\Controllers\KompetensiLowonganController;
 use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
 use App\Http\Controllers\PLMitra\PenilaianPLController;
+use App\Http\Controllers\LaporanAkhirPLController;
+use App\Http\Controllers\LaporanMingguanPLController;
 use App\Http\Controllers\LowonganPLController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
@@ -513,12 +515,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/plmitra', [PLMitraPageController::class, 'dashboard_plmitra'])->name('dashboard.plmitra.page');
         Route::get('/plmitra/LowonganMitra', [LowonganPLController::class, 'index'])->name('lowongan1.index');
         Route::get('/plmitra/LowonganMitra/{id_lowongan}/show', [LowonganPLController::class, 'show'])->name('lowongan1.show');
-        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('pl.daftarlogbook.index');
+        Route::get('/plmitra/logbook-mahasiswa', [LogbookMhsPLController::class, 'index'])->name('logbook-mhs.index');
+        Route::get('/plmitra/logbook-mahasiswa/{id}', [LogbookMhsPLController::class, 'show'])->name('logbook-mhs.show');
         Route::get('/plmitra/Penilaian', [PenilaianPLController::class, 'index'])->name('penilaian.index');
         Route::get('/plmitra/penilaian-pl/{id_mahasiswa}/create', [PenilaianPLController::class, 'create'])->name('penilaian.create');
         Route::post('/plmitra/penilaian/', [PenilaianPLController::class, 'store'])->name('penilaian.store');
         Route::put('/plmitra/penilaian/', [PenilaianPLController::class, 'update'])->name('penilaian.update');
         Route::get('/plmitra/penilaian/{id_nilaimagang}', [PenilaianPLController::class, 'destroy'])->name('penilaian.destroy');
+        Route::get('/plmitra/laporan-akhir', [LaporanAkhirPLController::class, 'index'])->name('laporan-akhir.index');
+        Route::get('/plmitra/laporan-akhir/{id}/show', [LaporanAkhirPLController::class, 'show'])->name('laporan-akhir.show');
+        Route::get('/plmitra/laporan-mingguan', [LaporanMingguanPLController::class, 'index'])->name('laporan-mingguan.index');
+        Route::get('/plmitra/laporan-mingguan/{id}', [LaporanMingguanPLController::class, 'show'])->name('laporan-mingguan.show');
+        Route::post('plmitra/laporan-mingguan/{id}/validate', [LaporanMingguanPLController::class, 'validateReport'])->name('laporan-mingguan.validate');
 
         // Route Profil PLMitra
         Route::get('/dashboard/plmitra/ubah-profil/{id_user}', [ProfilePLMitraController::class, 'show'])->name('profil.plmitra.page');

@@ -9,12 +9,7 @@ class PelamarMagang extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'status_diterima',
-        'id_mahasiswa',
-        'id_lowongan',
-    ];
+    protected $fillable = ['id', 'status_diterima', 'id_mahasiswa', 'id_lowongan'];
 
     // relasi
     public function mahasiswa()
@@ -75,8 +70,6 @@ class PelamarMagang extends Model
     {
         return $this->hasOne(PendampingLapangMahasiswa::class, 'id_pelamar_magang', 'id');
     }
-
-
 
 
 }

@@ -42,7 +42,6 @@
                                         <th class="text-center text-white">Waktu Mulai</th>
                                         <th class="text-center text-white">Waktu Akhir</th>
                                         <th class="text-center text-white">Posisi Mahasiswa</th>
-                                        <th class="text-center text-white">Pendamping Lapang</th>
                                         <th class="text-center text-white" width="10%">Status</th>
                                     </tr>
                                 </thead>
@@ -58,7 +57,6 @@
                                             <td class="text-center">{{ dateConversion($data->waktu_mulai) }}</td>
                                             <td class="text-center">{{ dateConversion($data->waktu_akhir) }}</td>
                                             <td class="text-center">{{ $data->posisi_mahasiswa }}</td>
-                                            <td class="text-center">{{ $data->pl_mitra->nama }}</td>
                                             <td class="text-center">
                                                 @if ($data->validasi_kaprodi == 'Belum Disetujui')
                                                     <div class="btn btn-warning">

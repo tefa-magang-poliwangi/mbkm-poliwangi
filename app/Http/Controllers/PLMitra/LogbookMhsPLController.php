@@ -10,10 +10,17 @@ class LogbookMhsPLController extends Controller
 {
     public function index()
     {
-        $data = [
-            'logbook' => Logbook::all(),
-            
-        ];
-        return view('pages.plmitra.layouts.logbook-mhs.index', $data);
+        // Mendapatkan semua logbook
+        $logbooks = Logbook::all();
+
+        return view('pages.plmitra.layouts.logbook-mhs.index', compact('logbooks'));
+    }
+
+    public function show($id)
+    {
+        // Mendapatkan detail logbook
+        $logbook = Logbook::findOrFail($id);
+
+        return view('pages.plmitra.layouts.logbook-mhs.show', compact('logbook'));
     }
 }
