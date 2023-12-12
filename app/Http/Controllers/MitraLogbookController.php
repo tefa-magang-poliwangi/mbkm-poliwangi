@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logbook;
+use App\Models\Lowongan;
 use App\Models\Mahasiswa;
 use App\Models\Mitra;
 use App\Models\PelamarMagang;
@@ -37,11 +38,20 @@ class MitraLogbookController extends Controller
             ->where('lowongans.id_mitra', $mitra->id)
             ->get();
 
+        // Mendapatkan data mitra berdasarkan user yang sedang login
+        $mitra = Mitra::where('id_user', Auth::user()->id)->first();
+
+        // Mendapatkan daftar pelamar magang yang diterima oleh mitra
+        $pelamarMagangs = PelamarMagang::where('id_lowongan', $mitra->id_lowongan)
+            ->where('status_diterima', 'Diterima')
+            ->get();
+
         // Kemudian meneruskan variabel ke view
-        return view('pages.mitra.manajemen-logbook-mahasiswa.index', [
+        return view('pages.mitra.manajemen-laporan-mahasiswa.index', [
             'currentDay' => $currentDay,
             'logbook' => $logbook,
             'mahasiswas' => $mahasiswas,
+            'pelamarMagangs' => $pelamarMagangs,
         ]);
     }
 
@@ -56,7 +66,7 @@ class MitraLogbookController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -74,11 +84,24 @@ class MitraLogbookController extends Controller
      */
     public function show($id)
     {
-        // Tampilkan logbook untuk tanggal tertentu
-        $logbook = Logbook::where('tanggal', $id)->get();
+        $data = [
+            'logbook' => Logbook::all(),
+            'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $id)->first(),
+        ];
 
-        return view('pages.mitra.manajemen-logbook-mahasiswa.show', ['logbook' => $logbook]);
+        return view('pages.mitra.manajemen-laporan-mahasiswa.show', $data);
     }
+
+    public function showdetail($id)
+    {
+
+        $logbook = Logbook::findOrFail($id); // Gantilah dengan cara sesuai kebutuhan Anda
+
+        return view('pages.mitra.manajemen-laporan-mahasiswa.show-detail', ['logbook' => $logbook]);
+    }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

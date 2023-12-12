@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Pendamping Lapang | MBKM Poliwangi</title>
+    <title>Manajemen Logbook Mahasiswa | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Lihat Daftar Mahasiswa | Logbook</h5>
+                                <h5 class="justify-start my-auto text-theme">Daftar Laporan Mahasiswa</h5>
                             </div>
                         </div>
 
@@ -29,12 +29,12 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="text-center text-white" width="10%">No</th>
-                                                <th class="text-center text-white">Nama</th>
-                                                <th class="text-center text-white">Nim</th>
-                                                <th class="text-center text-white">Lowongan</th>
+                                                <th class="text-center text-white">Nama Mahasiswa</th>
+                                                <th class="text-center text-white">Program Magang</th>
                                                 <th class="text-center text-white">Pendamping Lapang</th>
-                                                <th class="text-center text-white">Logbook</th>
+                                                <th class="text-center text-white">Logbook Mahasiswa</th>
                                                 <th class="text-center text-white">Laporan Mingguan</th>
+                                                <th class="text-center text-white">Laporan Akhir</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -42,19 +42,23 @@
                                                 <tr>
                                                     <td class="text-center">{{ $index + 1 }}</td>
                                                     <td class="text-center">{{ $mahasiswa->nama }}</td>
-                                                    <td class="text-center">{{ $mahasiswa->nim }}</td>
                                                     <td class="text-center">{{ $mahasiswa->nama_lowongan }}</td>
                                                     <td class="text-center">{{ $mahasiswa->nama_pl }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.mitra.logbook.show', $mahasiswa->id) }}"
-                                                            class="btn btn-primary fw-medium">
-                                                            <i class="fas fa-eye"></i> Lihat Logbook Harian
+                                                        <a href="{{ route('manajemen.mitra.logbook.show', $mahasiswa->id) }}" class="btn btn-primary fw-medium">
+                                                            <i class="fas fa-eye"></i> 
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.mitra.lapmingguan.index') }}"
-                                                            class="btn btn-primary">
-                                                            <i class="fas fa-eye"></i> Lihat Laporan Mingguan
+                                                        <a href="{{ route('manajemen.mitra.lapmingguan.show', $mahasiswa->id) }}"
+                                                            class="btn btn-primary fw-medium">
+                                                            <i class="fas fa-eye"></i> 
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('manajemen.mitra.lapakhir.show', $mahasiswa->id) }}"
+                                                            class="btn btn-primary fw-medium">
+                                                            <i class="fas fa-eye"></i> 
                                                         </a>
                                                     </td>
                                                 </tr>

@@ -19,21 +19,25 @@
                         <h4></h4>
                     </div>
                     <div class="card-body">
-                        <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="...">
-                        <h6 class="card-title">Digital Transformation in The Government and Public Sector</h6>
+                        {{-- <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="..."> --}}
+                        <h6 class="card-title"></h6>
                         <div class="card-text">
-                            <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br>
+                            {{-- <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br> --}}
+
                             {{-- kondisi ketika logbook sudah diterima --}}
-                            <div class="mt-2">
+
+                            {{-- <div class="mt-2">
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Semua laporan mingguan sudah diterima</span>
                                 <br>
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Laporan akhir sudah diunggah</span>
-                            </div>
-                            {{--  --}}
-                            <h6 class="mt-4">Periode Kegiatan</h6>
-                            <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p>
+                            </div> --}}
+
+                            {{-- kondisi ketika logbook sudah diterima END --}}
+
+                            {{-- <h6 class="mt-4">Periode Kegiatan</h6>
+                            <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p> --}}
                         </div>
                     </div>
                 </div>
@@ -73,16 +77,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td class="text-center">12 - Des - 2023</td>
-                                            <td class="text-center">19 - Des - 2023</td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn btn-info ml-auto" data-toggle="modal"
-                                                    data-target="#updateModal"><i class="fa-solid fa-eye text-white"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        @foreach ($laporanMingguans as $laporan)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->index + 1 }}</td>
+                                                <td class="text-center">{{ $laporan->tgl_mingguan_awal ?? '-' }}</td>
+                                                <td class="text-center">{{ $laporan->tgl_mingguan_akhir ?? '-' }}</td>
+                                                <td class="text-center">
+                                                    @if ($laporan->keterangan)
+                                                        <button type="button" class="btn btn-info ml-auto"
+                                                            data-toggle="modal"
+                                                            data-target="#updateModal{{ $loop->index + 1 }}">
+                                                            <i class="fa-solid fa-eye text-white"></i>
+                                                        </button>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        @if ($laporanMingguans->isEmpty())
+                                            <tr>
+                                                <td colspan="4" class="text-center">Laporan Mingguan Belum di buat.</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -91,30 +106,28 @@
                 </div>
             </div>
         </div>
-        </div>
     </section>
 
-
-    <div class="modal fade" tabindex="-1" role="dialog" id="updateModal">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Detail Kegiatan Laporan Mingguan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias obcaecati, expedita et voluptates
-                        soluta eum iure totam consequatur accusantium eos accusamus veritatis unde officiis hic assumenda?
-                        Architecto ex odio pariatur!</p>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+    @foreach ($laporanMingguans as $index => $laporan)
+        <div class="modal fade" tabindex="-1" role="dialog" id="updateModal{{ $index + 1 }}">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detail Kegiatan Laporan Mingguan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ $laporan->keterangan }}</p>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
 @endsection
 
 @section('script')

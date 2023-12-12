@@ -602,30 +602,29 @@
                         </a>
                     </li>
                 @endcan
-
                 @can('mahasiswa.laporan.harian.index')
                     <li>
                         <a class="nav-link" href="{{ route('mahasiswa.laporan.harian.index') }}">
-                            <i class="fas fa-solid fa-book"></i>
-                            <span>Logbook Mahasiswa</span>
-                        </a>`
+                            <i class="fas fa-regular fa-folder-open"></i>
+                            <span>Logbook Harian</span>
+                        </a>
                     </li>
                 @endcan
                 @can('mahasiswa.laporan.mingguan.index')
                     <li>
                         <a class="nav-link" href="{{ route('mahasiswa.laporan.mingguan.index') }}">
-                            <i class="fas fa-solid fa-book"></i>
+                            <i class="fas fa-regular fa-folder-open"></i>
                             <span>Laporan Mingguan</span>
-                        </a>`
+                        </a>
                     </li>
                 @endcan
                 @can('upload.laporan.akhir.mahasiswa.int.create')
                     <li>
                         <a class="nav-link"
                             href="{{ route('upload.laporan.akhir.mahasiswa.int.create', Auth::user()->id) }}">
-                            <i class="fas fa-solid fa-book"></i>
+                            <i class="fas fa-regular fa-folder-open"></i>
                             <span>Laporan Akhir</span>
-                        </a>`
+                        </a>
                     </li>
                 @endcan
             @endauth
@@ -706,7 +705,7 @@
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.mitra.logbook.index') }}">
                             <i class="fas fa-solid fa-book"></i>
-                            <span>Logbook Mahasiswa</span>
+                            <span>Laporan Mahasiswa</span>
                         </a>
                     </li>
                 @endcan
