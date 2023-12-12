@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\RolesController;
@@ -85,8 +85,6 @@ use App\Http\Controllers\MitraLogbookController;
 use App\Http\Controllers\MitraPlottingController;
 use App\Http\Controllers\MitraSertifikatController;
 use App\Http\Controllers\PelamarMagangController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -49,7 +49,7 @@
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Jumlah Lowongan</th>
-                                        <th class="text-center text-white">Program Magang</th>
+                                        <th class="text-center text-white">Kegiatan Magang</th>
                                         <th class="text-center text-white">Kompetensi Lowongan</th>
                                         <th class="text-center text-white">Berkas Lowongan</th>
                                         <th class="text-center text-white">Status</th>

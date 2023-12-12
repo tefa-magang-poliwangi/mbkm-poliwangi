@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\PlMitra;
-use App\Models\Lowongan;
+use App\Models\Mitra;
 use App\Models\Mahasiswa;
+use App\Models\Lowongan;
 use Illuminate\Http\Request;
 use App\Models\PelamarMagang;
 use App\Models\MahasiswaMagang;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\PendampingLapangMahasiswa;
+use Illuminate\Support\Facades\Auth;
 
 class MitraPlottingController extends Controller
 {
@@ -20,9 +22,12 @@ class MitraPlottingController extends Controller
      */
     public function index()
     {
+        $id_mitra = Mitra::where('id_user', Auth::user()->id)->pluck('id')->first();
+        $id_lowongan = Lowongan::where('id_mitra', $id_mitra)->pluck('id')->first();
+        $id_pelamar_magang = PelamarMagang::where('id_lowongan', $id_lowongan)->pluck('id')->first();
         $data = [
-            'pl_mitra' => PlMitra::all(),
-            'pendamping_lapang' => PendampingLapangMahasiswa::all(),
+            'pl_mitra' => PlMitra::where('id_mitra',$id_mitra)->get(),
+            'pendamping_lapang' => PendampingLapangMahasiswa::where('id_pelamar_magang', $id_pelamar_magang)->get(),
         ];
 
 
