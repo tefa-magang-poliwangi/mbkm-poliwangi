@@ -58,7 +58,7 @@
                                                             </button>
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <!-- Tombol Delete -->
                                                         <form
                                                             action="{{ route('manajemen.sertifikat.mitra.destroy', ['id_transkrip' => $data->id_transkrip ?? 0]) }}"
