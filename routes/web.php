@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\AdminProdiPageController;
 use App\Http\Controllers\AkademikPageController;
