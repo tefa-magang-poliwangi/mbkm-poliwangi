@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KompetensiLowongan;
+use App\Models\LaporanMingguan;
+use App\Models\Mahasiswa;
+use App\Models\PelamarMagang;
+use App\Models\ProgramMagang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaLaporanMingguanController extends Controller
 {
@@ -13,7 +19,13 @@ class MahasiswaLaporanMingguanController extends Controller
      */
     public function index()
     {
-        return view('pages.mahasiswa.laporan-mahasiswa.laporan-mingguan-internal.index');
+        $mahasiswaId = auth()->user()->mahasiswa->first()->id;
+
+        $laporanMingguans = LaporanMingguan::where('id_mahasiswa', $mahasiswaId)
+            ->select('keterangan', 'tgl_mingguan_awal', 'tgl_mingguan_akhir')
+            ->get();
+
+        return view('pages.mahasiswa.laporan-mahasiswa.laporan-mingguan-internal.index', ['laporanMingguans' => $laporanMingguans]);
     }
 
     /**
@@ -23,6 +35,7 @@ class MahasiswaLaporanMingguanController extends Controller
      */
     public function create()
     {
+
         return view('pages.mahasiswa.laporan-mahasiswa.laporan-mingguan-internal.create');
     }
 
@@ -34,7 +47,26 @@ class MahasiswaLaporanMingguanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'waktu_mulai' => 'required',
+            'waktu_akhir' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $mahasiswaId = Auth::user()->mahasiswa->first()->id;
+
+
+        $laporanMingguan = LaporanMingguan::create([
+            'tgl_mingguan_awal' => $request->waktu_mulai,
+            'tgl_mingguan_akhir' => $request->waktu_akhir,
+            'keterangan' => $request->keterangan,
+            'id_mahasiswa' => $mahasiswaId,
+            'id_program_magang' => $request->id_program_magang,
+            'id_kompetensi_lowongan' => $request->id_kompetensi_lowongan,
+            'validasi_pl' => 'Aktif',
+        ]);
+
+        return redirect()->route('mahasiswa.laporan.mingguan.index')->with('success', 'Laporan Mingguan berhasil disimpan.');
     }
 
     /**

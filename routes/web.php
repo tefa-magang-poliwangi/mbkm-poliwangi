@@ -1,91 +1,91 @@
 <?php
 
-use App\Http\Controllers\RolesController;
-use App\Http\Controllers\PermissionsController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\AdminProdiPageController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CPLKurikulumController;
-use App\Http\Controllers\DaftarNilaiMahasiswaController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\BerkasController;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\DosenPLController;
+use App\Http\Controllers\KaprodiController;
+use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\PLMitraController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DosenPageController;
 use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\FormMitraController;
-use App\Http\Controllers\ImportController;
-use App\Http\Controllers\InputKriteriaMahasiswaController;
-use App\Http\Controllers\KaprodiController;
-use App\Http\Controllers\KatalogLowonganController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\KelasController;
-use App\Http\Controllers\KonversiNilaiExternal;
-use App\Http\Controllers\KonversiNilaiInternal;
-use App\Http\Controllers\KriteriaPenilaianController;
 use App\Http\Controllers\KurikulumController;
-use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\MahasiswaPageController;
+use App\Http\Controllers\MitraPageController;
+use App\Http\Controllers\WadirPageController;
 use App\Http\Controllers\MatakuliahController;
-use App\Http\Controllers\MatkulKurikulumController;
-use App\Http\Controllers\MitraDaftarPelamarController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\UploadTranskripNilai;
+use App\Http\Controllers\ValidasiNilaiKaprodi;
+use App\Http\Controllers\KonversiNilaiExternal;
+use App\Http\Controllers\KriteriaPenilaianController;
+use App\Http\Controllers\KonversiNilaiInternal;
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\PLMitraPageController;
+use App\Http\Controllers\CPLKurikulumController;
+use App\Http\Controllers\DaftarMagangController;
+use App\Http\Controllers\MitraLogbookController;
+use App\Http\Controllers\MitraLaporanAkhirController;
+use App\Http\Controllers\LaporanAkhirPLController;
+use App\Http\Controllers\LaporanMingguanPLController;
 use App\Http\Controllers\PesertaDosenController;
 use App\Http\Controllers\PesertaKelasController;
-use App\Http\Controllers\PesertaMagangExtController;
-use App\Http\Controllers\PLMitraController;
-use App\Http\Controllers\ProdiController;
-use App\Http\Controllers\ProfileMahasiswaController;
+use App\Http\Controllers\ProfileAdminController;
+use App\Http\Controllers\ProfileDosenController;
+use App\Http\Controllers\ProfileMitraController;
+use App\Http\Controllers\ProfileWadirController;
+use App\Http\Controllers\MahasiswaPageController;
 use App\Http\Controllers\MitraLowonganController;
+use App\Http\Controllers\MitraPlottingController;
+use App\Http\Controllers\PelamarMagangController;
 use App\Http\Controllers\ProgramMagangController;
+use App\Http\Controllers\ValidasiNilaiKaprodiExt;
+use App\Http\Controllers\BerkasLowonganController;
 use App\Http\Controllers\DPL\LogbookDPLController;
 use App\Http\Controllers\DPL\ProfileDPLController;
+use App\Http\Controllers\MagangExternalController;
 use App\Http\Controllers\ProfileKaprodiController;
 use App\Http\Controllers\ProfilePLMitraController;
 use App\Http\Controllers\SektorIndustriController;
 use App\Http\Controllers\SuperAdminPageController;
-use App\Http\Controllers\UploadTranskripNilai;
-use App\Http\Controllers\MitraPageController;
-use App\Http\Controllers\KompetensiLowonganController;
+use App\Http\Controllers\DPL\KonversiCPLController;
+use App\Http\Controllers\DPL\LapakhirDPLController;
+use App\Http\Controllers\KatalogLowonganController;
+use App\Http\Controllers\MatkulKurikulumController;
+use App\Http\Controllers\MitraSertifikatController;
+use App\Http\Controllers\ProfileAkademikController;
+use App\Http\Controllers\MahasiswaLaporanController;
+use App\Http\Controllers\PesertaMagangExtController;
+use App\Http\Controllers\ProfileDosenWaliController;
+use App\Http\Controllers\ProfileMahasiswaController;
+use App\Http\Controllers\DPL\KonversiNilaiController;
 use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
 use App\Http\Controllers\PLMitra\PenilaianPLController;
-use App\Http\Controllers\LaporanAkhirPLController;
-use App\Http\Controllers\LaporanMingguanPLController;
 use App\Http\Controllers\LowonganPLController;
-use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\ProfileAdminProdiController;
-use App\Http\Controllers\ProfileAkademikController;
-use App\Http\Controllers\ProfileDosenController;
-use App\Http\Controllers\ProfileDosenWaliController;
-use App\Http\Controllers\ValidasiNilaiKaprodi;
-use App\Http\Controllers\ValidasiNilaiKaprodiExt;
-use App\Http\Controllers\ProfileMitraController;
-use App\Http\Controllers\ProfileWadirController;
+use App\Http\Controllers\KompetensiLowonganController;
+use App\Http\Controllers\MitraDaftarPelamarController;
 use App\Http\Controllers\ValidasiProgramMagangKaprodi;
-use App\Http\Controllers\WadirPageController;
-use App\Http\Controllers\PLMitraPageController;
-use App\Http\Controllers\BerkasController;
-use App\Http\Controllers\BerkasLowonganController;
-use App\Http\Controllers\DaftarMagangController;
-use App\Http\Controllers\DaftarPermohonanMagangController;
-use App\Http\Controllers\DosenPLController;
-use App\Http\Controllers\MahasiswaLaporanController;
-use App\Http\Controllers\DPL\LapakhirDPLController;
-use App\Http\Controllers\Kaprodi\LaporanAkhirController;
-use App\Http\Controllers\DPL\DaftarPesertaMagangController;
-use App\Http\Controllers\DPL\KonversiCPLController;
-use App\Http\Controllers\DPL\KonversiNilaiController;
-use App\Http\Controllers\Kaprodi\LogbookMahasiswaController;
 use App\Http\Controllers\Kaprodi\PLMahasiswaController;
-use App\Http\Controllers\MahasiswaLaporanMingguanController;
-use App\Http\Controllers\MitraLaporanAkhirController;
+use App\Http\Controllers\DaftarNilaiMahasiswaController;
+use App\Http\Controllers\Kaprodi\LaporanAkhirController;
 use App\Http\Controllers\MitraLaporanMingguanController;
-use App\Http\Controllers\MitraLogbookController;
-use App\Http\Controllers\MitraPlottingController;
-use App\Http\Controllers\MitraSertifikatController;
-use App\Http\Controllers\PelamarMagangController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DaftarPermohonanMagangController;
+use App\Http\Controllers\InputKriteriaMahasiswaController;
+use App\Http\Controllers\DPL\DaftarPesertaMagangController;
+use App\Http\Controllers\Kaprodi\LogbookMahasiswaController;
+use App\Http\Controllers\MahasiswaLaporanMingguanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -425,6 +425,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         //Route Laporan Mingguan mahasiswa
         Route::get('/dashboard/mahasiswa/laporan-mingguan/index', [MahasiswaLaporanMingguanController::class, 'index'])->name('mahasiswa.laporan.mingguan.index');
         Route::get('/dashboard/mahasiswa/laporan-mingguan/create', [MahasiswaLaporanMingguanController::class, 'create'])->name('mahasiswa.laporan.mingguan.create');
+        Route::post('dashboard/mahasiswa/laporan-mingguan/store', [MahasiswaLaporanMingguanController::class, 'store'])->name('mahasiswa.laporan.mingguan.store');
 
         //Route Laporan Akhir mahasiswa
         Route::get('/upload-laporan-akhir/magang-internal/{id_user}/create', [MitraSertifikatController::class, 'create'])->name('upload.laporan.akhir.mahasiswa.int.create');
@@ -466,15 +467,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/manajemen/sertifikat-mitra/{id_pelamar_magang}/store', [MitraSertifikatController::class, 'store'])->name('manajemen.sertifikat.mitra.store');
         Route::delete('/manajemen/sertifikat-mitra/{id_transkrip}/destroy', [MitraSertifikatController::class, 'destroy'])->name('manajemen.sertifikat.mitra.destroy');
 
-        // Route Manajemen Logbook Mita
+        // Route Manajemen Logbook Mitra
         Route::get('/manajemen/mitra-logbook/index', [MitraLogbookController::class, 'index'])->name('manajemen.mitra.logbook.index');
         Route::get('/manajemen/mitra-logbook/{id}/show', [MitraLogbookController::class, 'show'])->name('manajemen.mitra.logbook.show');
-
+        Route::get('/manajemen/mitra-logbook/{id}/show-detail', [MitraLogbookController::class, 'showdetail'])->name('manajemen.mitra.logbook.showdetail');
         // Route Manajemen Laporan Mingguan
-        Route::get('/manajemen/laporan-mingguan/index', [MitraLaporanMingguanController::class, 'index'])->name('manajemen.mitra.lapmingguan.index');
+        Route::get('/manajemen/laporan-mingguan/{id}/show', [MitraLaporanMingguanController::class, 'show'])->name('manajemen.mitra.lapmingguan.show');
 
         // Route Manajemen Laporan Akhir
         Route::get('/manajemen/laporan-akhir/index', [MitraLaporanAkhirController::class, 'index'])->name('manajemen.mitra.lapakhir.index');
+        Route::get('/manajemen/laporan-akhir/{id}/show', [MitraLaporanAkhirController::class, 'show'])->name('manajemen.mitra.lapakhir.show');
 
         // Route Manajemen Program Magang
         Route::get('/manajemen/{id_lowongan}/program-magang', [ProgramMagangController::class, 'index'])->name('manajemen.program.magang.index');

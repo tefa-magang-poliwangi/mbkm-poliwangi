@@ -34,7 +34,7 @@
                                 <a href="{{ Route('manajemen.program.magang.create', $id_lowongan) }}"
                                     class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
-                                    Tambah Program Magang
+                                    Tambah Kegiatan Magang
                                 </a>
                             </div>
                         </div>

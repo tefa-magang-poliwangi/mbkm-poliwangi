@@ -1,7 +1,9 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Rincian Kegiatan | MBKM Poliwangi</title>
+    <title>Laporan Mingguan | MBKM Poliwangi</title>
+
+    @livewireStyles
 @endsection
 
 @section('css')
@@ -36,48 +38,36 @@
         <div class="col-12 py-5">
             <div class="card">
                 <div class="card-body">
-
-                    {{-- form --}}
-                    <form action="{{ route('manajemen.lowongan.mitra.store') }}" method="POST"
-                        enctype="multipart/form-data">
+                    {{-- Form --}}
+                    <form action="{{ route('mahasiswa.laporan.mingguan.store') }}" method="POST">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="waktu_mulai" class="waktu_mulai">Waktu Mulai</label>
+                                <label for="waktu_mulai">Waktu Mulai</label>
                                 <input id="waktu_mulai" type="text" name="waktu_mulai"
-                                    class="form-control date-input bg-white @error('waktu_mulai') is-invalid @enderror"
-                                    data-dd-opt-custom-class="dd-theme-bootstrap" placeholder="Waktu Mulai">
-                                @error('waktu_mulai')
-                                    <div id="waktu_mulai" class="form-text text-danger">
-                                        sj
-                                    </div>
-                                @enderror
+                                    class="form-control date-input bg-white">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="waktu_akhir" class="waktu_akhir">Waktu Akhir</label>
+                                <label for="waktu_akhir">Waktu Akhir</label>
                                 <input id="waktu_akhir" type="text" name="waktu_akhir"
-                                    class="form-control date-input bg-white @error('waktu_akhir') is-invalid @enderror"
-                                    data-dd-opt-custom-class="dd-theme-bootstrap" placeholder="Waktu Akhir">
-                                @error('waktu_akhir')
-                                    <div id="waktu_akhir" class="form-text text-danger">
-                                        sj
-                                    </div>
-                                @enderror
+                                    class="form-control date-input bg-white">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <textarea id="exampleFormControlTextarea1" name="keterangan" class="form-control" style="width: 100%; height: 300px;"
+                                placeholder="Tips: ceritakan kegiatanmu tanpa menginformasikan data yang bersifat rahasia"></textarea>
+                        </div>
+                        {{-- livewire Laporan Mingguan --}}
+                        @livewire('laporan-mingguan')
+                        {{-- livewire Laporan Mingguan END --}}
+                        <div class="text-center py-3">
+                            <button type="submit" class="btn btn-theme-two">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
                     </form>
-
-                    {{-- form end --}}
-                    <h6 class="card-title">Rekap Laporanmu Dalam Seminggu Ini</h6>
-                    <div class="form-group">
-                        <textarea id="exampleFormControlTextarea1" style="width: 100%; height: 300px;"
-                            placeholder="Tips: ceritakan kegiatanmu tanpa menginformasikan data yang bersifat rahasia"></textarea>
-                    </div>
-                    <div class="text-center py-3">
-                        <button class="btn btn-theme-two">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
-                    </div>
+                    {{-- Form End --}}
                 </div>
             </div>
         </div>
@@ -85,6 +75,8 @@
 @endsection
 
 @section('script')
+    @livewireScripts
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card card-rounded-sm">
                     <div class="card-header">
-                        <h4>Tambah Program Magang - MBKM Poliwangi</h4>
+                        <h4>Tambah Kegiatan Magang - MBKM Poliwangi</h4>
                     </div>
 
                     <div class="card-body">

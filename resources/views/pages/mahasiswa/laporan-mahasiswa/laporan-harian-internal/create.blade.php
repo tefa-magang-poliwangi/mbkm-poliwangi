@@ -41,10 +41,13 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="tanggal" class="tanggal">Masukkan Tanggal</label>
+                                <label for="tanggal" class="tanggal">
+                                    <h6>Masukkan Tanggal</h6>
+                                </label>
                                 <input id="tanggal" type="text" name="tanggal"
                                     class="form-control date-input bg-white @error('tanggal') is-invalid @enderror"
-                                    data-dd-opt-custom-class="dd-theme-bootstrap" placeholder="masukkan tanggal">
+                                    data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    placeholder="masukkan tanggal logbook di tulis">
                                 @error('tanggal')
                                     <div id="tanggal" class="form-text text-danger">
                                         {{ $message }}
@@ -59,6 +62,14 @@
                                 placeholder="Tips: ceritakan kegiatanmu tanpa menginformasikan data yang bersifat rahasia"></textarea>
                         </div>
 
+                        <label for="bukti_image">
+                            <h6>Upload Bukti Logbook</h6>
+                            <span class="text-muted font-weight-light">upload file dengan ekstensi *jpg *jpeg *png
+                                dengan
+                                ukuran
+                                maks
+                                2mb.</span>
+                        </label>
                         <div class="input-group mb-3">
                             <input type="file" class="form-control @error('bukti_image') is-invalid @enderror"
                                 aria-describedby="button-addon2" id="bukti_image" name="bukti_image">

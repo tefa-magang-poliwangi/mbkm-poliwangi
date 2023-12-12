@@ -79,7 +79,7 @@ class Mahasiswa extends Model
 
     public function laporan_mingguan()
     {
-        return $this->hasMany(LaporanMingguan::class);
+        return $this->hasMany(LaporanMingguan::class, 'id_mahasiswa', 'id');
     }
 
     public function detail_penilaian_magang_ext()
@@ -94,16 +94,13 @@ class Mahasiswa extends Model
 
     // Mahasiswa.php
 
-public function laporanAkhir()
-{
-    return $this->hasOne(LaporanAkhir::class, 'id_mahasiswa', 'id');
-}
+    // public function laporanAkhir()
+    // {
+    //     return $this->hasOne(LaporanAkhir::class, 'id_mahasiswa', 'id');
+    // }
 
-public function mahasiswa()
-{
-    return $this->hasOne(Mahasiswa::class, 'id_user');
-
-
-}
-
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'id_user');
+    }
 }
