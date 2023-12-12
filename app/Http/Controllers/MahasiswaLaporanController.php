@@ -6,6 +6,7 @@ use App\Models\Logbook;
 use App\Models\Lowongan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MahasiswaLaporanController extends Controller
 {
@@ -18,7 +19,7 @@ class MahasiswaLaporanController extends Controller
     {
         // Ambil ID mahasiswa yang sedang login (sesuai dengan asumsi Anda)
         $mahasiswaId = auth()->user()->mahasiswa->first()->id;
-
+        // $lowongan = Lowongan::where();
         // Ambil logbooks terkait dengan mahasiswa tertentu
         $logbooks = Logbook::where('id_mahasiswa', $mahasiswaId)
             ->select('id', 'tanggal', 'kegiatan', 'bukti')
@@ -70,8 +71,9 @@ class MahasiswaLaporanController extends Controller
             'id_mahasiswa' => auth()->user()->mahasiswa->firstOrFail()->id,
         ]);
 
+        Alert::success('Success', 'Logbook Harian berhasil di Simpan');
         // Redirect with success message
-        return redirect()->route('mahasiswa.laporan.harian.index')->with('success', 'Logbook harian berhasil disimpan.');
+        return redirect()->route('mahasiswa.laporan.harian.index');
     }
 
 

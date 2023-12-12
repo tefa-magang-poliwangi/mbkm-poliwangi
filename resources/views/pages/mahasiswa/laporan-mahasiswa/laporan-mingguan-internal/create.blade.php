@@ -44,13 +44,13 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="waktu_mulai">Waktu Mulai</label>
-                                <input id="waktu_mulai" type="text" name="waktu_mulai"
-                                    class="form-control date-input bg-white">
+                                <input id="waktu_mulai" data-dd-opt-custom-class="dd-theme-bootstrap" type="text"
+                                    name="waktu_mulai" class="form-control date-input bg-white">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="waktu_akhir">Waktu Akhir</label>
-                                <input id="waktu_akhir" type="text" name="waktu_akhir"
-                                    class="form-control date-input bg-white">
+                                <input id="waktu_akhir" data-dd-opt-custom-class="dd-theme-bootstrap" type="text"
+                                    name="waktu_akhir" class="form-control date-input bg-white">
                             </div>
                         </div>
                         <div class="form-group">
