@@ -535,12 +535,6 @@
 
                     <li class="menu-header">MASTER DATA MAHASISWA</li>
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.pesertamagang.index') }}">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Peserta Magang</span>
-                        </a>
-                    </li>
-                    <li>
                         <a class="nav-link" href="{{ route('daftarlogbook.index') }}">
                             <i class="fas fa-solid fa-user"></i>
                             <span>Logbook Mahasiswa</span>

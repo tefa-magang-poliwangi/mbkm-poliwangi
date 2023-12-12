@@ -54,7 +54,7 @@ class ProfileDPLController extends Controller
             'dosen' => Dosen::where('id_user', $id)->with('user')->first(),
         ];
 
-        return view('pages.dosen.profil-dpl.dpl-profil', $data);
+        return view('dosen.profil-dpl.dpl-profil', $data);
     }
 
     /**
