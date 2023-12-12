@@ -66,7 +66,7 @@ class MitraLogbookController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -85,7 +85,7 @@ class MitraLogbookController extends Controller
     public function show($id)
     {
         $data = [
-            'logbook' => Logbook::all(),
+            'logbook' => Logbook::where('id_mahasiswa', $id)->get(),
             'pelamar_magang' => PelamarMagang::where('id_mahasiswa', $id)->first(),
         ];
 

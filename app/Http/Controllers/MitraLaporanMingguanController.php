@@ -50,7 +50,7 @@ class MitraLaporanMingguanController extends Controller
      */
     public function show($id)
     {
-        $laporanMingguan = LaporanMingguan::all();
+        $laporanMingguan = LaporanMingguan::where('id_mahasiswa', $id)->get();
         $pelamarMagang = PelamarMagang::where('id_mahasiswa', $id)->first();
 
         $data = [
