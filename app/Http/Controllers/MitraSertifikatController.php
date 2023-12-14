@@ -187,7 +187,7 @@ class MitraSertifikatController extends Controller
         TranskripMitra::where('id', $mahasiswa->id_transkrip)->update([
             'file_laporan_akhir' => $saveData['file_laporan_akhir'],
         ]);
-        Alert::success('Success', 'Berkas transkrip berhasil di unggah');
+        Alert::success('Success', 'LLaporan Akhir berhasil di unggah');
 
         return redirect()->route('upload.laporan.akhir.mahasiswa.int.create', $id_user);
     }

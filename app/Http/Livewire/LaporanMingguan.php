@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\KompetensiLowongan;
+use App\Models\KompetensiProgram;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
 use App\Models\ProgramMagang;
@@ -30,7 +31,7 @@ class LaporanMingguan extends Component
     public function getFilteredKompetensiLowongans()
     {
         if ($this->selectedProgramMagang) {
-            $kompetensiLowongans = KompetensiLowongan::where('id_lowongan', $this->selectedProgramMagang)->get();
+            $kompetensiLowongans = KompetensiProgram::where('id_program_magang', $this->selectedProgramMagang)->get();
         } else {
             $kompetensiLowongans = collect();
         }

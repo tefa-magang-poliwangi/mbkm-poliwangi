@@ -14,40 +14,34 @@
     <section class="container-fluid row pt-5">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card rounded mb-3">
+                {{-- <div class="card rounded mb-3">
                     <div class="banner bg-primary text-white text-center rounded-top">
                         <h4></h4>
                     </div>
                     <div class="card-body">
-                        {{-- <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="..."> --}}
+                        <img src="{{ asset('images/visa.png') }}" class="mt-4 card-img-top" alt="...">
                         <h6 class="card-title"></h6>
                         <div class="card-text">
-                            {{-- <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br> --}}
-
-                            {{-- kondisi ketika logbook sudah diterima --}}
-
-                            {{-- <div class="mt-2">
+                            <small class="text-muted">18 Mar 2023 - 30 Jul 2023</small><br>
+                            <div class="mt-2">
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Semua laporan mingguan sudah diterima</span>
                                 <br>
                                 <i class="fa-solid fa-circle-check" style="color: green;"></i>
                                 <span class="ml-2">Laporan akhir sudah diunggah</span>
-                            </div> --}}
-
-                            {{-- kondisi ketika logbook sudah diterima END --}}
-
-                            {{-- <h6 class="mt-4">Periode Kegiatan</h6>
-                            <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p> --}}
+                            </div>
+                            <h6 class="mt-4">Periode Kegiatan</h6>
+                            <p class="text-muted">Kamu akan mengikuti kegiatan mulai tanggal 18 Maret - 30 Juli 2023</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="card-text">
-                            <div class="mt-2" style="color: orange;">
+                            {{-- <div class="mt-2" style="color: orange;">
                                 <i class="fa-regular fa-pen-to-square"></i>
                                 <a>Belum Dibuat</a>
-                            </div>
+                            </div> --}}
                             <div>
                                 <h6 class="mt-3">Laporan Mingguan</h6>
                             </div>
@@ -80,8 +74,12 @@
                                         @foreach ($laporanMingguans as $laporan)
                                             <tr>
                                                 <td class="text-center">{{ $loop->index + 1 }}</td>
-                                                <td class="text-center">{{ $laporan->tgl_mingguan_awal ?? '-' }}</td>
-                                                <td class="text-center">{{ $laporan->tgl_mingguan_akhir ?? '-' }}</td>
+                                                <td class="text-center">
+                                                    {{ \Carbon\Carbon::parse($laporan->tgl_mingguan_awal)->format('d-M-Y') ?? '-' }}
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ \Carbon\Carbon::parse($laporan->tgl_mingguan_akhir)->format('d-M-Y') ?? '-' }}
+                                                </td>
                                                 <td class="text-center">
                                                     @if ($laporan->keterangan)
                                                         <button type="button" class="btn btn-info ml-auto"

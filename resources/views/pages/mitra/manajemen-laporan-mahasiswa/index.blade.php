@@ -34,7 +34,7 @@
                                                 <th class="text-center text-white">Pendamping Lapang</th>
                                                 <th class="text-center text-white">Logbook Mahasiswa</th>
                                                 <th class="text-center text-white">Laporan Mingguan</th>
-                                                <th class="text-center text-white">Laporan Akhir</th>
+                                                {{-- <th class="text-center text-white">Laporan Akhir</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,22 +45,23 @@
                                                     <td class="text-center">{{ $mahasiswa->nama_lowongan }}</td>
                                                     <td class="text-center">{{ $mahasiswa->nama_pl }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.mitra.logbook.show', $mahasiswa->id) }}" class="btn btn-primary fw-medium">
-                                                            <i class="fas fa-eye"></i> 
+                                                        <a href="{{ route('manajemen.mitra.logbook.show', $mahasiswa->id) }}"
+                                                            class="btn btn-primary fw-medium">
+                                                            <i class="fas fa-eye"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.mitra.lapmingguan.show', $mahasiswa->id) }}"
                                                             class="btn btn-primary fw-medium">
-                                                            <i class="fas fa-eye"></i> 
+                                                            <i class="fas fa-eye"></i>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center">
+                                                    {{-- <td class="text-center">
                                                         <a href="{{ route('manajemen.mitra.lapakhir.show', $mahasiswa->id) }}"
                                                             class="btn btn-primary fw-medium">
-                                                            <i class="fas fa-eye"></i> 
+                                                            <i class="fas fa-eye"></i>
                                                         </a>
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>

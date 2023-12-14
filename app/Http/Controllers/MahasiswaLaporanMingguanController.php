@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\KompetensiLowongan;
+use App\Models\KompetensiProgram;
 use App\Models\LaporanMingguan;
 use App\Models\Mahasiswa;
 use App\Models\PelamarMagang;
 use App\Models\ProgramMagang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MahasiswaLaporanMingguanController extends Controller
 {
@@ -54,19 +56,21 @@ class MahasiswaLaporanMingguanController extends Controller
         ]);
 
         $mahasiswaId = Auth::user()->mahasiswa->first()->id;
+        $kompetensiProgram = KompetensiProgram::findOrFail($request->id_kompetensi_lowongan);
 
-
+        // dd($kompetensiProgram);
         $laporanMingguan = LaporanMingguan::create([
             'tgl_mingguan_awal' => $request->waktu_mulai,
             'tgl_mingguan_akhir' => $request->waktu_akhir,
             'keterangan' => $request->keterangan,
             'id_mahasiswa' => $mahasiswaId,
             'id_program_magang' => $request->id_program_magang,
-            'id_kompetensi_lowongan' => $request->id_kompetensi_lowongan,
+            'id_kompetensi_lowongan' => $kompetensiProgram->id_kompetensi_lowongan,
             'validasi_pl' => 'Aktif',
         ]);
 
-        return redirect()->route('mahasiswa.laporan.mingguan.index')->with('success', 'Laporan Mingguan berhasil disimpan.');
+        Alert::success('Success', 'Laporan Mingguan berhasil di Simpan');
+        return redirect()->route('mahasiswa.laporan.mingguan.index');
     }
 
     /**
