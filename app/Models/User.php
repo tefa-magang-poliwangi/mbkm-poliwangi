@@ -85,10 +85,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(NilaiKonversi::class, 'id_user', 'id');
     }
-    public function laporanAkhirs()
-    {
-        return $this->hasMany(LaporanAkhir::class, 'id_mahasiswa', 'id');
-    }
 
     // Relasi dengan model DosenPL
     public function dosen_pl()

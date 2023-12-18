@@ -16,45 +16,24 @@ class NilaiKonversiInt extends Model
         'angka_mutu',
         'kredit',
         'mutu',
-        'id_mahasiswa',
         'id_matkul',
-        'id_lowongan',
-        'id_pelamar',
+        'id_pelamar_magang',
+        'id_transkrip_mitra',
     ];
 
     // relasi
-    public function mahasiswa()
-    {
-        return $this->belongsTo(Mahasiswa::class, 'id_mahasiswa', 'id');
-    }
-
     public function matkul()
     {
         return $this->belongsTo(Matkul::class, 'id_matkul', 'id');
     }
 
-    public function lowongan()
+    public function pelamar_magang()
     {
-        return $this->belongsTo(Lowongan::class, 'id_lowongan', 'id');
+        return $this->belongsTo(PelamarMagang::class, 'id_pelamar_magang', 'id');
     }
 
-    public function pelamar()
-    {
-        return $this->belongsTo(PelamarMagang::class, 'id_pelamar', 'id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user', 'id');
-    }
-
-    public function transkripMitra()
+    public function transkrip_mitra()
     {
         return $this->belongsTo(TranskripMitra::class, 'id_transkrip_mitra');
-    }
-
-    public function nilai_konversi_int()
-    {
-        return $this->hasMany(NilaiKonversiInt::class, 'id_pelamar', 'id');
     }
 }

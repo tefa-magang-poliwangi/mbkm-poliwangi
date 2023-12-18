@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('transkrip_mitras', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_pelamar_magang')->unsigned();
-            $table->bigInteger('id_periode')->unsigned();
             $table->string('file_transkrip', 255)->nullable(false);
             $table->string('file_sertifikat', 255)->nullable(false);
             $table->string('file_laporan_akhir', 255)->nullable(true);
             $table->text('evaluasi')->nullable();
-            $table->timestamps();
+            $table->bigInteger('id_pelamar_magang')->unsigned();
+            $table->bigInteger('id_periode')->unsigned();
             $table->foreign('id_pelamar_magang')->references('id')->on('pelamar_magangs')->onDelete('cascade');
             $table->foreign('id_periode')->references('id')->on('periodes')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

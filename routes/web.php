@@ -113,7 +113,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::post('/login', [AuthController::class, 'do_login'])->name('do.login');
     });
 
-
     Route::group(['middleware' => ['auth', 'permission']], function () {
         // # (Route Super Admin)
         Route::get('/dashboard/admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
