@@ -25,13 +25,17 @@ class DosenPLController extends Controller
      */
     public function index()
     {
-        $prodi_id = AdminProdi::Where('id_user', Auth::user()->id)->first()->id_prodi;
+        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $datas = [
-            'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
-            'prodi' => Prodi::Where('id', $prodi_id)->get(),
-            'dosen_pls' => DosenPL::all(),
-            'id_prodi' => $prodi_id
+            'dosens' => Dosen::where('id_prodi', $prodi_id)->get(),
+            'prodi' => Prodi::find($prodi_id),
+            'dosen_pls' => Dosen::where('id_prodi', $prodi_id)
+                ->with('dosen_pl') // Pastikan nama relasinya sesuai dengan yang didefinisikan di model Dosen
+                ->get()
+                ->pluck('dosen_pl') // Ambil semua DosenPL dari hasil query di atas
+                ->flatten(),
+            'id_prodi' => $prodi_id,
         ];
 
         return view('pages.kaprodi.pages-kaprodi.pl-mahasiswa.index', $datas);
@@ -49,11 +53,14 @@ class DosenPLController extends Controller
         $prodi_user = $admin_prodi_user->id_prodi;
 
         // mengambil seluruh data dosen dengan role dosen
-        $dosens = Dosen::where('id_prodi', $prodi_user)->whereDoesntHave('dosen_pl')->whereHas('user', function ($query) {
-            $query->whereHas('roles', function ($query) {
-                $query->where('name', 'dosen');
-            });
-        })->get();
+        $dosens = Dosen::where('id_prodi', $prodi_user)
+            ->whereDoesntHave('dosen_pl')
+            ->whereHas('user', function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->where('name', 'dosen');
+                });
+            })
+            ->get();
 
         $data = [
             'dosens' => $dosens,
@@ -105,12 +112,12 @@ class DosenPLController extends Controller
      */
     public function show($id_dosen_pl)
     {
+        
         $data = [
             'dosen_pl' => DosenPL::findOrFail($id_dosen_pl),
             'id_dosen_pl' => $id_dosen_pl,
-            'pendamping_lapang' => PendampingLapangMahasiswa::where('id_dosen_pl', $id_dosen_pl)->get()
+            'pendamping_lapang' => PendampingLapangMahasiswa::where('id_dosen_pl', $id_dosen_pl)->get(),
         ];
-
 
         return view('pages.kaprodi.pages-kaprodi.pl-mahasiswa.show', $data);
     }
