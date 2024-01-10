@@ -232,6 +232,24 @@
                     </li>
                 @endcan
 
+                @can('manajemen.nilai.huruf.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.nilai.huruf.index') }}">
+                            <i class="fas fa-solid fa-calendar-day"></i>
+                            <span>Data Nilai Huruf</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.angka.mutu.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.angka.mutu.index') }}">
+                            <i class="fas fa-solid fa-calendar-day"></i>
+                            <span>Data Angka Mutu</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('formulir.mitra.page')
                     <li>
                         <a class="nav-link" href="{{ route('formulir.mitra.page') }}">
@@ -318,12 +336,12 @@
                 @endcan
 
                 @can('manajemen.kaprodi.index')
-                <li>
-                    <a class="nav-link" href="{{ route('manajemen.kaprodi.index') }}">
-                        <i class="fas fa-solid fa-user-graduate"></i>
-                        <span>Data Kaprodi</span>
-                    </a>
-                </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.kaprodi.index') }}">
+                            <i class="fas fa-solid fa-user-graduate"></i>
+                            <span>Data Kaprodi</span>
+                        </a>
+                    </li>
                 @endcan
 
                 @can('manajemen.dosen.pl.index')

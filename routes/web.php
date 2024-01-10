@@ -86,6 +86,10 @@ use App\Http\Controllers\InputKriteriaMahasiswaController;
 use App\Http\Controllers\DPL\DaftarPesertaMagangController;
 use App\Http\Controllers\Kaprodi\LogbookMahasiswaController;
 use App\Http\Controllers\MahasiswaLaporanMingguanController;
+use App\Http\Controllers\ManajemenAngkaMutu;
+use App\Http\Controllers\ManajemenDetailAngkaMutu;
+use App\Http\Controllers\ManajemenDetailNilaiHuruf;
+use App\Http\Controllers\ManajemenNilaiHuruf;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +120,28 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::group(['middleware' => ['auth', 'permission']], function () {
         // # (Route Super Admin)
         Route::get('/dashboard/admin', [SuperAdminPageController::class, 'dashboard_admin'])->name('dashboard.admin.page');
+
+        // Route Manajemen Nilai Huruf
+        Route::get('/manajemen/profil-nilai-huruf', [ManajemenNilaiHuruf::class, 'index'])->name('manajemen.nilai.huruf.index');
+        Route::post('/manajemen/profil-nilai-huruf/store', [ManajemenNilaiHuruf::class, 'store'])->name('manajemen.nilai.huruf.store');
+        Route::get('/manajemen/profil-nilai-huruf/{id_profil_nilai_huruf}/update-status', [ManajemenNilaiHuruf::class, 'update'])->name('manajemen.nilai.huruf.update');
+
+        // Route Manajemen Detail Nilai Huruf
+        Route::get('/manajemen/detail-nilai-huruf/{id_profil_nilai_huruf}/show', [ManajemenDetailNilaiHuruf::class, 'show'])->name('manajemen.detail.nilai.huruf.show');
+        Route::post('/manajemen/detail-nilai-huruf/{id_profil_nilai_huruf}/store', [ManajemenDetailNilaiHuruf::class, 'store'])->name('manajemen.detail.nilai.huruf.store');
+        Route::put('/manajemen/detail-nilai-huruf/{id_detail_nilai_huruf}/update', [ManajemenDetailNilaiHuruf::class, 'update'])->name('manajemen.detail.nilai.huruf.update');
+        Route::get('/manajemen/detail-nilai-huruf/{id_detail_nilai_huruf}/destroy', [ManajemenDetailNilaiHuruf::class, 'destroy'])->name('manajemen.detail.nilai.huruf.destroy');
+
+        // Route Manajemen Angka Mutu
+        Route::get('/manajemen/profil-angka-mutu', [ManajemenAngkaMutu::class, 'index'])->name('manajemen.angka.mutu.index');
+        Route::post('/manajemen/profil-angka-mutu/store', [ManajemenAngkaMutu::class, 'store'])->name('manajemen.angka.mutu.store');
+        Route::get('/manajemen/profil-angka-mutu/{id_profil_angka_mutu}/update-status', [ManajemenAngkaMutu::class, 'update'])->name('manajemen.angka.mutu.update');
+
+        // Route Manajemen Detail Angka Mutu
+        Route::get('/manajemen/detail-angka-mutu/{id_profil_angka_mutu}/show', [ManajemenDetailAngkaMutu::class, 'show'])->name('manajemen.detail.angka.mutu.show');
+        Route::post('/manajemen/detail-angka-mutu/{id_profil_angka_mutu}/store', [ManajemenDetailAngkaMutu::class, 'store'])->name('manajemen.detail.angka.mutu.store');
+        Route::put('/manajemen/detail-angka-mutu/{id_detail_angka_mutu}/update', [ManajemenDetailAngkaMutu::class, 'update'])->name('manajemen.detail.angka.mutu.update');
+        Route::get('/manajemen/detail-angka-mutu/{id_detail_angka_mutu}/destroy', [ManajemenDetailAngkaMutu::class, 'destroy'])->name('manajemen.detail.angka.mutu.destroy');
 
         // Route Profil Admin
         Route::get('/dashboard/admin/ubah-profil/{id_user}', [ProfileAdminController::class, 'show'])->name('profil.admin.page');
