@@ -138,16 +138,6 @@
                     <div class="card-body">
                         <span class="fw-bold">Petunjuk Rentang Pengisian Nilai : </span><br>
 
-                        {{-- <ol>
-                        <li>A (90 - 100)</li>
-                        <li>AB (80 - 89)</li>
-                        <li>B (70 - 79)</li>
-                        <li>BC (60 - 69)</li>
-                        <li>C (50 - 59)</li>
-                        <li>D (40 - 49)</li>
-                        <li>E (0 - 39)</li>
-                    </ol> --}}
-
                         <div class="table-responsive mt-2">
                             <table class="table table-hover text-white bg-white table-bordered">
                                 <thead class="bg-theme text-white">
@@ -158,41 +148,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">81 - 100</td>
-                                        <td class="text-center">A</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="text-center">71 - 80</td>
-                                        <td class="text-center">AB</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="text-center">66 - 70</td>
-                                        <td class="text-center">B</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">4</td>
-                                        <td class="text-center">61 - 65</td>
-                                        <td class="text-center">BC</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">5</td>
-                                        <td class="text-center">56 - 60</td>
-                                        <td class="text-center">C</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">6</td>
-                                        <td class="text-center">41 - 55</td>
-                                        <td class="text-center">D</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">7</td>
-                                        <td class="text-center">0 - 40</td>
-                                        <td class="text-center">E</td>
-                                    </tr>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+
+                                    @foreach ($nilai_huruf as $item_nilai)
+                                        <tr>
+                                            <td class="text-center">{{ $no }}</td>
+                                            <td class="text-center">{{ $item_nilai->batas_bawah }} -
+                                                {{ $item_nilai->batas_atas }}</td>
+                                            <td class="text-center">{{ $item_nilai->nilai_huruf }}</td>
+                                        </tr>
+
+                                        @php
+                                            $no++;
+                                        @endphp
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailAngkaMutu;
+use App\Models\DetailNilaiHuruf;
 use App\Models\Kurikulum;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mahasiswa;
@@ -13,57 +15,41 @@ use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
+use App\Models\ProfilAngkaMutu;
+use App\Models\ProfilNilaiHuruf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KonversiNilaiExternal extends Controller
 {
-    public function KonversiNilaiAngka($nilai_angka)
+    public function KonversiNilaiHuruf($nilai_angka, $detailNilaiHuruf)
     {
         // Penentuan nilai huruf berdasarkan nilai angka
         $nilai = $nilai_angka;
         $penilaian = 'E'; // Default penilaian jika tidak ada kriteria yang memenuhi
 
-        if ($nilai >= 81 && $nilai <= 100) {
-            $penilaian = 'A';
-        } elseif ($nilai >= 71 && $nilai < 81) {
-            $penilaian = 'AB';
-        } elseif ($nilai >= 66 && $nilai < 71) {
-            $penilaian = 'B';
-        } elseif ($nilai >= 61 && $nilai < 66) {
-            $penilaian = 'BC';
-        } elseif ($nilai >= 56 && $nilai < 61) {
-            $penilaian = 'C';
-        } elseif ($nilai >= 41 && $nilai < 56) {
-            $penilaian = 'D';
-        } elseif ($nilai >= 0 && $nilai < 41) {
-            $penilaian = 'E';
+        foreach ($detailNilaiHuruf as $detail) {
+            if ($nilai >= $detail->batas_bawah && $nilai <= $detail->batas_atas) {
+                $penilaian = $detail->nilai_huruf;
+                break; // Keluar dari loop setelah menemukan kriteria yang sesuai
+            }
         }
 
         return $penilaian;
     }
 
-    public function KonversiAngkaMutu($nilai_angka)
+    public function KonversiAngkaMutu($nilai_angka, $detailAngkaMutu)
     {
-        // Penentuan nilai huruf berdasarkan nilai angka
+        // Penentuan nilai angka mutu berdasarkan nilai angka
         $nilai = $nilai_angka;
         $angka_mutu = 0; // Default angka mutu jika tidak ada kriteria yang memenuhi
 
-        if ($nilai >= 81 && $nilai <= 100) {
-            $angka_mutu = 4;
-        } elseif ($nilai >= 71 && $nilai < 81) {
-            $angka_mutu = 3.5;
-        } elseif ($nilai >= 66 && $nilai < 71) {
-            $angka_mutu = 3;
-        } elseif ($nilai >= 61 && $nilai < 66) {
-            $angka_mutu = 2.5;
-        } elseif ($nilai >= 56 && $nilai < 61) {
-            $angka_mutu = 2;
-        } elseif ($nilai >= 41 && $nilai < 56) {
-            $angka_mutu = 1.5;
-        } elseif ($nilai >= 0 && $nilai < 41) {
-            $angka_mutu = 1;
+        foreach ($detailAngkaMutu as $detail) {
+            if ($nilai >= $detail->batas_bawah && $nilai <= $detail->batas_atas) {
+                $angka_mutu = $detail->angka_mutu;
+                break; // Keluar dari loop setelah menemukan kriteria yang sesuai
+            }
         }
 
         return $angka_mutu;
@@ -77,12 +63,20 @@ class KonversiNilaiExternal extends Controller
             $matkuls = $request->all();
             $array_key_matkuls = array_keys($matkuls);
 
+            // mengambil data nilai huruf
+            $profil_nilai_huruf_aktif = ProfilNilaiHuruf::where('status', 'Aktif')->first();
+            $detail_nilai_huruf = DetailNilaiHuruf::where('id_profil_nilai_huruf', $profil_nilai_huruf_aktif->id)->get();
+
+            // mengambil data angka mutu
+            $profil_angka_mutu_aktif = ProfilAngkaMutu::where('status', 'Aktif')->first();
+            $detail_angka_mutu = DetailAngkaMutu::where('id_profil_angka_mutu', $profil_angka_mutu_aktif->id)->get();
+
             foreach ($array_key_matkuls as $array_key) {
                 if ($array_key != '_token' && $matkuls[$array_key] != null) {
                     $data['id_matkul'] = $array_key;
                     $data['nilai_angka'] = $matkuls[$array_key];
-                    $data['nilai_huruf'] = $this->KonversiNilaiAngka($matkuls[$array_key]);
-                    $data['angka_mutu'] = $this->KonversiAngkaMutu($matkuls[$array_key]);
+                    $data['nilai_huruf'] = $this->KonversiNilaiHuruf($matkuls[$array_key], $detail_nilai_huruf);
+                    $data['angka_mutu'] = $this->KonversiAngkaMutu($matkuls[$array_key], $detail_angka_mutu);
 
                     // Ambil objek matakuliah berdasarkan kunci (ID matakuliah)
                     $matakuliah = Matkul::find($array_key);
@@ -107,6 +101,7 @@ class KonversiNilaiExternal extends Controller
             return response()->json(['error' => $e->getMessage(), 'status' => 'error']);
         }
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -168,6 +163,7 @@ class KonversiNilaiExternal extends Controller
      */
     public function show($id_mahasiswa, $id_magang_ext, $id_nilai_magang_ext)
     {
+        $profil_nilai_huruf_aktif = ProfilNilaiHuruf::where('status', 'Aktif')->first();
         $nilai_external = NilaiMagangExt::findOrFail($id_nilai_magang_ext);
         $nilai_external->mahasiswa->id;
         $periode = Periode::where('status', 'Aktif')->first();
@@ -190,6 +186,7 @@ class KonversiNilaiExternal extends Controller
             'nilai_magang_ext' => NilaiMagangExt::findOrFail($id_nilai_magang_ext),
             'nilai_konversi' => NilaiKonversi::where('id_nilai_magang_ext', $id_nilai_magang_ext)->get(),
             'nilai_kriteria_mhs' => $data_nilai,
+            'nilai_huruf' => DetailNilaiHuruf::where('id_profil_nilai_huruf', $profil_nilai_huruf_aktif->id)->get(),
         ];
 
         return view('pages.dosen.kaprodi-konversi-nilai', $data);
