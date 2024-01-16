@@ -54,4 +54,9 @@ class Prodi extends Model
     {
         return $this->hasMany(MagangExt::class);
     }
+
+    public function jurusan()
+    {
+        return $this->hasMany(Jurusan::class);
+    }
 }
