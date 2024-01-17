@@ -12,12 +12,11 @@ class Jurusan extends Model
     protected $fillable = [
         'id',
         'nama_jurusan',
-        'id_prodi',
     ];
 
     // relasi
     public function prodi()
     {
-        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+        return $this->hasMany(Prodi::class);
     }
 }

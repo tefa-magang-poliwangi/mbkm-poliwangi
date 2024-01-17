@@ -12,9 +12,15 @@ class Prodi extends Model
     protected $fillable = [
         'id',
         'nama',
+        'id_jurusan',
     ];
 
     // relasi
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
+    }
+
     public function mahasiswa()
     {
         return $this->hasMany(Mahasiswa::class);
@@ -53,10 +59,5 @@ class Prodi extends Model
     public function magang_ext()
     {
         return $this->hasMany(MagangExt::class);
-    }
-
-    public function jurusan()
-    {
-        return $this->hasMany(Jurusan::class);
     }
 }
