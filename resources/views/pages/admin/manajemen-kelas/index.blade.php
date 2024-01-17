@@ -216,7 +216,8 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{ route('manajemen.kelas.store') }}" method="POST">
+                                    <form action="{{ route('manajemen.kelas.store', ['id_prodi' => $id_prodi]) }}"
+                                        method="POST">
                                         @csrf
 
                                         <div class="modal-body">

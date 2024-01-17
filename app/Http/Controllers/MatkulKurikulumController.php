@@ -36,10 +36,18 @@ class MatkulKurikulumController extends Controller
      */
     public function create($id_kurikulum)
     {
+        $kurikulum = Kurikulum::findOrFail($id_kurikulum);
+        $prodi = $kurikulum->prodi->id_prodi;
+
+        $selectedBerkasIds = MatkulKurikulum::where('id_kurikulum', $id_kurikulum)->pluck('id_matkul')->toArray();
+
+        // Kecualikan berkas yang sudah dipilih dari berkas yang tersedia
+        $matkuls = Matkul::where('id_prodi', $prodi)->whereNotIn('id', $selectedBerkasIds)->get();
+
         $data = [
-            'matkul' => Matkul::all(),
+            'matkul' => $matkuls,
             'matkulkurikulum' => MatkulKurikulum::all(),
-            'kurikulum' => Kurikulum::where('id', $id_kurikulum)->get(),
+            'kurikulum' => $kurikulum,
             'id_kurikulum' => $id_kurikulum,
         ];
 

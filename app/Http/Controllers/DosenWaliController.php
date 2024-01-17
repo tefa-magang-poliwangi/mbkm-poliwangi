@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Models\Prodi;
 use App\Models\DosenWali;
+use App\Models\Jurusan;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -22,13 +24,13 @@ class DosenWaliController extends Controller
      */
     public function index()
     {
-        $prodi_id = AdminProdi::Where('id_user', Auth::user()->id)->first()->id_prodi;
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $datas = [
-            'dosens' => Dosen::Where('id_prodi', $prodi_id)->get(),
-            'prodi' => Prodi::Where('id', $prodi_id)->first(),
-            'dosen_walis' => DosenWali::whereHas('dosen', function ($query) use ($prodi_id) {
-                $query->where('id_prodi', $prodi_id);
+            'dosens' => Dosen::Where('id_jurusan', $jurusan_id)->get(),
+            'jurusan' => Jurusan::Where('id', $jurusan_id)->first(),
+            'dosen_walis' => DosenWali::whereHas('dosen', function ($query) use ($jurusan_id) {
+                $query->where('id_jurusan', $jurusan_id);
             })->get(),
         ];
 
@@ -43,11 +45,11 @@ class DosenWaliController extends Controller
     public function create()
     {
         $id_user = Auth()->user()->id;
-        $admin_prodi_user = AdminProdi::where('id_user', $id_user)->first();
-        $prodi_user = $admin_prodi_user->id_prodi;
+        $admin_jurusan = AdminJurusan::where('id_user', $id_user)->first();
+        $jurusan_user = $admin_jurusan->id_jurusan;
 
         // mengambil seluruh data dosen dengan role dosen
-        $dosens = Dosen::where('id_prodi', $prodi_user)->whereDoesntHave('dosen_wali')->whereHas('user', function ($query) {
+        $dosens = Dosen::where('id_jurusan', $jurusan_user)->whereDoesntHave('dosen_wali')->whereHas('user', function ($query) {
             $query->whereHas('roles', function ($query) {
                 $query->where('name', 'dosen');
             });

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use App\Models\Dosen;
+use App\Models\Jurusan;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,11 +22,11 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $datas = [
-            'prodi' => Prodi::all(),
-            'dosens' => Dosen::where('id_prodi', $prodi_id)->get(),
+            'jurusan' => Jurusan::all(),
+            'dosens' => Dosen::where('id_jurusan', $jurusan_id)->get(),
         ];
 
         return view('pages.admin.manajemen-dosen.data-dosen', $datas);
@@ -37,11 +39,8 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $data = [
-            'prodis' => Prodi::all(),
-        ];
 
-        return view('pages.admin.manajemen-dosen.create-dosen', $data);
+        return view('pages.admin.manajemen-dosen.create-dosen');
     }
 
     /**
@@ -52,11 +51,11 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
         // validasi request dosen
         $validated = $request->validate([
             'nama' => 'required|string',
             'email' => 'required|email',
-            'id_prodi' => 'required',
             'no_telp' => 'required|string|between:11,15',
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
@@ -75,7 +74,7 @@ class DosenController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'no_telp' => $validated['no_telp'],
-            'id_prodi' => $validated['id_prodi'],
+            'id_jurusan' => $jurusan_id,
             'id_user' => $user_dosen->id,
         ]);
 
@@ -105,7 +104,6 @@ class DosenController extends Controller
     {
         $data = [
             'dosen' => Dosen::findOrFail($id),
-            'prodis' => Prodi::all(),
         ];
 
         return view('pages.admin.manajemen-dosen.form-dosen', $data);
@@ -121,12 +119,11 @@ class DosenController extends Controller
     public function update(Request $request, $id)
     {
         $dosen = Dosen::findOrFail($id);
-
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
         // validasi request dosen
         $validated = $request->validate([
             'nama' => 'required|string',
             'email' => 'required|email',
-            'id_prodi' => 'required',
             'no_telp' => 'required|string|between:11,15',
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
@@ -145,7 +142,7 @@ class DosenController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'no_telp' => $validated['no_telp'],
-            'id_prodi' => $validated['id_prodi'],
+            'id_jurusan' => $jurusan_id,
             'id_user' => $user->id,
         ]);
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminProdiController;
-use App\Http\Controllers\AdminProdiPageController;
+use App\Http\Controllers\AdminJurusanPageController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
@@ -74,7 +74,7 @@ use App\Http\Controllers\KompetensiProgramController;
 use App\Http\Controllers\PLMitra\LogbookMhsPLController;
 use App\Http\Controllers\PLMitra\PenilaianPLController;
 use App\Http\Controllers\LowonganPLController;
-use App\Http\Controllers\ProfileAdminProdiController;
+use App\Http\Controllers\ProfileAdminJurusanController;
 use App\Http\Controllers\KompetensiLowonganController;
 use App\Http\Controllers\MitraDaftarPelamarController;
 use App\Http\Controllers\ValidasiProgramMagangKaprodi;
@@ -177,11 +177,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/jurusan/{id_jurusan}/destroy', [JurusanController::class, 'destroy'])->name('manajemen.jurusan.destroy');
 
         // # (Route Admin Prodi)
-        Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_admin_prodi'])->name('dashboard.admin.prodi.page');
+        Route::get('/dashboard/admin-jurusan', [AdminJurusanPageController::class, 'dashboard_admin_jurusan'])->name('dashboard.admin.jurusan.page');
 
         // Route Profil Admin Prodi
-        Route::get('/dashboard/admin-prodi/ubah-profil/{id_user}', [ProfileAdminProdiController::class, 'show'])->name('profil.admin.prodi.page');
-        Route::put('/dashboard/admin-prodi/update-profil/{id_dosen}', [ProfileAdminProdiController::class, 'update'])->name('profil.admin.prodi.update');
+        Route::get('/dashboard/admin-jurusan/ubah-profil/{id_user}', [ProfileAdminJurusanController::class, 'show'])->name('profil.admin.jurusan.page');
+        Route::put('/dashboard/admin-jurusan/update-profil/{id_user}', [ProfileAdminJurusanController::class, 'update'])->name('profil.admin.jurusan.update');
 
         // # (Route Kaprodi)
         // Route Manajemen Dosen PL
@@ -236,9 +236,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/kaprodi/daftar-lapakhir-mahasiswa/show-file/{filename}', [LaporanAkhirController::class, 'showFile'])->name('kaprodi.daftarlapakhir.showFile');
 
         // Route Manajemen Mahasiswa
-        Route::get('/manajemen/mahasiswa', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');
-        Route::get('/manajemen/mahasiswa/create', [MahasiswaController::class, 'create'])->name('manajemen.mahasiswa.create');
-        Route::post('/manajemen/mahasiswa/store', [MahasiswaController::class, 'store'])->name('manajemen.mahasiswa.store');
+        Route::get('/manajemen/mahasiswa/daftar-prodi', [MahasiswaController::class, 'daftar_prodi'])->name('mahasiswa.daftar.prodi');
+
+        Route::get('/manajemen/mahasiswa/{id_pordi}/index', [MahasiswaController::class, 'index'])->name('manajemen.mahasiswa.index');
+        Route::get('/manajemen/mahasiswa/{id_prodi}/create', [MahasiswaController::class, 'create'])->name('manajemen.mahasiswa.create');
+        Route::post('/manajemen/mahasiswa/{id_prodi}/store', [MahasiswaController::class, 'store'])->name('manajemen.mahasiswa.store');
         Route::get('/manajemen/mahasiswa/{id_mahasiswa}/edit', [MahasiswaController::class, 'edit'])->name('manajemen.mahasiswa.edit');
         Route::put('/manajemen/mahasiswa/{id_mahasiswa}/update', [MahasiswaController::class, 'update'])->name('manajemen.mahasiswa.update');
         Route::get('/manajemen/mahasiswa/{id_mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('manajemen.mahasiswa.destroy');
@@ -256,23 +258,27 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/cpl-kurikulum/{id_cpl}/destroy', [CPLKurikulumController::class, 'destroy'])->name('manajemen.cpl.kurikulum.destroy');
 
         // Route Manajemen Matakuliah
-        Route::get('/manajemen/matakuliah', [MatakuliahController::class, 'index'])->name('manajemen.matakuliah.index');
+        Route::get('/manajemen/matakuliah/daftar-prodi', [MatakuliahController::class, 'daftar_prodi'])->name('matakuliah.daftar.prodi');
+
+        Route::get('/manajemen/matakuliah/{id_prodi}/index', [MatakuliahController::class, 'index'])->name('manajemen.matakuliah.index');
         // Route::get('/manajemen/matakuliah/create', [MatakuliahController::class, 'create'])->name('manajemen.matakuliah.create');
-        Route::post('/manajemen/matakuliah/store', [MatakuliahController::class, 'store'])->name('manajemen.matakuliah.store');
+        Route::post('/manajemen/matakuliah/{id_prodi}/store', [MatakuliahController::class, 'store'])->name('manajemen.matakuliah.store');
         Route::put('/manajemen/matakuliah/{id_matkul}/update', [MatakuliahController::class, 'update'])->name('manajemen.matakuliah.update');
         Route::get('/manajemen/matakuliah/{id_matkul}/destroy', [MatakuliahController::class, 'destroy'])->name('manajemen.matakuliah.destroy');
 
         // Route Manajemen Kurikulum
-        Route::get('/manajemen/kurikulum', [KurikulumController::class, 'index'])->name('manajemen.kurikulum.index');
+        Route::get('/manajemen/kurikulum/daftar-prodi', [KurikulumController::class, 'daftar_prodi'])->name('kurikulum.daftar.prodi');
+
+        Route::get('/manajemen/kurikulum/{id_prodi}/index', [KurikulumController::class, 'index'])->name('manajemen.kurikulum.index');
         // Route::get('/manajemen/kurikulum/create', [KurikulumController::class, 'create'])->name('manajemen.kurikulum.create');
-        Route::post('/manajemen/kurikulum/store', [KurikulumController::class, 'store'])->name('manajemen.kurikulum.store');
+        Route::post('/manajemen/kurikulum/{id_prodi}/store', [KurikulumController::class, 'store'])->name('manajemen.kurikulum.store');
         Route::put('/manajemen/kurikulum/{id_kurikulum}/update', [KurikulumController::class, 'update'])->name('manajemen.kurikulum.update');
         Route::get('/manajemen/kurikulum/{id_kurikulum}/destroy', [KurikulumController::class, 'destroy'])->name('manajemen.kurikulum.destroy');
 
         // Route Manajemen Matakuliah Kurikulum
         Route::get('/manajemen/{id_kurikulum}/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
         Route::get('/manajemen/matakuliah-kurikulum/{id_kurikulum}/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
-        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
+        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
         Route::put('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/update', [MatkulKurikulumController::class, 'update'])->name('manajemen.matkul.kurikulum.update');
         Route::get('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/destroy', [MatkulKurikulumController::class, 'destroy'])->name('manajemen.matkul.kurikulum.destroy');
 
@@ -283,8 +289,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/magang-external/{id_magang_ext}/destroy', [MagangExternalController::class, 'destroy'])->name('manajemen.magang.ext.destroy');
 
         // Route Manajemen Kelas
-        Route::get('/manajemen/kelas', [KelasController::class, 'index'])->name('manajemen.kelas.index');
-        Route::post('/manajemen/kelas/store', [KelasController::class, 'store'])->name('manajemen.kelas.store');
+        Route::get('/manajemen/kelas/daftar-prodi', [KelasController::class, 'daftar_prodi'])->name('kelas.daftar.prodi');
+
+        Route::get('/manajemen/kelas/{id_prodi}/index', [KelasController::class, 'index'])->name('manajemen.kelas.index');
+        Route::post('/manajemen/kelas/{id_prodi}/store', [KelasController::class, 'store'])->name('manajemen.kelas.store');
         Route::put('/manajemen/kelas/{id_kelas}/update', [KelasController::class, 'update'])->name('manajemen.kelas.update');
         Route::get('/manajemen/kelas/{id_kelas}/destroy', [KelasController::class, 'destroy'])->name('manajemen.kelas.destroy');
 
@@ -378,9 +386,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/dashboard/dosen/ubah-profil/{id_user}', [ProfileDosenController::class, 'show'])->name('profil.dosen.page');
         Route::put('/dashboard/dosen/update-profil/{id_dosen}', [ProfileDosenController::class, 'update'])->name('profil.dosen.update');
 
+        //daftar prodi
+        Route::get('/manajemen-kaprodi/daftar-prodi', [KaprodiController::class, 'daftar_prodi'])->name('kaprodi.daftar.prodi');
         // Route Manajemen Kaprodi
-        Route::get('/manajemen/kaprodi', [KaprodiController::class, 'index'])->name('manajemen.kaprodi.index');
-        Route::post('/manajemen/kaprodi/store', [KaprodiController::class, 'store'])->name('manajemen.kaprodi.store');
+        Route::get('/manajemen/kaprodi/{id_prodi}/index', [KaprodiController::class, 'index'])->name('manajemen.kaprodi.index');
+        Route::post('/manajemen/kaprodi/{id_prodi}/store', [KaprodiController::class, 'store'])->name('manajemen.kaprodi.store');
         Route::get('/manajemen/kaprodi/{id_kaprodi}/destroy', [KaprodiController::class, 'destroy'])->name('manajemen.kaprodi.destroy');
 
         // Route Manajemen Dosen Wali

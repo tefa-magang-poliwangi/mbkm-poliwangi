@@ -36,20 +36,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="id_prodi">Prodi</label>
-                                <select class="form-control @error('id_prodi') is-invalid @enderror" id="id_prodi"
-                                    name="id_prodi">
-                                    <option value="">Pilih Prodi</option>
-                                    @foreach ($prodis as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_prodi')
-                                    <div id="id_prodi" class="form-text">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
                                 <label for="no_telp">No. HP</label>
                                 <input id="no_telp" type="text"
                                     class="form-control @error('no_telp') is-invalid @enderror" name="no_telp"

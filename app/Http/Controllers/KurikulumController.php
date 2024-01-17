@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use App\Models\Kurikulum;
 use App\Models\Prodi;
@@ -16,14 +17,26 @@ class KurikulumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
-        // Ambil daftar mahasiswa berdasarkan prodi_id
-        $kurikulum = Kurikulum::where('id_prodi', $prodi_id)->get();
+    public function daftar_prodi()
+    {
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $data = [
+            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+        ];
+
+        return view('pages.prodi.kurikulum.daftar-prodi', $data);
+    }
+
+    public function index(Request $request, $id_prodi)
+    {
+
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $kurikulum = Kurikulum::where('id_prodi', $id_prodi)->get();
+
+        $data = [
+            'id_prodi' => $id_prodi,
             'kurikulums' => $kurikulum,
             'prodi' => Prodi::all(),
             'request' => $request,
@@ -39,7 +52,6 @@ class KurikulumController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -48,9 +60,9 @@ class KurikulumController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
         $validated = $request->validate([
             'create_nama' => ['required'],
             'create_status' => ['required'],
@@ -59,12 +71,12 @@ class KurikulumController extends Controller
         Kurikulum::create([
             'nama' => $validated['create_nama'],
             'status' => $validated['create_status'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
         ]);
 
         Alert::success('Success', 'Data Kurikulum Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.kurikulum.index');
+        return redirect()->back();
     }
 
     /**
@@ -96,9 +108,9 @@ class KurikulumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $validated = $request->validate([
             'update_nama' => ['required'],
@@ -109,12 +121,12 @@ class KurikulumController extends Controller
         Kurikulum::where('id', $id)->update([
             'nama' => $validated['update_nama'],
             'status' => $validated['update_status'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
         ]);
 
         Alert::success('Success', 'Data Kurikulum Berhasil Diupdate');
 
-        return redirect()->route('manajemen.kurikulum.index');
+        return redirect()->back();
     }
 
     /**
@@ -130,6 +142,6 @@ class KurikulumController extends Controller
 
         Alert::success('Success', 'Data Kurikulum Berhasil Dihapus');
 
-        return redirect()->route('manajemen.kurikulum.index');
+        return redirect()->back();
     }
 }

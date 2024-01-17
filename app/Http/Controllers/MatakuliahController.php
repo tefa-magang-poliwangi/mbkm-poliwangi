@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use App\Models\Matkul;
 use App\Models\Prodi;
@@ -16,14 +17,24 @@ class MatakuliahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function daftar_prodi()
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
-
-        // Ambil daftar mahasiswa berdasarkan prodi_id
-        $matakuliah = Matkul::where('id_prodi', $prodi_id)->get();
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $data = [
+            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+        ];
+
+        return view('pages.prodi.matkul.daftar-prodi', $data);
+    }
+
+    public function index(Request $request, $id_prodi)
+    {
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $matakuliah = Matkul::where('id_prodi', $id_prodi)->get();
+
+        $data = [
+            'id_prodi' => $id_prodi,
             'matakuliah' => $matakuliah,
             'prodi' => Prodi::all(),
             'request' => $request
@@ -38,7 +49,7 @@ class MatakuliahController extends Controller
      */
     public function create()
     {
-    //
+        //
     }
 
     /**
@@ -47,10 +58,8 @@ class MatakuliahController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
-
         $validated = $request->validate([
             'create_matkul' => ['required', 'string'],
             'create_kode_matkul' => ['required', 'string'],
@@ -61,12 +70,12 @@ class MatakuliahController extends Controller
             'nama' => $validated['create_matkul'],
             'kode_matakuliah' => $validated['create_kode_matkul'],
             'sks' => $validated['create_sks'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
         ]);
 
         Alert::success('Succsess', 'Data Matakuliah Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.matakuliah.index');
+        return redirect()->back();
     }
 
     /**
@@ -98,9 +107,8 @@ class MatakuliahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $validated = $request->validate([
             'update_matkul' => ['required', 'string'],
@@ -112,11 +120,11 @@ class MatakuliahController extends Controller
             'nama' => $validated['update_matkul'],
             'kode_matakuliah' => $validated['update_kode_matkul'],
             'sks' => $validated['update_sks'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
         ]);
 
         Alert::success('Success', 'Data Matakuliah Berhasil Diupdate');
-        return redirect()->route('manajemen.matakuliah.index');
+        return redirect()->back();
     }
 
     /**
@@ -133,6 +141,6 @@ class MatakuliahController extends Controller
         Alert::success('Success', 'Data Matakuliah Berhasil Dihapus');
 
 
-        return redirect()->route('manajemen.matakuliah.index');
+        return redirect()->back();
     }
 }

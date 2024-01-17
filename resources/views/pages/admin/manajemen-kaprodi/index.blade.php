@@ -51,13 +51,13 @@
                                 <tbody>
                                     @foreach ($kaprodi as $item)
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 {{ $no }}
                                             </td>
-                                            <td>{{ $item->dosen->nama }}</td>
-                                            <td>{{ $item->dosen->email }}</td>
-                                            <td>
-                                                {{ $item->dosen->prodi->nama }}
+                                            <td class="text-center">{{ $item->dosen->nama }}</td>
+                                            <td class="text-center">{{ $item->dosen->email }}</td>
+                                            <td class="text-center">
+                                                {{ $item->prodi->nama }}
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ route('manajemen.kaprodi.destroy', $item->id) }}"
@@ -88,7 +88,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('manajemen.kaprodi.store') }}" method="POST">
+                    <form action="{{ route('manajemen.kaprodi.store', ['id_prodi' => $id_prodi]) }}" method="POST">
                         @csrf
 
                         <div class="modal-body">

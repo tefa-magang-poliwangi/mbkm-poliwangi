@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Profil Admin Prodi | MBKM Poliwangi</title>
+    <title>Profil Admin Jurusan | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="px-3 pt-4">
-                            <form action="{{ route('profil.admin.prodi.update', $user->id) }}" method="post">
+                            <form action="{{ route('profil.admin.jurusan.update', $user->id) }}" method="post">
                                 @method('put')
                                 @csrf
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rules;
 
-class ProfileAdminProdiController extends Controller
+class ProfileAdminJurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,7 +57,7 @@ class ProfileAdminProdiController extends Controller
             'user' => User::where('id', $id)->first(),
         ];
 
-        return view('pages.admin.profil-admin-prodi.admin-prodi-profil', $data);
+        return view('pages.admin.profil-admin-jurusan.admin-jurusan-profil', $data);
     }
 
     /**

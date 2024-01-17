@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use App\Models\Kelas;
 use App\Models\Periode;
@@ -17,14 +18,25 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function daftar_prodi()
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
-
-        // Ambil daftar mahasiswa berdasarkan prodi_id
-        $kelas = Kelas::where('id_prodi', $prodi_id)->get();
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $data = [
+            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+        ];
+
+        return view('pages.admin.manajemen-kelas.daftar-prodi', $data);
+    }
+    public function index($id_prodi)
+    {
+        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+
+        // Ambil daftar mahasiswa berdasarkan prodi_id
+        $kelas = Kelas::where('id_prodi', $id_prodi)->get();
+
+        $data = [
+            'id_prodi' => $id_prodi,
             'kelas' => $kelas,
             'prodis' => Prodi::all(),
             'periodes' => Periode::all(),
@@ -49,9 +61,9 @@ class KelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $validated = $request->validate([
             'create_tingkat_kelas' => ['required'],
@@ -63,13 +75,13 @@ class KelasController extends Controller
         Kelas::create([
             'tingkat_kelas' => $validated['create_tingkat_kelas'],
             'abjad_kelas' => $validated['create_abjad_kelas'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
             'id_periode' => $validated['create_id_periode'],
         ]);
 
         Alert::success('Success', 'Data Kelas Berhasil Ditambahan');
 
-        return redirect()->route('manajemen.kelas.index');
+        return redirect()->back();
     }
 
     /**
@@ -101,9 +113,9 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $validated = $request->validate([
             'update_tingkat_kelas' => ['required'],
@@ -114,7 +126,7 @@ class KelasController extends Controller
         Kelas::where('id', $id)->update([
             'tingkat_kelas' => $validated['update_tingkat_kelas'],
             'abjad_kelas' => $validated['update_abjad_kelas'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
             'id_periode' => $validated['update_id_periode'],
         ]);
 
@@ -136,6 +148,6 @@ class KelasController extends Controller
 
         Alert::success('Success', 'Data Kelas Berhasil Dihapus');
 
-        return redirect()->route('manajemen.kelas.index');
+        return redirect()->back();
     }
 }
