@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
-use App\Models\Prodi;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProdiController extends Controller
+class JurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,10 @@ class ProdiController extends Controller
     public function index()
     {
         $data = [
-            'prodi' => Prodi::all(),
             'jurusan' => Jurusan::all()
         ];
 
-        return view('pages.prodi.daftar-prodi', $data);
+        return view('pages.jurusan.index', $data);
     }
 
     /**
@@ -31,7 +29,7 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -43,18 +41,17 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'create_nama_prodi' => ['required', 'string'],
             'create_jurusan' => ['required', 'string'],
         ]);
 
-        Prodi::create([
-            'nama' => $validated['create_nama_prodi'],
-            'id_jurusan' => $validated['create_jurusan']
+        Jurusan::create([
+            'nama_jurusan' => $validated['create_jurusan'],
+
         ]);
 
-        Alert::success('Success', 'Data Prodi Berhasil Ditambahkan');
+        Alert::success('Success', 'Data Jurusan Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.prodi.index');
+        return redirect()->route('manajemen.jurusan.index');
     }
 
     /**
@@ -99,11 +96,11 @@ class ProdiController extends Controller
      */
     public function destroy($id)
     {
-        $prodi = Prodi::findOrFail($id);
-        $prodi->delete();
+        $jurusan = Jurusan::findOrFail($id);
+        $jurusan->delete();
 
-        Alert::success('Success', 'Data Program Studi Berhasil Dihapus');
+        Alert::success('Success', 'Data Jurusan Berhasil Dihapus');
 
-        return redirect()->route('manajemen.prodi.index');
+        return redirect()->route('manajemen.jurusan.index');
     }
 }

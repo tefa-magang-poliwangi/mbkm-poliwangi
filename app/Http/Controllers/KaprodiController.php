@@ -20,7 +20,7 @@ class KaprodiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
 
         $datas = [
@@ -76,7 +76,7 @@ class KaprodiController extends Controller
             $user = User::findOrFail($id_user);
 
             // Hapus peran "dosen" dari user
-            $user->removeRole('dosen');
+            // $user->removeRole('dosen');
 
             // Tambahkan peran "kaprodi" ke user
             $user->assignRole($kaprodi_role);

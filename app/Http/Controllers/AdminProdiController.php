@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 use App\Models\Prodi;
 use App\Models\User;
@@ -20,13 +22,13 @@ class AdminProdiController extends Controller
     {
         $usersWithAdminProdiRoles = User::whereHas('roles', function ($query) {
             $query->where('name', 'admin-prodi');
-        })->whereDoesntHave('admin_prodi')->get();
+        })->whereDoesntHave('admin_jurusan')->get();
 
         $data = [
             'user_option' => $usersWithAdminProdiRoles,
             'users' => User::all(),
-            'admins' => AdminProdi::all(),
-            'prodi' => Prodi::all()
+            'admins' => AdminJurusan::all(),
+            'jurusan' => Jurusan::all()
         ];
 
         return view('pages.admin.manajemen-admin-prodi.data-admin-prodi', $data);
@@ -53,17 +55,17 @@ class AdminProdiController extends Controller
     {
         $validated = $request->validate([
             'create_user' => ['required'],
-            'create_prodi' => ['required'],
+            'create_jurusan' => ['required'],
 
         ]);
 
-        AdminProdi::create([
+        AdminJurusan::create([
             'id_user' => $validated['create_user'],
-            'id_prodi' => $validated['create_prodi']
+            'id_jurusan' => $validated['create_jurusan']
         ]);
 
 
-        Alert::success('Succes', 'Data Admin Prodi Berhasil Ditambahkan');
+        Alert::success('Succes', 'Data Admin Jurusan Berhasil Ditambahkan');
         return redirect()->route('manajemen.admin.prodi.index');
     }
 
@@ -109,7 +111,7 @@ class AdminProdiController extends Controller
      */
     public function destroy($id)
     {
-        $adminprodi = AdminProdi::findOrFail($id);
+        $adminprodi = Jurusan::findOrFail($id);
         $adminprodi->delete();
 
         Alert::success('Success', 'User Admin Prodi Berhasil Dihapus');

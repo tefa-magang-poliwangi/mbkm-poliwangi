@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('magang_exts', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->nullable(false);
-            $table->string('jenis_magang', 255)->nullable(false);
+            $table->unsignedBigInteger('id_jenis_program')->nullable(false);
             $table->unsignedBigInteger('id_periode')->nullable(false);
             $table->unsignedBigInteger('id_prodi')->nullable(false);
+            $table->foreign('id_jenis_program')->references('id')->on('jenis_programs')->onDelete('cascade');
             $table->foreign('id_periode')->references('id')->on('periodes')->onDelete('cascade');
             $table->foreign('id_prodi')->references('id')->on('prodis')->onDelete('cascade');
             $table->timestamps();

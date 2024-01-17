@@ -90,7 +90,7 @@ class DosenPLController extends Controller
             foreach ($check_id_dosen as $dosenId) {
                 $dosen_user = Dosen::where('id', $dosenId)->first();
                 $user = User::findOrFail($dosen_user->id_user);
-                $user->removeRole('dosen');
+                // $user->removeRole('dosen');
 
                 DosenPL::create([
                     'id_dosen' => $dosenId,
@@ -112,7 +112,7 @@ class DosenPLController extends Controller
      */
     public function show($id_dosen_pl)
     {
-        
+
         $data = [
             'dosen_pl' => DosenPL::findOrFail($id_dosen_pl),
             'id_dosen_pl' => $id_dosen_pl,

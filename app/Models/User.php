@@ -52,9 +52,9 @@ class User extends Authenticatable
     //     $this->attributes['password'] = bcrypt($value);
     // }
 
-    public function admin_prodi()
+    public function admin_jurusan()
     {
-        return $this->hasMany(AdminProdi::class, 'id_user', 'id');
+        return $this->hasMany(AdminJurusan::class, 'id_user', 'id');
     }
 
     public function mahasiswa()

@@ -9,6 +9,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\ImportController;
@@ -169,6 +170,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/prodi', [ProdiController::class, 'index'])->name('manajemen.prodi.index');
         Route::post('/manajemen/prodi/store', [ProdiController::class, 'store'])->name('manajemen.prodi.store');
         Route::get('/manajemen/prodi/{id_prodi}/destroy', [ProdiController::class, 'destroy'])->name('manajemen.prodi.destroy');
+
+        // Route Manajemen Jurusan
+        Route::get('/manajemen/jurusan', [JurusanController::class, 'index'])->name('manajemen.jurusan.index');
+        Route::post('/manajemen/jurusan/store', [JurusanController::class, 'store'])->name('manajemen.jurusan.store');
+        Route::get('/manajemen/jurusan/{id_jurusan}/destroy', [JurusanController::class, 'destroy'])->name('manajemen.jurusan.destroy');
 
         // # (Route Admin Prodi)
         Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_admin_prodi'])->name('dashboard.admin.prodi.page');

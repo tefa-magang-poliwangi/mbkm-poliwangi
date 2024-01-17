@@ -5,23 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jurusan extends Model
+class JenisProgram extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'id',
         'nama_jurusan',
     ];
 
     // relasi
-    public function prodi()
+    public function magang_ext()
     {
-        return $this->hasMany(Prodi::class);
-    }
-
-    public function admin_jurusan()
-    {
-        return $this->hasMany(AdminJurusan::class);
+        return $this->hasMany(MagangExt::class);
     }
 }

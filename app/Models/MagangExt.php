@@ -12,7 +12,7 @@ class MagangExt extends Model
     protected $fillable = [
         'id',
         'name',
-        'jenis_magang',
+        'id_jenis_program',
         'id_periode',
         'id_prodi',
     ];
@@ -26,6 +26,10 @@ class MagangExt extends Model
     public function prodi()
     {
         return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+    }
+    public function jenis_program()
+    {
+        return $this->belongsTo(JenisProgram::class, 'id_jenis_program', 'id');
     }
 
     public function nilai_magang_ext()

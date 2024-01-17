@@ -15,11 +15,17 @@ class Kaprodi extends Model
         'periode_akhir',
         'status',
         'id_dosen',
+        'id_prodi',
     ];
 
     // relasi
     public function dosen()
     {
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id');
+    }
+    // relasi
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
 }

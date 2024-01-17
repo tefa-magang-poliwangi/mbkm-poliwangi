@@ -81,7 +81,7 @@ class DosenWaliController extends Controller
             foreach ($check_id_dosen as $dosenId) {
                 $dosen_user = Dosen::where('id', $dosenId)->first();
                 $user = User::findOrFail($dosen_user->id_user);
-                $user->removeRole('dosen');
+                // $user->removeRole('dosen');
 
                 DosenWali::create([
                     'id_dosen' => $dosenId,

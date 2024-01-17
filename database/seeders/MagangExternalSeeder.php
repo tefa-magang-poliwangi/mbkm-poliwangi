@@ -18,7 +18,7 @@ class MagangExternalSeeder extends Seeder
         MagangExt::create([
             'id' => 1,
             'name' => 'Fullstack Developper with Laravel',
-            'jenis_magang' => 'Studi Independen',
+            'id_jenis_program' => 1,
             'id_periode' => 1,
             'id_prodi' => 1,
         ]);

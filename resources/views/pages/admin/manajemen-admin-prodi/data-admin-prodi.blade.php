@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Admin Prodi | MBKM Poliwangi</title>
+    <title>Manajemen Admin Jurusan | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,22 +20,22 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Manajemen Admin Prodi</h5>
+                                <h5 class="justify-start my-auto text-theme">Manajemen Admin Jurusan</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#importAdminProdi"
-                                        title="Import Data User Admin Prodi"><i class="fa-solid fa-cloud-arrow-up"></i>
+                                        title="Import Data User Admin Jurusan"><i class="fa-solid fa-cloud-arrow-up"></i>
                                     </button>
 
                                     <button class="btn btn-primary ml-auto" data-toggle="modal"
                                         data-target="#createModal"><i class="fa-solid fa-plus"></i> &ensp; Tambah
-                                        Admin Prodi</button>
+                                        Admin Jurusan</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Modal Import Data User Admin Prodi -->
+                        <!-- Modal Import Data User Admin Jurusan -->
                         <div class="modal fade" id="importAdminProdi" tabindex="-1" role="dialog"
                             aria-labelledby="uploadModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -74,7 +74,7 @@
                                         <th class="text-center text-white" width="10%">No</th>
                                         <th class="text-white text-center">Nama</th>
                                         <th class="text-white text-center">Username</th>
-                                        <th class="text-white text-center">Program Studi</th>
+                                        <th class="text-white text-center">Jurusan</th>
                                         <th class="text-white text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -88,7 +88,7 @@
                                             <td class="text-center">{{ $no }}</td>
                                             <td class="text-center">{{ $data->user->name }}</td>
                                             <td class="text-center">{{ $data->user->username }}</td>
-                                            <td>{{ $data->prodi->nama }}</td>
+                                            <td>{{ $data->jurusan->nama_jurusan }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('manajemen.admin.prodi.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto">
@@ -114,7 +114,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Admin Prodi</h5>
+                    <h5 class="modal-title">Tambah Admin Jurusan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -142,19 +142,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="create_prodi" class="form-label">Prodi</label>
+                            <label for="create_jurusan" class="form-label">Jurusan</label>
                             <select
-                                class="form-control @error('create_prodi')
+                                class="form-control @error('create_jurusan')
                                         is-invalid
                                     @enderror"
-                                id="create_prodi" name="create_prodi">
-                                <option value="">Prodi</option>
-                                @foreach ($prodi as $dataprodi)
-                                    <option value="{{ $dataprodi->id }}">{{ $dataprodi->nama }}</option>
+                                id="create_jurusan" name="create_jurusan">
+                                <option value="">Jurusan</option>
+                                @foreach ($jurusan as $datajurusan)
+                                    <option value="{{ $datajurusan->id }}">{{ $datajurusan->nama_jurusan }}</option>
                                 @endforeach
                             </select>
-                            @error('create_prodi')
-                                <div id="create_prodi" class="form-text text-danger">
+                            @error('create_jurusan')
+                                <div id="create_jurusan" class="form-text text-danger">
                                     {{ $message }}</div>
                             @enderror
                         </div>

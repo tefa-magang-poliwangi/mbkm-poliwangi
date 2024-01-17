@@ -30,6 +30,10 @@ class Prodi extends Model
     {
         return $this->hasMany(Dosen::class);
     }
+    public function kaprodi()
+    {
+        return $this->hasMany(Kaprodi::class);
+    }
 
     public function kurikulum()
     {
@@ -39,11 +43,6 @@ class Prodi extends Model
     public function matkul()
     {
         return $this->hasMany(Matkul::class);
-    }
-
-    public function admin_prodi()
-    {
-        return $this->hasMany(AdminProdi::class);
     }
 
     public function kelas()

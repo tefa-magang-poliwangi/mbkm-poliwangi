@@ -10,12 +10,12 @@ class Dosen extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nama', 'email', 'no_telp', 'id_prodi', 'id_user'];
+    protected $fillable = ['id', 'nama', 'email', 'no_telp', 'id_jurusan', 'id_user'];
 
     // relasi
-    public function prodi()
+    public function jurusan()
     {
-        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
+        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
     }
 
     public function user()

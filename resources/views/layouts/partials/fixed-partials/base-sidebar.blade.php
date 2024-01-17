@@ -209,7 +209,16 @@
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.admin.prodi.index') }}">
                             <i class="fas fa-solid fa-headset"></i>
-                            <span>Admin Prodi</span>
+                            <span>Admin Jurusan</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.jurusan.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.jurusan.index') }}">
+                            <i class="fas fa-solid fa-school-flag"></i>
+                            <span>Jurusan</span>
                         </a>
                     </li>
                 @endcan
@@ -313,13 +322,13 @@
             {{-- Menu Admin Prodi --}}
             @auth
                 @role('admin-prodi')
-                    <li class="menu-header">ADMIN PRODI</li>
+                    <li class="menu-header">ADMIN JURUSAN</li>
 
                     @can('profil.admin.prodi.page')
                         <li>
                             <a class="nav-link" href="{{ route('profil.admin.prodi.page', auth()->user()->id) }}">
                                 <i class="fas fa-solid fa-user"></i>
-                                <span>Profil Admin Prodi</span>
+                                <span>Profil Admin Jurusan</span>
                             </a>
                         </li>
                     @endcan

@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
             JurusanSeeder::class,
             ProdiSeeder::class,
             PeriodeSeeder::class,
-            MagangExternalSeeder::class,
             MatkulSeeder::class,
             KategoriSeeder::class,
             SektorIndustriSeeder::class,
+            // MagangExternalSeeder::class,
         ]);
     }
 }
