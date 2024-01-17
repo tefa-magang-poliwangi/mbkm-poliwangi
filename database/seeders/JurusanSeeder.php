@@ -37,7 +37,7 @@ class JurusanSeeder extends Seeder
 
         Jurusan::create([
             'id' => 5,
-            'nama' => 'Jurusan Pariwisata',
+            'nama_jurusan' => 'Jurusan Pariwisata',
         ]);
     }
 }
