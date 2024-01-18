@@ -94,11 +94,15 @@ class ProdiController extends Controller
     {
         $validated = $request->validate([
             'update_nama_prodi' => ['required', 'string'],
+            'update_jenjang_pendidikan' => ['required', 'string'],
+            'update_kode_prodi' => ['required', 'string'],
             'update_jurusan' => ['required', 'string'],
         ]);
 
         Prodi::where('id', $id)->update([
             'nama' => $validated['update_nama_prodi'],
+            'jenjang_pendidikan' => $validated['update_jenjang_pendidikan'],
+            'kode_prodi' => $validated['update_kode_prodi'],
             'id_jurusan' => $validated['update_jurusan']
         ]);
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\AdminProdiImport;
+use App\Imports\AdminJurusanImport;
 use App\Imports\DataMahasiswaImport;
 use App\Imports\DosenImport;
 use App\Imports\KriteriaMagangExt;
@@ -33,7 +33,7 @@ class ImportController extends Controller
         $path = $file->storeAs('public/excel/', $nama_file);
 
         // import data
-        $import = Excel::import(new AdminProdiImport(), storage_path('app/public/excel/' . $nama_file));
+        $import = Excel::import(new AdminJurusanImport(), storage_path('app/public/excel/' . $nama_file));
 
         //remove from server
         Storage::delete($path);
