@@ -58,7 +58,7 @@
                                                     {{ $item->status }} </span>
                                             </td>
                                             <td>
-                                                <a href="{{ route('manajemen.matkul.kurikulum.index', $item->id) }}"
+                                                <a href="{{ route('manajemen.matkul.kurikulum.index', ['id_kurikulum' => $item->id, 'id_prodi' => $id_prodi]) }}"
                                                     class="btn btn-primary">
                                                     <i class="fa-solid fa-plus"></i> Matkul
                                                 </a>

@@ -16,14 +16,15 @@ class MatkulKurikulumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id_kurikulum)
+    public function index($id_kurikulum, $id_prodi)
     {
         $data = [
-            'prodi' => Prodi::all(),
+            'prodi' => Prodi::findOrFail($id_prodi),
             'matkul' => Matkul::all(),
             'kurikulum' => Kurikulum::where('id', $id_kurikulum)->get(),
             'matkulkurikulum' => MatkulKurikulum::where('id_kurikulum', $id_kurikulum)->get(),
             'id_kurikulum' => $id_kurikulum,
+            'id_prodi' => $id_prodi
         ];
 
         return view('pages.prodi.data-matkul-kurikulum', $data);
@@ -34,21 +35,19 @@ class MatkulKurikulumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_kurikulum)
+    public function create($id_kurikulum, $id_prodi)
     {
         $kurikulum = Kurikulum::findOrFail($id_kurikulum);
-        $prodi = $kurikulum->prodi->id_prodi;
-
-        $selectedBerkasIds = MatkulKurikulum::where('id_kurikulum', $id_kurikulum)->pluck('id_matkul')->toArray();
-
+        $selectedMatkul = MatkulKurikulum::where('id_kurikulum', $id_kurikulum)->pluck('id_matkul')->toArray();
         // Kecualikan berkas yang sudah dipilih dari berkas yang tersedia
-        $matkuls = Matkul::where('id_prodi', $prodi)->whereNotIn('id', $selectedBerkasIds)->get();
+        $matkuls = Matkul::where('id_prodi', $id_prodi)->whereNotIn('id', $selectedMatkul)->get();
 
         $data = [
             'matkul' => $matkuls,
             'matkulkurikulum' => MatkulKurikulum::all(),
             'kurikulum' => $kurikulum,
             'id_kurikulum' => $id_kurikulum,
+            'id_prodi' => $id_prodi
         ];
 
         return view('pages.prodi.create-matkul-kurikulum', $data);
@@ -60,7 +59,7 @@ class MatkulKurikulumController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id_kurikulum)
+    public function store(Request $request, $id_kurikulum, $id_prodi)
     {
         $validated = $request->validate([
             'semester' => ['required'],
@@ -88,7 +87,7 @@ class MatkulKurikulumController extends Controller
 
         Alert::success('Success', 'Data Matkul Kurikulum Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.matkul.kurikulum.index', $id_kurikulum);
+        return redirect()->route('manajemen.matkul.kurikulum.index', [$id_kurikulum, $id_prodi]);
     }
 
     /**

@@ -108,9 +108,10 @@ class KurikulumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $id_prodi)
+    public function update(Request $request, $id)
     {
-        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $kurikulum = Kurikulum::findOrFail($id);
+        $id_prodi = $kurikulum->id_prodi;
 
         $validated = $request->validate([
             'update_nama' => ['required'],

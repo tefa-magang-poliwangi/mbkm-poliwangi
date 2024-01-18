@@ -57,7 +57,7 @@
                                                 {{ $item->dosen->no_telp }}
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('manajemen.peserta.dosen.index', $item->id) }}"
+                                                <a href="{{ route('peserta.dosen.daftar.prodi', $item->id) }}"
                                                     class="btn btn-primary ml-auto"><i class="fa-solid fa-eye"></i></a>
                                             </td>
                                             <td class="text-center">

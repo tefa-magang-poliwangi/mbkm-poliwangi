@@ -25,7 +25,8 @@
                         </div>
 
                         {{-- Form Checklist Peserta Dosen --}}
-                        <form action="{{ route('manajemen.peserta.dosen.store', $id_dosen_wali) }}" method="POST">
+                        <form action="{{ route('manajemen.peserta.dosen.store', [$id_dosen_wali, $id_prodi]) }}"
+                            method="POST">
                             @csrf
 
                             @error('mahasiswas')

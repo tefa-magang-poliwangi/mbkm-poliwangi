@@ -107,8 +107,11 @@ class MatakuliahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $id_prodi)
+    public function update(Request $request, $id)
     {
+
+        $matkul = Matkul::findOrFail($id);
+        $id_prodi = $matkul->id_prodi;
 
         $validated = $request->validate([
             'update_matkul' => ['required', 'string'],

@@ -141,11 +141,11 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $id_prodi)
+    public function update(Request $request, $id)
     {
         // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
         $mahasiswa = Mahasiswa::findOrFail($id);
-
+        $id_prodi = $mahasiswa->id_prodi;
         // validasi request mahasiswa
         $validated = $request->validate([
             'nim' => 'required|string',

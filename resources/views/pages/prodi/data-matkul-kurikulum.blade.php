@@ -21,7 +21,8 @@
                                 <h5 class="justify-start my-auto text-theme">Manajemen Matkul Kurikulum</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.matkul.kurikulum.create', $id_kurikulum) }}" class="btn btn-primary ml-auto">
+                                <a href="{{ route('manajemen.matkul.kurikulum.create', [$id_kurikulum, $id_prodi]) }}"
+                                    class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Set Matkul Kurikulum
                                 </a>

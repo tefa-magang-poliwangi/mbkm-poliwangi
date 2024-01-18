@@ -287,9 +287,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/kurikulum/{id_kurikulum}/destroy', [KurikulumController::class, 'destroy'])->name('manajemen.kurikulum.destroy');
 
         // Route Manajemen Matakuliah Kurikulum
-        Route::get('/manajemen/{id_kurikulum}/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
-        Route::get('/manajemen/matakuliah-kurikulum/{id_kurikulum}/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
-        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
+        Route::get('/manajemen/{id_kurikulum}/{id_prodi}/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
+        Route::get('/manajemen/matakuliah-kurikulum/{id_kurikulum}/{id_prodi}/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
+        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}/{id_prodi}/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
         Route::put('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/update', [MatkulKurikulumController::class, 'update'])->name('manajemen.matkul.kurikulum.update');
         Route::get('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/destroy', [MatkulKurikulumController::class, 'destroy'])->name('manajemen.matkul.kurikulum.destroy');
 
@@ -418,9 +418,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen-pl/{id_dosen_pl}/destroy', [DosenPLController::class, 'destroy'])->name('manajemen.dosen.pl.destroy');
 
         // Route Manajemen Peserta Dosen
-        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
-        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
-        Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
+        Route::get('/manajemen/dosen-wali/{id_dosen_wali}/daftar-prodi', [PesertaDosenController::class, 'daftar_prodi'])->name('peserta.dosen.daftar.prodi');
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/{id_prodi}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/{id_prodi}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
+        Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/{id_prodi}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
         Route::get('/manajemen/peserta-dosen/{id}/destroy', [PesertaDosenController::class, 'destroy'])->name('manajemen.peserta.dosen.destroy');
 
         // # (Route Wadir)
