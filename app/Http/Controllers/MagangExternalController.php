@@ -17,14 +17,11 @@ class MagangExternalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_prodi)
     {
-        $id_user = Auth::user()->id;
-        $user_admin = AdminProdi::where('id_user', $id_user)->first();
-
         $data = [
-            'prodi' => Prodi::where('id', $user_admin->id_prodi)->get(),
-            'magang_ext' => MagangExt::where('id_prodi', $user_admin->id_prodi)->get(),
+            'prodi' => Prodi::where('id', $id_prodi)->get(),
+            'magang_ext' => MagangExt::where('id_prodi', $id_prodi)->get(),
             'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
 

@@ -29,7 +29,7 @@
             <section class="section">
                 <div class="row py-2">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <a href="{{ route('manajemen.kurikulum.index') }}">
+                        <a href="{{ route('kurikulum.daftar.prodi') }}">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-danger">
                                     <i class="fas fa-exchange-alt"></i>
@@ -80,7 +80,7 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <a href="{{ route('manajemen.kelas.index') }}">
+                        <a href="{{ route('kelas.daftar.prodi') }}">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
                                     <i class="fas fa-book"></i>
@@ -97,7 +97,7 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <a href="{{ route('manajemen.mahasiswa.index') }}">
+                        <a href="{{ route('mahasiswa.daftar.prodi') }}">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-success">
                                     <i class="far fa-user"></i>

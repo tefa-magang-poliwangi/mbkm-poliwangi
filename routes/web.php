@@ -293,12 +293,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/update', [MatkulKurikulumController::class, 'update'])->name('manajemen.matkul.kurikulum.update');
         Route::get('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/destroy', [MatkulKurikulumController::class, 'destroy'])->name('manajemen.matkul.kurikulum.destroy');
 
-        // Route Manajemen Magang External
-        Route::get('/manajemen/magang-external', [MagangExternalController::class, 'index'])->name('manajemen.magang.ext.index');
-        Route::post('/manajemen/magang-external/store', [MagangExternalController::class, 'store'])->name('manajemen.magang.ext.store');
-        Route::put('/manajemen/magang-external/{id_magang_ext}/update', [MagangExternalController::class, 'update'])->name('manajemen.magang.ext.update');
-        Route::get('/manajemen/magang-external/{id_magang_ext}/destroy', [MagangExternalController::class, 'destroy'])->name('manajemen.magang.ext.destroy');
-
         // Route Manajemen Kelas
         Route::get('/manajemen/kelas/daftar-prodi', [KelasController::class, 'daftar_prodi'])->name('kelas.daftar.prodi');
 
@@ -439,7 +433,14 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Koordinator Magang Ext
         Route::get('/dashboard/koordinator', [KoordinatorMagangExtController::class, 'index'])->name('dashboard.koordinator.page');
+        Route::get('/dashboard/koordinator/daftar-program', [KoordinatorMagangExtController::class, 'show'])->name('koordinator.daftar.program');
+        Route::get('/dashboard/koordinator/{id_jenis_program}/daftar-prodi', [KoordinatorMagangExtController::class, 'daftar_prodi'])->name('koordinator.daftar.prodi');
 
+        // Route Manajemen Magang External
+        Route::get('/manajemen/magang-external/{id_prodi}', [MagangExternalController::class, 'index'])->name('manajemen.magang.ext.index');
+        Route::post('/manajemen/magang-external/store', [MagangExternalController::class, 'store'])->name('manajemen.magang.ext.store');
+        Route::put('/manajemen/magang-external/{id_magang_ext}/update', [MagangExternalController::class, 'update'])->name('manajemen.magang.ext.update');
+        Route::get('/manajemen/magang-external/{id_magang_ext}/destroy', [MagangExternalController::class, 'destroy'])->name('manajemen.magang.ext.destroy');
 
         // Route Daftar Nilai Mahasiswa - Akademik
         Route::get('/daftar-nilai-khs-mahasiswa/daftar-prodi', [DaftarNilaiMahasiswaController::class, 'daftar_prodi'])->name('akademik.daftar.prodi');

@@ -430,7 +430,7 @@
                     </li>
                 @endcan
 
-                @can('manajemen.magang.ext.index')
+                {{-- @can('manajemen.magang.ext.index')
                     <li class="menu-header">Data Magang</li>
                     <li>
                         <a class="nav-link" href="{{ route('manajemen.magang.ext.index') }}">
@@ -438,7 +438,7 @@
                             <span>Magang External</span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
 
                 @can('manajemen.mitra.index')
                     <li>
@@ -765,6 +765,21 @@
                 @endcan
             @endauth
 
+            {{-- Menu Koordinator --}}
+            @auth
+                @role('koordinator')
+                    <li class="menu-header">KOORDINATOR</li>
+                @endrole
+
+                @can('koordinator.daftar.program')
+                    <li>
+                        <a class="nav-link" href="{{ route('koordinator.daftar.program') }}">
+                            <i class="fas fa-users"></i>
+                            <span>Daftar Program MBKM</span>
+                        </a>
+                    </li>
+                @endcan
+            @endauth
             {{-- Menu PL Mitra --}}
             @auth
                 @role('pl-mitra')

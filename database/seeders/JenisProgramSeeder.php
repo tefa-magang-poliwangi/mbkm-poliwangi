@@ -22,12 +22,12 @@ class JenisProgramSeeder extends Seeder
 
         JenisProgram::create([
             'id' => 2,
-            'nama_program' => 'Magang Bersertifikat',
+            'nama_program' => 'Magang Bersertifikat (MSIB)',
         ]);
 
         JenisProgram::create([
             'id' => 3,
-            'nama_program' => 'Studi Independen Bersertifikat',
+            'nama_program' => 'Studi Independen Bersertifikat (SIB)',
         ]);
 
         JenisProgram::create([
@@ -42,7 +42,7 @@ class JenisProgramSeeder extends Seeder
 
         JenisProgram::create([
             'id' => 6,
-            'nama_program' => 'Indonesian International Student Mobility Awards',
+            'nama_program' => 'Indonesian International Student Mobility Awards (IISMA)',
         ]);
 
         JenisProgram::create([
