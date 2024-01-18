@@ -10,7 +10,7 @@ class JenisProgram extends Model
     use HasFactory;
     protected $fillable = [
         'id',
-        'nama_jurusan',
+        'nama_program',
     ];
 
     // relasi

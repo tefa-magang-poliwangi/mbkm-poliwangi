@@ -49,6 +49,10 @@
                 @role('pl-mitra')
                     <a href="{{ route('dashboard.plmitra.page') }}">Poliwangi</a>
                 @endrole
+
+                @role('koordinator')
+                    <a href="{{ route('dashboard.koordinator.page') }}">Poliwangi</a>
+                @endrole
             @endauth
         </div>
 
@@ -83,6 +87,15 @@
                 @role('akademik')
                     <li>
                         <a class="nav-link" href="{{ route('dashboard.akademik.page') }}">
+                            <i class="fas fa-solid fa-border-all"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endrole
+
+                @role('koordinator')
+                    <li>
+                        <a class="nav-link" href="{{ route('dashboard.koordinator.page') }}">
                             <i class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
@@ -219,6 +232,15 @@
                         <a class="nav-link" href="{{ route('manajemen.jurusan.index') }}">
                             <i class="fas fa-solid fa-school-flag"></i>
                             <span>Jurusan</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('manajemen.jenis-program.index')
+                    <li>
+                        <a class="nav-link" href="{{ route('manajemen.jenis-program.index') }}">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>Program MBKM</span>
                         </a>
                     </li>
                 @endcan

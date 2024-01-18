@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Manajemen Jurusan | MBKM Poliwangi</title>
+    <title>Manajemen Jenis Program | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -17,11 +17,11 @@
                 <div class="card border-0">
                     <div class="card-body">
                         <div class="mb-3">
-                            <h1 class="text-theme">Jurusan</h1>
+                            <h1 class="text-theme">Jenis Program</h1>
                             <div class="lead d-flex text-theme">
-                                Manajemen Jurusan.
+                                Manajemen Jenis Program.
                                 <button class="btn btn-primary fa-plus ml-auto" data-toggle="modal"
-                                    data-target="#tambahJurusanModal"> Tambah Jurusan</button>
+                                    data-target="#tambahJenisProgramModal"> Tambah Jenis Program</button>
                             </div>
                         </div>
 
@@ -32,7 +32,7 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="text-center text-white">No</th>
-                                                <th class="text-white">Jurusan</th>
+                                                <th class="text-white">Jenis Program</th>
                                                 <th class="text-center text-white">Edit</th>
                                                 <th class="text-center text-white">Hapus</th>
                                             </tr>
@@ -42,19 +42,19 @@
                                                 $no = 1;
                                             @endphp
 
-                                            @foreach ($jurusan as $data)
+                                            @foreach ($jenis_program as $data)
                                                 <tr>
                                                     <td class="text-center">{{ $no }}</td>
-                                                    <td>{{ $data->nama_jurusan }}</td>
+                                                    <td>{{ $data->nama_program }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.jurusan.update', $data->id) }}"
+                                                        <a href="{{ route('manajemen.jenis-program.update', $data->id) }}"
                                                             class="btn btn-primary ml-auto" data-toggle="modal"
                                                             data-target=".modalUpdate{{ $data->id }}">
                                                             <i class="fa-solid fa-pen text-white"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.jurusan.destroy', $data->id) }}"
+                                                        <a href="{{ route('manajemen.jenis-program.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
@@ -75,7 +75,7 @@
                                                             </div>
 
                                                             <form
-                                                                action="{{ route('manajemen.jurusan.update', $data->id) }}"
+                                                                action="{{ route('manajemen.jenis-program.update', $data->id) }}"
                                                                 method="POST">
                                                                 @method('put')
                                                                 @csrf
@@ -84,17 +84,18 @@
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <div class="form-group">
-                                                                                <label for="update_jurusan"
+                                                                                <label for="update_nama_program"
                                                                                     class="form-label">Nama</label>
-                                                                                <input id="update_jurusan" type="text"
-                                                                                    class="form-control @error('update_jurusan')
+                                                                                <input id="update_nama_program"
+                                                                                    type="text"
+                                                                                    class="form-control @error('update_nama_program')
                                                                                     is-invalid
                                                                                     @enderror"
-                                                                                    name="update_jurusan"
-                                                                                    value="{{ $data->nama_jurusan }}"
-                                                                                    placeholder="Jurusan Baru">
-                                                                                @error('update_jurusan')
-                                                                                    <div id="update_jurusan"
+                                                                                    name="update_nama_program"
+                                                                                    value="{{ $data->nama_program }}"
+                                                                                    placeholder="Jenis Program Baru">
+                                                                                @error('update_nama_program')
+                                                                                    <div id="update_nama_program"
                                                                                         class="form-text text-danger">
                                                                                         {{ $message }}</div>
                                                                                 @enderror
@@ -136,26 +137,28 @@
         </div>
 
         {{-- modall create --}}
-        <div class="modal fade" tabindex="-1" role="dialog" id="tambahJurusanModal">
+        <div class="modal fade" tabindex="-1" role="dialog" id="tambahJenisProgramModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Jurusan baru</h5>
+                        <h5 class="modal-title">Tambah Jenis Program Baru</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('manajemen.jurusan.store') }}" method="POST">
+                    <form action="{{ route('manajemen.jenis-program.store') }}" method="POST">
                         @csrf
 
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="create_jurusan">Nama Jurusan</label>
-                                <input type="text" class="form-control @error('create_jurusan') is-invalid @enderror"
-                                    id="create_jurusan" name="create_jurusan" placeholder="Masukkan Nama Jurusan">
-                                @error('create_jurusan')
-                                    <div id="create_jurusan" class="form-text pb-1">
+                                <label for="create_nama_program">Nama Jenis Program</label>
+                                <input type="text"
+                                    class="form-control @error('create_nama_program') is-invalid @enderror"
+                                    id="create_nama_program" name="create_nama_program"
+                                    placeholder="Masukkan Nama Jenis Program">
+                                @error('create_nama_program')
+                                    <div id="create_nama_program" class="form-text pb-1">
                                         {{ $message }}</div>
                                 @enderror
                             </div>

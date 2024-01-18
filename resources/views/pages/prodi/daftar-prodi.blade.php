@@ -34,6 +34,7 @@
                                                 <th class="text-center text-white">No</th>
                                                 <th class="text-white">Program Studi</th>
                                                 <th class=" text-white">Jurusan</th>
+                                                <th class="text-center text-white">Edit</th>
                                                 <th class="text-center text-white">Hapus</th>
                                             </tr>
                                         </thead>
@@ -48,12 +49,103 @@
                                                     <td>{{ $data->nama }}</td>
                                                     <td>{{ $data->jurusan->nama_jurusan }}</td>
                                                     <td class="text-center">
+                                                        <a href="{{ route('manajemen.jenis-program.update', $data->id) }}"
+                                                            class="btn btn-primary ml-auto" data-toggle="modal"
+                                                            data-target=".modalUpdate{{ $data->id }}">
+                                                            <i class="fa-solid fa-pen text-white"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
                                                         <a href="{{ route('manajemen.prodi.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
+
+                                                {{-- Modal Update Prodi --}}
+                                                <div class="modal fade modalUpdate{{ $data->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title mt-0" id="myLargeModalLabel">Ubah
+                                                                    Program Studi
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-hidden="true">×</button>
+                                                            </div>
+
+                                                            <form action="{{ route('manajemen.prodi.update', $data->id) }}"
+                                                                method="POST">
+                                                                @method('put')
+                                                                @csrf
+
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="update_nama_prodi"
+                                                                                    class="form-label">Nama Prodi</label>
+                                                                                <input id="update_nama_prodi" type="text"
+                                                                                    class="form-control @error('update_nama_prodi')
+                                                                                    is-invalid
+                                                                                    @enderror"
+                                                                                    name="update_nama_prodi"
+                                                                                    value="{{ $data->nama }}"
+                                                                                    placeholder="Prodi Baru">
+                                                                                @error('update_nama_prodi')
+                                                                                    <div id="update_nama_prodi"
+                                                                                        class="form-text text-danger">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="update_jurusan"
+                                                                                    class="form-label">Jurusan</label>
+                                                                                <select
+                                                                                    class="form-control @error('update_jurusan')
+                                                                                            is-invalid
+                                                                                        @enderror"
+                                                                                    id="update_jurusan"
+                                                                                    name="update_jurusan">
+                                                                                    @foreach ($jurusan as $datajurusan)
+                                                                                        <option
+                                                                                            value="{{ $datajurusan->id }}"
+                                                                                            {{ $data->id_jurusan == $datajurusan->id ? 'selected' : '' }}>
+                                                                                            {{ $datajurusan->nama_jurusan }}
+                                                                                        </option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                                @error('update_jurusan')
+                                                                                    <div id="update_jurusan"
+                                                                                        class="form-text text-danger">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <div class="col d-flex">
+                                                                            <div class="ml-auto">
+                                                                                <button type="button"
+                                                                                    class="btn btn-cancel"
+                                                                                    data-dismiss="modal">Batal</button>
+                                                                                <button type="submit"
+                                                                                    class="btn btn-submit">Submit</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+
+
                                                 @php
                                                     $no++;
                                                 @endphp
@@ -87,7 +179,8 @@
 
                             <div class="form-group">
                                 <label for="create_nama_prodi">Nama Prodi</label>
-                                <input type="text" class="form-control @error('create_nama_prodi') is-invalid @enderror"
+                                <input type="text"
+                                    class="form-control @error('create_nama_prodi') is-invalid @enderror"
                                     id="create_nama_prodi" name="create_nama_prodi" placeholder="Masukkan Nama Prodi">
                                 @error('create_nama_prodi')
                                     <div id="create_nama_prodi" class="form-text pb-1">

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\JenisProgramController;
+use App\Http\Controllers\KoordinatorMagangExtController;
+use App\Models\JenisProgram;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminProdiController;
 use App\Http\Controllers\AdminProdiPageController;
@@ -169,12 +172,20 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Route Manajemen Prodi
         Route::get('/manajemen/prodi', [ProdiController::class, 'index'])->name('manajemen.prodi.index');
         Route::post('/manajemen/prodi/store', [ProdiController::class, 'store'])->name('manajemen.prodi.store');
+        Route::put('/manajemen/prodi/{id_prodi}/update', [ProdiController::class, 'update'])->name('manajemen.prodi.update');
         Route::get('/manajemen/prodi/{id_prodi}/destroy', [ProdiController::class, 'destroy'])->name('manajemen.prodi.destroy');
 
         // Route Manajemen Jurusan
         Route::get('/manajemen/jurusan', [JurusanController::class, 'index'])->name('manajemen.jurusan.index');
         Route::post('/manajemen/jurusan/store', [JurusanController::class, 'store'])->name('manajemen.jurusan.store');
+        Route::put('/manajemen/jurusan/{id_jurusan}/update', [JurusanController::class, 'update'])->name('manajemen.jurusan.update');
         Route::get('/manajemen/jurusan/{id_jurusan}/destroy', [JurusanController::class, 'destroy'])->name('manajemen.jurusan.destroy');
+
+        // Route Manajemen Jenis Program
+        Route::get('/manajemen/jenis-program', [JenisProgramController::class, 'index'])->name('manajemen.jenis-program.index');
+        Route::post('/manajemen/jenis-program/store', [JenisProgramController::class, 'store'])->name('manajemen.jenis-program.store');
+        Route::put('/manajemen/jenis-program/{id_jenis_program}/update', [JenisProgramController::class, 'update'])->name('manajemen.jenis-program.update');
+        Route::get('/manajemen/jenis-program/{id_jenis_program}/destroy', [JenisProgramController::class, 'destroy'])->name('manajemen.jenis-program.destroy');
 
         // # (Route Admin Prodi)
         Route::get('/dashboard/admin-prodi', [AdminProdiPageController::class, 'dashboard_admin_prodi'])->name('dashboard.admin.prodi.page');
@@ -415,6 +426,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Route Profil Akademik
         Route::get('/dashboard/akademik/ubah-profil/{id_user}', [ProfileAkademikController::class, 'show'])->name('profil.akademik.page');
         Route::put('/dashboard/akademik/update-profil/{id_user}', [ProfileAkademikController::class, 'update'])->name('profil.akademik.update');
+
+        // Route Koordinator Magang Ext
+        Route::get('/dashboard/koordinator', [KoordinatorMagangExtController::class, 'index'])->name('dashboard.koordinator.page');
+
 
         // Route Daftar Nilai Mahasiswa - Akademik
         Route::get('/daftar-nilai-khs-mahasiswa/daftar-prodi', [DaftarNilaiMahasiswaController::class, 'daftar_prodi'])->name('akademik.daftar.prodi');

@@ -88,7 +88,19 @@ class ProdiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'update_nama_prodi' => ['required', 'string'],
+            'update_jurusan' => ['required', 'string'],
+        ]);
+
+        Prodi::where('id', $id)->update([
+            'nama' => $validated['update_nama_prodi'],
+            'id_jurusan' => $validated['update_jurusan']
+        ]);
+
+        Alert::success('Success', 'Data Prodi Berhasil Diupdate');
+
+        return redirect()->route('manajemen.prodi.index');
     }
 
     /**
