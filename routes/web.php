@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\JenisProgramController;
 use App\Http\Controllers\KoordinatorMagangExtController;
-use App\Models\JenisProgram;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminProdiController;
+use App\Http\Controllers\AdminJurusanController;
 use App\Http\Controllers\AdminJurusanPageController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
@@ -187,10 +186,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/manajemen/jenis-program/{id_jenis_program}/update', [JenisProgramController::class, 'update'])->name('manajemen.jenis-program.update');
         Route::get('/manajemen/jenis-program/{id_jenis_program}/destroy', [JenisProgramController::class, 'destroy'])->name('manajemen.jenis-program.destroy');
 
-        // # (Route Admin Prodi)
+        // # (Route Admin Jurusan)
         Route::get('/dashboard/admin-jurusan', [AdminJurusanPageController::class, 'dashboard_admin_jurusan'])->name('dashboard.admin.jurusan.page');
 
-        // Route Profil Admin Prodi
+        // Route Profil Admin Jurusan
         Route::get('/dashboard/admin-jurusan/ubah-profil/{id_user}', [ProfileAdminJurusanController::class, 'show'])->name('profil.admin.jurusan.page');
         Route::put('/dashboard/admin-jurusan/update-profil/{id_user}', [ProfileAdminJurusanController::class, 'update'])->name('profil.admin.jurusan.update');
 
@@ -256,11 +255,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/manajemen/mahasiswa/{id_mahasiswa}/update', [MahasiswaController::class, 'update'])->name('manajemen.mahasiswa.update');
         Route::get('/manajemen/mahasiswa/{id_mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('manajemen.mahasiswa.destroy');
 
-        // Route Manajemen Admin
-        Route::get('/manajemen/admin-prodi', [AdminProdiController::class, 'index'])->name('manajemen.admin.prodi.index');
-        Route::get('/manajemen/admin-prodi/create', [AdminProdiController::class, 'create'])->name('manajemen.admin.prodi.create');
-        Route::post('/manajemen/admin-prodi/store', [AdminProdiController::class, 'store'])->name('manajemen.admin.prodi.store');
-        Route::get('/manajemen/admin-prodi/{id_admin_prodi}/destroy', [AdminProdiController::class, 'destroy'])->name('manajemen.admin.prodi.destroy');
+        // Route Manajemen Admin Jurusan
+        Route::get('/manajemen/admin-jurusan', [AdminJurusanController::class, 'index'])->name('manajemen.admin.jurusan.index');
+        Route::get('/manajemen/admin-jurusan/create', [AdminJurusanController::class, 'create'])->name('manajemen.admin.jurusan.create');
+        Route::post('/manajemen/admin-jurusan/store', [AdminJurusanController::class, 'store'])->name('manajemen.admin.jurusan.store');
+        Route::get('/manajemen/admin-jurusan/{id_admin_jurusan}/destroy', [AdminJurusanController::class, 'destroy'])->name('manajemen.admin.jurusan.destroy');
 
         Route::get('/manajemen/cpl-kurikulum/{id_kurikulum}/index', [CPLKurikulumController::class, 'index'])->name('manajemen.cpl.kurikulum.index');
         Route::get('/manajemen/cpl-kurikulum/create', [CPLKurikulumController::class, 'create'])->name('manajemen.cpl.kurikulum.create');
@@ -614,7 +613,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('villages', 'DependentDropdownController@villages')->name('villages');
 
         // Route Imports Data
-        Route::post('/import-data-user/admin-prodi/import', [ImportController::class, 'import_data_user_admin_prodi'])->name('import.data.user.admin.prodi');
+        Route::post('/import-data-user/admin-jurusan/import', [ImportController::class, 'import_data_user_admin_prodi'])->name('import.data.user.admin.jurusan');
         Route::post('/import-data-user/dosen/import', [ImportController::class, 'import_data_user_dosen'])->name('import.data.user.dosen');
         Route::post('/import-user/mahasiswa/import', [ImportController::class, 'import_user_mahasiswa'])->name('import.user.mahasiswa');
         Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');

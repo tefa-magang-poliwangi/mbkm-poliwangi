@@ -30,6 +30,6 @@ class AdminJurusanPageController extends Controller
             'kelas_count' => Kelas::where('id_prodi', $admin_jurusan->id_prodi)->count(),
         ];
 
-        return view('pages.admin.admin-prodi-dashboard', $data);
+        return view('pages.admin.admin-jurusan-dashboard', $data);
     }
 }

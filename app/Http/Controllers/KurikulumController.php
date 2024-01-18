@@ -31,14 +31,13 @@ class KurikulumController extends Controller
 
     public function index(Request $request, $id_prodi)
     {
-
         // Ambil daftar mahasiswa berdasarkan prodi_id
         $kurikulum = Kurikulum::where('id_prodi', $id_prodi)->get();
 
         $data = [
             'id_prodi' => $id_prodi,
             'kurikulums' => $kurikulum,
-            'prodi' => Prodi::all(),
+            'prodi' => Prodi::findOrFail($id_prodi),
             'request' => $request,
         ];
 

@@ -61,14 +61,14 @@
                                                     </td>
                                                 </tr>
 
-                                                {{-- Modal Update Jenis Program --}}
+                                                {{-- Modal Update Jurusan --}}
                                                 <div class="modal fade modalUpdate{{ $data->id }}" tabindex="-1"
                                                     role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title mt-0" id="myLargeModalLabel">Ubah
-                                                                    Jenis Program
+                                                                    Jurusan
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-hidden="true">×</button>
