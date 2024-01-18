@@ -25,6 +25,7 @@ class DaftarNilaiMahasiswaController extends Controller
     public function daftar_kelas($id_prodi)
     {
         $data = [
+            'id_prodi' => $id_prodi,
             'prodis' => Prodi::all(),
             'periodes' => Periode::all(),
             'kelas' => Kelas::where('id_prodi', $id_prodi)->get(),
