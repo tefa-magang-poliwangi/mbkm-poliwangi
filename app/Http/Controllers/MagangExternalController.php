@@ -23,6 +23,7 @@ class MagangExternalController extends Controller
     {
         $data = [
             'prodi' => Prodi::where('id', $id_prodi)->get(),
+            'jenis_programs' => JenisProgram::all(),
             'magang_ext' => MagangExt::where('id_prodi', $id_prodi)->get(),
             'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
@@ -47,6 +48,7 @@ class MagangExternalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
         $validated = $request->validate([
             'create_name' => ['required', 'string'],
@@ -64,7 +66,7 @@ class MagangExternalController extends Controller
 
         Alert::success('Success', 'Data Magang External Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.magang.ext.index');
+        return redirect()->back();
     }
 
     /**
@@ -114,7 +116,7 @@ class MagangExternalController extends Controller
 
         Alert::success('Success', 'Data Magang External Berhasil Diubah');
 
-        return redirect()->route('manajemen.magang.ext.index');
+        return redirect()->back();
     }
 
     /**
@@ -130,6 +132,6 @@ class MagangExternalController extends Controller
 
         Alert::success('Success', 'Data Magang External Berhasil Dihapus');
 
-        return redirect()->route('manajemen.magang.ext.index');
+        return redirect()->back();
     }
 }
