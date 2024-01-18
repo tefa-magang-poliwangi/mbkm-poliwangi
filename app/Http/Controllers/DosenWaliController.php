@@ -24,13 +24,13 @@ class DosenWaliController extends Controller
      */
     public function index()
     {
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first();
 
         $datas = [
             'dosens' => Dosen::Where('id_jurusan', $jurusan_id)->get(),
             'jurusan' => Jurusan::Where('id', $jurusan_id)->first(),
             'dosen_walis' => DosenWali::whereHas('dosen', function ($query) use ($jurusan_id) {
-                $query->where('id_jurusan', $jurusan_id);
+                $query->where('id_jurusan', $jurusan_id->id_jurusan);
             })->get(),
         ];
 
@@ -46,10 +46,9 @@ class DosenWaliController extends Controller
     {
         $id_user = Auth()->user()->id;
         $admin_jurusan = AdminJurusan::where('id_user', $id_user)->first();
-        $jurusan_user = $admin_jurusan->id_jurusan;
 
         // mengambil seluruh data dosen dengan role dosen
-        $dosens = Dosen::where('id_jurusan', $jurusan_user)->whereDoesntHave('dosen_wali')->whereHas('user', function ($query) {
+        $dosens = Dosen::where('id_jurusan', $admin_jurusan->id_jurusan)->whereDoesntHave('dosen_wali')->whereHas('user', function ($query) {
             $query->whereHas('roles', function ($query) {
                 $query->where('name', 'dosen');
             });

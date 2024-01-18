@@ -508,9 +508,9 @@
                     @endcan
                 @endrole
 
-                @can('daftar.transkrip.mahasiswa.ext.index')
+                @can('transkrip.mahasiswa.daftar.prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.transkrip.mahasiswa.ext.index') }}">
+                        <a class="nav-link" href="{{ route('transkrip.mahasiswa.daftar.prodi') }}">
                             <i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>

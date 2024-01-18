@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Kaprodi;
 use App\Models\Mahasiswa;
 use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
@@ -71,7 +72,9 @@ class ValidasiNilaiKaprodiExt extends Controller
     {
         $user_id = Auth::user()->id;
         $dosen = Dosen::where('id_user', $user_id)->first();
-        $prodi_id = $dosen->id_prodi;
+        $kaprodi = Kaprodi::where('id_dosen', $dosen->id)->first();
+        $prodi_id = $kaprodi->id_prodi;
+
         $nilai_magang_ext = NilaiMagangExt::where('validasi_kaprodi', 'Belum Disetujui')
             ->whereIn('id_mahasiswa', function ($query) use ($prodi_id) {
                 $query->select('id')->from('mahasiswas')->where('id_prodi', $prodi_id)->whereExists(function ($query) {
@@ -95,7 +98,9 @@ class ValidasiNilaiKaprodiExt extends Controller
     {
         $user_id = Auth::user()->id;
         $dosen = Dosen::where('id_user', $user_id)->first();
-        $prodi_id = $dosen->id_prodi;
+        $kaprodi = Kaprodi::where('id_dosen', $dosen->id)->first();
+        $prodi_id = $kaprodi->id_prodi;
+
         $nilai_magang_ext = NilaiMagangExt::where('validasi_kaprodi', 'Setuju')->whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))->get();
 
         $data = [

@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start my-auto text-theme">Daftar Prodi Dosen Wali
+                                <h5 class="justify-start my-auto text-theme">Daftar Prodi Dosen Wali -
                                     {{ $dosen_wali->dosen->nama }}
                                 </h5>
                             </div>

@@ -20,10 +20,10 @@ class KurikulumController extends Controller
 
     public function daftar_prodi()
     {
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan = AdminJurusan::where('id_user', Auth::user()->id)->first();
 
         $data = [
-            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+            'prodis' => Prodi::where('id_jurusan', $jurusan->id_jurusan)->get(),
         ];
 
         return view('pages.prodi.kurikulum.daftar-prodi', $data);

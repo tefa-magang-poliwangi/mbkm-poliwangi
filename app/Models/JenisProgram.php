@@ -11,6 +11,7 @@ class JenisProgram extends Model
     protected $fillable = [
         'id',
         'nama_program',
+        'id_program_feeder',
     ];
 
     // relasi

@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Dashboard Admin Prodi | MBKM Poliwangi</title>
+    <title>Dashboard Admin Jurusan | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="card card-custom rounded ">
                     <div class="card-body">
-                        <h3 class="card-title">Dashboard Admin Prodi</h3>
+                        <h3 class="card-title">Dashboard Admin Jurusan</h3>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                         <h4>Kurikulum</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $kurikulum_count }}
+                                        {{-- {{ $kurikulum_count }} --}}
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                         <h4>Dosen</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $dosen_count }}
+                                        {{-- {{ $dosen_count }} --}}
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                         <h4>Dosen Wali</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $dosen_wali_count }}
+                                        {{-- {{ $dosen_wali_count }} --}}
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                         <h4>Kelas</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $kelas_count }}
+                                        {{-- {{ $kelas_count }} --}}
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                         <h4>Mahasiswa</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $mahasiswa_count }}
+                                        {{-- {{ $mahasiswa_count }} --}}
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                                         <h4>Magang Eksternal</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $magang_ext_count }}
+                                        {{-- {{ $magang_ext_count }} --}}
                                     </div>
                                 </div>
                             </div>

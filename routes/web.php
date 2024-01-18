@@ -159,7 +159,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('manajemen.dosen.destroy');
 
         // Route Transkrip Mahasiswa External dan Internal
-        Route::get('/daftar-transkrip-nilai/mahasiswa-external/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
+        Route::get('/daftar-transkrip-nilai/daftar-prodi', [KonversiNilaiExternal::class, 'daftar_prodi'])->name('transkrip.mahasiswa.daftar.prodi');
+
+        Route::get('/daftar-transkrip-nilai/mahasiswa-external/{id_prodi}/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/create', [KonversiNilaiExternal::class, 'create'])->name('daftar.transkrip.mahasiswa.ext.create');
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/magang_{id_magang_ext}/transkrip_{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.transkrip.mahasiswa.ext.show');
 

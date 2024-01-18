@@ -90,7 +90,7 @@
                                             <td class="text-center">{{ $data->user->username }}</td>
                                             <td>{{ $data->jurusan->nama_jurusan }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('manajemen.admin.prodi.destroy', $data->id) }}"
+                                                <a href="{{ route('manajemen.admin.jurusan.destroy', $data->id) }}"
                                                     class="btn btn-danger ml-auto">
                                                     <i class="fa-solid fas fa-trash "></i>
                                                 </a>
@@ -119,7 +119,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('manajemen.admin.prodi.store') }}" method="POST">
+                <form action="{{ route('manajemen.admin.jurusan.store') }}" method="POST">
                     @csrf
 
                     <div class="modal-body">

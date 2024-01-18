@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
+use App\Models\JenisProgram;
 use App\Models\MagangExt;
 use App\Models\Periode;
 use App\Models\Prodi;
@@ -19,12 +21,12 @@ class MagangExternalController extends Controller
      */
     public function index()
     {
-        $id_user = Auth::user()->id;
-        $user_admin = AdminProdi::where('id_user', $id_user)->first();
+        $jurusan = AdminJurusan::where('id_user', Auth::user()->id)->first();
 
         $data = [
-            'prodi' => Prodi::where('id', $user_admin->id_prodi)->get(),
-            'magang_ext' => MagangExt::where('id_prodi', $user_admin->id_prodi)->get(),
+            'prodi' => Prodi::where('id_jurusan', $jurusan->id_jurusan)->get(),
+            'jenis_programs' => JenisProgram::all(),
+            'magang_ext' => MagangExt::all(),
             'periodes' => Periode::where('status', 'Aktif')->get(),
         ];
 
@@ -58,7 +60,7 @@ class MagangExternalController extends Controller
 
         $magangext = new MagangExt();
         $magangext->name = $validated['create_name'];
-        $magangext->jenis_magang = $validated['create_jenis_magang'];
+        $magangext->id_jenis_program = $validated['create_jenis_magang'];
         $magangext->id_periode = $validated['create_id_periode'];
         $magangext->id_prodi = $validated['create_id_prodi'];
         $magangext->save();

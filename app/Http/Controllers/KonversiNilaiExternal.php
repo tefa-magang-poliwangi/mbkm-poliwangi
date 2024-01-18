@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\DetailAngkaMutu;
 use App\Models\DetailNilaiHuruf;
 use App\Models\Kurikulum;
@@ -15,6 +16,7 @@ use App\Models\NilaiKonversi;
 use App\Models\NilaiMagangExt;
 use App\Models\Periode;
 use App\Models\PesertaKelas;
+use App\Models\Prodi;
 use App\Models\ProfilAngkaMutu;
 use App\Models\ProfilNilaiHuruf;
 use Illuminate\Http\Request;
@@ -107,18 +109,27 @@ class KonversiNilaiExternal extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function daftar_prodi()
     {
-        $prodi_id = Dosen::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $user_dosen = Dosen::where('id_user', Auth::user()->id)->first();
+
+        $data = [
+            'prodis' => Prodi::where('id_jurusan', $user_dosen->id_jurusan)->get(),
+        ];
+
+        return view('pages.dosen.daftar-prodi', $data);
+    }
+
+    public function index($id_prodi)
+    {
         $dosen = Dosen::where('id_user', Auth::user()->id)->first();
         $id_dosen_wali = DosenWali::where('id_dosen', $dosen->id)->first();
 
-        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $prodi_id)->get()->toArray()))
+        $nilai_magang_ext = NilaiMagangExt::whereIn('id_mahasiswa', array_values(Mahasiswa::select('id')->where('id_prodi', $id_prodi)->get()->toArray()))
             ->whereHas('mahasiswa.peserta_dosen', function ($query) use ($id_dosen_wali) {
                 $query->where('id_dosen_wali', $id_dosen_wali->id);
             })
             ->get();
-
 
         $data = [
             'nilai_magang_ext' => $nilai_magang_ext,

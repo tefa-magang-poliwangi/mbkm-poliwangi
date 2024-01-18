@@ -22,11 +22,13 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first();
+
+        // dd($jurusan_id);
 
         $datas = [
             'jurusan' => Jurusan::all(),
-            'dosens' => Dosen::where('id_jurusan', $jurusan_id)->get(),
+            'dosens' => Dosen::where('id_jurusan', $jurusan_id->id_jurusan)->get(),
         ];
 
         return view('pages.admin.manajemen-dosen.data-dosen', $datas);
@@ -51,7 +53,8 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan = AdminJurusan::where('id_user', Auth::user()->id)->first();
+
         // validasi request dosen
         $validated = $request->validate([
             'nama' => 'required|string',
@@ -74,7 +77,7 @@ class DosenController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'no_telp' => $validated['no_telp'],
-            'id_jurusan' => $jurusan_id,
+            'id_jurusan' => $jurusan->id_jurusan,
             'id_user' => $user_dosen->id,
         ]);
 
@@ -119,7 +122,8 @@ class DosenController extends Controller
     public function update(Request $request, $id)
     {
         $dosen = Dosen::findOrFail($id);
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan = AdminJurusan::where('id_user', Auth::user()->id)->first();
+
         // validasi request dosen
         $validated = $request->validate([
             'nama' => 'required|string',
@@ -142,7 +146,7 @@ class DosenController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'no_telp' => $validated['no_telp'],
-            'id_jurusan' => $jurusan_id,
+            'id_jurusan' => $jurusan->id_jurusan,
             'id_user' => $user->id,
         ]);
 

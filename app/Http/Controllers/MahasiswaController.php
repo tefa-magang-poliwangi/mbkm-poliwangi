@@ -22,10 +22,10 @@ class MahasiswaController extends Controller
 
     public function daftar_prodi()
     {
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan = AdminJurusan::where('id_user', Auth::user()->id)->first();
 
         $data = [
-            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+            'prodis' => Prodi::where('id_jurusan', $jurusan->id_jurusan)->get(),
         ];
 
         return view('pages.admin.manajemen-mahasiswa.daftar-prodi', $data);
@@ -33,8 +33,6 @@ class MahasiswaController extends Controller
 
     public function index(Request $request, $id_prodi)
     {
-
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
         // Ambil daftar mahasiswa berdasarkan prodi_id
         $mahasiswa = Mahasiswa::where('id_prodi', $id_prodi)->get();
 
@@ -71,7 +69,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request, $id_prodi)
     {
-        // $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        // $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first();
         // validasi request mahasiswa
         $validated = $request->validate([
             'nim' => 'required|string',

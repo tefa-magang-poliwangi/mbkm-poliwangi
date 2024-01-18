@@ -62,7 +62,7 @@ class AdminJurusanController extends Controller
 
         Alert::success('Succes', 'Data Admin Jurusan Berhasil Ditambahkan');
 
-        return redirect()->route('manajemen.admin.prodi.index');
+        return redirect()->route('manajemen.admin.jurusan.index');
     }
 
     /**
@@ -107,11 +107,11 @@ class AdminJurusanController extends Controller
      */
     public function destroy($id)
     {
-        $adminprodi = Jurusan::findOrFail($id);
-        $adminprodi->delete();
+        $admin_jurusan = AdminJurusan::findOrFail($id);
+        $admin_jurusan->delete();
 
         Alert::success('Success', 'User Admin Jurusan Berhasil Dihapus');
 
-        return redirect()->route('manajemen.admin.prodi.index');
+        return redirect()->route('manajemen.admin.jurusan.index');
     }
 }
