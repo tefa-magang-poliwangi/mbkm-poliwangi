@@ -36,6 +36,7 @@ class DosenImport implements ToCollection
                 'nama' => $column[0],
                 'email' => $column[1],
                 'no_telp' => $column[2],
+                'id_registrasi_dosen' => $column[3], // feeder id
                 'id_prodi' => $matchingProdi->id,
                 'id_user' => $user_dosen->id,
             ]);

@@ -26,6 +26,7 @@ class MatakuliahImport implements ToCollection
                 'nama' => $column[0],
                 'kode_matakuliah' => $column[1],
                 'sks' => $column[2],
+                'id_matkul_feeder' => $column[3], // feeder id
                 'id_prodi' => $matchingProdi->id,
             ]);
         }

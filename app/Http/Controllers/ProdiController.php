@@ -44,11 +44,15 @@ class ProdiController extends Controller
     {
         $validated = $request->validate([
             'create_nama_prodi' => ['required', 'string'],
+            'create_jenjang_pendidikan' => ['required', 'string'],
+            'create_kode_prodi' => ['required', 'string'],
             'create_jurusan' => ['required', 'string'],
         ]);
 
         Prodi::create([
             'nama' => $validated['create_nama_prodi'],
+            'jenjang_pendidikan' => $validated['create_jenjang_pendidikan'],
+            'kode_prodi' => $validated['create_kode_prodi'],
             'id_jurusan' => $validated['create_jurusan']
         ]);
 

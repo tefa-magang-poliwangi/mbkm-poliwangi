@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\AdminProdi;
+use App\Models\AdminJurusan;
 use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Support\Collection;
@@ -32,7 +32,7 @@ class AdminProdiImport implements ToCollection
 
             $user_admin->assignRole('admin-prodi');
 
-            AdminProdi::create([
+            AdminJurusan::create([
                 'id_user' => $user_admin->id,
                 'id_prodi' => $matchingProdi->id,
             ]);
