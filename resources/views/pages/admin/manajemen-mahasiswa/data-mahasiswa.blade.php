@@ -32,8 +32,8 @@
                                         title="Import Data Mahasiswa"><i class="fa-solid fa-graduation-cap"></i>
                                     </button>
 
-                                    <a href="{{ route('manajemen.mahasiswa.create') }}" class="btn btn-primary ml-auto"
-                                        title="Tambah Mahasiswa">
+                                    <a href="{{ route('manajemen.mahasiswa.create', ['id_prodi' => $id_prodi]) }}"
+                                        class="btn btn-primary ml-auto" title="Tambah Mahasiswa">
                                         <i class="fa-solid fa-plus"></i> &ensp;
                                         Tambah Mahasiswa
                                     </a>

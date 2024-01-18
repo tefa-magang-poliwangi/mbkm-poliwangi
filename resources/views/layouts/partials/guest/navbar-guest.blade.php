@@ -84,7 +84,7 @@
                                 @role('admin-prodi')
                                     <li>
                                         <a class="dropdown-item text-theme fw-medium"
-                                            href="{{ route('dashboard.admin.prodi.page') }}">
+                                            href="{{ route('dashboard.admin.jurusan.page') }}">
                                             <i class="fa-solid fa-user"></i>
                                             &ensp; Akun
                                         </a>

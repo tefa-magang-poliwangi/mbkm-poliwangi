@@ -206,7 +206,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('manajemen.matakuliah.store') }}" method="POST">
+                    <form action="{{ route('manajemen.matakuliah.store', ['id_prodi' => $id_prodi]) }}" method="POST">
                         @csrf
 
                         <div class="modal-body">
@@ -215,8 +215,8 @@
                                     Mata
                                     Kuliah</label>
                                 <input id="create_matkul" type="text"
-                                    class="form-control @error('create_matkul') is-invalid @enderror"
-                                    name="create_matkul">
+                                    class="form-control @error('create_matkul') is-invalid @enderror" name="create_matkul"
+                                    placeholder="Masukkan Matakuliah">
                                 @error('create_matkul')
                                     <div id="create_matkul" class="form-text text-danger">
                                         {{ $message }}</div>
@@ -227,7 +227,7 @@
                                     Kuliah</label>
                                 <input id="create_kode_matkul" type="text"
                                     class="form-control @error('create_kode_matkul') is-invalid @enderror"
-                                    name="create_kode_matkul">
+                                    name="create_kode_matkul" placeholder="Masukkan Kode Matakuliah">
                                 @error('create_kode_matkul')
                                     <div id="create_kode_matkul" class="form-text text-danger">
                                         {{ $message }}</div>
@@ -237,7 +237,8 @@
                                 <label for="create_sks" class="form-label">Jumlah
                                     SKS</label>
                                 <input id="create_sks" type="number"
-                                    class="form-control @error('create_sks') is-invalid @enderror" name="create_sks">
+                                    class="form-control @error('create_sks') is-invalid @enderror" name="create_sks"
+                                    placeholder="Masukkan SKS">
                                 @error('create_sks')
                                     <div id="create_sks" class="form-text text-danger">
                                         {{ $message }}</div>

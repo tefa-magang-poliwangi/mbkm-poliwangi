@@ -14,6 +14,7 @@ class Matkul extends Model
         'nama',
         'kode_matakuliah',
         'sks',
+        'id_matkul_feeder',
         'id_prodi'
     ];
 

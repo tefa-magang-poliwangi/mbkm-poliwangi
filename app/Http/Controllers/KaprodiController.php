@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use App\Models\Dosen;
 use App\Models\Kaprodi;
@@ -19,15 +20,27 @@ class KaprodiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function daftar_prodi()
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+
+        $data = [
+            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+        ];
+
+        return view('pages.admin.manajemen-kaprodi.daftar-prodi', $data);
+    }
+    public function index($id_prodi)
+    {
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $datas = [
-            'dosen' => Dosen::where('id_prodi', $prodi_id)->get(),
-            'prodi' => Prodi::where('id', $prodi_id)->first(),
-            'kaprodi' => Kaprodi::whereHas('dosen', function ($query) use ($prodi_id) {
-                $query->where('id_prodi', $prodi_id);
+            'dosen' => Dosen::where('id_jurusan', $jurusan_id)->get(),
+            'prodi' => Prodi::where('id', $id_prodi)->first(),
+            'id_prodi' => $id_prodi,
+            'kaprodi' => Kaprodi::whereHas('dosen', function ($query) use ($id_prodi) {
+                $query->where('id_prodi', $id_prodi);
             })->get(),
         ];
 
@@ -51,7 +64,7 @@ class KaprodiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_prodi)
     {
         $validated = $request->validate([
             'periode_mulai' => ['required'],
@@ -85,14 +98,16 @@ class KaprodiController extends Controller
         Kaprodi::create([
             'periode_mulai' => $validated['periode_mulai'],
             'periode_akhir' => $validated['periode_akhir'],
+            'status' => $validated['status'],
             'id_dosen' => $id_dosen,
-            'status' => $validated['status']
+            'id_prodi' => $id_prodi,
         ]);
 
         Alert::success('Success', 'Berhasil Menambahkan Data Kaprodi');
 
         return redirect()->back();
     }
+
 
 
     /**
@@ -149,6 +164,6 @@ class KaprodiController extends Controller
 
         Alert::success('Success', 'Berhasil Mengahapus Kaprodi');
 
-        return redirect()->route('manajemen.kaprodi.index');
+        return redirect()->back();
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama', 255)->nullable(false);
             $table->string('kode_matakuliah', 15)->nullable(false);
             $table->tinyInteger('sks')->nullable(false);
+            $table->string('id_matkul_feeder')->nullable(true);
             $table->unsignedBigInteger('id_prodi')->nullable(false);
             $table->foreign('id_prodi')->references('id')->on('prodis')->onDelete('cascade');
             $table->timestamps();

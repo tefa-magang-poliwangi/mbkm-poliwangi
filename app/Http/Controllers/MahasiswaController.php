@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
@@ -18,15 +19,27 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+
+    public function daftar_prodi()
+    {
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+
+        $data = [
+            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+        ];
+
+        return view('pages.admin.manajemen-mahasiswa.daftar-prodi', $data);
+    }
+
+    public function index(Request $request, $id_prodi)
     {
 
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
-
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
         // Ambil daftar mahasiswa berdasarkan prodi_id
-        $mahasiswa = Mahasiswa::where('id_prodi', $prodi_id)->get();
+        $mahasiswa = Mahasiswa::where('id_prodi', $id_prodi)->get();
 
         $datas = [
+            'id_prodi' => $id_prodi,
             'mahasiswas' => $mahasiswa,
             'prodi' => Prodi::all(),
             'request' => $request,
@@ -40,14 +53,15 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id_prodi)
     {
         $data = [
-            'prodis' => Prodi::all(),
+            'id_prodi' => $id_prodi,
         ];
 
         return view('pages.admin.manajemen-mahasiswa.create-mahasiswa', $data);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -55,10 +69,9 @@ class MahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
-
+        // $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
         // validasi request mahasiswa
         $validated = $request->validate([
             'nim' => 'required|string',
@@ -85,13 +98,13 @@ class MahasiswaController extends Controller
             'email' => $validated['email'],
             'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
             'id_user' => $user_mahasiswa->id,
         ]);
 
         Alert::success('Success', 'Berhasil Menambahkan Data Mahasiswa');
 
-        return redirect()->route('manajemen.mahasiswa.index');
+        return redirect()->route('manajemen.mahasiswa.index', $id_prodi);
     }
 
     /**
@@ -128,9 +141,9 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $id_prodi)
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
         $mahasiswa = Mahasiswa::findOrFail($id);
 
         // validasi request mahasiswa
@@ -159,13 +172,13 @@ class MahasiswaController extends Controller
             'email' => $validated['email'],
             'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
-            'id_prodi' => $prodi_id,
+            'id_prodi' => $id_prodi,
             'id_user' => $user->id,
         ]);
 
         Alert::success('Success', 'Berhasil Mengubah Data Mahasiswa');
 
-        return redirect()->route('manajemen.mahasiswa.index');
+        return redirect()->route('manajemen.mahasiswa.index', $id_prodi);
     }
 
     /**
@@ -183,6 +196,6 @@ class MahasiswaController extends Controller
 
         Alert::success('Success', 'Berhasil Menghapus Data Mahasiswa');
 
-        return redirect()->route('manajemen.mahasiswa.index');
+        return redirect()->back();
     }
 }

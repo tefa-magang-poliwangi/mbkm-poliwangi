@@ -32,9 +32,11 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="text-center text-white">No</th>
-                                                <th class="text-white">Program Studi</th>
-                                                <th class=" text-white">Jurusan</th>
+                                                <th class="text-center text-white" width="15%">Jenjang Pendidikan</th>
+                                                <th class="text-center text-white">Program Studi</th>
+                                                <th class="text-center text-white">Jurusan</th>
                                                 <th class="text-center text-white">Edit</th>
+                                                <th class="text-center text-white">Kode Prodi</th>
                                                 <th class="text-center text-white">Hapus</th>
                                             </tr>
                                         </thead>
@@ -46,8 +48,9 @@
                                             @foreach ($prodi as $data)
                                                 <tr>
                                                     <td class="text-center">{{ $no }}</td>
-                                                    <td>{{ $data->nama }}</td>
-                                                    <td>{{ $data->jurusan->nama_jurusan }}</td>
+                                                    <td class="text-center">{{ $data->jenjang_pendidikan }}</td>
+                                                    <td class="text-center">{{ $data->nama }}</td>
+                                                    <td class="text-center">{{ $data->jurusan->nama_jurusan }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.jenis-program.update', $data->id) }}"
                                                             class="btn btn-primary ml-auto" data-toggle="modal"
@@ -55,6 +58,7 @@
                                                             <i class="fa-solid fa-pen text-white"></i>
                                                         </a>
                                                     </td>
+                                                    <td class="text-center">{{ $data->kode_prodi }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.prodi.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
@@ -179,11 +183,43 @@
 
                             <div class="form-group">
                                 <label for="create_nama_prodi">Nama Prodi</label>
-                                <input type="text"
-                                    class="form-control @error('create_nama_prodi') is-invalid @enderror"
+                                <input type="text" class="form-control @error('create_nama_prodi') is-invalid @enderror"
                                     id="create_nama_prodi" name="create_nama_prodi" placeholder="Masukkan Nama Prodi">
                                 @error('create_nama_prodi')
-                                    <div id="create_nama_prodi" class="form-text pb-1">
+                                    <div id="create_nama_prodi" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="create_jenjang_pendidikan" class="form-label">Jenjang Pendidikan</label>
+                                <select
+                                    class="form-control @error('create_jenjang_pendidikan')
+                                            is-invalid
+                                        @enderror"
+                                    id="create_jenjang_pendidikan" name="create_jenjang_pendidikan">
+                                    <option value="">Pilih Jenjang Pendidikan</option>
+                                    <option value="D1">D1</option>
+                                    <option value="D2">D2</option>
+                                    <option value="D3">D3</option>
+                                    <option value="D4">D4</option>
+                                    <option value="S1">S1</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S3">S3</option>
+                                </select>
+                                @error('create_jenjang_pendidikan')
+                                    <div id="create_jenjang_pendidikan" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="create_kode_prodi">Kode Prodi</label>
+                                <input type="text"
+                                    class="form-control @error('create_kode_prodi') is-invalid @enderror"
+                                    id="create_kode_prodi" name="create_kode_prodi" placeholder="Masukkan Kode Prodi">
+                                @error('create_kode_prodi')
+                                    <div id="create_kode_prodi" class="form-text text-danger">
                                         {{ $message }}</div>
                                 @enderror
                             </div>
@@ -195,7 +231,7 @@
                                             is-invalid
                                         @enderror"
                                     id="create_jurusan" name="create_jurusan">
-                                    <option value="">Jurusan</option>
+                                    <option value="">Pilih Jurusan</option>
                                     @foreach ($jurusan as $datajurusan)
                                         <option value="{{ $datajurusan->id }}">{{ $datajurusan->nama_jurusan }}</option>
                                     @endforeach

@@ -164,7 +164,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('manajemen.kurikulum.store') }}" method="POST">
+                    <form action="{{ route('manajemen.kurikulum.store', ['id_prodi' => $id_prodi]) }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">

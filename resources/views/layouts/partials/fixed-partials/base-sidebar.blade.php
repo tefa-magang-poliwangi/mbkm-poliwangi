@@ -19,7 +19,7 @@
                 @endrole
 
                 @role('admin-prodi')
-                    <a href="{{ route('dashboard.admin.prodi.page') }}">Poliwangi</a>
+                    <a href="{{ route('dashboard.admin.jurusan.page') }}">Poliwangi</a>
                 @endrole
 
                 @role('kaprodi')
@@ -104,7 +104,7 @@
 
                 @role('admin-prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard.admin.prodi.page') }}">
+                        <a class="nav-link" href="{{ route('dashboard.admin.jurusan.page') }}">
                             <i class="fas fa-solid fa-border-all"></i>
                             <span>Dashboard</span>
                         </a>
@@ -346,9 +346,9 @@
                 @role('admin-prodi')
                     <li class="menu-header">ADMIN JURUSAN</li>
 
-                    @can('profil.admin.prodi.page')
+                    @can('profil.admin.jurusan.page')
                         <li>
-                            <a class="nav-link" href="{{ route('profil.admin.prodi.page', auth()->user()->id) }}">
+                            <a class="nav-link" href="{{ route('profil.admin.jurusan.page', auth()->user()->id) }}">
                                 <i class="fas fa-solid fa-user"></i>
                                 <span>Profil Admin Jurusan</span>
                             </a>
@@ -366,9 +366,9 @@
                     </li>
                 @endcan
 
-                @can('manajemen.kaprodi.index')
+                @can('kaprodi.daftar.prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.kaprodi.index') }}">
+                        <a class="nav-link" href="{{ route('kaprodi.daftar.prodi') }}">
                             <i class="fas fa-solid fa-user-graduate"></i>
                             <span>Data Kaprodi</span>
                         </a>
@@ -393,42 +393,43 @@
                     </li>
                 @endcan
 
-                @can('manajemen.kelas.index')
+                @can('kelas.daftar.prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.kelas.index') }}">
+                        <a class="nav-link" href="{{ route('kelas.daftar.prodi') }}">
                             <i class="fas fa-solid fa-layer-group"></i>
                             <span>Data Kelas</span>
                         </a>
                     </li>
                 @endcan
 
-                @can('manajemen.mahasiswa.index')
+                @can('mahasiswa.daftar.prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.mahasiswa.index') }}">
+                        <a class="nav-link" href="{{ route('mahasiswa.daftar.prodi') }}">
                             <i class="fas fa-graduation-cap"></i>
                             <span>Data Mahasiswa</span>
                         </a>
                     </li>
                 @endcan
 
-                @can('manajemen.kurikulum.index')
+                @can('matakuliah.daftar.prodi')
+                    <li>
+                        <a class="nav-link" href="{{ route('matakuliah.daftar.prodi') }}">
+                            <i class="fas fa-solid fa-book"></i>
+                            <span>Matakuliah</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('kurikulum.daftar.prodi')
                     <li class="menu-header">Data Kurikulum</li>
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.kurikulum.index') }}">
+                        <a class="nav-link" href="{{ route('kurikulum.daftar.prodi') }}">
                             <i class="fas fa-solid fa-book-journal-whills"></i>
                             <span>Kurikulum</span>
                         </a>
                     </li>
                 @endcan
 
-                @can('manajemen.matakuliah.index')
-                    <li>
-                        <a class="nav-link" href="{{ route('manajemen.matakuliah.index') }}">
-                            <i class="fas fa-solid fa-book"></i>
-                            <span>Matakuliah</span>
-                        </a>
-                    </li>
-                @endcan
                 @can('manajemen.magang.ext.index')
                     <li class="menu-header">Data Magang</li>
                     <li>

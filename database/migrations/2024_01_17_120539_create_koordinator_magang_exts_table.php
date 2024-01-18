@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('koordinator_magang_exts', function (Blueprint $table) {
             $table->id();
-            $table->nama()
+            $table->nama();
             $table->timestamps();
         });
     }
