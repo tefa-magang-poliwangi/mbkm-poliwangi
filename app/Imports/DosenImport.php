@@ -3,7 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Dosen;
-use App\Models\Prodi;
+use App\Models\Jurusan;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -15,12 +15,12 @@ class DosenImport implements ToCollection
      */
     public function collection(Collection $rows)
     {
-        $prodis = Prodi::all();
+        $jurusans = Jurusan::all();
 
         foreach ($rows as $column) {
-            $prodiName = $column[3];
-            $matchingProdi = $prodis->first(function ($prodi) use ($prodiName) {
-                return $prodi->nama == $prodiName;
+            $jurusanName = $column[3];
+            $matchingJurusan = $jurusans->first(function ($jurusan) use ($jurusanName) {
+                return $jurusan->nama_jurusan == $jurusanName;
             });
 
             $user_dosen = User::create([
@@ -37,7 +37,7 @@ class DosenImport implements ToCollection
                 'email' => $column[1],
                 'no_telp' => $column[2],
                 'id_registrasi_dosen' => $column[3], // feeder id
-                'id_prodi' => $matchingProdi->id,
+                'id_jurusan' => $matchingJurusan->id,
                 'id_user' => $user_dosen->id,
             ]);
         }

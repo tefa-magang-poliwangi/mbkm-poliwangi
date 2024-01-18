@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\JenisProgramController;
 use App\Http\Controllers\KoordinatorMagangExtController;
-use App\Models\JenisProgram;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminProdiController;
+use App\Http\Controllers\AdminJurusanController;
 use App\Http\Controllers\AdminJurusanPageController;
 use App\Http\Controllers\AkademikPageController;
 use App\Http\Controllers\AuthController;
@@ -160,7 +159,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen/{id_dosen}/destroy', [DosenController::class, 'destroy'])->name('manajemen.dosen.destroy');
 
         // Route Transkrip Mahasiswa External dan Internal
-        Route::get('/daftar-transkrip-nilai/mahasiswa-external/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
+        Route::get('/daftar-transkrip-nilai/daftar-prodi', [KonversiNilaiExternal::class, 'daftar_prodi'])->name('transkrip.mahasiswa.daftar.prodi');
+
+        Route::get('/daftar-transkrip-nilai/mahasiswa-external/{id_prodi}/index', [KonversiNilaiExternal::class, 'index'])->name('daftar.transkrip.mahasiswa.ext.index');
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/create', [KonversiNilaiExternal::class, 'create'])->name('daftar.transkrip.mahasiswa.ext.create');
         Route::get('/daftar-transkrip-nilai/mahasiswa-external/mahasiswa_{id_mahasiswa}/magang_{id_magang_ext}/transkrip_{id_nilai_magang_ext}', [KonversiNilaiExternal::class, 'show'])->name('daftar.transkrip.mahasiswa.ext.show');
 
@@ -187,10 +188,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/manajemen/jenis-program/{id_jenis_program}/update', [JenisProgramController::class, 'update'])->name('manajemen.jenis-program.update');
         Route::get('/manajemen/jenis-program/{id_jenis_program}/destroy', [JenisProgramController::class, 'destroy'])->name('manajemen.jenis-program.destroy');
 
-        // # (Route Admin Prodi)
+        // # (Route Admin Jurusan)
         Route::get('/dashboard/admin-jurusan', [AdminJurusanPageController::class, 'dashboard_admin_jurusan'])->name('dashboard.admin.jurusan.page');
 
-        // Route Profil Admin Prodi
+        // Route Profil Admin Jurusan
         Route::get('/dashboard/admin-jurusan/ubah-profil/{id_user}', [ProfileAdminJurusanController::class, 'show'])->name('profil.admin.jurusan.page');
         Route::put('/dashboard/admin-jurusan/update-profil/{id_user}', [ProfileAdminJurusanController::class, 'update'])->name('profil.admin.jurusan.update');
 
@@ -256,11 +257,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::put('/manajemen/mahasiswa/{id_mahasiswa}/update', [MahasiswaController::class, 'update'])->name('manajemen.mahasiswa.update');
         Route::get('/manajemen/mahasiswa/{id_mahasiswa}/destroy', [MahasiswaController::class, 'destroy'])->name('manajemen.mahasiswa.destroy');
 
-        // Route Manajemen Admin
-        Route::get('/manajemen/admin-prodi', [AdminProdiController::class, 'index'])->name('manajemen.admin.prodi.index');
-        Route::get('/manajemen/admin-prodi/create', [AdminProdiController::class, 'create'])->name('manajemen.admin.prodi.create');
-        Route::post('/manajemen/admin-prodi/store', [AdminProdiController::class, 'store'])->name('manajemen.admin.prodi.store');
-        Route::get('/manajemen/admin-prodi/{id_admin_prodi}/destroy', [AdminProdiController::class, 'destroy'])->name('manajemen.admin.prodi.destroy');
+        // Route Manajemen Admin Jurusan
+        Route::get('/manajemen/admin-jurusan', [AdminJurusanController::class, 'index'])->name('manajemen.admin.jurusan.index');
+        Route::get('/manajemen/admin-jurusan/create', [AdminJurusanController::class, 'create'])->name('manajemen.admin.jurusan.create');
+        Route::post('/manajemen/admin-jurusan/store', [AdminJurusanController::class, 'store'])->name('manajemen.admin.jurusan.store');
+        Route::get('/manajemen/admin-jurusan/{id_admin_jurusan}/destroy', [AdminJurusanController::class, 'destroy'])->name('manajemen.admin.jurusan.destroy');
 
         Route::get('/manajemen/cpl-kurikulum/{id_kurikulum}/index', [CPLKurikulumController::class, 'index'])->name('manajemen.cpl.kurikulum.index');
         Route::get('/manajemen/cpl-kurikulum/create', [CPLKurikulumController::class, 'create'])->name('manajemen.cpl.kurikulum.create');
@@ -287,9 +288,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/kurikulum/{id_kurikulum}/destroy', [KurikulumController::class, 'destroy'])->name('manajemen.kurikulum.destroy');
 
         // Route Manajemen Matakuliah Kurikulum
-        Route::get('/manajemen/{id_kurikulum}/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
-        Route::get('/manajemen/matakuliah-kurikulum/{id_kurikulum}/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
-        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
+        Route::get('/manajemen/{id_kurikulum}/{id_prodi}/matakuliah-kurikulum', [MatkulKurikulumController::class, 'index'])->name('manajemen.matkul.kurikulum.index');
+        Route::get('/manajemen/matakuliah-kurikulum/{id_kurikulum}/{id_prodi}/create', [MatkulKurikulumController::class, 'create'])->name('manajemen.matkul.kurikulum.create');
+        Route::post('/manajemen/matakuliah-kurikulum/{id_kurikulum}/{id_prodi}/store', [MatkulKurikulumController::class, 'store'])->name('manajemen.matkul.kurikulum.store');
         Route::put('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/update', [MatkulKurikulumController::class, 'update'])->name('manajemen.matkul.kurikulum.update');
         Route::get('/manajemen/matakuliah-kurikulum/{id_matkul_kurikulum}/destroy', [MatkulKurikulumController::class, 'destroy'])->name('manajemen.matkul.kurikulum.destroy');
 
@@ -412,9 +413,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/manajemen/dosen-pl/{id_dosen_pl}/destroy', [DosenPLController::class, 'destroy'])->name('manajemen.dosen.pl.destroy');
 
         // Route Manajemen Peserta Dosen
-        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
-        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
-        Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
+        Route::get('/manajemen/dosen-wali/{id_dosen_wali}/daftar-prodi', [PesertaDosenController::class, 'daftar_prodi'])->name('peserta.dosen.daftar.prodi');
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/{id_prodi}/index', [PesertaDosenController::class, 'index'])->name('manajemen.peserta.dosen.index');
+        Route::get('/manajemen/peserta-dosen/{id_dosen_wali}/{id_prodi}/create', [PesertaDosenController::class, 'create'])->name('manajemen.peserta.dosen.create');
+        Route::post('/manajemen/peserta-dosen/{id_dosen_wali}/{id_prodi}/store', [PesertaDosenController::class, 'store'])->name('manajemen.peserta.dosen.store');
         Route::get('/manajemen/peserta-dosen/{id}/destroy', [PesertaDosenController::class, 'destroy'])->name('manajemen.peserta.dosen.destroy');
 
         // # (Route Wadir)
@@ -615,7 +617,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('villages', 'DependentDropdownController@villages')->name('villages');
 
         // Route Imports Data
-        Route::post('/import-data-user/admin-prodi/import', [ImportController::class, 'import_data_user_admin_prodi'])->name('import.data.user.admin.prodi');
+        Route::post('/import-data-user/admin-jurusan/import', [ImportController::class, 'import_data_user_admin_prodi'])->name('import.data.user.admin.jurusan');
         Route::post('/import-data-user/dosen/import', [ImportController::class, 'import_data_user_dosen'])->name('import.data.user.dosen');
         Route::post('/import-user/mahasiswa/import', [ImportController::class, 'import_user_mahasiswa'])->name('import.user.mahasiswa');
         Route::post('/import-data/mahasiswa/import', [ImportController::class, 'import_data_mahasiswa'])->name('import.data.mahasiswa');

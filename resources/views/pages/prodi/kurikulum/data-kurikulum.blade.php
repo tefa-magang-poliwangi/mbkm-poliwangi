@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <h5 class="justify-start my-auto text-theme">Data Kurikulum</h5>
+                                <h5 class="justify-start my-auto text-theme">Data Kurikulum - {{ $prodi->nama }}</h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
                                 <button class="btn btn-primary ml-auto" data-toggle="modal" data-target="#createModal"><i
@@ -58,7 +58,7 @@
                                                     {{ $item->status }} </span>
                                             </td>
                                             <td>
-                                                <a href="{{ route('manajemen.matkul.kurikulum.index', $item->id) }}"
+                                                <a href="{{ route('manajemen.matkul.kurikulum.index', ['id_kurikulum' => $item->id, 'id_prodi' => $id_prodi]) }}"
                                                     class="btn btn-primary">
                                                     <i class="fa-solid fa-plus"></i> Matkul
                                                 </a>

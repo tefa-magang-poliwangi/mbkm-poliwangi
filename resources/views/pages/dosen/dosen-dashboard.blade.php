@@ -63,7 +63,7 @@
                                         <h4>Daftar Transkrip Nilai</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $daftar_transkrip_nilai_count }}
+                                        {{-- {{ $daftar_transkrip_nilai_count }} --}}
                                     </div>
                                 </div>
                             </div>

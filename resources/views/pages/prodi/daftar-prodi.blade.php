@@ -32,11 +32,11 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="text-center text-white">No</th>
-                                                <th class="text-center text-white" width="15%">Jenjang Pendidikan</th>
+                                                <th class="text-center text-white" width="15%">Jenjang</th>
                                                 <th class="text-center text-white">Program Studi</th>
                                                 <th class="text-center text-white">Jurusan</th>
-                                                <th class="text-center text-white">Edit</th>
                                                 <th class="text-center text-white">Kode Prodi</th>
+                                                <th class="text-center text-white">Edit</th>
                                                 <th class="text-center text-white">Hapus</th>
                                             </tr>
                                         </thead>
@@ -51,6 +51,7 @@
                                                     <td class="text-center">{{ $data->jenjang_pendidikan }}</td>
                                                     <td class="text-center">{{ $data->nama }}</td>
                                                     <td class="text-center">{{ $data->jurusan->nama_jurusan }}</td>
+                                                    <td class="text-center">{{ $data->kode_prodi }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.jenis-program.update', $data->id) }}"
                                                             class="btn btn-primary ml-auto" data-toggle="modal"
@@ -58,7 +59,6 @@
                                                             <i class="fa-solid fa-pen text-white"></i>
                                                         </a>
                                                     </td>
-                                                    <td class="text-center">{{ $data->kode_prodi }}</td>
                                                     <td class="text-center">
                                                         <a href="{{ route('manajemen.prodi.destroy', $data->id) }}"
                                                             class="btn btn-danger ml-auto">
@@ -106,6 +106,63 @@
                                                                             </div>
 
                                                                             <div class="form-group">
+                                                                                <label for="update_jenjang_pendidikan"
+                                                                                    class="form-label">Jenjang
+                                                                                    Pendidikan</label>
+                                                                                <select
+                                                                                    class="form-control @error('update_jenjang_pendidikan')
+                                                                                            is-invalid
+                                                                                        @enderror"
+                                                                                    id="update_jenjang_pendidikan"
+                                                                                    name="update_jenjang_pendidikan">
+                                                                                    <option value="">Pilih Jenjang
+                                                                                        Pendidikan</option>
+                                                                                    <option value="D1"
+                                                                                        {{ $data->jenjang_pendidikan == 'D1' ? 'selected' : '' }}>
+                                                                                        D1</option>
+                                                                                    <option value="D2"
+                                                                                        {{ $data->jenjang_pendidikan == 'D2' ? 'selected' : '' }}>
+                                                                                        D2</option>
+                                                                                    <option value="D3"
+                                                                                        {{ $data->jenjang_pendidikan == 'D3' ? 'selected' : '' }}>
+                                                                                        D3</option>
+                                                                                    <option value="D4"
+                                                                                        {{ $data->jenjang_pendidikan == 'D4' ? 'selected' : '' }}>
+                                                                                        D4</option>
+                                                                                    <option value="S1"
+                                                                                        {{ $data->jenjang_pendidikan == 'S1' ? 'selected' : '' }}>
+                                                                                        S1</option>
+                                                                                    <option value="S2"
+                                                                                        {{ $data->jenjang_pendidikan == 'S2' ? 'selected' : '' }}>
+                                                                                        S2</option>
+                                                                                    <option value="S3"
+                                                                                        {{ $data->jenjang_pendidikan == 'S3' ? 'selected' : '' }}>
+                                                                                        S3</option>
+                                                                                </select>
+                                                                                @error('update_jenjang_pendidikan')
+                                                                                    <div id="update_jenjang_pendidikan"
+                                                                                        class="form-text text-danger">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="update_kode_prodi">Kode
+                                                                                    Prodi</label>
+                                                                                <input type="text"
+                                                                                    class="form-control @error('update_kode_prodi') is-invalid @enderror"
+                                                                                    id="update_kode_prodi"
+                                                                                    name="update_kode_prodi"
+                                                                                    placeholder="Masukkan Kode Prodi"
+                                                                                    value="{{ $data->kode_prodi }}">
+                                                                                @error('update_kode_prodi')
+                                                                                    <div id="update_kode_prodi"
+                                                                                        class="form-text text-danger">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <div class="form-group">
                                                                                 <label for="update_jurusan"
                                                                                     class="form-label">Jurusan</label>
                                                                                 <select
@@ -114,6 +171,8 @@
                                                                                         @enderror"
                                                                                     id="update_jurusan"
                                                                                     name="update_jurusan">
+                                                                                    <option value="">Pilih Jurusan
+                                                                                    </option>
                                                                                     @foreach ($jurusan as $datajurusan)
                                                                                         <option
                                                                                             value="{{ $datajurusan->id }}"
@@ -183,7 +242,8 @@
 
                             <div class="form-group">
                                 <label for="create_nama_prodi">Nama Prodi</label>
-                                <input type="text" class="form-control @error('create_nama_prodi') is-invalid @enderror"
+                                <input type="text"
+                                    class="form-control @error('create_nama_prodi') is-invalid @enderror"
                                     id="create_nama_prodi" name="create_nama_prodi" placeholder="Masukkan Nama Prodi">
                                 @error('create_nama_prodi')
                                     <div id="create_nama_prodi" class="form-text text-danger">

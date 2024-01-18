@@ -20,7 +20,8 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('manajemen.matkul.kurikulum.store', $id_kurikulum) }}" method="POST">
+                        <form action="{{ route('manajemen.matkul.kurikulum.store', [$id_kurikulum, $id_prodi]) }}"
+                            method="POST">
                             @csrf
 
                             <div class="form-group">

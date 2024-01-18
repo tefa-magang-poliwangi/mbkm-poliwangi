@@ -1,7 +1,7 @@
 @extends('layouts.base-admin')
 
 @section('title')
-    <title>Daftar Kurikulum | MBKM Poliwangi</title>
+    <title>Daftar Prodi | MBKM Poliwangi</title>
 @endsection
 
 @section('css')
@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-4">
-                                <h5 class="justify-start my-auto text-theme">Matakuliah | Daftar Prodi</h5>
+                                <h5 class="justify-start my-auto text-theme">Konversi | Daftar Prodi</h5>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                                                     <td class="text-center">{{ $no }}</td>
                                                     <td>{{ $data->nama }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('manajemen.matakuliah.index', $data->id) }}"
+                                                        <a href="{{ route('daftar.transkrip.mahasiswa.ext.index', $data->id) }}"
                                                             class="btn btn-primary ml-auto"><i
                                                                 class="fa-solid fa-eye"></i></a>
                                                     </td>

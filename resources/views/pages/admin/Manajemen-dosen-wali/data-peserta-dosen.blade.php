@@ -19,11 +19,11 @@
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <h5 class="justify-start my-auto text-theme">Daftar Mahasiswa Dosen Wali
-                                    ({{ $dosen_wali->dosen->nama }})
+                                    ({{ $dosen_wali->dosen->nama }}) {{ $prodi->nama }}
                                 </h5>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
-                                <a href="{{ route('manajemen.peserta.dosen.create', $id_dosen_wali) }}"
+                                <a href="{{ route('manajemen.peserta.dosen.create', [$id_dosen_wali, $id_prodi]) }}"
                                     class="btn btn-primary ml-auto">
                                     <i class="fa-solid fa-plus"></i> &ensp;
                                     Tambah Mahasiswa

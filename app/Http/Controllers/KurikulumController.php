@@ -20,10 +20,10 @@ class KurikulumController extends Controller
 
     public function daftar_prodi()
     {
-        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
+        $jurusan = AdminJurusan::where('id_user', Auth::user()->id)->first();
 
         $data = [
-            'prodis' => Prodi::where('id_jurusan', $jurusan_id)->get(),
+            'prodis' => Prodi::where('id_jurusan', $jurusan->id_jurusan)->get(),
         ];
 
         return view('pages.prodi.kurikulum.daftar-prodi', $data);
@@ -31,14 +31,13 @@ class KurikulumController extends Controller
 
     public function index(Request $request, $id_prodi)
     {
-
         // Ambil daftar mahasiswa berdasarkan prodi_id
         $kurikulum = Kurikulum::where('id_prodi', $id_prodi)->get();
 
         $data = [
             'id_prodi' => $id_prodi,
             'kurikulums' => $kurikulum,
-            'prodi' => Prodi::all(),
+            'prodi' => Prodi::findOrFail($id_prodi),
             'request' => $request,
         ];
 
@@ -108,9 +107,10 @@ class KurikulumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $id_prodi)
+    public function update(Request $request, $id)
     {
-        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $kurikulum = Kurikulum::findOrFail($id);
+        $id_prodi = $kurikulum->id_prodi;
 
         $validated = $request->validate([
             'update_nama' => ['required'],

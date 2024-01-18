@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('jenis_programs', function (Blueprint $table) {
             $table->id();
             $table->string('nama_program')->nullable(false);
+            $table->string('id_program_feeder')->nullable(true);
             $table->timestamps();
         });
     }

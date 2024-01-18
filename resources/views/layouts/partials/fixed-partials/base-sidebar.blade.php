@@ -1,64 +1,11 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <img src="{{ asset('images/logo/logo-title-poliwangi.png') }}" width="25" class="img-fluid mb-2"
-                alt="">
-
-            {{-- Icon Dashboard Menu --}}
-            @auth
-                @role('admin')
-                    <a href="{{ route('dashboard.admin.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('akademik')
-                    <a href="{{ route('dashboard.akademik.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('wadir')
-                    <a href="{{ route('dashboard.wadir.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('admin-prodi')
-                    <a href="{{ route('dashboard.admin.jurusan.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('kaprodi')
-                    <a href="{{ route('dashboard.dosen.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('dosen')
-                    <a href="{{ route('dashboard.dosen.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('dosen-wali')
-                    <a href="{{ route('dashboard.dosen.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('dosen-pl')
-                    <a href="{{ route('dashboard.dosen.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('mahasiswa')
-                    <a href="{{ route('dashboard.mahasiswa.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('mitra')
-                    <a href="{{ route('dashboard.mitra.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('pl-mitra')
-                    <a href="{{ route('dashboard.plmitra.page') }}">Poliwangi</a>
-                @endrole
-
-                @role('koordinator')
-                    <a href="{{ route('dashboard.koordinator.page') }}">Poliwangi</a>
-                @endrole
-            @endauth
+            <img src="{{ asset('images/logo/mbkm-poliwangi.png') }}" width="200" class="img-fluid mb-2" alt="">
         </div>
 
         <div class="sidebar-brand sidebar-brand-sm">
-            <img src="{{ asset('images/logo/logo-title-poliwangi.png') }}" width="25" class="img-fluid mb-2"
-                alt="">
+            <img src="{{ asset('images/logo/mbkm-poliwangi.png') }}" width="200" class="img-fluid mb-2" alt="">
         </div>
 
         <ul class="sidebar-menu">
@@ -102,7 +49,7 @@
                     </li>
                 @endrole
 
-                @role('admin-prodi')
+                @role('admin-jurusan')
                     <li>
                         <a class="nav-link" href="{{ route('dashboard.admin.jurusan.page') }}">
                             <i class="fas fa-solid fa-border-all"></i>
@@ -217,10 +164,10 @@
                     </li>
                 @endcan
 
-                @can('manajemen.admin.prodi.index')
+                @can('manajemen.admin.jurusan.index')
                     <li class="menu-header">Data Master</li>
                     <li>
-                        <a class="nav-link" href="{{ route('manajemen.admin.prodi.index') }}">
+                        <a class="nav-link" href="{{ route('manajemen.admin.jurusan.index') }}">
                             <i class="fas fa-solid fa-headset"></i>
                             <span>Admin Jurusan</span>
                         </a>
@@ -341,9 +288,9 @@
                 @endrole
             @endauth
 
-            {{-- Menu Admin Prodi --}}
+            {{-- Menu Admin Jurusan --}}
             @auth
-                @role('admin-prodi')
+                @role('admin-jurusan')
                     <li class="menu-header">ADMIN JURUSAN</li>
 
                     @can('profil.admin.jurusan.page')
@@ -561,9 +508,9 @@
                     @endcan
                 @endrole
 
-                @can('daftar.transkrip.mahasiswa.ext.index')
+                @can('transkrip.mahasiswa.daftar.prodi')
                     <li>
-                        <a class="nav-link" href="{{ route('daftar.transkrip.mahasiswa.ext.index') }}">
+                        <a class="nav-link" href="{{ route('transkrip.mahasiswa.daftar.prodi') }}">
                             <i class="fas fa-exchange-alt"></i>
                             <span>Konversi Nilai</span>
                         </a>

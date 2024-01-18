@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminJurusan;
 use App\Models\AdminProdi;
+use App\Models\JenisProgram;
 use App\Models\MagangExt;
 use App\Models\Periode;
 use App\Models\Prodi;
@@ -55,7 +57,7 @@ class MagangExternalController extends Controller
 
         $magangext = new MagangExt();
         $magangext->name = $validated['create_name'];
-        $magangext->jenis_magang = $validated['create_jenis_magang'];
+        $magangext->id_jenis_program = $validated['create_jenis_magang'];
         $magangext->id_periode = $validated['create_id_periode'];
         $magangext->id_prodi = $validated['create_id_prodi'];
         $magangext->save();
