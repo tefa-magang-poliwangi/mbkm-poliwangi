@@ -10,7 +10,7 @@ class Dosen extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nama', 'email', 'no_telp', 'id_jurusan', 'id_user'];
+    protected $fillable = ['id', 'nama', 'email', 'no_telp', 'id_registrasi_dosen', 'id_jurusan', 'id_user'];
 
     // relasi
     public function jurusan()

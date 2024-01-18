@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('prodis', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 255)->nullable(false);
+            $table->string('id_prodi_feeder')->nullable(true);
             $table->unsignedBigInteger('id_jurusan')->nullable(false);
             $table->foreign('id_jurusan')->references('id')->on('jurusans')->onDelete('cascade');
             $table->timestamps();
