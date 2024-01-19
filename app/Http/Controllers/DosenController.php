@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminJurusan;
-use App\Models\AdminProdi;
 use App\Models\Dosen;
 use App\Models\Jurusan;
-use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +39,6 @@ class DosenController extends Controller
      */
     public function create()
     {
-
         return view('pages.admin.manajemen-dosen.create-dosen');
     }
 
@@ -60,6 +57,7 @@ class DosenController extends Controller
             'nama' => 'required|string',
             'email' => 'required|email',
             'no_telp' => 'required|string|between:11,15',
+            'id_registrasi_dosen' => 'required|string',
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
         ]);
@@ -77,6 +75,7 @@ class DosenController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'no_telp' => $validated['no_telp'],
+            'id_registrasi_dosen' => $validated['id_registrasi_dosen'],
             'id_jurusan' => $jurusan->id_jurusan,
             'id_user' => $user_dosen->id,
         ]);
@@ -129,6 +128,7 @@ class DosenController extends Controller
             'nama' => 'required|string',
             'email' => 'required|email',
             'no_telp' => 'required|string|between:11,15',
+            'id_registrasi_dosen' => 'required|string',
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
@@ -146,6 +146,7 @@ class DosenController extends Controller
             'nama' => $validated['nama'],
             'email' => $validated['email'],
             'no_telp' => $validated['no_telp'],
+            'id_registrasi_dosen' => $validated['id_registrasi_dosen'],
             'id_jurusan' => $jurusan->id_jurusan,
             'id_user' => $user->id,
         ]);

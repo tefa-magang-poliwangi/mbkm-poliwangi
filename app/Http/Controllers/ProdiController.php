@@ -46,6 +46,7 @@ class ProdiController extends Controller
             'create_nama_prodi' => ['required', 'string'],
             'create_jenjang_pendidikan' => ['required', 'string'],
             'create_kode_prodi' => ['required', 'string'],
+            'create_id_prodi_feeder' => ['required', 'string'],
             'create_jurusan' => ['required', 'string'],
         ]);
 
@@ -53,6 +54,7 @@ class ProdiController extends Controller
             'nama' => $validated['create_nama_prodi'],
             'jenjang_pendidikan' => $validated['create_jenjang_pendidikan'],
             'kode_prodi' => $validated['create_kode_prodi'],
+            'id_prodi_feeder' => $validated['create_id_prodi_feeder'],
             'id_jurusan' => $validated['create_jurusan']
         ]);
 
@@ -96,6 +98,7 @@ class ProdiController extends Controller
             'update_nama_prodi' => ['required', 'string'],
             'update_jenjang_pendidikan' => ['required', 'string'],
             'update_kode_prodi' => ['required', 'string'],
+            'update_id_prodi_feeder' => ['required', 'string'],
             'update_jurusan' => ['required', 'string'],
         ]);
 
@@ -103,6 +106,7 @@ class ProdiController extends Controller
             'nama' => $validated['update_nama_prodi'],
             'jenjang_pendidikan' => $validated['update_jenjang_pendidikan'],
             'kode_prodi' => $validated['update_kode_prodi'],
+            'id_prodi_feeder' => $validated['update_id_prodi_feeder'],
             'id_jurusan' => $validated['update_jurusan']
         ]);
 

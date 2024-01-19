@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama', 255)->nullable(false);
             $table->enum('status', ['Aktif', 'Tidak Aktif'])->nullable(false);
+            $table->string('id_kurikulum_feeder')->nullable(true);
             $table->unsignedBigInteger('id_prodi')->nullable(false);
             $table->foreign('id_prodi')->references('id')->on('prodis')->onDelete('cascade');
             $table->timestamps();

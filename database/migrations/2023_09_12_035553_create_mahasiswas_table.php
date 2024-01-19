@@ -20,6 +20,7 @@ return new class extends Migration
             $table->year('angkatan')->nullable(false);
             $table->string('email', 255)->nullable(false);
             $table->string('no_telp', 15)->nullable(false);
+            $table->string('id_registrasi_mahasiswa')->nullable(true);
             $table->unsignedBigInteger('id_prodi')->nullable(false);
             $table->unsignedBigInteger('id_user')->nullable(false);
             $table->foreign('id_prodi')->references('id')->on('prodis')->onDelete('cascade');

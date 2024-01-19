@@ -101,6 +101,25 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
+
+                                                                        {{-- feeder --}}
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="update_id_program_feeder">Id
+                                                                                    Program Feeder</label>
+                                                                                <input type="text"
+                                                                                    class="form-control @error('update_id_program_feeder') is-invalid @enderror"
+                                                                                    id="update_id_program_feeder"
+                                                                                    name="update_id_program_feeder"
+                                                                                    placeholder="Masukkan Id Program Feeder"
+                                                                                    value="{{ $data->id_program_feeder }}">
+                                                                                @error('update_id_program_feeder')
+                                                                                    <div id="update_id_program_feeder"
+                                                                                        class="form-text text-danger">
+                                                                                        {{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
 
                                                                     <div class="row">
@@ -159,6 +178,19 @@
                                     placeholder="Masukkan Nama Jenis Program">
                                 @error('create_nama_program')
                                     <div id="create_nama_program" class="form-text pb-1">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            {{-- feeder --}}
+                            <div class="form-group">
+                                <label for="create_id_program_feeder">Id Program Feeder</label>
+                                <input type="text"
+                                    class="form-control @error('create_id_program_feeder') is-invalid @enderror"
+                                    id="create_id_program_feeder" name="create_id_program_feeder"
+                                    placeholder="Masukkan Id Program Feeder">
+                                @error('create_id_program_feeder')
+                                    <div id="create_id_program_feeder" class="form-text pb-1">
                                         {{ $message }}</div>
                                 @enderror
                             </div>

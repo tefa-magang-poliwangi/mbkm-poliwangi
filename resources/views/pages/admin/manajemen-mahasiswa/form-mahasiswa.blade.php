@@ -68,6 +68,19 @@
                                 @enderror
                             </div>
 
+                            {{-- feeder --}}
+                            <div class="form-group">
+                                <label for="id_registrasi_mahasiswa">Id Mahasiswa Feeder</label>
+                                <input type="text"
+                                    class="form-control @error('id_registrasi_mahasiswa') is-invalid @enderror"
+                                    id="id_registrasi_mahasiswa" name="id_registrasi_mahasiswa"
+                                    placeholder="Masukkan Id Registrasi Mahasiswa"
+                                    value="{{ $mahasiswa->id_registrasi_mahasiswa }}">
+                                @error('id_registrasi_mahasiswa')
+                                    <div id="id_registrasi_mahasiswa" class="form-text">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="form-group mb-3">
                                 <label for="password" class="control-label">Password</label>
                                 <div class="input-group">

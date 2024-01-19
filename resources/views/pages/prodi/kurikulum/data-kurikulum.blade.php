@@ -111,6 +111,25 @@
                                                                 @enderror
                                                             </div>
 
+                                                            {{-- feeder --}}
+                                                            <div class="form-group">
+                                                                <label for="update_id_kurikulum_feeder"
+                                                                    class="form-label">Id Kurikulum Feeder</label>
+                                                                <input id="update_id_kurikulum_feeder"
+                                                                    placeholder="Masukkan Id Kurikulum Feeder"
+                                                                    type="text"
+                                                                    class="form-control @error('update_id_kurikulum_feeder')
+                                                                    is-invalid
+                                                                @enderror"
+                                                                    name="update_id_kurikulum_feeder"
+                                                                    value="{{ $item->id_kurikulum_feeder }}">
+                                                                @error('update_id_kurikulum_feeder')
+                                                                    <div id="update_id_kurikulum_feeder"
+                                                                        class="form-text text-danger">
+                                                                        {{ $message }}</div>
+                                                                @enderror
+                                                            </div>
+
                                                             <div class="form-group">
                                                                 <label for="update_status" class="form-label">Status</label>
                                                                 <select
@@ -118,7 +137,7 @@
                                                                     id="update_status" name="update_status">
                                                                     <option value="">Pilih Status</option>
                                                                     <option value="1"
-                                                                        {{ $item->status == 'Wajib' ? 'selected' : '' }}>
+                                                                        {{ $item->status == 'Aktif' ? 'selected' : '' }}>
                                                                         Aktif
                                                                     </option>
                                                                     <option value="2"
@@ -181,6 +200,21 @@
                                 @enderror
                             </div>
 
+                            {{-- feeder --}}
+                            <div class="form-group">
+                                <label for="create_id_kurikulum_feeder" class="form-label">Id Kurikulum Feeder</label>
+                                <input id="create_id_kurikulum_feeder" placeholder="Masukkan Id Kurikulum Feeder"
+                                    type="text"
+                                    class="form-control @error('create_id_kurikulum_feeder')
+                                    is-invalid
+                                @enderror"
+                                    name="create_id_kurikulum_feeder">
+                                @error('create_id_kurikulum_feeder')
+                                    <div id="create_id_kurikulum_feeder" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+
                             <div class="form-group">
                                 <label for="create_status" class="form-label">Status</label>
                                 <select class="form-control @error('create_status') is-invalid @enderror"
@@ -194,7 +228,6 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
                         <div class="modal-footer bg-whitesmoke br">
                             <button type="button" class="btn btn-cancel" data-dismiss="modal">Batal</button>

@@ -39,6 +39,7 @@ class DataMahasiswaImport implements ToCollection
                         'angkatan' => $column[2],
                         'email' => $column[3],
                         'no_telp' => $column[4],
+                        'id_registrasi_mahasiswa' => $column[6], // feeder
                         'id_prodi' => $matchingProdi->id,
                         'id_user' => $matchingUser->id,
                     ]);

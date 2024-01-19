@@ -113,23 +113,6 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <a href="{{ route('manajemen.magang.ext.index') }}">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-success">
-                                    <i class="fas fa-book"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Magang Eksternal</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        {{-- {{ $magang_ext_count }} --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </section>
         </div>

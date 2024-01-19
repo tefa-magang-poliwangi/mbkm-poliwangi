@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminJurusan;
-use App\Models\AdminProdi;
 use App\Models\Kurikulum;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -65,11 +64,13 @@ class KurikulumController extends Controller
         $validated = $request->validate([
             'create_nama' => ['required'],
             'create_status' => ['required'],
+            'create_id_kurikulum_feeder' => ['required'],
         ]);
 
         Kurikulum::create([
             'nama' => $validated['create_nama'],
             'status' => $validated['create_status'],
+            'id_kurikulum_feeder' => $validated['create_id_kurikulum_feeder'],
             'id_prodi' => $id_prodi,
         ]);
 
@@ -115,12 +116,13 @@ class KurikulumController extends Controller
         $validated = $request->validate([
             'update_nama' => ['required'],
             'update_status' => ['required'],
-
+            'update_id_kurikulum_feeder' => ['required'],
         ]);
 
         Kurikulum::where('id', $id)->update([
             'nama' => $validated['update_nama'],
             'status' => $validated['update_status'],
+            'id_kurikulum_feeder' => $validated['update_id_kurikulum_feeder'],
             'id_prodi' => $id_prodi,
         ]);
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminJurusan;
-use App\Models\AdminProdi;
 use App\Models\Matkul;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -64,12 +63,14 @@ class MatakuliahController extends Controller
             'create_matkul' => ['required', 'string'],
             'create_kode_matkul' => ['required', 'string'],
             'create_sks' => ['required'],
+            'create_id_matkul_feeder' => ['required'],
         ]);
 
         Matkul::create([
             'nama' => $validated['create_matkul'],
             'kode_matakuliah' => $validated['create_kode_matkul'],
             'sks' => $validated['create_sks'],
+            'id_matkul_feeder' => $validated['create_id_matkul_feeder'],
             'id_prodi' => $id_prodi,
         ]);
 
@@ -117,12 +118,14 @@ class MatakuliahController extends Controller
             'update_matkul' => ['required', 'string'],
             'update_kode_matkul' => ['required', 'string'],
             'update_sks' => ['required'],
+            'update_id_matkul_feeder' => ['required'],
         ]);
 
         Matkul::where('id', $id)->update([
             'nama' => $validated['update_matkul'],
             'kode_matakuliah' => $validated['update_kode_matkul'],
             'sks' => $validated['update_sks'],
+            'id_matkul_feeder' => $validated['update_id_matkul_feeder'],
             'id_prodi' => $id_prodi,
         ]);
 

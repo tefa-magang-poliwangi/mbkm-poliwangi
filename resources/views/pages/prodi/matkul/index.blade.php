@@ -135,7 +135,8 @@
                                                                         <input id="update_matkul" type="text"
                                                                             class="form-control @error('update_matkul') is-invalid @enderror"
                                                                             name="update_matkul"
-                                                                            value="{{ $data->nama }}">
+                                                                            value="{{ $data->nama }}"
+                                                                            placeholder="Masukkan Nama Matakuliah">
                                                                         @error('update_matkul')
                                                                             <div id="update_matkul"
                                                                                 class="form-text text-danger">
@@ -149,7 +150,8 @@
                                                                         <input id="update_kode_matkul" type="text"
                                                                             class="form-control @error('update_kode_matkul') is-invalid @enderror"
                                                                             name="update_kode_matkul"
-                                                                            value="{{ $data->kode_matakuliah }}">
+                                                                            value="{{ $data->kode_matakuliah }}"
+                                                                            placeholder="Masukkan Kode Matakuliah">
                                                                         @error('update_kode_matkul')
                                                                             <div id="update_kode_matkul"
                                                                                 class="form-text text-danger">
@@ -161,10 +163,25 @@
                                                                             SKS</label>
                                                                         <input id="update_sks" type="number"
                                                                             class="form-control @error('update_sks') is-invalid @enderror"
-                                                                            name="update_sks"
-                                                                            value="{{ $data->sks }}">
+                                                                            name="update_sks" value="{{ $data->sks }}"
+                                                                            placeholder="Masukkan SKS Matakuliah">
                                                                         @error('update_sks')
                                                                             <div id="update_sks"
+                                                                                class="form-text text-danger">
+                                                                                {{ $message }}</div>
+                                                                        @enderror
+                                                                    </div>
+                                                                    {{-- feeder --}}
+                                                                    <div class="form-group">
+                                                                        <label for="update_id_matkul_feeder"
+                                                                            class="form-label">Id Matakuliah Feeder</label>
+                                                                        <input id="update_id_matkul_feeder" type="text"
+                                                                            class="form-control @error('update_id_matkul_feeder') is-invalid @enderror"
+                                                                            name="update_id_matkul_feeder"
+                                                                            placeholder="Masukkan Id Matakuliah Feeder"
+                                                                            value="{{ $data->id_matkul_feeder }}">
+                                                                        @error('update_id_matkul_feeder')
+                                                                            <div id="update_id_matkul_feeder"
                                                                                 class="form-text text-danger">
                                                                                 {{ $message }}</div>
                                                                         @enderror
@@ -216,7 +233,7 @@
                                     Kuliah</label>
                                 <input id="create_matkul" type="text"
                                     class="form-control @error('create_matkul') is-invalid @enderror" name="create_matkul"
-                                    placeholder="Masukkan Matakuliah">
+                                    placeholder="Masukkan Nama Matakuliah">
                                 @error('create_matkul')
                                     <div id="create_matkul" class="form-text text-danger">
                                         {{ $message }}</div>
@@ -238,9 +255,20 @@
                                     SKS</label>
                                 <input id="create_sks" type="number"
                                     class="form-control @error('create_sks') is-invalid @enderror" name="create_sks"
-                                    placeholder="Masukkan SKS">
+                                    placeholder="Masukkan SKS Matakuliah">
                                 @error('create_sks')
                                     <div id="create_sks" class="form-text text-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            {{-- feeder --}}
+                            <div class="form-group">
+                                <label for="create_id_matkul_feeder" class="form-label">Id Matakuliah Feeder</label>
+                                <input id="create_id_matkul_feeder" type="text"
+                                    class="form-control @error('create_id_matkul_feeder') is-invalid @enderror"
+                                    name="create_id_matkul_feeder" placeholder="Masukkan Id Matakuliah Feeder">
+                                @error('create_id_matkul_feeder')
+                                    <div id="create_id_matkul_feeder" class="form-text text-danger">
                                         {{ $message }}</div>
                                 @enderror
                             </div>

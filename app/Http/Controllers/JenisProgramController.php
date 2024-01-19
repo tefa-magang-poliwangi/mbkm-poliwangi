@@ -9,7 +9,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class JenisProgramController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $data = [
             'jenis_program' => JenisProgram::all()
         ];
@@ -21,11 +22,12 @@ class JenisProgramController extends Controller
     {
         $validated = $request->validate([
             'create_nama_program' => ['required', 'string'],
+            'create_id_program_feeder' => ['required', 'string'],
         ]);
 
         JenisProgram::create([
             'nama_program' => $validated['create_nama_program'],
-
+            'id_program_feeder' => $validated['create_id_program_feeder'],
         ]);
 
         Alert::success('Success', 'Data Jenis Program Berhasil Ditambahkan');
@@ -37,10 +39,12 @@ class JenisProgramController extends Controller
     {
         $validated = $request->validate([
             'update_nama_program' => ['required'],
+            'update_id_program_feeder' => ['required'],
         ]);
 
         JenisProgram::where('id', $id)->update([
             'nama_program' => $validated['update_nama_program'],
+            'id_program_feeder' => $validated['update_id_program_feeder'],
         ]);
 
         Alert::success('Success', 'Data Jenis Program Berhasil Diupdate');
@@ -57,6 +61,4 @@ class JenisProgramController extends Controller
 
         return redirect()->route('manajemen.jenis-program.index');
     }
-
-
 }

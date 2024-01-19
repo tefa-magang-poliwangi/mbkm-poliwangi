@@ -49,6 +49,18 @@
                                     @enderror
                                 </div>
 
+                                {{-- feeder --}}
+                                <div class="form-group">
+                                    <label for="id_registrasi_dosen" class="form-label">Id Dosen Feeder</label>
+                                    <input id="id_registrasi_dosen" type="text"
+                                        class="form-control @error('id_registrasi_dosen') is-invalid @enderror"
+                                        name="id_registrasi_dosen" placeholder="Masukkan Id Registrasi Dosen"
+                                        value="{{ $dosen->id_registrasi_dosen }}">
+                                    @error('id_registrasi_dosen')
+                                        <div id="id_registrasi_dosen" class="form-text">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group mb-3">
                                     <label for="password" class="control-label">Password</label>
                                     <div class="input-group">

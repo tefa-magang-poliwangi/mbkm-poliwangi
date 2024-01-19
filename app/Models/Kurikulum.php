@@ -13,6 +13,7 @@ class Kurikulum extends Model
         'id',
         'nama',
         'status',
+        'id_kurikulum_feeder',
         'id_prodi',
     ];
 

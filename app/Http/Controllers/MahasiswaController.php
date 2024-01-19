@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminJurusan;
-use App\Models\AdminProdi;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use App\Models\User;
@@ -69,7 +68,6 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request, $id_prodi)
     {
-        // $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first();
         // validasi request mahasiswa
         $validated = $request->validate([
             'nim' => 'required|string',
@@ -77,6 +75,7 @@ class MahasiswaController extends Controller
             'email' => 'required|email',
             'angkatan' => 'required',
             'no_telp' => 'required|string|between:11,15',
+            'id_registrasi_mahasiswa' => 'required|string',
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
         ]);
@@ -96,6 +95,7 @@ class MahasiswaController extends Controller
             'email' => $validated['email'],
             'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
+            'id_registrasi_mahasiswa' => $validated['id_registrasi_mahasiswa'],
             'id_prodi' => $id_prodi,
             'id_user' => $user_mahasiswa->id,
         ]);
@@ -141,9 +141,9 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
         $mahasiswa = Mahasiswa::findOrFail($id);
         $id_prodi = $mahasiswa->id_prodi;
+
         // validasi request mahasiswa
         $validated = $request->validate([
             'nim' => 'required|string',
@@ -151,6 +151,7 @@ class MahasiswaController extends Controller
             'email' => 'required|email',
             'angkatan' => 'required',
             'no_telp' => 'required|string|between:11,15',
+            'id_registrasi_mahasiswa' => 'required|string',
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
         ]);
@@ -170,6 +171,7 @@ class MahasiswaController extends Controller
             'email' => $validated['email'],
             'angkatan' => $validated['angkatan'],
             'no_telp' => $validated['no_telp'],
+            'id_registrasi_mahasiswa' => $validated['id_registrasi_mahasiswa'],
             'id_prodi' => $id_prodi,
             'id_user' => $user->id,
         ]);
