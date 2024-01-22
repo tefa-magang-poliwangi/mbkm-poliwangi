@@ -17,27 +17,27 @@ class JurusanSeeder extends Seeder
     {
         Jurusan::create([
             'id' => 1,
-            'nama_jurusan' => 'Jurusan Bisnis dan Informatika',
+            'nama_jurusan' => 'Bisnis Dan Informatika',
         ]);
 
         Jurusan::create([
             'id' => 2,
-            'nama_jurusan' => 'Jurusan Teknik Sipil',
+            'nama_jurusan' => 'Teknik Sipil',
         ]);
 
         Jurusan::create([
             'id' => 3,
-            'nama_jurusan' => 'Jurusan Teknik Mesin',
+            'nama_jurusan' => 'Teknik Mesin',
         ]);
 
         Jurusan::create([
             'id' => 4,
-            'nama_jurusan' => 'Jurusan Teknik Pertanian',
+            'nama_jurusan' => 'Pertanian',
         ]);
 
         Jurusan::create([
             'id' => 5,
-            'nama_jurusan' => 'Jurusan Pariwisata',
+            'nama_jurusan' => 'Pariwisata',
         ]);
     }
 }

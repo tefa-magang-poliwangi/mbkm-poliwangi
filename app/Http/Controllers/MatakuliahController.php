@@ -35,7 +35,7 @@ class MatakuliahController extends Controller
         $data = [
             'id_prodi' => $id_prodi,
             'matakuliah' => $matakuliah,
-            'prodi' => Prodi::all(),
+            'prodi' => Prodi::findOrFail($id_prodi),
             'request' => $request
         ];
         return view('pages.prodi.matkul.index', $data);

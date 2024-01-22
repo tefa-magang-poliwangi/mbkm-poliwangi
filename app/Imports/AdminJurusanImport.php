@@ -3,7 +3,7 @@
 namespace App\Imports;
 
 use App\Models\AdminJurusan;
-use App\Models\Prodi;
+use App\Models\Jurusan;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -15,12 +15,12 @@ class AdminJurusanImport implements ToCollection
      */
     public function collection(Collection $rows)
     {
-        $prodis = Prodi::all();
+        $jurusans = Jurusan::all();
 
         foreach ($rows as $column) {
-            $prodiName = $column[4];
-            $matchingProdi = $prodis->first(function ($prodi) use ($prodiName) {
-                return $prodi->nama == $prodiName;
+            $jurusanName = $column[4];
+            $matchingJurusan = $jurusans->first(function ($jurusans) use ($jurusanName) {
+                return $jurusans->nama_jurusan == $jurusanName;
             });
 
             $user_admin = User::create([
@@ -30,11 +30,11 @@ class AdminJurusanImport implements ToCollection
                 'password' => bcrypt($column[3]),
             ]);
 
-            $user_admin->assignRole('admin-prodi');
+            $user_admin->assignRole('admin-jurusan');
 
             AdminJurusan::create([
                 'id_user' => $user_admin->id,
-                'id_prodi' => $matchingProdi->id,
+                'id_jurusan' => $matchingJurusan->id,
             ]);
         }
     }
