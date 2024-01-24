@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminProdi;
+use App\Models\AdminJurusan;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
-use App\Models\Prodi;
+use App\Models\Jurusan;
 use App\Models\DosenPL;
 use App\Models\Kaprodi;
 use App\Models\PelamarMagang;
@@ -25,17 +25,17 @@ class DosenPLController extends Controller
      */
     public function index()
     {
-        $prodi_id = AdminProdi::where('id_user', Auth::user()->id)->first()->id_prodi;
+        $jurusan_id = AdminJurusan::where('id_user', Auth::user()->id)->first()->id_jurusan;
 
         $datas = [
-            'dosens' => Dosen::where('id_prodi', $prodi_id)->get(),
-            'prodi' => Prodi::find($prodi_id),
-            'dosen_pls' => Dosen::where('id_prodi', $prodi_id)
+            'dosens' => Dosen::where('id_jurusan', $jurusan_id)->get(),
+            'jurusan' => Jurusan::find($jurusan_id),
+            'dosen_pls' => Dosen::where('id_jurusan', $jurusan_id)
                 ->with('dosen_pl') // Pastikan nama relasinya sesuai dengan yang didefinisikan di model Dosen
                 ->get()
                 ->pluck('dosen_pl') // Ambil semua DosenPL dari hasil query di atas
                 ->flatten(),
-            'id_prodi' => $prodi_id,
+            'id_jurusan' => $jurusan_id,
         ];
 
         return view('pages.kaprodi.pages-kaprodi.pl-mahasiswa.index', $datas);
@@ -49,11 +49,11 @@ class DosenPLController extends Controller
     public function create()
     {
         $id_user = Auth()->user()->id;
-        $admin_prodi_user = AdminProdi::where('id_user', $id_user)->first();
-        $prodi_user = $admin_prodi_user->id_prodi;
+        $admin_jurusan_user = AdminJurusan::where('id_user', $id_user)->first();
+        $jurusan_user = $admin_jurusan_user->id_jurusan;
 
         // mengambil seluruh data dosen dengan role dosen
-        $dosens = Dosen::where('id_prodi', $prodi_user)
+        $dosens = Dosen::where('id_jurusan', $jurusan_user)
             ->whereDoesntHave('dosen_pl')
             ->whereHas('user', function ($query) {
                 $query->whereHas('roles', function ($query) {
@@ -158,7 +158,7 @@ class DosenPLController extends Controller
         $dosen_pl = DosenPL::findOrFail($id);
         $dosen_user = Dosen::where('id', $dosen_pl->id_dosen)->first();
         $user = User::findOrFail($dosen_user->id_user);
-        $user->removeRole('dosen-pl');
+        $user->removeRole('dosen-pembimbing');
         $dosen_pl->delete();
 
         $user->assignRole($dosen_role);

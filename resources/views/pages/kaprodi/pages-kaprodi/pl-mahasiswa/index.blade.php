@@ -40,7 +40,7 @@
                                         <th class="text-center text-white">No</th>
                                         <th class="text-center text-white">Nama</th>
                                         <th class="text-center text-white">Email</th>
-                                        <th class="text-center text-white">Prodi</th>
+                                        <th class="text-center text-white">Jurusan</th>
                                         <th class="text-center text-white">Lihat Peserta</th>
                                         <th class="text-center text-white">Aksi</th>
                                     </tr>
@@ -54,7 +54,7 @@
                                             <td>{{ $item->dosen->nama }}</td>
                                             <td>{{ $item->dosen->email }}</td>
                                             <td>
-                                                {{ $item->dosen->prodi->nama }}
+                                                {{ $item->dosen->jurusan->nama_jurusan }}
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ route('manajemen.dosen.pl.show', $item->id) }}"

@@ -45,7 +45,7 @@
                                                     <th class="text-center text-white">#</th>
                                                     <th class="text-center text-white">Nama</th>
                                                     <th class="text-center text-white">Email</th>
-                                                    <th class="text-center text-white">Nama Prodi</th>
+                                                    <th class="text-center text-white">Jurusan</th>
                                                 </tr>
                                             </thead>
 
@@ -62,7 +62,7 @@
                                                         </td>
                                                         <td class="text-center">{{ $data->nama }}</td>
                                                         <td class="text-center">{{ $data->email }}</td>
-                                                        <td class="text-center">{{ $data->prodi->nama }}</td>
+                                                        <td class="text-center">{{ $data->jurusan->nama_jurusan }}</td>
                                                     </tr>
                                                     @php
                                                         $no++;
@@ -79,7 +79,7 @@
                                     <button type="submit" class="btn btn-primary mr-auto my-auto">
                                         Tambah
                                     </button>
-                                    <a href="{{route('manajemen.dosen.pl.index')}}" class="btn btn-cancel">Back</a>
+                                    <a href="{{ route('manajemen.dosen.pl.index') }}" class="btn btn-cancel">Back</a>
                                 </div>
                             </div>
                         </form>

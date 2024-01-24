@@ -358,6 +358,15 @@
                     </li>
                 @endcan
 
+                @can('kurikulum.daftar.prodi')
+                    <li>
+                        <a class="nav-link" href="{{ route('kurikulum.daftar.prodi') }}">
+                            <i class="fas fa-solid fa-book-journal-whills"></i>
+                            <span>Kurikulum</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('matakuliah.daftar.prodi')
                     <li>
                         <a class="nav-link" href="{{ route('matakuliah.daftar.prodi') }}">
@@ -367,15 +376,6 @@
                     </li>
                 @endcan
 
-                @can('kurikulum.daftar.prodi')
-                    <li class="menu-header">Data Kurikulum</li>
-                    <li>
-                        <a class="nav-link" href="{{ route('kurikulum.daftar.prodi') }}">
-                            <i class="fas fa-solid fa-book-journal-whills"></i>
-                            <span>Kurikulum</span>
-                        </a>
-                    </li>
-                @endcan
 
                 {{-- @can('manajemen.magang.ext.index')
                     <li class="menu-header">Data Magang</li>
