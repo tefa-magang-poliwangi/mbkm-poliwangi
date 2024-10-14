@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -24,6 +25,25 @@ class AuthController extends Controller
             'username' => ['required'],
             'password' => ['required', Rules\Password::defaults()],
         ]);
+
+        // Validasi CAPTCHA
+        $request->validate([
+            'g-recaptcha-response' => ['required'],
+        ]);
+
+        // Verifikasi CAPTCHA
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => env('SECRET_KEY'),
+            'response' => $request->input('g-recaptcha-response'),
+        ]);
+
+        $captchaResponse = json_decode($response->body());
+
+        if (!$captchaResponse->success) {
+            return back()->withErrors([
+                'captcha' => 'Captcha verification failed, please try again.',
+            ])->onlyInput('name');
+        }
 
         // Mengecek apakah user memiliki role yang diizinkan untuk login
         $user = User::where('username', $credentials['username'])->first();

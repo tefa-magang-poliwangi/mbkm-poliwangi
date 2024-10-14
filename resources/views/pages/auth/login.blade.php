@@ -4,6 +4,11 @@
     <title>Sign In Akun | MBKM Poliwangi</title>
 @endsection
 
+@section('css')
+    {{-- chapta google --}}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endsection
+
 @section('content')
     <section class="section">
         <div class="container mt-5 py-4">
@@ -52,6 +57,13 @@
                                     @error('password')
                                         <div id="password" class="form-text">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <center class="d-flex">
+                                        <!-- reCAPTCHA -->
+                                        <div class="g-recaptcha mx-auto my-auto" data-sitekey="{{ env('SITE_KEY') }}"></div>
+                                    </center>
                                 </div>
 
                                 <div class="form-group">
