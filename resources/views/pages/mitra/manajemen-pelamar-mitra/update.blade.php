@@ -15,6 +15,10 @@
     <section class="pt-4">
         <div class="row pt-5">
             <div class="col-12">
+                <a href="{{ route('manajemen.mitra.index') }}" class="btn btn-primary ml-auto mb-3">
+                                    <i class="fa-solid fa-backward"></i> &ensp;
+                                    Kembali
+                                </a>
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Mitra - Magang Internal</h4>
@@ -25,7 +29,7 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="update_nama" class="form-label">Nama Perusahaan</label>
+                                <label for="update_nama" class="form-label">Nama Perusahaan <span class="text-danger">*</span></label>
                                 <input id="update_nama" type="text"
                                     class="form-control @error('update_nama') is-invalid @enderror" name="update_nama"
                                     value="{{ $mitra->nama }}">
@@ -36,7 +40,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_sektor_industri" class="form-label">Sektor Industri</label>
+                                <label for="update_sektor_industri" class="form-label">Sektor Industri <span class="text-danger">*</span></label>
                                 <select class="form-control @error('update_sektor_industri') is-invalid @enderror"
                                     id="update_sektor_industri" name="update_sektor_industri">
                                     <option value="">Pilih Sektor Industri</option>
@@ -53,7 +57,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_kategori" class="form-label">Kategori</label>
+                                <label for="update_kategori" class="form-label">Kategori <span class="text-danger">*</span></label>
                                 <select class="form-control @error('update_kategori') is-invalid @enderror"
                                     id="update_kategori" name="update_kategori">
                                     <option value="">Pilih Sektor Industri</option>
@@ -70,7 +74,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_alamat" class="form-label">Alamat</label>
+                                <label for="update_alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
                                 <input id="update_alamat" type="text"
                                     class="form-control @error('update_alamat') is-invalid @enderror" name="update_alamat"
                                     value="{{ $mitra->alamat }}">
@@ -81,17 +85,13 @@
                             </div>
 
                             <div class="form-group">
-                                @php
-                                    $provinces = new App\Http\Controllers\DependantDropdownController();
-                                    $provinces = $provinces->provinces();
-                                @endphp
-                                <label for="provinces">Provinsi</label>
+                                <label for="provinces">Provinsi <span class="text-danger">*</span></label>
                                 <select class="form-control select2 @error('provinces') is-invalid @enderror"
                                     name="provinces" id="provinces" required>
                                     <option value="">Pilih Provinsi</option>
                                     @foreach ($provinces as $item)
                                         <option value="{{ $item->name }}"
-                                            {{ $mitra->provinsi == $item->name ? 'selected' : '' }}>
+                                            {{ $mitra->provinsi == $item->id ? 'selected' : '' }}>
                                             {{ $item->name }}
                                         </option>
                                     @endforeach
@@ -103,17 +103,13 @@
                             </div>
 
                             <div class="form-group">
-                                @php
-                                    $cities = new App\Http\Controllers\DependantDropdownController();
-                                    $cities = $cities->cities();
-                                @endphp
-                                <label for="cities">Kota</label>
+                                <label for="cities">Kota <span class="text-danger">*</span></label>
                                 <select class="form-control select2 @error('cities') is-invalid @enderror" name="cities"
                                     id="cities" required>
                                     <option value="">Pilih Kota</option>
                                     @foreach ($cities as $item)
                                         <option value="{{ $item->name }}"
-                                            {{ $mitra->kota == $item->name ? 'selected' : '' }}>
+                                            {{ $mitra->kota == $item->id ? 'selected' : '' }}>
                                             {{ $item->name }}
                                         </option>
                                     @endforeach
@@ -125,7 +121,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_link_website" class="form-label">Link Website</label>
+                                <label for="update_link_website" class="form-label">Link Website <span class="text-danger">*</span></label>
                                 <input id="update_link_website" type="text"
                                     class="form-control @error('update_link_website') is-invalid @enderror"
                                     name="update_link_website" value="{{ $mitra->website }}">
@@ -136,7 +132,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_no_telephone" class="form-label">No Telephone</label>
+                                <label for="update_no_telephone" class="form-label">No Telephone <span class="text-danger">*</span></label>
                                 <input id="update_no_telephone" type="text"
                                     class="form-control @error('update_no_telephone') is-invalid @enderror"
                                     name="update_no_telephone" value="{{ $mitra->narahubung }}">
@@ -147,7 +143,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_email" class="form-label">Email</label>
+                                <label for="update_email" class="form-label">Email <span class="text-danger">*</span></label>
                                 <input id="update_email" type="text"
                                     class="form-control @error('update_email') is-invalid @enderror" name="update_email"
                                     value="{{ $mitra->email }}">
@@ -193,7 +189,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="update_status" class="form-label">Status</label>
+                                <label for="update_status" class="form-label">Status <span class="text-danger">*</span></label>
                                 <select class="form-control @error('update_status') is-invalid @enderror"
                                     id="update_status" name="update_status">
                                     <option value="">Pilih Status</option>
@@ -209,7 +205,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                <label for="deskripsi" class="form-label">Deskripsi <span class="text-danger">*</span></label>
                                 <textarea id="deskripsi" type="text" class="form-control @error('deskripsi') is-invalid @enderror"
                                     name="deskripsi">{{ $mitra->deskripsi }}</textarea>
                                 @error('deskripsi')
@@ -227,6 +223,45 @@
     </section>
 @endsection
 
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $('#provinces').on('change', function () {
+            var selectedProvince = $(this).val();
+
+            console.log('Province ID yang dikirim:', selectedProvince);
+
+            $('#cities').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: '/get-cities/' + encodeURIComponent(selectedProvince),
+                type: 'GET',
+                success: function (data) {
+                    let options = '<option value="">Pilih Kota</option>';
+                    data.forEach(function (city) {
+                        options += `<option value="${city.id}">${city.name}</option>`;
+                    });
+                    $('#cities').html(options);
+                },
+                error: function () {
+                    $('#cities').html('<option value="">Gagal memuat kota</option>');
+                }
+            });
+        });
+
+        // Jika sebelumnya user memilih provinsi dan kota, kita reload kota-nya
+        @if(old('provinces'))
+            $('#provinces').trigger('change');
+
+            // Delay agar AJAX sempat selesai
+            setTimeout(function () {
+                $('#cities').val("{{ old('cities') }}");
+            }, 1000);
+        @endif
+    });
+</script>
+@endpush
+
 @section('script')
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
@@ -237,7 +272,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
     </script>
-    <script>
+    <!-- <script>
         function onChangeSelect(url, id, name) {
             // send ajax request to get the cities of the selected province and append to the select tag
             $.ajax({
@@ -266,7 +301,7 @@
                 onChangeSelect('{{ route('villages') }}', $(this).val(), 'desa');
             })
         });
-    </script>
+    </script> -->
     <script>
         document.getElementById("togglePassword").addEventListener("click", function() {
             togglePasswordVisibility("password", "togglePassword");

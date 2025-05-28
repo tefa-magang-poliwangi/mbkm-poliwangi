@@ -8,6 +8,8 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\SektorIndustri;
 use Illuminate\Validation\Rules;
+use Laravolt\Indonesia\Models\City;
+use Laravolt\Indonesia\Models\Province;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class FormMitraController extends Controller
@@ -23,6 +25,7 @@ class FormMitraController extends Controller
             'mitras' => Mitra::all(),
             'sektor_industri' => SektorIndustri::all(),
             'kategori' => Kategori::all(),
+            'city' => City::all(),
         ];
 
         return view('pages.mitra.manajemen-pelamar-mitra.index', $data);
@@ -35,14 +38,35 @@ class FormMitraController extends Controller
      */
     public function create()
     {
-        $data = [
-            'formmitra' => Mitra::all(),
-            'sektor_industri' => SektorIndustri::all(),
-            'kategori' => Kategori::all(),
-        ];
+            $formmitra = Mitra::all();
+            $sektor_industri = SektorIndustri::all();
+            $kategori = Kategori::all();
 
-        return view('pages.mitra.manajemen-pelamar-mitra.create', $data);
+            $dropdown = new DependantDropdownController();
+            $provinces = $dropdown->provinces();
+            $cities = $dropdown->cities();
+
+        return view('pages.mitra.manajemen-pelamar-mitra.create', compact('formmitra', 'sektor_industri', 'kategori', 'provinces', 'cities'));
     }
+
+    public function getCities($provinceId)
+{
+    // Cari dulu code provinsi berdasarkan id provinsi
+    $province = Province::find($provinceId);
+
+    if (!$province) {
+        // Jika provinsi tidak ditemukan, return kosong
+        return response()->json([]);
+    }
+
+    // Ambil kode provinsi
+    $provinceCode = $province->code;
+
+    // Cari kota yang punya province_code sesuai code provinsi tadi
+    $cities = City::where('province_code', $provinceCode)->get();
+
+    return response()->json($cities);
+}
 
     /**
      * Store a newly created resource in storage.
@@ -66,6 +90,40 @@ class FormMitraController extends Controller
             'password_confirmation' => ['required', 'min:8', Rules\Password::defaults()],
             'status' => ['required'],
             'deskripsi' => ['required'],
+        ], [
+            'nama.required' => 'Nama wajib diisi.',
+            'nama.string' => 'Nama harus berupa teks.',
+
+            'id_sektor_industri.required' => 'Sektor industri wajib dipilih.',
+
+            'id_kategori.required' => 'Kategori wajib dipilih.',
+
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.string' => 'Alamat harus berupa teks.',
+
+            'provinces.required' => 'Provinsi wajib dipilih.',
+            'cities.required' => 'Kota/Kabupaten wajib dipilih.',
+
+            'website.required' => 'Website wajib diisi.',
+            'website.url' => 'Format website tidak valid. Harus berupa URL yang benar (misal: https://contoh.com).',
+
+            'narahubung.required' => 'Narahubung wajib diisi.',
+            'narahubung.string' => 'Narahubung harus berupa teks.',
+            'narahubung.between' => 'Narahubung harus terdiri dari 11 sampai 15 karakter.',
+
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+
+            'password.required' => 'Password wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'password.min' => 'Password minimal terdiri dari 8 karakter.',
+
+            'password_confirmation.required' => 'Konfirmasi password wajib diisi.',
+            'password_confirmation.min' => 'Konfirmasi password minimal 8 karakter.',
+            
+            'status.required' => 'Status wajib dipilih.',
+
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
         ]);
 
         $user_mitra = User::create([
@@ -124,13 +182,16 @@ class FormMitraController extends Controller
      */
     public function edit($id)
     {
-        $data = [
-            'sektor_industri' => SektorIndustri::all(),
-            'kategori' => Kategori::all(),
-            'mitra' => Mitra::findOrFail($id),
-        ];
+        $sektor_industri = SektorIndustri::all();
+        $kategori = Kategori::all();
+        $mitra = Mitra::findOrFail($id);
+        
 
-        return view('pages.mitra.manajemen-pelamar-mitra.update', $data);
+        $dropdown = new DependantDropdownController();
+            $provinces = $dropdown->provinces();
+            $cities = $dropdown->cities();
+
+        return view('pages.mitra.manajemen-pelamar-mitra.update', compact('sektor_industri', 'kategori', 'mitra', 'provinces', 'cities'));
     }
 
     /**
@@ -158,6 +219,38 @@ class FormMitraController extends Controller
             'deskripsi' => ['required'],
             'password' => ['nullable', 'confirmed', 'min:8'],
             'password_confirmation' => ['nullable', 'min:8', Rules\Password::defaults()],
+        ], [
+            'nama.required' => 'Nama wajib diisi.',
+            'nama.string' => 'Nama harus berupa teks.',
+
+            'id_sektor_industri.required' => 'Sektor industri wajib dipilih.',
+
+            'id_kategori.required' => 'Kategori wajib dipilih.',
+
+            'alamat.required' => 'Alamat wajib diisi.',
+            'alamat.string' => 'Alamat harus berupa teks.',
+
+            'provinces.required' => 'Provinsi wajib dipilih.',
+            'cities.required' => 'Kota/Kabupaten wajib dipilih.',
+
+            'website.required' => 'Website wajib diisi.',
+            'website.url' => 'Format website tidak valid. Harus berupa URL yang benar (misal: https://contoh.com).',
+
+            'narahubung.required' => 'Narahubung wajib diisi.',
+            'narahubung.string' => 'Narahubung harus berupa teks.',
+            'narahubung.between' => 'Narahubung harus terdiri dari 11 sampai 15 karakter.',
+
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'password.min' => 'Password minimal terdiri dari 8 karakter.',
+
+            'password_confirmation.min' => 'Konfirmasi password minimal 8 karakter.',
+            
+            'status.required' => 'Status wajib dipilih.',
+
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
         ]);
 
         // Menggunakan array kosong untuk $saveData sebagai awalan

@@ -24,6 +24,9 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 d-flex mb-3">
                                 <div class="ml-auto">
+                                    <a href="{{ route('download.template-excel') }}" class="btn btn-primary" title="Download Template Excel">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </a>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#importAdminProdi"
                                         title="Import Data User Admin Jurusan"><i class="fa-solid fa-cloud-arrow-up"></i>
                                     </button>

@@ -65,6 +65,21 @@ class MitraLowonganController extends Controller
             'tanggal_magang_berakhir' => ['required', 'date'],
             'status' => ['required'],
             'id_prodi' => ['required']
+        ], [
+            'nama.required' => 'Nama lowongan wajib diisi.',
+            'jumlah_lowongan.required' => 'Jumlah lowongan wajib diisi.',
+            'jumlah_lowongan.numeric' => 'Jumlah lowongan harus berupa angka.',
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
+            'tanggal_dibuka.required' => 'Tanggal dibuka wajib diisi.',
+            'tanggal_dibuka.date' => 'Format tanggal dibuka tidak valid.',
+            'tanggal_ditutup.required' => 'Tanggal ditutup wajib diisi.',
+            'tanggal_ditutup.date' => 'Format tanggal ditutup tidak valid.',
+            'tanggal_magang_dimulai.required' => 'Tanggal magang dimulai wajib diisi.',
+            'tanggal_magang_dimulai.date' => 'Format tanggal magang dimulai tidak valid.',
+            'tanggal_magang_berakhir.required' => 'Tanggal magang berakhir wajib diisi.',
+            'tanggal_magang_berakhir.date' => 'Format tanggal magang berakhir tidak valid.',
+            'status.required' => 'Status wajib diisi.',
+            'id_prodi.required' => 'Program studi wajib dipilih.'
         ]);
 
         Lowongan::create([

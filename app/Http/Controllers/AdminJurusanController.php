@@ -30,6 +30,13 @@ class AdminJurusanController extends Controller
         return view('pages.admin.manajemen-admin-jurusan.data-admin-jurusan', $data);
     }
 
+    public function downloadTemplate()
+    {
+        $filePath = storage_path('app/public/template/Data User Admin.xlsx'); // path file Excel kamu
+        $fileName = 'template-data-admin.xlsx';
+
+        return response()->download($filePath, $fileName);
+    }
 
     /**
      * Show the form for creating a new resource.

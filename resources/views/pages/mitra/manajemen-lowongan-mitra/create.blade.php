@@ -19,6 +19,10 @@
         <div class="container py-5">
             <div class="row d-flex justify-content-center">
                 <div class="col-12">
+                    <a href="{{ route('manajemen.lowongan.mitra.index') }}" class="btn btn-primary ml-auto mb-3">
+                                    <i class="fa-solid fa-backward"></i> &ensp;
+                                    Kembali
+                                </a>
                     <div class="card card-rounded-sm">
                         <div class="card-header">
                             <h4>Form Manajemen Lowongan</h4>
@@ -28,8 +32,8 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama" class="nama">Nama</label>
-                                    <input id="nama" type="text" name="nama"
+                                    <label for="nama" class="nama">Nama <span class="text-danger">*</span></label>
+                                    <input id="nama" type="text" name="nama" value="{{ old('nama') }}"
                                         class="form-control @error('nama')
                                         is-invalid
                                     @enderror"
@@ -40,8 +44,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="jumlah_lowongan" class="jumlah_lowongan">Jumlah Lowongan</label>
-                                    <input id="jumlah_lowongan" type="text" pattern="[0-9]*" name="jumlah_lowongan"
+                                    <label for="jumlah_lowongan" class="jumlah_lowongan">Jumlah Lowongan <span class="text-danger">*</span></label>
+                                    <input id="jumlah_lowongan" type="text" pattern="[0-9]*" name="jumlah_lowongan" value="{{ old('jumlah_lowongan') }}"
                                         class="form-control @error('jumlah_lowongan')
                                         is-invalid
                                     @enderror"
@@ -52,20 +56,20 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="deskripsi">Deskripsi</label>
+                                    <label for="deskripsi">Deskripsi <span class="text-danger">*</span></label>
                                     <textarea id="deskripsi" type="text" name="deskripsi"
                                         class="form-control @error('deskripsi')
                                         is-invalid
                                     @enderror"
-                                        name="deskripsi" placeholder="Deskripsi"></textarea>
+                                        name="deskripsi" placeholder="Deskripsi">{{ old('deskripsi') }}</textarea>
                                     @error('deskripsi')
                                         <div id="deskripsi" class="form-text text-danger">
                                             {{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal_dibuka">Tanggal Dibuka</label>
-                                    <input id="tanggal_dibuka" type="text" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    <label for="tanggal_dibuka">Tanggal Dibuka <span class="text-danger">*</span></label>
+                                    <input id="tanggal_dibuka" type="text" data-dd-opt-custom-class="dd-theme-bootstrap" value="{{ old('tanggal_dibuka') }}"
                                         name="tanggal_dibuka"
                                         class="form-control date-input bg-white @error('tanggal_dibuka')
                                         is-invalid
@@ -78,8 +82,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal_ditutup">Tanggal Ditutup</label>
-                                    <input id="tanggal_ditutup" type="text" data-dd-opt-custom-class="dd-theme-bootstrap"
+                                    <label for="tanggal_ditutup">Tanggal Ditutup <span class="text-danger">*</span></label>
+                                    <input id="tanggal_ditutup" type="text" data-dd-opt-custom-class="dd-theme-bootstrap" value="{{ old('tanggal_ditutup') }}"
                                         name="tanggal_ditutup"
                                         class="form-control date-input bg-white @error('tanggal_ditutup')
                                     is-invalid
@@ -92,9 +96,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal_magang_dimulai">Tanggal Magang Dimulai</label>
+                                    <label for="tanggal_magang_dimulai">Tanggal Magang Dimulai <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input id="tanggal_magang_dimulai" type="text"
+                                        <input id="tanggal_magang_dimulai" type="text" value="{{ old('tanggal_magang_dimulai') }}"
                                             data-dd-opt-custom-class="dd-theme-bootstrap" name="tanggal_magang_dimulai"
                                             class="form-control date-input bg-white @error('tanggal_magang_dimulai')
                                     is-invalid
@@ -108,9 +112,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal_magang_berakhir">Tanggal Magang Berakhir</label>
+                                    <label for="tanggal_magang_berakhir">Tanggal Magang Berakhir <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input id="tanggal_magang_berakhir" type="text"
+                                        <input id="tanggal_magang_berakhir" type="text" value="{{ old('tanggal_magang_berakhir') }}"
                                             data-dd-opt-custom-class="dd-theme-bootstrap" name="tanggal_magang_berakhir"
                                             class="form-control date-input bg-white @error('tanggal_magang_berakhir')
                                     is-invalid
@@ -124,15 +128,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_prodi" class="form-label">Prodi</label>
+                                    <label for="id_prodi" class="form-label">Prodi <span class="text-danger">*</span></label>
                                     <select
                                         class="form-control @error('id_prodi')
                                                 is-invalid
                                             @enderror"
                                         id="id_prodi" name="id_prodi">
-                                        <option value="">Prodi</option>
+                                        <option value="">Pilih Prodi</option>
                                         @foreach ($prodi as $dataprodi)
-                                            <option value="{{ $dataprodi->id }}">{{ $dataprodi->nama }}</option>
+                                            <option value="{{ $dataprodi->id }}" {{ old('id_prodi') == $dataprodi->id ? 'selected' : '' }}>{{ $dataprodi->nama }}</option>
                                         @endforeach
                                     </select>
                                     @error('id_prodi')
@@ -141,13 +145,13 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Status</label>
+                                    <label>Status <span class="text-danger">*</span></label>
                                     <select
                                         class="form-control @error('status')
                                     is-invalid
                                 @enderror"
                                         name="status" id="status">
-                                        <option value="">Pilih Status</option>
+                                        <option value="" disabled {{ old('status') == '' ? 'selected' : '' }}>Pilih Status</option>
                                         <option value="Aktif"> Aktif </option>
                                         <option value="Tidak Aktif"> Tidak Aktif </option>
                                     </select>

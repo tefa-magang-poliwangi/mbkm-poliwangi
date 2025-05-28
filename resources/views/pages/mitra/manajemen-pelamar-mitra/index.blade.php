@@ -54,9 +54,9 @@
                                             <td class="text-center">{{ $data->nama }}</td>
                                             <td class="text-center">{{ $data->sektor_industri->nama }}</td>
                                             <td class="text-center">{{ $data->kategori->nama }}</td>
-                                            <td class="text-center">{{ $data->kota }}</td>
+                                            <td class="text-center">{{ $data->indonesia_cities->name }}</td>
                                             <td class="text-center">{{ $data->status }}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('manajemen.mitra.edit', $data->id) }}"
                                                     class="btn btn-info ml-auto">
                                                     <i class="fa-solid fa-pen text-white"></i>

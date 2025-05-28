@@ -15,29 +15,53 @@ class JurusanSeeder extends Seeder
      */
     public function run()
     {
-        Jurusan::create([
+        Jurusan::firstOrCreate([
             'id' => 1,
-            'nama_jurusan' => 'Bisnis Dan Informatika',
+            'nama_jurusan' => 'Teknologi Rekayasa Perangkat Lunak',
         ]);
 
-        Jurusan::create([
+        Jurusan::firstOrCreate([
             'id' => 2,
+            'nama_jurusan' => 'Teknologi Rekayasa Komputer',
+        ]);
+
+        Jurusan::firstOrCreate([
+            'id' => 3,
+            'nama_jurusan' => 'Bisnis Digital',
+        ]);
+
+        Jurusan::firstOrCreate([
+            'id' => 4,
+            'nama_jurusan' => 'Teknologi Rekayasa Manufaktur',
+        ]);
+
+        Jurusan::firstOrCreate([
+            'id' => 5,
+            'nama_jurusan' => 'Teknik Manufaktur Kapal',
+        ]);
+        Jurusan::firstOrCreate([
+            'id' => 6,
+            'nama_jurusan' => 'Teknologi Rekayasa Konstruksi Jalan & Jembatan',
+        ]);
+        Jurusan::firstOrCreate([
+            'id' => 7,
+            'nama_jurusan' => 'Teknologi Pengolahan Hasil Ternak',
+        ]);
+        Jurusan::firstOrCreate([
+            'id' => 8,
+            'nama_jurusan' => 'Agribisnis',
+        ]);
+        Jurusan::firstOrCreate([
+            'id' => 9,
             'nama_jurusan' => 'Teknik Sipil',
         ]);
-
-        Jurusan::create([
-            'id' => 3,
-            'nama_jurusan' => 'Teknik Mesin',
+        Jurusan::firstOrCreate([
+            'id' => 10,
+            'nama_jurusan' => 'Manajemen Bisnis Pariwisata',
         ]);
-
-        Jurusan::create([
-            'id' => 4,
-            'nama_jurusan' => 'Pertanian',
-        ]);
-
-        Jurusan::create([
-            'id' => 5,
-            'nama_jurusan' => 'Pariwisata',
+        Jurusan::firstOrCreate([
+            'id' => 11,
+            'nama_jurusan' => 'Destinasi Pariwisata',
         ]);
     }
 }

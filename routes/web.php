@@ -259,6 +259,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // Route Manajemen Admin Jurusan
         Route::get('/manajemen/admin-jurusan', [AdminJurusanController::class, 'index'])->name('manajemen.admin.jurusan.index');
+        Route::get('/download-template-excel', [AdminJurusanController::class, 'downloadTemplate'])->name('download.template-excel');
         Route::get('/manajemen/admin-jurusan/create', [AdminJurusanController::class, 'create'])->name('manajemen.admin.jurusan.create');
         Route::post('/manajemen/admin-jurusan/store', [AdminJurusanController::class, 'store'])->name('manajemen.admin.jurusan.store');
         Route::get('/manajemen/admin-jurusan/{id_admin_jurusan}/destroy', [AdminJurusanController::class, 'destroy'])->name('manajemen.admin.jurusan.destroy');
@@ -344,6 +345,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         // Route Manajemen Mitra
         Route::get('/manajemen/mitra', [FormMitraController::class, 'index'])->name('manajemen.mitra.index');
         Route::get('/manajemen/mitra/create', [FormMitraController::class, 'create'])->name('manajemen.mitra.create');
+        Route::get('/get-cities/{provinceId}', [FormMitraController::class, 'getCities']);
         Route::post('/manajemen/mitra/store', [FormMitraController::class, 'store'])->name('manajemen.mitra.store');
         Route::get('/manajemen/mitra/{id_mitra}/edit', [FormMitraController::class, 'edit'])->name('manajemen.mitra.edit');
         Route::put('/manajemen/mitra/{id_mitra}/update', [FormMitraController::class, 'update'])->name('manajemen.mitra.update');
